@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Bridal Gowns & Wedding Dresses Peoria IL | Cloud Nine Bridal Boutique</title>
+  <meta name="description" content="Browse wedding gowns from Maggie Sottero, Essense of Australia, Rebecca Ingram, Stella York & more at Cloud Nine Bridal Boutique in Peoria, IL. Book your fitting today."/>
+  <meta name="keywords" content="wedding dresses Peoria IL, bridal gowns Peoria, Maggie Sottero Peoria, Essense of Australia Illinois, bridal boutique Peoria"/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://cloudninebridal.com/bridal-catalog.html"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://cloudninebridal.com/bridal-catalog.html"/>
+  <meta property="og:title" content="Bridal Gowns | Cloud Nine Bridal Boutique Peoria IL"/>
+  <meta property="og:description" content="Wedding gowns from top designers. Maggie Sottero, Essense of Australia, Rebecca Ingram & more — exclusively in Peoria."/>
+  <meta property="og:image" content="https://cloudninebridal.com/images/bridal/Bridal-hero.jpg"/>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+    <!-- Fonts: preconnect first, then non-blocking stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Josefin+Sans:wght@100;200;300;400&family=Lato:wght@300;400;700;900&display=swap"/>
+    <link rel="preload" as="image" href="images/bridal/Bridal-hero.webp" type="image/webp"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Bridal Gowns & Wedding Dresses",
+    "description": "Browse designer wedding gowns from Maggie Sottero, Essense of Australia, Rebecca Ingram, and Stella York at Cloud Nine Bridal Boutique in Peoria, IL.",
+    "url": "https://cloudninebridal.com/bridal-catalog.html",
+    "isPartOf": {
+      "@type": "BridalShop",
+      "name": "Cloud Nine Bridal Boutique",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "4711 N. University St",
+        "addressLocality": "Peoria",
+        "addressRegion": "IL",
+        "postalCode": "61614",
+        "addressCountry": "US"
+      },
+      "telephone": "+13096933830"
+    }
+  }
+  </script>
+  <style>
+    /* ── BRIDAL VIDEO HERO ── */
+    .bridal-cat-hero {
+      position: relative;
+      height: 82vh; min-height: 560px;
+      overflow: hidden;
+      background: #0d0a0c;
+    }
+    /* YouTube iframe — hidden behind photo until ready */
+    .bridal-cat-hero-video-wrap {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 177.78vh;
+      height: 56.25vw;
+      min-width: 100%;
+      min-height: 100%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .bridal-cat-hero-video-wrap iframe {
+      width: 100%; height: 100%;
+      border: none;
+    }
+    .bridal-cat-hero-vignette {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,.50) 0%,
+        rgba(0,0,0,.12) 28%,
+        rgba(0,0,0,.08) 55%,
+        rgba(0,0,0,.82) 100%
+      );
+      z-index: 2;
+    }
+    .bridal-cat-hero-content {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 0 64px 60px;
+      display: flex; align-items: flex-end;
+      justify-content: space-between;
+      z-index: 10;
+    }
+    .bridal-cat-hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(52px, 8vw, 118px);
+      font-weight: 700; color: #fff;
+      line-height: .90; letter-spacing: -.04em;
+      margin: 0;
+    }
+    .bridal-cat-hero-title em { font-style: italic; color: rgba(255,255,255,.60); }
+    .bridal-cat-hero-right {
+      font-size: 13px; font-weight: 300;
+      color: rgba(255,255,255,.62);
+      text-align: right; max-width: 200px;
+      line-height: 1.85; padding-bottom: 8px;
+    }
+    /* Hero photo — shows instantly, fades to video once playing */
+    .bridal-cat-hero-fallback {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 20%;
+      z-index: 6;
+      opacity: 1;
+      transition: opacity 1.2s ease;
+      pointer-events: none;
+    }
+    .bridal-cat-hero-fallback.gone { opacity: 0; }
+
+    /* Startup mask — hides YouTube thumbnail overlay, fades out */
+    .bridal-cat-hero-start-mask {
+      position: absolute; inset: 0;
+      background: #0d0a0c;
+      z-index: 5;
+      pointer-events: none;
+      opacity: 1;
+      transition: opacity 1s ease;
+    }
+    .bridal-cat-hero-start-mask.gone { opacity: 0; }
+
+    /* Tiny play/pause button — bottom right, barely there */
+    .bridal-video-btn {
+      position: absolute;
+      bottom: 20px; right: 24px;
+      z-index: 10;
+      width: 28px; height: 28px;
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 0;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: background .2s, border-color .2s;
+      opacity: 0;
+      transition: opacity .6s ease, background .2s, border-color .2s;
+    }
+    .bridal-video-btn.visible { opacity: 1; }
+    .bridal-video-btn:hover {
+      background: rgba(255,255,255,.28);
+      border-color: rgba(255,255,255,.5);
+    }
+    .bridal-video-btn svg { width: 9px; height: 9px; fill: rgba(255,255,255,.75); }
+    .bridal-video-btn .icon-pause { display: none; }
+    .bridal-video-btn.playing .icon-play { display: none; }
+    .bridal-video-btn.playing .icon-pause { display: block; }
+
+    @media (max-width: 768px) {
+      .bridal-cat-hero { height: 72vw; min-height: 420px; }
+      .bridal-cat-hero-content { padding: 0 20px 84px; flex-direction: column; align-items: flex-start; gap: 10px; }
+      .bridal-cat-hero-title { font-size: clamp(30px, 8vw, 46px); line-height: .94; }
+      .bridal-cat-hero-right { display: none; }
+      #densityToggle { display: none; }
+    }
+
+    /* ── Catalog ──────────────────────────────── */
+    .catalog-count{display:block;}
+    .pagination{display:flex;justify-content:center;align-items:center;gap:6px;margin:48px 0 16px;flex-wrap:wrap;}
+    .pagination button{background:none;border:1px solid var(--border);border-radius:0;padding:8px 14px;font-size:13px;cursor:pointer;font-family:"Lato",sans-serif;transition:all .2s;}
+    .pagination button:hover,.pagination button.active{background:var(--teal-deep);color:#fff;border-color:var(--teal-deep);}
+    .pagination button:disabled{opacity:.3;cursor:default;}
+    .pagination .pg-sep{font-size:13px;color:var(--text-muted);padding:0 4px;}
+
+    /* ── Modal backdrop ───────────────────────── */
+    .modal-backdrop{display:none;position:fixed;inset:0;background:rgba(15,15,15,.8);z-index:2000;overflow-y:auto;padding:32px 16px;backdrop-filter:blur(4px);}
+    .modal-backdrop.open{display:flex;align-items:flex-start;justify-content:center;}
+
+    /* ── Modal shell ──────────────────────────── */
+    .modal{background:#fff;border-radius:0;max-width:960px;width:100%;display:grid;grid-template-columns:1.05fr 1fr;overflow:hidden;position:relative;margin:auto;box-shadow:0 32px 80px rgba(0,0,0,.35);}
+
+    /* ── Close button ─────────────────────────── */
+    .modal-x{position:absolute;top:14px;right:14px;background:rgba(255,255,255,.18);backdrop-filter:blur(6px);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:0;width:34px;height:34px;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;transition:all .2s;line-height:1;}
+    .modal-x:hover{background:var(--teal-deep);border-color:var(--teal-deep);}
+
+    /* ── Gallery side ─────────────────────────── */
+    .modal-gallery{background:#f0f0f0;display:flex;flex-direction:column;}
+    .modal-main-wrap{flex:1;overflow:hidden;background:#f0f0f0;position:relative;}
+    .modal-main-img{width:100%;height:100%;min-height:400px;max-height:560px;object-fit:cover;display:block;transition:opacity .2s;}
+    .modal-thumbs{display:flex;gap:6px;padding:10px 12px;background:#e8e8e8;overflow-x:auto;scrollbar-width:thin;}
+    .modal-thumbs::-webkit-scrollbar{height:4px;}
+    .modal-thumbs::-webkit-scrollbar-thumb{background:var(--teal-mid);border-radius:2px;}
+    .modal-thumb{width:58px;height:72px;object-fit:cover;border-radius:0;cursor:pointer;opacity:.55;border:2px solid transparent;flex-shrink:0;transition:all .2s;}
+    .modal-thumb.active,.modal-thumb:hover{opacity:1;border-color:var(--teal-deep);}
+
+    /* ── Info side ────────────────────────────── */
+    .modal-info{padding:40px 36px 36px;display:flex;flex-direction:column;gap:0;overflow-y:auto;max-height:680px;}
+
+    /* Designer label — hidden (no designer/style shown) */
+    .m-label:empty{display:none;}
+    .m-label{display:none;}
+
+    /* Style name */
+    .m-title:empty{display:none;}
+    .m-title{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;line-height:1.12;letter-spacing:-.02em;color:#1a1818;margin-bottom:6px;}
+
+    /* Style # badge */
+    .m-badge:empty{display:none;}
+    .m-badge{font-family:'Josefin Sans',sans-serif;font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--text-muted);margin-bottom:18px;display:block;}
+
+    /* Stock disclaimer note under grid */
+    .catalog-stock-note{font-family:'Josefin Sans',sans-serif;font-size:10px;font-weight:400;letter-spacing:.06em;color:var(--text-muted);text-align:center;padding:20px 20px 8px;border-top:1px solid var(--border);margin:0;}
+    .catalog-stock-note a{color:var(--teal-deep);text-decoration:none;border-bottom:1px solid var(--teal-mid);}
+    .catalog-stock-note a:hover{color:var(--teal-mid);}
+
+    /* Rule */
+    .m-rule{height:1px;background:linear-gradient(to right, var(--border) 60%, transparent);margin-bottom:22px;}
+
+    /* Description */
+    .m-desc{font-size:14px;color:#555;line-height:1.85;flex:1;margin-bottom:28px;}
+    .m-desc em{color:#888;font-style:normal;font-size:13px;}
+
+    /* Info grid (silhouette / sizing etc.) */
+    .m-meta{display:grid;grid-template-columns:1fr 1fr;gap:12px 16px;margin-bottom:28px;}
+    .m-meta-item{display:flex;flex-direction:column;gap:3px;}
+    .m-meta-key{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);}
+    .m-meta-val{font-size:13px;color:#333;font-weight:500;}
+
+    /* CTAs */
+    .m-cta{display:flex;flex-direction:column;gap:10px;margin-top:auto;}
+    .m-cta a{text-align:center;font-size:13px;padding:13px 20px;}
+
+    /* Nav arrows on main image */
+    .modal-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.85);border:none;width:36px;height:36px;border-radius:0;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;z-index:5;transition:all .2s;}
+    .modal-nav:hover{background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.15);}
+    .modal-nav-prev{left:10px;}
+    .modal-nav-next{right:10px;}
+
+    @media(max-width:768px){
+      .modal{grid-template-columns:1fr;margin:0;width:100%;max-width:100%;min-height:100dvh;border-radius:0;align-items:flex-start;}
+      .modal-info{max-height:none;padding:24px 20px 48px;}
+      .modal-main-img{max-height:380px;}
+      .modal-backdrop{padding:0;}
+      .modal-x{width:44px;height:44px;top:10px;right:10px;font-size:20px;background:rgba(0,0,0,0.65);border-color:rgba(255,255,255,0.4);}
+      .modal-nav{width:44px;height:44px;font-size:22px;}
+    }
+  </style>
+</head>
+<body>
+<div id="site-header"></div>
+
+<main id="main-content">
+<div class="bridal-cat-hero">
+  <!-- Video plays silently behind the photo -->
+  <div class="bridal-cat-hero-video-wrap">
+    <iframe
+      src="https://www.youtube.com/embed/dpkjdM_5iXk?autoplay=1&mute=1&loop=1&playlist=dpkjdM_5iXk&controls=0&rel=0&modestbranding=1&playsinline=1&start=4&end=43&enablejsapi=1"
+      allow="autoplay; encrypted-media"
+      allowfullscreen>
+    </iframe>
+  </div>
+  <img class="bridal-cat-hero-fallback" id="bridalHeroPhoto" src="images/bridal/Bridal-hero.jpg" alt="Cloud Nine Bridal" loading="eager" fetchpriority="high"/>
+  <div class="bridal-cat-hero-start-mask" id="bridalStartMask"></div>
+  <div class="bridal-cat-hero-vignette"></div>
+  <div class="bridal-cat-hero-content">
+    <h1 class="bridal-cat-hero-title">Bridal<br/><em>Gowns.</em></h1>
+    <p class="bridal-cat-hero-right">Curated gowns from the world's top designers — exclusively for you.</p>
+  </div>
+  <button class="bridal-video-btn" id="bridalVideoBtn" aria-label="Play/Pause video">
+    <!-- Play icon -->
+    <svg class="icon-play" viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg>
+    <!-- Pause icon -->
+    <svg class="icon-pause" viewBox="0 0 10 12"><rect x="0" y="0" width="3.5" height="12"/><rect x="6.5" y="0" width="3.5" height="12"/></svg>
+  </button>
+</div>
+<script>
+(function() {
+  var btn    = document.getElementById('bridalVideoBtn');
+  var mask   = document.getElementById('bridalStartMask');
+  var iframe = document.querySelector('.bridal-cat-hero-video-wrap iframe');
+  var playing = true;
+  var unmasked = false;
+
+  function postYT(cmd) {
+    if (iframe && iframe.contentWindow)
+      iframe.contentWindow.postMessage(JSON.stringify({event:'command', func:cmd}), '*');
+  }
+
+  var photo = document.getElementById('bridalHeroPhoto');
+
+  function unmask() {
+    if (unmasked) return;
+    unmasked = true;
+    if (mask)  mask.classList.add('gone');
+    if (photo) photo.classList.add('gone');
+    if (btn)   btn.classList.add('visible', 'playing');
+  }
+
+  window.addEventListener('message', function(e) {
+    if (e.origin !== 'https://www.youtube.com') return;
+    try {
+      var data = JSON.parse(e.data);
+      if (data.event === 'onStateChange') {
+        if (data.info === 1) {
+          playing = true;
+          if (btn) btn.classList.add('playing');
+          // wait for overlay to fully clear before revealing
+          setTimeout(unmask, 3000);
+        } else if (data.info === 2) {
+          playing = false;
+          if (btn) btn.classList.remove('playing');
+        }
+      }
+    } catch(err) {}
+  })();
+
+  // Hard fallback
+  setTimeout(unmask, 7000);
+
+  // Toggle play/pause
+  if (btn) {
+    btn.addEventListener('click', function() {
+      playing ? postYT('pauseVideo') : postYT('playVideo');
+      playing = !playing;
+      btn.classList.toggle('playing', playing);
+    });
+  }
+})();
+</script>
+
+<!-- VOGUE EDITORIAL INTRO -->
+<div class="editorial-feature">
+  <div class="editorial-feature-top">
+    <span class="editorial-feature-tag"><span>Bridal Collections · Spring 2026</span></span>
+    <span class="editorial-feature-tag">Contact Us · (309) 693‑3830</span>
+  </div>
+  <div class="editorial-feature-body">
+    <div class="editorial-feature-vol">Cloud Nine · Peoria, IL</div>
+    <p class="editorial-feature-quote">"Every dress is a declaration.<br/>Find the one that speaks for you."</p>
+  </div>
+</div>
+<div class="section-catalog">
+  <div class="filter-panel" id="fp">
+    <div class="filter-row">
+      <span class="filter-row-label">Silhouette</span>
+      <div class="filter-row-btns" id="sil-row">
+        <button class="filter-chip active" data-filter="sil" data-value="all">All</button>
+        <button class="filter-chip" data-filter="sil" data-value="A-Line">A-Line</button>
+        <button class="filter-chip" data-filter="sil" data-value="Ballgown">Ballgown</button>
+        <button class="filter-chip" data-filter="sil" data-value="Fit &amp; Flare">Fit &amp; Flare</button>
+        <button class="filter-chip" data-filter="sil" data-value="Mermaid">Mermaid</button>
+        <button class="filter-chip" data-filter="sil" data-value="Sheath">Sheath</button>
+      </div>
+    </div>
+    <div class="filter-row">
+      <span class="filter-row-label">Designer</span>
+      <div class="filter-row-btns" id="des-row">
+        <button class="filter-chip active" data-filter="des" data-value="all">All</button>
+        <button class="filter-chip" data-filter="des" data-value="Essense of Australia">Essense of Australia</button>
+        <button class="filter-chip" data-filter="des" data-value="Maggie Sottero">Maggie Sottero</button>
+        <button class="filter-chip" data-filter="des" data-value="Rebecca Ingram">Rebecca Ingram</button>
+        <button class="filter-chip" data-filter="des" data-value="Rose + Grace">Rose + Grace</button>
+        <button class="filter-chip" data-filter="des" data-value="Sottero &amp; Midgley">Sottero &amp; Midgley</button>
+        <button class="filter-chip" data-filter="des" data-value="Stella York">Stella York</button>
+      </div>
+    </div>
+    <a href="appointments.html" class="sticky-book-cta" aria-label="Book an appointment">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Book Appointment
+    </a>
+  </div>
+  <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);background:var(--white);padding-right:12px;">
+    <div class="catalog-count" id="cc" style="border-bottom:none;padding-right:0;"></div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <button class="filter-clear-btn" id="clearFilters" onclick="clearAllFilters()">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        Clear Filters
+      </button>
+      <!-- Grid density toggle -->
+      <div style="display:flex;gap:2px;align-items:center;" id="densityToggle">
+        <button id="density3" title="3-column view" aria-label="3-column grid view" style="width:30px;height:30px;border:1px solid var(--border);background:var(--teal-deep);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;transition:background .15s;" aria-pressed="true">
+          <svg width="13" height="13" viewBox="0 0 12 12" fill="currentColor"><rect x="0" y="0" width="3" height="12"/><rect x="4.5" y="0" width="3" height="12"/><rect x="9" y="0" width="3" height="12"/></svg>
+        </button>
+        <button id="density4" title="4-column view" aria-label="4-column grid view" style="width:30px;height:30px;border:1px solid var(--border);background:var(--white);color:var(--text-light);cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;transition:background .15s;" aria-pressed="false">
+          <svg width="13" height="13" viewBox="0 0 12 12" fill="currentColor"><rect x="0" y="0" width="2" height="12"/><rect x="3.3" y="0" width="2" height="12"/><rect x="6.6" y="0" width="2" height="12"/><rect x="9.9" y="0" width="2" height="12"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="grid-4" id="pg"></div>
+  <p class="catalog-stock-note">Not all gowns are kept in store &mdash; <a href="contact.html">contact us</a> for stock and availability details.</p>
+  <div class="pag-wrap" id="pag"></div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-backdrop" id="mb">
+  <div class="modal" id="mo" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+    <button class="modal-x" aria-label="Close">✕</button>
+
+    <div class="modal-gallery">
+      <div class="modal-main-wrap">
+        <button class="modal-nav modal-nav-prev" id="navPrev" aria-label="Previous photo">&#8249;</button>
+        <img class="modal-main-img" id="mImg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""/>
+        <button class="modal-nav modal-nav-next" id="navNext" aria-label="Next photo">&#8250;</button>
+      </div>
+      <div class="modal-thumbs" id="mThumbs"></div>
+    </div>
+
+    <div class="modal-info">
+      <div class="m-label" id="mDesigner"></div>
+      <div class="m-title" id="mTitle"></div>
+      <div class="m-badge" id="mBadge"></div>
+      <div class="m-rule"></div>
+      <p class="m-desc" id="mDesc"></p>
+      <div class="m-meta" id="mMeta"></div>
+      <div class="m-cta">
+        <a href="appointments.html" class="btn-primary">Book an Appointment <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="contact.html" class="btn-outline">Ask About This Style</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+<script src="components.js?v=4" defer></script>
+<script>
+/* Products loaded from external JSON for performance.
+   Keeps HTML small, enables CDN caching of product data separately. */
+let P = [];
+let _dataLoaded = false;
+
+function _showSkeletons(n) {
+  const grid = document.getElementById('pg');
+  if (!grid) return;
+  grid.innerHTML = Array(n).fill(0).map(() => `
+    <div class="dress-card-skeleton" aria-hidden="true">
+      <div class="dress-card-skeleton-img"></div>
+      <div class="dress-card-skeleton-footer">
+        <div class="dress-card-skeleton-line dress-card-skeleton-line--short"></div>
+        <div class="dress-card-skeleton-line"></div>
+      </div>
+    </div>`).join('');
+  const cc = document.getElementById('cc');
+  if (cc) cc.textContent = 'Loading gowns…';
+}
+
+(async function loadProducts() {
+  _showSkeletons(12);
+  try {
+    const res = await fetch('data/bridal-products.json?v=3');
+    if (!res.ok) throw new Error('Failed to load product data');
+    P = await res.json();
+    _dataLoaded = true;
+    fil = P.slice();
+
+    // Apply URL params: ?designer=Maggie+Sottero or ?sil=A-Line
+    const urlParams = new URLSearchParams(window.location.search);
+    const desParam = urlParams.get('designer');
+    const silParam = urlParams.get('sil');
+    if (desParam) {
+      const btn = document.querySelector(`.filter-chip[data-filter="des"][data-value="${CSS.escape(desParam)}"]`);
+      if (btn) setFilter('des', desParam, btn);
+    }
+    if (silParam) {
+      const btn = document.querySelector(`.filter-chip[data-filter="sil"][data-value="${CSS.escape(silParam)}"]`);
+      if (btn) setFilter('sil', silParam, btn);
+    }
+    if (!desParam && !silParam) render();
+  } catch (err) {
+    console.error('Product data failed to load:', err);
+    const grid = document.getElementById('pg');
+    if (grid) grid.innerHTML = `<div class="catalog-error-state">
+      <p>We couldn't load the collection right now.<br/>Please <button onclick="location.reload()" style="background:none;border:none;color:var(--teal-deep);cursor:pointer;font-size:15px;text-decoration:underline;">try again</button> or <a href="contact.html">contact us directly</a>.</p>
+    </div>`;
+    const cc = document.getElementById('cc');
+    if (cc) cc.textContent = '';
+  }
+})();
+const PAGE_SIZE = 24;
+let _page = 0;
+let fil = [], curImgs = [], curIdx = 0;
+let activeSil = 'all', activeDes = 'all';
+
+/* Silhouette is pre-baked into p.sil in the JSON — no runtime text parsing needed.
+   Designer is p.d. Both filters stack independently. */
+function setFilter(type, value, btn) {
+  const rowId = type === 'sil' ? 'sil-row' : 'des-row';
+  document.querySelectorAll('#' + rowId + ' .filter-chip').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  if (type === 'sil') activeSil = value;
+  else activeDes = value;
+  fil = P.filter(p =>
+    (activeSil === 'all' || p.sil === activeSil) &&
+    (activeDes === 'all' || p.d === activeDes)
+  );
+  updateClearBtn();
+  render();
+}
+
+function updateClearBtn() {
+  var clr = document.getElementById('clearFilters');
+  if (clr) clr.classList.toggle('visible', activeSil !== 'all' || activeDes !== 'all');
+}
+
+function clearAllFilters() {
+  activeSil = 'all'; activeDes = 'all';
+  document.querySelectorAll('.filter-chip').forEach(function(b) {
+    b.classList.toggle('active', b.dataset.value === 'all');
+  });
+  fil = P.slice();
+  updateClearBtn();
+  render();
+}
+
+function goToDress(idx) {
+  const dress = fil[idx];
+  sessionStorage.setItem('cloudnine_dress', JSON.stringify(dress));
+  sessionStorage.setItem('cloudnine_dress_src', location.pathname.split('/').pop() + location.search);
+  const sku = encodeURIComponent(dress.s || '');
+  const des = encodeURIComponent(dress.d || '');
+  window.location.href = `dress.html?cat=bridal&sku=${sku}${des ? `&d=${des}` : ''}`;
+}
+
+function render() {
+  _page = 0;
+  const cc = document.getElementById('cc');
+  if (cc) {
+    const total = fil.length;
+    const label = total === P.length
+      ? `${total} gowns`
+      : `${total} of ${P.length} gowns`;
+    // Animate count update
+    cc.style.opacity = '0';
+    cc.style.transform = 'translateY(-4px)';
+    cc.style.transition = 'opacity .2s ease, transform .2s ease';
+    setTimeout(function() {
+      cc.textContent = 'Showing ' + label;
+      cc.style.opacity = '1';
+      cc.style.transform = 'translateY(0)';
+    }, 180);
+  }
+  _renderPage();
+}
+
+function _renderPage() {
+  const start  = _page * PAGE_SIZE;
+  const items  = fil.slice(start, start + PAGE_SIZE);
+  const grid   = document.getElementById('pg');
+  const frag   = document.createDocumentFragment();
+
+  items.forEach((p, i) => {
+    const idx  = start + i;
+    const card = document.createElement('div');
+    card.className   = 'dress-card';
+    card.tabIndex    = 0;
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-label', (p.d || '') + ' style ' + (p.s || ''));
+    card.dataset.idx     = idx;
+    card.dataset.product = JSON.stringify({s:p.s,d:p.d,i:p.i,x:p.x||[],_cat:'bridal-catalog.html'});
+    card.innerHTML   = `
+      <div class="dress-card-img">
+        <img src="${p.i}" alt="${(p.d||'')} ${(p.s||'')}" loading="lazy"/>
+        <div class="dress-card-overlay"></div>
+        <div class="quick-view-badge">Quick View</div>
+      </div>
+      <div class="dress-card-body">
+        <div class="dress-card-name">${p.n || p.s || ''}</div>
+        <div class="dress-card-cta">View Details →</div>
+      </div>`;
+    frag.appendChild(card);
+  });
+
+  // Replace grid contents — only PAGE_SIZE nodes in DOM at a time
+  grid.innerHTML = '';
+  grid.appendChild(frag);
+
+  // Attach events via JS — no inline onclick
+  grid.querySelectorAll('.dress-card').forEach(card => {
+    const idx = parseInt(card.dataset.idx, 10);
+    card.addEventListener('click', () => goToDress(idx));
+    card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); goToDress(idx); } });
+    const qv = card.querySelector('.quick-view-badge');
+    if (qv) {
+      qv.addEventListener('click', e => { e.stopPropagation(); openModal(idx); });
+    }
+  });
+
+  _renderPagination();
+  // Scroll grid into view on page change (not on initial render)
+  if (_page > 0) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function _renderPagination() {
+  const total = Math.ceil(fil.length / PAGE_SIZE);
+  const pag   = document.getElementById('pag');
+  if (!pag) return;
+
+  if (total <= 1) { pag.innerHTML = ''; return; }
+
+  let html = `<button class="pag-btn" ${_page===0?'disabled':''} data-page="prev">&#8249;</button>`;
+
+  for (let i = 0; i < total; i++) {
+    if (total > 9) {
+      // Condensed: show first, last, current ±1, with ellipsis
+      const show = i === 0 || i === total-1 || Math.abs(i - _page) <= 1;
+      const ellipsisBefore = i === 1 && _page > 3;
+      const ellipsisAfter  = i === total-2 && _page < total-4;
+      if (ellipsisBefore || ellipsisAfter) { html += '<span class="pag-ellipsis">…</span>'; continue; }
+      if (!show) continue;
+    }
+    html += `<button class="pag-btn ${i===_page?'active':''}" data-page="${i}">${i+1}</button>`;
+  }
+
+  html += `<button class="pag-btn" ${_page===total-1?'disabled':''} data-page="next">&#8250;</button>`;
+  pag.innerHTML = html;
+  pag.onclick=function(e){var b=e.target.closest('[data-page]');if(!b||b.disabled)return;var p=b.dataset.page;if(p==='prev')_goPage(_page-1);else if(p==='next')_goPage(_page+1);else _goPage(+p);};/* Attach page events */
+}
+
+function _goPage(n) {
+  const total = Math.ceil(fil.length / PAGE_SIZE);
+  if (n < 0 || n >= total) return;
+  _page = n;
+  _renderPage();
+}
+
+// ── Modal ──────────────────────────────────────────────
+var _lastFocused = null;
+function openModal(idx) {
+  _lastFocused = document.activeElement;
+  const p = fil[idx];
+  curImgs = (p.x && p.x.length) ? p.x : [p.i];
+  curIdx = 0;
+
+  document.getElementById('mDesigner').textContent = '';
+  document.getElementById('mTitle').textContent = p.n || p.s || '';
+  document.getElementById('mBadge').textContent = (p.s && p.s !== p.n) ? p.s : '';
+
+  // Availability message only
+  document.getElementById('mDesc').innerHTML =
+    '<em>Not all gowns are kept in store. Contact us to confirm availability, special order options, sizing, and colors. Our stylists will find the right fit and timeline for you.</em>';
+
+  const metaItems = [
+    p.sil ? ['Silhouette', titleCase(p.sil)] : null,
+    ['Availability', 'Contact Us'],
+    ['Appointment', 'Recommended'],
+  ].filter(Boolean);
+  document.getElementById('mMeta').innerHTML = metaItems.map(([k,v]) =>
+    `<div class="m-meta-item"><span class="m-meta-key">${k}</span><span class="m-meta-val">${v}</span></div>`
+  ).join('');
+
+  renderThumbs();
+  showImg(0);
+  document.getElementById('mb').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  setTimeout(function() { var c = document.querySelector('#mo .modal-x'); if (c) c.focus(); }, 30);
+}
+
+function titleCase(s) {
+  return s.replace(/\w\S*/g, t => t.charAt(0).toUpperCase() + t.substr(1));
+}
+
+function renderThumbs() {
+  document.getElementById('mThumbs').innerHTML = curImgs.map((img,i) =>
+    `<img class="modal-thumb ${i===0?'active':''}" src="${img.replace('.2000.','.340.')}" data-idx="${i}" alt="View ${i+1}"/>`
+  ).join('');
+  const nav = curImgs.length > 1;
+  document.getElementById('navPrev').style.display = nav ? 'flex' : 'none';
+  var _np=document.getElementById('navPrev');if(_np)_np.onclick=function(){shiftImg(-1);};
+  var _nn=document.getElementById('navNext');if(_nn)_nn.onclick=function(){shiftImg(1);};
+  var _th=document.getElementById('mThumbs');if(_th)_th.onclick=function(e){var t=e.target.closest('[data-idx]');if(t)showImg(+t.dataset.idx);};
+  document.getElementById('navNext').style.display = nav ? 'flex' : 'none';
+}
+
+function showImg(i) {
+  curIdx = i;
+  const img = document.getElementById('mImg');
+  img.style.opacity = '0';
+  img.src = curImgs[i];
+  img.onload = () => img.style.opacity = '1';
+  document.querySelectorAll('.modal-thumb').forEach((t,idx) =>
+    t.classList.toggle('active', idx===i));
+}
+
+function shiftImg(dir) {
+  showImg((curIdx + dir + curImgs.length) % curImgs.length);
+}
+
+function closeModal() {
+  document.getElementById('mb').classList.remove('open');
+  document.body.style.overflow = '';
+  if (_lastFocused && typeof _lastFocused.focus === 'function') { _lastFocused.focus(); _lastFocused = null; }
+}
+
+function closeBg(e) { if (e.target===document.getElementById('mb')) closeModal(); }
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('mb').classList.contains('open')) return;
+  if (e.key === 'Escape') closeModal();
+  if (e.key === 'ArrowLeft') shiftImg(-1);
+  if (e.key === 'ArrowRight') shiftImg(1);
+  if (e.key === 'Tab') {
+    var mo = document.getElementById('mo');
+    var focusable = mo.querySelectorAll('button:not([disabled]),[href],input,select,textarea,[tabindex]:not([tabindex="-1"])');
+    var first = focusable[0], last = focusable[focusable.length - 1];
+    if (e.shiftKey) { if (document.activeElement === first) { e.preventDefault(); last.focus(); } }
+    else { if (document.activeElement === last) { e.preventDefault(); first.focus(); } }
+  }
+});
+
+/* render() called after fetch completes */
+(function() {
+  var backdrop = document.getElementById('mb');
+  if (backdrop) backdrop.addEventListener('click', function(e) { closeBg(e); });
+  var closeBtn = document.querySelector('.modal-x[aria-label="Close"]');
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+})();
+// ── Sticky filter panel ──
+(function() {
+  var fp = document.getElementById('fp');
+  if (!fp) return;
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      fp.classList.toggle('sticky-active', !e.isIntersecting);
+    });
+  }, { rootMargin: '-82px 0px 0px 0px', threshold: 0 });
+  io.observe(document.querySelector('.editorial-feature') || document.querySelector('.bridal-cat-hero') || fp);
+})();
+
+// ── Attach filter events ──
+document.querySelectorAll('.filter-chip[data-filter]').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    setFilter(btn.dataset.filter, btn.dataset.value, btn);
+  });
+});
+
+// ── Grid density toggle ──
+(function() {
+  var grid   = document.getElementById('pg');
+  var btn3   = document.getElementById('density3');
+  var btn4   = document.getElementById('density4');
+  if (!grid || !btn3 || !btn4) return;
+
+  var stored = localStorage.getItem('cn_catalog_density') || '3';
+  var isMobile = function() { return window.innerWidth <= 900; };
+
+  function setDensity(n) {
+    if (isMobile()) {
+      // On mobile let CSS media queries control the grid — remove any inline override
+      grid.style.gridTemplateColumns = '';
+    } else if (n === '4') {
+      grid.style.gridTemplateColumns = 'repeat(4, 1fr)';
+    } else {
+      grid.style.gridTemplateColumns = 'repeat(3, 1fr)';
+    }
+    btn4.style.background = n === '4' ? 'var(--teal-deep)' : 'var(--white)';
+    btn4.style.color      = n === '4' ? '#fff' : 'var(--text-light)';
+    btn3.style.background = n === '3' ? 'var(--teal-deep)' : 'var(--white)';
+    btn3.style.color      = n === '3' ? '#fff' : 'var(--text-light)';
+    btn4.setAttribute('aria-pressed', n === '4' ? 'true' : 'false');
+    btn3.setAttribute('aria-pressed', n === '3' ? 'true' : 'false');
+    localStorage.setItem('cn_catalog_density', n);
+    stored = n;
+  }
+
+  setDensity(stored);
+
+  btn3.addEventListener('click', function() { setDensity('3'); });
+  btn4.addEventListener('click', function() { setDensity('4'); });
+
+  // Re-apply on resize so toggling desktop→mobile clears the inline style
+  window.addEventListener('resize', function() { setDensity(stored); });
+})();
+</script>
+</main>
+</body>
+</html>

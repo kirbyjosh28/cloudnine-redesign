@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>About Us | Cloud Nine Bridal Boutique</title>
+  <meta name="description" content="Cloud Nine Bridal Boutique has been Peoria's premier bridal destination since 2007. Meet our team of expert stylists and learn our story."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://cloudninebridal.com/about.html"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://cloudninebridal.com/about.html"/>
+  <meta property="og:title" content="About Us | Cloud Nine Bridal Boutique"/>
+  <meta property="og:description" content="Cloud Nine Bridal Boutique has been Peoria's premier bridal destination since 2007. Meet our team of expert stylists and learn our story."/>
+  <meta property="og:image" content="https://cloudninebridal.com/images/about/store-exterior.webp"/>
+  <meta property="og:site_name" content="Cloud Nine Bridal Boutique"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="About Us | Cloud Nine Bridal Boutique"/>
+  <meta name="twitter:description" content="Meet the team behind Cloud Nine Bridal Boutique — Peoria's premier bridal destination since 2007."/>
+  <meta name="twitter:image" content="https://cloudninebridal.com/images/about/store-exterior.webp"/>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+    <!-- Fonts: preconnect first, then non-blocking stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Josefin+Sans:wght@100;200;300;400&family=Lato:wght@300;400;700;900&display=swap"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About Cloud Nine Bridal Boutique",
+    "description": "Cloud Nine Bridal Boutique has been Peoria's premier bridal destination since 2007. Meet our team of expert stylists and learn our story.",
+    "url": "https://cloudninebridal.com/about.html",
+    "mainEntity": {
+      "@type": "BridalShop",
+      "name": "Cloud Nine Bridal Boutique",
+      "foundingDate": "2007",
+      "founder": {
+        "@type": "Person",
+        "name": "Jennifer",
+        "jobTitle": "Owner & Founder"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "4711 N. University St",
+        "addressLocality": "Peoria",
+        "addressRegion": "IL",
+        "postalCode": "61614",
+        "addressCountry": "US"
+      },
+      "telephone": "+13096933830"
+    }
+  }
+  </script>
+  <style>
+    /* ── EDITORIAL TEAM — luxury portrait layout ── */
+
+    /* Jennifer — full-width feature card */
+    .team-feature {
+      display: grid;
+      grid-template-columns: 42% 1fr;
+      min-height: 520px;
+      background: #f4f0eb;
+      margin-bottom: 3px;
+    }
+    .team-feature-photo {
+      position: relative;
+      overflow: hidden;
+    }
+    .team-feature-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: top center;
+      display: block;
+      transition: transform 8s ease;
+    }
+    .team-feature:hover .team-feature-photo img { transform: scale(1.04); }
+    .team-feature-content {
+      padding: 72px 68px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .team-feature-role {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: .30em; text-transform: uppercase;
+      color: var(--teal-deep);
+      margin-bottom: 18px;
+    }
+    .team-feature-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(52px, 6.5vw, 84px);
+      font-weight: 700;
+      color: var(--text);
+      line-height: .88;
+      letter-spacing: -.04em;
+      margin: 0 0 32px;
+    }
+    .team-feature-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px; font-style: italic;
+      color: var(--teal-deep);
+      line-height: 1.55;
+      margin: 0 0 24px;
+      padding-left: 20px;
+      border-left: 2px solid var(--teal-mid);
+    }
+    .team-feature-bio {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.85;
+      margin: 0;
+      max-width: 480px;
+    }
+
+    /* Portrait grid — everyone else */
+    .team-editorial-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3px;
+    }
+    .team-portrait {
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+    }
+    .team-portrait-inner {
+      position: relative;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+    }
+    .team-portrait-inner img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: top center;
+      display: block;
+      transition: transform .7s cubic-bezier(.16,1,.3,1);
+    }
+    .team-portrait:hover .team-portrait-inner img { transform: scale(1.05); }
+    .team-portrait-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, transparent 38%, rgba(5,20,18,.80) 100%);
+      transition: background .45s ease;
+    }
+    .team-portrait:hover .team-portrait-overlay {
+      background: linear-gradient(to bottom, transparent 15%, rgba(5,20,18,.88) 72%);
+    }
+    .team-portrait-info {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 0 22px 20px;
+      z-index: 2;
+    }
+    .team-portrait-info h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px; font-weight: 700; font-style: italic;
+      color: #fff;
+      line-height: 1;
+      margin: 0 0 5px;
+      letter-spacing: -.01em;
+    }
+    .team-portrait-role {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 8px; font-weight: 700;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: rgba(255,255,255,.58);
+      display: block;
+      margin-bottom: 0;
+    }
+    .team-portrait-bio {
+      font-size: 11.5px;
+      color: rgba(255,255,255,.68);
+      line-height: 1.65;
+      margin: 10px 0 0;
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transition: max-height .45s cubic-bezier(.16,1,.3,1), opacity .35s ease .05s;
+    }
+    .team-portrait:hover .team-portrait-bio {
+      max-height: 130px;
+      opacity: 1;
+    }
+    /* Testimonial vertical marquee */
+    .testimonials-marquee-section { background: var(--teal-dark); padding: 80px 0 0; overflow: hidden; }
+    .testimonials-marquee-header { padding: 0 64px 52px; }
+    .testimonials-marquee-header .eyebrow { color: rgba(255,255,255,.58); }
+    .testimonials-marquee-header h2 { font-family:'Playfair Display',serif; font-size:clamp(36px,5vw,64px); font-weight:700; letter-spacing:-.03em; color:#fff; margin:0; line-height:1; }
+    .testimonials-marquee-header h2 em { font-style:italic; color:rgba(255,255,255,.52); }
+    .testimonials-marquee-cols { display:flex; gap:16px; height:520px; overflow:hidden; padding:0 64px; }
+    .testimonials-marquee-col { flex:1; display:flex; flex-direction:column; }
+    .testimonials-col-track { display:flex; flex-direction:column; gap:16px; }
+    .testimonials-marquee-col:nth-child(1) .testimonials-col-track { animation: tq-up 22s linear infinite; }
+    .testimonials-marquee-col:nth-child(2) .testimonials-col-track { animation: tq-up 28s linear infinite; }
+    .testimonials-marquee-col:nth-child(3) .testimonials-col-track { animation: tq-up 19s linear infinite; }
+    @keyframes tq-up {
+      from { transform: translateY(0); }
+      to   { transform: translateY(-50%); }
+    }
+    .tq-card { background: #fff; border: 1px solid var(--border); padding: 28px; flex-shrink: 0; }
+    .tq-stars { color: #c9a96e; font-size: 13px; letter-spacing: 2px; margin-bottom: 14px; }
+    .tq-quote { font-family:'Playfair Display',serif; font-size:15px; font-style:italic; color:var(--text); line-height:1.75; margin-bottom:16px; }
+    .tq-author { font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--teal-deep); }
+    details summary { list-style:none; cursor:pointer; padding:20px 24px; font-weight:700; font-size:15px; display:flex; justify-content:space-between; align-items:center; }
+    details summary::-webkit-details-marker { display:none; }
+    details[open] summary .faq-icon { transform:rotate(45deg); }
+    .faq-icon { color:var(--teal-deep); font-size:22px; font-weight:300; transition:transform .2s; line-height:1; }
+    details p { padding:0 24px 22px; color:var(--text-muted); font-size:14px; line-height:1.75; }
+
+    /* ── ABOUT PAGE PHOTO HERO ── */
+    .about-hero {
+      position: relative;
+      height: 92vh;
+      min-height: 620px;
+      margin-top: -80px;
+      overflow: hidden;
+      background: #0a1f20;
+    }
+    .about-hero-bg {
+      position: absolute; inset: 0;
+    }
+    .about-hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+    .about-hero-vignette {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,.45) 0%,
+        rgba(0,0,0,.15) 30%,
+        rgba(0,0,0,.10) 55%,
+        rgba(0,0,0,.65) 100%
+      );
+    }
+    .about-hero-content {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 0 64px 60px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+    .about-hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(56px, 8vw, 120px);
+      font-weight: 700;
+      line-height: 0.9;
+      letter-spacing: -.04em;
+      color: #fff;
+    }
+    .about-hero-title em { font-style: italic; color: rgba(255,255,255,.65); }
+    .about-hero-sub {
+      font-size: 14px; font-weight: 300;
+      color: rgba(255,255,255,.7);
+      max-width: 240px;
+      text-align: right;
+      line-height: 1.85;
+      letter-spacing: .01em;
+      padding-bottom: 6px;
+    }
+    @media (max-width: 900px) {
+      .about-hero { height: 60vh; min-height: 420px; }
+      .about-hero-content { padding: 0 28px 48px; flex-direction: column; align-items: flex-start; gap: 20px; }
+      .about-hero-sub { text-align: left; }
+    }
+    @media (max-width: 768px) {
+      .about-hero { height: 72vw; min-height: 380px; margin-top: -52px; }
+      /* Show entrance door, not just sign */
+      .about-hero-bg img { object-position: center 30% !important; }
+      .about-hero-content { padding: 0 20px 84px; gap: 12px; }
+      .about-hero-title { font-size: clamp(34px, 9vw, 56px) !important; line-height: .94; margin-bottom: 14px; }
+      .about-hero-sub { font-size: 13px; line-height: 1.6; max-width: 100%; }
+      .testimonials-marquee-header { padding: 0 20px 28px; }
+      .testimonials-marquee-header h2 { font-size: clamp(26px, 7vw, 40px); }
+      .testimonials-marquee-cols { padding: 0 20px; height: 380px; gap: 10px; }
+      .testimonials-marquee-col:nth-child(2),
+      .testimonials-marquee-col:nth-child(3) { display: none; }
+      .tq-card { padding: 22px 20px; }
+      .tq-quote { font-size: 14px; }
+      .tq-stars { font-size: 13px; margin-bottom: 10px; }
+      .tq-author { font-size: 11px; }
+      /* Override inline-style body text that uses line-height: 1.85 */
+      .section p[style], .section-sm p[style] {
+        font-size: 14px !important;
+        line-height: 1.6 !important;
+        margin-bottom: 14px !important;
+      }
+      /* About intro — collapse 2-col grid to single column */
+      .about-intro-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+      .about-intro-image { display: none; }
+    }
+
+    /* Awards section — mobile */
+    @media (max-width: 768px) {
+      #awards { padding: 0 20px !important; }
+      #awards > div { padding: 0 !important; }
+      /* Header row: stack vertically */
+      #awards > div > div:first-child {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 16px !important;
+        padding: 44px 0 32px !important;
+      }
+      #awards > div > div:first-child p {
+        text-align: left !important;
+        max-width: 100% !important;
+      }
+      /* Awards grid: 2-col on mobile */
+      #awards > div > div:last-child {
+        grid-template-columns: 1fr 1fr !important;
+      }
+      /* Tighten padding and font sizes on award cards */
+      #awards > div > div:last-child > div {
+        padding: 28px 16px 32px !important;
+      }
+      #awards > div > div:last-child > div:nth-child(odd) {
+        padding-left: 0 !important;
+      }
+      #awards > div > div:last-child > div:nth-child(even) {
+        padding-right: 0 !important;
+        border-right: none !important;
+      }
+      #awards > div > div:last-child > div:nth-child(1),
+      #awards > div > div:last-child > div:nth-child(2) {
+        border-bottom: 1px solid rgba(255,255,255,.1) !important;
+      }
+      /* Shrink the ghosted large numbers */
+      #awards > div > div:last-child > div > div:first-child {
+        font-size: 48px !important;
+        margin-bottom: 14px !important;
+      }
+      #awards > div > div:last-child > div h3 {
+        font-size: 16px !important;
+      }
+    }
+
+    /* FAQ section — mobile */
+    @media (max-width: 768px) {
+      #faq { padding: 52px 20px !important; }
+    }
+
+    /* Team section — mobile */
+    @media (max-width: 768px) {
+      #team { padding: 44px 0 0 !important; }
+      /* Reduce side padding on all inner wrappers */
+      #team > div { padding-left: 20px !important; padding-right: 20px !important; }
+      /* Reduce the 100px bottom padding on the portrait grid wrapper */
+      #team > div:last-child { padding-bottom: 48px !important; }
+      /* Jennifer feature card: stack photo above content */
+      .team-feature { grid-template-columns: 1fr !important; min-height: auto !important; }
+      .team-feature-photo { height: 72vw; max-height: 300px; }
+      .team-feature-content { padding: 28px 20px 32px !important; }
+      .team-feature-name { font-size: clamp(44px, 10vw, 64px) !important; }
+      /* Portrait grid: 2-col */
+      .team-editorial-grid { grid-template-columns: repeat(2, 1fr) !important; }
+      .team-portrait-info { padding: 0 14px 14px; }
+      .team-portrait-info h4 { font-size: 17px; }
+      .team-portrait-role { font-size: 7.5px; letter-spacing: .14em; }
+    }
+
+    /* About CTA — mobile */
+    @media (max-width: 768px) {
+      .about-cta-section { padding: 52px 20px !important; }
+      .about-cta-section div[style*="flex"] { flex-direction: column; align-items: stretch; }
+      .about-cta-section .btn-white,
+      .about-cta-section .btn-cta-ghost { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+<div id="site-header"></div>
+
+<!-- HERO -->
+<main id="main-content">
+<div class="about-hero">
+  <div class="about-hero-bg">
+    <img src="images/about/store-exterior.webp" alt="Cloud Nine Bridal Boutique exterior" loading="eager" fetchpriority="high"/>
+  </div>
+  <div class="about-hero-vignette"></div>
+  <div class="about-hero-content">
+    <h1 class="about-hero-title">Peoria's<br/><em>Premier</em><br/>Boutique.</h1>
+    <p class="about-hero-sub">The ultimate destination for brides who cherish their individual and unique style.</p>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="section">
+  <div class="about-intro-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;">
+    <div>
+      <div class="eyebrow">Who We Are</div>
+      <h2 class="section-title">18 Years of <em>Saying Yes</em></h2>
+      <p style="font-size:16px;color:var(--text-muted);line-height:1.85;margin-bottom:20px;">Cloud Nine Bridal Boutique has been Peoria's most-loved bridal destination since 2007. We specialize in wedding gowns from the world's finest designers — Essense of Australia, Maggie Sottero, Sottero & Midgley, Rebecca Ingram, Stella York, and our exclusive Rose + Grace Collection.</p>
+      <p style="font-size:16px;color:var(--text-muted);line-height:1.85;margin-bottom:20px;">We offer gowns ranging from $1,200 to $4,000, with most brides finding their perfect dress around $2,000. Every purchase is final sale, and we don't offer in-house alterations — but we provide a curated list of trusted seamstresses throughout Central Illinois.</p>
+      <p style="font-size:16px;color:var(--text-muted);line-height:1.85;margin-bottom:32px;">Beyond bridal, we serve the entire wedding party — mothers, groomsmen, prom, and homecoming. We're a true one-stop shop for every formal occasion.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+        <div style="background:var(--teal-xlight);border:1px solid var(--border);padding:20px;">
+          <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--teal-deep);" data-countup="1200" data-prefix="$" data-suffix="">1200</div>
+          <div class="u-caption">Starting gown price</div>
+        </div>
+        <div style="background:var(--teal-xlight);border:1px solid var(--border);padding:20px;">
+          <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--teal-deep);" data-countup="90" data-suffix=" min">90 min</div>
+          <div class="u-caption">Private appointment time</div>
+        </div>
+        <div style="background:var(--teal-xlight);border:1px solid var(--border);padding:20px;">
+          <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--teal-deep);">Size 38</div>
+          <div class="u-caption">Largest special order available</div>
+        </div>
+        <div style="background:var(--teal-xlight);border:1px solid var(--border);padding:20px;">
+          <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--teal-deep);" data-countup="18" data-suffix="+">18+</div>
+          <div class="u-caption">Years serving Peoria</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-intro-image" style="position:relative;">
+      <img src="images/real/brides/12-bride.webp" alt="Cloud Nine Bride" loading="lazy" style="width:100%;border-radius:var(--radius);object-fit:cover;aspect-ratio:3/4;object-position:top;"/>
+      <div style="position:absolute;bottom:-24px;left:-24px;background:var(--teal-deep);color:var(--white);border-radius:var(--radius);padding:24px 28px;">
+        <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;">Say Yes</div>
+        <div style="font-size:12px;opacity:.75;margin-top:2px;">at Cloud Nine</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TEAM -->
+<div id="team" style="background:var(--white);padding:80px 0 0;">
+  <div style="max-width:1280px;margin:0 auto;padding:0 40px;">
+    <div class="eyebrow u-center">The Team</div>
+    <h2 class="section-title" style="text-align:center;margin-bottom:56px;">Meet the Women Behind<br/><em>Cloud Nine</em></h2>
+  </div>
+
+  <!-- Jennifer — full-width editorial feature -->
+  <div style="max-width:1280px;margin:0 auto;padding:0 40px;">
+    <div class="team-feature">
+      <div class="team-feature-photo">
+        <img src="images/about/team-jennifer.webp"
+             alt="Jennifer — Owner"
+             loading="lazy"
+             onerror="this.src='images/about/fallback-team-1.jpg'"/>
+      </div>
+      <div class="team-feature-content">
+        <div class="team-feature-role">Owner &nbsp;·&nbsp; Cloud Nine since 2013</div>
+        <h3 class="team-feature-name">Jennifer</h3>
+        <blockquote class="team-feature-quote">"I feel blessed every single day to lead a team this incredible and to help brides find the dress of their dreams."</blockquote>
+        <p class="team-feature-bio">Jennifer entered bridal in 2007 and worked at various boutiques before joining Cloud Nine in 2013. She purchased the business in 2018 as a single mom — with the unwavering support of her family. Under her ownership, Cloud Nine has grown into Peoria's most-trusted bridal destination, earning a 5.0-star rating from over 1,700 brides.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rest of team — editorial portrait grid -->
+  <div style="max-width:1280px;margin:12px auto 0;padding:0 40px 100px;">
+    <div class="team-editorial-grid">
+
+      <div class="team-portrait">
+        <div class="team-portrait-inner">
+          <img src="images/about/team-shelby.webp"
+               alt="Shelby" loading="lazy"
+               onerror="this.src='images/about/fallback-team-2.jpg'"/>
+          <div class="team-portrait-overlay"></div>
+          <div class="team-portrait-info">
+            <h4>Shelby</h4>
+            <span class="team-portrait-role">Sales Manager &amp; Bridal Stylist</span>
+            <p class="team-portrait-bio">Started in wedding event planning before discovering her passion for bridal. Vegetarian for 10 years, married with a son and an orange cat.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-portrait">
+        <div class="team-portrait-inner">
+          <img src="images/about/team-anna.webp"
+               alt="Anna" loading="lazy"
+               onerror="this.src='images/about/fallback-team-3.jpg'"/>
+          <div class="team-portrait-overlay"></div>
+          <div class="team-portrait-info">
+            <h4>Anna</h4>
+            <span class="team-portrait-role">Prom Sales Manager &amp; Bridal Stylist</span>
+            <p class="team-portrait-bio">Business degree, discovered her passion for bridal during college. Married with daughter Hazel. Proud owner of a 110-lb Great Dane.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-portrait">
+        <div class="team-portrait-inner">
+          <img src="images/about/team-heather.webp"
+               alt="Heather" loading="lazy"
+               onerror="this.src='images/about/fallback-team-1.jpg'"/>
+          <div class="team-portrait-overlay"></div>
+          <div class="team-portrait-info">
+            <h4>Heather</h4>
+            <span class="team-portrait-role">Mothers &amp; Tuxedo Stylist</span>
+            <p class="team-portrait-bio">17 years in bridal and tuxedo styling. Married with two cats. Loves reading, crafting, horror movies, and her Publik House order.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-portrait">
+        <div class="team-portrait-inner">
+          <img src="images/about/team-olivia-k.webp"
+               alt="Olivia K." loading="lazy"
+               onerror="this.src='images/about/fallback-team-2.jpg'"/>
+          <div class="team-portrait-overlay"></div>
+          <div class="team-portrait-info">
+            <h4>Olivia K.</h4>
+            <span class="team-portrait-role">Bridal Stylist</span>
+            <p class="team-portrait-bio">Bradley University grad in Hospitality Leadership. Modeled for Cloud Nine in 2015. Married Josh in 2024. Creates social content for the boutique.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-portrait">
+        <div class="team-portrait-inner">
+          <img src="images/about/team-taylor.webp"
+               alt="Taylor" loading="lazy"
+               onerror="this.src='images/about/fallback-team-3.jpg'"/>
+          <div class="team-portrait-overlay"></div>
+          <div class="team-portrait-info">
+            <h4>Taylor</h4>
+            <span class="team-portrait-role">Bridal Stylist</span>
+            <p class="team-portrait-bio">What started as a side gig became a full-time passion. Married 4 years, 2 cats, 1 dog. Believer in great dancing, good food, and kickboxing.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-portrait">
+        <div class="team-portrait-inner">
+          <img src="images/about/team-marissa.webp"
+               alt="Marissa" loading="lazy"
+               onerror="this.src='images/about/fallback-team-1.jpg'"/>
+          <div class="team-portrait-overlay"></div>
+          <div class="team-portrait-info">
+            <h4>Marissa</h4>
+            <span class="team-portrait-role">Bridal Stylist</span>
+            <p class="team-portrait-bio">Bradley University grad, Political Science &amp; Criminal Justice. Concert-goer, fitness enthusiast, and passionate about wedding photography.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-portrait">
+        <div class="team-portrait-inner">
+          <img src="images/about/team-chloe.webp"
+               alt="Chloe" loading="lazy"
+               onerror="this.src='images/about/fallback-team-2.jpg'"/>
+          <div class="team-portrait-overlay"></div>
+          <div class="team-portrait-info">
+            <h4>Chloe</h4>
+            <span class="team-portrait-role">Bridal &amp; Prom Stylist</span>
+            <p class="team-portrait-bio">Drawn to Cloud Nine's family-like team. Brings energy and enthusiasm to every prom season. Sushi and coffee enthusiast.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-portrait">
+        <div class="team-portrait-inner">
+          <img src="images/about/team-olivia-s.webp"
+               alt="Olivia S." loading="lazy"
+               onerror="this.src='images/about/fallback-team-3.jpg'"/>
+          <div class="team-portrait-overlay"></div>
+          <div class="team-portrait-info">
+            <h4>Olivia S.</h4>
+            <span class="team-portrait-role">Bridal Stylist</span>
+            <p class="team-portrait-bio">Warm and dedicated — committed to helping every bride feel beautiful and confident on the most important day of their life.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<div id="testimonials" class="testimonials-marquee-section">
+  <div class="testimonials-marquee-header">
+    <div class="eyebrow">Real Brides &amp; Grooms</div>
+    <h2>What Our Clients <em>Say</em></h2>
+  </div>
+  <div class="testimonials-marquee-cols">
+
+    <!-- Column 1 -->
+    <div class="testimonials-marquee-col">
+      <div class="testimonials-col-track">
+        <div class="tq-card"><div class="tq-stars">★★★★★</div><p class="tq-quote">"Shelby made me feel like an absolute queen! She was so kind and helpful. The whole staff were 11/10 hype girls!"</p><div class="tq-author">Jessica Sundby</div></div>
+        <div class="tq-card"><div class="tq-stars">★★★★★</div><p class="tq-quote">"I was so overwhelmed by dress shopping until I came to Cloud Nine. Rebekah listened to what I wanted for our mountain wedding."</p><div class="tq-author">Cassy Plumer</div></div>
+        <div class="tq-card"><div class="tq-stars">★★★★★</div><p class="tq-quote">"We got all of our tuxedos and suits through Cloud Nine. Almost every groomsman was from out of town and were sent direct to their homes without issue!"</p><div class="tq-author">Garrett Baker</div></div>
+        <div class="tq-card"><div class="tq-stars">★★★★★</div><p class="tq-quote">"Anna made the process of finding the right colors and matches for our bridesmaid dresses so easy. Definitely recommend!"</p><div class="tq-author">Hilary Crowl</div></div>
+        <!-- duplicates for seamless loop -->
+        <div class="tq-card"><div class="tq-stars">★★★★★</div><p class="tq-quote">"Shelby made me feel like an absolute queen! She was so kind and helpful. The whole staff were 11/10 hype girls!"</p><div class="tq-author">Jessica Sundby</div></div>
+        <div class="tq-card"><div class="tq-stars">★★★★★</div><p class="tq-quote">"I was so overwhelmed by dress shopping until I came to Cloud Nine. Rebekah listened to what I wanted for our mountain wedding."</p><div class="tq-author">Cassy Plumer</div></div>
+        <div class="tq-card"><div class="tq-stars">★★★★★</div><p class="tq-quote">"We got all of our tuxedos and suits through Cloud Nine. Almost every groomsman was from out of town and were sent direct to their homes without issue!"</p><div class="tq-author">Garrett Baker</div></div>
+        <div class="tq-card"><div class="tq-stars">★★★★★</div><p class="tq-quote">"Anna made the process of finding the right colors and matches for our bridesmaid dresses so easy. Definitely recommend!"</p><div class="tq-author">Hilary Crowl</div></div>
+      </div>
+    </div>
+
+    <!-- Column 2 -->
+    <div class="testimonials-marquee-col">
+      <div class="testimonials-col-track">
+        <div class="tq-card"><div class="tq-stars">★★★★★</div><p class="tq-quote">"Shelby and Olivia made me feel like an absolute queen! I found the dress of my dreams with my bridal crew."</p><div class="tq-author">Ashlyn Martin</div></div>
+        <div class="tq-card"><div class="tq-stars">★★★★★</div><p class="tq-quote">"Rebekah was so wonderful to work with! She was so helpful and patient and made the whole experience so much fun."</p><div class="tq-author">Allison Freehill</div></div>
+        <div class="tq-card"><div class="tq-stars">★★★★★</div><p class="tq-quote">"My sister and I both had Olivia as our consultant and she was so sweet, gave great advice, and made us feel so special!"</p><div class="tq-author">Madison Wallace</div></div>
+        <div class="tq-card"><div class="tq-stars">★★★★★</div><p class="tq-quote">"Had a wonderful experience shopping for my sister-in-law's wedding dress. Shelby was fantastic! Beautiful selection."</p><div class="tq-author">Kaleigh Schmidt</div></div>
+        <!-- duplicates for seamless loop -->
+        <div class="tq-card"><div class="tq-stars">★★★★★</div><p class="tq-quote">"Shelby and Olivia made me feel like an absolute queen! I found the dress of my dreams with my bridal crew."</p><div class="tq-author">Ashlyn Martin</div></div>
+        <div class="tq-card"><div class="tq-stars">★★★★★</div><p class="tq-quote">"Rebekah was so wonderful to work with! She was so helpful and patient and made the whole experience so much fun."</p><div class="tq-author">Allison Freehill</div></div>
+        <div class="tq-card"><div class="tq-stars">★★★★★</div><p class="tq-quote">"My sister and I both had Olivia as our consultant and she was so sweet, gave great advice, and made us feel so special!"</p><div class="tq-author">Madison Wallace</div></div>
+        <div class="tq-card"><div class="tq-stars">★★★★★</div><p class="tq-quote">"Had a wonderful experience shopping for my sister-in-law's wedding dress. Shelby was fantastic! Beautiful selection."</p><div class="tq-author">Kaleigh Schmidt</div></div>
+      </div>
+    </div>
+
+    <!-- Column 3 -->
+    <div class="testimonials-marquee-col">
+      <div class="testimonials-col-track">
+        <div class="tq-card"><div class="tq-stars">★★★★★</div><p class="tq-quote">"My stylists Olivia and Shelby made the experience so wonderful and easy! Listened to what I liked and pulled amazing dresses."</p><div class="tq-author">Claire Norberg</div></div>
+        <div class="tq-card"><div class="tq-stars">★★★★★</div><p class="tq-quote">"If you're looking for a formal wear shop with great selection and unparalleled customer service, look no further!"</p><div class="tq-author">Garrett Baker</div></div>
+        <div class="tq-card"><div class="tq-stars">★★★★★</div><p class="tq-quote">"I found the perfect dress and had the best experience! Rebekah made me feel so comfortable."</p><div class="tq-author">Cassy Plumer</div></div>
+        <div class="tq-card"><div class="tq-stars">★★★★★</div><p class="tq-quote">"The dresses are all priced so great and the shop is adorable! Would definitely recommend to any bride."</p><div class="tq-author">Madison Wallace</div></div>
+        <!-- duplicates for seamless loop -->
+        <div class="tq-card"><div class="tq-stars">★★★★★</div><p class="tq-quote">"My stylists Olivia and Shelby made the experience so wonderful and easy! Listened to what I liked and pulled amazing dresses."</p><div class="tq-author">Claire Norberg</div></div>
+        <div class="tq-card"><div class="tq-stars">★★★★★</div><p class="tq-quote">"If you're looking for a formal wear shop with great selection and unparalleled customer service, look no further!"</p><div class="tq-author">Garrett Baker</div></div>
+        <div class="tq-card"><div class="tq-stars">★★★★★</div><p class="tq-quote">"I found the perfect dress and had the best experience! Rebekah made me feel so comfortable."</p><div class="tq-author">Cassy Plumer</div></div>
+        <div class="tq-card"><div class="tq-stars">★★★★★</div><p class="tq-quote">"The dresses are all priced so great and the shop is adorable! Would definitely recommend to any bride."</p><div class="tq-author">Madison Wallace</div></div>
+      </div>
+    </div>
+
+  </div>
+  <!-- fade-out gradient at bottom -->
+  <div style="height:80px;background:linear-gradient(to bottom,transparent,var(--teal-dark));margin-top:-80px;position:relative;pointer-events:none;"></div>
+</div>
+
+<!-- AWARDS -->
+<div id="awards" style="background:var(--teal-deep);padding:0 64px 0;">
+  <div style="max-width:1200px;margin:0 auto;">
+
+    <!-- Header row -->
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;padding:80px 0 56px;border-bottom:1px solid rgba(255,255,255,.12);">
+      <div>
+        <div class="eyebrow" style="color:rgba(255,255,255,.62);">Recognition</div>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(38px,5vw,68px);font-weight:700;letter-spacing:-.03em;color:#fff;line-height:.95;margin:0;">Award-Winning<br/><em style="font-style:italic;color:var(--teal-light);">Excellence</em></h2>
+      </div>
+      <p style="font-size:14px;color:rgba(255,255,255,.68);max-width:280px;text-align:right;line-height:1.8;font-weight:300;margin:0;">Honored by the bridal industry and voted by thousands of Central Illinois brides.</p>
+    </div>
+
+    <!-- Award cards — 4 columns separated by 1px dividers -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;">
+
+      <div style="padding:48px 40px 56px 0;border-right:1px solid rgba(255,255,255,.1);">
+        <div style="font-family:'Playfair Display',serif;font-size:80px;font-weight:700;color:rgba(255,255,255,.07);line-height:1;margin-bottom:24px;letter-spacing:-.04em;">01</div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#fff;margin-bottom:10px;line-height:1.2;">Hall of Fame</h3>
+        <p style="font-size:11px;color:rgba(255,255,255,.65);letter-spacing:.1em;text-transform:uppercase;line-height:1.6;">The Knot Best of Weddings<br/>Hall of Fame Inductee</p>
+      </div>
+
+      <div style="padding:48px 32px 56px;border-right:1px solid rgba(255,255,255,.1);">
+        <div style="font-family:'Playfair Display',serif;font-size:80px;font-weight:700;color:rgba(255,255,255,.07);line-height:1;margin-bottom:24px;letter-spacing:-.04em;">02</div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#fff;margin-bottom:10px;line-height:1.2;">Best of Weddings</h3>
+        <p style="font-size:11px;color:rgba(255,255,255,.65);letter-spacing:.1em;text-transform:uppercase;line-height:1.6;">The Knot Winner<br/>2024 &amp; 2025 Winner</p>
+      </div>
+
+      <div style="padding:48px 32px 56px;border-right:1px solid rgba(255,255,255,.1);">
+        <div style="font-family:'Playfair Display',serif;font-size:80px;font-weight:700;color:rgba(255,255,255,.07);line-height:1;margin-bottom:24px;letter-spacing:-.04em;">03</div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#fff;margin-bottom:10px;line-height:1.2;">BOSS Mastery Award</h3>
+        <p style="font-size:11px;color:rgba(255,255,255,.65);letter-spacing:.1em;text-transform:uppercase;line-height:1.6;">Bridal Owner Success School<br/>2024, 2025, 2026</p>
+      </div>
+
+      <div style="padding:48px 0 56px 32px;">
+        <div style="font-family:'Playfair Display',serif;font-size:80px;font-weight:700;color:rgba(255,255,255,.07);line-height:1;margin-bottom:24px;letter-spacing:-.04em;">04</div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#fff;margin-bottom:10px;line-height:1.2;">BOSS Proficiency</h3>
+        <p style="font-size:11px;color:rgba(255,255,255,.65);letter-spacing:.1em;text-transform:uppercase;line-height:1.6;">Bridal Owner Success School<br/>2024, 2025, 2026</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div id="faq" style="background:var(--teal-xlight);padding:80px 40px;">
+  <div style="max-width:800px;margin:0 auto;">
+    <div class="eyebrow u-center">Got Questions?</div>
+    <h2 class="section-title" style="text-align:center;margin-bottom:40px;">Frequently Asked <em>Questions</em></h2>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+
+      <details style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;">
+        <summary>Do you have plus sizes? <span class="faq-icon">+</span></summary>
+        <p>Yes! At Cloud Nine Bridal Boutique, we carry in-store sample sizes up to size 26. Our designers offer special-order gowns up to size 38, and we carry inclusive lines including Essense of Australia EveryBody EveryBride and Stella York EveryBody EveryBride.</p>
+      </details>
+
+      <details style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;">
+        <summary>Do I need an appointment? <span class="faq-icon">+</span></summary>
+        <p>Yes — Cloud Nine Bridal operates by appointment to ensure each bride receives personalized attention and an exclusive experience. Standard appointments are free, with elevated experiences like "Robes &amp; Rosé" ($100) and "On Cloud Nine" ($250) available for added luxury.</p>
+      </details>
+
+      <details style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;">
+        <summary>How long are appointments? <span class="faq-icon">+</span></summary>
+        <p>Standard bridal appointments are 90 minutes long, providing ample time to explore our collection. Your appointment includes a one-on-one bridal stylist, curated gown pulls based on your vision, styling advice, and celebration with your guests.</p>
+      </details>
+
+      <details style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;">
+        <summary>How many guests can I bring? <span class="faq-icon">+</span></summary>
+        <p>We recommend 3–4 of your closest loved ones for the best experience. Our suites comfortably accommodate up to 6 guests — just let us know when booking so we can prepare your suite.</p>
+      </details>
+
+      <details style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;">
+        <summary>How much are the gowns on average? <span class="faq-icon">+</span></summary>
+        <p>Our bridal gowns range from $1,200 to $4,000, with most brides finding their dream gown around $2,000. We offer a diverse selection across price points without compromising on quality or craftsmanship.</p>
+      </details>
+
+      <details style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;">
+        <summary>What is the average ordering timeline? <span class="faq-icon">+</span></summary>
+        <p>Gowns typically take 4–6 months to arrive once ordered, though timelines vary by designer. We recommend shopping 9–12 months in advance to allow comfortable time for shipping and alterations.</p>
+      </details>
+
+      <details style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;">
+        <summary>Do you do alterations? <span class="faq-icon">+</span></summary>
+        <p>Cloud Nine does not perform in-house alterations. We provide our brides with a curated list of trusted, highly experienced Central Illinois seamstresses who specialize in bridal alterations.</p>
+      </details>
+
+      <details style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;">
+        <summary>Can I return my dress? <span class="faq-icon">+</span></summary>
+        <p>All bridal gowns are special orders made specifically for each bride, so all sales are final. Our stylists take great care during your appointment to ensure you feel 100% confident before ordering.</p>
+      </details>
+
+      <details style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;">
+        <summary>When should I book my tux appointment? <span class="faq-icon">+</span></summary>
+        <p>We recommend scheduling your group tuxedo appointment 3–5 months before the wedding, with final orders placed approximately 2 months out. Jim's Formal Wear can also ship directly to out-of-town groomsmen's homes!</p>
+      </details>
+
+      <details style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;">
+        <summary>How early should mothers shop? <span class="faq-icon">+</span></summary>
+        <p>We recommend starting at least 6–8 months before the wedding date to allow time for browsing, ordering, and alterations.</p>
+      </details>
+
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="about-cta-section" style="background:var(--teal-deep);padding:72px 40px;text-align:center;color:var(--white);">
+  <h2 style="font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,44px);font-weight:700;margin-bottom:14px;">Ready to Find Your <em style="font-style:italic;color:var(--teal-light);">Dream Gown?</em></h2>
+  <p style="font-size:16px;color:rgba(234,246,247,.7);margin-bottom:32px;max-width:480px;margin-left:auto;margin-right:auto;font-weight:300;">Book a private appointment with our team and experience the Cloud Nine difference for yourself.</p>
+  <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+    <a href="appointments.html" class="btn-white">Book an Appointment</a>
+    <a href="quiz.html" class="btn-cta-ghost">Take the Style Quiz</a>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+<script src="components.js?v=4" defer></script>
+</main>
+</body>
+</html>

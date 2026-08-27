@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Contact &amp; Book an Appointment | Cloud Nine Bridal Boutique</title>
+  <meta name="description" content="Get in touch with Cloud Nine Bridal Boutique in Peoria, IL. Book an appointment, ask about gown availability, or visit us at 4711 N. University St."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://cloudninebridal.com/contact.html"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://cloudninebridal.com/contact.html"/>
+  <meta property="og:title" content="Contact &amp; Book an Appointment | Cloud Nine Bridal Boutique"/>
+  <meta property="og:description" content="Get in touch with Cloud Nine Bridal Boutique in Peoria, IL. Book an appointment, ask about gown availability, or visit us at 4711 N. University St."/>
+  <meta property="og:image" content="https://cloudninebridal.com/images/bridal/Bridal-hero.webp"/>
+  <meta property="og:site_name" content="Cloud Nine Bridal Boutique"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Contact &amp; Book an Appointment | Cloud Nine Bridal Boutique"/>
+  <meta name="twitter:description" content="Book an appointment or contact Cloud Nine Bridal Boutique in Peoria, IL."/>
+  <meta name="twitter:image" content="https://cloudninebridal.com/images/bridal/Bridal-hero.webp"/>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+    <!-- Fonts: preconnect first, then non-blocking stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Josefin+Sans:wght@100;200;300;400&family=Lato:wght@300;400;700;900&display=swap"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact Cloud Nine Bridal Boutique",
+    "description": "Contact or book an appointment at Cloud Nine Bridal Boutique in Peoria, IL.",
+    "url": "https://cloudninebridal.com/contact.html",
+    "mainEntity": {
+      "@type": "BridalShop",
+      "name": "Cloud Nine Bridal Boutique",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "4711 N. University St",
+        "addressLocality": "Peoria",
+        "addressRegion": "IL",
+        "postalCode": "61614",
+        "addressCountry": "US"
+      },
+      "telephone": "+13096933830",
+      "email": "sayyes@cloudninepeoria.com",
+      "openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Monday", "opens": "10:00", "closes": "17:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Tuesday", "opens": "11:00", "closes": "19:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Thursday", "opens": "11:00", "closes": "19:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "10:00", "closes": "17:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "17:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "12:00", "closes": "16:00" }
+      ]
+    }
+  }
+  </script>
+  <style>
+    .input-group { display:flex; flex-direction:column; gap:6px; }
+    .input-label { font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--text-muted); }
+    .input-field {
+      width:100%; padding:13px 16px;
+      border:1px solid var(--border); border-radius:0;
+      font-family:'Josefin Sans',sans-serif; font-size:14px; font-weight:300; color:var(--text);
+      background:var(--white); outline:none; transition:border-color .2s;
+    }
+    .input-field:focus { border-color:var(--teal-deep); }
+    .input-field::placeholder { color:var(--text-light); }
+    textarea.input-field { resize:vertical; min-height:120px; }
+    select.input-field { cursor:pointer; }
+    .info-block { display:flex; align-items:flex-start; gap:14px; padding:20px 0; border-bottom:1px solid var(--border); }
+    .info-block:last-child { border-bottom:none; }
+    .info-icon { width:40px; height:40px; border-radius:0; background:var(--teal-dim); display:flex; align-items:center; justify-content:center; color:var(--teal-deep); flex-shrink:0; }
+    .info-title { font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-muted); margin-bottom:4px; }
+    .info-value { font-size:15px; color:var(--text); line-height:1.5; }
+    .info-value a { color:var(--teal-deep); transition:color .2s; }
+    .info-value a:hover { color:var(--teal-darker); }
+
+    /* ── BOOKING METHODS STRIP ── */
+    .booking-methods {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 40px 64px;
+    }
+    .booking-methods-inner {
+      max-width: 900px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr auto 1fr;
+      align-items: stretch; gap: 0;
+    }
+    .booking-method {
+      display: flex; align-items: center; gap: 18px;
+      padding: 28px 30px; text-decoration: none;
+      border: 1px solid var(--border);
+      transition: border-color .25s, box-shadow .25s, background .25s;
+      position: relative; overflow: hidden;
+    }
+    .booking-method--online {
+      background: var(--teal-deep);
+      border-color: var(--teal-deep);
+      color: #fff;
+    }
+    .booking-method--online:hover { background: var(--teal-darker); border-color: var(--teal-darker); }
+    .booking-method--request {
+      background: var(--white); color: var(--text);
+    }
+    .booking-method--request:hover { border-color: var(--teal-deep); box-shadow: 0 4px 24px var(--shadow); }
+    .bm-icon {
+      flex-shrink: 0; width: 48px; height: 48px; border-radius: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .booking-method--online .bm-icon { background: rgba(255,255,255,.15); color: #fff; }
+    .booking-method--request .bm-icon { background: var(--teal-dim); color: var(--teal-deep); }
+    .bm-body { flex: 1; }
+    .bm-eyebrow {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 9px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .booking-method--online .bm-eyebrow { color: rgba(255,255,255,.55); }
+    .booking-method--request .bm-eyebrow { color: var(--text-muted); }
+    .bm-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 21px; font-weight: 700; letter-spacing: -.01em; line-height: 1.1;
+      margin-bottom: 5px;
+    }
+    .booking-method--online .bm-title { color: #fff; }
+    .booking-method--request .bm-title { color: var(--text); }
+    .bm-sub { font-size: 13px; line-height: 1.55; font-weight: 300; }
+    .booking-method--online .bm-sub { color: rgba(255,255,255,.62); }
+    .booking-method--request .bm-sub { color: var(--text-muted); }
+    .bm-arrow { flex-shrink: 0; transition: transform .25s; }
+    .booking-method:hover .bm-arrow { transform: translateX(4px); }
+    .booking-method--online .bm-arrow { color: rgba(255,255,255,.65); }
+    .booking-method--request .bm-arrow { color: var(--teal-deep); opacity: 0; transition: opacity .2s, transform .25s; }
+    .booking-method--request:hover .bm-arrow { opacity: 1; }
+    .bm-or-divider {
+      display: flex; align-items: center; justify-content: center;
+      padding: 0 20px; flex-shrink: 0;
+    }
+    .bm-or-divider span {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 11px; font-weight: 300; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--text-light);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+    }
+    .bm-or-divider span::before,
+    .bm-or-divider span::after {
+      content: ''; display: block; width: 1px; height: 28px; background: var(--border);
+    }
+
+    /* What to Expect list */
+    .wte-step {
+      display: flex; gap: 14px; align-items: flex-start;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .wte-step:last-child { border-bottom: none; padding-bottom: 0; }
+    .wte-num {
+      flex-shrink: 0; width: 26px; height: 26px;
+      background: rgba(255,255,255,.12); border-radius: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 9px; font-weight: 700; letter-spacing: .1em;
+      color: rgba(255,255,255,.65); margin-top: 1px;
+    }
+    .wte-title { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 2px; }
+    .wte-desc { font-size: 12px; color: rgba(255,255,255,.72); line-height: 1.55; }
+
+    /* Today's hours highlight */
+    .hours-today {
+      font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+      color: var(--teal-deep); margin-bottom: 14px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .hours-today-dot {
+      width: 7px; height: 7px; border-radius: 0; background: var(--teal-deep);
+      animation: pulse-dot 2s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .45; transform: scale(.7); }
+    }
+    .hours-table tr.today td { color: var(--teal-deep); font-weight: 700; }
+
+    @media (max-width: 900px) {
+      .booking-methods { padding: 28px 28px; }
+      .booking-methods-inner { grid-template-columns: 1fr; }
+      .bm-or-divider { padding: 6px 0; flex-direction: row; }
+      .bm-or-divider span { flex-direction: row; }
+      .bm-or-divider span::before,
+      .bm-or-divider span::after { width: 32px; height: 1px; }
+    }
+    @media (max-width: 768px) {
+      .booking-methods { padding: 20px 16px; }
+      .booking-method { padding: 16px 16px; gap: 12px; }
+      .bm-icon { width: 40px; height: 40px; }
+      .bm-title { font-size: 18px; }
+      .bm-sub { font-size: 13px; line-height: 1.55; }
+      /* Form wrapper inline padding override */
+      #request-form { padding: 24px 16px !important; }
+      /* Sidebar cards */
+      .contact-layout > div > [style*="padding:48px"],
+      .contact-layout [style*="padding:48px"],
+      .contact-layout [style*="padding: 48px"] { padding: 24px 16px !important; }
+      /* Full-width submit */
+      .contact-layout button[type="submit"],
+      .contact-layout input[type="submit"] { width: 100%; }
+      /* 2-col form row → 1-col */
+      .contact-layout .u-grid-2 { grid-template-columns: 1fr !important; }
+      .input-field { font-size: 16px !important; }
+    }
+  </style>
+</head>
+<body>
+<div id="site-header"></div>
+
+<main id="main-content">
+<div class="page-hero">
+  <div class="page-hero-main">
+    <h1 class="page-hero-title">Book Your<br/><em>Appointment.</em></h1>
+    <div class="page-hero-right">
+      <p class="page-hero-sub">Our team will confirm your visit within 24 hours of your request.</p>
+    </div>
+  </div>
+  <div class="page-hero-rule"></div>
+</div>
+
+<!-- ── BOOKING METHODS ── -->
+<!-- NOTE: Replace YOUR_BRIDALIVE_STORE_ID below with your BridalLive Online Booking URL -->
+<!-- BridalLive → Settings → Online Booking → copy the URL -->
+<div class="booking-methods">
+  <div class="booking-methods-inner">
+
+    <a href="appointments.html#book-now"
+       class="booking-method booking-method--online" id="book-online-btn">
+      <div class="bm-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+      </div>
+      <div class="bm-body">
+        <div class="bm-eyebrow">Powered by BridalLive · 24 / 7</div>
+        <div class="bm-title">Book Online Now</div>
+        <div class="bm-sub">See live availability and confirm your appointment instantly — no phone call needed.</div>
+      </div>
+      <div class="bm-arrow">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </div>
+    </a>
+
+    <div class="bm-or-divider"><span>or</span></div>
+
+    <a href="#request-form" class="booking-method booking-method--request">
+      <div class="bm-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+        </svg>
+      </div>
+      <div class="bm-body">
+        <div class="bm-eyebrow">Response within 24 hours</div>
+        <div class="bm-title">Send a Request</div>
+        <div class="bm-sub">Fill out the form below and our team will personally confirm your details.</div>
+      </div>
+      <div class="bm-arrow">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<div class="section">
+  <div class="contact-layout">
+
+    <!-- FORM -->
+    <div>
+      <div id="request-form" style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:48px;">
+
+        <form id="contactForm" name="appointment-request" data-netlify="true" onsubmit="submitForm(event)" style="display:flex;flex-direction:column;gap:20px;">
+          <input type="hidden" name="form-name" value="appointment-request"/>
+          <div class="u-grid-2">
+            <div class="input-group">
+              <label class="input-label" for="first_name">First Name *</label>
+              <input type="text" class="input-field" name="first_name" placeholder="Jane" required id="first_name">
+            </div>
+            <div class="input-group">
+              <label class="input-label" for="last_name">Last Name *</label>
+              <input type="text" class="input-field" name="last_name" placeholder="Smith" required id="last_name">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label class="input-label" for="email">Email Address *</label>
+            <input type="email" class="input-field" name="email" placeholder="jane@email.com" required id="email">
+          </div>
+
+          <div class="input-group">
+            <label class="input-label" for="phone">Phone Number</label>
+            <input type="tel" name="phone" class="input-field" placeholder="(309) 693-3830" id="phone">
+          </div>
+
+          <div class="input-group">
+            <label class="input-label" for="appointment_type">Appointment Type *</label>
+            <select name="appointment_type" class="input-field" required id="appointment_type">
+              <option value="" disabled selected>Select an appointment type</option>
+              <option>Bridal Standard (Free)</option>
+              <option>Bridal Rose &amp; Grace Experience</option>
+              <option>Bridal On Cloud Nine Experience</option>
+              <option>Mother of the Bride/Groom</option>
+              <option>Prom</option>
+              <option>Homecoming</option>
+              <option>Tuxedo / Suit Fitting</option>
+            </select>
+          </div>
+
+          <div class="u-grid-2">
+            <div class="input-group">
+              <label class="input-label" for="preferred_date">Preferred Date</label>
+              <input type="date" name="preferred_date" class="input-field" id="preferred_date">
+            </div>
+            <div class="input-group">
+              <label class="input-label" for="preferred_time">Preferred Time</label>
+              <select name="preferred_time" class="input-field" id="preferred_time">
+                <option value="" disabled selected>Select a time</option>
+                <option>Morning (10am–12pm)</option>
+                <option>Afternoon (12pm–3pm)</option>
+                <option>Late Afternoon (3pm–5pm)</option>
+                <option>Evening (5pm–7pm, Tues/Thur only)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label class="input-label" for="event_date">Wedding / Event Date</label>
+            <input type="date" name="event_date" class="input-field" id="event_date">
+          </div>
+
+          <div class="input-group">
+            <label class="input-label" for="guests">Number of Guests Bringing</label>
+            <select name="guests" class="input-field" id="guests">
+              <option>Just me</option>
+              <option>1–2 guests</option>
+              <option>3–4 guests (recommended)</option>
+              <option>5–6 guests (please notify us)</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label class="input-label" for="message">Message / Special Requests</label>
+            <textarea class="input-field" name="message" placeholder="Tell us about your vision, any styles you love, budget range, or anything else we should know..." id="message"></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary" style="width:100%;justify-content:center;padding:16px;">
+            Request My Appointment
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </form>
+
+        <div id="formSuccess" style="display:none;text-align:center;padding:40px 20px;">
+          <div style="font-size:48px;margin-bottom:16px;">💍</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--teal-deep);margin-bottom:8px;">Request Received!</h3>
+          <p style="font-size:15px;color:var(--text-muted);line-height:1.7;">Thank you! We'll confirm your appointment within 24 hours. We can't wait to help you find your dream gown.</p>
+        </div>
+      </div>
+
+      <!-- CONTACT FORM (General) -->
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:48px;margin-top:24px;">
+        <h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;margin-bottom:8px;">Send Us a Message</h2>
+        <p style="font-size:14px;color:var(--text-muted);margin-bottom:28px;">Have a general question? Reach out and we'll get back to you as soon as possible.</p>
+        <form name="general-contact" data-netlify="true" onsubmit="submitContact(event)" style="display:flex;flex-direction:column;gap:16px;">
+          <input type="hidden" name="form-name" value="general-contact"/>
+          <div class="u-grid-2">
+            <div class="input-group"><label class="input-label" for="gc_name">Name *</label><input type="text" name="name" class="input-field" placeholder="Your Name" required id="gc_name"></div>
+            <div class="input-group"><label class="input-label" for="gc_email">Email *</label><input type="email" name="email" class="input-field" placeholder="your@email.com" required id="gc_email"></div>
+          </div>
+          <div class="input-group"><label class="input-label" for="gc_phone">Phone Number</label><input type="tel" name="phone" class="input-field" placeholder="(309) 000-0000" id="gc_phone"></div>
+          <div class="input-group"><label class="input-label" for="gc_subject">Subject *</label><input type="text" name="subject" class="input-field" placeholder="What's this about?" required id="gc_subject"></div>
+          <div class="input-group"><label class="input-label" for="gc_message">Message *</label><textarea name="message" class="input-field" placeholder="Your message..." required id="gc_message"></textarea></div>
+          <button type="submit" class="btn-outline" style="align-self:flex-start;">Send Message</button>
+        </form>
+        <div id="contactSuccess" style="display:none;background:var(--teal-dim);border:1px solid var(--teal-mid);border-radius:var(--radius-sm);padding:16px;margin-top:16px;font-size:14px;color:var(--teal-deep);font-weight:700;">✓ Message sent! We'll be in touch soon.</div>
+      </div>
+    </div>
+
+    <!-- SIDEBAR INFO -->
+    <div style="display:flex;flex-direction:column;gap:20px;">
+
+      <!-- Contact Info -->
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:32px;">
+        <h3 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:20px;">Contact Info</h3>
+        <div class="info-block">
+          <div class="info-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><div class="info-title">Address</div><div class="info-value"><a href="https://goo.gl/maps/HXgYuahuNu8ycSXB8" target="_blank" rel="noopener noreferrer">4711 N. University St<br/>Peoria, IL 61614</a></div></div>
+        </div>
+        <div class="info-block">
+          <div class="info-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg></div>
+          <div><div class="info-title">Phone</div><div class="info-value"><a href="tel:3096933830">(309) 693‑3830</a></div></div>
+        </div>
+        <div class="info-block">
+          <div class="info-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div><div class="info-title">Email</div><div class="info-value"><a href="mailto:sayyes@cloudninepeoria.com">sayyes@cloudninepeoria.com</a></div></div>
+        </div>
+      </div>
+
+      <!-- What to Expect -->
+      <div style="background:var(--teal-deep);border-radius:var(--radius);padding:32px;color:var(--white);">
+        <h3 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:6px;color:#fff;">Your Appointment</h3>
+        <p style="font-size:13px;color:rgba(255,255,255,.72);margin-bottom:20px;line-height:1.5;">What to expect when you visit us.</p>
+        <div>
+          <div class="wte-step">
+            <div class="wte-num">01</div>
+            <div>
+              <div class="wte-title">Personal Consultation</div>
+              <div class="wte-desc">Your stylist learns your vision, budget, venue, and inspiration before pulling a single gown.</div>
+            </div>
+          </div>
+          <div class="wte-step">
+            <div class="wte-num">02</div>
+            <div>
+              <div class="wte-title">Try On &amp; Style</div>
+              <div class="wte-desc">We pull curated gowns from our full collection for you to try. No rushing, no pressure.</div>
+            </div>
+          </div>
+          <div class="wte-step">
+            <div class="wte-num">03</div>
+            <div>
+              <div class="wte-title">Say Yes</div>
+              <div class="wte-desc">When you find the one, we celebrate with you and guide you through ordering and timeline.</div>
+            </div>
+          </div>
+          <div class="wte-step">
+            <div class="wte-num">04</div>
+            <div>
+              <div class="wte-title">Alterations &amp; Pickup</div>
+              <div class="wte-desc">We connect you with trusted local seamstresses and are here through every fitting.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bridal Hours -->
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:32px;">
+        <h3 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:16px;">Bridal Hours</h3>
+        <div class="hours-today" id="todayHours">
+          <span class="hours-today-dot"></span>
+          <span id="todayHoursText">Loading…</span>
+        </div>
+        <table class="hours-table" id="bridalHoursTable">
+          <tr data-days="1,5"><td style="color:var(--text);font-weight:700;padding-right:16px;">Mon, Fri</td><td class="u-text-muted">10am – 5pm</td></tr>
+          <tr data-days="2,4"><td style="color:var(--text);font-weight:700;padding-right:16px;">Tues, Thur</td><td class="u-text-muted">11am – 7pm</td></tr>
+          <tr data-days="3"><td style="color:var(--text);font-weight:700;padding-right:16px;">Wed</td><td class="u-text-muted">Closed</td></tr>
+          <tr data-days="6"><td style="color:var(--text);font-weight:700;padding-right:16px;">Sat</td><td class="u-text-muted">9am – 5pm</td></tr>
+          <tr data-days="0"><td style="color:var(--text);font-weight:700;padding-right:16px;">Sun</td><td class="u-text-muted">By Appointment Only</td></tr>
+        </table>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:6px;font-style:italic;">*Open Sundays Jan–Mar seasonally by appointment</div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-light);margin:18px 0 8px;">Prom Hours</div>
+        <table class="hours-table">
+          <tr><td style="color:var(--text);font-weight:700;padding-right:16px;">Mon</td><td class="u-text-muted">10am – 5pm</td></tr>
+          <tr><td style="color:var(--text);font-weight:700;padding-right:16px;">Tues, Thur</td><td class="u-text-muted">12pm – 7pm</td></tr>
+          <tr><td style="color:var(--text);font-weight:700;padding-right:16px;">Wed</td><td class="u-text-muted">Closed</td></tr>
+          <tr><td style="color:var(--text);font-weight:700;padding-right:16px;">Fri</td><td class="u-text-muted">10am – 5pm</td></tr>
+          <tr><td style="color:var(--text);font-weight:700;padding-right:16px;">Sat</td><td class="u-text-muted">11am – 5pm</td></tr>
+          <tr><td style="color:var(--text);font-weight:700;padding-right:16px;">Sun</td><td class="u-text-muted">Closed</td></tr>
+        </table>
+      </div>
+
+      <!-- Map -->
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3017.5!2d-89.6145!3d40.7308!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880a4e8b9e1c1a1b%3A0x1234567890abcdef!2s4711+N+University+St%2C+Peoria%2C+IL+61614!5e0!3m2!1sen!2sus!4v1234567890"
+          width="100%" height="220" style="border:0;display:block;" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade" title="Cloud Nine Bridal Location">
+        </iframe>
+        <div style="padding:16px 20px;">
+          <a href="https://goo.gl/maps/HXgYuahuNu8ycSXB8" target="_blank" rel="noopener noreferrer" style="font-size:13px;font-weight:700;color:var(--teal-deep);display:inline-flex;align-items:center;gap:6px;">
+            Get Directions
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Social -->
+      <div style="background:var(--teal-deep);border-radius:var(--radius);padding:28px;color:var(--white);">
+        <h3 style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:6px;">Follow Along</h3>
+        <p style="font-size:13px;color:rgba(234,246,247,.65);margin-bottom:18px;">See real brides, new arrivals, and behind-the-scenes on our socials.</p>
+        <div style="display:flex;gap:12px;">
+          <a href="https://www.facebook.com/cloudninebridalboutique/" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:8px;padding:10px 18px;background:rgba(234,246,247,.12);border:1px solid rgba(234,246,247,.25);border-radius:0;color:var(--white);font-size:13px;font-weight:700;transition:background .2s;" onmouseover="this.style.background='rgba(234,246,247,.2)'" onmouseout="this.style.background='rgba(234,246,247,.12)'">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+            Facebook
+          </a>
+          <a href="https://www.instagram.com/cloudninebridalpeoria/" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:8px;padding:10px 18px;background:rgba(234,246,247,.12);border:1px solid rgba(234,246,247,.25);border-radius:0;color:var(--white);font-size:13px;font-weight:700;transition:background .2s;" onmouseover="this.style.background='rgba(234,246,247,.2)'" onmouseout="this.style.background='rgba(234,246,247,.12)'">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            Instagram
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+<script src="components.js?v=4" defer></script>
+<script>
+// ── TODAY'S HOURS HIGHLIGHT ──
+(function() {
+  var day = new Date().getDay(); // 0=Sun, 1=Mon … 6=Sat
+  var bridalHours = {
+    0: 'By Appointment Only', 1: '10am – 5pm', 2: '11am – 7pm',
+    3: 'Closed', 4: '11am – 7pm', 5: '10am – 5pm', 6: '9am – 5pm'
+  };
+  var dayNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  var txt = document.getElementById('todayHoursText');
+  if (txt) {
+    var h = bridalHours[day];
+    txt.textContent = 'Today (' + dayNames[day] + '): ' + h;
+    if (h === 'Closed') {
+      var dot = document.querySelector('.hours-today-dot');
+      if (dot) { dot.style.background = '#c96070'; dot.style.animation = 'none'; }
+    }
+  }
+  var table = document.getElementById('bridalHoursTable');
+  if (table) {
+    table.querySelectorAll('tr[data-days]').forEach(function(row) {
+      var days = row.dataset.days.split(',').map(Number);
+      if (days.includes(day)) row.classList.add('today');
+    });
+  }
+})();
+
+// ── SMOOTH SCROLL TO REQUEST FORM ──
+document.querySelectorAll('a[href="#request-form"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    e.preventDefault();
+    var target = document.getElementById('request-form');
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+async function submitForm(e) {
+  e.preventDefault();
+  const form = e.target;
+  const btn  = form.querySelector('[type="submit"]');
+  if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+
+  try {
+    const res = await fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(new FormData(form)).toString()
+    });
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  } catch(err) {
+    if (btn) { btn.disabled = false; btn.textContent = 'Try Again'; }
+    alert('Something went wrong sending your request. Please call us at (309) 693‑3830 or email sayyes@cloudninepeoria.com');
+  }
+}
+
+async function submitContact(e) {
+  e.preventDefault();
+  const form = e.target;
+  const btn  = form.querySelector('[type="submit"]');
+  if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+
+  try {
+    const res = await fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(new FormData(form)).toString()
+    });
+    form.reset();
+    document.getElementById('contactSuccess').style.display = 'block';
+    if (btn) { btn.disabled = false; btn.textContent = 'Send Message'; }
+  } catch(err) {
+    if (btn) { btn.disabled = false; btn.textContent = 'Try Again'; }
+    alert('Something went wrong sending your message. Please email sayyes@cloudninepeoria.com or call (309) 693‑3830.');
+  }
+}
+</script>
+</main>
+</body>
+</html>

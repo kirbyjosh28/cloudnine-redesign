@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Wedding Gown & Dress Details | Cloud Nine Bridal Boutique Peoria IL</title>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" id="canonicalLink" href="https://cloudninebridal.com/dress.html"/>
+  <meta property="og:type" content="product"/>
+  <meta property="og:title" id="ogTitle" content="Gown Details | Cloud Nine Bridal Boutique"/>
+  <meta property="og:description" id="ogDesc" content="View gown details, photos, and styling information at Cloud Nine Bridal Boutique in Peoria, IL."/>
+  <meta property="og:image" id="ogImage" content="https://cloudninebridal.com/images/bridal/Bridal-hero.webp"/>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+    <!-- Fonts: preconnect first, then non-blocking stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Josefin+Sans:wght@100;200;300;400&family=Lato:wght@300;400;700;900&display=swap"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <style>
+
+    /* ── DRESS DETAIL PAGE — Galia Lahav editorial style ── */
+    body { overflow-x: hidden; }
+
+    .dp-wrap {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      align-items: start;
+      min-height: calc(100vh - 96px);
+    }
+
+    /* ── LEFT: Stacked magazine photos ── */
+    .dp-gallery {
+      background: #f4f4f4;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .dp-photo-full {
+      width: 100%;
+      overflow: hidden;
+      background: #ebebeb;
+      line-height: 0;
+    }
+    .dp-photo-full img {
+      width: 100%;
+      aspect-ratio: 2/3;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+    .dp-photo-full.dp-photo-wide img {
+      aspect-ratio: 3/2; /* landscape accent shot */
+    }
+
+    .dp-photo-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3px;
+      background: #e0e0e0;
+    }
+    .dp-photo-pair > div {
+      overflow: hidden;
+      background: #ebebeb;
+      line-height: 0;
+    }
+    .dp-photo-pair img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    /* ── RIGHT: Sticky editorial info panel ── */
+    .dp-info {
+      position: sticky;
+      top: 96px;
+      height: calc(100vh - 96px);
+      overflow-y: auto;
+      background: #fff;
+      border-left: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      padding: 56px 52px 48px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) transparent;
+    }
+    .dp-info::-webkit-scrollbar { width: 3px; }
+    .dp-info::-webkit-scrollbar-thumb { background: var(--border); }
+
+    /* Back nav */
+    .dp-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      cursor: pointer;
+      transition: color .2s;
+      margin-bottom: 52px;
+      text-decoration: none;
+    }
+    .dp-back:hover { color: var(--teal-deep); }
+    .dp-back svg { transition: transform .2s; }
+    .dp-back:hover svg { transform: translateX(-3px); }
+
+    /* Designer eyebrow — hidden */
+    .dp-designer { display: none; }
+
+    /* Gown title */
+    .dp-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 3vw, 48px);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -.03em;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .dp-title em { font-style: italic; color: var(--teal-deep); }
+
+    /* Style number */
+    .dp-style-num:empty { display: none; }
+    .dp-style-num {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 9px; font-weight: 700; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--text-light);
+      margin-bottom: 20px;
+    }
+
+    /* Thin rule */
+    .dp-rule {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+      margin: 28px 0;
+    }
+
+    /* Description */
+    .dp-desc {
+      font-size: 13.5px;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.88;
+      letter-spacing: .01em;
+      font-style: italic;
+      margin-bottom: 0;
+    }
+
+    /* Meta details table */
+    .dp-meta {
+      display: flex;
+      flex-direction: column;
+    }
+    .dp-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .dp-meta-row:first-child { border-top: 1px solid var(--border); }
+    .dp-meta-key {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+    .dp-meta-val {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text);
+      letter-spacing: .02em;
+    }
+
+    /* Accordion */
+    .dp-accordion { margin: 8px 0 32px; }
+    .dp-acc-item { border-bottom: 1px solid var(--border); }
+    .dp-acc-trigger {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      background: none; border: none;
+      font-size: 9px; font-weight: 700; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--text);
+      cursor: pointer; transition: color .2s;
+    }
+    .dp-acc-trigger:hover { color: var(--teal-deep); }
+    .dp-acc-icon {
+      font-size: 20px; font-weight: 200; line-height: 1;
+      transition: transform .35s cubic-bezier(.16,1,.3,1);
+      flex-shrink: 0;
+    }
+    .dp-acc-item.open .dp-acc-icon { transform: rotate(45deg); }
+    .dp-acc-body {
+      max-height: 0; overflow: hidden;
+      transition: max-height .45s cubic-bezier(.16,1,.3,1);
+    }
+    .dp-acc-inner {
+      padding: 0 0 20px;
+      font-size: 13px; font-weight: 300;
+      color: var(--text-muted); line-height: 1.88;
+    }
+    .dp-acc-item.open .dp-acc-body { max-height: 400px; }
+
+    /* Actions */
+    .dp-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding-top: 4px;
+    }
+    .dp-actions .btn-primary,
+    .dp-actions .btn-outline {
+      justify-content: center;
+      text-align: center;
+    }
+
+    .dp-disclaimer {
+      margin-top: 20px;
+      font-size: 11px;
+      color: var(--text-light);
+      line-height: 1.7;
+      letter-spacing: .01em;
+    }
+    .dp-disclaimer a {
+      color: var(--teal-deep);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    /* Thumbnail strip at bottom of gallery for mobile */
+    .dp-thumbs {
+      display: none;
+      gap: 6px;
+      padding: 12px 16px;
+      background: #ebebeb;
+      overflow-x: auto;
+      scrollbar-width: thin;
+    }
+    .dp-thumb {
+      width: 56px; height: 72px;
+      object-fit: cover; object-position: top;
+      flex-shrink: 0; cursor: pointer;
+      opacity: .5; transition: opacity .2s;
+      border: 2px solid transparent;
+    }
+    .dp-thumb:hover, .dp-thumb.active { opacity: 1; border-color: var(--teal-deep); }
+
+    /* ── MOBILE STICKY CTA BAR ── */
+    @media (max-width: 960px) {
+      .dp-mobile-cta {
+        position: fixed; bottom: 0; left: 0; right: 0;
+        z-index: 190;
+        display: flex; align-items: stretch;
+        background: #fff;
+        border-top: 1px solid var(--border);
+        box-shadow: 0 -4px 24px rgba(0,0,0,.10);
+        padding-bottom: max(6px, env(safe-area-inset-bottom, 0px));
+      }
+      .dp-mobile-cta-book {
+        flex: 1;
+        display: flex; align-items: center; justify-content: center;
+        background: var(--teal-deep); color: #fff;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
+        min-height: 54px; text-decoration: none;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .dp-mobile-cta-book:active { background: var(--teal-darker); }
+      .dp-mobile-cta-sep { width: 1px; background: rgba(255,255,255,.15); flex-shrink: 0; }
+      .dp-mobile-cta-inquire {
+        display: flex; align-items: center; justify-content: center;
+        width: 72px; flex-shrink: 0;
+        background: var(--teal-deep); color: rgba(255,255,255,.75);
+        text-decoration: none;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+      }
+      /* Push content above the sticky bar */
+      .dp-info { padding-bottom: 88px; }
+    }
+    @media (min-width: 961px) {
+      .dp-mobile-cta { display: none; }
+    }
+
+    /* ── Image counter badge ── */
+    .dp-img-counter {
+      position: absolute; top: 12px; right: 12px;
+      background: rgba(0,0,0,.42); backdrop-filter: blur(6px);
+      color: #fff; padding: 4px 10px; border-radius: 0;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 9px; font-weight: 700; letter-spacing: .12em;
+      pointer-events: none; opacity: 0;
+      transition: opacity .3s;
+    }
+    .dp-photo-full:hover .dp-img-counter { opacity: 1; }
+
+    /* ── LIGHTBOX ── */
+    .lb-backdrop {
+      display: none; position: fixed; inset: 0;
+      background: rgba(5,5,5,.95); z-index: 3000;
+      align-items: center; justify-content: center;
+      flex-direction: column;
+    }
+    .lb-backdrop.open { display: flex; }
+    .lb-img {
+      max-width: 88vw; max-height: 84vh;
+      object-fit: contain; cursor: default;
+    }
+    .lb-top {
+      position: absolute; top: 0; left: 0; right: 0;
+      padding: 18px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: linear-gradient(to bottom, rgba(0,0,0,.6) 0%, transparent 100%);
+    }
+    .lb-top-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px; font-weight: 700; font-style: italic;
+      color: rgba(255,255,255,.8);
+    }
+    .lb-counter {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 9px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+      color: rgba(255,255,255,.65);
+    }
+    .lb-close {
+      width: 38px; height: 38px; border-radius: 0;
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+      color: rgba(255,255,255,.7); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; line-height: 1; transition: background .2s, color .2s;
+    }
+    .lb-close:hover { background: rgba(255,255,255,.2); color: #fff; }
+    .lb-nav {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18);
+      color: rgba(255,255,255,.8); width: 44px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; cursor: pointer; transition: background .2s;
+    }
+    .lb-nav:hover { background: rgba(255,255,255,.2); color: #fff; }
+    .lb-prev { left: 20px; }
+    .lb-next { right: 20px; }
+
+    /* ── Breadcrumb ── */
+    .dp-breadcrumb {
+      display: flex; align-items: center; gap: 6px;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 9px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--text-light); margin-bottom: 32px;
+    }
+    .dp-breadcrumb a { color: var(--text-light); text-decoration: none; transition: color .2s; }
+    .dp-breadcrumb a:hover { color: var(--teal-deep); }
+    .dp-breadcrumb-sep { color: var(--border); }
+
+    /* ── "Also Available" style variants hint ── */
+    .dp-also {
+      margin-top: 20px; padding: 16px 0;
+      border-top: 1px solid var(--border);
+      font-size: 12px; color: var(--text-muted); line-height: 1.6;
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .dp-also svg { flex-shrink: 0; color: var(--teal-deep); margin-top: 1px; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      .dp-wrap { grid-template-columns: 1fr; }
+      .dp-info {
+        position: static; height: auto;
+        border-left: none; border-top: 1px solid var(--border);
+        padding: 40px 28px;
+      }
+      .dp-back { margin-bottom: 32px; }
+      .dp-thumbs { display: flex; }
+    }
+  </style>
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <main id="main-content">
+<div class="dp-wrap" id="dpWrap">
+
+      <!-- ── LEFT: Editorial photo gallery ── -->
+      <div class="dp-gallery" id="dpGallery">
+        <!-- Injected by JS -->
+      </div>
+
+      <!-- ── RIGHT: Sticky product info ── -->
+      <div class="dp-info" id="dpInfo">
+
+        <!-- Breadcrumb injected by JS into #dpBreadcrumb -->
+        <div class="dp-breadcrumb" id="dpBreadcrumb"></div>
+
+        <div class="dp-designer" id="dpDesigner">Cloud Nine Bridal</div>
+        <h1 class="dp-title" id="dpTitle">Gown Detail</h1>
+        <div class="dp-style-num" id="dpStyleNum"></div>
+
+        <div class="dp-rule"></div>
+
+        <div class="dp-meta" id="dpMeta"></div>
+
+        <div class="dp-accordion" id="dpAccordion"></div>
+
+        <div class="dp-actions">
+          <a href="appointments.html" class="btn-primary">
+            Book an Appointment
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="contact.html" class="btn-outline">Inquire About This Style</a>
+          <button id="dpShareBtn" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px;border:1px solid var(--border);background:none;cursor:pointer;color:var(--text-muted);font-family:'Josefin Sans',sans-serif;font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;transition:border-color .2s,color .2s;width:100%;" aria-label="Share this style">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            Share This Style
+          </button>
+        </div>
+        <p class="dp-disclaimer">Not all gowns are kept in store. <a href="contact.html">Contact us</a> for stock and availability details.</p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Mobile sticky CTA -->
+  <div class="dp-mobile-cta" id="dpMobileCta">
+    <a href="appointments.html" class="dp-mobile-cta-book">Book an Appointment</a>
+    <div class="dp-mobile-cta-sep"></div>
+    <a href="contact.html" class="dp-mobile-cta-inquire" aria-label="Inquire about this style">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+    </a>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lb-backdrop" id="lb">
+    <div class="lb-top">
+      <div class="lb-top-title" id="lbTitle"></div>
+      <div style="display:flex;align-items:center;gap:16px;">
+        <div class="lb-counter" id="lbCounter"></div>
+        <button class="lb-close" id="lbCloseBtn" aria-label="Close">✕</button>
+      </div>
+    </div>
+    <button class="lb-nav lb-prev" id="lbPrevBtn" aria-label="Previous">&#8249;</button>
+    <img class="lb-img" id="lbImg" src="" alt=""/>
+    <button class="lb-nav lb-next" id="lbNextBtn" aria-label="Next">&#8250;</button>
+  </div>
+
+  <footer id="site-footer"></footer>
+  </main>
+  <script src="components.js?v=4" defer></script>
+  <script>
+  (async function() {
+
+    /* ── Load dress from sessionStorage or URL query params ── */
+    let dress = null;
+    try { dress = JSON.parse(sessionStorage.getItem('cloudnine_dress') || 'null'); } catch(e) {}
+    
+    const urlParams = new URLSearchParams(window.location.search);
+    const skuParam = urlParams.get('sku') || urlParams.get('s');
+    let catParam = (urlParams.get('cat') || urlParams.get('type') || '').toLowerCase();
+    let dressSrc = sessionStorage.getItem('cloudnine_dress_src') || '';
+
+    if (!dress && skuParam) {
+      const catFiles = {
+        'bridal': 'data/bridal-products.json?v=3',
+        'prom': 'data/prom-products.json?v=2',
+        'hoco': 'data/hoco-products.json?v=2',
+        'mothers': 'data/mothers-products.json?v=1'
+      };
+      const filesToTry = catParam && catFiles[catParam] ? [catFiles[catParam]] : Object.values(catFiles);
+
+      for (const filePath of filesToTry) {
+        try {
+          const res = await fetch(filePath);
+          if (res.ok) {
+            const list = await res.json();
+            const found = list.find(p => String(p.s || '').toLowerCase() === skuParam.toLowerCase());
+            if (found) {
+              dress = found;
+              if (!catParam) {
+                catParam = filePath.includes('prom') ? 'prom' : filePath.includes('hoco') ? 'hoco' : filePath.includes('mothers') ? 'mothers' : 'bridal';
+              }
+              if (!dressSrc) {
+                dressSrc = catParam === 'prom' ? 'prom-catalog.html' : catParam === 'hoco' ? 'hoco-catalog.html' : catParam === 'mothers' ? 'mothers.html' : 'bridal-catalog.html';
+              }
+              sessionStorage.setItem('cloudnine_dress', JSON.stringify(dress));
+              sessionStorage.setItem('cloudnine_dress_src', dressSrc);
+              break;
+            }
+          }
+        } catch(err) {}
+      }
+    }
+
+    if (!dress) {
+      window.location.href = dressSrc || 'bridal-catalog.html';
+      return;
+    }
+
+    if (!dressSrc) {
+      dressSrc = catParam === 'prom' ? 'prom-catalog.html' : catParam === 'hoco' ? 'hoco-catalog.html' : catParam === 'mothers' ? 'mothers.html' : 'bridal-catalog.html';
+    }
+
+    /* ── Theme based on source catalog ── */
+    const isProm = /prom/.test(dressSrc) || catParam === 'prom';
+    const isHoco = /hoco/.test(dressSrc) || catParam === 'hoco';
+    const isMothers = /mothers/.test(dressSrc) || catParam === 'mothers';
+    const activeCat = isProm ? 'prom' : isHoco ? 'hoco' : isMothers ? 'mothers' : 'bridal';
+
+    if (isProm || isHoco) {
+      const r = document.documentElement.style;
+      r.setProperty('--teal-deep',    '#c9607f');
+      r.setProperty('--teal-darker',  '#a8495f');
+      r.setProperty('--teal-mid',     '#e8a0b4');
+      r.setProperty('--teal-light',   '#fce8ef');
+      r.setProperty('--teal-xlight',  '#fff5f7');
+      r.setProperty('--teal-dim',     'rgba(201,96,127,0.06)');
+      r.setProperty('--teal-dim2',    'rgba(201,96,127,0.11)');
+      r.setProperty('--teal-dark',    '#7d3348');
+      r.setProperty('--teal-logo',    '#e8a0b4');
+      const gal = document.querySelector('.dp-gallery');
+      if (gal) gal.style.background = '#f9f0f3';
+    }
+
+    /* ── Helpers ── */
+    function titleCase(s) {
+      return (s||'').replace(/\w\S*/g, w => w[0].toUpperCase() + w.slice(1).toLowerCase());
+    }
+    function esc(s) {
+      return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    /* ── Derive display values ── */
+    const imgs = (dress.x && dress.x.length) ? dress.x : (dress.i ? [dress.i] : []);
+    const rawDesc = (dress.c || '').trim();
+    const isShortDesc = rawDesc && rawDesc.length < 90 && !rawDesc.includes('. ');
+    const displayTitle = isShortDesc ? titleCase(rawDesc) : (dress.n || 'Style #' + dress.s);
+    const longDesc = !isShortDesc ? rawDesc : '';
+    const sectionLabel = isProm ? 'Prom' : isHoco ? 'Homecoming' : isMothers ? 'Mothers' : 'Bridal';
+    const sectionHref  = isProm ? 'prom-catalog.html' : isHoco ? 'hoco-catalog.html' : isMothers ? 'mothers.html' : 'bridal-catalog.html';
+
+    /* ── Page title & Meta ── */
+    document.title = displayTitle + ' | Cloud Nine Bridal Boutique';
+    const canonicalEl = document.getElementById('canonicalLink');
+    const shareCanonicalUrl = `https://cloudninebridal.com/dress.html?cat=${activeCat}&sku=${encodeURIComponent(dress.s || '')}`;
+    if (canonicalEl) canonicalEl.href = shareCanonicalUrl;
+
+    const ogT = document.getElementById('ogTitle');
+    const ogD = document.getElementById('ogDesc');
+    const ogI = document.getElementById('ogImage');
+    if (ogT) ogT.content = `${displayTitle} | Cloud Nine Bridal Boutique`;
+    if (ogD) ogD.content = rawDesc || `View ${displayTitle} by ${dress.d || 'Cloud Nine'} at Cloud Nine Bridal Boutique in Peoria, IL.`;
+    if (ogI && imgs.length) ogI.content = imgs[0];
+
+    // Inject JSON-LD Schema
+    const schemaScript = document.createElement('script');
+    schemaScript.type = 'application/ld+json';
+    schemaScript.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": displayTitle,
+      "image": imgs,
+      "description": rawDesc || `${displayTitle} available at Cloud Nine Bridal Boutique`,
+      "sku": dress.s || undefined,
+      "brand": {
+        "@type": "Brand",
+        "name": dress.d || "Cloud Nine"
+      },
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStoreOnly",
+        "priceCurrency": "USD",
+        "url": shareCanonicalUrl,
+        "seller": {
+          "@type": "BridalShop",
+          "name": "Cloud Nine Bridal Boutique",
+          "telephone": "+13096933830"
+        }
+      }
+    });
+    document.head.appendChild(schemaScript);
+
+    /* ── Breadcrumb ── */
+    const bc = document.getElementById('dpBreadcrumb');
+    if (bc) {
+      const isCatalog = /catalog\.html|mothers\.html/.test(dressSrc);
+      const breadcrumbHref = isCatalog ? dressSrc : sectionHref;
+      bc.innerHTML =
+        '<a href="' + breadcrumbHref + '">' + sectionLabel + '</a>' +
+        '<span class="dp-breadcrumb-sep">›</span>' +
+        '<span>' + esc(displayTitle) + '</span>';
+    }
+
+    /* ── Right panel ── */
+    document.getElementById('dpDesigner').textContent = '';
+    document.getElementById('dpTitle').textContent = displayTitle;
+    document.getElementById('dpStyleNum').textContent = (dress.s && dress.s !== dress.n) ? dress.s : '';
+
+    /* ── Meta rows ── */
+    const metaRows = [
+      dress.sil ? ['Silhouette', titleCase(dress.sil)] : null,
+      ['Availability', 'Contact Us'],
+    ].filter(Boolean);
+    document.getElementById('dpMeta').innerHTML = metaRows.map(([k,v]) =>
+      '<div class="dp-meta-row"><span class="dp-meta-key">' + esc(k) + '</span><span class="dp-meta-val">' + esc(v||'—') + '</span></div>'
+    ).join('');
+
+    /* ── Accordion ── */
+    const accs = [
+      ['Sizing & Fit',  'We carry sample sizes in store for you to try. Most gowns can be special-ordered in your size. Our stylists will guide you through sizing and any needed alterations.'],
+      ['Alterations',   'Cloud Nine partners with trusted local seamstresses. Allow 2–3 months for alterations prior to your event. Ask a stylist for a referral.'],
+    ];
+    document.getElementById('dpAccordion').innerHTML = accs.map(([title, body]) =>
+      '<div class="dp-acc-item">' +
+        '<button class="dp-acc-trigger" onclick="toggleAcc(this)">' +
+          '<span>' + esc(title) + '</span>' +
+          '<span class="dp-acc-icon">+</span>' +
+        '</button>' +
+        '<div class="dp-acc-body"><div class="dp-acc-inner">' + esc(body) + '</div></div>' +
+      '</div>'
+    ).join('');
+
+    /* ── Build photo gallery ── */
+    let html = '';
+    imgs.forEach(function(url, i) {
+      html += '<div class="dp-photo-full" style="cursor:zoom-in;position:relative;" data-lb="' + i + '">' +
+        '<img src="' + esc(url) + '" alt="' + esc(dress.d||'') + ' ' + (i===0 ? 'style ' + esc(dress.s||'') : 'detail ' + i) + '" loading="' + (i===0?'eager':'lazy') + '"/>' +
+        (imgs.length > 1 ? '<span class="dp-img-counter">' + (i+1) + ' / ' + imgs.length + '</span>' : '') +
+      '</div>';
+    });
+    const gal = document.getElementById('dpGallery');
+    gal.innerHTML = html || '<div style="padding:120px 48px;text-align:center;color:#999;font-size:13px;">No photos available</div>';
+
+    // Gallery click → lightbox
+    gal.querySelectorAll('[data-lb]').forEach(function(el) {
+      el.addEventListener('click', function() { openLb(parseInt(el.dataset.lb, 10)); });
+    });
+
+    /* ── Lightbox ── */
+    let lbIdx = 0;
+    const lbEl   = document.getElementById('lb');
+    const lbImg  = document.getElementById('lbImg');
+    const lbCtr  = document.getElementById('lbCounter');
+    const lbTtl  = document.getElementById('lbTitle');
+
+    function lbSet(i) {
+      lbIdx = ((i % imgs.length) + imgs.length) % imgs.length;
+      lbImg.src = imgs[lbIdx];
+      if (lbCtr) lbCtr.textContent = (lbIdx+1) + ' / ' + imgs.length;
+      if (lbTtl) lbTtl.textContent = (dress.d||'') + ' #' + (dress.s||'');
+    }
+
+    function openLb(i) {
+      lbSet(i);
+      lbEl.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLbFn() {
+      lbEl.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('lbCloseBtn').addEventListener('click', closeLbFn);
+    document.getElementById('lbPrevBtn').addEventListener('click', function(e) { e.stopPropagation(); lbSet(lbIdx - 1); });
+    document.getElementById('lbNextBtn').addEventListener('click', function(e) { e.stopPropagation(); lbSet(lbIdx + 1); });
+    lbEl.addEventListener('click', function(e) { if (e.target === lbEl) closeLbFn(); });
+
+    // Touch swipe on lightbox
+    let t0 = 0;
+    lbEl.addEventListener('touchstart', function(e) { t0 = e.touches[0].clientX; }, { passive: true });
+    lbEl.addEventListener('touchend', function(e) {
+      var dx = e.changedTouches[0].clientX - t0;
+      if (Math.abs(dx) > 50) lbSet(lbIdx + (dx < 0 ? 1 : -1));
+    }, { passive: true });
+
+    document.addEventListener('keydown', function(e) {
+      if (!lbEl.classList.contains('open')) return;
+      if (e.key === 'Escape')     closeLbFn();
+      if (e.key === 'ArrowRight') lbSet(lbIdx + 1);
+      if (e.key === 'ArrowLeft')  lbSet(lbIdx - 1);
+    });
+
+    /* ── Recently Viewed — store in localStorage (max 8) ── */
+    (function() {
+      var RV_KEY = 'cloudnine_recentlyViewed';
+      try {
+        var stored = JSON.parse(localStorage.getItem(RV_KEY) || '[]');
+        var id = (dress.s||'') + '|' + (dress.d||'');
+        stored = stored.filter(function(x) { return ((x.s||'')+'|'+(x.d||'')) !== id; });
+        var catBase = (dressSrc || '').split('?')[0] || 'bridal-catalog.html';
+        stored.unshift({ s: dress.s, d: dress.d, i: dress.i, x: dress.x || [], _cat: catBase, _type: activeCat });
+        if (stored.length > 8) stored = stored.slice(0, 8);
+        localStorage.setItem(RV_KEY, JSON.stringify(stored));
+      } catch(e) {}
+    })();
+
+    /* ── Share button ── */
+    var shareBtn = document.getElementById('dpShareBtn');
+    if (shareBtn) {
+      shareBtn.addEventListener('click', function() {
+        var url   = shareCanonicalUrl;
+        var title = (dress.d||'') + ' Style #' + (dress.s||'') + ' — Cloud Nine Bridal Boutique';
+        var text  = 'Check out this style from ' + (dress.d||'Cloud Nine') + ' at Cloud Nine Bridal Boutique in Peoria, IL!';
+        if (navigator.share) {
+          navigator.share({ title: title, text: text, url: url }).catch(function(){});
+        } else {
+          navigator.clipboard.writeText(url).then(function() {
+            var orig = shareBtn.innerHTML;
+            shareBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Link Copied!';
+            shareBtn.style.color = 'var(--teal-deep)';
+            shareBtn.style.borderColor = 'var(--teal-mid)';
+            setTimeout(function() {
+              shareBtn.innerHTML = orig;
+              shareBtn.style.color = '';
+              shareBtn.style.borderColor = '';
+            }, 2500);
+          }).catch(function(){});
+        }
+      });
+    }
+
+    /* ── Accordion toggle ── */
+    window.toggleAcc = function(btn) {
+      const item = btn.closest('.dp-acc-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.dp-acc-item.open').forEach(function(el) { el.classList.remove('open'); });
+      if (!isOpen) item.classList.add('open');
+    };
+
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Book an Appointment | Cloud Nine Bridal Boutique Peoria IL</title>
+  <meta name="description" content="Book your bridal, prom, or tuxedo appointment at Cloud Nine Bridal Boutique in Peoria, IL. Choose your experience and schedule online 24/7 via BridalLive."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://cloudninebridal.com/appointments.html"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Book an Appointment | Cloud Nine Bridal Boutique"/>
+  <meta property="og:description" content="Schedule your personal styling appointment at Cloud Nine Bridal Boutique in Peoria, IL."/>
+  <meta property="og:image" content="https://cloudninebridal.com/images/bridal/Bridal-hero.webp"/>
+  <meta property="og:site_name" content="Cloud Nine Bridal Boutique"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Book an Appointment | Cloud Nine Bridal Boutique"/>
+  <meta name="twitter:description" content="Schedule your personal styling appointment at Cloud Nine Bridal Boutique in Peoria, IL."/>
+  <meta name="twitter:image" content="https://cloudninebridal.com/images/bridal/Bridal-hero.webp"/>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Josefin+Sans:wght@100;200;300;400&family=Lato:wght@300;400;700;900&display=swap"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Book an Appointment",
+    "description": "Book a bridal, prom, mothers, or tuxedo appointment at Cloud Nine Bridal Boutique in Peoria, IL.",
+    "url": "https://cloudninebridal.com/appointments.html",
+    "provider": {
+      "@type": "BridalShop",
+      "name": "Cloud Nine Bridal Boutique",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "4711 N. University St",
+        "addressLocality": "Peoria",
+        "addressRegion": "IL",
+        "postalCode": "61614",
+        "addressCountry": "US"
+      },
+      "telephone": "+13096933830"
+    }
+  }
+  </script>
+  <style>
+    /* ── PAGE HERO ── */
+    .appt-hero {
+      background: var(--teal-dark);
+      padding: 80px 64px 72px;
+      position: relative;
+      overflow: hidden;
+    }
+    .appt-hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 80% at 80% 50%, rgba(28,78,80,.45) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .appt-hero-inner {
+      max-width: 900px;
+      position: relative; z-index: 2;
+    }
+    .appt-hero .eyebrow { color: rgba(255,255,255,.58); }
+    .appt-hero .eyebrow::before { background: rgba(255,255,255,.35); }
+    .appt-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(48px, 7vw, 96px); font-weight: 700;
+      letter-spacing: -.04em; line-height: .9; color: #fff;
+      margin: 0 0 24px;
+    }
+    .appt-hero h1 em { font-style: italic; color: rgba(152,213,214,.75); }
+    .appt-hero p {
+      font-size: 17px; font-weight: 300; color: rgba(255,255,255,.55);
+      line-height: 1.8; max-width: 520px; margin: 0 0 36px;
+    }
+    .appt-hero-meta {
+      display: flex; align-items: center; gap: 32px; flex-wrap: wrap;
+    }
+    .appt-hero-meta-item {
+      display: flex; align-items: center; gap: 8px;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 10px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+      color: rgba(255,255,255,.62);
+    }
+    .appt-hero-meta-item svg { color: rgba(152,213,214,.75); }
+
+    @media (max-width: 768px) {
+      .appt-hero { padding: 52px 20px 56px; }
+      .appt-hero h1 { font-size: clamp(40px, 10vw, 68px); line-height: .88; }
+      .appt-hero p { font-size: 15px; line-height: 1.75; }
+      .appt-hero-meta { gap: 20px; }
+      .appt-hero-meta-item { font-size: 9px; }
+    }
+
+    /* ── APPOINTMENT TYPES ── */
+    .appt-types {
+      padding: 80px 64px 0;
+      max-width: 1440px; margin: 0 auto;
+    }
+    .appt-types-intro {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      gap: 32px; margin-bottom: 48px; flex-wrap: wrap;
+    }
+    .appt-types-intro h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 4vw, 54px); font-weight: 700;
+      letter-spacing: -.03em; line-height: 1.0; color: var(--text); margin: 0;
+    }
+    .appt-types-intro h2 em { font-style: italic; color: var(--teal-deep); }
+    .appt-types-intro p {
+      font-size: 14px; color: var(--text-muted); font-weight: 300;
+      line-height: 1.75; max-width: 340px;
+    }
+
+    .appt-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid var(--border);
+    }
+    .appt-card {
+      padding: 36px 32px 32px;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      display: flex; flex-direction: column;
+      position: relative; overflow: hidden;
+      transition: background .25s;
+    }
+    .appt-card:nth-child(3n) { border-right: none; }
+    .appt-card:nth-last-child(-n+3) { border-bottom: none; }
+    .appt-card:hover { background: var(--teal-xlight); }
+    .appt-card::before {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+      background: var(--teal-deep);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform .35s cubic-bezier(.16,1,.3,1);
+    }
+    .appt-card:hover::before { transform: scaleX(1); }
+
+    .appt-card-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 8px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
+      padding: 5px 10px;
+      margin-bottom: 20px;
+      border-radius: 0;
+      width: fit-content;
+    }
+    .appt-card-badge--free {
+      background: rgba(28,78,80,.08); color: var(--teal-deep);
+    }
+    .appt-card-badge--premium {
+      background: #f9eaf0; color: #a0446a;
+    }
+    .appt-card-badge--prom {
+      background: rgba(180,90,140,.08); color: #a0446a;
+    }
+    .appt-card-badge--tux {
+      background: rgba(28,78,80,.08); color: var(--teal-deep);
+    }
+    .appt-card-num {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 9px; font-weight: 300; letter-spacing: .2em;
+      color: var(--text-light); margin-bottom: 8px;
+    }
+    .appt-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px; font-weight: 700; font-style: italic;
+      color: var(--text); letter-spacing: -.01em;
+      margin: 0 0 12px;
+      transition: color .2s;
+      line-height: 1.2;
+    }
+    .appt-card:hover h3 { color: var(--teal-deep); }
+    .appt-card-duration {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 9px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--text-light); margin-bottom: 14px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .appt-card p {
+      font-size: 13px; color: var(--text-muted); line-height: 1.7;
+      font-weight: 300; margin: 0; flex: 1;
+    }
+    .appt-card-perks {
+      margin: 16px 0 0;
+      display: flex; flex-direction: column; gap: 6px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    .appt-card-perk {
+      display: flex; align-items: flex-start; gap: 8px;
+      font-size: 12px; color: var(--text-muted); line-height: 1.4;
+    }
+    .appt-card-perk svg { flex-shrink: 0; color: var(--teal-deep); margin-top: 2px; }
+    .appt-card-book-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: 'Josefin Sans', sans-serif; font-size: 10px; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase; color: var(--teal-deep);
+      text-decoration: none; margin-top: 18px; padding-top: 14px;
+      border-top: 1px dashed var(--border); transition: gap .2s, color .2s;
+      min-height: 44px; touch-action: manipulation;
+    }
+    .appt-card-book-btn:hover { gap: 10px; color: var(--teal-darker); }
+
+    .appt-grid-note {
+      padding: 18px 32px;
+      background: var(--teal-dim);
+      border: 1px solid var(--border);
+      border-top: none;
+      font-size: 13px; color: var(--text-muted); line-height: 1.6;
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .appt-grid-note svg { flex-shrink: 0; color: var(--teal-deep); margin-top: 2px; }
+
+    @media (max-width: 900px) {
+      .appt-types { padding: 56px 28px 0; }
+      .appt-grid { grid-template-columns: 1fr 1fr; }
+      .appt-card:nth-child(3n) { border-right: 1px solid var(--border); }
+      .appt-card:nth-child(2n) { border-right: none; }
+      .appt-card:nth-last-child(-n+3) { border-bottom: 1px solid var(--border); }
+      .appt-card:nth-last-child(-n+2) { border-bottom: none; }
+    }
+    @media (max-width: 600px) {
+      .appt-types { padding: 44px 20px 0; }
+      .appt-grid { grid-template-columns: 1fr; }
+      .appt-card { border-right: none !important; border-bottom: 1px solid var(--border) !important; padding: 28px 20px 24px; }
+      .appt-card:last-child { border-bottom: none !important; }
+      .appt-card h3 { font-size: 20px; }
+      .appt-types-intro { flex-direction: column; gap: 12px; }
+      .appt-types-intro h2 { font-size: clamp(28px, 8vw, 42px); }
+    }
+
+    /* ── BOOKING IFRAME SECTION ── */
+    .booking-embed {
+      padding: 80px 64px;
+      max-width: 1440px; margin: 0 auto;
+    }
+    .booking-embed-header {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      gap: 24px; flex-wrap: wrap; margin-bottom: 40px;
+      padding-bottom: 28px; border-bottom: 1px solid var(--border);
+    }
+    .booking-embed-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 3.5vw, 44px); font-weight: 700;
+      letter-spacing: -.03em; color: var(--text); margin: 0; line-height: 1;
+    }
+    .booking-embed-header h2 em { font-style: italic; color: var(--teal-deep); }
+    .booking-embed-header p {
+      font-size: 13px; color: var(--text-muted); font-weight: 300;
+      line-height: 1.65; max-width: 280px; text-align: right;
+    }
+
+    /* ── BRIDALIVE IFRAME CONTAINER ── */
+    .bridalive-wrap {
+      position: relative;
+      width: 100%;
+      min-height: 700px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      overflow: hidden;
+    }
+    .bridalive-iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 700px;
+      border: none;
+      overflow: hidden;
+    }
+
+    /* Shown when no BridalLive URL is configured yet */
+    .bridalive-placeholder {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 48px 32px; text-align: center;
+      background: var(--teal-xlight);
+    }
+    .bridalive-placeholder svg { color: var(--teal-deep); margin-bottom: 20px; }
+    .bridalive-placeholder h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px; font-weight: 700; color: var(--text);
+      margin: 0 0 10px;
+    }
+    .bridalive-placeholder p {
+      font-size: 14px; color: var(--text-muted); max-width: 420px;
+      line-height: 1.7; margin: 0 0 28px;
+    }
+    .bridalive-placeholder code {
+      display: block;
+      background: rgba(28,78,80,.08);
+      border: 1px solid var(--border);
+      padding: 12px 20px; font-size: 12px; color: var(--teal-deep);
+      border-radius: 0; margin-bottom: 24px;
+      font-family: monospace; word-break: break-all;
+    }
+    .bridalive-placeholder .btn-primary { text-decoration: none; }
+    .bridalive-placeholder.hidden { display: none; }
+
+    /* Alternative: Direct link fallback for older browsers */
+    .booking-alt-link {
+      margin-top: 20px;
+      padding: 20px 32px;
+      background: var(--teal-xlight);
+      border: 1px solid var(--border);
+      border-top: none;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 24px; flex-wrap: wrap;
+    }
+    .booking-alt-link p {
+      font-size: 13px; color: var(--text-muted); margin: 0;
+    }
+    .booking-alt-link a {
+      font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--teal-deep); display: inline-flex; align-items: center; gap: 6px;
+      white-space: nowrap; text-decoration: none;
+      transition: gap .2s;
+    }
+    .booking-alt-link a:hover { gap: 10px; }
+
+    @media (max-width: 768px) {
+      .booking-embed { padding: 48px 20px; }
+      .booking-embed-header p { text-align: left; max-width: 100%; }
+      .bridalive-iframe { min-height: 800px; }
+      .bridalive-wrap { min-height: 800px; }
+    }
+
+    /* ── WHAT TO BRING STRIP ── */
+    .appt-tips {
+      background: var(--teal-dark);
+      padding: 56px 64px;
+    }
+    .appt-tips-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 48px;
+    }
+    .appt-tip { display: flex; align-items: flex-start; gap: 16px; }
+    .appt-tip-icon {
+      width: 44px; height: 44px; border-radius: 0;
+      background: rgba(255,255,255,.08); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(152,213,214,.8);
+    }
+    .appt-tip h4 {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 10px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+      color: #fff; margin: 0 0 6px;
+    }
+    .appt-tip p { font-size: 13px; color: rgba(255,255,255,.62); line-height: 1.65; margin: 0; }
+
+    @media (max-width: 900px) {
+      .appt-tips { padding: 48px 28px; }
+      .appt-tips-inner { grid-template-columns: 1fr; gap: 28px; }
+    }
+    @media (max-width: 768px) {
+      .appt-tips { padding: 40px 20px; }
+    }
+  </style>
+</head>
+<body>
+<div id="site-header"></div>
+<main id="main-content">
+
+<!-- ── HERO ── -->
+<div class="appt-hero">
+  <div class="appt-hero-inner">
+    <div class="eyebrow">Cloud Nine Bridal · Peoria, IL</div>
+    <h1>Book Your<br/><em>Appointment.</em></h1>
+    <p>Choose your experience below, then select your date and time. Our stylists are ready to make your visit unforgettable.</p>
+    <div class="appt-hero-meta">
+      <div class="appt-hero-meta-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Book online 24/7
+      </div>
+      <div class="appt-hero-meta-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+        (309) 693‑3830
+      </div>
+      <div class="appt-hero-meta-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        4711 N. University St, Peoria IL
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── TIMELINE URGENCY BANNER ── -->
+<div style="background:var(--teal-xlight);border-bottom:1px solid var(--border);padding:16px clamp(20px, 5vw, 64px);">
+  <div style="max-width:1440px;margin:0 auto;display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+    <div style="display:flex;align-items:center;gap:10px;flex-shrink:0;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal-deep)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <span style="font-family:'Josefin Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--teal-deep);">Bridal Ordering Timeline</span>
+    </div>
+    <p style="font-size:13px;color:var(--text-muted);margin:0;line-height:1.5;">Most bridal gowns require <strong style="color:var(--text);font-weight:600;">4–6 months to order and arrive</strong>, plus 2–3 months for alterations. If your wedding is within 12 months, we recommend booking your first appointment as soon as possible to protect your options.</p>
+  </div>
+</div>
+
+<!-- ── APPOINTMENT TYPES ── -->
+<div class="appt-types">
+  <div class="appt-types-intro">
+    <div>
+      <div class="eyebrow">Choose Your Experience</div>
+      <h2>Every Appointment<br/>Is <em>Personal</em></h2>
+    </div>
+    <p>From a relaxed one-on-one to a full luxury celebration — we have an experience for every bride, every occasion.</p>
+  </div>
+
+  <div class="appt-grid">
+
+    <!-- Bridal Standard -->
+    <div class="appt-card">
+      <span class="appt-card-num">01</span>
+      <span class="appt-card-badge appt-card-badge--free">✦ Complimentary</span>
+      <h3>Bridal Appointment</h3>
+      <div class="appt-card-duration">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        90 minutes
+      </div>
+      <p>Our signature bridal appointment. A dedicated stylist works one-on-one with you to find your dream gown from our curated collection ($1,200–$4,000, sizes up to 26 in store / 38 special order).</p>
+      <div class="appt-card-perks">
+        <div class="appt-card-perk">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Dedicated 1-on-1 bridal stylist
+        </div>
+        <div class="appt-card-perk">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Up to 6 guests welcome (3–4 recommended)
+        </div>
+        <div class="appt-card-perk">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Full gown collection access
+        </div>
+      </div>
+      <a href="#book-now" class="appt-card-book-btn">Book This Experience →</a>
+    </div>
+
+    <!-- Robes & Rosé -->
+    <div class="appt-card">
+      <span class="appt-card-num">02</span>
+      <span class="appt-card-badge appt-card-badge--premium">$100 Investment</span>
+      <h3>Robes &amp; Rosé</h3>
+      <div class="appt-card-duration">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        90 minutes
+      </div>
+      <p>Elevate your visit with one-on-one expert styling, a keepsake bride robe to take home, a glass of non-alcoholic rosé toast, and a celebratory confetti popper for your "YES" moment!</p>
+      <div class="appt-card-perks">
+        <div class="appt-card-perk">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Keepsake bridal robe to take home
+        </div>
+        <div class="appt-card-perk">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Non-alcoholic rosé toast for the party
+        </div>
+        <div class="appt-card-perk">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Celebratory confetti popper for the "YES" moment
+        </div>
+      </div>
+      <a href="#book-now" class="appt-card-book-btn">Book This Experience →</a>
+    </div>
+
+    <!-- On Cloud Nine -->
+    <div class="appt-card">
+      <span class="appt-card-num">03</span>
+      <span class="appt-card-badge appt-card-badge--premium">$250 Investment</span>
+      <h3>On Cloud Nine</h3>
+      <div class="appt-card-duration">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        2 hours
+      </div>
+      <p>The ultimate luxury experience. An extended 2-hour appointment with personal styling, tasty treats &amp; refreshing drinks, bridal robe keepsake, a live floral bouquet keepsake, and confetti popper (Mon–Fri only, 48hr advance notice).</p>
+      <div class="appt-card-perks">
+        <div class="appt-card-perk">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Extended 2-hour private styling session
+        </div>
+        <div class="appt-card-perk">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Keepsake bridal robe &amp; live floral bouquet
+        </div>
+        <div class="appt-card-perk">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Refreshing drinks, tasty treats &amp; confetti popper
+        </div>
+      </div>
+      <a href="#book-now" class="appt-card-book-btn">Book This Experience →</a>
+    </div>
+
+    <!-- Mothers Appointment -->
+    <div class="appt-card">
+      <span class="appt-card-num">04</span>
+      <span class="appt-card-badge appt-card-badge--free">✦ Complimentary</span>
+      <h3>Mothers Appointment</h3>
+      <div class="appt-card-duration">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        60 minutes
+      </div>
+      <p>A dedicated 1-hour appointment for Mother of the Bride, Mother of the Groom, and Grandmothers with a personal stylist to find the perfect gown.</p>
+      <div class="appt-card-perks">
+        <div class="appt-card-perk">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Dedicated one-on-one stylist
+        </div>
+        <div class="appt-card-perk">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Color &amp; style coordination with wedding party
+        </div>
+      </div>
+      <a href="#book-now" class="appt-card-book-btn">Book This Experience →</a>
+    </div>
+
+    <!-- Bling Appointment -->
+    <div class="appt-card">
+      <span class="appt-card-num">05</span>
+      <span class="appt-card-badge appt-card-badge--free">✦ Complimentary</span>
+      <h3>Bling Appointment</h3>
+      <div class="appt-card-duration">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        45 minutes
+      </div>
+      <p>Accessorize your gown with veils, hairpieces, and jewelry! Try on your gown and make the final additions to complete your wedding day look.</p>
+      <div class="appt-card-perks">
+        <div class="appt-card-perk">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Veil, jewelry &amp; accessory styling
+        </div>
+        <div class="appt-card-perk">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Pair with your ordered wedding gown
+        </div>
+      </div>
+      <a href="#book-now" class="appt-card-book-btn">Book This Experience →</a>
+    </div>
+
+    <!-- Tuxedo -->
+    <div class="appt-card">
+      <span class="appt-card-num">06</span>
+      <span class="appt-card-badge appt-card-badge--tux">For the Groom</span>
+      <h3>Tux Selection Appointment</h3>
+      <div class="appt-card-duration">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        45 minutes
+      </div>
+      <p>Explore suits and tuxedos for the groom, groomsmen, and fathers from The Trace Collection and Jim's Formal Wear. Rental and purchase with professional measurements.</p>
+      <div class="appt-card-perks">
+        <div class="appt-card-perk">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          The Trace Collection &amp; Jim's Formal Wear
+        </div>
+        <div class="appt-card-perk">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Direct home delivery for out-of-town groomsmen
+        </div>
+      </div>
+      <a href="#book-now" class="appt-card-book-btn">Book This Experience →</a>
+    </div>
+
+  </div>
+
+  <div class="appt-grid-note">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    <span>Questions about which appointment is right for you? Call us at <strong>(309) 693‑3830</strong> and we'll help you choose the perfect experience. Walk-ins welcome based on availability.</span>
+  </div>
+</div>
+
+<!-- ── AVAILABILITY NUDGE ── -->
+<div style="background:var(--white);border-bottom:1px solid var(--border);padding:14px clamp(20px,5vw,64px);">
+  <div style="max-width:1440px;margin:0 auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--teal-deep)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    <p style="font-size:13px;color:var(--text-muted);margin:0;line-height:1.5;"><strong style="color:var(--text);font-weight:600;">Weekend appointments fill 3–4 weeks ahead.</strong> Weekday slots are more flexible — call <strong style="color:var(--text);">(309) 693‑3830</strong> to check same-week availability, or book online below.</p>
+  </div>
+</div>
+
+<!-- ── BRIDALIVE BOOKING EMBED ── -->
+<div class="booking-embed" id="book-now">
+  <div class="booking-embed-header">
+    <div>
+      <div class="eyebrow">Real-Time Availability</div>
+      <h2>Select Your Date<br/><em>&amp; Time</em></h2>
+    </div>
+    <p>Powered by BridalLive — see live availability and confirm your appointment instantly.</p>
+  </div>
+
+  <div class="bridalive-wrap" id="bridaliveWrap">
+    <!-- BridalLive iframe loads here when BRIDALIVE_URL is set -->
+    <iframe
+      id="bridaliveFrame"
+      class="bridalive-iframe"
+      src="https://app.bridallive.com/forms.html?formType=scheduler&amp;retailerId=0e5e7808&amp;lang=en"
+      title="Book an Appointment — Cloud Nine Bridal BridalLive"
+      allow="payment"
+      loading="lazy">
+    </iframe>
+
+    <!-- Placeholder shown until BridalLive URL is configured -->
+    <div class="bridalive-placeholder hidden" id="bridalivePlaceholder">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+      </svg>
+      <h3>Reserve Your Personal Fitting</h3>
+      <p>Schedule your 1-on-1 bridal styling experience with our expert consultants. We can't wait to welcome you to the boutique and help you find your dream dress.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:20px;">
+        <a href="contact.html#request-form" class="btn-primary">Request Appointment Online <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="tel:3096933830" class="btn-outline">Call (309) 693‑3830</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="booking-alt-link" id="bridaliveAltLink" style="display:flex;">
+    <p>Having trouble loading the calendar? You can also open BridalLive directly.</p>
+    <a href="https://app.bridallive.com/forms.html?formType=scheduler&amp;retailerId=0e5e7808&amp;lang=en" id="bridaliveDirectLink" target="_blank" rel="noopener noreferrer">
+      Open Booking Page
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- ── TIPS STRIP ── -->
+<div class="appt-tips">
+  <div class="appt-tips-inner">
+    <div class="appt-tip">
+      <div class="appt-tip-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+      </div>
+      <div>
+        <h4>Bring Your People</h4>
+        <p>We recommend 3–4 guests for bridal appointments — enough support without too many opinions. Up to 6 guests comfortably accommodated in our private suites.</p>
+      </div>
+    </div>
+    <div class="appt-tip">
+      <div class="appt-tip-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8,21 12,17 16,21"/></svg>
+      </div>
+      <div>
+        <h4>Bring Inspiration</h4>
+        <p>Save photos of gowns, silhouettes, and details you love to your phone. Knowing what excites you — and what doesn't — helps us find your dress faster.</p>
+      </div>
+    </div>
+    <div class="appt-tip">
+      <div class="appt-tip-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+      </div>
+      <div>
+        <h4>Come with an Open Mind</h4>
+        <p>Our stylists are experts at finding gowns you'd never pick off the rack. Trust the process — some of our most iconic "Yes" moments were total surprises.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+<script src="components.js?v=4" defer></script>
+
+<script>
+// ════════════════════════════════════════════════════
+//  BRIDALIVE CONFIGURATION
+// ════════════════════════════════════════════════════
+var BRIDALIVE_URL = 'https://app.bridallive.com/forms.html?formType=scheduler&retailerId=0e5e7808&lang=en';
+
+(function() {
+  if (!BRIDALIVE_URL) return;
+
+  var frame       = document.getElementById('bridaliveFrame');
+  var placeholder = document.getElementById('bridalivePlaceholder');
+  var altLink     = document.getElementById('bridaliveAltLink');
+  var directLink  = document.getElementById('bridaliveDirectLink');
+
+  if (frame && (!frame.src || frame.src === 'about:blank')) frame.src = BRIDALIVE_URL;
+  if (placeholder) placeholder.classList.add('hidden');
+  if (altLink) altLink.style.display = 'flex';
+  if (directLink) directLink.href = BRIDALIVE_URL;
+
+  // Dynamically size iframe to its content if possible (same-origin only)
+  if (frame) {
+    frame.addEventListener('load', function() {
+      try {
+        var h = frame.contentDocument.body.scrollHeight;
+        if (h > 400) frame.style.minHeight = h + 'px';
+      } catch(e) { /* cross-origin — fixed height is fine */ }
+    });
+  }
+})();
+
+// Smooth scroll to booking when hash is #book-now or #app
+(function() {
+  function scrollToBook() {
+    var hash = window.location.hash;
+    if (hash === '#book-now' || hash === '#app') {
+      var el = document.getElementById('book-now');
+      if (el) setTimeout(function() { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 400);
+    }
+  }
+  scrollToBook();
+  window.addEventListener('hashchange', scrollToBook);
+})();
+</script>
+
+</main>
+</body>
+</html>

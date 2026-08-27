@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Homecoming | Cloud Nine Bridal Boutique</title>
+  <meta name="description" content="Shop homecoming dresses at Cloud Nine Bridal Boutique in Peoria, IL. Exclusive styles — once you reserve your look, no one from your school can wear it."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://cloudninebridal.com/hoco.html"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://cloudninebridal.com/hoco.html"/>
+  <meta property="og:title" content="Homecoming | Cloud Nine Bridal Boutique"/>
+  <meta property="og:description" content="Shop homecoming dresses at Cloud Nine Bridal Boutique in Peoria, IL. Exclusive styles — once you reserve your look, no one from your school can wear it."/>
+  <meta property="og:image" content="https://cloudninebridal.com/images/real/hoco/03-88900.webp"/>
+  <meta property="og:site_name" content="Cloud Nine Bridal Boutique"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Homecoming | Cloud Nine Bridal Boutique"/>
+  <meta name="twitter:description" content="Exclusive homecoming styles with a one-per-school guarantee at Cloud Nine Bridal Boutique, Peoria IL."/>
+  <meta name="twitter:image" content="https://cloudninebridal.com/images/real/hoco/03-88900.webp"/>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+    <!-- Fonts: preconnect first, then non-blocking stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Josefin+Sans:wght@100;200;300;400&family=Lato:wght@300;400;700;900&display=swap"/>
+    <link rel="preload" as="image" href="images/real/hoco/03-88900.webp" type="image/webp"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Homecoming Dresses Peoria IL",
+    "description": "Shop homecoming dresses at Cloud Nine Bridal Boutique in Peoria, IL. Exclusive styles with a one-per-school guarantee.",
+    "url": "https://cloudninebridal.com/hoco.html",
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cloudninebridal.com/index.html" },
+        { "@type": "ListItem", "position": 2, "name": "Homecoming", "item": "https://cloudninebridal.com/hoco.html" }
+      ]
+    }
+  }
+  </script>
+  <style>
+    /* ── Pink theme override ── */
+    :root {
+      --teal-deep: #c9607f;
+      --teal-darker: #a84d68;
+      --teal-dark: #b5566f;
+      --teal-mid: #d4789a;
+      --teal-dim: #fce8f0;
+      --teal-xlight: #fdf0f5;
+      --white: #fdf0f5;
+      --text: #1a1a1a;
+      --text-muted: #c9607f;
+      --border: rgba(201,96,127,.20);
+      --border-mid: rgba(201,96,127,.35);
+      --shadow: rgba(201,96,127,.12);
+    }
+    body { background: #fdf0f5; }
+
+    /* ── Frosted pink nav ── */
+    .main-nav {
+      background: rgba(240,160,185,0.72) !important;
+      border-bottom-color: rgba(201,96,127,.35) !important;
+    }
+    .main-nav.scrolled {
+      background: rgba(240,160,185,0.90) !important;
+      box-shadow: 0 1px 28px rgba(201,96,127,.18) !important;
+    }
+
+    /* ── Pink logo ── */
+    .nav-logo-img {
+      filter: brightness(0) saturate(100%) invert(46%) sepia(59%) saturate(462%) hue-rotate(299deg) brightness(100%) contrast(91%);
+    }
+
+    /* ══════════════════════════════
+       HOCO CINEMATIC VIDEO HERO
+       ══════════════════════════════ */
+    @keyframes hhFadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes hhFadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes hhLineExpand {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+
+    .hoco-video-hero {
+      position: relative;
+      height: 100vh; min-height: 640px;
+      margin-top: -80px;
+      overflow: hidden;
+      background: #1a0a10;
+    }
+    .hoco-video-hero video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center center;
+    }
+    .hoco-video-vignette {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(60,5,25,.60) 0%, transparent 30%, transparent 50%, rgba(10,0,5,.92) 100%),
+        linear-gradient(to left, rgba(0,0,0,.35) 0%, transparent 45%);
+    }
+    .hoco-video-grade {
+      position: absolute; inset: 0;
+      background: rgba(160,30,75,.07);
+      mix-blend-mode: multiply;
+      pointer-events: none;
+    }
+    /* top editorial bar */
+    .hhero-top {
+      position: absolute; top: 96px; left: 64px; right: 64px;
+      display: flex; align-items: center; gap: 16px;
+      z-index: 20;
+      opacity: 0;
+      animation: hhFadeIn .8s ease .7s forwards;
+    }
+    .hhero-top-item {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 9px; font-weight: 600;
+      letter-spacing: .26em; text-transform: uppercase;
+      color: rgba(255,255,255,.62);
+    }
+    .hhero-top-dot { color: rgba(255,255,255,.18); }
+    .hhero-top-spacer { flex: 1; height: 1px; background: rgba(255,255,255,.10); }
+    /* left vertical spine */
+    .hhero-spine {
+      position: absolute; left: 28px; top: 50%;
+      transform: translateY(-50%) rotate(-90deg);
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 8px; font-weight: 600;
+      letter-spacing: .28em; text-transform: uppercase;
+      color: rgba(255,190,210,.25);
+      white-space: nowrap; z-index: 20;
+      opacity: 0;
+      animation: hhFadeIn .8s ease 1.4s forwards;
+    }
+    /* main content — right-aligned for contrast with prom */
+    .hoco-video-content {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 0 64px 64px;
+      display: flex; align-items: flex-end;
+      justify-content: space-between;
+      z-index: 20;
+    }
+    .hhero-left {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 28px;
+      padding-bottom: 6px;
+      opacity: 0;
+      animation: hhFadeIn .8s ease 1.7s forwards;
+    }
+    .hhero-tagline {
+      font-size: 13px; font-weight: 300;
+      color: rgba(255,255,255,.62);
+      max-width: 190px; line-height: 1.9;
+      text-align: center;
+    }
+    .hhero-scroll {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 8px; font-weight: 600;
+      letter-spacing: .24em; text-transform: uppercase;
+      color: rgba(255,255,255,.55);
+      writing-mode: vertical-rl;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 14px;
+    }
+    .hhero-scroll::before {
+      content: ''; width: 1px; height: 52px;
+      background: rgba(255,255,255,.16); display: block;
+    }
+    .hhero-right { max-width: 620px; text-align: right; }
+    .hhero-eyebrow {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: .30em; text-transform: uppercase;
+      color: rgba(255,190,210,.52);
+      margin-bottom: 16px;
+      opacity: 0;
+      animation: hhFadeUp .7s cubic-bezier(.16,1,.3,1) .9s forwards;
+    }
+    .hhero-rule {
+      width: 48px; height: 1px;
+      background: rgba(255,190,210,.38);
+      margin: 0 0 20px auto;
+      transform-origin: right; transform: scaleX(0);
+      animation: hhLineExpand .6s cubic-bezier(.16,1,.3,1) 1.05s forwards;
+    }
+    .hoco-video-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(68px, 10vw, 148px);
+      font-weight: 700; color: #fff;
+      line-height: .88; letter-spacing: -.04em;
+      margin: 0 0 36px;
+      opacity: 0;
+      animation: hhFadeUp .9s cubic-bezier(.16,1,.3,1) 1.1s forwards;
+    }
+    .hoco-video-title em { font-style: italic; color: rgba(255,190,210,.80); }
+    .hoco-video-actions {
+      display: flex; gap: 14px; flex-wrap: wrap; justify-content: flex-end;
+      opacity: 0;
+      animation: hhFadeUp .7s cubic-bezier(.16,1,.3,1) 1.45s forwards;
+    }
+    .btn-hoco-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 15px 36px;
+      background: #fff; color: #3a0a1a;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 10px; font-weight: 700; letter-spacing: .14em;
+      text-transform: uppercase; text-decoration: none;
+      transition: background .25s, color .25s;
+    }
+    .btn-hoco-primary:hover { background: transparent; color: #fff; outline: 1px solid #fff; }
+    .btn-hoco-ghost {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 34px;
+      border: 1px solid rgba(255,255,255,.35); color: rgba(255,255,255,.80);
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 10px; font-weight: 600; letter-spacing: .14em;
+      text-transform: uppercase; text-decoration: none;
+      transition: border-color .25s, color .25s;
+    }
+    .btn-hoco-ghost:hover { border-color: rgba(255,255,255,.9); color: #fff; }
+
+    /* ── Feature strip ── */
+    .hoco-feature-strip {
+      background: #fff;
+      border-top: 1px solid rgba(201,96,127,.15);
+      border-bottom: 1px solid rgba(201,96,127,.15);
+      padding: 48px 64px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .hoco-feature-item { padding: 0 40px; text-align: center; }
+    .hoco-feature-item + .hoco-feature-item { border-left: 1px solid rgba(201,96,127,.15); }
+    .hoco-feature-item h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px; font-weight: 700; color: #1a1a1a; margin: 0 0 8px;
+    }
+    .hoco-feature-item p { font-size: 13px; color: #c9607f; line-height: 1.6; margin: 0; }
+
+    /* ── Photo grid ── */
+    .hoco-photo-grid {
+      padding: 80px 64px;
+      background: #fdf0f5;
+    }
+    .hoco-photo-grid-inner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      max-width: 1200px;
+      margin: 48px auto 0;
+    }
+    .hoco-photo-grid-inner img {
+      width: 100%; height: 400px;
+      object-fit: cover; object-position: center top;
+      border-radius: var(--radius);
+      transition: transform .4s ease;
+    }
+    .hoco-photo-grid-inner img:hover { transform: scale(1.02); }
+
+    /* ── CTA ── */
+    .hoco-cta {
+      background: #c9607f; padding: 80px 64px;
+      text-align: center; color: #fff;
+    }
+    .hoco-cta h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 700; margin: 0 0 14px;
+    }
+    .hoco-cta h2 em { font-style: italic; color: rgba(255,220,230,.75); }
+    .hoco-cta p {
+      font-size: 16px; color: rgba(255,255,255,.78);
+      max-width: 520px; margin: 0 auto 36px;
+      font-weight: 300; line-height: 1.7;
+    }
+    .hoco-cta-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-hoco-cta-ghost { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: var(--radius-sm); border: 2px solid rgba(255,255,255,.40); color: rgba(255,255,255,.90); font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; text-decoration: none; transition: all .2s; }
+    .btn-hoco-cta-ghost:hover { border-color: white; color: white; }
+
+    .editorial-feature-vol { color: #1a1a1a !important; }
+    .filter-btn { color: #1a1a1a !important; }
+
+    @media (max-width: 768px) {
+      .hoco-video-hero { height: 100svh; min-height: 540px; margin-top: -52px; }
+      .hhero-top   { display: none; }
+      .hhero-spine { display: none; }
+      .hoco-video-content { padding: 0 20px 84px; flex-direction: column; align-items: flex-start; gap: 12px; }
+      .hhero-left  { display: none; }
+      .hhero-right { width: 100%; max-width: 100%; text-align: left; }
+      .hoco-video-title { font-size: clamp(34px, 9vw, 56px) !important; line-height: .94; margin-bottom: 18px; }
+      .hhero-eyebrow { margin-bottom: 8px; font-size: 8px; }
+      .hhero-rule  { margin: 0 0 12px 0; transform-origin: left; }
+      .hoco-video-actions { flex-direction: column; gap: 10px; align-items: stretch; }
+      .btn-hoco-primary, .btn-hoco-ghost {
+        width: 100%; justify-content: center;
+        padding: 15px 24px; font-size: 10px;
+      }
+      /* Feature strip — 3-col → 1-col stacked */
+      .hoco-feature-strip { padding: 36px 20px; grid-template-columns: 1fr; }
+      .hoco-feature-item { padding: 20px 0; }
+      .hoco-feature-item + .hoco-feature-item { border-left: none; border-top: 1px solid rgba(201,96,127,.15); }
+      /* Photo grid — 4-col → 2-col */
+      .hoco-photo-grid { padding: 48px 20px; }
+      .hoco-photo-grid-inner { grid-template-columns: 1fr 1fr; gap: 8px; }
+      .hoco-photo-grid-inner img { height: 52vw; }
+      /* CTA section — full-width stacked buttons */
+      .hoco-cta { padding: 64px 20px; }
+      .hoco-cta-actions { flex-direction: column; gap: 10px; align-items: stretch; }
+      .hoco-cta-actions .btn-white, .hoco-cta-actions .btn-hoco-cta-ghost { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+<div id="site-header"></div>
+
+<!-- CINEMATIC VIDEO HERO -->
+<main id="main-content">
+<div class="hoco-video-hero">
+  <video autoplay muted loop playsinline preload="metadata" poster="images/real/hoco/03-88900.webp">
+    <source src="videos/prom-hero.mp4" type="video/mp4"/>
+  </video>
+  <div class="hoco-video-vignette"></div>
+  <div class="hoco-video-grade"></div>
+
+  <div class="hhero-top">
+    <span class="hhero-top-item">Cloud Nine</span>
+    <span class="hhero-top-dot">·</span>
+    <span class="hhero-top-item">Peoria, Illinois</span>
+    <span class="hhero-top-dot">·</span>
+    <span class="hhero-top-item">Homecoming Collection 2026</span>
+    <span class="hhero-top-spacer"></span>
+  </div>
+
+  <div class="hhero-spine">Homecoming · Cloud Nine · Fall 2026</div>
+
+  <div class="hoco-video-content">
+    <div class="hhero-left">
+      <p class="hhero-tagline">The season's freshest styles — short, flirty, and entirely yours.</p>
+      <div class="hhero-scroll">Scroll</div>
+    </div>
+    <div class="hhero-right">
+      <div class="hhero-eyebrow">Fall 2026 Collection</div>
+      <div class="hhero-rule"></div>
+      <h1 class="hoco-video-title">The HOCO<br/><em>Moment.</em></h1>
+      <div class="hoco-video-actions">
+        <a href="hoco-catalog.html" class="btn-hoco-primary">
+          Shop HOCO
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="appointments.html" class="btn-hoco-ghost">Book an Appointment</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURE STRIP -->
+<div class="hoco-feature-strip">
+  <div class="hoco-feature-item">
+    <h3>Top Designers</h3>
+    <p>Amarra, Jovani, Sherri Hill, and the season's hottest HOCO styles.</p>
+  </div>
+  <div class="hoco-feature-item">
+    <h3>Exclusive to You</h3>
+    <p>One dress per school — your look stays yours all night long.</p>
+  </div>
+  <div class="hoco-feature-item">
+    <h3>Personal Styling</h3>
+    <p>One-on-one appointments to find the perfect fit for your big night.</p>
+  </div>
+</div>
+
+<!-- PHOTO GRID -->
+<div class="hoco-photo-grid">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="eyebrow" style="color:#c9607f;">The Collection</div>
+    <h2 class="section-title" style="color:#1a1a1a;">Dresses That Make <em>Memories.</em></h2>
+  </div>
+  <div class="hoco-photo-grid-inner">
+    <img src="images/real/hoco/01-88042.webp" alt="Cloud Nine HOCO" loading="lazy"/>
+    <img src="images/real/hoco/02-88056.webp" alt="Cloud Nine HOCO" loading="lazy"/>
+    <img src="images/real/hoco/03-88900.webp" alt="Cloud Nine HOCO" loading="lazy"/>
+    <img src="images/real/hoco/04-88901.webp" alt="Cloud Nine HOCO" loading="lazy"/>
+    <img src="images/real/hoco/05-88902.webp" alt="Cloud Nine HOCO" loading="lazy"/>
+    <img src="images/real/hoco/06-88903.webp" alt="Cloud Nine HOCO" loading="lazy"/>
+    <img src="images/real/hoco/07-88905.webp" alt="Cloud Nine HOCO" loading="lazy"/>
+    <img src="images/real/hoco/08-88907.webp" alt="Cloud Nine HOCO" loading="lazy"/>
+  </div>
+  <div style="text-align:center;margin-top:40px;">
+    <a href="hoco-catalog.html" class="btn-primary">Browse All Dresses <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+</div>
+
+<!-- BOTTOM CTA -->
+<div class="hoco-cta">
+  <h2>Ready to Find<br/><em>Your Dress?</em></h2>
+  <p>Come in and try on the season's best homecoming styles. Schedule a personal styling appointment today.</p>
+  <div class="hoco-cta-actions">
+    <a href="hoco-catalog.html" class="btn-white">Shop All Dresses</a>
+    <a href="appointments.html" class="btn-hoco-cta-ghost">Book an Appointment</a>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+<script src="components.js?v=4" defer></script>
+</main>
+</body>
+</html>

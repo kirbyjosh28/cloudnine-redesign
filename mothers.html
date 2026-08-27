@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Mothers of the Bride &amp; Groom | Cloud Nine Bridal Boutique</title>
+  <meta name="description" content="Elegant mother of the bride and groom dresses at Cloud Nine Bridal Boutique. Exclusive styles from top designers, with personalized styling in Peoria, IL."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://cloudninebridal.com/mothers.html"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://cloudninebridal.com/mothers.html"/>
+  <meta property="og:title" content="Mothers of the Bride &amp; Groom | Cloud Nine Bridal Boutique"/>
+  <meta property="og:description" content="Elegant mother of the bride and groom dresses at Cloud Nine Bridal Boutique. Exclusive styles from top designers, with personalized styling in Peoria, IL."/>
+  <meta property="og:image" content="https://cloudninebridal.com/images/real/brides/mothers-hero.webp"/>
+  <meta property="og:site_name" content="Cloud Nine Bridal Boutique"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Mothers of the Bride &amp; Groom | Cloud Nine Bridal Boutique"/>
+  <meta name="twitter:description" content="Elegant MOB and MOG styles with personalized styling at Cloud Nine Bridal Boutique, Peoria IL."/>
+  <meta name="twitter:image" content="https://cloudninebridal.com/images/real/brides/mothers-hero.webp"/>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+    <!-- Fonts: preconnect first, then non-blocking stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Josefin+Sans:wght@100;200;300;400&family=Lato:wght@300;400;700;900&display=swap"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <style>
+    /* ── MOTHERS PHOTO HERO ── */
+    .mothers-hero {
+      position: relative;
+      height: 100vh; min-height: 620px;
+      margin-top: -80px;
+      overflow: hidden;
+      background: #0e0a0c;
+    }
+    .mothers-hero-img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+    .mothers-hero-vignette {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,.48) 0%, rgba(0,0,0,.10) 30%, rgba(0,0,0,.05) 55%, rgba(0,0,0,.72) 100%),
+        linear-gradient(to right, rgba(0,0,0,.30) 0%, transparent 55%);
+    }
+    .mothers-hero-content {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 0 64px 64px;
+      display: flex; align-items: flex-end;
+      justify-content: space-between;
+      z-index: 10;
+    }
+    .mothers-hero-left { max-width: 560px; }
+    .mothers-hero-eyebrow {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: .30em; text-transform: uppercase;
+      color: rgba(255,255,255,.52);
+      margin-bottom: 16px;
+    }
+    .mothers-hero-rule {
+      width: 40px; height: 1px;
+      background: rgba(255,255,255,.40);
+      margin-bottom: 20px;
+    }
+    .mothers-hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(52px, 8vw, 112px);
+      font-weight: 700; color: #fff;
+      line-height: .90; letter-spacing: -.04em;
+      margin: 0 0 32px;
+    }
+    .mothers-hero-title em { font-style: italic; color: rgba(255,230,235,.78); }
+    .mothers-hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .mothers-hero-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 15px 36px;
+      background: #fff; color: #1a0a10;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 10px; font-weight: 700; letter-spacing: .14em;
+      text-transform: uppercase; text-decoration: none;
+      transition: background .25s, color .25s;
+    }
+    .mothers-hero-btn:hover { background: transparent; color: #fff; outline: 1px solid #fff; }
+    .mothers-hero-btn-ghost {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 34px;
+      border: 1px solid rgba(255,255,255,.38); color: rgba(255,255,255,.85);
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 10px; font-weight: 600; letter-spacing: .14em;
+      text-transform: uppercase; text-decoration: none;
+      transition: border-color .25s, color .25s;
+    }
+    .mothers-hero-btn-ghost:hover { border-color: #fff; color: #fff; }
+    .mothers-hero-right {
+      display: flex; flex-direction: column;
+      align-items: flex-end; gap: 20px;
+      padding-bottom: 6px;
+    }
+    .mothers-hero-tagline {
+      font-size: 13px; font-weight: 300;
+      color: rgba(255,255,255,.62);
+      text-align: right; max-width: 180px;
+      line-height: 1.9;
+    }
+    .mothers-hero-scroll {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 8px; font-weight: 600;
+      letter-spacing: .24em; text-transform: uppercase;
+      color: rgba(255,255,255,.55);
+      writing-mode: vertical-rl;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 14px;
+    }
+    .mothers-hero-scroll::before {
+      content: ''; width: 1px; height: 52px;
+      background: rgba(255,255,255,.18); display: block;
+    }
+    @media (max-width: 768px) {
+      .mothers-hero-content { padding: 0 20px 40px; flex-direction: column; align-items: flex-start; gap: 12px; }
+      .mothers-hero-right { display: none; }
+      .mothers-hero-title { font-size: clamp(34px, 9vw, 56px) !important; line-height: .94; margin-bottom: 16px; }
+      .mothers-hero-eyebrow { margin-bottom: 8px; font-size: 8px; }
+      .mothers-hero-rule { margin-bottom: 12px; }
+      .mothers-hero-left { width: 100%; }
+      .mothers-hero-actions { flex-direction: column; gap: 10px; align-items: stretch; width: 100%; }
+      .mothers-hero-btn, .mothers-hero-btn-ghost {
+        width: 100%; justify-content: center;
+        padding: 15px 24px; font-size: 10px;
+      }
+    }
+
+    /* ── Catalog ──────────────────────────────── */
+    .catalog-count{display:block;}
+    .pagination{display:flex;justify-content:center;align-items:center;gap:6px;margin:48px 0 16px;flex-wrap:wrap;}
+    .pagination button{background:none;border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px 14px;font-size:13px;cursor:pointer;font-family:"Lato",sans-serif;transition:all .2s;}
+    .pagination button:hover,.pagination button.active{background:var(--teal-deep);color:#fff;border-color:var(--teal-deep);}
+    .pagination button:disabled{opacity:.3;cursor:default;}
+    .pagination .pg-sep{font-size:13px;color:var(--text-muted);padding:0 4px;}
+
+    /* ── Modal backdrop ───────────────────────── */
+    .modal-backdrop{display:none;position:fixed;inset:0;background:rgba(15,15,15,.8);z-index:2000;overflow-y:auto;padding:32px 16px;backdrop-filter:blur(4px);}
+    .modal-backdrop.open{display:flex;align-items:flex-start;justify-content:center;}
+
+    /* ── Modal shell ──────────────────────────── */
+    .modal{background:#fff;border-radius:0;max-width:960px;width:100%;display:grid;grid-template-columns:1.05fr 1fr;overflow:hidden;position:relative;margin:auto;box-shadow:0 32px 80px rgba(0,0,0,.35);}
+
+    /* ── Close button ─────────────────────────── */
+    .modal-x{position:absolute;top:14px;right:14px;background:rgba(255,255,255,.18);backdrop-filter:blur(6px);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:0;width:34px;height:34px;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;transition:all .2s;line-height:1;}
+    .modal-x:hover{background:var(--teal-deep);border-color:var(--teal-deep);}
+
+    /* ── Gallery side ─────────────────────────── */
+    .modal-gallery{background:#f0f0f0;display:flex;flex-direction:column;}
+    .modal-main-wrap{flex:1;overflow:hidden;background:#f0f0f0;position:relative;}
+    .modal-main-img{width:100%;height:100%;min-height:400px;max-height:560px;object-fit:cover;display:block;transition:opacity .2s;}
+    .modal-thumbs{display:flex;gap:6px;padding:10px 12px;background:#e8e8e8;overflow-x:auto;scrollbar-width:thin;}
+    .modal-thumbs::-webkit-scrollbar{height:4px;}
+    .modal-thumbs::-webkit-scrollbar-thumb{background:var(--teal-mid);border-radius:2px;}
+    .modal-thumb{width:58px;height:72px;object-fit:cover;border-radius:0;cursor:pointer;opacity:.55;border:2px solid transparent;flex-shrink:0;transition:all .2s;}
+    .modal-thumb.active,.modal-thumb:hover{opacity:1;border-color:var(--teal-deep);}
+
+    /* ── Info side ────────────────────────────── */
+    .modal-info{padding:40px 36px 36px;display:flex;flex-direction:column;gap:0;overflow-y:auto;max-height:680px;}
+
+    /* Designer label — hidden */
+    .m-label:empty,.m-label{display:none;}
+
+    /* Style name — hidden */
+    .m-title:empty{display:none;}
+    .m-title{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;line-height:1.12;letter-spacing:-.02em;color:#1a1818;margin-bottom:6px;}
+
+    /* Style # badge — hidden */
+    .m-badge:empty{display:none;}
+    .m-badge{font-family:'Josefin Sans',sans-serif;font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--text-muted);margin-bottom:18px;display:block;}
+
+    /* Stock disclaimer note under grid */
+    .catalog-stock-note{font-family:'Josefin Sans',sans-serif;font-size:10px;font-weight:400;letter-spacing:.06em;color:var(--text-muted);text-align:center;padding:20px 20px 8px;border-top:1px solid var(--border);margin:0;}
+    .catalog-stock-note a{color:var(--teal-deep);text-decoration:none;border-bottom:1px solid var(--teal-mid);}
+    .catalog-stock-note a:hover{color:var(--teal-mid);}
+
+    /* Rule */
+    .m-rule{height:1px;background:linear-gradient(to right, var(--border) 60%, transparent);margin-bottom:22px;}
+
+    /* Description */
+    .m-desc{font-size:14px;color:#555;line-height:1.85;flex:1;margin-bottom:28px;}
+    .m-desc em{color:#888;font-style:normal;font-size:13px;}
+
+    /* Info grid (silhouette / sizing etc.) */
+    .m-meta{display:grid;grid-template-columns:1fr 1fr;gap:12px 16px;margin-bottom:28px;}
+    .m-meta-item{display:flex;flex-direction:column;gap:3px;}
+    .m-meta-key{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);}
+    .m-meta-val{font-size:13px;color:#333;font-weight:500;}
+
+    /* CTAs */
+    .m-cta{display:flex;flex-direction:column;gap:10px;margin-top:auto;}
+    .m-cta a{text-align:center;font-size:13px;padding:13px 20px;}
+
+    /* Nav arrows on main image */
+    .modal-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.85);border:none;width:36px;height:36px;border-radius:0;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;z-index:5;transition:all .2s;}
+    .modal-nav:hover{background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.15);}
+    .modal-nav-prev{left:10px;}
+    .modal-nav-next{right:10px;}
+
+    @media(max-width:768px){
+      .modal-backdrop{padding:0;}
+      .modal{margin:0;width:100%;max-width:100%;min-height:100dvh;align-items:flex-start;grid-template-columns:1fr;border-radius:0;}
+      .modal-info{max-height:none;padding:24px 20px 48px;}
+      .modal-main-img{max-height:380px;}
+      .modal-x{width:44px;height:44px;top:10px;right:10px;font-size:20px;background:rgba(0,0,0,0.65);border-color:rgba(255,255,255,0.4);}
+      .modal-nav{width:44px;height:44px;font-size:22px;}
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Mother of the Bride & Groom Dresses",
+    "description": "Sophisticated and elegant gowns for mothers of the bride and groom at Cloud Nine Bridal Boutique in Peoria, IL.",
+    "url": "https://cloudninebridal.com/mothers.html",
+    "isPartOf": {
+      "@type": "BridalShop",
+      "name": "Cloud Nine Bridal Boutique",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "4711 N. University St",
+        "addressLocality": "Peoria",
+        "addressRegion": "IL",
+        "postalCode": "61614",
+        "addressCountry": "US"
+      },
+      "telephone": "+13096933830"
+    }
+  }
+  </script>
+</head>
+<body>
+<div id="site-header"></div>
+
+<main id="main-content">
+<div class="mothers-hero">
+  <img class="mothers-hero-img" src="images/real/brides/mothers-hero.webp" alt="Mother of the Bride" loading="eager" fetchpriority="high"/>
+  <div class="mothers-hero-vignette"></div>
+  <div class="mothers-hero-content">
+    <div class="mothers-hero-left">
+      <div class="mothers-hero-eyebrow">Cloud Nine · Peoria, Illinois</div>
+      <div class="mothers-hero-rule"></div>
+      <h1 class="mothers-hero-title">Mothers of the<br/><em>Bride &amp; Groom.</em></h1>
+      <div class="mothers-hero-actions">
+        <a href="appointments.html" class="mothers-hero-btn">Book Appointment</a>
+        <a href="#gowns" class="mothers-hero-btn-ghost">Browse Gowns</a>
+      </div>
+    </div>
+    <div class="mothers-hero-right">
+      <p class="mothers-hero-tagline">Elegant gowns for the most important women in the room.</p>
+      <div class="mothers-hero-scroll">Scroll</div>
+    </div>
+  </div>
+</div>
+
+<!-- VOGUE EDITORIAL INTRO -->
+<div class="editorial-feature">
+  <div class="editorial-feature-top">
+    <span class="editorial-feature-tag"><span>Mothers of the Wedding · 2026</span></span>
+    <span class="editorial-feature-tag">Contact Us · (309) 693‑3830</span>
+  </div>
+  <div class="editorial-feature-body">
+    <div class="editorial-feature-vol">Cloud Nine · Peoria, IL</div>
+    <p class="editorial-feature-quote">"Elegance that honors the moment —<br/>and the woman wearing it."</p>
+  </div>
+</div>
+<div class="section-catalog" id="gowns">
+  <div class="filter-bar" id="df">
+    <button class="filter-btn active" onclick="fd(this,'all')">All</button>
+    <button class="filter-btn" onclick="fd(this,'Alexander By Daymor')">Alexander By Daymor</button>
+    <button class="filter-btn" onclick="fd(this,'Cameron Blake')">Cameron Blake</button>
+    <button class="filter-btn" onclick="fd(this,'Jasmine')">Jasmine</button>
+    <button class="filter-btn" onclick="fd(this,'MLNY')">MLNY</button>
+
+  </div>
+  <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);background:var(--white);">
+    <div class="catalog-count" id="cc" style="border-bottom:none;padding-right:0;"></div>
+    <button class="filter-clear-btn" id="clearFilters" onclick="clearAllFilters()">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      Clear Filters
+    </button>
+  </div>
+  <div class="grid-4" id="pg"></div>
+  <p class="catalog-stock-note">Not all gowns are kept in store &mdash; <a href="contact.html">contact us</a> for stock and availability details.</p>
+  <div id="scroll-sentinel" style="height:4px;"></div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-backdrop" id="mb" onclick="closeBg(event)">
+  <div class="modal" id="mo" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+    <button class="modal-x" onclick="closeModal()" aria-label="Close">✕</button>
+
+    <div class="modal-gallery">
+      <div class="modal-main-wrap">
+        <button class="modal-nav modal-nav-prev" id="navPrev" onclick="shiftImg(-1)">&#8249;</button>
+        <img class="modal-main-img" id="mImg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""/>
+        <button class="modal-nav modal-nav-next" id="navNext" onclick="shiftImg(1)">&#8250;</button>
+      </div>
+      <div class="modal-thumbs" id="mThumbs"></div>
+    </div>
+
+    <div class="modal-info">
+      <div class="m-label" id="mDesigner"></div>
+      <div class="m-title" id="mTitle"></div>
+      <div class="m-badge" id="mBadge"></div>
+      <div class="m-rule"></div>
+      <p class="m-desc" id="mDesc"></p>
+      <div class="m-meta" id="mMeta"></div>
+      <div class="m-cta">
+        <a href="appointments.html" class="btn-primary">Book an Appointment <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="contact.html" class="btn-outline">Ask About This Style</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+<script src="components.js?v=4" defer></script>
+<script>
+let P = [];
+const BATCH = 12;
+let fil = [], loaded = 0, curImgs = [], curIdx = 0;
+
+function _showSkeletons(n) {
+  const grid = document.getElementById('pg');
+  if (!grid) return;
+  grid.innerHTML = Array(n).fill(0).map(() => `<div class="dress-card-skeleton" aria-hidden="true"><div class="dress-card-skeleton-img"></div><div class="dress-card-skeleton-footer"><div class="dress-card-skeleton-line dress-card-skeleton-line--short"></div><div class="dress-card-skeleton-line"></div></div></div>`).join('');
+  const cc = document.getElementById('cc');
+  if (cc) cc.textContent = 'Loading…';
+}
+
+function fd(btn, d) {
+  document.querySelectorAll('#df .filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  fil = d === 'all' ? P : P.filter(p => p.d === d);
+  var clr = document.getElementById('clearFilters');
+  if (clr) clr.classList.toggle('visible', d !== 'all');
+  render();
+}
+
+function clearAllFilters() {
+  fd(document.querySelector('#df .filter-btn'), 'all');
+}
+
+function goToDress(idx) {
+  const dress = fil[idx];
+  sessionStorage.setItem('cloudnine_dress', JSON.stringify(dress));
+  sessionStorage.setItem('cloudnine_dress_src', location.pathname.split('/').pop() + location.search);
+  const sku = encodeURIComponent(dress.s || '');
+  const des = encodeURIComponent(dress.d || '');
+  window.location.href = `dress.html?cat=mothers&sku=${sku}${des ? `&d=${des}` : ''}`;
+}
+
+function render() {
+  loaded = 0;
+  document.getElementById('pg').innerHTML = '';
+  const cc = document.getElementById('cc');
+  if (cc) {
+    const total = fil.length;
+    cc.textContent = `Showing ${total === P.length ? total : total + ' of ' + P.length} gowns`;
+  }
+  loadMore();
+}
+
+function loadMore() {
+  if (loaded >= fil.length) return;
+  const batch = fil.slice(loaded, loaded + BATCH);
+  const frag = document.createDocumentFragment();
+  batch.forEach((p, i) => {
+    const idx = loaded + i;
+    const card = document.createElement('div');
+    card.className = 'dress-card';
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-label', `${p.d} style ${p.s}`);
+    card.dataset.idx = idx;
+    card.dataset.product = JSON.stringify({s:p.s,d:p.d,i:p.i,x:p.x||[],_cat:'mothers.html'});
+    card.innerHTML = `
+      <div class="dress-card-img">
+        <img src="${p.i}" alt="${p.d} ${p.s}" loading="lazy" onerror="this.parentElement.parentElement.style.display='none'"/>
+        <div class="dress-card-overlay"></div>
+        <div class="quick-view-badge">Quick View</div>
+      </div>
+      <div class="dress-card-body">
+        <div class="dress-card-name">${p.n || p.s || ''}</div>
+        <div class="dress-card-cta">View Details →</div>
+      </div>`;
+    card.addEventListener('click', () => goToDress(idx));
+    card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); goToDress(idx); } });
+    const qv = card.querySelector('.quick-view-badge');
+    if (qv) qv.addEventListener('click', e => { e.stopPropagation(); openModal(idx); });
+    frag.appendChild(card);
+  });
+  document.getElementById('pg').appendChild(frag);
+  loaded += batch.length;
+}
+
+const sentinelIO = new IntersectionObserver((entries) => {
+  if (entries[0].isIntersecting) loadMore();
+}, { rootMargin: '600px' });
+sentinelIO.observe(document.getElementById('scroll-sentinel'));
+
+// ── Modal ──────────────────────────────────────────────
+var _lastFocused = null;
+function openModal(idx) {
+  _lastFocused = document.activeElement;
+  const p = fil[idx];
+  curImgs = (p.x && p.x.length) ? p.x : [p.i];
+  curIdx = 0;
+
+  // No designer / style number / name shown
+  document.getElementById('mDesigner').textContent = '';
+  document.getElementById('mTitle').textContent = p.n || p.s || '';
+  document.getElementById('mBadge').textContent = (p.s && p.s !== p.n) ? p.s : '';
+
+  document.getElementById('mDesc').innerHTML =
+    '<em>Not all gowns are kept in store. Contact us to confirm availability, special order options, sizing, and colors. Our stylists will find the right fit and timeline for you.</em>';
+
+  const metaItems = [
+    p.sil ? ['Silhouette', titleCase(p.sil)] : null,
+    ['Availability', 'Contact Us'],
+    ['Appointment', 'Recommended'],
+  ].filter(Boolean);
+  document.getElementById('mMeta').innerHTML = metaItems.map(([k,v]) =>
+    `<div class="m-meta-item"><span class="m-meta-key">${k}</span><span class="m-meta-val">${v}</span></div>`
+  ).join('');
+
+  renderThumbs();
+  showImg(0);
+  document.getElementById('mb').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  setTimeout(function() { var c = document.querySelector('#mo .modal-x'); if (c) c.focus(); }, 30);
+}
+
+function titleCase(s) {
+  return s.replace(/\w\S*/g, t => t.charAt(0).toUpperCase() + t.substr(1));
+}
+
+function renderThumbs() {
+  document.getElementById('mThumbs').innerHTML = curImgs.map((img,i) =>
+    `<img class="modal-thumb ${i===0?'active':''}" src="${img.replace('.2000.','.340.')}" onclick="showImg(${i})" alt="View ${i+1}"/>`
+  ).join('');
+  const nav = curImgs.length > 1;
+  document.getElementById('navPrev').style.display = nav ? 'flex' : 'none';
+  document.getElementById('navNext').style.display = nav ? 'flex' : 'none';
+}
+
+function showImg(i) {
+  curIdx = i;
+  const img = document.getElementById('mImg');
+  img.style.opacity = '0';
+  img.src = curImgs[i];
+  img.onload = () => img.style.opacity = '1';
+  document.querySelectorAll('.modal-thumb').forEach((t,idx) =>
+    t.classList.toggle('active', idx===i));
+}
+
+function shiftImg(dir) {
+  showImg((curIdx + dir + curImgs.length) % curImgs.length);
+}
+
+function closeModal() {
+  document.getElementById('mb').classList.remove('open');
+  document.body.style.overflow = '';
+  if (_lastFocused && typeof _lastFocused.focus === 'function') { _lastFocused.focus(); _lastFocused = null; }
+}
+
+function closeBg(e) { if (e.target===document.getElementById('mb')) closeModal(); }
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('mb').classList.contains('open')) return;
+  if (e.key === 'Escape') closeModal();
+  if (e.key === 'ArrowLeft') shiftImg(-1);
+  if (e.key === 'ArrowRight') shiftImg(1);
+  if (e.key === 'Tab') {
+    var mo = document.getElementById('mo');
+    var focusable = mo.querySelectorAll('button:not([disabled]),[href],input,select,textarea,[tabindex]:not([tabindex="-1"])');
+    var first = focusable[0], last = focusable[focusable.length - 1];
+    if (e.shiftKey) { if (document.activeElement === first) { e.preventDefault(); last.focus(); } }
+    else { if (document.activeElement === last) { e.preventDefault(); first.focus(); } }
+  }
+});
+
+_showSkeletons(12);
+fetch('data/mothers-products.json?v=1')
+  .then(r => r.json())
+  .then(data => {
+    P = data;
+    fil = data;
+    const urlParams = new URLSearchParams(window.location.search);
+    const desParam = urlParams.get('designer') || urlParams.get('d');
+    if (desParam) {
+      const btn = Array.from(document.querySelectorAll('#df .filter-btn')).find(b => b.textContent.trim().toLowerCase() === desParam.trim().toLowerCase());
+      if (btn) {
+        fd(btn, btn.textContent.trim());
+        return;
+      }
+    }
+    render();
+  })
+  .catch(() => {
+    const pg = document.getElementById('pg');
+    if (pg) pg.innerHTML = '<div class="catalog-error-state"><p>We couldn\'t load the collection. <button onclick="location.reload()" style="background:none;border:none;color:var(--teal-deep);cursor:pointer;text-decoration:underline;">Try again</button> or <a href="contact.html">contact us</a>.</p></div>';
+    const cc = document.getElementById('cc');
+    if (cc) cc.textContent = '';
+  });
+</script>
+</main>
+</body>
+</html>

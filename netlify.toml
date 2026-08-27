@@ -1,0 +1,78 @@
+[build]
+  publish = "."
+
+# ── Security headers on all pages ──────────────────────────────────────────
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Prevent clickjacking
+    X-Frame-Options = "DENY"
+    # Prevent MIME sniffing
+    X-Content-Type-Options = "nosniff"
+    # Control referrer info sent to external sites
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    # Disable unused browser features
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=()"
+    # Content Security Policy
+    # - Scripts: self + inline (needed for page-specific JS) + Formspree
+    # - Styles: self + inline + Google Fonts
+    # - Fonts: Google Fonts CDN only
+    # - Images: self + CloudFront CDN (product images) + data URIs
+    # - Connect: Formspree API for form submissions
+    Content-Security-Policy = """
+      default-src 'self';
+      script-src 'self' 'unsafe-inline' https://plausible.io;
+      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+      font-src https://fonts.gstatic.com;
+      img-src 'self' https://dy9ihb9itgy3g.cloudfront.net data: blob:;
+      media-src 'self' blob: data:;
+      frame-src 'self' https://app.bridalive.com https://www.youtube.com https://www.google.com;
+      connect-src 'self' https://formspree.io https://plausible.io;
+      frame-ancestors 'none';
+      base-uri 'self';
+      form-action 'self' https://formspree.io;
+    """
+
+# ── Cache control for static assets ────────────────────────────────────────
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/favicon.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+# ── 404 redirect ───────────────────────────────────────────────────────────
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404
+
+# ── Canonical redirects (enforce no trailing slash, no index.html) ─────────
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/:page.html"
+  to = "/:page"
+  status = 301
+  force = false

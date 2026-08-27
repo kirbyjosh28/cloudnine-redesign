@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Bridal Gowns | Cloud Nine Bridal Boutique</title>
+  <meta name="description" content="Browse curated wedding gowns from Essense of Australia, Maggie Sottero, Rebecca Ingram, and more at Cloud Nine Bridal Boutique in Peoria, IL."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://cloudninebridal.com/bridal.html"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://cloudninebridal.com/bridal.html"/>
+  <meta property="og:title" content="Bridal Gowns | Cloud Nine Bridal Boutique"/>
+  <meta property="og:description" content="Browse curated wedding gowns from Essense of Australia, Maggie Sottero, Rebecca Ingram, and more at Cloud Nine Bridal Boutique in Peoria, IL."/>
+  <meta property="og:image" content="https://cloudninebridal.com/images/bridal/Bridal-hero.webp"/>
+  <meta property="og:site_name" content="Cloud Nine Bridal Boutique"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Bridal Gowns | Cloud Nine Bridal Boutique"/>
+  <meta name="twitter:description" content="Exclusive wedding gowns from top designers at Cloud Nine Bridal Boutique in Peoria, IL."/>
+  <meta name="twitter:image" content="https://cloudninebridal.com/images/bridal/Bridal-hero.webp"/>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+    <!-- Fonts: preconnect first, then non-blocking stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Josefin+Sans:wght@100;200;300;400&family=Lato:wght@300;400;700;900&display=swap"/>
+    <link rel="preload" as="image" href="images/bridal/Bridal-hero.webp" type="image/webp"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Bridal Gowns Peoria IL",
+    "description": "Browse curated wedding gowns from Essense of Australia, Maggie Sottero, Rebecca Ingram, and more at Cloud Nine Bridal Boutique in Peoria, IL.",
+    "url": "https://cloudninebridal.com/bridal.html",
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cloudninebridal.com/index.html" },
+        { "@type": "ListItem", "position": 2, "name": "Bridal Gowns", "item": "https://cloudninebridal.com/bridal.html" }
+      ]
+    }
+  }
+  </script>
+  <style>
+    /* ══════════════════════════════
+       BRIDAL CINEMATIC HERO
+       ══════════════════════════════ */
+    @keyframes bhKenBurns {
+      from { transform: scale(1); }
+      to   { transform: scale(1.08); }
+    }
+    @keyframes bhFadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes bhFadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes bhLineExpand {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+    @keyframes bhLineGrow {
+      from { transform: scaleY(0); }
+      to   { transform: scaleY(1); }
+    }
+
+    .bridal-hero {
+      position: relative;
+      height: 100vh; min-height: 680px;
+      margin-top: -80px;
+      overflow: hidden;
+      background: #071213;
+    }
+
+    /* Single full-width hero image */
+    .bridal-hero-bg {
+      position: absolute; inset: 0;
+    }
+    .bridal-hero-bg img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      animation: bhKenBurns 14s ease-out forwards;
+    }
+    .bhero-panel {
+      overflow: hidden;
+      animation: bhFadeIn 1.6s ease forwards;
+      opacity: 0;
+    }
+    .bhero-panel:nth-child(1) { animation-delay: .1s; }
+    .bhero-panel:nth-child(3) { animation-delay: .25s; }
+    .bhero-panel:nth-child(5) { animation-delay: .4s; }
+    .bhero-panel img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+      animation: bhKenBurns 14s ease-out forwards;
+    }
+    .bhero-panel:nth-child(3) img { animation-delay: .3s; animation-duration: 16s; }
+    .bhero-panel:nth-child(5) img { animation-delay: .6s; animation-duration: 18s; }
+    .bhero-seam { background: rgba(255,255,255,.08); }
+
+    /* cinematic multi-stop overlay */
+    .bridal-hero-vignette {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to right, rgba(0,0,0,.65) 0%, rgba(0,0,0,.0) 38%, rgba(0,0,0,.0) 62%, rgba(0,0,0,.55) 100%),
+        linear-gradient(to bottom, rgba(0,0,0,.60) 0%, rgba(0,0,0,.0) 22%, rgba(0,0,0,.0) 55%, rgba(0,0,0,.88) 100%);
+    }
+
+    /* top editorial bar */
+    .bhero-top {
+      position: absolute; top: 96px; left: 64px; right: 64px;
+      display: flex; align-items: center; gap: 16px;
+      z-index: 20;
+      opacity: 0;
+      animation: bhFadeIn .8s ease .8s forwards;
+    }
+    .bhero-top-item {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 9px; font-weight: 600;
+      letter-spacing: .26em; text-transform: uppercase;
+      color: rgba(255,255,255,.62);
+    }
+    .bhero-top-dot { color: rgba(255,255,255,.22); font-size: 8px; }
+    .bhero-top-spacer { flex: 1; height: 1px; background: rgba(255,255,255,.12); }
+
+    /* vertical spine — far left */
+    .bhero-spine {
+      position: absolute; left: 28px; top: 50%;
+      transform: translateY(-50%) rotate(-90deg);
+      transform-origin: center center;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 8px; font-weight: 600;
+      letter-spacing: .28em; text-transform: uppercase;
+      color: rgba(255,255,255,.55);
+      white-space: nowrap; z-index: 20;
+      opacity: 0;
+      animation: bhFadeIn .8s ease 1.2s forwards;
+    }
+
+    /* main bottom content */
+    .bhero-content {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 0 64px 64px;
+      display: flex; align-items: flex-end;
+      justify-content: space-between;
+      z-index: 20;
+    }
+    .bhero-content-left { max-width: 620px; }
+
+    .bhero-eyebrow {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: .30em; text-transform: uppercase;
+      color: rgba(255,255,255,.62);
+      margin-bottom: 18px;
+      opacity: 0;
+      animation: bhFadeUp .7s cubic-bezier(.16,1,.3,1) 1.0s forwards;
+    }
+    .bhero-rule {
+      width: 52px; height: 1px;
+      background: rgba(255,255,255,.35);
+      margin-bottom: 22px;
+      transform-origin: left;
+      transform: scaleX(0);
+      animation: bhLineExpand .6s cubic-bezier(.16,1,.3,1) 1.15s forwards;
+    }
+    .bhero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(68px, 10vw, 148px);
+      font-weight: 700;
+      color: #fff;
+      line-height: .88;
+      letter-spacing: -.04em;
+      margin: 0 0 36px;
+      opacity: 0;
+      animation: bhFadeUp .9s cubic-bezier(.16,1,.3,1) 1.2s forwards;
+    }
+    .bhero-title em { font-style: italic; color: rgba(180,230,225,.75); }
+    .bhero-actions {
+      display: flex; gap: 14px; flex-wrap: wrap;
+      opacity: 0;
+      animation: bhFadeUp .7s cubic-bezier(.16,1,.3,1) 1.55s forwards;
+    }
+    .bhero-btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 15px 36px;
+      background: #fff; color: var(--teal-dark);
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 10px; font-weight: 700; letter-spacing: .14em;
+      text-transform: uppercase; text-decoration: none;
+      transition: background .25s, color .25s;
+    }
+    .bhero-btn-primary:hover { background: transparent; color: #fff; outline: 1px solid #fff; }
+    .bhero-btn-ghost {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 34px;
+      border: 1px solid rgba(255,255,255,.38); color: rgba(255,255,255,.82);
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 10px; font-weight: 600; letter-spacing: .14em;
+      text-transform: uppercase; text-decoration: none;
+      transition: border-color .25s, color .25s;
+    }
+    .bhero-btn-ghost:hover { border-color: rgba(255,255,255,.9); color: #fff; }
+
+    /* right side — tagline + scroll */
+    .bhero-content-right {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 28px;
+      padding-bottom: 6px;
+      opacity: 0;
+      animation: bhFadeIn .8s ease 1.7s forwards;
+    }
+    .bhero-tagline {
+      font-size: 13px; font-weight: 300;
+      color: rgba(255,255,255,.62);
+      text-align: center; max-width: 200px;
+      line-height: 1.9; letter-spacing: .02em;
+    }
+    .bhero-scroll {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 8px; font-weight: 600;
+      letter-spacing: .24em; text-transform: uppercase;
+      color: rgba(255,255,255,.55);
+      writing-mode: vertical-rl;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 14px;
+    }
+    .bhero-scroll::before {
+      content: '';
+      width: 1px; height: 52px;
+      background: rgba(255,255,255,.20);
+      display: block;
+      animation: bhLineGrow .8s ease 2s forwards;
+      transform: scaleY(0); transform-origin: top;
+    }
+
+    /* ── FEATURE STRIP ── */
+    .bridal-feature-strip {
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 48px 64px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+    .bridal-feature-item {
+      padding: 0 32px;
+      text-align: center;
+    }
+    .bridal-feature-item + .bridal-feature-item { border-left: 1px solid var(--border); }
+    .bridal-feature-item h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px; font-weight: 700;
+      color: var(--text);
+      margin: 0 0 7px;
+    }
+    .bridal-feature-item p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* ── DESIGNERS GRID ── */
+    .bridal-designers {
+      padding: 100px 64px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .bridal-designers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      margin-top: 48px;
+      border: 1px solid var(--border);
+    }
+    .bridal-designer-card {
+      display: block;
+      padding: 36px 32px 28px;
+      background: var(--white);
+      text-decoration: none;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      transition: background .25s;
+    }
+    .bridal-designer-card:nth-child(3n) { border-right: none; }
+    .bridal-designer-card:nth-last-child(-n+3) { border-bottom: none; }
+    .bridal-designer-card::before {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+      background: var(--teal-deep);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .35s cubic-bezier(.16,1,.3,1);
+    }
+    .bridal-designer-card:hover { background: var(--teal-xlight); }
+    .bridal-designer-card:hover::before { transform: scaleX(1); }
+    .designer-card-num {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 9px; font-weight: 300; letter-spacing: .2em;
+      color: var(--text-light); margin-bottom: 20px; display: block;
+    }
+    .bridal-designer-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px; font-weight: 700; font-style: italic;
+      color: var(--text); margin: 0 0 10px; letter-spacing: -.01em;
+      transition: color .2s;
+    }
+    .bridal-designer-card:hover h3 { color: var(--teal-deep); }
+    .bridal-designer-card p {
+      font-size: 13px; color: var(--text-muted);
+      line-height: 1.7; margin: 0 0 24px; font-weight: 300;
+    }
+    .designer-card-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 9px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--teal-deep); border-bottom: 1px solid var(--teal-mid);
+      padding-bottom: 3px; transition: gap .2s, border-color .2s;
+    }
+    .bridal-designer-card:hover .designer-card-cta { gap: 12px; border-color: var(--teal-deep); }
+
+    /* ── MARQUEE (reuse shared styles) ── */
+    .bridal-marquee {
+      background: var(--teal-dark);
+      overflow: hidden;
+      padding: 80px 0 96px;
+    }
+    .bridal-marquee-header { padding: 0 64px 52px; }
+    .bridal-marquee-header .eyebrow { color: rgba(255,255,255,.58); }
+    .bridal-marquee-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 700;
+      letter-spacing: -.03em;
+      color: #fff;
+      margin: 0; line-height: 1;
+    }
+    .bridal-marquee-header h2 em { font-style: italic; color: rgba(255,255,255,.52); }
+    .marquee-row { display: flex; overflow: hidden; margin-bottom: 10px; }
+    .marquee-track { display: flex; gap: 10px; flex-shrink: 0; min-width: 100%; }
+    .marquee-row--fwd .marquee-track { animation: mq-left 45s linear infinite; }
+    .marquee-row--rev .marquee-track { animation: mq-right 45s linear infinite; }
+    .marquee-photo { width: 220px; height: 330px; flex-shrink: 0; overflow: hidden; }
+    .marquee-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: transform .6s ease; }
+    .marquee-photo:hover img { transform: scale(1.04); }
+    @keyframes mq-left { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @keyframes mq-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+
+    /* ── CTA SECTION ── */
+    .cta-section { background: var(--text); padding: 100px 40px; text-align: center; position: relative; overflow: hidden; }
+    .cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(36,90,92,0.25) 0%, transparent 70%); pointer-events: none; }
+    .cta-section h2 { font-family: 'Playfair Display', serif; font-size: clamp(40px, 6vw, 72px); font-weight: 700; letter-spacing: -0.025em; color: white; margin-bottom: 20px; line-height: 1.0; position: relative; }
+    .cta-section h2 em { font-style: italic; color: var(--teal-light); }
+    .cta-section p { font-size: 17px; font-weight: 300; color: rgba(255,255,255,0.55); max-width: 460px; margin: 0 auto 52px; line-height: 1.8; position: relative; }
+    .cta-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; position: relative; }
+    .btn-cta-ghost { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; border-radius: 0; border: 1px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.8); font-size: 12px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; transition: border-color .2s, color .2s; text-decoration: none; }
+    .btn-cta-ghost:hover { border-color: rgba(255,255,255,0.6); color: white; }
+
+    /* ── MOBILE OVERRIDES ── */
+    @media (max-width: 768px) {
+      .bridal-hero { min-height: 580px; margin-top: -52px; }
+
+      /* Hide decorative editorial elements on mobile */
+      .bhero-top    { display: none; }
+      .bhero-spine  { display: none; }
+
+      /* Hero content */
+      .bhero-content { padding: 0 20px 84px; flex-direction: column; gap: 12px; align-items: flex-start; }
+      .bhero-content-right { display: none; }
+      .bhero-title { font-size: clamp(36px, 9.5vw, 60px); line-height: .94; margin-bottom: 20px; }
+      .bhero-eyebrow { margin-bottom: 10px; font-size: 8px; }
+      .bhero-rule  { margin-bottom: 12px; }
+      .bhero-content-left { width: 100%; }
+      .bhero-actions { flex-direction: column; gap: 10px; align-items: stretch; width: 100%; }
+      .bhero-btn-primary, .bhero-btn-ghost { width: 100%; justify-content: center; }
+      .bhero-btn-primary, .bhero-btn-ghost {
+        width: 100%;
+        justify-content: center;
+        padding: 15px 24px;
+        font-size: 10px;
+      }
+
+      /* Feature strip — 2×2 grid */
+      .bridal-feature-strip {
+        grid-template-columns: 1fr 1fr;
+        padding: 0;
+        gap: 0;
+      }
+      .bridal-feature-item {
+        padding: 24px 16px;
+        border-bottom: 1px solid var(--border);
+      }
+      .bridal-feature-item + .bridal-feature-item { border-left: none; }
+      .bridal-feature-item:nth-child(odd) { border-right: 1px solid var(--border); }
+      .bridal-feature-item h3 { font-size: 15px; }
+      .bridal-feature-item p  { font-size: 12px; }
+
+      /* Designers — 2-col on mobile */
+      .bridal-designers { padding: 48px 20px; }
+      .bridal-designers-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        margin-top: 28px;
+      }
+      .bridal-designer-card:nth-child(3n) { border-right: 1px solid var(--border); }
+      .bridal-designer-card:nth-child(2n) { border-right: none; }
+      .bridal-designer-card:nth-last-child(-n+3) { border-bottom: 1px solid var(--border); }
+      .bridal-designer-card:nth-last-child(-n+2) { border-bottom: none; }
+      .bridal-designer-card { padding: 20px 16px 18px; }
+      .bridal-designer-card h3 { font-size: 16px; margin-bottom: 6px; }
+      .bridal-designer-card p  { font-size: 12px; margin-bottom: 16px; }
+
+      /* Marquee */
+      .bridal-marquee { padding: 56px 0 72px; }
+      .bridal-marquee-header { padding: 0 20px 36px; }
+      .bridal-marquee-header h2 { font-size: clamp(32px, 8vw, 52px); }
+
+      /* CTA section — stack and full-width buttons */
+      .cta-actions { flex-direction: column; gap: 10px; align-items: stretch; }
+      .cta-actions .btn-white, .cta-actions .btn-cta-ghost { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+<div id="site-header"></div>
+<main id="main-content">
+
+<!-- HERO -->
+<div class="bridal-hero">
+  <div class="bridal-hero-bg">
+    <picture>
+      <source srcset="images/bridal/Bridal-hero.webp" type="image/webp"/>
+      <img src="images/bridal/Bridal-hero.jpg" alt="Cloud Nine Bridal" loading="eager" fetchpriority="high"/>
+    </picture>
+  </div>
+  <div class="bridal-hero-vignette"></div>
+
+  <div class="bhero-top">
+    <span class="bhero-top-item">Cloud Nine Bridal</span>
+    <span class="bhero-top-dot">·</span>
+    <span class="bhero-top-item">Peoria, Illinois</span>
+    <span class="bhero-top-dot">·</span>
+    <span class="bhero-top-item">Bridal Collection 2026</span>
+    <span class="bhero-top-spacer"></span>
+    <span class="bhero-top-item">By Appointment</span>
+  </div>
+
+  <div class="bhero-content">
+    <div class="bhero-content-left">
+      <div class="bhero-eyebrow">The Art of Saying Yes</div>
+      <div class="bhero-rule"></div>
+      <h1 class="bhero-title">Find Your<br/><em>Gown.</em></h1>
+      <div class="bhero-actions">
+        <a href="bridal-catalog.html" class="bhero-btn-primary">
+          Shop Gowns
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="appointments.html" class="bhero-btn-ghost">Book an Appointment</a>
+      </div>
+    </div>
+    <div class="bhero-content-right">
+      <p class="bhero-tagline">Curated gowns from the world's top designers — exclusively for you in Peoria.</p>
+      <div class="bhero-scroll">Scroll</div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURE STRIP -->
+<div class="bridal-feature-strip">
+  <div class="bridal-feature-item">
+    <h3>6 Top Designers</h3>
+    <p>Maggie Sottero, Essense of Australia, Rebecca Ingram, and more.</p>
+  </div>
+  <div class="bridal-feature-item">
+    <h3>Personal Styling</h3>
+    <p>One-on-one appointments with our expert bridal consultants.</p>
+  </div>
+  <div class="bridal-feature-item">
+    <h3>Every Silhouette</h3>
+    <p>Ballgown, A-line, sheath, boho — we carry it all.</p>
+  </div>
+  <div class="bridal-feature-item">
+    <h3>Peoria's Premier</h3>
+    <p>Helping brides find their dream gown since day one.</p>
+  </div>
+</div>
+
+<!-- DESIGNERS -->
+<div class="bridal-designers">
+  <div class="eyebrow">Our Collections</div>
+  <h2 class="section-title">Gowns by the <em>World's Best</em></h2>
+  <div class="bridal-designers-grid">
+    <a href="bridal-catalog.html?designer=Maggie+Sottero" class="bridal-designer-card">
+      <span class="designer-card-num">01</span>
+      <h3>Maggie Sottero</h3>
+      <p>Romantic and effortlessly beautiful gowns for the modern bride. Iconic designs with timeless appeal.</p>
+      <span class="designer-card-cta">Browse Collection
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </span>
+    </a>
+    <a href="bridal-catalog.html?designer=Essense+of+Australia" class="bridal-designer-card">
+      <span class="designer-card-num">02</span>
+      <h3>Essense of Australia</h3>
+      <p>Modern, sophisticated silhouettes designed for brides who want to feel confidently themselves.</p>
+      <span class="designer-card-cta">Browse Collection
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </span>
+    </a>
+    <a href="bridal-catalog.html?designer=Rebecca+Ingram" class="bridal-designer-card">
+      <span class="designer-card-num">03</span>
+      <h3>Rebecca Ingram</h3>
+      <p>Stunning styles at an accessible price point — because every bride deserves to feel extraordinary.</p>
+      <span class="designer-card-cta">Browse Collection
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </span>
+    </a>
+    <a href="bridal-catalog.html?designer=Sottero+%26+Midgley" class="bridal-designer-card">
+      <span class="designer-card-num">04</span>
+      <h3>Sottero &amp; Midgley</h3>
+      <p>Statement-making gowns with bold details and luxurious fabrics for the unforgettable bride.</p>
+      <span class="designer-card-cta">Browse Collection
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </span>
+    </a>
+    <a href="bridal-catalog.html?designer=Rose+%2B+Grace" class="bridal-designer-card">
+      <span class="designer-card-num">05</span>
+      <h3>Rose + Grace</h3>
+      <p>Fresh, feminine designs with delicate details — perfect for the bride with a soft, romantic vision.</p>
+      <span class="designer-card-cta">Browse Collection
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </span>
+    </a>
+    <a href="bridal-catalog.html?designer=Stella+York" class="bridal-designer-card">
+      <span class="designer-card-num">06</span>
+      <h3>Stella York</h3>
+      <p>Beautifully crafted gowns offering incredible value without compromising on style or quality.</p>
+      <span class="designer-card-cta">Browse Collection
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </span>
+    </a>
+  </div>
+</div>
+
+<!-- OUR BRIDES MARQUEE -->
+<section class="bridal-marquee">
+  <div class="bridal-marquee-header">
+    <div class="eyebrow">Real Brides</div>
+    <h2>Our <em>Brides</em></h2>
+  </div>
+  <div class="marquee-row marquee-row--fwd">
+    <div class="marquee-track">
+      <div class="marquee-photo"><img src="images/real/brides/01-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/02-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/03-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/04-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/05-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/06-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/07-bride.jpg" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/08-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/09-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/10-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/11-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/12-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/13-bride.jpg" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/14-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <!-- duplicate -->
+      <div class="marquee-photo"><img src="images/real/brides/01-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/02-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/03-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/04-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/05-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/06-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/07-bride.jpg" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/08-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/09-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/10-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/11-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/12-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/13-bride.jpg" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/14-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+    </div>
+  </div>
+  <div class="marquee-row marquee-row--rev">
+    <div class="marquee-track">
+      <div class="marquee-photo"><img src="images/real/brides/15-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/16-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/17-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/18-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/19-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/20-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/21-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/22-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/23-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/24-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/25-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/26-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/27-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/28-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <!-- duplicate -->
+      <div class="marquee-photo"><img src="images/real/brides/15-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/16-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/17-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/18-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/19-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/20-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/21-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/22-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/23-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/24-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/25-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/26-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/27-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+      <div class="marquee-photo"><img src="images/real/brides/28-bride.webp" alt="Cloud Nine Bride" loading="lazy"/></div>
+    </div>
+  </div>
+</section>
+
+<!-- BOTTOM CTA -->
+<section class="cta-section">
+  <h2>Ready to Find<br/><em>The One?</em></h2>
+  <p>Schedule your personal styling appointment. Our expert team will guide you through every silhouette, fabric, and designer to find the dress that's truly yours.</p>
+  <div class="cta-actions">
+    <a href="appointments.html" class="btn-white">Book an Appointment</a>
+    <a href="bridal-catalog.html" class="btn-cta-ghost">Browse All Gowns</a>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script src="components.js?v=4" defer></script>
+</main>
+</body>
+</html>
