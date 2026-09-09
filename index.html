@@ -67,7 +67,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Josefin+Sans:wght@100;200;300;400&family=Lato:wght@300;400;700;900&display=swap"/>
     <link rel="preload" as="image" href="images/bridal/bridal-hero-couple.webp" type="image/webp"/>
-  <link rel="stylesheet" href="shared.css?v=20260908f"/>
+  <link rel="stylesheet" href="shared.css?v=20260908g"/>
   <style>
     /* ── LOADING SCREEN ── */
     #site-loader {
@@ -872,46 +872,38 @@
       /* CTA section */
       .cta-section { padding: 72px 20px; }
 
-      /* Collections — horizontal swipe carousel on mobile */
-      .collections-section { min-height: auto !important; }
-      .collections-header { padding: 20px 20px 16px !important; }
-      .collections-header h2 { font-size: clamp(20px, 5.5vw, 28px) !important; }
-      .collections-header-cta { display: none !important; }
-      .collections-grid {
-        display: flex !important;
-        overflow-x: auto !important;
-        overflow-y: hidden !important;
-        scroll-snap-type: x mandatory !important;
-        -webkit-overflow-scrolling: touch !important;
-        touch-action: pan-x !important;
-        gap: 10px !important;
+      /* Collections Atelier — mobile & tablet adjustments */
+      .collections-section { min-height: auto !important; height: auto !important; }
+      .atelier-header { padding: 40px 20px 16px !important; flex-direction: column !important; align-items: flex-start !important; gap: 16px !important; }
+      .atelier-stage { padding: 16px 20px 48px !important; display: block !important; height: auto !important; }
+      .atelier-panel {
+        position: relative !important;
+        inset: auto !important;
+        display: none !important;
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
         height: auto !important;
-        padding: 0 16px 28px !important;
-        scroll-padding-left: 16px !important;
-        scrollbar-width: none !important;
+        transform: none !important;
       }
-      .collections-grid::-webkit-scrollbar { display: none !important; }
-      .coll-grid-right { display: contents !important; }
-      .coll-card {
-        flex: 0 0 78vw !important;
-        height: 70vw !important;
-        min-height: 250px !important;
-        max-height: 340px !important;
-        scroll-snap-align: start !important;
-        border-right: none !important;
-        border-bottom: none !important;
+      .atelier-panel.active {
+        display: grid !important;
+        opacity: 1 !important;
       }
-      .coll-card--featured {
-        flex: 0 0 82vw !important;
-        height: 76vw !important;
-        min-height: 270px !important;
-        max-height: 360px !important;
+      .atelier-hero-card {
+        min-height: 280px !important;
+        padding: 24px 20px !important;
       }
-      .coll-card--featured .coll-content { padding: 20px 20px !important; }
-      .coll-content { padding: 14px 16px !important; }
-      .coll-name { font-size: clamp(34px, 8.5vw, 54px) !important; }
-      .coll-name--sm { font-size: clamp(20px, 5.5vw, 30px) !important; }
-      .coll-cta { opacity: 1 !important; transform: none !important; }
+      .atelier-hero-title { font-size: 28px !important; }
+      .atelier-hero-desc { font-size: 13px !important; }
+      .atelier-rail {
+        grid-template-rows: auto !important;
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+      }
+      .atelier-sub-card {
+        grid-template-columns: 100px 1fr !important;
+      }
+      .atelier-sub-body { padding: 12px 16px !important; }
 
       /* Quiz preview */
       .quiz-options-preview { grid-template-columns: repeat(2,1fr); }
@@ -920,93 +912,331 @@
       /* Brides marquee header */
       .brides-marquee-header { padding: 0 20px 32px; }
     }
-    /* ── COLLECTIONS GRID SECTION ── */
+    /* ── INTERACTIVE COLLECTION ATELIER ── */
     .collections-section {
-      background: #080f10;
+      background: radial-gradient(circle at 20% 30%, rgba(28, 78, 80, 0.22) 0%, rgba(6, 17, 18, 0.98) 75%), #061112;
       display: flex;
       flex-direction: column;
-    }
-    .collections-header {
-      padding: 88px 52px 18px;
-      border-bottom: 1px solid rgba(255,255,255,.06);
-      display: flex; align-items: baseline; justify-content: space-between;
-      flex-shrink: 0;
-    }
-    .collections-header-left { display: flex; align-items: baseline; gap: 20px; }
-    .collections-header .eyebrow { color: rgba(255,255,255,.62); margin-bottom: 0; }
-    .collections-header .eyebrow::before { background: rgba(255,255,255,.35); }
-    .collections-header h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(20px, 2.4vw, 32px); font-weight: 700;
-      letter-spacing: -.03em; color: #fff; margin: 0; line-height: 1;
-    }
-    .collections-header h2 em { font-style: italic; color: rgba(152,213,214,.55); }
-    .collections-header-cta {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 9px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
-      color: rgba(255,255,255,.55); text-decoration: none;
-      transition: color .2s;
-    }
-    .collections-header-cta:hover { color: rgba(255,255,255,.75); }
-
-    .collections-grid {
-      flex: 1;
-      display: grid;
-      grid-template-columns: 5fr 4fr;
+      position: relative;
       overflow: hidden;
-      min-height: 0;
     }
-    .coll-grid-right {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
+    .atelier-header {
+      padding: 72px 52px 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      flex-shrink: 0;
+      flex-wrap: wrap;
     }
-    .coll-card {
-      position: relative; overflow: hidden;
-      display: flex; flex-direction: column; justify-content: flex-end;
-      text-decoration: none;
-      border-right: 1px solid rgba(255,255,255,.05);
-      border-bottom: 1px solid rgba(255,255,255,.05);
+    .atelier-header-left {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
     }
-    .coll-bg {
-      position: absolute; inset: 0;
-      background-size: cover; background-position: center top;
-      transition: transform .75s cubic-bezier(.16,1,.3,1);
+    .atelier-header-left .eyebrow {
+      color: rgba(152, 213, 214, 0.85);
+      margin-bottom: 0;
     }
-    .coll-card:hover .coll-bg { transform: scale(1.07); }
-    .coll-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,.82) 0%, rgba(0,0,0,.22) 45%, rgba(0,0,0,.04) 100%);
-      transition: opacity .35s;
+    .atelier-header-left .eyebrow::before {
+      background: rgba(152, 213, 214, 0.5);
     }
-    .coll-card:hover .coll-overlay { opacity: 1.3; }
-    .coll-content {
-      position: relative; z-index: 2;
-      padding: 22px 28px;
-      display: flex; flex-direction: column; gap: 5px;
-    }
-    .coll-card--featured .coll-content { padding: 32px 40px; }
-    .coll-eyebrow {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 8px; font-weight: 700; letter-spacing: .26em; text-transform: uppercase;
-      color: rgba(255,255,255,.65);
-    }
-    .coll-name {
+    .atelier-header-left h2 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(44px, 5.5vw, 76px); font-weight: 700;
-      color: #fff; line-height: .9; letter-spacing: -.04em; margin: 0;
+      font-size: clamp(22px, 2.5vw, 36px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      margin: 0;
+      line-height: 1.1;
     }
-    .coll-name--sm { font-size: clamp(26px, 3vw, 42px); }
-    .coll-cta {
+    .atelier-header-left h2 em {
+      font-style: italic;
+      color: rgba(152, 213, 214, 0.65);
+    }
+
+    /* Segmented Tab Controls */
+    .atelier-segmented-bar {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 4px;
+      border-radius: 100px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      max-width: 100%;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .atelier-segmented-bar::-webkit-scrollbar { display: none; }
+    .atelier-tab-btn {
+      background: transparent;
+      border: none;
+      color: rgba(255, 255, 255, 0.65);
       font-family: 'Josefin Sans', sans-serif;
-      font-size: 9px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
-      color: rgba(152,213,214,.8);
-      opacity: 0; transform: translateY(6px);
-      transition: opacity .3s .05s, transform .3s .05s;
-      display: inline-flex; align-items: center; gap: 6px;
-      margin-top: 3px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 9px 18px;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      white-space: nowrap;
     }
-    .coll-card:hover .coll-cta { opacity: 1; transform: translateY(0); }
+    .atelier-tab-btn:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .atelier-tab-btn.active {
+      background: #ffffff;
+      color: var(--teal-deep);
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Stage & Panels */
+    .atelier-stage {
+      flex: 1;
+      position: relative;
+      min-height: 0;
+      padding: 20px 52px 28px;
+      display: flex;
+    }
+    .atelier-panel {
+      position: absolute;
+      inset: 20px 52px 28px;
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(12px) scale(0.99);
+      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .atelier-panel.active {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateY(0) scale(1);
+      position: relative;
+      inset: auto;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Left: Hero Card */
+    .atelier-hero-card {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: #0b1a1c;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: clamp(24px, 3vw, 36px);
+      box-shadow: 0 24px 56px -12px rgba(0, 0, 0, 0.5);
+    }
+    .atelier-hero-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center top;
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .atelier-hero-card:hover .atelier-hero-bg {
+      transform: scale(1.04);
+    }
+    .atelier-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(4, 12, 13, 0.96) 0%,
+        rgba(4, 12, 13, 0.70) 45%,
+        rgba(4, 12, 13, 0.15) 100%
+      );
+    }
+    .atelier-hero-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .atelier-meta-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .atelier-meta-pill {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 8.5px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(152, 213, 214, 0.95);
+      background: rgba(28, 78, 80, 0.5);
+      border: 1px solid rgba(152, 213, 214, 0.25);
+      padding: 4px 10px;
+      border-radius: 100px;
+      backdrop-filter: blur(8px);
+    }
+    .atelier-hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 3.4vw, 52px);
+      font-weight: 700;
+      line-height: 1.05;
+      color: #ffffff;
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+    .atelier-hero-desc {
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: rgba(255, 255, 255, 0.78);
+      margin: 0;
+      font-weight: 300;
+      max-width: 520px;
+    }
+    .atelier-hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 4px;
+      flex-wrap: wrap;
+    }
+    .atelier-btn-primary {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      background: #ffffff;
+      color: var(--teal-deep);
+      padding: 12px 24px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .atelier-btn-primary:hover {
+      background: var(--teal-light);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+    .atelier-btn-ghost {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      background: rgba(255, 255, 255, 0.10);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #ffffff;
+      padding: 11px 22px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .atelier-btn-ghost:hover {
+      background: rgba(255, 255, 255, 0.20);
+      border-color: rgba(255, 255, 255, 0.45);
+      transform: translateY(-1px);
+    }
+
+    /* Right: Curated Silhouette Rail */
+    .atelier-rail {
+      display: grid;
+      grid-template-rows: repeat(3, 1fr);
+      gap: 12px;
+      height: 100%;
+    }
+    .atelier-sub-card {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      background: rgba(14, 32, 34, 0.72);
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      text-decoration: none;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+    .atelier-sub-card:hover {
+      background: rgba(20, 48, 50, 0.9);
+      border-color: rgba(152, 213, 214, 0.45);
+      transform: translateX(4px);
+    }
+    .atelier-sub-thumb-wrap {
+      position: relative;
+      overflow: hidden;
+      background: #081213;
+    }
+    .atelier-sub-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .atelier-sub-card:hover .atelier-sub-thumb {
+      transform: scale(1.08);
+    }
+    .atelier-sub-body {
+      padding: 16px 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+    }
+    .atelier-sub-tag {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--teal-light);
+    }
+    .atelier-sub-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(17px, 1.4vw, 20px);
+      font-weight: 700;
+      color: #ffffff;
+      margin: 0;
+      line-height: 1.2;
+    }
+    .atelier-sub-desc {
+      font-size: 12.5px;
+      color: rgba(255, 255, 255, 0.68);
+      margin: 0;
+      font-weight: 300;
+      line-height: 1.45;
+    }
+    .atelier-sub-action {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 8.5px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin-top: 4px;
+      opacity: 0.8;
+      transition: opacity 0.2s, color 0.2s;
+    }
+    .atelier-sub-card:hover .atelier-sub-action {
+      opacity: 1;
+      color: var(--teal-light);
+    }
 
     body.page-home .collections-section {
       height: 100vh; overflow: hidden;
@@ -1097,27 +1327,23 @@
 
     /* ── SECTION ENTRANCE ANIMATIONS (triggered by .in-view on snap enter) ── */
 
-    /* Collections: header slides down, cards scale in staggered */
-    body.page-home .collections-header {
+    /* Atelier: header slides down, stage fades up smoothly */
+    body.page-home .atelier-header {
       opacity: 0;
       transform: translateY(-14px);
       transition: opacity .5s cubic-bezier(.16,1,.3,1), transform .5s cubic-bezier(.16,1,.3,1);
     }
-    body.page-home .collections-section.in-view .collections-header {
+    body.page-home .collections-section.in-view .atelier-header {
       opacity: 1; transform: none;
     }
-    body.page-home .coll-card {
+    body.page-home .atelier-stage {
       opacity: 0;
-      transform: scale(.97) translateY(8px);
-      transition: opacity .65s cubic-bezier(.16,1,.3,1), transform .65s cubic-bezier(.16,1,.3,1),
-                  background .35s ease;
+      transform: translateY(12px);
+      transition: opacity .65s cubic-bezier(.16,1,.3,1) .1s, transform .65s cubic-bezier(.16,1,.3,1) .1s;
     }
-    body.page-home .collections-section.in-view .coll-card { opacity: 1; transform: scale(1); }
-    body.page-home .collections-section.in-view .coll-card:nth-child(1) { transition-delay: 60ms; }
-    body.page-home .collections-section.in-view .coll-grid-right .coll-card:nth-child(1) { transition-delay: 100ms; }
-    body.page-home .collections-section.in-view .coll-grid-right .coll-card:nth-child(2) { transition-delay: 180ms; }
-    body.page-home .collections-section.in-view .coll-grid-right .coll-card:nth-child(3) { transition-delay: 260ms; }
-    body.page-home .collections-section.in-view .coll-grid-right .coll-card:nth-child(4) { transition-delay: 340ms; }
+    body.page-home .collections-section.in-view .atelier-stage {
+      opacity: 1; transform: none;
+    }
 
     /* Brides marquee: header fades up */
     body.page-home .brides-marquee-header {
@@ -1150,8 +1376,8 @@
 
     /* Mobile: reset all entrance animations — snap is disabled, sections in normal flow */
     @media (max-width: 768px) {
-      body.page-home .collections-header,
-      body.page-home .coll-card,
+      body.page-home .atelier-header,
+      body.page-home .atelier-stage,
       body.page-home .brides-marquee-header,
       body.page-home .cta-section h2,
       body.page-home .cta-section p,
@@ -1589,20 +1815,6 @@
     .exp-step:hover .exp-num { color: rgba(152,213,214,.22); }
     .exp-name { font-size: clamp(18px, 2vw, 26px); }
 
-    /* ── Collections: featured card larger title ─────────── */
-    .coll-card--featured .coll-name {
-      font-size: clamp(50px, 6vw, 84px);
-      line-height: .92;
-      letter-spacing: -.046em;
-    }
-    .coll-name--sm {
-      font-size: clamp(24px, 2.8vw, 38px);
-      letter-spacing: -.03em;
-    }
-    .coll-card:hover .coll-overlay {
-      background: linear-gradient(to top, rgba(0,0,0,.92) 0%, rgba(0,0,0,.26) 42%, rgba(0,0,0,.04) 100%);
-    }
-
     /* ── Designers: teal num + gradient accent bar + scale ── */
     .designer-num { color: var(--teal-deep); letter-spacing: .30em; }
     .designers-title {
@@ -1727,68 +1939,257 @@
   </div>
 </section>
 
-<!-- ── COLLECTIONS GRID ── -->
+<!-- ── INTERACTIVE COLLECTION ATELIER ── -->
 <section class="collections-section snap-section">
-  <div class="collections-header">
-    <div class="collections-header-left">
-      <div class="eyebrow">Collections</div>
+  <div class="atelier-header">
+    <div class="atelier-header-left">
+      <div class="eyebrow">Interactive Atelier</div>
       <h2>Shop by <em>Category</em></h2>
     </div>
-    <a href="bridal-catalog.html" class="collections-header-cta">View All</a>
+    <div class="atelier-segmented-bar" role="tablist" aria-label="Shop Categories">
+      <button type="button" class="atelier-tab-btn active" role="tab" aria-selected="true" aria-controls="atelier-bridal" onclick="switchAtelierTab('atelier-bridal', this)">Bridal Gowns (600+)</button>
+      <button type="button" class="atelier-tab-btn" role="tab" aria-selected="false" aria-controls="atelier-mothers" onclick="switchAtelierTab('atelier-mothers', this)">Mothers &amp; Evening</button>
+      <button type="button" class="atelier-tab-btn" role="tab" aria-selected="false" aria-controls="atelier-prom-hoco" onclick="switchAtelierTab('atelier-prom-hoco', this)">Prom &amp; Homecoming</button>
+      <button type="button" class="atelier-tab-btn" role="tab" aria-selected="false" aria-controls="atelier-tuxedos" onclick="switchAtelierTab('atelier-tuxedos', this)">Tuxedos &amp; Menswear</button>
+    </div>
   </div>
-  <div class="collections-grid">
 
-    <!-- Featured: Bridal (tall left) -->
-    <a href="bridal.html" class="coll-card coll-card--featured">
-      <div class="coll-bg" style="background-image:url('images/bridal/Bridal-hero.webp')"></div>
-      <div class="coll-overlay"></div>
-      <div class="coll-content">
-        <div class="coll-eyebrow">Wedding Gowns · 2026</div>
-        <div class="coll-name">Bridal</div>
-        <div class="coll-cta">Shop Gowns</div>
+  <div class="atelier-stage">
+    <!-- PANEL 1: BRIDAL GOWNS -->
+    <div class="atelier-panel active" id="atelier-bridal" role="tabpanel">
+      <div class="atelier-hero-card">
+        <div class="atelier-hero-bg" style="background-image:url('images/bridal/Bridal-hero.webp')"></div>
+        <div class="atelier-hero-overlay"></div>
+        <div class="atelier-hero-content">
+          <div class="atelier-meta-pills">
+            <span class="atelier-meta-pill">Sizes 00–34 In-Store</span>
+            <span class="atelier-meta-pill">$1,200 – $4,500</span>
+            <span class="atelier-meta-pill">Exclusive Peoria Retailer</span>
+          </div>
+          <h3 class="atelier-hero-title">The Bridal Atelier</h3>
+          <p class="atelier-hero-desc">Over 600 sample gowns from premier global designers including Maggie Sottero, Essense of Australia, and Rebecca Ingram. Tailored in private luxury suites.</p>
+          <div class="atelier-hero-actions">
+            <a href="bridal-catalog.html" class="atelier-btn-primary">Browse All 600+ Gowns</a>
+            <a href="appointments.html" class="atelier-btn-ghost">Book Private Suite</a>
+          </div>
+        </div>
       </div>
-    </a>
 
-    <!-- Right 2x2 grid -->
-    <div class="coll-grid-right">
-      <a href="prom.html" class="coll-card">
-        <div class="coll-bg" style="background-image:url('images/real/prom/instagram/04-ig.webp')"></div>
-        <div class="coll-overlay"></div>
-        <div class="coll-content">
-          <div class="coll-eyebrow">Spring 2026</div>
-          <div class="coll-name coll-name--sm">Prom</div>
-          <div class="coll-cta">Explore</div>
-        </div>
-      </a>
-      <a href="hoco.html" class="coll-card">
-        <div class="coll-bg" style="background-image:url('images/real/hoco/03-88900.webp')"></div>
-        <div class="coll-overlay"></div>
-        <div class="coll-content">
-          <div class="coll-eyebrow">Fall 2026</div>
-          <div class="coll-name coll-name--sm">HOCO</div>
-          <div class="coll-cta">Explore</div>
-        </div>
-      </a>
-      <a href="mothers.html" class="coll-card">
-        <div class="coll-bg" style="background-image:url('images/real/brides/mothers-hero.webp')"></div>
-        <div class="coll-overlay"></div>
-        <div class="coll-content">
-          <div class="coll-eyebrow">MOB &amp; MOG</div>
-          <div class="coll-name coll-name--sm">Mothers</div>
-          <div class="coll-cta">Explore</div>
-        </div>
-      </a>
-      <a href="tuxedos.html" class="coll-card">
-        <div class="coll-bg" style="background-image:url('images/real/tuxedos/tux-1.webp')"></div>
-        <div class="coll-overlay"></div>
-        <div class="coll-content">
-          <div class="coll-eyebrow">For the Groom</div>
-          <div class="coll-name coll-name--sm">Tuxedos</div>
-          <div class="coll-cta">Explore</div>
-        </div>
-      </a>
+      <div class="atelier-rail">
+        <a href="bridal-catalog.html" class="atelier-sub-card">
+          <div class="atelier-sub-thumb-wrap">
+            <img class="atelier-sub-thumb" src="images/real/bridal/04-alby.webp" alt="Clean Crepe and Architectural Satin Bridal Gown" loading="lazy">
+          </div>
+          <div class="atelier-sub-body">
+            <span class="atelier-sub-tag">Modern Minimalist</span>
+            <h4 class="atelier-sub-title">Clean Crepe &amp; Satin</h4>
+            <p class="atelier-sub-desc">Architectural necklines, liquid stretch crepe, and button-down trains.</p>
+            <span class="atelier-sub-action">Explore Silhouettes</span>
+          </div>
+        </a>
+
+        <a href="bridal-catalog.html" class="atelier-sub-card">
+          <div class="atelier-sub-thumb-wrap">
+            <img class="atelier-sub-thumb" src="images/real/bridal/02-norah.webp" alt="Botanical Lace and Flowing A-Line Gown" loading="lazy">
+          </div>
+          <div class="atelier-sub-body">
+            <span class="atelier-sub-tag">Romantic &amp; Whimsical</span>
+            <h4 class="atelier-sub-title">Botanical Lace &amp; A-Line</h4>
+            <p class="atelier-sub-desc">Dimensional floral appliqués, illusion bodices, and airy sparkle tulle.</p>
+            <span class="atelier-sub-action">Explore Silhouettes</span>
+          </div>
+        </a>
+
+        <a href="bridal-catalog.html" class="atelier-sub-card">
+          <div class="atelier-sub-thumb-wrap">
+            <img class="atelier-sub-thumb" src="images/real/bridal/11-antonella.webp" alt="Corseted Couture and Beaded Ballgown" loading="lazy">
+          </div>
+          <div class="atelier-sub-body">
+            <span class="atelier-sub-tag">Couture Glamour</span>
+            <h4 class="atelier-sub-title">Corset &amp; Beaded Ballgowns</h4>
+            <p class="atelier-sub-desc">Exposed boning, hand-sewn crystal embroidery, and showstopping skirts.</p>
+            <span class="atelier-sub-action">Explore Silhouettes</span>
+          </div>
+        </a>
+      </div>
     </div>
 
+    <!-- PANEL 2: MOTHERS & EVENING -->
+    <div class="atelier-panel" id="atelier-mothers" role="tabpanel">
+      <div class="atelier-hero-card">
+        <div class="atelier-hero-bg" style="background-image:url('images/real/brides/mothers-hero.webp')"></div>
+        <div class="atelier-hero-overlay"></div>
+        <div class="atelier-hero-content">
+          <div class="atelier-meta-pills">
+            <span class="atelier-meta-pill">Sizes 2–28 In-Store</span>
+            <span class="atelier-meta-pill">Mother of the Bride &amp; Groom</span>
+            <span class="atelier-meta-pill">Over 200 Styles</span>
+          </div>
+          <h3 class="atelier-hero-title">Mothers &amp; Eveningwear</h3>
+          <p class="atelier-hero-desc">Refined, flattering silhouettes designed for effortless confidence. Dedicated stylists who understand venue aesthetics, color harmony, and personalized comfort.</p>
+          <div class="atelier-hero-actions">
+            <a href="mothers.html" class="atelier-btn-primary">View Mother of the Bride</a>
+            <a href="appointments.html" class="atelier-btn-ghost">Book Mother's Fitting</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="atelier-rail">
+        <a href="mothers.html" class="atelier-sub-card">
+          <div class="atelier-sub-thumb-wrap">
+            <img class="atelier-sub-thumb" src="images/real/mothers/01-3200.webp" alt="Chiffon and Crepe Column Mother of the Bride Gown" loading="lazy">
+          </div>
+          <div class="atelier-sub-body">
+            <span class="atelier-sub-tag">Timeless Sophistication</span>
+            <h4 class="atelier-sub-title">Chiffon &amp; Crepe Columns</h4>
+            <p class="atelier-sub-desc">Clean vertical draping with supportive cap sleeves and boatneck lines.</p>
+            <span class="atelier-sub-action">View Styles</span>
+          </div>
+        </a>
+
+        <a href="mothers.html" class="atelier-sub-card">
+          <div class="atelier-sub-thumb-wrap">
+            <img class="atelier-sub-thumb" src="images/real/mothers/02-3201.webp" alt="Embroidered Lace and Soft A-Line Gown" loading="lazy">
+          </div>
+          <div class="atelier-sub-body">
+            <span class="atelier-sub-tag">Delicate Elegance</span>
+            <h4 class="atelier-sub-title">Embroidered Lace &amp; A-Line</h4>
+            <p class="atelier-sub-desc">Hand-beaded lace bodices paired with forgiving, soft flowing skirts.</p>
+            <span class="atelier-sub-action">View Styles</span>
+          </div>
+        </a>
+
+        <a href="mothers.html" class="atelier-sub-card">
+          <div class="atelier-sub-thumb-wrap">
+            <img class="atelier-sub-thumb" src="images/real/mothers/03-3202.webp" alt="Metallic Brocade and Jacquard Evening Gown" loading="lazy">
+          </div>
+          <div class="atelier-sub-body">
+            <span class="atelier-sub-tag">Modern Statement</span>
+            <h4 class="atelier-sub-title">Metallic &amp; Jacquard Gowns</h4>
+            <p class="atelier-sub-desc">Rich textures, architectural portrait collars, and jewel-tone fabrics.</p>
+            <span class="atelier-sub-action">View Styles</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- PANEL 3: PROM & HOMECOMING -->
+    <div class="atelier-panel" id="atelier-prom-hoco" role="tabpanel">
+      <div class="atelier-hero-card">
+        <div class="atelier-hero-bg" style="background-image:url('images/real/prom/instagram/04-ig.webp')"></div>
+        <div class="atelier-hero-overlay"></div>
+        <div class="atelier-hero-content">
+          <div class="atelier-meta-pills">
+            <span class="atelier-meta-pill">1 Dress Per Style Per School</span>
+            <span class="atelier-meta-pill">Central Illinois' Largest Prom</span>
+            <span class="atelier-meta-pill">Sizes 000–30</span>
+          </div>
+          <h3 class="atelier-hero-title">Prom &amp; Homecoming Atelier</h3>
+          <p class="atelier-hero-desc">We protect your look. With our strict school registry, no two girls from the same school will have the same gown from Cloud Nine. Top designer exclusives.</p>
+          <div class="atelier-hero-actions">
+            <a href="prom-catalog.html" class="atelier-btn-primary">Browse Prom 2026</a>
+            <a href="hoco-catalog.html" class="atelier-btn-ghost">Shop Homecoming</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="atelier-rail">
+        <a href="prom-catalog.html" class="atelier-sub-card">
+          <div class="atelier-sub-thumb-wrap">
+            <img class="atelier-sub-thumb" src="images/real/prom/01-11961.webp" alt="Liquid Satin and Corset Prom Gown" loading="lazy">
+          </div>
+          <div class="atelier-sub-body">
+            <span class="atelier-sub-tag">Red Carpet Glamour</span>
+            <h4 class="atelier-sub-title">Liquid Satin &amp; Corsets</h4>
+            <p class="atelier-sub-desc">High slit details, snatched lace-up corsets, and glossy metallic sheens.</p>
+            <span class="atelier-sub-action">Explore Prom</span>
+          </div>
+        </a>
+
+        <a href="hoco-catalog.html" class="atelier-sub-card">
+          <div class="atelier-sub-thumb-wrap">
+            <img class="atelier-sub-thumb" src="images/real/hoco/03-88900.webp" alt="Sequin Minis and Fit-and-Flare Cocktail Dress" loading="lazy">
+          </div>
+          <div class="atelier-sub-body">
+            <span class="atelier-sub-tag">Party &amp; Homecoming</span>
+            <h4 class="atelier-sub-title">Sequin Minis &amp; Flare</h4>
+            <p class="atelier-sub-desc">All-over iridescent sparkle, feather hems, and chic cocktail silhouettes.</p>
+            <span class="atelier-sub-action">Explore HOCO</span>
+          </div>
+        </a>
+
+        <a href="prom-catalog.html" class="atelier-sub-card">
+          <div class="atelier-sub-thumb-wrap">
+            <img class="atelier-sub-thumb" src="images/real/prom/02-12012.webp" alt="Tiered Ruffles and Fairytale Ballgowns" loading="lazy">
+          </div>
+          <div class="atelier-sub-body">
+            <span class="atelier-sub-tag">Drama &amp; Volume</span>
+            <h4 class="atelier-sub-title">Tiered Ruffles &amp; Ballgowns</h4>
+            <p class="atelier-sub-desc">Dramatic multi-tier tulle skirts with beaded glitter bodice embroidery.</p>
+            <span class="atelier-sub-action">Explore Prom</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- PANEL 4: TUXEDOS & MENSWEAR -->
+    <div class="atelier-panel" id="atelier-tuxedos" role="tabpanel">
+      <div class="atelier-hero-card">
+        <div class="atelier-hero-bg" style="background-image:url('images/real/tuxedos/tux-1.webp')"></div>
+        <div class="atelier-hero-overlay"></div>
+        <div class="atelier-hero-content">
+          <div class="atelier-meta-pills">
+            <span class="atelier-meta-pill">Rentals &amp; Purchases</span>
+            <span class="atelier-meta-pill">Direct Groom Color Matching</span>
+            <span class="atelier-meta-pill">Slim &amp; Modern Fits</span>
+          </div>
+          <h3 class="atelier-hero-title">Tuxedos &amp; Menswear</h3>
+          <p class="atelier-hero-desc">Precision fittings and seamless wedding party coordination. Guaranteed color matching to your bridal and bridesmaid palette with over 50 suit and tuxedo styles.</p>
+          <div class="atelier-hero-actions">
+            <a href="tuxedos.html" class="atelier-btn-primary">Explore Menswear</a>
+            <a href="appointments.html" class="atelier-btn-ghost">Book Groom Fitting</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="atelier-rail">
+        <a href="tuxedos.html" class="atelier-sub-card">
+          <div class="atelier-sub-thumb-wrap">
+            <img class="atelier-sub-thumb" src="images/real/tuxedos/tux-2.webp" alt="Ultra Slim Black Tuxedo with Satin Shawl Lapel" loading="lazy">
+          </div>
+          <div class="atelier-sub-body">
+            <span class="atelier-sub-tag">Black Tie Classic</span>
+            <h4 class="atelier-sub-title">Ultra Slim Black Tuxedo</h4>
+            <p class="atelier-sub-desc">Satin peak and shawl lapels in tailored athletic and modern cuts.</p>
+            <span class="atelier-sub-action">View Suits</span>
+          </div>
+        </a>
+
+        <a href="tuxedos.html" class="atelier-sub-card">
+          <div class="atelier-sub-thumb-wrap">
+            <img class="atelier-sub-thumb" src="images/tuxedos/01-groom-tux.jpg" alt="Navy, Slate and Tan Wedding Suits" loading="lazy">
+          </div>
+          <div class="atelier-sub-body">
+            <span class="atelier-sub-tag">Modern Trending</span>
+            <h4 class="atelier-sub-title">Navy, Slate &amp; Tan Suits</h4>
+            <p class="atelier-sub-desc">Lightweight breathable stretch fabrics for outdoor and rustic weddings.</p>
+            <span class="atelier-sub-action">View Suits</span>
+          </div>
+        </a>
+
+        <a href="tuxedos.html" class="atelier-sub-card">
+          <div class="atelier-sub-thumb-wrap">
+            <img class="atelier-sub-thumb" src="images/tuxedos/02-suit-detail.jpg" alt="Shirts, Bowties, Vests and Accessories" loading="lazy">
+          </div>
+          <div class="atelier-sub-body">
+            <span class="atelier-sub-tag">Complete Coordination</span>
+            <h4 class="atelier-sub-title">Shirts, Bowties &amp; Vests</h4>
+            <p class="atelier-sub-desc">Exact color swatch matching to bridal and bridesmaid parties.</p>
+            <span class="atelier-sub-action">View Suits</span>
+          </div>
+        </a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -2183,7 +2584,40 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
+
+  // Atelier tab keyboard navigation
+  var atelierTabs = document.querySelectorAll('.atelier-tab-btn');
+  atelierTabs.forEach(function(tab, index) {
+    tab.addEventListener('keydown', function(e) {
+      var targetTab = null;
+      if (e.key === 'ArrowRight') {
+        targetTab = atelierTabs[(index + 1) % atelierTabs.length];
+      } else if (e.key === 'ArrowLeft') {
+        targetTab = atelierTabs[(index - 1 + atelierTabs.length) % atelierTabs.length];
+      }
+      if (targetTab) {
+        e.preventDefault();
+        targetTab.focus();
+        targetTab.click();
+      }
+    });
+  });
 });
+
+window.switchAtelierTab = function(tabId, btn) {
+  var panels = document.querySelectorAll('.atelier-panel');
+  var buttons = document.querySelectorAll('.atelier-tab-btn');
+  
+  panels.forEach(function(panel) {
+    panel.classList.toggle('active', panel.id === tabId);
+  });
+  
+  buttons.forEach(function(b) {
+    var isActive = (b === btn);
+    b.classList.toggle('active', isActive);
+    b.setAttribute('aria-selected', isActive ? 'true' : 'false');
+  });
+};
 </script>
 
 <!-- ── LOADER DISMISS ── -->
@@ -2352,7 +2786,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <footer id="site-footer"></footer>
-<script src="components.js?v=20260908f" defer></script>
+<script src="components.js?v=20260908g" defer></script>
 </main>
 </body>
 </html>
