@@ -1,34 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Bridal Style Quiz — Cloud Nine Bridal Boutique</title>
-  <meta name="description" content="Not sure where to start? Take our 2-minute style quiz to find your perfect wedding gown silhouette at Cloud Nine Bridal Boutique in Peoria, IL."/>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bridal Style Quiz — Find Your Dream Silhouette | Cloud Nine Bridal Boutique</title>
+  <meta name="description" content="Take our interactive 2-minute visual style quiz to discover your bridal persona and explore a personalized curated fitting rack at Cloud Nine Bridal Boutique in Peoria, IL."/>
   <meta name="robots" content="index, follow"/>
   <link rel="canonical" href="https://cloudninebridal.com/quiz.html"/>
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="https://cloudninebridal.com/quiz.html"/>
   <meta property="og:title" content="Bridal Style Quiz — Cloud Nine Bridal Boutique"/>
-  <meta property="og:description" content="Not sure where to start? Take our 2-minute style quiz to find your perfect wedding gown silhouette at Cloud Nine Bridal Boutique in Peoria, IL."/>
-  <meta property="og:image" content="https://cloudninebridal.com/images/real/bridal/01-adina.webp"/>
+  <meta property="og:description" content="Discover your bridal persona and get a personalized 5-gown curated fitting rack in under 2 minutes."/>
+  <meta property="og:image" content="https://cloudninebridal.com/images/bridal/05-romantic-aline.jpg"/>
   <meta property="og:site_name" content="Cloud Nine Bridal Boutique"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="Bridal Style Quiz — Cloud Nine Bridal Boutique"/>
-  <meta name="twitter:description" content="Find your perfect bridal style in 2 minutes with the Cloud Nine Bridal style quiz."/>
-  <meta name="twitter:image" content="https://cloudninebridal.com/images/real/bridal/01-adina.webp"/>
+  <meta name="twitter:description" content="Discover your bridal persona and personalized gown fitting rack in 2 minutes."/>
+  <meta name="twitter:image" content="https://cloudninebridal.com/images/bridal/05-romantic-aline.jpg"/>
   <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
-    <!-- Fonts: preconnect first, then non-blocking stylesheet -->
+  <!-- Fonts: preconnect first, then non-blocking stylesheet -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Josefin+Sans:wght@100;200;300;400&family=Lato:wght@300;400;700;900&display=swap"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&display=swap"/>
   <link rel="stylesheet" href="shared.css"/>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
     "name": "Bridal Style Quiz",
-    "description": "Take our 2-minute bridal style quiz to find your ideal wedding gown silhouette at Cloud Nine Bridal Boutique in Peoria, IL.",
+    "description": "Interactive visual bridal style quiz to discover your wedding gown silhouette and tailored fitting rack at Cloud Nine Bridal Boutique in Peoria, IL.",
     "url": "https://cloudninebridal.com/quiz.html",
     "breadcrumb": {
       "@type": "BreadcrumbList",
@@ -40,38 +40,51 @@
   }
   </script>
 <style>
-/* ── QUIZ SHELL — light, airy, brand teal ── */
+/* ── QUIZ SHELL & PROGRESS ── */
 .quiz-shell {
   min-height: 100vh;
-  background: var(--teal-xlight);
+  background: linear-gradient(180deg, var(--teal-xlight) 0%, #f7f3ef 100%);
   color: var(--text);
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  position: relative;
 }
 
-/* ── PROGRESS ── */
 .qprogress {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 300;
-  height: 3px;
-  background: var(--border);
+  height: 4px;
+  background: rgba(28, 78, 80, 0.08);
 }
 .qprogress-fill {
   height: 100%;
-  background: var(--teal-deep);
-  transition: width .6s cubic-bezier(.16,1,.3,1);
+  background: linear-gradient(90deg, var(--teal-mid), var(--teal-deep));
+  transition: width .5s cubic-bezier(0.32, 0.72, 0, 1);
   width: 0%;
 }
-.qprogress-label {
+.qprogress-header {
   position: fixed;
   top: 92px; right: 32px;
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 9px; font-weight: 300; letter-spacing: .28em;
-  text-transform: uppercase;
-  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  gap: 12px;
   z-index: 200;
+}
+.qprogress-badge {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--teal-deep);
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 6px 14px;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 10px rgba(28, 78, 80, 0.04);
 }
 
 /* ── SLIDE CONTAINER ── */
@@ -80,9 +93,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 120px 64px 120px;
+  padding: 120px 48px 140px;
   position: relative;
-  overflow: hidden;
+  min-height: calc(100vh - 120px);
 }
 .qslide {
   position: absolute;
@@ -90,13 +103,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 120px 64px 120px;
+  padding: 120px 48px 140px;
   opacity: 0;
-  transform: translateX(60px);
-  transition:
-    opacity .55s cubic-bezier(.16,1,.3,1),
-    transform .55s cubic-bezier(.16,1,.3,1);
+  transform: translateX(48px);
+  transition: opacity .45s cubic-bezier(0.32, 0.72, 0, 1),
+              transform .45s cubic-bezier(0.32, 0.72, 0, 1);
   pointer-events: none;
+  overflow-y: auto;
 }
 .qslide.active {
   opacity: 1;
@@ -105,813 +118,1054 @@
 }
 .qslide.exit-left {
   opacity: 0;
-  transform: translateX(-60px);
+  transform: translateX(-48px);
 }
 .qslide-inner {
   width: 100%;
-  max-width: 900px;
+  max-width: 1080px;
+  margin: 0 auto;
 }
 
-/* ── QUESTION TEXT ── */
+/* ── QUESTION HEADER ── */
 .qslide-eyebrow {
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 9px; font-weight: 300; letter-spacing: .32em;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .32em;
   text-transform: uppercase;
   color: var(--teal-deep);
-  margin-bottom: 24px;
-  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
 }
 .qslide-eyebrow::before {
   content: '';
-  display: block; width: 32px; height: 1px;
+  display: inline-block;
+  width: 24px;
+  height: 1px;
   background: var(--teal-deep);
 }
 .qslide-title {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(32px, 4.5vw, 62px);
+  font-size: clamp(30px, 4vw, 52px);
   font-weight: 700;
-  line-height: .95;
-  letter-spacing: -.03em;
+  line-height: 1.05;
+  letter-spacing: -.02em;
   color: var(--text);
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
-.qslide-title em { font-style: italic; color: var(--teal-deep); }
+.qslide-title em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--teal-deep);
+}
 .qslide-sub {
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 11px; font-weight: 300; letter-spacing: .12em;
+  font-size: 13.5px;
+  font-weight: 300;
   color: var(--text-muted);
-  text-transform: uppercase;
-  margin-bottom: 48px;
+  line-height: 1.7;
+  margin-bottom: 36px;
 }
 
-/* ── OPTIONS GRID ── */
-.qoptions {
+/* ── VISUAL OPTION CARDS (DOUBLE-BEZEL) ── */
+.qoptions-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
 }
-.qoption {
-  background: #fff;
-  border: 1px solid var(--border);
-  padding: 30px 28px 28px;
-  cursor: pointer;
+.qoption-card {
   position: relative;
-  transition:
-    border-color .25s,
-    background .25s,
-    box-shadow .25s,
-    transform .25s cubic-bezier(.16,1,.3,1);
+  background: rgba(28, 78, 80, 0.03);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 6px;
+  cursor: pointer;
   user-select: none;
+  transition: all 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+  display: flex;
+  flex-direction: column;
 }
-.qoption:hover {
+.qoption-card-inner {
+  background: #ffffff;
+  border-radius: 13px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 18px rgba(28, 78, 80, 0.04);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: all 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.qoption-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--teal-mid);
+  box-shadow: 0 10px 30px rgba(28, 78, 80, 0.09);
+}
+.qoption-card.selected {
   border-color: var(--teal-deep);
-  box-shadow: 0 4px 24px rgba(28,78,80,.08);
+  background: rgba(28, 78, 80, 0.09);
+  box-shadow: 0 8px 28px rgba(28, 78, 80, 0.16);
   transform: translateY(-2px);
 }
-.qoption.selected {
+.qoption-card.selected .qoption-card-inner {
   border-color: var(--teal-deep);
-  background: var(--teal-xlight);
-  box-shadow: 0 4px 24px rgba(28,78,80,.10);
+  background: #fdfefe;
+}
+
+.qoption-img-wrap {
+  position: relative;
+  height: 160px;
+  overflow: hidden;
+  background: #111;
+}
+.qoption-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.6s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.qoption-card:hover .qoption-img {
+  transform: scale(1.06);
+}
+
+.qoption-check-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1.5px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: transparent;
+  transition: all 0.25s cubic-bezier(0.32, 0.72, 0, 1);
+  z-index: 3;
+}
+.qoption-card.selected .qoption-check-badge {
+  background: var(--teal-deep);
+  border-color: var(--teal-deep);
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+.qoption-body {
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 .qoption-num {
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 9px; font-weight: 300; letter-spacing: .22em;
-  color: var(--text-light);
-  margin-bottom: 18px;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: .22em;
   text-transform: uppercase;
+  color: var(--text-light);
+  margin-bottom: 6px;
 }
-.qoption.selected .qoption-num { color: var(--teal-deep); }
+.qoption-card.selected .qoption-num {
+  color: var(--teal-deep);
+}
 .qoption-title {
   font-family: 'Playfair Display', serif;
-  font-size: 19px; font-weight: 700;
+  font-size: 17px;
+  font-weight: 700;
   color: var(--text);
-  line-height: 1.1;
-  margin-bottom: 8px;
-  letter-spacing: -.01em;
+  line-height: 1.2;
+  margin-bottom: 6px;
 }
-.qoption.selected .qoption-title { color: var(--teal-deep); }
 .qoption-desc {
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 10px; font-weight: 300; letter-spacing: .1em;
+  font-size: 11.5px;
+  font-weight: 300;
+  line-height: 1.6;
   color: var(--text-muted);
-  text-transform: uppercase;
-  line-height: 1.7;
 }
-.qoption-check {
-  position: absolute;
-  top: 18px; right: 18px;
-  width: 22px; height: 22px;
-  border: 1.5px solid var(--border-mid);
-  border-radius: 0;
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0;
-  transform: scale(.6);
-  transition: opacity .25s, transform .3s cubic-bezier(.16,1,.3,1), border-color .25s, background .25s;
-}
-.qoption.selected .qoption-check {
-  opacity: 1;
-  transform: scale(1);
-  background: var(--teal-deep);
-  border-color: var(--teal-deep);
-}
-.qoption-check svg { color: #fff; }
-
-/* ── BOTTOM NAV ── */
-.qnav {
-  position: fixed;
-  bottom: 0; left: 0; right: 0;
-  display: flex; align-items: center; justify-content: center;
-  padding: 20px 64px 32px;
-  background: linear-gradient(to top, var(--teal-xlight) 55%, transparent);
-  z-index: 100;
-  gap: 0;
-}
-/* Back sits absolutely on the left so Next is always centered */
-.qnav-back {
-  position: absolute;
-  left: 64px;
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 10px; font-weight: 300; letter-spacing: .22em;
-  text-transform: uppercase;
-  color: var(--text-light);
-  background: none; border: none; cursor: pointer;
-  display: flex; align-items: center; gap: 10px;
-  transition: color .2s;
-  padding: 0;
-}
-.qnav-back:hover { color: var(--teal-deep); }
-.qnav-back svg { transition: transform .2s; }
-.qnav-back:hover svg { transform: translateX(-3px); }
-.qnav-back.hidden { visibility: hidden; }
-
-/* Begin / Continue / See My Style — centered, large */
-.qnav-next {
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 11px; font-weight: 300; letter-spacing: .26em;
-  text-transform: uppercase;
-  color: #fff;
-  background: var(--teal-deep);
-  border: none; cursor: pointer;
-  display: inline-flex; align-items: center; gap: 14px;
-  padding: 18px 56px;
-  transition: background .25s, opacity .2s, transform .2s;
-  min-width: 240px;
-  justify-content: center;
-}
-.qnav-next:disabled {
-  background: var(--border);
-  color: var(--text-light);
-  cursor: not-allowed;
-  transform: none !important;
-}
-.qnav-next:not(:disabled):hover {
-  background: var(--teal-darker);
-  transform: translateY(-1px);
-}
-.qnav-next svg { transition: transform .2s; }
-.qnav-next:not(:disabled):hover svg { transform: translateX(3px); }
 
 /* ── INTRO SLIDE ── */
 .qslide-intro .qslide-inner {
-  max-width: 860px;
   text-align: center;
+  max-width: 920px;
 }
-.qslide-intro .qslide-title {
-  font-size: clamp(44px, 6.5vw, 86px);
-  margin-bottom: 16px;
-}
-.qslide-intro .qslide-sub { margin-bottom: 0; }
-.intro-preview {
+.intro-gallery {
   display: grid;
-  grid-template-columns: repeat(4,1fr);
-  gap: 8px;
-  margin: 48px 0 52px;
-  height: 420px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin: 40px 0 48px;
 }
-/* Stagger heights for an editorial look */
-.intro-preview-img:nth-child(1),
-.intro-preview-img:nth-child(3) { align-self: start; margin-top: 28px; }
-.intro-preview-img:nth-child(2),
-.intro-preview-img:nth-child(4) { align-self: end; margin-bottom: 28px; }
-.intro-preview-img {
-  overflow: hidden;
+.intro-card {
   position: relative;
-  border-radius: 0;
-  box-shadow: 0 8px 32px rgba(28,78,80,.10);
+  height: 320px;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(28, 78, 80, 0.08);
 }
-.intro-preview-img img {
-  width: 100%; height: 100%;
-  object-fit: cover; object-position: top;
-  transition: transform 8s ease;
+.intro-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 6s ease;
 }
-.intro-preview-img:hover img { transform: scale(1.05); }
-
-/* ── RESULTS ── */
-.qresults {
-  display: none;
-  background: var(--teal-xlight);
-  min-height: 100vh;
-  color: var(--text);
+.intro-card:hover img {
+  transform: scale(1.05);
 }
-.qresults.visible { display: block; }
-
-.qresults-hero {
-  min-height: 55vh;
+.intro-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(13, 46, 48, 0.85) 0%, transparent 60%);
   display: flex;
   align-items: flex-end;
-  padding: 120px 80px 72px;
-  position: relative;
-  overflow: hidden;
-  border-bottom: 1px solid var(--border);
-  background: var(--white);
+  padding: 16px;
 }
-.qresults-hero-bg {
-  position: absolute; inset: 0;
-  background: linear-gradient(135deg, rgba(28,78,80,.05) 0%, transparent 60%);
-}
-.qresults-hero-deco {
-  position: absolute;
-  top: 80px; right: 80px;
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(120px, 18vw, 220px);
-  font-weight: 700;
-  font-style: italic;
-  color: rgba(28,78,80,.04);
-  line-height: 1;
-  pointer-events: none;
-  user-select: none;
-}
-.qresults-eyebrow {
+.intro-card-tag {
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 9px; font-weight: 300; letter-spacing: .36em;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+/* ── BOTTOM NAV CONTROLS ── */
+.qnav-bar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  padding: 18px 48px max(24px, env(safe-area-inset-bottom, 24px));
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 250;
+}
+.qnav-btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: color 0.2s, transform 0.2s;
+}
+.qnav-btn-back:hover {
+  color: var(--teal-deep);
+  transform: translateX(-2px);
+}
+.qnav-btn-back.hidden {
+  visibility: hidden;
+  pointer-events: none;
+}
+.qnav-keyboard-hint {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--text-light);
+}
+
+/* ── RESULTS STYLING ── */
+.qresults {
+  display: none;
+  background: var(--bg);
+  min-height: 100vh;
+}
+.qresults.visible {
+  display: block;
+}
+.qresults-hero {
+  padding: 120px 48px 72px;
+  background: linear-gradient(180deg, var(--teal-xlight) 0%, var(--bg) 100%);
+  border-bottom: 1px solid var(--border);
+}
+.qresults-hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.qresults-persona-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: rgba(28, 78, 80, 0.08);
+  border-radius: 9999px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .24em;
   text-transform: uppercase;
   color: var(--teal-deep);
-  margin-bottom: 28px;
-  display: flex; align-items: center; gap: 16px;
-}
-.qresults-eyebrow::before {
-  content: ''; display: block; width: 40px; height: 1px;
-  background: var(--teal-deep);
+  margin-bottom: 18px;
 }
 .qresults-title {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(44px, 7vw, 96px);
+  font-size: clamp(38px, 5.5vw, 76px);
   font-weight: 700;
-  line-height: .9;
-  letter-spacing: -.04em;
-  max-width: 800px;
+  line-height: 1.02;
+  letter-spacing: -.03em;
   color: var(--text);
+  margin-bottom: 18px;
 }
-.qresults-title em { font-style: italic; color: var(--teal-deep); }
+.qresults-title em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--teal-deep);
+}
 .qresults-desc {
-  font-size: 15px;
-  color: var(--text-muted);
-  max-width: 560px;
-  line-height: 1.9;
-  letter-spacing: .01em;
-  margin-top: 28px;
+  font-size: 16px;
   font-weight: 300;
+  line-height: 1.85;
+  color: var(--text-muted);
+  max-width: 720px;
+  margin-bottom: 36px;
 }
 
-/* Traits */
-.qresults-traits {
+/* Persona Traits Grid */
+.qresults-traits-grid {
   display: grid;
-  grid-template-columns: repeat(4,1fr);
-  border-bottom: 1px solid var(--border);
-  background: #fff;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  max-width: 1200px;
+  margin: 0 auto 64px;
 }
-.qtrait {
-  padding: 48px 40px;
-  border-right: 1px solid var(--border);
+.qtrait-card {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 18px rgba(28, 78, 80, 0.03);
 }
-.qtrait:last-child { border-right: none; }
-.qtrait-label {
+.qtrait-tag {
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 8px; font-weight: 300; letter-spacing: .32em;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: .24em;
   text-transform: uppercase;
-  color: var(--text-light);
-  margin-bottom: 16px;
+  color: var(--teal-deep);
+  margin-bottom: 8px;
 }
-.qtrait-value {
+.qtrait-val {
   font-family: 'Playfair Display', serif;
-  font-size: 22px; font-weight: 700;
+  font-size: 20px;
+  font-weight: 700;
   color: var(--text);
-  line-height: 1.1;
-  letter-spacing: -.01em;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
-.qtrait-desc {
-  font-size: 12px;
-  color: var(--text-muted);
-  line-height: 1.7;
+.qtrait-info {
+  font-size: 12.5px;
   font-weight: 300;
+  line-height: 1.6;
+  color: var(--text-muted);
 }
 
-/* Dress suggestions */
-.qresults-dresses {
-  padding: 80px 80px 64px;
-  background: var(--teal-xlight);
+/* Curated Fitting Rack */
+.qresults-rack-section {
+  padding: 80px 48px;
+  max-width: 1320px;
+  margin: 0 auto;
 }
-.qresults-dresses-header {
+.qresults-rack-header {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
   margin-bottom: 40px;
+  flex-wrap: wrap;
+  gap: 20px;
 }
-.qresults-dresses-label {
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 9px; font-weight: 300; letter-spacing: .32em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 12px;
-}
-.qresults-dresses-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(28px, 3.5vw, 48px);
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -.03em;
-  color: var(--text);
-}
-.qresults-dresses-title em { font-style: italic; color: var(--teal-deep); }
-.qresults-browse {
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 9px; font-weight: 300; letter-spacing: .24em;
-  text-transform: uppercase;
-  color: var(--teal-deep);
-  border-bottom: 1px solid var(--border-mid);
-  padding-bottom: 2px;
-  transition: color .2s, border-color .2s;
-  white-space: nowrap;
-}
-.qresults-browse:hover { color: var(--teal-darker); border-color: var(--teal-deep); }
-
-.qdress-grid {
+.qresults-rack-grid {
   display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 8px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 56px;
 }
-.qdress-card {
-  position: relative;
+.qrack-card {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 0;
   overflow: hidden;
+  box-shadow: 0 6px 24px rgba(28, 78, 80, 0.05);
   cursor: pointer;
-  display: block;
-  box-shadow: 0 4px 20px rgba(28,78,80,.08);
+  transition: all 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+  display: flex;
+  flex-direction: column;
 }
-.qdress-card-img {
+.qrack-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(28, 78, 80, 0.12);
+}
+.qrack-img-wrap {
+  position: relative;
   aspect-ratio: 2/3;
   overflow: hidden;
-  position: relative;
+  background: #ebebeb;
 }
-.qdress-card-img img {
-  width: 100%; height: 100%;
-  object-fit: cover; object-position: top;
-  transition: transform 1.3s cubic-bezier(.16,1,.3,1);
-  display: block;
+.qrack-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.8s cubic-bezier(0.32, 0.72, 0, 1);
 }
-.qdress-card:hover .qdress-card-img img { transform: scale(1.06); }
-.qdress-card-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(28,78,80,.72) 0%, rgba(28,78,80,.2) 30%, transparent 55%);
-  opacity: 0;
-  transition: opacity .7s ease;
+.qrack-card:hover .qrack-img {
+  transform: scale(1.05);
 }
-.qdress-card:hover .qdress-card-overlay { opacity: 1; }
-.qdress-card-info {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  padding: 28px 24px 22px;
-  z-index: 2;
-  transform: translateY(10px);
-  opacity: 0;
-  transition: transform .55s cubic-bezier(.16,1,.3,1), opacity .45s ease;
+.qrack-body {
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
-.qdress-card:hover .qdress-card-info { transform: translateY(0); opacity: 1; }
-.qdress-card-designer {
+.qrack-designer {
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 8px; font-weight: 300; letter-spacing: .28em;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: .24em;
   text-transform: uppercase;
-  color: rgba(255,255,255,.6);
+  color: var(--teal-deep);
   margin-bottom: 6px;
 }
-.qdress-card-name {
+.qrack-name {
   font-family: 'Playfair Display', serif;
-  font-size: 17px; font-weight: 700;
-  color: #fff;
-  line-height: 1.15;
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
 }
-.qdress-card-cta {
+.qrack-style-num {
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 8px; font-weight: 300; letter-spacing: .22em;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .16em;
   text-transform: uppercase;
-  color: rgba(255,255,255,.7);
-  margin-top: 10px;
-  display: inline-block;
-  border-bottom: 1px solid rgba(255,255,255,.3);
-  padding-bottom: 2px;
+  color: var(--text-light);
+  margin-bottom: 12px;
+}
+.qrack-desc {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--text-muted);
+  line-height: 1.7;
+  flex: 1;
+  margin-bottom: 18px;
+}
+.qrack-cta {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--teal-deep);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
-/* Results CTA */
-.qresults-cta {
-  padding: 72px 80px 100px;
-  border-top: 1px solid var(--border);
-  background: var(--white);
+/* Results Action Banner */
+.qresults-banner {
+  background: var(--teal-deep);
+  color: #ffffff;
+  padding: 72px 48px;
+  border-radius: 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 48px;
+  gap: 40px;
   flex-wrap: wrap;
+  margin-top: 40px;
 }
-.qresults-cta-left { max-width: 560px; }
-.qresults-cta-sub {
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 9px; font-weight: 300; letter-spacing: .3em;
-  text-transform: uppercase;
-  color: var(--teal-deep);
-  margin-bottom: 20px;
-}
-.qresults-cta-title {
+.qresults-banner-title {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(28px, 3vw, 44px);
+  font-size: clamp(28px, 3.5vw, 44px);
   font-weight: 700;
-  line-height: 1;
-  letter-spacing: -.03em;
-  color: var(--text);
-  margin-bottom: 20px;
+  line-height: 1.1;
+  color: #ffffff;
+  margin-bottom: 12px;
 }
-.qresults-cta-title em { font-style: italic; color: var(--teal-deep); }
-.qresults-cta-desc {
-  font-size: 14px;
-  color: var(--text-muted);
-  line-height: 1.85;
+.qresults-banner-desc {
+  font-size: 14.5px;
   font-weight: 300;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 580px;
 }
-.qresults-cta-btns {
+.qresults-banner-actions {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
   align-items: flex-end;
 }
-.btn-quiz-primary {
+
+/* Toast notification */
+.quiz-toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: rgba(13, 46, 48, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #ffffff;
+  padding: 12px 24px;
+  border-radius: 9999px;
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 10px; font-weight: 300; letter-spacing: .24em;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .18em;
   text-transform: uppercase;
-  background: var(--teal-deep);
-  color: #fff;
-  padding: 16px 40px;
-  border: none;
-  cursor: pointer;
-  display: inline-flex; align-items: center; gap: 12px;
-  transition: background .25s, transform .2s;
-  white-space: nowrap;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,255,255,0.2);
+  z-index: 500;
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+  pointer-events: none;
 }
-.btn-quiz-primary:hover { background: var(--teal-darker); transform: translateX(2px); }
-.btn-quiz-outline {
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 10px; font-weight: 300; letter-spacing: .24em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  border: 1px solid var(--border);
-  padding: 15px 40px;
-  cursor: pointer;
-  display: inline-flex; align-items: center; gap: 10px;
-  transition: color .2s, border-color .2s;
-  background: none;
-  white-space: nowrap;
+.quiz-toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
 }
-.btn-quiz-outline:hover { color: var(--teal-deep); border-color: var(--teal-deep); }
-.btn-retake-quiz {
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 9px; font-weight: 300; letter-spacing: .22em;
-  text-transform: uppercase;
-  color: var(--text-light);
-  background: none; border: none; cursor: pointer;
-  padding: 0;
-  transition: color .2s;
-  text-align: right;
-}
-.btn-retake-quiz:hover { color: var(--teal-deep); }
 
 /* ── RESPONSIVE ── */
-@media (max-width: 900px) {
-  .qslides-wrap { padding: 100px 28px 110px; }
-  .qslide { padding: 100px 28px 110px; }
-  .qoptions { grid-template-columns: 1fr; gap: 8px; }
-  .qnav { padding: 16px 28px 28px; }
-  .qnav-back { left: 28px; }
-  .qnav-next { padding: 16px 40px; min-width: 180px; }
-  .intro-preview { grid-template-columns: repeat(2,1fr); height: 340px; }
-  .intro-preview-img:nth-child(1),.intro-preview-img:nth-child(3) { margin-top: 16px; }
-  .intro-preview-img:nth-child(2),.intro-preview-img:nth-child(4) { margin-bottom: 16px; }
-  .qresults-hero { padding: 100px 32px 56px; }
-  .qresults-hero-deco { display: none; }
-  .qresults-traits { grid-template-columns: repeat(2,1fr); }
-  .qtrait { padding: 32px 24px; }
-  .qtrait:nth-child(2) { border-right: none; }
-  .qresults-dresses { padding: 56px 28px 48px; }
-  .qresults-dresses-header { flex-direction: column; align-items: flex-start; gap: 16px; }
-  .qdress-grid { grid-template-columns: 1fr; gap: 8px; }
-  .qresults-cta { padding: 56px 28px 80px; flex-direction: column; align-items: flex-start; }
-  .qresults-cta-btns { align-items: flex-start; }
+@media (max-width: 1024px) {
+  .qoptions-grid { grid-template-columns: repeat(2, 1fr); }
+  .qresults-traits-grid { grid-template-columns: repeat(2, 1fr); }
+  .qresults-rack-grid { grid-template-columns: repeat(2, 1fr); }
 }
-@media (max-width: 540px) {
-  .qresults-traits { grid-template-columns: 1fr; }
-  .qtrait { border-right: none; }
-  /* Fix overflow: remove stagger, use explicit heights so images don't bleed into title */
-  .intro-preview {
-    grid-template-columns: 1fr 1fr;
-    height: auto;
-    margin: 24px 0 28px;
-    gap: 6px;
-  }
-  .intro-preview-img { height: 180px; }
-  .intro-preview-img:nth-child(1),
-  .intro-preview-img:nth-child(3) { align-self: stretch; margin-top: 0; }
-  .intro-preview-img:nth-child(2),
-  .intro-preview-img:nth-child(4) { align-self: stretch; margin-bottom: 0; }
-  .intro-preview-img:nth-child(n+3) { display: none; }
-  /* Smaller title to ensure it fits above the images */
-  .qslide-intro .qslide-title { font-size: clamp(34px, 9vw, 46px); }
-  /* Tighter slide padding, top-align question slides but center the intro */
-  .qslides-wrap { padding: 72px 20px 96px; align-items: flex-start; }
-  .qslide { padding: 72px 20px 96px; align-items: flex-start; }
-  .qslide-intro { align-items: center !important; padding-top: 20px !important; padding-bottom: 100px !important; }
-  /* Quiz option cards: bigger touch targets */
-  .qoption { padding: 20px 18px; }
-  .qoption-title { font-size: 17px; }
-  /* Bottom nav safe area */
-  .qnav { padding-bottom: max(28px, env(safe-area-inset-bottom, 28px)); }
+@media (max-width: 768px) {
+  .qslides-wrap { padding: 90px 20px 120px; }
+  .qslide { padding: 90px 20px 120px; }
+  .qoptions-grid { grid-template-columns: 1fr; gap: 12px; }
+  .intro-gallery { grid-template-columns: repeat(2, 1fr); }
+  .intro-card { height: 200px; }
+  .qnav-bar { padding: 14px 20px max(18px, env(safe-area-inset-bottom, 18px)); }
+  .qnav-keyboard-hint { display: none; }
+  .qresults-hero { padding: 100px 20px 48px; }
+  .qresults-traits-grid { grid-template-columns: 1fr; }
+  .qresults-rack-section { padding: 60px 20px; }
+  .qresults-rack-grid { grid-template-columns: 1fr; gap: 20px; }
+  .qresults-banner { padding: 48px 24px; border-radius: 16px; }
+  .qresults-banner-actions { align-items: stretch; width: 100%; }
 }
 </style>
 </head>
 <body class="page-quiz">
-<div id="site-header"></div>
+<header id="site-header"></header>
 
-<!-- ── PROGRESS BAR ── -->
+<!-- ── TOP PROGRESS BAR ── -->
 <div class="qprogress">
   <div class="qprogress-fill" id="qFill"></div>
 </div>
-<div class="qprogress-label" id="qLabel"></div>
+<div class="qprogress-header" id="qHeader">
+  <span class="qprogress-badge" id="qLabel"></span>
+</div>
 
-<!-- ── QUIZ SHELL ── -->
 <main id="main-content">
 <div class="quiz-shell" id="quizShell">
 
-  <!-- INTRO -->
+  <!-- ── INTRO SLIDE ── -->
   <div class="qslide qslide-intro active" data-q="-1">
     <div class="qslide-inner">
-      <div class="qslide-eyebrow">Cloud Nine Bridal · Peoria, IL</div>
+      <div class="qslide-eyebrow">Interactive Style Matcher · Peoria, IL</div>
       <h1 class="qslide-title">Find Your<br/><em>Dream</em> Style.</h1>
-      <p class="qslide-sub">Seven questions. Your perfect silhouette.</p>
-      <div class="intro-preview">
-        <div class="intro-preview-img"><img src="images/real/bridal/01-adina.webp" alt="Classic Bride" loading="eager" fetchpriority="high"/></div>
-        <div class="intro-preview-img"><img src="images/real/bridal/05-aliza.webp" alt="Romantic Bride" loading="eager"/></div>
-        <div class="intro-preview-img"><img src="images/real/bridal/09-andora.webp" alt="Bohemian Bride" loading="eager"/></div>
-        <div class="intro-preview-img"><img src="images/real/bridal/11-antonella.webp" alt="Modern Bride" loading="eager"/></div>
+      <p class="qslide-sub">Answer 7 quick visual questions to reveal your bridal persona and unlock a personalized 5-gown curated fitting rack.</p>
+      
+      <div class="intro-gallery">
+        <div class="intro-card">
+          <img src="images/real/bridal/01-adina.webp" alt="Classic Bride" loading="eager" fetchpriority="high"/>
+          <div class="intro-card-overlay"><span class="intro-card-tag">Classic</span></div>
+        </div>
+        <div class="intro-card">
+          <img src="images/real/bridal/05-aliza.webp" alt="Romantic Bride" loading="eager"/>
+          <div class="intro-card-overlay"><span class="intro-card-tag">Romantic</span></div>
+        </div>
+        <div class="intro-card">
+          <img src="images/real/bridal/09-andora.webp" alt="Bohemian Bride" loading="eager"/>
+          <div class="intro-card-overlay"><span class="intro-card-tag">Boho</span></div>
+        </div>
+        <div class="intro-card">
+          <img src="images/real/bridal/11-antonella.webp" alt="Modern Bride" loading="eager"/>
+          <div class="intro-card-overlay"><span class="intro-card-tag">Modern</span></div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Q1: Timeline -->
+  <!-- ── Q1: Wedding Timeline ── -->
   <div class="qslide" data-q="0">
     <div class="qslide-inner">
-      <div class="qslide-eyebrow">Question 01</div>
-      <h2 class="qslide-title">First thing first!<br/>When is the <em>big day</em>?</h2>
-      <p class="qslide-sub">Let us know where you are in your journey.</p>
-      <div class="qoptions">
-        <div class="qoption" data-value="classic" onclick="selectOption(this)">
-          <div class="qoption-num">01</div>
-          <div class="qoption-title">Within the next year</div>
-          <div class="qoption-desc">The date is set — time to find the dress</div>
-          <div class="qoption-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <span class="qslide-eyebrow">Question 01 of 07</span>
+      <h2 class="qslide-title">First things first!<br/>When is the <em>big day</em>?</h2>
+      <p class="qslide-sub">Let us know where you are in your bridal journey.</p>
+      
+      <div class="qoptions-grid">
+        <div class="qoption-card" data-value="classic" onclick="selectOption(this)">
+          <div class="qoption-card-inner">
+            <div class="qoption-img-wrap">
+              <span class="qoption-check-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <img class="qoption-img" src="images/brides/01-stephanie-joseph.jpg" alt="Within the next year" loading="lazy"/>
+            </div>
+            <div class="qoption-body">
+              <span class="qoption-num">Option 01</span>
+              <h3 class="qoption-title">Within the next year</h3>
+              <p class="qoption-desc">The date is set — time to find the dream gown!</p>
+            </div>
+          </div>
         </div>
-        <div class="qoption" data-value="modern" onclick="selectOption(this)">
-          <div class="qoption-num">02</div>
-          <div class="qoption-title">2–3 years from now</div>
-          <div class="qoption-desc">Planning ahead, no rush</div>
-          <div class="qoption-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+
+        <div class="qoption-card" data-value="modern" onclick="selectOption(this)">
+          <div class="qoption-card-inner">
+            <div class="qoption-img-wrap">
+              <span class="qoption-check-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <img class="qoption-img" src="images/bridal/06-classic-gown.jpg" alt="2 to 3 years out" loading="lazy"/>
+            </div>
+            <div class="qoption-body">
+              <span class="qoption-num">Option 02</span>
+              <h3 class="qoption-title">2–3 years from now</h3>
+              <p class="qoption-desc">Planning ahead with plenty of time to explore.</p>
+            </div>
+          </div>
         </div>
-        <div class="qoption" data-value="romantic" onclick="selectOption(this)">
-          <div class="qoption-num">03</div>
-          <div class="qoption-title">We haven't picked a date yet</div>
-          <div class="qoption-desc">Engaged and exploring</div>
-          <div class="qoption-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+
+        <div class="qoption-card" data-value="romantic" onclick="selectOption(this)">
+          <div class="qoption-card-inner">
+            <div class="qoption-img-wrap">
+              <span class="qoption-check-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <img class="qoption-img" src="images/bridal/10-dreamy-romantic.jpg" alt="Date not set" loading="lazy"/>
+            </div>
+            <div class="qoption-body">
+              <span class="qoption-num">Option 03</span>
+              <h3 class="qoption-title">Haven't picked a date yet</h3>
+              <p class="qoption-desc">Newly engaged, collecting inspiration &amp; vibes.</p>
+            </div>
+          </div>
         </div>
-        <div class="qoption" data-value="boho" onclick="selectOption(this)">
-          <div class="qoption-num">04</div>
-          <div class="qoption-title">I'm not engaged, just dreaming</div>
-          <div class="qoption-desc">A girl can dream</div>
-          <div class="qoption-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+
+        <div class="qoption-card" data-value="boho" onclick="selectOption(this)">
+          <div class="qoption-card-inner">
+            <div class="qoption-img-wrap">
+              <span class="qoption-check-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <img class="qoption-img" src="images/bridal/08-boho-outdoor.jpg" alt="Just dreaming" loading="lazy"/>
+            </div>
+            <div class="qoption-body">
+              <span class="qoption-num">Option 04</span>
+              <h3 class="qoption-title">Just dreaming &amp; pinning</h3>
+              <p class="qoption-desc">Building my future Pinterest dream aesthetic.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Q2: Dream Wedding -->
+  <!-- ── Q2: Dream Wedding Vibe ── -->
   <div class="qslide" data-q="1">
     <div class="qslide-inner">
-      <div class="qslide-eyebrow">Question 02</div>
+      <span class="qslide-eyebrow">Question 02 of 07</span>
       <h2 class="qslide-title">How would you describe<br/>your <em>dream wedding</em>?</h2>
-      <p class="qslide-sub">The overall vibe that speaks to your heart.</p>
-      <div class="qoptions">
-        <div class="qoption" data-value="classic" onclick="selectOption(this)">
-          <div class="qoption-num">01</div>
-          <div class="qoption-title">Classic &amp; Timeless</div>
-          <div class="qoption-desc">Elegant, polished, enduringly beautiful</div>
-          <div class="qoption-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <p class="qslide-sub">The overarching atmosphere that reflects your love story.</p>
+      
+      <div class="qoptions-grid">
+        <div class="qoption-card" data-value="classic" onclick="selectOption(this)">
+          <div class="qoption-card-inner">
+            <div class="qoption-img-wrap">
+              <span class="qoption-check-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <img class="qoption-img" src="images/bridal/09-grand-ballroom.jpg" alt="Classic & Timeless" loading="lazy"/>
+            </div>
+            <div class="qoption-body">
+              <span class="qoption-num">Option 01</span>
+              <h3 class="qoption-title">Classic &amp; Timeless</h3>
+              <p class="qoption-desc">Polished grandeur, royal elegance, and enduring style.</p>
+            </div>
+          </div>
         </div>
-        <div class="qoption" data-value="romantic" onclick="selectOption(this)">
-          <div class="qoption-num">02</div>
-          <div class="qoption-title">Romantic &amp; Whimsical</div>
-          <div class="qoption-desc">Soft, dreamy, full of florals and feeling</div>
-          <div class="qoption-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+
+        <div class="qoption-card" data-value="romantic" onclick="selectOption(this)">
+          <div class="qoption-card-inner">
+            <div class="qoption-img-wrap">
+              <span class="qoption-check-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <img class="qoption-img" src="images/bridal/05-romantic-aline.jpg" alt="Romantic & Whimsical" loading="lazy"/>
+            </div>
+            <div class="qoption-body">
+              <span class="qoption-num">Option 02</span>
+              <h3 class="qoption-title">Romantic &amp; Whimsical</h3>
+              <p class="qoption-desc">Soft blush tones, cascading florals, and fairy-tale romance.</p>
+            </div>
+          </div>
         </div>
-        <div class="qoption" data-value="modern" onclick="selectOption(this)">
-          <div class="qoption-num">03</div>
-          <div class="qoption-title">Modern &amp; Chic</div>
-          <div class="qoption-desc">Sleek, intentional, effortlessly cool</div>
-          <div class="qoption-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+
+        <div class="qoption-card" data-value="modern" onclick="selectOption(this)">
+          <div class="qoption-card-inner">
+            <div class="qoption-img-wrap">
+              <span class="qoption-check-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <img class="qoption-img" src="images/bridal/07-modern-sheath.jpg" alt="Modern & Chic" loading="lazy"/>
+            </div>
+            <div class="qoption-body">
+              <span class="qoption-num">Option 03</span>
+              <h3 class="qoption-title">Modern &amp; Chic</h3>
+              <p class="qoption-desc">Sleek minimalism, architectural lines, and quiet luxury.</p>
+            </div>
+          </div>
         </div>
-        <div class="qoption" data-value="boho" onclick="selectOption(this)">
-          <div class="qoption-num">04</div>
-          <div class="qoption-title">Bold &amp; Fun</div>
-          <div class="qoption-desc">Vibrant, unexpected, uniquely you</div>
-          <div class="qoption-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+
+        <div class="qoption-card" data-value="boho" onclick="selectOption(this)">
+          <div class="qoption-card-inner">
+            <div class="qoption-img-wrap">
+              <span class="qoption-check-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <img class="qoption-img" src="images/bridal/03-sleek-mermaid.jpg" alt="Boho & Free Spirited" loading="lazy"/>
+            </div>
+            <div class="qoption-body">
+              <span class="qoption-num">Option 04</span>
+              <h3 class="qoption-title">Boho &amp; Free-Spirited</h3>
+              <p class="qoption-desc">Artisan lace, effortless movement, and wild romance.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Q3: Ceremony Setting -->
+  <!-- ── Q3: Ceremony Venue Setting ── -->
   <div class="qslide" data-q="2">
     <div class="qslide-inner">
-      <div class="qslide-eyebrow">Question 03</div>
-      <h2 class="qslide-title">What setting makes your<br/><em>heart skip</em> a beat?</h2>
-      <p class="qslide-sub">Choose the venue that gives you butterflies.</p>
-      <div class="qoptions">
-        <div class="qoption" data-value="classic" onclick="selectOption(this)">
-          <div class="qoption-num">01</div>
-          <div class="qoption-title">A beautiful church or historic ballroom</div>
-          <div class="qoption-desc">Grand architecture, timeless grandeur</div>
-          <div class="qoption-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <span class="qslide-eyebrow">Question 03 of 07</span>
+      <h2 class="qslide-title">Which venue setting makes<br/>your <em>heart skip</em> a beat?</h2>
+      <p class="qslide-sub">The background where you will exchange your vows.</p>
+      
+      <div class="qoptions-grid">
+        <div class="qoption-card" data-value="classic" onclick="selectOption(this)">
+          <div class="qoption-card-inner">
+            <div class="qoption-img-wrap">
+              <span class="qoption-check-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <img class="qoption-img" src="images/bridal/09-grand-ballroom.jpg" alt="Historic Ballroom or Church" loading="lazy"/>
+            </div>
+            <div class="qoption-body">
+              <span class="qoption-num">Option 01</span>
+              <h3 class="qoption-title">Grand Ballroom or Cathedral</h3>
+              <p class="qoption-desc">Historic architecture, soaring ceilings, stained glass.</p>
+            </div>
+          </div>
         </div>
-        <div class="qoption" data-value="romantic" onclick="selectOption(this)">
-          <div class="qoption-num">02</div>
-          <div class="qoption-title">An outdoor garden or park</div>
-          <div class="qoption-desc">Lush greenery, natural light, open skies</div>
-          <div class="qoption-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+
+        <div class="qoption-card" data-value="romantic" onclick="selectOption(this)">
+          <div class="qoption-card-inner">
+            <div class="qoption-img-wrap">
+              <span class="qoption-check-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <img class="qoption-img" src="images/brides/06-grace-ethan.jpg" alt="Botanical Garden" loading="lazy"/>
+            </div>
+            <div class="qoption-body">
+              <span class="qoption-num">Option 02</span>
+              <h3 class="qoption-title">Botanical Garden or Estate</h3>
+              <p class="qoption-desc">Lush florals, manicured lawns, natural sunlight.</p>
+            </div>
+          </div>
         </div>
-        <div class="qoption" data-value="boho" onclick="selectOption(this)">
-          <div class="qoption-num">03</div>
-          <div class="qoption-title">A rustic barn glowing with string lights</div>
-          <div class="qoption-desc">Warm, intimate, effortlessly charming</div>
-          <div class="qoption-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+
+        <div class="qoption-card" data-value="boho" onclick="selectOption(this)">
+          <div class="qoption-card-inner">
+            <div class="qoption-img-wrap">
+              <span class="qoption-check-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <img class="qoption-img" src="images/brides/05-krissamarie-brandon.jpg" alt="Rustic Barn" loading="lazy"/>
+            </div>
+            <div class="qoption-body">
+              <span class="qoption-num">Option 03</span>
+              <h3 class="qoption-title">Rustic Barn &amp; Bistro Lights</h3>
+              <p class="qoption-desc">Warm timber beams, twinkling lights, organic charm.</p>
+            </div>
+          </div>
         </div>
-        <div class="qoption" data-value="modern" onclick="selectOption(this)">
-          <div class="qoption-num">04</div>
-          <div class="qoption-title">A vineyard or lakeside venue at sunset</div>
-          <div class="qoption-desc">Golden hour, scenic, breathtaking views</div>
-          <div class="qoption-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+
+        <div class="qoption-card" data-value="modern" onclick="selectOption(this)">
+          <div class="qoption-card-inner">
+            <div class="qoption-img-wrap">
+              <span class="qoption-check-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <img class="qoption-img" src="images/brides/04-gabrielle-joshua.jpg" alt="Lakeside Sunset" loading="lazy"/>
+            </div>
+            <div class="qoption-body">
+              <span class="qoption-num">Option 04</span>
+              <h3 class="qoption-title">Lakeside or Urban Loft</h3>
+              <p class="qoption-desc">Golden hour horizons, panoramic views, chic rooftop.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Q4: Dress Detail -->
+  <!-- ── Q4: Must-Have Gown Detail ── -->
   <div class="qslide" data-q="3">
     <div class="qslide-inner">
-      <div class="qslide-eyebrow">Question 04</div>
-      <h2 class="qslide-title">When it comes to your<br/>dream dress, what <em>detail is a must</em>?</h2>
-      <p class="qslide-sub">The one feature you simply can't live without.</p>
-      <div class="qoptions">
-        <div class="qoption" data-value="classic" onclick="selectOption(this)">
-          <div class="qoption-num">01</div>
-          <div class="qoption-title">Lace and elegant buttons</div>
-          <div class="qoption-desc">Intricate, heirloom-quality craftsmanship</div>
-          <div class="qoption-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <span class="qslide-eyebrow">Question 04 of 07</span>
+      <h2 class="qslide-title">When it comes to your gown,<br/>what <em>detail is a must</em>?</h2>
+      <p class="qslide-sub">The showstopping craft feature that defines your silhouette.</p>
+      
+      <div class="qoptions-grid">
+        <div class="qoption-card" data-value="classic" onclick="selectOption(this)">
+          <div class="qoption-card-inner">
+            <div class="qoption-img-wrap">
+              <span class="qoption-check-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <img class="qoption-img" src="images/bridal/06-classic-gown.jpg" alt="Heirloom Lace & Buttons" loading="lazy"/>
+            </div>
+            <div class="qoption-body">
+              <span class="qoption-num">Option 01</span>
+              <h3 class="qoption-title">Heirloom Lace &amp; Covered Buttons</h3>
+              <p class="qoption-desc">Intricate embroidered lace and classic bridal elegance.</p>
+            </div>
+          </div>
         </div>
-        <div class="qoption" data-value="romantic" onclick="selectOption(this)">
-          <div class="qoption-num">02</div>
-          <div class="qoption-title">Flowing skirt and soft fabrics</div>
-          <div class="qoption-desc">Gossamer-light layers that move beautifully</div>
-          <div class="qoption-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+
+        <div class="qoption-card" data-value="romantic" onclick="selectOption(this)">
+          <div class="qoption-card-inner">
+            <div class="qoption-img-wrap">
+              <span class="qoption-check-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <img class="qoption-img" src="images/bridal/02-aline-veil.jpg" alt="Flowing Tulle & Floral Appliques" loading="lazy"/>
+            </div>
+            <div class="qoption-body">
+              <span class="qoption-num">Option 02</span>
+              <h3 class="qoption-title">3D Floral Appliqués &amp; Tulle</h3>
+              <p class="qoption-desc">Dimensional botanicals and ethereal layered skirts.</p>
+            </div>
+          </div>
         </div>
-        <div class="qoption" data-value="modern" onclick="selectOption(this)">
-          <div class="qoption-num">03</div>
-          <div class="qoption-title">Sleek silhouette and clean lines</div>
-          <div class="qoption-desc">Minimalist, architectural, effortlessly chic</div>
-          <div class="qoption-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+
+        <div class="qoption-card" data-value="modern" onclick="selectOption(this)">
+          <div class="qoption-card-inner">
+            <div class="qoption-img-wrap">
+              <span class="qoption-check-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <img class="qoption-img" src="images/bridal/07-modern-sheath.jpg" alt="Clean Sculptural Crepe" loading="lazy"/>
+            </div>
+            <div class="qoption-body">
+              <span class="qoption-num">Option 03</span>
+              <h3 class="qoption-title">Clean Sculptural Crepe</h3>
+              <p class="qoption-desc">Pure minimal lines, structured bodice, and sleek train.</p>
+            </div>
+          </div>
         </div>
-        <div class="qoption" data-value="boho" onclick="selectOption(this)">
-          <div class="qoption-num">04</div>
-          <div class="qoption-title">Sparkle, drama, or statement details</div>
-          <div class="qoption-desc">Bold embellishments that make a statement</div>
-          <div class="qoption-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+
+        <div class="qoption-card" data-value="boho" onclick="selectOption(this)">
+          <div class="qoption-card-inner">
+            <div class="qoption-img-wrap">
+              <span class="qoption-check-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <img class="qoption-img" src="images/bridal/03-sleek-mermaid.jpg" alt="Corset & Statement Train" loading="lazy"/>
+            </div>
+            <div class="qoption-body">
+              <span class="qoption-num">Option 04</span>
+              <h3 class="qoption-title">Corset Back &amp; Illusion Train</h3>
+              <p class="qoption-desc">Dramatic fit-and-flare curves and dramatic statement back.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Q5: Accessory -->
+  <!-- ── Q5: Essential Accessory ── -->
   <div class="qslide" data-q="4">
     <div class="qslide-inner">
-      <div class="qslide-eyebrow">Question 05</div>
+      <span class="qslide-eyebrow">Question 05 of 07</span>
       <h2 class="qslide-title">Which bridal accessory<br/>could you <em>not live without</em>?</h2>
-      <p class="qslide-sub">The finishing touch that completes your look.</p>
-      <div class="qoptions">
-        <div class="qoption" data-value="classic" onclick="selectOption(this)">
-          <div class="qoption-num">01</div>
-          <div class="qoption-title">Cathedral Veil</div>
-          <div class="qoption-desc">Long, sweeping, classically bridal</div>
-          <div class="qoption-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <p class="qslide-sub">The crown jewel that finishes your entire styling ensemble.</p>
+      
+      <div class="qoptions-grid">
+        <div class="qoption-card" data-value="classic" onclick="selectOption(this)">
+          <div class="qoption-card-inner">
+            <div class="qoption-img-wrap">
+              <span class="qoption-check-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <img class="qoption-img" src="images/bridal/02-aline-veil.jpg" alt="Cathedral Veil" loading="lazy"/>
+            </div>
+            <div class="qoption-body">
+              <span class="qoption-num">Option 01</span>
+              <h3 class="qoption-title">Cathedral Length Veil</h3>
+              <p class="qoption-desc">Long, dramatic, trailing behind you down the aisle.</p>
+            </div>
+          </div>
         </div>
-        <div class="qoption" data-value="romantic" onclick="selectOption(this)">
-          <div class="qoption-num">02</div>
-          <div class="qoption-title">Flower crown or fresh florals</div>
-          <div class="qoption-desc">Garden-inspired, soft and feminine</div>
-          <div class="qoption-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+
+        <div class="qoption-card" data-value="romantic" onclick="selectOption(this)">
+          <div class="qoption-card-inner">
+            <div class="qoption-img-wrap">
+              <span class="qoption-check-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <img class="qoption-img" src="images/brides/12-allie-gabriel.jpg" alt="Botanical Headpiece" loading="lazy"/>
+            </div>
+            <div class="qoption-body">
+              <span class="qoption-num">Option 02</span>
+              <h3 class="qoption-title">Botanical Headpiece or Hair Vine</h3>
+              <p class="qoption-desc">Delicate floral pins woven through soft curls.</p>
+            </div>
+          </div>
         </div>
-        <div class="qoption" data-value="modern" onclick="selectOption(this)">
-          <div class="qoption-num">03</div>
-          <div class="qoption-title">Pearl accessories</div>
-          <div class="qoption-desc">Understated, elegant, timeless</div>
-          <div class="qoption-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+
+        <div class="qoption-card" data-value="modern" onclick="selectOption(this)">
+          <div class="qoption-card-inner">
+            <div class="qoption-img-wrap">
+              <span class="qoption-check-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <img class="qoption-img" src="images/bridal/12-elegant-bride.jpg" alt="Pearl Drop Jewelry" loading="lazy"/>
+            </div>
+            <div class="qoption-body">
+              <span class="qoption-num">Option 03</span>
+              <h3 class="qoption-title">Modern Pearl Jewelry</h3>
+              <p class="qoption-desc">Understated pearl drop earrings and clean gold accents.</p>
+            </div>
+          </div>
         </div>
-        <div class="qoption" data-value="boho" onclick="selectOption(this)">
-          <div class="qoption-num">04</div>
-          <div class="qoption-title">Bold heels or a fun headpiece</div>
-          <div class="qoption-desc">Unexpected, playful, unforgettable</div>
-          <div class="qoption-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+
+        <div class="qoption-card" data-value="boho" onclick="selectOption(this)">
+          <div class="qoption-card-inner">
+            <div class="qoption-img-wrap">
+              <span class="qoption-check-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <img class="qoption-img" src="images/brides/14-amy-nathan.jpg" alt="Statement Heels" loading="lazy"/>
+            </div>
+            <div class="qoption-body">
+              <span class="qoption-num">Option 04</span>
+              <h3 class="qoption-title">Statement Heels &amp; Sparkle Belt</h3>
+              <p class="qoption-desc">Unforgettable personal flair with a pop of drama.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Q6: Wedding Day Snack -->
+  <!-- ── Q6: Reception Treat ── -->
   <div class="qslide" data-q="5">
     <div class="qslide-inner">
-      <div class="qslide-eyebrow">Question 06</div>
-      <h2 class="qslide-title">Your dream<br/><em>wedding day snack</em> is…</h2>
-      <p class="qslide-sub">Because every bride deserves something delicious.</p>
-      <div class="qoptions">
-        <div class="qoption" data-value="classic" onclick="selectOption(this)">
-          <div class="qoption-num">01</div>
-          <div class="qoption-title">A classic charcuterie spread</div>
-          <div class="qoption-desc">Curated, sophisticated, crowd-pleasing</div>
-          <div class="qoption-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <span class="qslide-eyebrow">Question 06 of 07</span>
+      <h2 class="qslide-title">Your signature wedding<br/><em>celebration treat</em> is…</h2>
+      <p class="qslide-sub">Because an unforgettable wedding deserves delicious moments.</p>
+      
+      <div class="qoptions-grid">
+        <div class="qoption-card" data-value="classic" onclick="selectOption(this)">
+          <div class="qoption-card-inner">
+            <div class="qoption-img-wrap">
+              <span class="qoption-check-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <img class="qoption-img" src="images/about/boutique.jpg" alt="Champagne & Charcuterie" loading="lazy"/>
+            </div>
+            <div class="qoption-body">
+              <span class="qoption-num">Option 01</span>
+              <h3 class="qoption-title">Champagne Tower &amp; Charcuterie</h3>
+              <p class="qoption-desc">Curated artisan cheeses, chilled bubbly, timeless sophistication.</p>
+            </div>
+          </div>
         </div>
-        <div class="qoption" data-value="romantic" onclick="selectOption(this)">
-          <div class="qoption-num">02</div>
-          <div class="qoption-title">Chocolate covered strawberries</div>
-          <div class="qoption-desc">Sweet, romantic, perfectly indulgent</div>
-          <div class="qoption-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+
+        <div class="qoption-card" data-value="romantic" onclick="selectOption(this)">
+          <div class="qoption-card-inner">
+            <div class="qoption-img-wrap">
+              <span class="qoption-check-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <img class="qoption-img" src="images/bridal/10-dreamy-romantic.jpg" alt="Chocolate Strawberries" loading="lazy"/>
+            </div>
+            <div class="qoption-body">
+              <span class="qoption-num">Option 02</span>
+              <h3 class="qoption-title">Strawberries &amp; French Macarons</h3>
+              <p class="qoption-desc">Sweet, romantic pastries and delicate chocolate truffles.</p>
+            </div>
+          </div>
         </div>
-        <div class="qoption" data-value="boho" onclick="selectOption(this)">
-          <div class="qoption-num">03</div>
-          <div class="qoption-title">Late-night pizza</div>
-          <div class="qoption-desc">Fun, laid-back, keeps the party going</div>
-          <div class="qoption-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+
+        <div class="qoption-card" data-value="boho" onclick="selectOption(this)">
+          <div class="qoption-card-inner">
+            <div class="qoption-img-wrap">
+              <span class="qoption-check-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <img class="qoption-img" src="images/brides/03-chris-veronica.jpg" alt="Late-Night Food Truck" loading="lazy"/>
+            </div>
+            <div class="qoption-body">
+              <span class="qoption-num">Option 03</span>
+              <h3 class="qoption-title">Late-Night Pizza &amp; Taco Truck</h3>
+              <p class="qoption-desc">Fun, lively, and keeps the dance floor packed until midnight.</p>
+            </div>
+          </div>
         </div>
-        <div class="qoption" data-value="modern" onclick="selectOption(this)">
-          <div class="qoption-num">04</div>
-          <div class="qoption-title">A dessert bar with lots of choices</div>
-          <div class="qoption-desc">Curated variety, something for everyone</div>
-          <div class="qoption-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+
+        <div class="qoption-card" data-value="modern" onclick="selectOption(this)">
+          <div class="qoption-card-inner">
+            <div class="qoption-img-wrap">
+              <span class="qoption-check-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <img class="qoption-img" src="images/brides/08-kim-tony.jpg" alt="Espresso Bar" loading="lazy"/>
+            </div>
+            <div class="qoption-body">
+              <span class="qoption-num">Option 04</span>
+              <h3 class="qoption-title">Custom Espresso Bar &amp; Gelato</h3>
+              <p class="qoption-desc">Handcrafted lattes, affogatos, and sleek modern presentation.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Q7: Mood Board -->
+  <!-- ── Q7: Visual Inspiration Mood Board ── -->
   <div class="qslide" data-q="6">
     <div class="qslide-inner">
-      <div class="qslide-eyebrow">Question 07</div>
-      <h2 class="qslide-title">What's your bridal<br/><em>mood board</em> mostly filled with?</h2>
-      <p class="qslide-sub">Your inspiration says everything about your style.</p>
-      <div class="qoptions">
-        <div class="qoption" data-value="classic" onclick="selectOption(this)">
-          <div class="qoption-num">01</div>
-          <div class="qoption-title">Classic movies &amp; royal weddings</div>
-          <div class="qoption-desc">Poised, regal, enduringly elegant</div>
-          <div class="qoption-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <span class="qslide-eyebrow">Question 07 of 07</span>
+      <h2 class="qslide-title">What is your bridal<br/><em>mood board</em> mostly filled with?</h2>
+      <p class="qslide-sub">The aesthetic that immediately makes you say "that's SO me!"</p>
+      
+      <div class="qoptions-grid">
+        <div class="qoption-card" data-value="classic" onclick="selectOption(this)">
+          <div class="qoption-card-inner">
+            <div class="qoption-img-wrap">
+              <span class="qoption-check-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <img class="qoption-img" src="images/brides/01-stephanie-joseph.jpg" alt="Royal Weddings" loading="lazy"/>
+            </div>
+            <div class="qoption-body">
+              <span class="qoption-num">Option 01</span>
+              <h3 class="qoption-title">Royal Weddings &amp; Black-Tie Glamour</h3>
+              <p class="qoption-desc">Grace Kelly, timeless symmetry, black-tie sophistication.</p>
+            </div>
+          </div>
         </div>
-        <div class="qoption" data-value="romantic" onclick="selectOption(this)">
-          <div class="qoption-num">02</div>
-          <div class="qoption-title">Soft colors &amp; dreamy details</div>
-          <div class="qoption-desc">Blush tones, petals, whispered moments</div>
-          <div class="qoption-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+
+        <div class="qoption-card" data-value="romantic" onclick="selectOption(this)">
+          <div class="qoption-card-inner">
+            <div class="qoption-img-wrap">
+              <span class="qoption-check-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <img class="qoption-img" src="images/bridal/05-romantic-aline.jpg" alt="Soft Pastels" loading="lazy"/>
+            </div>
+            <div class="qoption-body">
+              <span class="qoption-num">Option 02</span>
+              <h3 class="qoption-title">Soft Pastels &amp; Candlelit Tablescapes</h3>
+              <p class="qoption-desc">Ethereal florals, ribbon details, whispered romantic vows.</p>
+            </div>
+          </div>
         </div>
-        <div class="qoption" data-value="modern" onclick="selectOption(this)">
-          <div class="qoption-num">03</div>
-          <div class="qoption-title">Minimalist vibes &amp; black-and-white</div>
-          <div class="qoption-desc">Clean, editorial, effortlessly chic</div>
-          <div class="qoption-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+
+        <div class="qoption-card" data-value="modern" onclick="selectOption(this)">
+          <div class="qoption-card-inner">
+            <div class="qoption-img-wrap">
+              <span class="qoption-check-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <img class="qoption-img" src="images/bridal/07-modern-sheath.jpg" alt="Editorial Fashion" loading="lazy"/>
+            </div>
+            <div class="qoption-body">
+              <span class="qoption-num">Option 03</span>
+              <h3 class="qoption-title">Monochrome Editorial &amp; High Fashion</h3>
+              <p class="qoption-desc">Clean lines, bold silhouettes, Vogue-inspired imagery.</p>
+            </div>
+          </div>
         </div>
-        <div class="qoption" data-value="boho" onclick="selectOption(this)">
-          <div class="qoption-num">04</div>
-          <div class="qoption-title">Bold trends &amp; pops of color</div>
-          <div class="qoption-desc">Daring, joyful, refreshingly original</div>
-          <div class="qoption-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+
+        <div class="qoption-card" data-value="boho" onclick="selectOption(this)">
+          <div class="qoption-card-inner">
+            <div class="qoption-img-wrap">
+              <span class="qoption-check-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <img class="qoption-img" src="images/brides/16-cloud-nine-family.jpg" alt="Joyful Celebration" loading="lazy"/>
+            </div>
+            <div class="qoption-body">
+              <span class="qoption-num">Option 04</span>
+              <h3 class="qoption-title">Joyful Vibes &amp; Vibrant Details</h3>
+              <p class="qoption-desc">Unconventional touches, personalized vows, boundless energy.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -919,142 +1173,170 @@
 
 </div><!-- /quiz-shell -->
 
-<!-- ── BOTTOM NAV ── -->
-<div class="qnav" id="qNav">
-  <button class="qnav-back hidden" id="qBack" onclick="goBack()">
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-    Back
+<!-- ── BOTTOM NAVIGATION CONTROLS ── -->
+<div class="qnav-bar" id="qNav">
+  <button class="qnav-btn-back hidden" id="qBack" onclick="goBack()" aria-label="Go back">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    <span>Previous Step</span>
   </button>
-  <button class="qnav-next" id="qNext" onclick="goNext()">
-    Begin
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  
+  <span class="qnav-keyboard-hint">Press 1–4 to Select · Enter to Continue</span>
+
+  <button class="btn-luxury-pill" id="qNext" onclick="goNext()">
+    <span id="qNextLabel">Begin Quiz</span>
+    <span class="btn-luxury-pill-icon">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </span>
   </button>
 </div>
 
-<!-- ── RESULTS ── -->
+<!-- ── RESULTS VIEW ── -->
 <div class="qresults" id="qResults">
   <div class="qresults-hero">
-    <div class="qresults-hero-bg"></div>
-    <div class="qresults-hero-deco" id="rDeco"></div>
-    <div>
-      <div class="qresults-eyebrow">Your Bridal Persona</div>
-      <div class="qresults-title" id="rTitle"></div>
+    <div class="qresults-hero-inner reveal-on-scroll">
+      <span class="qresults-persona-badge">✦ Your Tailored Bridal Persona</span>
+      <h1 class="qresults-title" id="rTitle"></h1>
       <p class="qresults-desc" id="rDesc"></p>
+
+      <div class="qresults-traits-grid" id="rTraits"></div>
     </div>
   </div>
 
-  <div class="qresults-traits" id="rTraits"></div>
-
-  <div class="qresults-dresses">
-    <div class="qresults-dresses-header">
+  <!-- Curated Fitting Rack -->
+  <div class="qresults-rack-section">
+    <div class="qresults-rack-header reveal-on-scroll">
       <div>
-        <div class="qresults-dresses-label">Curated For You</div>
-        <div class="qresults-dresses-title">Gowns You'll <em>Love</em></div>
+        <span class="journey-eyebrow">Personalized Selection</span>
+        <h2 class="journey-title" style="font-size:clamp(28px,3.5vw,46px);margin-bottom:6px;">Your Curated <em>Fitting Rack</em></h2>
+        <p style="font-size:14px;color:var(--text-muted);font-weight:300;">Our senior stylists hand-matched these 5 gowns to your silhouette and wedding aesthetic.</p>
       </div>
-      <a href="bridal-catalog.html" id="rBrowseLink" class="qresults-browse">View Full Collection →</a>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <button class="btn-luxury-pill" id="btnSaveAllLookbook" onclick="saveAllToLookbook()" style="background:var(--teal-dark);">
+          <span>✦ Save All to Fitting Lookbook</span>
+          <span class="btn-luxury-pill-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg></span>
+        </button>
+        <button class="btn-outline" id="btnSharePersona" onclick="sharePersonaResults()" style="font-size:10px;padding:12px 20px;">
+          Share My Persona
+        </button>
+      </div>
     </div>
-    <div class="qdress-grid" id="rDresses"></div>
-  </div>
 
-  <div class="qresults-cta">
-    <div class="qresults-cta-left">
-      <div class="qresults-cta-sub">The Next Step</div>
-      <h3 class="qresults-cta-title">Ready to find<br/><em>the one</em>?</h3>
-      <p class="qresults-cta-desc">Our stylists know exactly which gowns match your vision. Book a private appointment at Cloud Nine — we'll have your style ready and waiting.</p>
-    </div>
-    <div class="qresults-cta-btns">
-      <a href="appointments.html" class="btn-quiz-primary">
-        Book an Appointment
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-      <a href="bridal-catalog.html" id="rBrowseGowns" class="btn-quiz-outline">Browse All Gowns</a>
-      <button class="btn-retake-quiz" onclick="retake()">Retake the quiz</button>
+    <div class="qresults-rack-grid" id="rDresses"></div>
+
+    <!-- Booking CTA Banner -->
+    <div class="qresults-banner reveal-on-scroll">
+      <div>
+        <h3 class="qresults-banner-title">Ready to try on your <em>curated rack</em>?</h3>
+        <p class="qresults-banner-desc">Book your private fitting suite at Cloud Nine in Peoria. Your stylist will have these styles ready in your dressing lounge when you arrive.</p>
+      </div>
+      <div class="qresults-banner-actions">
+        <a href="appointments.html" id="rBookBtn" class="btn-white" style="font-size:11px;padding:14px 28px;text-align:center;">
+          Book Fitting with My Quiz Results →
+        </a>
+        <button onclick="retake()" style="background:none;border:none;color:rgba(255,255,255,0.7);font-family:'Josefin Sans',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;padding:6px;transition:color .2s;">
+          ↺ Retake Style Quiz
+        </button>
+      </div>
     </div>
   </div>
 </div>
 
-<div id="site-footer"></div>
+<!-- Toast notification -->
+<div class="quiz-toast" id="quizToast">All gowns added to your Lookbook!</div>
+
+</main>
+
+<footer id="site-footer"></footer>
 <script src="components.js?v=4" defer></script>
 <script>
-/* ── DATA ── */
+/* ── QUIZ STATE ── */
 const TOTAL = 7;
-let current = -1; // -1 = intro
+let current = -1; // -1 = intro slide
 const answers = Array(TOTAL).fill(null);
 
-const STYLES = {
+const PERSONAS = {
   classic: {
-    title: 'The <em>Classic</em> Bride',
-    deco: 'Classic',
+    title: 'The <em>Classic</em> Romantic',
+    personaKey: 'classic',
     sil: 'Ballgown',
-    desc: 'You are drawn to enduring beauty — the kind that photographs in black and white and still takes your breath away decades later. Poised, graceful, and utterly unforgettable.',
+    desc: 'You are drawn to enduring, royal grace — the kind that photographs in timeless monochrome and still takes your breath away fifty years later. Poised, statuesque, and flawlessly elegant.',
     traits: [
-      { label: 'Silhouette', value: 'Ball Gown',         desc: 'Full skirt, structured bodice, sweeping train.' },
-      { label: 'Fabric',     value: 'Duchess Satin',     desc: 'Weighted, luminous, and unmistakably bridal.' },
-      { label: 'Details',    value: 'Embroidered Lace',  desc: 'Intricate floral motifs and heirloom craftsmanship.' },
-      { label: 'Inspiration',value: 'Grace Kelly',       desc: 'Poised, understated power. The bride people still talk about.' },
+      { label: 'Ideal Silhouette', value: 'Royal Ballgown & A-Line', desc: 'Dramatic volume, structured waistline, and a sweeping train.' },
+      { label: 'Signature Fabric', value: 'Duchess Satin & Mikado', desc: 'Rich architectural weight with a luminous silk sheen.' },
+      { label: 'Lace & Details', value: 'Heirloom Embroidery', desc: 'Intricate button-lined backs and scalloped cathedral hems.' },
+      { label: 'Iconic Inspiration', value: 'Grace Kelly', desc: 'Regal composure, timeless dignity, and unforgettable presence.' },
     ],
     dresses: [
-      { designer: 'Maggie Sottero',    name: 'Hudson',  style: '26MS412A01', img: 'https://dy9ihb9itgy3g.cloudfront.net/products/13051/26ms412a01/26ms412a01__f_3.740.webp',           x: ['https://dy9ihb9itgy3g.cloudfront.net/products/13051/26ms412a01/26ms412a01__f_3.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13051/26ms412a01/26ms412a01__f_1.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13051/26ms412a01/26ms412a01__d_f.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13051/26ms412a01/26ms412a01__f_2.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13051/26ms412a01/26ms412a01__b_2.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13051/26ms412a01/26ms412a01__b_1.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13051/26ms412a01/26ms412a01__f_c_2.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13051/26ms412a01/26ms412a01__f_c_1.2000.webp'], c: 'Hudson Traditional Strapless Draped Bodice Cat Eye Ballgown' },
-      { designer: 'Sottero & Midgley', name: 'Zulani', style: '26SS471A01', img: 'https://dy9ihb9itgy3g.cloudfront.net/products/13016/26ss471a01/26ss471a01__promo11__iv002.740.webp',  x: ['https://dy9ihb9itgy3g.cloudfront.net/products/13016/26ss471a01/26ss471a01__promo11__iv002.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13016/26ss471a01/26ss471a01__promo10__iv002.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13016/26ss471a01/26ss471a01__alt50__iv002.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13016/26ss471a01/26ss471a01__promo13__iv002.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13016/26ss471a01/26ss471a01__alt53__iv002.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13016/26ss471a01/26ss471a01__alt55__iv002.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13016/26ss471a01/26ss471a01__promo14__iv002.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13016/26ss471a01/26ss471a01__alt51__iv002.2000.webp'], c: 'Zulani regal strapless ballgown with beaded lace, corset, and extended sheer lace train' },
-      { designer: 'Rebecca Ingram',    name: 'Hannah', style: '25RS917',    img: 'https://dy9ihb9itgy3g.cloudfront.net/products/12626/hannah/hannah___.740.webp',                       x: ['https://dy9ihb9itgy3g.cloudfront.net/products/12626/hannah/hannah___.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/12626/hannah/hannah______3.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/12626/hannah/hannah______5.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/12626/hannah/hannah______4.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/12626/hannah/hannah______2.2000.webp'], c: 'Classic satin asymmetrical ballgown bridal dress' },
-    ],
+      { designer: 'Maggie Sottero', name: 'Hudson', style: '26MS412A01', img: 'https://dy9ihb9itgy3g.cloudfront.net/products/13051/26ms412a01/26ms412a01__f_3.740.webp', x: ['https://dy9ihb9itgy3g.cloudfront.net/products/13051/26ms412a01/26ms412a01__f_3.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13051/26ms412a01/26ms412a01__f_1.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13051/26ms412a01/26ms412a01__d_f.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13051/26ms412a01/26ms412a01__b_1.2000.webp'], c: 'Hudson Traditional Strapless Draped Bodice Cat Eye Ballgown' },
+      { designer: 'Sottero & Midgley', name: 'Zulani', style: '26SS471A01', img: 'https://dy9ihb9itgy3g.cloudfront.net/products/13016/26ss471a01/26ss471a01__promo11__iv002.740.webp', x: ['https://dy9ihb9itgy3g.cloudfront.net/products/13016/26ss471a01/26ss471a01__promo11__iv002.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13016/26ss471a01/26ss471a01__promo10__iv002.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13016/26ss471a01/26ss471a01__alt50__iv002.2000.webp'], c: 'Regal strapless ballgown with beaded lace, corset, and extended sheer lace train' },
+      { designer: 'Rebecca Ingram', name: 'Hannah', style: '25RS917', img: 'https://dy9ihb9itgy3g.cloudfront.net/products/12626/hannah/hannah___.740.webp', x: ['https://dy9ihb9itgy3g.cloudfront.net/products/12626/hannah/hannah___.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/12626/hannah/hannah______3.2000.webp'], c: 'Classic satin asymmetrical ballgown bridal dress' },
+      { designer: 'Maggie Sottero', name: 'Derrick', style: '21MS387', img: 'https://dy9ihb9itgy3g.cloudfront.net/products/$uploads/products/10303/derrick/derrick__21ms387a01.740.webp', x: ['https://dy9ihb9itgy3g.cloudfront.net/products/$uploads/products/10303/derrick/derrick__21ms387a01.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/$uploads/products/10303/derrick/derrick__21ms387a01_1.2000.webp'], c: 'Square neckline clean ballgown with pockets and classic buttons' },
+      { designer: 'Rebecca Ingram', name: 'Adina', style: '24RC101', img: 'images/real/bridal/01-adina.webp', x: ['images/real/bridal/01-adina.webp'], c: 'Clean classic A-line with delicate sweetheart neckline' }
+    ]
   },
   romantic: {
     title: 'The <em>Romantic</em> Dreamer',
-    deco: 'Romantic',
+    personaKey: 'romantic',
     sil: 'A-Line',
-    desc: 'You see your wedding day like a soft-focus film — all blush tones, scattered petals, and whispered vows beneath flowering arches. Tender, luminous, endlessly feminine.',
+    desc: 'You see your wedding day like a sunlit film — soft blush tones, scattered garden petals, and whispered vows beneath flowering pergolas. Tender, ethereal, and endlessly feminine.',
     traits: [
-      { label: 'Silhouette', value: 'Soft A-Line',     desc: 'Floats as you walk, delicately feminine.' },
-      { label: 'Fabric',     value: 'Chiffon & Lace',  desc: 'Gossamer-light layers that catch the breeze.' },
-      { label: 'Details',    value: 'Floral Appliqué', desc: 'Three-dimensional blooms across the bodice.' },
-      { label: 'Inspiration',value: 'Audrey Hepburn',  desc: 'Whimsical elegance, effortless femininity.' },
+      { label: 'Ideal Silhouette', value: 'Flowing Soft A-Line', desc: 'Floats effortlessly with every step down the aisle.' },
+      { label: 'Signature Fabric', value: 'Layered Chiffon & Tulle', desc: 'Gossamer-light fabrics that catch the natural breeze.' },
+      { label: 'Lace & Details', value: '3D Floral Appliqués', desc: 'Dimensional hand-placed blooms across a sheer bodice.' },
+      { label: 'Iconic Inspiration', value: 'Audrey Hepburn', desc: 'Whimsical tenderness, soft laughter, and pure radiance.' },
     ],
     dresses: [
-      { designer: 'Rebecca Ingram',    name: 'Blossom', style: '26RB445A01', img: 'https://dy9ihb9itgy3g.cloudfront.net/products/13015/26rb445a01/26rb445a01__f_2.740.webp',                                                              x: ['https://dy9ihb9itgy3g.cloudfront.net/products/13015/26rb445a01/26rb445a01__f_2.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13015/26rb445a01/26rb445a01__d_f.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13015/26rb445a01/26rb445a01__f_1.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13015/26rb445a01/26rb445a01__f_3.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13015/26rb445a01/26rb445a01__f_4.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13015/26rb445a01/26rb445a01__b_1.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13015/26rb445a01/26rb445a01__b_2.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13015/26rb445a01/26rb445a01__f_c_5.2000.webp'], c: 'Enchanting Strapless 3-D Floral Lace A-Line Wedding Dress' },
-      { designer: 'Maggie Sottero',    name: 'Avalon',  style: '24MS200',    img: 'https://dy9ihb9itgy3g.cloudfront.net/products/$uploads/products/10302/avalon/avalon__24ms200a01.740.webp',                                              x: ['https://dy9ihb9itgy3g.cloudfront.net/products/$uploads/products/10302/avalon/avalon__24ms200a01.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/$uploads/products/10302/avalon/avalon__24ms200a01_7.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/$uploads/products/10302/avalon/avalon__24ms200a01_15.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/$uploads/products/10302/avalon/avalon__24ms200a01_6.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/$uploads/products/10302/avalon/avalon__24ms200a01_4.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/$uploads/products/10302/avalon/avalon__24ms200a01_1.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/$uploads/products/10302/avalon/avalon__24ms200a01_11.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/$uploads/products/10302/avalon/avalon__24ms200a01_12.2000.webp'], c: 'Romantic floral A-line wedding dress with sheer organza bodice and bow belt' },
-      { designer: 'Sottero & Midgley', name: 'Maritza', style: '25SS863A01', img: 'https://dy9ihb9itgy3g.cloudfront.net/products/12628/maritza/maritza____.740.webp',                                                                     x: ['https://dy9ihb9itgy3g.cloudfront.net/products/12628/maritza/maritza____.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/12628/maritza/maritza________3.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/12628/maritza/maritza________8.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/12628/maritza/maritza________15.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/12628/maritza/maritza________5.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/12628/maritza/maritza________6.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/12628/maritza/maritza________10.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/12628/maritza/maritza________2.2000.webp'], c: 'Romantic 3-D floral shimmering A-line wedding gown' },
-    ],
+      { designer: 'Rebecca Ingram', name: 'Blossom', style: '26RB445A01', img: 'https://dy9ihb9itgy3g.cloudfront.net/products/13015/26rb445a01/26rb445a01__f_2.740.webp', x: ['https://dy9ihb9itgy3g.cloudfront.net/products/13015/26rb445a01/26rb445a01__f_2.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13015/26rb445a01/26rb445a01__d_f.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13015/26rb445a01/26rb445a01__b_1.2000.webp'], c: 'Enchanting Strapless 3-D Floral Lace A-Line Wedding Dress' },
+      { designer: 'Maggie Sottero', name: 'Avalon', style: '24MS200', img: 'https://dy9ihb9itgy3g.cloudfront.net/products/$uploads/products/10302/avalon/avalon__24ms200a01.740.webp', x: ['https://dy9ihb9itgy3g.cloudfront.net/products/$uploads/products/10302/avalon/avalon__24ms200a01.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/$uploads/products/10302/avalon/avalon__24ms200a01_7.2000.webp'], c: 'Romantic floral A-line wedding dress with sheer organza bodice and bow belt' },
+      { designer: 'Sottero & Midgley', name: 'Maritza', style: '25SS863A01', img: 'https://dy9ihb9itgy3g.cloudfront.net/products/12628/maritza/maritza____.740.webp', x: ['https://dy9ihb9itgy3g.cloudfront.net/products/12628/maritza/maritza____.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/12628/maritza/maritza________3.2000.webp'], c: 'Romantic 3-D floral shimmering A-line wedding gown' },
+      { designer: 'Maggie Sottero', name: 'Aliza', style: '23MS902', img: 'images/real/bridal/05-aliza.webp', x: ['images/real/bridal/05-aliza.webp'], c: 'Dreamy sparkle tulle A-line with sweetheart neckline' },
+      { designer: 'Rebecca Ingram', name: 'Annevay', style: '24RB210', img: 'images/real/bridal/10-annevay.webp', x: ['images/real/bridal/10-annevay.webp'], c: 'Soft floral lace with illusion back and sweep train' }
+    ]
   },
   boho: {
     title: 'The <em>Bohemian</em> Spirit',
-    deco: 'Bohemian',
+    personaKey: 'boho',
     sil: 'Mermaid',
-    desc: 'Rules were made to be reimagined. You want a dress that moves with you — as free-spirited and uniquely beautiful as your love story. Natural, effortless, authentically you.',
+    desc: 'Rules were made to be reimagined. You want a gown that moves like water — as free-spirited, joyful, and uniquely beautiful as your love story. Unfussy, artistic, and magnetic.',
     traits: [
-      { label: 'Silhouette', value: 'Flowy Column',     desc: 'Relaxed silhouette, moves like water.' },
-      { label: 'Fabric',     value: 'Lace & Chiffon',   desc: 'Buttery-soft, body-skimming, naturally draped.' },
-      { label: 'Details',    value: '3D Floral Lace',   desc: 'Artisan detailing, beautifully imperfect.' },
-      { label: 'Inspiration',value: 'Stevie Nicks',     desc: 'Wild heart, golden spirit, dancing into forever.' },
+      { label: 'Ideal Silhouette', value: 'Flowing Column & Mermaid', desc: 'Effortless curves, body-skimming lines, and relaxed charm.' },
+      { label: 'Signature Fabric', value: 'Crochet & Cotton Lace', desc: 'Textured artisan weaves and soft organic touch.' },
+      { label: 'Lace & Details', value: 'Geometric & Leaf Motifs', desc: 'Botanical vine embroidery, tassel accents, and open backs.' },
+      { label: 'Iconic Inspiration', value: 'Stevie Nicks', desc: 'Wild heart, golden spirit, dancing barefoot under the stars.' },
     ],
     dresses: [
-      { designer: 'Maggie Sottero',    name: 'Dakota',     style: '25MB849A01', img: 'https://dy9ihb9itgy3g.cloudfront.net/products/12607/dakota/dakota__d_f.740.webp',                                                                              x: ['https://dy9ihb9itgy3g.cloudfront.net/products/12607/dakota/dakota__d_f.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/12607/dakota/dakota__f_4.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/12607/dakota/dakota__f_2.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/12607/dakota/dakota__f_1.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/12607/dakota/dakota__f_3.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/12607/dakota/dakota__b.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/12607/dakota/dakota__f_c_1.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/12607/dakota/dakota__f_c_3.2000.webp'], c: 'Simple boho allover lace mermaid bridal dress' },
-      { designer: 'Sottero & Midgley', name: 'Bryce',      style: '24SB191',    img: 'https://dy9ihb9itgy3g.cloudfront.net/products/$uploads/products/10301/bryce/bryce__24sb191a01.740.webp',                                                       x: ['https://dy9ihb9itgy3g.cloudfront.net/products/$uploads/products/10301/bryce/bryce__24sb191a01.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/$uploads/products/10301/bryce/bryce__24sb191a01_7.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/$uploads/products/10301/bryce/bryce__24sb191a01_5.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/$uploads/products/10301/bryce/bryce__24sb191a01_4.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/$uploads/products/10301/bryce/bryce__24sb191a01_6.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/$uploads/products/10301/bryce/bryce__24sb191a01_2.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/$uploads/products/10301/bryce/bryce__24sb191a01_1.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/$uploads/products/10301/bryce/bryce__24sb191a01_3.2000.webp'], c: 'Boho 3D floral lace bridal dress with illusion detail and bow straps' },
-      { designer: 'Rebecca Ingram',    name: 'Pilar Leigh', style: '23RC713B',   img: 'https://dy9ihb9itgy3g.cloudfront.net/products/$uploads/products/10314/pilarleigh/pilarleigh__23rc713b01__d_f.740.webp',                                        x: ['https://dy9ihb9itgy3g.cloudfront.net/products/$uploads/products/10314/pilarleigh/pilarleigh__23rc713b01__d_f.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/$uploads/products/10314/pilarleigh/pilarleigh__23rc713b01__b.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/$uploads/products/10314/pilarleigh/pilarleigh__23rc713b01__c.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/$uploads/products/10314/pilarleigh/pilarleigh__23rc713b01__b_c.2000.webp'], c: 'Bohemian puff sleeve modest wedding gown with chic square back' },
-    ],
+      { designer: 'Maggie Sottero', name: 'Dakota', style: '25MB849A01', img: 'https://dy9ihb9itgy3g.cloudfront.net/products/12607/dakota/dakota__d_f.740.webp', x: ['https://dy9ihb9itgy3g.cloudfront.net/products/12607/dakota/dakota__d_f.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/12607/dakota/dakota__f_4.2000.webp'], c: 'Simple boho allover lace mermaid bridal dress' },
+      { designer: 'Sottero & Midgley', name: 'Bryce', style: '24SB191', img: 'https://dy9ihb9itgy3g.cloudfront.net/products/$uploads/products/10301/bryce/bryce__24sb191a01.740.webp', x: ['https://dy9ihb9itgy3g.cloudfront.net/products/$uploads/products/10301/bryce/bryce__24sb191a01.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/$uploads/products/10301/bryce/bryce__24sb191a01_7.2000.webp'], c: 'Boho 3D floral lace bridal dress with illusion detail and bow straps' },
+      { designer: 'Rebecca Ingram', name: 'Pilar Leigh', style: '23RC713B', img: 'https://dy9ihb9itgy3g.cloudfront.net/products/$uploads/products/10314/pilarleigh/pilarleigh__23rc713b01__d_f.740.webp', x: ['https://dy9ihb9itgy3g.cloudfront.net/products/$uploads/products/10314/pilarleigh/pilarleigh__23rc713b01__d_f.2000.webp'], c: 'Bohemian puff sleeve modest wedding gown with chic square back' },
+      { designer: 'Maggie Sottero', name: 'Andora', style: '24MS315', img: 'images/real/bridal/09-andora.webp', x: ['images/real/bridal/09-andora.webp'], c: 'Artisan lace mermaid with illusion side cutouts' },
+      { designer: 'Rebecca Ingram', name: 'Alora', style: '24RB320', img: 'images/real/bridal/06-alora.webp', x: ['images/real/bridal/06-alora.webp'], c: 'Vintage-inspired boho column gown with delicate fringe trim' }
+    ]
   },
   modern: {
     title: 'The <em>Modern</em> Minimalist',
-    deco: 'Modern',
+    personaKey: 'modern',
     sil: 'Sheath',
-    desc: 'For you, beauty is in the edit. Your aesthetic is sharp, confident, and radiates a quiet luxury that needs no explanation. Clean lines, powerful presence.',
+    desc: 'For you, beauty lives in precision and restraint. Your aesthetic is sharp, intentional, and radiates a quiet luxury that speaks volumes without shouting. Clean lines, pure confidence.',
     traits: [
-      { label: 'Silhouette', value: 'Sleek Sheath',     desc: 'Clean lines, architectural structure.' },
-      { label: 'Fabric',     value: 'Crepe or Mikado',  desc: 'Matte surface, sculptural weight.' },
-      { label: 'Details',    value: 'Zero Adornment',   desc: 'Pure form, pure confidence.' },
-      { label: 'Inspiration',value: 'Carolyn Bessette', desc: 'Stripped back, impossibly chic.' },
+      { label: 'Ideal Silhouette', value: 'Architectural Sheath', desc: 'Sharp sculpted necklines, tailored waist, and clean drape.' },
+      { label: 'Signature Fabric', value: 'Stretch Crepe & Silk Twill', desc: 'Sculptural matte finish that sculpts the body seamlessly.' },
+      { label: 'Lace & Details', value: 'Pure Form & Basque Waist', desc: 'Square cutouts, subtle cowl drapery, and zero fussy clutter.' },
+      { label: 'Iconic Inspiration', value: 'Carolyn Bessette', desc: 'Understated high fashion, effortless poise, and timeless coolness.' },
     ],
     dresses: [
-      { designer: 'Rebecca Ingram',    name: 'Brenda',    style: '26RB438A01', img: 'https://dy9ihb9itgy3g.cloudfront.net/products/13015/26rb438a01/26rb438a01__d_f.740.webp',  x: ['https://dy9ihb9itgy3g.cloudfront.net/products/13015/26rb438a01/26rb438a01__d_f.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13015/26rb438a01/26rb438a01__b_1.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13015/26rb438a01/26rb438a01__b_2.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13015/26rb438a01/26rb438a01__f_c.2000.webp'], c: 'Sophisticated crepe sheath with draped cowl neckline' },
-      { designer: 'Maggie Sottero',    name: 'Sinclaire', style: '26MZ408A01', img: 'https://dy9ihb9itgy3g.cloudfront.net/products/13051/26mz408a01/26mz408a01__d_f.740.webp',  x: ['https://dy9ihb9itgy3g.cloudfront.net/products/13051/26mz408a01/26mz408a01__d_f.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13051/26mz408a01/26mz408a01__f_3.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13051/26mz408a01/26mz408a01__f_2.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13051/26mz408a01/26mz408a01__f_1.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13051/26mz408a01/26mz408a01__b_2.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13051/26mz408a01/26mz408a01__b_1.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13051/26mz408a01/26mz408a01__b_3.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13051/26mz408a01/26mz408a01__f_c_3.2000.webp'], c: 'Sleek cat eye neckline basque waist sheath wedding dress' },
-      { designer: 'Sottero & Midgley', name: 'Cooper',    style: '26SS378A01', img: 'https://dy9ihb9itgy3g.cloudfront.net/products/13016/26ss378a01/26ss378a01__d_f.740.webp',  x: ['https://dy9ihb9itgy3g.cloudfront.net/products/13016/26ss378a01/26ss378a01__d_f.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13016/26ss378a01/26ss378a01__f_1.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13016/26ss378a01/26ss378a01__f_2.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13016/26ss378a01/26ss378a01__b_2.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13016/26ss378a01/26ss378a01__b_1.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13016/26ss378a01/26ss378a01__f_c.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13016/26ss378a01/26ss378a01__b_c.2000.webp'], c: 'Modern pearl embellished glitter tulle sheath with illusion details' },
-    ],
-  },
+      { designer: 'Rebecca Ingram', name: 'Brenda', style: '26RB438A01', img: 'https://dy9ihb9itgy3g.cloudfront.net/products/13015/26rb438a01/26rb438a01__d_f.740.webp', x: ['https://dy9ihb9itgy3g.cloudfront.net/products/13015/26rb438a01/26rb438a01__d_f.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13015/26rb438a01/26rb438a01__b_1.2000.webp'], c: 'Sophisticated crepe sheath with draped cowl neckline' },
+      { designer: 'Maggie Sottero', name: 'Sinclaire', style: '26MZ408A01', img: 'https://dy9ihb9itgy3g.cloudfront.net/products/13051/26mz408a01/26mz408a01__d_f.740.webp', x: ['https://dy9ihb9itgy3g.cloudfront.net/products/13051/26mz408a01/26mz408a01__d_f.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13051/26mz408a01/26mz408a01__f_3.2000.webp'], c: 'Sleek cat eye neckline basque waist sheath wedding dress' },
+      { designer: 'Sottero & Midgley', name: 'Cooper', style: '26SS378A01', img: 'https://dy9ihb9itgy3g.cloudfront.net/products/13016/26ss378a01/26ss378a01__d_f.740.webp', x: ['https://dy9ihb9itgy3g.cloudfront.net/products/13016/26ss378a01/26ss378a01__d_f.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13016/26ss378a01/26ss378a01__f_1.2000.webp'], c: 'Modern pearl embellished glitter tulle sheath with illusion details' },
+      { designer: 'Maggie Sottero', name: 'Antonella', style: '25MZ410', img: 'images/real/bridal/11-antonella.webp', x: ['images/real/bridal/11-antonella.webp'], c: 'Sculptural square neck crepe sheath with sleek button train' },
+      { designer: 'Rebecca Ingram', name: 'Althea', style: '24RC301', img: 'images/real/bridal/07-althea.webp', x: ['images/real/bridal/07-althea.webp'], c: 'Minimalist high-neck crepe gown with open keyhole back' }
+    ]
+  }
 };
 
-/* ── SLIDES ── */
+/* ── DOM REFS ── */
 const slides = document.querySelectorAll('.qslide');
 const nextBtn = document.getElementById('qNext');
+const nextLabel = document.getElementById('qNextLabel');
 const backBtn = document.getElementById('qBack');
 const fill = document.getElementById('qFill');
 const label = document.getElementById('qLabel');
@@ -1062,27 +1344,23 @@ const label = document.getElementById('qLabel');
 function updateProgress() {
   if (current < 0) {
     fill.style.width = '0%';
-    label.textContent = '';
+    label.textContent = 'Welcome';
   } else {
     fill.style.width = ((current + 1) / TOTAL * 100) + '%';
-    label.textContent = '0' + (current + 1) + ' / 0' + TOTAL;
+    label.textContent = 'Step ' + (current + 1) + ' of ' + TOTAL;
   }
 }
 
 function updateNav() {
   if (current < 0) {
-    // Intro
     backBtn.classList.add('hidden');
-    nextBtn.textContent = '';
-    nextBtn.innerHTML = 'Begin <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+    nextLabel.textContent = 'Begin Quiz';
     nextBtn.disabled = false;
   } else {
     backBtn.classList.remove('hidden');
     const isLast = current === TOTAL - 1;
     const hasAnswer = answers[current] !== null;
-    nextBtn.innerHTML = isLast
-      ? 'See My Style <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>'
-      : 'Continue <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+    nextLabel.textContent = isLast ? 'Reveal My Bridal Persona' : 'Continue';
     nextBtn.disabled = !hasAnswer;
   }
 }
@@ -1097,10 +1375,10 @@ function goTo(next) {
   if (currentSlide) {
     currentSlide.classList.remove('active');
     currentSlide.classList.add(goingForward ? 'exit-left' : 'exit-right');
-    setTimeout(() => currentSlide.classList.remove('exit-left', 'exit-right'), 600);
+    setTimeout(() => currentSlide.classList.remove('exit-left', 'exit-right'), 500);
   }
 
-  nextSlide.style.transform = goingForward ? 'translateX(60px)' : 'translateX(-60px)';
+  nextSlide.style.transform = goingForward ? 'translateX(48px)' : 'translateX(-48px)';
   nextSlide.style.opacity = '0';
   requestAnimationFrame(() => {
     nextSlide.classList.add('active');
@@ -1130,84 +1408,177 @@ function goBack() {
 }
 
 function selectOption(el) {
-  el.closest('.qoptions').querySelectorAll('.qoption').forEach(o => o.classList.remove('selected'));
+  const container = el.closest('.qoptions-grid');
+  container.querySelectorAll('.qoption-card').forEach(o => o.classList.remove('selected'));
   el.classList.add('selected');
   answers[current] = el.dataset.value;
   nextBtn.disabled = false;
+  
+  // Auto-advance after smooth tactile delay on radio-card select
+  setTimeout(() => {
+    if (current >= 0 && current < TOTAL - 1) {
+      goNext();
+    }
+  }, 320);
 }
 
-/* ── RESULTS ── */
+/* ── KEYBOARD NAVIGATION ── */
+document.addEventListener('keydown', (e) => {
+  if (current === -1) {
+    if (e.key === 'Enter') goNext();
+    return;
+  }
+  if (current >= 0 && current < TOTAL) {
+    const currentSlide = [...slides].find(s => parseInt(s.dataset.q) === current);
+    if (!currentSlide) return;
+    const cards = currentSlide.querySelectorAll('.qoption-card');
+    if (e.key >= '1' && e.key <= '4') {
+      const idx = parseInt(e.key) - 1;
+      if (cards[idx]) selectOption(cards[idx]);
+    } else if (e.key === 'Enter' && !nextBtn.disabled) {
+      goNext();
+    } else if (e.key === 'Backspace' || e.key === 'Escape') {
+      goBack();
+    }
+  }
+});
+
+/* ── RESULTS ENGINE ── */
 function tally() {
-  const counts = {};
-  answers.forEach(a => { if (a) counts[a] = (counts[a] || 0) + 1; });
-  return Object.entries(counts).sort((a, b) => b[1] - a[1])[0]?.[0] || 'classic';
+  const counts = { classic: 0, romantic: 0, boho: 0, modern: 0 };
+  answers.forEach(a => { if (a && counts[a] !== undefined) counts[a]++; });
+  return Object.entries(counts).sort((a, b) => b[1] - a[1])[0]?.[0] || 'romantic';
 }
+
+let activePersona = null;
 
 function showResults() {
-  const style = STYLES[tally()];
+  const personaKey = tally();
+  activePersona = PERSONAS[personaKey];
+
   document.getElementById('quizShell').style.display = 'none';
   document.getElementById('qNav').style.display = 'none';
   document.querySelector('.qprogress').style.display = 'none';
-  document.getElementById('qLabel').style.display = 'none';
+  document.getElementById('qHeader').style.display = 'none';
 
-  // Hero
-  document.getElementById('rTitle').innerHTML = style.title;
-  document.getElementById('rDesc').textContent = style.desc;
-  document.getElementById('rDeco').textContent = style.deco;
+  // Hero & Narrative
+  document.getElementById('rTitle').innerHTML = activePersona.title;
+  document.getElementById('rDesc').textContent = activePersona.desc;
 
-  // Catalog links — pre-filter by matching silhouette
-  const catalogUrl = 'bridal-catalog.html?sil=' + encodeURIComponent(style.sil);
-  document.getElementById('rBrowseLink').href = catalogUrl;
-  document.getElementById('rBrowseGowns').href = catalogUrl;
+  // Book with Persona CTA url
+  const bookUrl = `appointments.html?persona=${encodeURIComponent(activePersona.personaKey)}&sil=${encodeURIComponent(activePersona.sil)}`;
+  document.getElementById('rBookBtn').href = bookUrl;
+
+  // Store persona in sessionStorage for appointment context
+  sessionStorage.setItem('cloudnine_quiz_persona', JSON.stringify({
+    key: activePersona.personaKey,
+    title: activePersona.title.replace(/<[^>]+>/g, ''),
+    sil: activePersona.sil
+  }));
 
   // Traits
-  document.getElementById('rTraits').innerHTML = style.traits.map(t => `
-    <div class="qtrait">
-      <div class="qtrait-label">${t.label}</div>
-      <div class="qtrait-value">${t.value}</div>
-      <div class="qtrait-desc">${t.desc}</div>
+  document.getElementById('rTraits').innerHTML = activePersona.traits.map(t => `
+    <div class="qtrait-card reveal-on-scroll">
+      <div class="qtrait-tag">${t.label}</div>
+      <div class="qtrait-val">${t.value}</div>
+      <div class="qtrait-info">${t.desc}</div>
     </div>`).join('');
 
-  // Dresses
-  document.getElementById('rDresses').innerHTML = style.dresses.map(d => `
-    <div class="qdress-card" onclick="viewDress(${JSON.stringify(d).replace(/"/g, '&quot;')})">
-      <div class="qdress-card-img">
-        <img src="${d.img}" alt="${d.designer} ${d.name}" loading="lazy" onerror="this.closest('.qdress-card').style.display='none'"/>
-        <div class="qdress-card-overlay"></div>
-        <div class="qdress-card-info">
-          <div class="qdress-card-designer">${d.designer}</div>
-          <div class="qdress-card-name">${d.name}</div>
-          <div class="qdress-card-cta">View Details →</div>
-        </div>
+  // Curated Fitting Rack
+  document.getElementById('rDresses').innerHTML = activePersona.dresses.map((d, i) => `
+    <div class="qrack-card reveal-on-scroll" onclick="viewGown(${JSON.stringify(d).replace(/"/g, '&quot;')}, this)">
+      <div class="qrack-img-wrap">
+        <img class="qrack-img" src="${d.img}" alt="${d.designer} ${d.name}" loading="lazy"/>
+      </div>
+      <div class="qrack-body">
+        <span class="qrack-designer">${d.designer}</span>
+        <h3 class="qrack-name">${d.name}</h3>
+        <span class="qrack-style-num">Style #${d.style}</span>
+        <p class="qrack-desc">${d.c}</p>
+        <span class="qrack-cta">View Gown Details →</span>
       </div>
     </div>`).join('');
 
-  // Animate results in
+  // Animate results container
   const results = document.getElementById('qResults');
   results.style.opacity = '0';
   results.classList.add('visible');
   requestAnimationFrame(() => {
-    results.style.transition = 'opacity .8s cubic-bezier(.16,1,.3,1)';
+    results.style.transition = 'opacity .6s cubic-bezier(0.32, 0.72, 0, 1)';
     results.style.opacity = '1';
   });
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function viewDress(d) {
-  sessionStorage.setItem('cloudnine_dress', JSON.stringify({ d: d.designer, s: d.style, i: d.img, x: d.x || [], n: d.name, c: d.c || '' }));
+function viewGown(d, cardEl) {
+  sessionStorage.setItem('cloudnine_dress', JSON.stringify({
+    d: d.designer,
+    s: d.style,
+    i: d.img,
+    x: d.x || [],
+    n: d.name,
+    c: d.c || '',
+    sil: activePersona?.sil || 'A-Line'
+  }));
   sessionStorage.setItem('cloudnine_dress_src', 'quiz.html');
+
+  if (cardEl) {
+    const img = cardEl.querySelector('img');
+    if (img) img.style.viewTransitionName = 'dress-hero';
+  }
+
   const sku = encodeURIComponent(d.style || '');
   const des = encodeURIComponent(d.designer || '');
   window.location.href = `dress.html?cat=bridal&sku=${sku}${des ? `&d=${des}` : ''}`;
 }
 
+function saveAllToLookbook() {
+  if (!activePersona || !activePersona.dresses) return;
+  const WL_KEY = 'cloudnine_wishlist';
+  let list = [];
+  try { list = JSON.parse(localStorage.getItem(WL_KEY) || '[]'); } catch(e) {}
+
+  activePersona.dresses.forEach(d => {
+    const id = d.style + '|' + d.designer;
+    if (!list.some(x => (x.s + '|' + x.d) === id)) {
+      list.push({ s: d.style, d: d.designer, i: d.img, x: d.x || [], _cat: 'bridal-catalog.html', _type: 'bridal' });
+    }
+  });
+
+  localStorage.setItem(WL_KEY, JSON.stringify(list));
+  if (typeof updateWishlistCount === 'function') updateWishlistCount();
+
+  const toast = document.getElementById('quizToast');
+  toast.textContent = `✦ Added 5 ${activePersona.sil} gowns to your Lookbook!`;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 3500);
+}
+
+function sharePersonaResults() {
+  if (!activePersona) return;
+  const url = `${window.location.origin}/quiz.html?persona=${activePersona.personaKey}`;
+  const title = `My Bridal Persona: ${activePersona.title.replace(/<[^>]+>/g, '')}`;
+  const text = `I just took the Cloud Nine Bridal Style Quiz and got matched with ${activePersona.title.replace(/<[^>]+>/g, '')}! Check out my curated fitting rack:`;
+
+  if (navigator.share) {
+    navigator.share({ title, text, url }).catch(() => {});
+  } else {
+    navigator.clipboard.writeText(url).then(() => {
+      const toast = document.getElementById('quizToast');
+      toast.textContent = '✦ Persona link copied to clipboard!';
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }).catch(() => {});
+  }
+}
+
 function retake() {
   current = -1;
   answers.fill(null);
-  document.querySelectorAll('.qoption').forEach(o => o.classList.remove('selected'));
+  document.querySelectorAll('.qoption-card').forEach(o => o.classList.remove('selected'));
 
   const results = document.getElementById('qResults');
-  results.style.transition = 'opacity .4s ease';
+  results.style.transition = 'opacity .35s ease';
   results.style.opacity = '0';
   setTimeout(() => {
     results.classList.remove('visible');
@@ -1216,7 +1587,7 @@ function retake() {
     document.getElementById('quizShell').style.display = '';
     document.getElementById('qNav').style.display = '';
     document.querySelector('.qprogress').style.display = '';
-    document.getElementById('qLabel').style.display = '';
+    document.getElementById('qHeader').style.display = '';
 
     slides.forEach(s => {
       s.classList.remove('active', 'exit-left', 'exit-right');
@@ -1226,13 +1597,22 @@ function retake() {
     updateProgress();
     updateNav();
     window.scrollTo({ top: 0 });
-  }, 400);
+  }, 350);
 }
+
+// Deep-link check: if URL has ?persona=romantic, jump straight to results
+(function checkUrlParams() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const personaParam = urlParams.get('persona');
+  if (personaParam && PERSONAS[personaParam]) {
+    answers.fill(personaParam);
+    showResults();
+  }
+})();
 
 /* ── INIT ── */
 updateProgress();
 updateNav();
 </script>
-</main>
 </body>
 </html>

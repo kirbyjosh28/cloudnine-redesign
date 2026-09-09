@@ -18,7 +18,7 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Josefin+Sans:wght@100;200;300;400&family=Lato:wght@300;400;700;900&display=swap"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&display=swap"/>
   <link rel="stylesheet" href="shared.css"/>
   <script type="application/ld+json">
   {
@@ -46,7 +46,7 @@
     /* ── PAGE HERO ── */
     .appt-hero {
       background: var(--teal-dark);
-      padding: 80px 64px 72px;
+      padding: 90px 64px 80px;
       position: relative;
       overflow: hidden;
     }
@@ -57,7 +57,7 @@
       pointer-events: none;
     }
     .appt-hero-inner {
-      max-width: 900px;
+      max-width: 960px;
       position: relative; z-index: 2;
     }
     .appt-hero .eyebrow { color: rgba(255,255,255,.58); }
@@ -65,13 +65,13 @@
     .appt-hero h1 {
       font-family: 'Playfair Display', serif;
       font-size: clamp(48px, 7vw, 96px); font-weight: 700;
-      letter-spacing: -.04em; line-height: .9; color: #fff;
+      letter-spacing: -.04em; line-height: .92; color: #fff;
       margin: 0 0 24px;
     }
-    .appt-hero h1 em { font-style: italic; color: rgba(152,213,214,.75); }
+    .appt-hero h1 em { font-style: italic; color: rgba(152,213,214,.85); }
     .appt-hero p {
-      font-size: 17px; font-weight: 300; color: rgba(255,255,255,.55);
-      line-height: 1.8; max-width: 520px; margin: 0 0 36px;
+      font-size: 17px; font-weight: 300; color: rgba(255,255,255,.65);
+      line-height: 1.8; max-width: 580px; margin: 0 0 36px;
     }
     .appt-hero-meta {
       display: flex; align-items: center; gap: 32px; flex-wrap: wrap;
@@ -80,9 +80,9 @@
       display: flex; align-items: center; gap: 8px;
       font-family: 'Josefin Sans', sans-serif;
       font-size: 10px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
-      color: rgba(255,255,255,.62);
+      color: rgba(255,255,255,.7);
     }
-    .appt-hero-meta-item svg { color: rgba(152,213,214,.75); }
+    .appt-hero-meta-item svg { color: rgba(152,213,214,.85); }
 
     @media (max-width: 768px) {
       .appt-hero { padding: 52px 20px 56px; }
@@ -92,14 +92,87 @@
       .appt-hero-meta-item { font-size: 9px; }
     }
 
+    /* ── QUIZ PERSONA BANNER ── */
+    .quiz-persona-banner {
+      display: none;
+      background: linear-gradient(135deg, #163d3e 0%, #1c4e50 100%);
+      color: #fff;
+      padding: 20px clamp(20px, 5vw, 64px);
+      border-bottom: 1px solid rgba(152,213,214,.25);
+    }
+    .quiz-persona-banner.is-visible { display: block; }
+    .quiz-banner-inner {
+      max-width: 1440px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 20px; flex-wrap: wrap;
+    }
+    .quiz-banner-text h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px; margin: 0 0 4px; font-weight: 700;
+      color: #fff;
+    }
+    .quiz-banner-text p {
+      font-size: 13px; color: rgba(255,255,255,.75); margin: 0; font-weight: 300;
+    }
+    .quiz-banner-actions { display: flex; align-items: center; gap: 12px; }
+    .btn-quiz-dossier {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 9px 18px; background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.3); color: #fff;
+      font-family: 'Josefin Sans', sans-serif; font-size: 9px; font-weight: 700;
+      letter-spacing: .16em; text-transform: uppercase; cursor: pointer;
+      transition: all .2s;
+    }
+    .btn-quiz-dossier:hover { background: #fff; color: var(--teal-darker); }
+
+    /* ── SEGMENTED FILTER BAR ── */
+    .appt-filters-wrap {
+      padding: 48px clamp(20px, 5vw, 64px) 0;
+      max-width: 1440px; margin: 0 auto;
+    }
+    .appt-segmented-bar {
+      display: inline-flex;
+      background: var(--teal-dim);
+      padding: 4px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      gap: 4px;
+      max-width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .appt-segmented-bar::-webkit-scrollbar { display: none; }
+    .appt-seg-btn {
+      padding: 10px 22px;
+      border-radius: 999px;
+      border: none;
+      background: transparent;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--text-muted);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all .2s cubic-bezier(.16,1,.3,1);
+      min-height: 40px;
+    }
+    .appt-seg-btn.active {
+      background: var(--white);
+      color: var(--teal-deep);
+      box-shadow: 0 2px 10px rgba(0,0,0,.06);
+    }
+    .appt-seg-btn:hover:not(.active) {
+      color: var(--text);
+    }
+
     /* ── APPOINTMENT TYPES ── */
     .appt-types {
-      padding: 80px 64px 0;
+      padding: 40px clamp(20px, 5vw, 64px) 64px;
       max-width: 1440px; margin: 0 auto;
     }
     .appt-types-intro {
       display: flex; align-items: flex-end; justify-content: space-between;
-      gap: 32px; margin-bottom: 48px; flex-wrap: wrap;
+      gap: 32px; margin-bottom: 36px; flex-wrap: wrap;
     }
     .appt-types-intro h2 {
       font-family: 'Playfair Display', serif;
@@ -109,154 +182,294 @@
     .appt-types-intro h2 em { font-style: italic; color: var(--teal-deep); }
     .appt-types-intro p {
       font-size: 14px; color: var(--text-muted); font-weight: 300;
-      line-height: 1.75; max-width: 340px;
+      line-height: 1.75; max-width: 380px;
     }
 
     .appt-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      border: 1px solid var(--border);
+      gap: 24px;
     }
     .appt-card {
       padding: 36px 32px 32px;
-      border-right: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
+      background: var(--white);
       display: flex; flex-direction: column;
       position: relative; overflow: hidden;
-      transition: background .25s;
+      transition: transform .3s cubic-bezier(.16,1,.3,1), box-shadow .3s, border-color .3s;
     }
-    .appt-card:nth-child(3n) { border-right: none; }
-    .appt-card:nth-last-child(-n+3) { border-bottom: none; }
-    .appt-card:hover { background: var(--teal-xlight); }
-    .appt-card::before {
-      content: '';
-      position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
-      background: var(--teal-deep);
-      transform: scaleX(0); transform-origin: left;
-      transition: transform .35s cubic-bezier(.16,1,.3,1);
+    .appt-card.is-featured {
+      border: 2px solid var(--teal-deep) !important;
+      background: linear-gradient(180deg, rgba(234,246,247,.45) 0%, var(--white) 100%);
     }
-    .appt-card:hover::before { transform: scaleX(1); }
+    .appt-card.is-selected {
+      border-color: var(--teal-deep) !important;
+      box-shadow: 0 0 0 3px rgba(28,78,80,.18), 0 16px 32px rgba(0,0,0,.08);
+      transform: translateY(-4px);
+    }
+    .appt-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(0,0,0,.06);
+    }
 
+    .appt-card-top {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .appt-card-num {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 10px; font-weight: 600; letter-spacing: .2em;
+      color: var(--text-light);
+    }
     .appt-card-badge {
       display: inline-flex; align-items: center; gap: 6px;
       font-family: 'Josefin Sans', sans-serif;
-      font-size: 8px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
-      padding: 5px 10px;
-      margin-bottom: 20px;
-      border-radius: 0;
+      font-size: 9px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 999px;
       width: fit-content;
     }
     .appt-card-badge--free {
       background: rgba(28,78,80,.08); color: var(--teal-deep);
     }
     .appt-card-badge--premium {
-      background: #f9eaf0; color: #a0446a;
+      background: #fdf2f4; color: #a0446a; border: 1px solid rgba(160,68,106,.2);
     }
-    .appt-card-badge--prom {
-      background: rgba(180,90,140,.08); color: #a0446a;
+    .appt-card-badge--ultimate {
+      background: var(--teal-deep); color: #fff;
     }
     .appt-card-badge--tux {
-      background: rgba(28,78,80,.08); color: var(--teal-deep);
+      background: #1c1c1c; color: #fff;
     }
-    .appt-card-num {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 9px; font-weight: 300; letter-spacing: .2em;
-      color: var(--text-light); margin-bottom: 8px;
-    }
+
     .appt-card h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 22px; font-weight: 700; font-style: italic;
+      font-size: 24px; font-weight: 700; font-style: italic;
       color: var(--text); letter-spacing: -.01em;
-      margin: 0 0 12px;
+      margin: 0 0 10px;
       transition: color .2s;
       line-height: 1.2;
     }
     .appt-card:hover h3 { color: var(--teal-deep); }
     .appt-card-duration {
       font-family: 'Josefin Sans', sans-serif;
-      font-size: 9px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
-      color: var(--text-light); margin-bottom: 14px;
+      font-size: 10px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 16px;
       display: flex; align-items: center; gap: 6px;
     }
+    .appt-card-duration svg { color: var(--teal-deep); }
     .appt-card p {
-      font-size: 13px; color: var(--text-muted); line-height: 1.7;
-      font-weight: 300; margin: 0; flex: 1;
+      font-size: 13.5px; color: var(--text-muted); line-height: 1.7;
+      font-weight: 300; margin: 0 0 20px; flex: 1;
     }
     .appt-card-perks {
-      margin: 16px 0 0;
-      display: flex; flex-direction: column; gap: 6px;
-      padding-top: 16px;
+      display: flex; flex-direction: column; gap: 10px;
+      padding: 16px 0;
       border-top: 1px solid var(--border);
+      margin-bottom: 24px;
     }
     .appt-card-perk {
-      display: flex; align-items: flex-start; gap: 8px;
-      font-size: 12px; color: var(--text-muted); line-height: 1.4;
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 12.5px; color: var(--text); line-height: 1.45;
     }
     .appt-card-perk svg { flex-shrink: 0; color: var(--teal-deep); margin-top: 2px; }
-    .appt-card-book-btn {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-family: 'Josefin Sans', sans-serif; font-size: 10px; font-weight: 700;
-      letter-spacing: .14em; text-transform: uppercase; color: var(--teal-deep);
-      text-decoration: none; margin-top: 18px; padding-top: 14px;
-      border-top: 1px dashed var(--border); transition: gap .2s, color .2s;
-      min-height: 44px; touch-action: manipulation;
+    
+    .appt-card-footer {
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px dashed var(--border);
+      display: flex; align-items: center; justify-content: space-between;
     }
-    .appt-card-book-btn:hover { gap: 10px; color: var(--teal-darker); }
+    .appt-card-select-btn {
+      width: 100%;
+      justify-content: center;
+    }
 
-    .appt-grid-note {
-      padding: 18px 32px;
-      background: var(--teal-dim);
-      border: 1px solid var(--border);
-      border-top: none;
-      font-size: 13px; color: var(--text-muted); line-height: 1.6;
-      display: flex; align-items: flex-start; gap: 10px;
+    @media (max-width: 1024px) {
+      .appt-grid { grid-template-columns: repeat(2, 1fr); }
     }
-    .appt-grid-note svg { flex-shrink: 0; color: var(--teal-deep); margin-top: 2px; }
-
-    @media (max-width: 900px) {
-      .appt-types { padding: 56px 28px 0; }
-      .appt-grid { grid-template-columns: 1fr 1fr; }
-      .appt-card:nth-child(3n) { border-right: 1px solid var(--border); }
-      .appt-card:nth-child(2n) { border-right: none; }
-      .appt-card:nth-last-child(-n+3) { border-bottom: 1px solid var(--border); }
-      .appt-card:nth-last-child(-n+2) { border-bottom: none; }
-    }
-    @media (max-width: 600px) {
-      .appt-types { padding: 44px 20px 0; }
-      .appt-grid { grid-template-columns: 1fr; }
-      .appt-card { border-right: none !important; border-bottom: 1px solid var(--border) !important; padding: 28px 20px 24px; }
-      .appt-card:last-child { border-bottom: none !important; }
-      .appt-card h3 { font-size: 20px; }
+    @media (max-width: 640px) {
+      .appt-types { padding: 32px 20px 48px; }
+      .appt-grid { grid-template-columns: 1fr; gap: 16px; }
+      .appt-card { padding: 28px 20px 24px; }
+      .appt-card h3 { font-size: 21px; }
       .appt-types-intro { flex-direction: column; gap: 12px; }
       .appt-types-intro h2 { font-size: clamp(28px, 8vw, 42px); }
     }
 
+    /* ── INTERACTIVE FITTING PREP & TIMELINE TOOLKIT ── */
+    .prep-hub-section {
+      background: var(--teal-dim);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 80px clamp(20px, 5vw, 64px);
+    }
+    .prep-hub-inner {
+      max-width: 1440px; margin: 0 auto;
+    }
+    .prep-hub-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .prep-box {
+      background: var(--white);
+      padding: 40px;
+    }
+
+    /* Checklist */
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      user-select: none;
+      transition: background .2s;
+    }
+    .checklist-item:last-child { border-bottom: none; }
+    .checklist-checkbox {
+      width: 22px; height: 22px;
+      border: 1.5px solid var(--border-dark);
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+      transition: all .2s;
+      background: var(--white);
+    }
+    .checklist-item.is-checked .checklist-checkbox {
+      background: var(--teal-deep);
+      border-color: var(--teal-deep);
+      color: #fff;
+    }
+    .checklist-item.is-checked .checklist-title {
+      text-decoration: line-through;
+      color: var(--text-light);
+    }
+    .checklist-title {
+      font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 2px;
+      transition: color .2s;
+    }
+    .checklist-sub {
+      font-size: 12.5px; color: var(--text-muted); line-height: 1.5; margin: 0; font-weight: 300;
+    }
+
+    /* Entourage Calculator */
+    .entourage-meter {
+      margin-top: 24px;
+    }
+    .entourage-options {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .entourage-btn {
+      padding: 12px 8px;
+      text-align: center;
+      background: var(--teal-dim);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 11px; font-weight: 700;
+      color: var(--text-muted);
+      transition: all .2s;
+    }
+    .entourage-btn.active {
+      background: var(--teal-deep);
+      color: #fff;
+      border-color: var(--teal-deep);
+    }
+    .entourage-feedback {
+      padding: 18px 20px;
+      background: var(--teal-xlight);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--teal-deep);
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Ordering Timeline Calculator */
+    .timeline-calc {
+      margin-top: 32px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+    .timeline-date-picker {
+      display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap;
+    }
+    .timeline-date-picker select {
+      flex: 1; min-width: 140px;
+      padding: 12px 14px;
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      border: 1px solid var(--border-dark);
+      background: var(--white);
+      color: var(--text);
+      border-radius: 0;
+    }
+    .timeline-results {
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .timeline-step {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 16px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      font-size: 13px;
+    }
+    .timeline-step strong { color: var(--teal-deep); font-family: 'Josefin Sans', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: .1em; }
+
+    @media (max-width: 960px) {
+      .prep-hub-grid { grid-template-columns: 1fr; gap: 32px; }
+      .prep-box { padding: 28px 20px; }
+      .entourage-options { grid-template-columns: repeat(2, 1fr); }
+    }
+
     /* ── BOOKING IFRAME SECTION ── */
     .booking-embed {
-      padding: 80px 64px;
+      padding: 80px clamp(20px, 5vw, 64px);
       max-width: 1440px; margin: 0 auto;
     }
     .booking-embed-header {
       display: flex; align-items: flex-end; justify-content: space-between;
-      gap: 24px; flex-wrap: wrap; margin-bottom: 40px;
-      padding-bottom: 28px; border-bottom: 1px solid var(--border);
+      gap: 24px; flex-wrap: wrap; margin-bottom: 32px;
+      padding-bottom: 24px; border-bottom: 1px solid var(--border);
     }
     .booking-embed-header h2 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(28px, 3.5vw, 44px); font-weight: 700;
-      letter-spacing: -.03em; color: var(--text); margin: 0; line-height: 1;
+      font-size: clamp(28px, 3.5vw, 48px); font-weight: 700;
+      letter-spacing: -.03em; color: var(--text); margin: 0; line-height: 1.05;
     }
     .booking-embed-header h2 em { font-style: italic; color: var(--teal-deep); }
     .booking-embed-header p {
-      font-size: 13px; color: var(--text-muted); font-weight: 300;
-      line-height: 1.65; max-width: 280px; text-align: right;
+      font-size: 13.5px; color: var(--text-muted); font-weight: 300;
+      line-height: 1.65; max-width: 320px; text-align: right;
     }
+
+    /* Active Selection Alert Pill */
+    .active-tier-alert {
+      margin-bottom: 24px;
+      padding: 16px 24px;
+      background: var(--teal-xlight);
+      border: 1px solid var(--teal-mid);
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap;
+    }
+    .active-tier-text {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 13.5px; color: var(--teal-darker);
+    }
+    .active-tier-text strong { font-family: 'Josefin Sans', sans-serif; text-transform: uppercase; letter-spacing: .12em; font-size: 12px; }
 
     /* ── BRIDALIVE IFRAME CONTAINER ── */
     .bridalive-wrap {
       position: relative;
       width: 100%;
-      min-height: 700px;
+      min-height: 750px;
       border: 1px solid var(--border);
       background: var(--white);
       overflow: hidden;
@@ -265,47 +478,16 @@
       display: block;
       width: 100%;
       height: 100%;
-      min-height: 700px;
+      min-height: 750px;
       border: none;
       overflow: hidden;
     }
 
-    /* Shown when no BridalLive URL is configured yet */
-    .bridalive-placeholder {
-      position: absolute; inset: 0;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      padding: 48px 32px; text-align: center;
-      background: var(--teal-xlight);
-    }
-    .bridalive-placeholder svg { color: var(--teal-deep); margin-bottom: 20px; }
-    .bridalive-placeholder h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 26px; font-weight: 700; color: var(--text);
-      margin: 0 0 10px;
-    }
-    .bridalive-placeholder p {
-      font-size: 14px; color: var(--text-muted); max-width: 420px;
-      line-height: 1.7; margin: 0 0 28px;
-    }
-    .bridalive-placeholder code {
-      display: block;
-      background: rgba(28,78,80,.08);
-      border: 1px solid var(--border);
-      padding: 12px 20px; font-size: 12px; color: var(--teal-deep);
-      border-radius: 0; margin-bottom: 24px;
-      font-family: monospace; word-break: break-all;
-    }
-    .bridalive-placeholder .btn-primary { text-decoration: none; }
-    .bridalive-placeholder.hidden { display: none; }
-
-    /* Alternative: Direct link fallback for older browsers */
     .booking-alt-link {
       margin-top: 20px;
       padding: 20px 32px;
       background: var(--teal-xlight);
       border: 1px solid var(--border);
-      border-top: none;
       display: flex; align-items: center; justify-content: space-between;
       gap: 24px; flex-wrap: wrap;
     }
@@ -330,32 +512,29 @@
     /* ── WHAT TO BRING STRIP ── */
     .appt-tips {
       background: var(--teal-dark);
-      padding: 56px 64px;
+      padding: 64px clamp(20px, 5vw, 64px);
     }
     .appt-tips-inner {
       max-width: 1200px; margin: 0 auto;
       display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 48px;
     }
-    .appt-tip { display: flex; align-items: flex-start; gap: 16px; }
+    .appt-tip { display: flex; align-items: flex-start; gap: 18px; }
     .appt-tip-icon {
-      width: 44px; height: 44px; border-radius: 0;
+      width: 48px; height: 48px; border-radius: 0;
       background: rgba(255,255,255,.08); flex-shrink: 0;
       display: flex; align-items: center; justify-content: center;
-      color: rgba(152,213,214,.8);
+      color: rgba(152,213,214,.9);
     }
     .appt-tip h4 {
       font-family: 'Josefin Sans', sans-serif;
-      font-size: 10px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
-      color: #fff; margin: 0 0 6px;
+      font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+      color: #fff; margin: 0 0 8px;
     }
-    .appt-tip p { font-size: 13px; color: rgba(255,255,255,.62); line-height: 1.65; margin: 0; }
+    .appt-tip p { font-size: 13.5px; color: rgba(255,255,255,.68); line-height: 1.65; margin: 0; font-weight: 300; }
 
     @media (max-width: 900px) {
       .appt-tips { padding: 48px 28px; }
-      .appt-tips-inner { grid-template-columns: 1fr; gap: 28px; }
-    }
-    @media (max-width: 768px) {
-      .appt-tips { padding: 40px 20px; }
+      .appt-tips-inner { grid-template-columns: 1fr; gap: 32px; }
     }
   </style>
 </head>
@@ -368,7 +547,7 @@
   <div class="appt-hero-inner">
     <div class="eyebrow">Cloud Nine Bridal · Peoria, IL</div>
     <h1>Book Your<br/><em>Appointment.</em></h1>
-    <p>Choose your experience below, then select your date and time. Our stylists are ready to make your visit unforgettable.</p>
+    <p>Select your personalized experience below, discover what to prepare for your fitting suite, and reserve your date and time in real time with our expert stylists.</p>
     <div class="appt-hero-meta">
       <div class="appt-hero-meta-item">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
@@ -386,6 +565,23 @@
   </div>
 </div>
 
+<!-- ── QUIZ PERSONA INTEGRATION BANNER ── -->
+<div class="quiz-persona-banner" id="quizPersonaBanner">
+  <div class="quiz-banner-inner">
+    <div class="quiz-banner-text">
+      <h4 id="quizBannerTitle">✨ Welcome Back, Bride!</h4>
+      <p id="quizBannerDesc">We noticed you completed the Style Quiz. Your personalized silhouette preferences are saved and ready for your stylist.</p>
+    </div>
+    <div class="quiz-banner-actions">
+      <button class="btn-quiz-dossier" onclick="copyQuizNotesToClipboard()">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        Copy Quiz Notes
+      </button>
+      <a href="quiz.html" class="btn-quiz-dossier">Retake Quiz</a>
+    </div>
+  </div>
+</div>
+
 <!-- ── TIMELINE URGENCY BANNER ── -->
 <div style="background:var(--teal-xlight);border-bottom:1px solid var(--border);padding:16px clamp(20px, 5vw, 64px);">
   <div style="max-width:1440px;margin:0 auto;display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
@@ -393,7 +589,17 @@
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal-deep)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       <span style="font-family:'Josefin Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--teal-deep);">Bridal Ordering Timeline</span>
     </div>
-    <p style="font-size:13px;color:var(--text-muted);margin:0;line-height:1.5;">Most bridal gowns require <strong style="color:var(--text);font-weight:600;">4–6 months to order and arrive</strong>, plus 2–3 months for alterations. If your wedding is within 12 months, we recommend booking your first appointment as soon as possible to protect your options.</p>
+    <p style="font-size:13px;color:var(--text-muted);margin:0;line-height:1.5;">Most bridal gowns require <strong style="color:var(--text);font-weight:600;">4–6 months for handcrafted production</strong>, plus 2–3 months for custom alterations. If your wedding is within 12 months, we recommend booking your first fitting today.</p>
+  </div>
+</div>
+
+<!-- ── SEGMENTED FILTER CONTROLS ── -->
+<div class="appt-filters-wrap">
+  <div class="appt-segmented-bar" role="tablist" aria-label="Appointment Categories">
+    <button class="appt-seg-btn active" role="tab" aria-selected="true" onclick="filterApptTypes('all', this)">All Experiences (6)</button>
+    <button class="appt-seg-btn" role="tab" aria-selected="false" onclick="filterApptTypes('bridal', this)">Bridal Suites (3)</button>
+    <button class="appt-seg-btn" role="tab" aria-selected="false" onclick="filterApptTypes('mothers-bling', this)">Mothers &amp; Accessories (2)</button>
+    <button class="appt-seg-btn" role="tab" aria-selected="false" onclick="filterApptTypes('tux', this)">Groom &amp; Tuxedos (1)</button>
   </div>
 </div>
 
@@ -404,174 +610,314 @@
       <div class="eyebrow">Choose Your Experience</div>
       <h2>Every Appointment<br/>Is <em>Personal</em></h2>
     </div>
-    <p>From a relaxed one-on-one to a full luxury celebration — we have an experience for every bride, every occasion.</p>
+    <p>From our signature complimentary fitting to full luxury VIP celebrations — select the suite experience tailored to your wedding journey.</p>
   </div>
 
-  <div class="appt-grid">
+  <div class="appt-grid" id="apptGrid">
 
-    <!-- Bridal Standard -->
-    <div class="appt-card">
-      <span class="appt-card-num">01</span>
-      <span class="appt-card-badge appt-card-badge--free">✦ Complimentary</span>
+    <!-- 01: Bridal Standard -->
+    <div class="appt-card double-bezel" data-category="bridal" data-tier="bridal-standard">
+      <div class="appt-card-top">
+        <span class="appt-card-num">01 · SIGNATURE</span>
+        <span class="appt-card-badge appt-card-badge--free">✦ Complimentary</span>
+      </div>
       <h3>Bridal Appointment</h3>
       <div class="appt-card-duration">
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        90 minutes
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        90 minutes · Private Dressing Suite
       </div>
-      <p>Our signature bridal appointment. A dedicated stylist works one-on-one with you to find your dream gown from our curated collection ($1,200–$4,000, sizes up to 26 in store / 38 special order).</p>
+      <p>Our signature 1-on-1 bridal styling appointment. Work closely with an expert stylist to explore our handpicked collection of 600+ designer gowns ($1,200–$4,000, sizes up to 26 in store / 38 special order).</p>
       <div class="appt-card-perks">
         <div class="appt-card-perk">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          Dedicated 1-on-1 bridal stylist
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Dedicated 1-on-1 expert bridal stylist
         </div>
         <div class="appt-card-perk">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
           Up to 6 guests welcome (3–4 recommended)
         </div>
         <div class="appt-card-perk">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          Full gown collection access
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Full gown collection &amp; veil pairing access
         </div>
       </div>
-      <a href="#book-now" class="appt-card-book-btn">Book This Experience →</a>
+      <div class="appt-card-footer">
+        <button onclick="selectExperience('Bridal Appointment (Complimentary)', this)" class="btn-luxury-pill appt-card-select-btn">
+          <span>Select This Experience</span>
+          <div class="btn-luxury-pill-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </button>
+      </div>
     </div>
 
-    <!-- Robes & Rosé -->
-    <div class="appt-card">
-      <span class="appt-card-num">02</span>
-      <span class="appt-card-badge appt-card-badge--premium">$100 Investment</span>
+    <!-- 02: Robes & Rosé -->
+    <div class="appt-card double-bezel is-featured" data-category="bridal" data-tier="robes-rose">
+      <div class="appt-card-top">
+        <span class="appt-card-num">02 · VIP EXPERIENCE</span>
+        <span class="appt-card-badge appt-card-badge--premium">✦ Most Popular · $100</span>
+      </div>
       <h3>Robes &amp; Rosé</h3>
       <div class="appt-card-duration">
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        90 minutes
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        90 minutes · VIP Suite Experience
       </div>
-      <p>Elevate your visit with one-on-one expert styling, a keepsake bride robe to take home, a glass of non-alcoholic rosé toast, and a celebratory confetti popper for your "YES" moment!</p>
+      <p>Elevate your bridal visit into a celebration. Includes personal styling, a keepsake bridal robe to take home, non-alcoholic rosé toast for your party, and a confetti popper for your "YES" moment!</p>
       <div class="appt-card-perks">
         <div class="appt-card-perk">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
           Keepsake bridal robe to take home
         </div>
         <div class="appt-card-perk">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          Non-alcoholic rosé toast for the party
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Non-alcoholic rosé toast for your entourage
         </div>
         <div class="appt-card-perk">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
           Celebratory confetti popper for the "YES" moment
         </div>
       </div>
-      <a href="#book-now" class="appt-card-book-btn">Book This Experience →</a>
+      <div class="appt-card-footer">
+        <button onclick="selectExperience('Robes & Rosé VIP ($100)', this)" class="btn-luxury-pill appt-card-select-btn">
+          <span>Select This Experience</span>
+          <div class="btn-luxury-pill-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </button>
+      </div>
     </div>
 
-    <!-- On Cloud Nine -->
-    <div class="appt-card">
-      <span class="appt-card-num">03</span>
-      <span class="appt-card-badge appt-card-badge--premium">$250 Investment</span>
-      <h3>On Cloud Nine</h3>
-      <div class="appt-card-duration">
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        2 hours
+    <!-- 03: On Cloud Nine -->
+    <div class="appt-card double-bezel" data-category="bridal" data-tier="on-cloud-nine">
+      <div class="appt-card-top">
+        <span class="appt-card-num">03 · ULTIMATE LUXURY</span>
+        <span class="appt-card-badge appt-card-badge--ultimate">✦ VIP Suite · $250</span>
       </div>
-      <p>The ultimate luxury experience. An extended 2-hour appointment with personal styling, tasty treats &amp; refreshing drinks, bridal robe keepsake, a live floral bouquet keepsake, and confetti popper (Mon–Fri only, 48hr advance notice).</p>
+      <h3>On Cloud Nine VIP</h3>
+      <div class="appt-card-duration">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        2 hours · Mon–Fri (48hr notice)
+      </div>
+      <p>The premier luxury styling experience. An extended 2-hour private session with gourmet treats &amp; refreshing drinks, bridal robe keepsake, live floral bouquet keepsake, and confetti celebration.</p>
       <div class="appt-card-perks">
         <div class="appt-card-perk">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
           Extended 2-hour private styling session
         </div>
         <div class="appt-card-perk">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          Keepsake bridal robe &amp; live floral bouquet
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Keepsake bridal robe &amp; fresh floral bouquet
         </div>
         <div class="appt-card-perk">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
           Refreshing drinks, tasty treats &amp; confetti popper
         </div>
       </div>
-      <a href="#book-now" class="appt-card-book-btn">Book This Experience →</a>
+      <div class="appt-card-footer">
+        <button onclick="selectExperience('On Cloud Nine VIP ($250)', this)" class="btn-luxury-pill appt-card-select-btn">
+          <span>Select This Experience</span>
+          <div class="btn-luxury-pill-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </button>
+      </div>
     </div>
 
-    <!-- Mothers Appointment -->
-    <div class="appt-card">
-      <span class="appt-card-num">04</span>
-      <span class="appt-card-badge appt-card-badge--free">✦ Complimentary</span>
+    <!-- 04: Mothers Appointment -->
+    <div class="appt-card double-bezel" data-category="mothers-bling" data-tier="mothers">
+      <div class="appt-card-top">
+        <span class="appt-card-num">04 · MOTHERS</span>
+        <span class="appt-card-badge appt-card-badge--free">✦ Complimentary</span>
+      </div>
       <h3>Mothers Appointment</h3>
       <div class="appt-card-duration">
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        60 minutes
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        60 minutes · Stylist Guided
       </div>
-      <p>A dedicated 1-hour appointment for Mother of the Bride, Mother of the Groom, and Grandmothers with a personal stylist to find the perfect gown.</p>
+      <p>A dedicated 1-hour appointment for Mother of the Bride, Mother of the Groom, and Grandmothers with a personal stylist to find the perfect complementary gown.</p>
       <div class="appt-card-perks">
         <div class="appt-card-perk">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          Dedicated one-on-one stylist
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Dedicated one-on-one mothers stylist
         </div>
         <div class="appt-card-perk">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          Color &amp; style coordination with wedding party
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Color &amp; silhouette coordination with wedding party
         </div>
       </div>
-      <a href="#book-now" class="appt-card-book-btn">Book This Experience →</a>
+      <div class="appt-card-footer">
+        <button onclick="selectExperience('Mothers Appointment (Complimentary)', this)" class="btn-luxury-pill appt-card-select-btn">
+          <span>Select This Experience</span>
+          <div class="btn-luxury-pill-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </button>
+      </div>
     </div>
 
-    <!-- Bling Appointment -->
-    <div class="appt-card">
-      <span class="appt-card-num">05</span>
-      <span class="appt-card-badge appt-card-badge--free">✦ Complimentary</span>
-      <h3>Bling Appointment</h3>
+    <!-- 05: Bling Appointment -->
+    <div class="appt-card double-bezel" data-category="mothers-bling" data-tier="bling">
+      <div class="appt-card-top">
+        <span class="appt-card-num">05 · ACCESSORIES</span>
+        <span class="appt-card-badge appt-card-badge--free">✦ Complimentary</span>
+      </div>
+      <h3>Bling &amp; Veil Styling</h3>
       <div class="appt-card-duration">
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        45 minutes
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        45 minutes · Accessory Suite
       </div>
-      <p>Accessorize your gown with veils, hairpieces, and jewelry! Try on your gown and make the final additions to complete your wedding day look.</p>
+      <p>Complete your wedding day look! Bring your gown and try on cathedral veils, custom jewelry, belts, and hair accessories under boutique runway lighting.</p>
       <div class="appt-card-perks">
         <div class="appt-card-perk">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          Veil, jewelry &amp; accessory styling
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Veil, jewelry &amp; headpiece styling
         </div>
         <div class="appt-card-perk">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          Pair with your ordered wedding gown
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Try on with your ordered wedding dress
         </div>
       </div>
-      <a href="#book-now" class="appt-card-book-btn">Book This Experience →</a>
+      <div class="appt-card-footer">
+        <button onclick="selectExperience('Bling & Veil Appointment (Complimentary)', this)" class="btn-luxury-pill appt-card-select-btn">
+          <span>Select This Experience</span>
+          <div class="btn-luxury-pill-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </button>
+      </div>
     </div>
 
-    <!-- Tuxedo -->
-    <div class="appt-card">
-      <span class="appt-card-num">06</span>
-      <span class="appt-card-badge appt-card-badge--tux">For the Groom</span>
-      <h3>Tux Selection Appointment</h3>
+    <!-- 06: Tuxedo -->
+    <div class="appt-card double-bezel" data-category="tux" data-tier="tux">
+      <div class="appt-card-top">
+        <span class="appt-card-num">06 · GROOM</span>
+        <span class="appt-card-badge appt-card-badge--tux">✦ The Trace Collection</span>
+      </div>
+      <h3>Tuxedo &amp; Suit Fitting</h3>
       <div class="appt-card-duration">
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        45 minutes
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        45 minutes · Formalwear Consultation
       </div>
-      <p>Explore suits and tuxedos for the groom, groomsmen, and fathers from The Trace Collection and Jim's Formal Wear. Rental and purchase with professional measurements.</p>
+      <p>Explore suits and tuxedos from The Trace Collection and Jim's Formal Wear. Rent or purchase with professional measurements and direct home delivery for out-of-town groomsmen.</p>
       <div class="appt-card-perks">
         <div class="appt-card-perk">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          The Trace Collection &amp; Jim's Formal Wear
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Ultra Slim, Slim, &amp; Modern fit options
         </div>
         <div class="appt-card-perk">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          Direct home delivery for out-of-town groomsmen
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Direct door delivery for wedding party members
         </div>
       </div>
-      <a href="#book-now" class="appt-card-book-btn">Book This Experience →</a>
+      <div class="appt-card-footer">
+        <button onclick="selectExperience('Tuxedo & Suit Appointment', this)" class="btn-luxury-pill appt-card-select-btn">
+          <span>Select This Experience</span>
+          <div class="btn-luxury-pill-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </button>
+      </div>
     </div>
 
-  </div>
-
-  <div class="appt-grid-note">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-    <span>Questions about which appointment is right for you? Call us at <strong>(309) 693‑3830</strong> and we'll help you choose the perfect experience. Walk-ins welcome based on availability.</span>
   </div>
 </div>
 
-<!-- ── AVAILABILITY NUDGE ── -->
-<div style="background:var(--white);border-bottom:1px solid var(--border);padding:14px clamp(20px,5vw,64px);">
-  <div style="max-width:1440px;margin:0 auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--teal-deep)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-    <p style="font-size:13px;color:var(--text-muted);margin:0;line-height:1.5;"><strong style="color:var(--text);font-weight:600;">Weekend appointments fill 3–4 weeks ahead.</strong> Weekday slots are more flexible — call <strong style="color:var(--text);">(309) 693‑3830</strong> to check same-week availability, or book online below.</p>
+<!-- ── INTERACTIVE FITTING PREP & ENTOURAGE ADVISOR ── -->
+<div class="prep-hub-section">
+  <div class="prep-hub-inner">
+    <div class="prep-hub-grid">
+      
+      <!-- Left: Interactive Checklist -->
+      <div class="prep-box double-bezel">
+        <div class="eyebrow">Fitting Suite Preparation</div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;margin:0 0 10px;color:var(--text);">What to Bring to Your <em>Fitting</em></h3>
+        <p style="font-size:13.5px;color:var(--text-muted);margin:0 0 24px;font-weight:300;">Tap each item to check it off as you get ready for your appointment.</p>
+        
+        <div id="prepChecklist">
+          <div class="checklist-item" onclick="toggleChecklist(this, 'undergarments')">
+            <div class="checklist-checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div>
+              <div class="checklist-title">Nude Seamless Undergarments &amp; Strapless Bra</div>
+              <p class="checklist-sub">Neutral tones ensure clean silhouette lines under light bridal crepe, tulle, and lace fabrics.</p>
+            </div>
+          </div>
+
+          <div class="checklist-item" onclick="toggleChecklist(this, 'shoes')">
+            <div class="checklist-checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div>
+              <div class="checklist-title">Heels with Your Target Wedding Height</div>
+              <p class="checklist-sub">Helps our stylists accurately assess gown proportions, hem length, and train drape on the pedestal.</p>
+            </div>
+          </div>
+
+          <div class="checklist-item" onclick="toggleChecklist(this, 'lookbook')">
+            <div class="checklist-checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div>
+              <div class="checklist-title">Your Saved Fitting Lookbook / Inspiration Photos</div>
+              <p class="checklist-sub">Bring your saved favorites from our website catalog or Pinterest to kick off your styling session.</p>
+            </div>
+          </div>
+
+          <div class="checklist-item" onclick="toggleChecklist(this, 'mindset')">
+            <div class="checklist-checkbox"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div>
+              <div class="checklist-title">An Open Mind for Surprises</div>
+              <p class="checklist-sub">Over 60% of our brides fall in love with a silhouette they never expected to try. Trust the process!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Entourage Size & Timeline Calculator -->
+      <div class="prep-box double-bezel">
+        <div class="eyebrow">Suite Comfort &amp; Party Size</div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;margin:0 0 10px;color:var(--text);">Entourage Size <em>Advisor</em></h3>
+        <p style="font-size:13.5px;color:var(--text-muted);margin:0 0 16px;font-weight:300;">Select how many loved ones you plan to bring to view our suite recommendations:</p>
+
+        <div class="entourage-options">
+          <button class="entourage-btn" onclick="setEntourage(1, this)">1–2 Guests</button>
+          <button class="entourage-btn active" onclick="setEntourage(3, this)">3–4 Guests ⭐</button>
+          <button class="entourage-btn" onclick="setEntourage(5, this)">5–6 Guests</button>
+          <button class="entourage-btn" onclick="setEntourage(7, this)">7+ Guests</button>
+        </div>
+
+        <div class="entourage-feedback" id="entourageFeedback">
+          <strong>The Sweet Spot (3–4 Guests):</strong> Highly recommended! Gives you genuine support, laughs, and diverse perspectives without overwhelming conflicting opinions when saying yes.
+        </div>
+
+        <!-- Timeline Calculator -->
+        <div class="timeline-calc">
+          <div class="eyebrow">Custom Timeline Planner</div>
+          <h4 style="font-family:'Playfair Display',serif;font-size:20px;margin:0 0 12px;font-weight:700;">When Is Your Wedding?</h4>
+          <div class="timeline-date-picker">
+            <select id="weddingMonth" onchange="calculateTimeline()">
+              <option value="0">January</option>
+              <option value="1">February</option>
+              <option value="2">March</option>
+              <option value="3">April</option>
+              <option value="4">May</option>
+              <option value="5">June</option>
+              <option value="6">July</option>
+              <option value="7">August</option>
+              <option value="8">September</option>
+              <option value="9" selected>October</option>
+              <option value="10">November</option>
+              <option value="11">December</option>
+            </select>
+            <select id="weddingYear" onchange="calculateTimeline()">
+              <option value="2026" selected>2026</option>
+              <option value="2027">2027</option>
+              <option value="2028">2028</option>
+            </select>
+          </div>
+
+          <div class="timeline-results" id="timelineResults">
+            <div class="timeline-step">
+              <span>Book First Fitting:</span>
+              <strong id="timeFirstAppt">Now / Immediately</strong>
+            </div>
+            <div class="timeline-step">
+              <span>Place Dress Order:</span>
+              <strong id="timeOrderDate">Apr – May 2026</strong>
+            </div>
+            <div class="timeline-step">
+              <span>Start Alterations:</span>
+              <strong id="timeAlterDate">Jul – Aug 2026</strong>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
   </div>
 </div>
 
@@ -582,11 +928,19 @@
       <div class="eyebrow">Real-Time Availability</div>
       <h2>Select Your Date<br/><em>&amp; Time</em></h2>
     </div>
-    <p>Powered by BridalLive — see live availability and confirm your appointment instantly.</p>
+    <p>Powered by BridalLive — reserve your suite and receive instant calendar confirmation.</p>
   </div>
 
-  <div class="bridalive-wrap" id="bridaliveWrap">
-    <!-- BridalLive iframe loads here when BRIDALIVE_URL is set -->
+  <!-- Active Experience Pill -->
+  <div class="active-tier-alert" id="activeTierAlert" style="display:none;">
+    <div class="active-tier-text">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      <span>Selected Experience: <strong id="selectedTierName">Robes &amp; Rosé VIP</strong></span>
+    </div>
+    <span style="font-size:12px;color:var(--teal-deep);font-weight:600;">Select this appointment type in the scheduler below ↓</span>
+  </div>
+
+  <div class="bridalive-wrap double-bezel" id="bridaliveWrap">
     <iframe
       id="bridaliveFrame"
       class="bridalive-iframe"
@@ -595,27 +949,17 @@
       allow="payment"
       loading="lazy">
     </iframe>
-
-    <!-- Placeholder shown until BridalLive URL is configured -->
-    <div class="bridalive-placeholder hidden" id="bridalivePlaceholder">
-      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
-      </svg>
-      <h3>Reserve Your Personal Fitting</h3>
-      <p>Schedule your 1-on-1 bridal styling experience with our expert consultants. We can't wait to welcome you to the boutique and help you find your dream dress.</p>
-      <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:20px;">
-        <a href="contact.html#request-form" class="btn-primary">Request Appointment Online <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        <a href="tel:3096933830" class="btn-outline">Call (309) 693‑3830</a>
-      </div>
-    </div>
   </div>
 
-  <div class="booking-alt-link" id="bridaliveAltLink" style="display:flex;">
-    <p>Having trouble loading the calendar? You can also open BridalLive directly.</p>
-    <a href="https://app.bridallive.com/forms.html?formType=scheduler&amp;retailerId=0e5e7808&amp;lang=en" id="bridaliveDirectLink" target="_blank" rel="noopener noreferrer">
-      Open Booking Page
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-    </a>
+  <div class="booking-alt-link double-bezel" id="bridaliveAltLink" style="display:flex;">
+    <p>Need same-week availability or prefer personal phone concierge? Call our Peoria boutique directly.</p>
+    <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;">
+      <a href="tel:3096933830" style="color:var(--teal-deep);font-weight:700;">(309) 693‑3830</a>
+      <a href="https://app.bridallive.com/forms.html?formType=scheduler&amp;retailerId=0e5e7808&amp;lang=en" id="bridaliveDirectLink" target="_blank" rel="noopener noreferrer">
+        Open Fullscreen Scheduler
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      </a>
+    </div>
   </div>
 </div>
 
@@ -624,29 +968,29 @@
   <div class="appt-tips-inner">
     <div class="appt-tip">
       <div class="appt-tip-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
       </div>
       <div>
-        <h4>Bring Your People</h4>
-        <p>We recommend 3–4 guests for bridal appointments — enough support without too many opinions. Up to 6 guests comfortably accommodated in our private suites.</p>
+        <h4>Bring Your VIP Circle</h4>
+        <p>We recommend 3–4 guests for bridal fittings — genuine support without conflicting opinions. Up to 6 guests comfortably accommodated in our luxury dressing suites.</p>
       </div>
     </div>
     <div class="appt-tip">
       <div class="appt-tip-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8,21 12,17 16,21"/></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8,21 12,17 16,21"/></svg>
       </div>
       <div>
-        <h4>Bring Inspiration</h4>
-        <p>Save photos of gowns, silhouettes, and details you love to your phone. Knowing what excites you — and what doesn't — helps us find your dress faster.</p>
+        <h4>Bring Your Inspiration</h4>
+        <p>Save photos of gowns, silhouettes, and fabrics you love. Knowing what excites you — and what doesn't — empowers our stylists to match your vision faster.</p>
       </div>
     </div>
     <div class="appt-tip">
       <div class="appt-tip-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
       </div>
       <div>
-        <h4>Come with an Open Mind</h4>
-        <p>Our stylists are experts at finding gowns you'd never pick off the rack. Trust the process — some of our most iconic "Yes" moments were total surprises.</p>
+        <h4>Come Ready to Say Yes</h4>
+        <p>Our consultants are masters at finding silhouettes you'd never pull off the rack. Trust the experience — the most magical "I Said YES" moments are true love at first fit.</p>
       </div>
     </div>
   </div>
@@ -657,35 +1001,170 @@
 
 <script>
 // ════════════════════════════════════════════════════
-//  BRIDALIVE CONFIGURATION
+//  PHASE 3: VIP EXPERIENCE & INTERACTIVE SUITE ENGINE
 // ════════════════════════════════════════════════════
-var BRIDALIVE_URL = 'https://app.bridallive.com/forms.html?formType=scheduler&retailerId=0e5e7808&lang=en';
 
-(function() {
-  if (!BRIDALIVE_URL) return;
+// 1. Filter Appointment Categories
+function filterApptTypes(cat, btn) {
+  var buttons = document.querySelectorAll('.appt-seg-btn');
+  buttons.forEach(function(b) {
+    b.classList.remove('active');
+    b.setAttribute('aria-selected', 'false');
+  });
+  if (btn) {
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
+  }
 
-  var frame       = document.getElementById('bridaliveFrame');
-  var placeholder = document.getElementById('bridalivePlaceholder');
-  var altLink     = document.getElementById('bridaliveAltLink');
-  var directLink  = document.getElementById('bridaliveDirectLink');
+  var cards = document.querySelectorAll('.appt-card');
+  cards.forEach(function(card) {
+    var cardCat = card.getAttribute('data-category');
+    if (cat === 'all' || cardCat === cat) {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
 
-  if (frame && (!frame.src || frame.src === 'about:blank')) frame.src = BRIDALIVE_URL;
-  if (placeholder) placeholder.classList.add('hidden');
-  if (altLink) altLink.style.display = 'flex';
-  if (directLink) directLink.href = BRIDALIVE_URL;
+// 2. Select Experience Tier & Scroll to Scheduler
+function selectExperience(tierName, btn) {
+  var cards = document.querySelectorAll('.appt-card');
+  cards.forEach(function(c) { c.classList.remove('is-selected'); });
+  
+  var parentCard = btn.closest('.appt-card');
+  if (parentCard) parentCard.classList.add('is-selected');
 
-  // Dynamically size iframe to its content if possible (same-origin only)
-  if (frame) {
-    frame.addEventListener('load', function() {
-      try {
-        var h = frame.contentDocument.body.scrollHeight;
-        if (h > 400) frame.style.minHeight = h + 'px';
-      } catch(e) { /* cross-origin — fixed height is fine */ }
-    });
+  var alertBox = document.getElementById('activeTierAlert');
+  var nameEl = document.getElementById('selectedTierName');
+  if (alertBox && nameEl) {
+    nameEl.textContent = tierName;
+    alertBox.style.display = 'flex';
+  }
+
+  var scheduler = document.getElementById('book-now');
+  if (scheduler) {
+    scheduler.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+// 3. Quiz Persona Integration Handoff
+(function checkQuizPersona() {
+  var params = new URLSearchParams(window.location.search);
+  var personaKey = params.get('persona') || sessionStorage.getItem('cloudnine_quiz_persona');
+  var silKey = params.get('sil') || sessionStorage.getItem('cloudnine_quiz_silhouette');
+
+  var banner = document.getElementById('quizPersonaBanner');
+  var titleEl = document.getElementById('quizBannerTitle');
+  var descEl = document.getElementById('quizBannerDesc');
+
+  if (personaKey && banner && titleEl && descEl) {
+    var personas = {
+      'classic-romantic': { title: 'The Classic Romantic', sil: 'A-Line & Ballgown', vibe: 'Timeless elegance and regal lace' },
+      'romantic-dreamer': { title: 'The Romantic Dreamer', sil: 'Floral A-Line & Soft Tulle', vibe: 'Whimsical textures and botanical accents' },
+      'boho-spirit': { title: 'The Bohemian Spirit', sil: 'Relaxed Sheath & Flutter Sleeves', vibe: 'Effortless freedom and organic details' },
+      'modern-minimalist': { title: 'The Modern Minimalist', sil: 'Clean Crepe & Architectural Mermaid', vibe: 'Sharp lines and striking simplicity' }
+    };
+
+    var p = personas[personaKey] || { title: 'Curated Bridal Persona', sil: silKey || 'Favorite Silhouettes', vibe: 'Tailored styling' };
+    titleEl.textContent = '✨ Welcome, ' + p.title + ' Bride!';
+    descEl.textContent = 'We noted your aesthetic: ' + p.vibe + ' (Favorite Silhouette: ' + (silKey || p.sil) + '). Your fitting suite is ready!';
+    banner.classList.add('is-visible');
   }
 })();
 
-// Smooth scroll to booking when hash is #book-now or #app
+function copyQuizNotesToClipboard() {
+  var params = new URLSearchParams(window.location.search);
+  var personaKey = params.get('persona') || sessionStorage.getItem('cloudnine_quiz_persona') || 'Bridal Persona';
+  var silKey = params.get('sil') || sessionStorage.getItem('cloudnine_quiz_silhouette') || 'Custom Silhouette';
+  
+  var text = 'Cloud Nine Bridal Consultation Notes:\nPersona: ' + personaKey + '\nPreferred Silhouette: ' + silKey + '\nSaved via Style Quiz at cloudninebridal.com';
+  
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(function() {
+      alert('✓ Quiz notes copied to clipboard! Paste this into the "Special Requests" box in BridalLive below.');
+    });
+  } else {
+    prompt('Copy your appointment notes:', text);
+  }
+}
+
+// 4. Interactive Checklist Persistence
+function toggleChecklist(el, key) {
+  el.classList.toggle('is-checked');
+  try {
+    var stored = JSON.parse(localStorage.getItem('cloudnine_prep_checklist') || '{}');
+    stored[key] = el.classList.contains('is-checked');
+    localStorage.setItem('cloudnine_prep_checklist', JSON.stringify(stored));
+  } catch(e) {}
+}
+
+(function restoreChecklist() {
+  try {
+    var stored = JSON.parse(localStorage.getItem('cloudnine_prep_checklist') || '{}');
+    var items = document.querySelectorAll('.checklist-item');
+    items.forEach(function(item) {
+      var key = item.getAttribute('onclick').match(/'([^']+)'/);
+      if (key && key[1] && stored[key[1]]) {
+        item.classList.add('is-checked');
+      }
+    });
+  } catch(e) {}
+})();
+
+// 5. Entourage Size Advisor
+function setEntourage(size, btn) {
+  var buttons = document.querySelectorAll('.entourage-btn');
+  buttons.forEach(function(b) { b.classList.remove('active'); });
+  if (btn) btn.classList.add('active');
+
+  var feedback = document.getElementById('entourageFeedback');
+  if (!feedback) return;
+
+  if (size <= 2) {
+    feedback.innerHTML = '<strong>Intimate &amp; Focused (1–2 Guests):</strong> Peaceful, private, and zero distraction. Ideal for the bride who knows her taste and wants an intimate moment with her closest confidante.';
+  } else if (size <= 4) {
+    feedback.innerHTML = '<strong>The Sweet Spot (3–4 Guests):</strong> Highly recommended! Gives you genuine support, laughs, and diverse perspectives without overwhelming conflicting opinions when saying yes.';
+  } else if (size <= 6) {
+    feedback.innerHTML = '<strong>Full Suite Celebration (5–6 Guests):</strong> Festive and lively! Our spacious dressing suites comfortably seat your party. Consider our <em>Robes &amp; Rosé VIP</em> package for celebratory toasts.';
+  } else {
+    feedback.innerHTML = '<strong>Large Party (7+ Guests):</strong> To ensure your entourage has comfortable dedicated seating and champagne space, please call us directly at <strong>(309) 693‑3830</strong> to arrange custom suite accommodations.';
+  }
+}
+
+// 6. Custom Wedding Timeline Calculator
+function calculateTimeline() {
+  var monthSelect = document.getElementById('weddingMonth');
+  var yearSelect = document.getElementById('weddingYear');
+  if (!monthSelect || !yearSelect) return;
+
+  var month = parseInt(monthSelect.value, 10);
+  var year = parseInt(yearSelect.value, 10);
+
+  var weddingDate = new Date(year, month, 1);
+  var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+  // Order: 6-9 months prior
+  var orderStart = new Date(weddingDate);
+  orderStart.setMonth(orderStart.getMonth() - 8);
+  var orderEnd = new Date(weddingDate);
+  orderEnd.setMonth(orderEnd.getMonth() - 6);
+
+  // Alterations: 2-3 months prior
+  var alterStart = new Date(weddingDate);
+  alterStart.setMonth(alterStart.getMonth() - 3);
+  var alterEnd = new Date(weddingDate);
+  alterEnd.setMonth(alterEnd.getMonth() - 2);
+
+  var orderEl = document.getElementById('timeOrderDate');
+  var alterEl = document.getElementById('timeAlterDate');
+
+  if (orderEl) orderEl.textContent = months[orderStart.getMonth()] + ' – ' + months[orderEnd.getMonth()] + ' ' + orderEnd.getFullYear();
+  if (alterEl) alterEl.textContent = months[alterStart.getMonth()] + ' – ' + months[alterEnd.getMonth()] + ' ' + alterEnd.getFullYear();
+}
+calculateTimeline();
+
+// 7. Smooth Scroll on Hash
 (function() {
   function scrollToBook() {
     var hash = window.location.hash;
@@ -702,3 +1181,4 @@ var BRIDALIVE_URL = 'https://app.bridallive.com/forms.html?formType=scheduler&re
 </main>
 </body>
 </html>
+
