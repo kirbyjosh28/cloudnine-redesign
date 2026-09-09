@@ -1094,7 +1094,7 @@ async function ensureGlobalCatalog() {
   _globalLoading = true;
   try {
     const [bRes, pRes, mRes, hRes] = await Promise.allSettled([
-      fetch('data/bridal-products.json?v=20260909e').then(r => r.json()),
+      fetch('data/bridal-products.json?v=20260909f').then(r => r.json()),
       fetch('data/prom-products.json?v=2').then(r => r.json()),
       fetch('data/mothers-products.json?v=1').then(r => r.json()),
       fetch('data/hoco-products.json?v=2').then(r => r.json())
