@@ -464,7 +464,7 @@
 
     if (!dress && skuParam) {
       const catFiles = {
-        'bridal': 'data/bridal-products.json?v=20260909d',
+        'bridal': 'data/bridal-products.json?v=20260909e',
         'prom': 'data/prom-products.json?v=2',
         'hoco': 'data/hoco-products.json?v=2',
         'mothers': 'data/mothers-products.json?v=1'
@@ -601,6 +601,8 @@
     /* ── Meta rows ── */
     const metaRows = [
       dress.sil ? ['Silhouette', titleCase(dress.sil)] : null,
+      (dress.f && dress.f.length) ? ['Fabric', dress.f.join(', ')] : null,
+      (dress.nk && dress.nk.length) ? ['Neckline', dress.nk.join(', ')] : null,
       ['Availability', 'Contact Us'],
     ].filter(Boolean);
     document.getElementById('dpMeta').innerHTML = metaRows.map(([k,v]) =>
