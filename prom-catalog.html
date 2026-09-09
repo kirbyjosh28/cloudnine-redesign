@@ -395,12 +395,16 @@ function clearAllFilters() {
   if (allBtn) fd(allBtn, 'all');
 }
 
-function goToDress(idx) {
+function goToDress(idx, el) {
   const dress = fil[idx];
   sessionStorage.setItem('cloudnine_dress', JSON.stringify(dress));
   sessionStorage.setItem('cloudnine_dress_src', location.pathname.split('/').pop() + location.search);
   const sku = encodeURIComponent(dress.s || '');
   const des = encodeURIComponent(dress.d || '');
+  if (el) {
+    const img = el.querySelector('img');
+    if (img) img.style.viewTransitionName = 'dress-hero';
+  }
   window.location.href = `dress.html?cat=prom&sku=${sku}${des ? `&d=${des}` : ''}`;
 }
 
@@ -496,8 +500,8 @@ function _renderPage() {
   // Attach events via JS — no inline onclick
   grid.querySelectorAll('.dress-card').forEach(card => {
     const idx = parseInt(card.dataset.idx, 10);
-    card.addEventListener('click', () => goToDress(idx));
-    card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); goToDress(idx); } });
+    card.addEventListener('click', () => goToDress(idx, card));
+    card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); goToDress(idx, card); } });
     const qv = card.querySelector('.quick-view-badge');
     if (qv) {
       qv.addEventListener('click', e => { e.stopPropagation(); openModal(idx); });

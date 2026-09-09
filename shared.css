@@ -3812,3 +3812,281 @@ select {
   }
 }
 
+/* ════════════════════════════════════════════════════════════
+   PHASE 2: CROSS-PAGE VIEW TRANSITIONS & MOTION ENGINE
+   ════════════════════════════════════════════════════════════ */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.32s;
+  animation-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+::view-transition-old(dress-hero),
+::view-transition-new(dress-hero) {
+  animation-duration: 0.45s;
+  animation-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* ── SCROLL REVEAL SYSTEM ── */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s cubic-bezier(0.32, 0.72, 0, 1),
+              transform 0.75s cubic-bezier(0.32, 0.72, 0, 1);
+  will-change: opacity, transform;
+}
+.reveal-on-scroll.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ── DOUBLE-BEZEL HARDWARE CONTAINER ARCHITECTURE ── */
+.double-bezel {
+  position: relative;
+  background: rgba(28, 78, 80, 0.04);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+  transition: all 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.double-bezel-inner {
+  position: relative;
+  background: var(--white);
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.8),
+              0 4px 20px rgba(28, 78, 80, 0.05);
+  overflow: hidden;
+  height: 100%;
+}
+.double-bezel:hover {
+  border-color: var(--teal-mid);
+  box-shadow: 0 12px 36px rgba(28, 78, 80, 0.10);
+}
+
+/* ── NESTED ISLAND PILL BUTTON ── */
+.btn-luxury-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 10px 8px 24px;
+  background: var(--teal-deep);
+  color: #ffffff !important;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 9999px;
+  border: 1px solid rgba(255,255,255,0.15);
+  box-shadow: 0 4px 18px rgba(28, 78, 80, 0.25);
+  transition: all 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+  cursor: pointer;
+}
+.btn-luxury-pill:hover {
+  background: var(--teal-darker);
+  transform: translateY(-1.5px) scale(1.01);
+  box-shadow: 0 8px 26px rgba(28, 78, 80, 0.32);
+}
+.btn-luxury-pill:active {
+  transform: translateY(0) scale(0.98);
+}
+.btn-luxury-pill-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1), background 0.35s;
+}
+.btn-luxury-pill:hover .btn-luxury-pill-icon {
+  background: rgba(255, 255, 255, 0.28);
+  transform: translate(2px, -1px) scale(1.06);
+}
+
+/* ── 4-STEP IN-STORE EXPERIENCE TIMELINE ── */
+.journey-section {
+  padding: 100px 48px;
+  background: linear-gradient(180deg, var(--bg) 0%, #f4f0ec 100%);
+  position: relative;
+  overflow: hidden;
+}
+.journey-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 64px;
+}
+.journey-eyebrow {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--teal-deep);
+  margin-bottom: 14px;
+  display: inline-block;
+}
+.journey-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(34px, 4.5vw, 56px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -.02em;
+  color: var(--text);
+  margin-bottom: 18px;
+}
+.journey-title em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--teal-deep);
+}
+.journey-subtitle {
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--text-muted);
+}
+.journey-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  max-width: 1320px;
+  margin: 0 auto 56px;
+  position: relative;
+}
+/* Connecting horizontal line on desktop */
+.journey-grid::before {
+  content: '';
+  position: absolute;
+  top: 130px;
+  left: 60px;
+  right: 60px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--teal-mid) 20%, var(--teal-mid) 80%, transparent);
+  z-index: 1;
+  pointer-events: none;
+}
+.journey-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 0;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 30px rgba(28, 78, 80, 0.05);
+  transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1),
+              box-shadow 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+  z-index: 2;
+}
+.journey-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 48px rgba(28, 78, 80, 0.12);
+}
+.journey-img-wrap {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+  background: #111;
+}
+.journey-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.journey-card:hover .journey-img {
+  transform: scale(1.06);
+}
+.journey-num-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  width: 32px;
+  height: 32px;
+  background: rgba(13, 46, 48, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #ffffff;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .06em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  border: 1px solid rgba(255,255,255,0.25);
+}
+.journey-card-body {
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.journey-step-tag {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--teal-deep);
+  margin-bottom: 8px;
+}
+.journey-step-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.25;
+  margin-bottom: 12px;
+}
+.journey-step-desc {
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--text-muted);
+  flex: 1;
+}
+.journey-footer-cta {
+  text-align: center;
+}
+
+@media (max-width: 1024px) {
+  .journey-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .journey-grid::before { display: none; }
+}
+@media (max-width: 768px) {
+  .journey-section { padding: 60px 20px; }
+  .journey-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .journey-img-wrap { height: 200px; }
+  .journey-card-body { padding: 22px 18px; }
+}
+
+

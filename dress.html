@@ -412,11 +412,13 @@
         <div class="dp-accordion" id="dpAccordion"></div>
 
         <div class="dp-actions">
-          <a href="appointments.html" class="btn-primary">
-            Book an Appointment
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <a href="appointments.html" class="btn-luxury-pill" style="justify-content:center;width:100%;">
+            <span>Book a Fitting for This Style</span>
+            <span class="btn-luxury-pill-icon">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
           </a>
-          <a href="contact.html" class="btn-outline">Inquire About This Style</a>
+          <a href="contact.html" class="btn-outline" style="justify-content:center;text-align:center;">Inquire About This Style</a>
           <button id="dpShareBtn" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px;border:1px solid var(--border);background:none;cursor:pointer;color:var(--text-muted);font-family:'Josefin Sans',sans-serif;font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;transition:border-color .2s,color .2s;width:100%;" aria-label="Share this style">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
             Share This Style
@@ -629,8 +631,9 @@
     /* ── Build photo gallery ── */
     let html = '';
     imgs.forEach(function(url, i) {
+      const vtAttr = (i === 0) ? 'style="view-transition-name: dress-hero;"' : '';
       html += '<div class="dp-photo-full" style="cursor:zoom-in;position:relative;" data-lb="' + i + '">' +
-        '<img src="' + esc(url) + '" alt="' + esc(dress.d||'') + ' ' + (i===0 ? 'style ' + esc(dress.s||'') : 'detail ' + i) + '" loading="' + (i===0?'eager':'lazy') + '"/>' +
+        '<img src="' + esc(url) + '" alt="' + esc(dress.d||'') + ' ' + (i===0 ? 'style ' + esc(dress.s||'') : 'detail ' + i) + '" loading="' + (i===0?'eager':'lazy') + '" ' + vtAttr + '/>' +
         (imgs.length > 1 ? '<span class="dp-img-counter">' + (i+1) + ' / ' + imgs.length + '</span>' : '') +
       '</div>';
     });

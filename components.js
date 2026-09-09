@@ -1151,6 +1151,21 @@ function initNavScroll() {
 
 /* ── SCROLL REVEAL ── */
 function initReveal() {
+  // 1. Reveal-on-scroll system with custom spring bezier
+  const scrollEls = document.querySelectorAll('.reveal-on-scroll');
+  if (scrollEls.length) {
+    const scrollIo = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-revealed');
+          scrollIo.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    scrollEls.forEach(el => scrollIo.observe(el));
+  }
+
+  // 2. Legacy reveal selector compatibility
   const els = document.querySelectorAll(
     '.section > *, .section-sm > *, .page-hero, .dress-card, .bride-card, .team-card, .testimonial-card'
   );
@@ -1167,18 +1182,25 @@ function initReveal() {
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 }
 
-/* ── CINEMATIC LINK TRANSITIONS ── */
+/* ── CINEMATIC LINK & VIEW TRANSITIONS ── */
 function initPageTransitions() {
+  // If @view-transition is supported natively by the browser, let standard navigation run
+  // so cross-document shared element view transitions work seamlessly without blank opacity flash.
+  if (CSS.supports && (CSS.supports('view-transition-name: test') || 'startViewTransition' in document)) {
+    return;
+  }
+
+  // Fallback graceful navigation for legacy browsers
   document.addEventListener('click', (e) => {
     const a = e.target.closest('a[href]');
     if (!a) return;
     const href = a.getAttribute('href');
-    if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('tel:') || href.startsWith('mailto:') || a.target === '_blank') return;
+    if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('tel:') || href.startsWith('mailto:') || href.startsWith('javascript:') || a.target === '_blank') return;
     e.preventDefault();
-    document.body.style.transition = 'opacity .25s ease, transform .25s cubic-bezier(0.4,0,1,1)';
+    document.body.style.transition = 'opacity .2s ease, transform .2s cubic-bezier(0.4,0,1,1)';
     document.body.style.opacity = '0';
-    document.body.style.transform = 'translateY(7px)';
-    setTimeout(() => { window.location.href = href; }, 250);
+    document.body.style.transform = 'translateY(4px)';
+    setTimeout(() => { window.location.href = href; }, 200);
   });
 }
 
