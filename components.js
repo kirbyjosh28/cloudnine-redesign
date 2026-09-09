@@ -13,7 +13,7 @@ function navHTML() {
     const clean = name.replace(/\.html$/, '');
     return page === clean ? 'active' : '';
   };
-  const isBridal = page === 'bridal' || page === 'bridal-catalog' || page === 'our-brides';
+  const isBridal = page === 'bridal' || page === 'bridal-catalog' || page === 'our-brides' || page === 'experience';
   const isPromHoco = page === 'prom' || page === 'prom-catalog' || page === 'hoco' || page === 'hoco-catalog';
   const isTux = page === 'tuxedos';
 
@@ -65,7 +65,8 @@ function navHTML() {
               <div class="nav-mega-col">
                 <div class="nav-mega-heading">The Experience</div>
                 <ul class="nav-mega-list">
-                  <li><a href="quiz.html" class="nav-mega-link nav-mega-link--highlight"><span class="nav-mega-link-title">Bridal Style Quiz</span><span class="nav-mega-link-sub">Find your silhouette in 2 minutes</span></a></li>
+                  <li><a href="experience.html" class="nav-mega-link nav-mega-link--highlight"><span class="nav-mega-link-title">The Boutique Experience</span><span class="nav-mega-link-sub">Private suites, champagne &amp; styling</span></a></li>
+                  <li><a href="quiz.html" class="nav-mega-link"><span class="nav-mega-link-title">Bridal Style Quiz</span><span class="nav-mega-link-sub">Find your silhouette in 2 minutes</span></a></li>
                   <li><a href="our-brides.html" class="nav-mega-link"><span class="nav-mega-link-title">Our Real Brides</span><span class="nav-mega-link-sub">Real Peoria weddings &amp; reviews</span></a></li>
                   <li><a href="appointments.html" class="nav-mega-link"><span class="nav-mega-link-title">VIP Suites &amp; Rosé</span><span class="nav-mega-link-sub">Private 1-on-1 styling sessions</span></a></li>
                   <li><a href="mothers.html" class="nav-mega-link"><span class="nav-mega-link-title">Mothers of the Wedding</span><span class="nav-mega-link-sub">Sophisticated MOB &amp; MOG styles</span></a></li>
@@ -268,11 +269,14 @@ function navHTML() {
 
         <div class="mobile-nav-section">
           <span class="mobile-nav-section-label">Bridal</span>
+          <a href="experience.html" class="mobile-nav-item" style="color:var(--teal-mid);font-weight:700;">
+            The Boutique Experience
+          </a>
           <a href="bridal.html" class="mobile-nav-item">
             Bridal Collection
           </a>
           <a href="bridal-catalog.html" class="mobile-nav-sub">Shop All 600+ Gowns</a>
-          <a href="quiz.html" class="mobile-nav-sub" style="color:var(--teal-mid);font-weight:700;">Take Bridal Style Quiz</a>
+          <a href="quiz.html" class="mobile-nav-sub">Take Bridal Style Quiz</a>
           <a href="mothers.html" class="mobile-nav-item">
             Mothers of the Bride
           </a>
@@ -362,6 +366,7 @@ function footerHTML() {
         <div>
           <div class="footer-col-title">Explore</div>
           <ul class="footer-links">
+            <li><a href="experience.html">The Experience</a></li>
             <li><a href="bridal-catalog.html">Bridal Collection</a></li>
             <li><a href="mothers.html">Mothers</a></li>
             <li><a href="prom.html">Prom</a></li>
