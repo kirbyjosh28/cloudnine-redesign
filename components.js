@@ -13,8 +13,10 @@ function navHTML() {
     const clean = name.replace(/\.html$/, '');
     return page === clean ? 'active' : '';
   };
-  const isBridal = page === 'bridal' || page === 'bridal-catalog';
+  const isBridal = page === 'bridal' || page === 'bridal-catalog' || page === 'our-brides';
   const isPromHoco = page === 'prom' || page === 'prom-catalog' || page === 'hoco' || page === 'hoco-catalog';
+  const isTux = page === 'tuxedos';
+
   return `
   <nav class="main-nav">
     <div class="nav-inner">
@@ -24,29 +26,80 @@ function navHTML() {
         <img src="images/logo-transparent.png" alt="Cloud Nine Bridal Boutique" class="nav-logo-img"/>
       </a>
 
-      <!-- Center links -->
+      <!-- Center links with Luxury Mega-Menus -->
       <ul class="nav-menu nav-center">
         <li class="nav-item"><a href="index.html" class="nav-link ${active('index')}">Home</a></li>
-        <li class="nav-item"><a href="bridal.html" class="nav-link ${isBridal ? 'active' : ''}">Bridal</a></li>
-        <li class="nav-item"><a href="mothers.html" class="nav-link ${active('mothers')}">Mothers</a></li>
-        <li class="nav-item nav-item--prom nav-item--has-dropdown">
-          <a href="prom.html" class="nav-link ${isPromHoco ? 'active' : ''}">Prom &amp; HOCO</a>
-          <div class="nav-dropdown">
-            <a href="prom.html" class="nav-dd-ph-home">
-              <div class="nav-dd-ph-home-left">
-                <div class="nav-dd-ph-home-title">Prom &amp; Homecoming</div>
-                <div class="nav-dd-ph-home-sub">Cloud Nine · Peoria, IL</div>
+        
+        <!-- 1. BRIDAL MEGA-MENU -->
+        <li class="nav-item nav-item--bridal nav-item--has-dropdown">
+          <a href="bridal.html" class="nav-link ${isBridal ? 'active' : ''}">
+            Bridal
+            <svg class="nav-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <div class="nav-dropdown nav-dropdown--mega nav-dropdown--bridal">
+            <div class="nav-mega-grid">
+              <!-- Featured Editorial Card -->
+              <a href="bridal-catalog.html" class="nav-mega-card">
+                <div class="nav-mega-card-bg" style="background-image:url('images/bridal/Bridal-hero.webp');"></div>
+                <div class="nav-mega-card-overlay"></div>
+                <div class="nav-mega-card-content">
+                  <span class="nav-mega-badge">The 2026 Collection</span>
+                  <div class="nav-mega-card-title">Explore 600+ Gowns</div>
+                  <div class="nav-mega-card-sub">Essense · Maggie Sottero · Rebecca Ingram · Stella York</div>
+                  <span class="nav-mega-card-cta">Browse Catalog <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </div>
+              </a>
+
+              <!-- Curated Designers -->
+              <div class="nav-mega-col">
+                <div class="nav-mega-heading">Curated Designers</div>
+                <ul class="nav-mega-list">
+                  <li><a href="bridal-catalog.html?designer=Essense+of+Australia" class="nav-mega-link"><span class="nav-mega-link-title">Essense of Australia</span><span class="nav-mega-link-sub">Romantic lace &amp; boho glam</span></a></li>
+                  <li><a href="bridal-catalog.html?designer=Maggie+Sottero" class="nav-mega-link"><span class="nav-mega-link-title">Maggie Sottero</span><span class="nav-mega-link-sub">Iconic corset fit &amp; drama</span></a></li>
+                  <li><a href="bridal-catalog.html?designer=Rebecca+Ingram" class="nav-mega-link"><span class="nav-mega-link-title">Rebecca Ingram</span><span class="nav-mega-link-sub">Effortless luxury &amp; value</span></a></li>
+                  <li><a href="bridal-catalog.html?designer=Stella+York" class="nav-mega-link"><span class="nav-mega-link-title">Stella York</span><span class="nav-mega-link-sub">Modern runway-inspired gowns</span></a></li>
+                  <li><a href="bridal-catalog.html" class="nav-mega-link nav-mega-link--all"><span>View All 2026 Designers →</span></a></li>
+                </ul>
               </div>
-              <span class="nav-dd-ph-home-badge">View All</span>
-            </a>
+
+              <!-- The Boutique Experience -->
+              <div class="nav-mega-col">
+                <div class="nav-mega-heading">The Experience</div>
+                <ul class="nav-mega-list">
+                  <li><a href="quiz.html" class="nav-mega-link nav-mega-link--highlight"><span class="nav-mega-link-title">✦ Bridal Style Quiz</span><span class="nav-mega-link-sub">Find your silhouette in 2 minutes</span></a></li>
+                  <li><a href="our-brides.html" class="nav-mega-link"><span class="nav-mega-link-title">👰 Our Real Brides</span><span class="nav-mega-link-sub">Real Peoria weddings &amp; reviews</span></a></li>
+                  <li><a href="appointments.html" class="nav-mega-link"><span class="nav-mega-link-title">🥂 VIP Suites &amp; Rosé</span><span class="nav-mega-link-sub">Private 1-on-1 styling sessions</span></a></li>
+                  <li><a href="mothers.html" class="nav-mega-link"><span class="nav-mega-link-title">💐 Mothers of the Wedding</span><span class="nav-mega-link-sub">Sophisticated MOB &amp; MOG styles</span></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item"><a href="mothers.html" class="nav-link ${active('mothers')}">Mothers</a></li>
+
+        <!-- 2. PROM & HOCO MEGA-MENU -->
+        <li class="nav-item nav-item--prom nav-item--has-dropdown">
+          <a href="prom.html" class="nav-link ${isPromHoco ? 'active' : ''}">
+            Prom &amp; HOCO
+            <svg class="nav-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <div class="nav-dropdown nav-dropdown--ph">
+            <div class="nav-dd-ph-home">
+              <div class="nav-dd-ph-home-left">
+                <div class="nav-dd-ph-home-title">Prom &amp; Homecoming 2026</div>
+                <div class="nav-dd-ph-home-sub">Cloud Nine · Peoria, Illinois</div>
+              </div>
+              <a href="prom.html" class="nav-dd-ph-home-badge">View Guide</a>
+            </div>
             <div class="nav-dd-ph-cols">
               <a href="prom-catalog.html" class="nav-dd-ph-col">
                 <div class="nav-dd-ph-col-bg" style="background-image:url('images/real/prom/instagram/04-ig.webp');"></div>
                 <div class="nav-dd-ph-col-overlay"></div>
                 <div class="nav-dd-ph-col-content">
                   <div class="nav-dd-ph-col-eyebrow">Spring 2026</div>
-                  <div class="nav-dd-ph-col-title">Prom</div>
-                  <div class="nav-dd-ph-col-cta">Shop Now <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                  <div class="nav-dd-ph-col-title">Prom Gowns</div>
+                  <div class="nav-dd-ph-col-cta">Shop Prom <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
                 </div>
               </a>
               <a href="hoco-catalog.html" class="nav-dd-ph-col">
@@ -54,37 +107,142 @@ function navHTML() {
                 <div class="nav-dd-ph-col-overlay"></div>
                 <div class="nav-dd-ph-col-content">
                   <div class="nav-dd-ph-col-eyebrow">Fall 2026</div>
-                  <div class="nav-dd-ph-col-title">HOCO</div>
-                  <div class="nav-dd-ph-col-cta">Shop Now <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                  <div class="nav-dd-ph-col-title">HOCO Styles</div>
+                  <div class="nav-dd-ph-col-cta">Shop HOCO <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
                 </div>
               </a>
             </div>
+            <a href="prom.html#registry" class="nav-ph-registry-ribbon">
+              <span class="nav-ph-reg-shield">🛡️</span>
+              <div class="nav-ph-reg-text">
+                <strong>Central Illinois High School Dress Registry</strong>
+                <span>1 Dress Per Style Per School Guaranteed Exclusivity</span>
+              </div>
+              <span class="nav-ph-reg-arrow">Learn More →</span>
+            </a>
           </div>
         </li>
-        <li class="nav-item"><a href="tuxedos.html" class="nav-link ${active('tuxedos')}">Tuxedos</a></li>
+
+        <!-- 3. TUXEDOS MEGA-MENU -->
+        <li class="nav-item nav-item--tuxedos nav-item--has-dropdown">
+          <a href="tuxedos.html" class="nav-link ${isTux ? 'active' : ''}">
+            Tuxedos
+            <svg class="nav-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <div class="nav-dropdown nav-dropdown--tux">
+            <div class="nav-tux-grid">
+              <a href="tuxedos.html" class="nav-tux-card">
+                <div class="nav-tux-badge">Obsidian Edition</div>
+                <div class="nav-tux-title">The Trace Collection</div>
+                <div class="nav-tux-sub">Exclusive modern suits &amp; tuxedo rentals in Peoria</div>
+                <span class="nav-tux-cta">Explore Suits →</span>
+              </a>
+              <div class="nav-tux-links">
+                <a href="tuxedos.html#visualizer" class="nav-tux-link">
+                  <span class="nav-tux-link-icon">🤵</span>
+                  <div>
+                    <strong>Groom Style Builder</strong>
+                    <p>Configure lapel, color &amp; swatch match</p>
+                  </div>
+                </a>
+                <a href="tuxedos.html#tux-to-door" class="nav-tux-link">
+                  <span class="nav-tux-link-icon">📦</span>
+                  <div>
+                    <strong>Tux-to-Door Out-of-Town</strong>
+                    <p>Doorstep delivery for groomsmen</p>
+                  </div>
+                </a>
+                <a href="appointments.html?cat=tux" class="nav-tux-link">
+                  <span class="nav-tux-link-icon">📅</span>
+                  <div>
+                    <strong>Book Fitting Consultation</strong>
+                    <p>Complimentary party styling session</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </li>
+
         <li class="nav-item"><a href="about.html" class="nav-link ${active('about')}">About</a></li>
         <li class="nav-item"><a href="contact.html" class="nav-link ${active('contact')}">Contact</a></li>
         <li class="nav-item nav-item--quiz"><a href="quiz.html" class="nav-link ${active('quiz')}">Style Quiz</a></li>
       </ul>
 
-      <!-- Right: wishlist + search + book -->
+      <!-- Right Actions: Live Peoria Status + Lookbook Preview + Search + Book CTA -->
       <div class="nav-right-actions">
-        <a href="contact.html" class="nav-live-status-pill status--open" id="navLiveStatusPill" title="Peoria Boutique Operating Hours">
-          <span class="live-dot"></span>
-          <span id="navLiveStatusText">Peoria Boutique</span>
-        </a>
-        <button class="nav-wl-btn" onclick="openWishlist()" aria-label="Saved styles" id="wlNavBtn" title="Saved styles">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-          <span class="wl-nav-badge" id="wl-nav-badge">0</span>
-        </button>
+
+        <!-- Live Peoria Boutique Status with Interactive Popover -->
+        <div class="nav-status-wrap" id="navStatusWrap">
+          <button type="button" class="nav-live-status-pill status--open" id="navLiveStatusPill" aria-label="Peoria Boutique Operating Hours" onclick="toggleNavStatusPopover(event)">
+            <span class="live-dot"></span>
+            <span id="navLiveStatusText">Peoria Boutique</span>
+            <svg class="nav-status-caret" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="nav-status-popover" id="navStatusPopover" role="dialog" aria-label="Boutique Hours & Contact">
+            <div class="nav-sp-head">
+              <div class="nav-sp-title">Cloud Nine Bridal Boutique</div>
+              <div class="nav-sp-sub">4711 N. University St, Peoria, IL 61614</div>
+            </div>
+            <div class="nav-sp-status-banner" id="navSpStatusBanner">
+              <span class="live-dot"></span>
+              <span id="navSpStatusText">Open Today · 10:00 AM – 5:00 PM CST</span>
+            </div>
+            <table class="nav-sp-hours-table" id="navSpHoursTable">
+              <tr data-days="1,5"><td>Mon, Fri</td><td>10:00 AM – 5:00 PM</td></tr>
+              <tr data-days="2,4"><td>Tue, Thu</td><td>11:00 AM – 7:00 PM</td></tr>
+              <tr data-days="3"><td>Wednesday</td><td>Closed</td></tr>
+              <tr data-days="6"><td>Saturday</td><td>9:00 AM – 5:00 PM</td></tr>
+              <tr data-days="0"><td>Sunday</td><td>By Appt Only</td></tr>
+            </table>
+            <div class="nav-sp-actions">
+              <a href="tel:3096933830" class="nav-sp-action-btn nav-sp-action--call">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+                (309) 693-3830
+              </a>
+              <a href="https://goo.gl/maps/HXgYuahuNu8ycSXB8" target="_blank" rel="noopener noreferrer" class="nav-sp-action-btn nav-sp-action--maps">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Directions
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lookbook Wishlist Pill & Mini-Tray -->
+        <div class="nav-wl-wrap" id="navWlWrap">
+          <button class="nav-wl-btn" onclick="openWishlist()" aria-label="Saved styles lookbook" id="wlNavBtn" title="Saved styles">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            <span class="wl-nav-badge" id="wl-nav-badge">0</span>
+          </button>
+          <div class="nav-wl-popover" id="navWlPopover" role="dialog" aria-label="Saved Lookbook Quick Preview">
+            <div class="nav-wlp-head">
+              <span class="nav-wlp-title">Fitting Lookbook</span>
+              <span class="nav-wlp-count" id="navWlpCount">0 Saved</span>
+            </div>
+            <div class="nav-wlp-items" id="navWlpItems">
+              <!-- Populated dynamically by WL -->
+            </div>
+            <div class="nav-wlp-footer">
+              <button type="button" class="nav-wlp-view-btn" onclick="openWishlist()">View Lookbook Dossier</button>
+              <a href="appointments.html" class="nav-wlp-book-btn">Book With Saved Rack →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Search Button (⌘K) -->
         <button class="nav-link nav-search-btn-desktop nav-search-hint" onclick="openSearch()" aria-label="Search (⌘K)" title="Search  ⌘K">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
           <span class="search-kbd-hint">⌘K</span>
         </button>
-        <a href="appointments.html" class="btn-nav-appt">Book an Appointment</a>
+
+        <!-- Luxury Appointment CTA Button -->
+        <a href="appointments.html" class="btn-nav-appt btn-luxury-pill">
+          <span>Book Appointment</span>
+          <span class="btn-pill-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
+        </a>
       </div>
 
-      <!-- Mobile only -->
+      <!-- Mobile triggers -->
       <button class="nav-search-btn nav-search-mobile" aria-label="Search" onclick="openSearch()"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
       <button class="nav-hamburger" aria-label="Open navigation menu" onclick="openMobileMenu()">
         <span></span><span></span><span></span>
@@ -105,6 +263,12 @@ function navHTML() {
         </button>
       </div>
 
+      <!-- Mobile Live Status Card -->
+      <div class="mobile-menu-status" id="mobileMenuStatus">
+        <span class="live-dot"></span>
+        <span id="mobileMenuStatusText">Peoria Boutique · Open Today</span>
+      </div>
+
       <nav class="mobile-menu-nav" aria-label="Site navigation">
 
         <div class="mobile-nav-section">
@@ -122,9 +286,14 @@ function navHTML() {
             Bridal Collection
             <svg class="mobile-nav-item-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
-          <a href="bridal-catalog.html" class="mobile-nav-sub">Shop All Gowns →</a>
+          <a href="bridal-catalog.html" class="mobile-nav-sub">Shop All 600+ Gowns →</a>
+          <a href="quiz.html" class="mobile-nav-sub" style="color:var(--teal-mid);font-weight:700;">✦ Take Bridal Style Quiz →</a>
           <a href="mothers.html" class="mobile-nav-item">
             Mothers of the Bride
+            <svg class="mobile-nav-item-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="our-brides.html" class="mobile-nav-item">
+            Real Brides Gallery
             <svg class="mobile-nav-item-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
@@ -132,9 +301,9 @@ function navHTML() {
         <div class="mobile-nav-divider"></div>
 
         <div class="mobile-nav-section">
-          <span class="mobile-nav-section-label">Prom &amp; Formal</span>
+          <span class="mobile-nav-section-label">Prom, HOCO &amp; Formal</span>
           <a href="prom.html" class="mobile-nav-item">
-            Prom
+            Prom Gowns
             <svg class="mobile-nav-item-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
           <a href="prom-catalog.html" class="mobile-nav-sub">Shop Prom Dresses →</a>
@@ -152,25 +321,17 @@ function navHTML() {
         <div class="mobile-nav-divider"></div>
 
         <div class="mobile-nav-section">
-          <span class="mobile-nav-section-label">Explore</span>
-          <a href="our-brides.html" class="mobile-nav-item">
-            Our Brides
-            <svg class="mobile-nav-item-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-          <a href="quiz.html" class="mobile-nav-item">
-            Style Quiz
-            <svg class="mobile-nav-item-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
+          <span class="mobile-nav-section-label">Information &amp; Contact</span>
           <a href="about.html" class="mobile-nav-item">
-            About Us
+            About Cloud Nine
             <svg class="mobile-nav-item-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
           <a href="contact.html" class="mobile-nav-item">
-            Contact
+            Contact &amp; Hours
             <svg class="mobile-nav-item-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
-          <button class="mobile-nav-item" onclick="closeMobileMenu();setTimeout(openSearch,200);" style="background:none;border:none;width:100%;text-align:left;font-family:inherit;cursor:pointer;">
-            Search
+          <button type="button" class="mobile-nav-item" onclick="closeMobileMenu();setTimeout(openSearch,200);" style="background:none;border:none;width:100%;text-align:left;font-family:inherit;cursor:pointer;">
+            Search Catalog (⌘K)
             <svg class="mobile-nav-item-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
           </button>
         </div>
@@ -179,14 +340,20 @@ function navHTML() {
 
       <div class="mobile-menu-footer">
         <a href="appointments.html" class="mobile-menu-book-btn">Book an Appointment</a>
-        <button onclick="closeMobileMenu();setTimeout(openWishlist,200);" style="display:flex;align-items:center;justify-content:center;gap:8px;padding:12px;border:1px solid rgba(255,255,255,.12);background:none;color:rgba(255,255,255,.55);font-family:'Josefin Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;width:100%;transition:color .15s,border-color .15s;" onmouseenter="this.style.color='rgba(255,255,255,.85)';this.style.borderColor='rgba(255,255,255,.3)'" onmouseleave="this.style.color='rgba(255,255,255,.55)';this.style.borderColor='rgba(255,255,255,.12)'">
+        <button type="button" onclick="closeMobileMenu();setTimeout(openWishlist,200);" style="display:flex;align-items:center;justify-content:center;gap:8px;padding:12px;border:1px solid rgba(255,255,255,.12);background:none;color:rgba(255,255,255,.75);font-family:'Josefin Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;width:100%;transition:color .15s,border-color .15s;">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-          View Saved Styles
+          View Saved Styles (<span id="wlMobileMenuBadge">0</span>)
         </button>
-        <a href="tel:3096933830" class="mobile-menu-phone-link">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
-          (309) 693‑3830
-        </a>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <a href="tel:3096933830" class="mobile-menu-phone-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 0122 14.92z"/></svg>
+            Call Boutique
+          </a>
+          <a href="https://goo.gl/maps/HXgYuahuNu8ycSXB8" target="_blank" rel="noopener noreferrer" class="mobile-menu-phone-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Directions
+          </a>
+        </div>
       </div>
 
     </div>
@@ -492,6 +659,50 @@ var WL = (function() {
       mBadge.textContent = n;
       mBadge.classList.toggle('visible', n > 0);
     }
+    var menuBadge = document.getElementById('wlMobileMenuBadge');
+    if (menuBadge) {
+      menuBadge.textContent = n;
+    }
+    renderNavPreview();
+  }
+
+  function renderNavPreview() {
+    var countEl = document.getElementById('navWlpCount');
+    var itemsEl = document.getElementById('navWlpItems');
+    if (!itemsEl) return;
+
+    var items = load();
+    if (countEl) countEl.textContent = items.length + ' Saved';
+
+    if (!items.length) {
+      itemsEl.innerHTML =
+        '<div class="nav-wlp-empty">' +
+          '<div class="nav-wlp-empty-icon">♡</div>' +
+          '<p class="nav-wlp-empty-text">Your Fitting Lookbook is empty.<br/>Tap the heart on any gown to save your favorites.</p>' +
+          '<a href="quiz.html" class="nav-wlp-quiz-btn">✦ Take Style Quiz</a>' +
+        '</div>';
+      return;
+    }
+
+    var preview = items.slice(-3).reverse();
+    var html = preview.map(function(p) {
+      var img = p.i || 'images/bridal/Bridal-hero.webp';
+      var title = escapeHTML(p.n || p.s || 'Gown');
+      var designer = escapeHTML(p.d || 'Cloud Nine');
+      var link = (p.cat === 'prom' || p.cat === 'hoco') ? (p.cat + '-catalog.html') : ('dress.html?s=' + encodeURIComponent(p.s || '') + '&cat=' + encodeURIComponent(p.cat || 'bridal'));
+      return '<a href="' + link + '" class="nav-wlp-item">' +
+        '<img src="' + img + '" alt="' + title + '" class="nav-wlp-img"/>' +
+        '<div class="nav-wlp-info">' +
+          '<div class="nav-wlp-item-title">' + title + '</div>' +
+          '<div class="nav-wlp-item-designer">' + designer + '</div>' +
+        '</div>' +
+      '</a>';
+    }).join('');
+
+    if (items.length > 3) {
+      html += '<div class="nav-wlp-more">+' + (items.length - 3) + ' more saved gowns in your lookbook</div>';
+    }
+    itemsEl.innerHTML = html;
   }
 
   function renderDrawer() {
@@ -905,6 +1116,8 @@ function injectComponents() {
   injectMobileCTABar();
   // Inject back-to-top
   injectBackToTop();
+  // Sync all badges & preview trays
+  WL.updateBadge();
 }
 
 function injectBackToTop() {
@@ -1131,8 +1344,12 @@ function initNavScroll() {
   const nav = document.querySelector('.main-nav');
   if (!nav) return;
 
-  // Scrolled background state
-  const update = () => nav.classList.toggle('scrolled', window.scrollY > 80);
+  // Scrolled background state & height compression
+  const update = () => {
+    const isScrolled = window.scrollY > 24;
+    nav.classList.toggle('scrolled', isScrolled);
+    nav.classList.toggle('nav-scrolled', isScrolled);
+  };
   update();
   window.addEventListener('scroll', update, { passive: true });
 
@@ -1785,7 +2002,23 @@ function initBoutiqueStatus() {
     headerText.textContent = status.statusText;
   }
 
-  // 2. Footer Today badge
+  // 2. Status Popover banner & table highlight
+  var popBanner = document.getElementById('navSpStatusBanner');
+  var popText = document.getElementById('navSpStatusText');
+  if (popBanner && popText) {
+    popBanner.className = 'nav-sp-status-banner ' + status.statusClass;
+    popText.textContent = status.subText;
+  }
+  var popTable = document.getElementById('navSpHoursTable');
+  if (popTable) {
+    popTable.querySelectorAll('tr[data-days]').forEach(function(row) {
+      var days = row.dataset.days.split(',').map(Number);
+      if (days.includes(status.day)) row.classList.add('today');
+      else row.classList.remove('today');
+    });
+  }
+
+  // 3. Footer Today badge
   var badge = document.getElementById('footerTodayBadge');
   if (badge) {
     if (status.isOpen) {
@@ -1799,13 +2032,47 @@ function initBoutiqueStatus() {
     }
   }
 
-  // 3. Contact page live status
+  // 4. Contact page live status
   var contactStatus = document.getElementById('contactLiveStatus');
   if (contactStatus) {
     contactStatus.className = 'contact-live-pill ' + status.statusClass;
     contactStatus.innerHTML = '<span class="live-dot"></span><span>' + status.statusText + ' (' + status.subText + ')</span>';
   }
+
+  // 5. Mobile Drawer Live Status
+  var mobileStatus = document.getElementById('mobileMenuStatus');
+  var mobileText = document.getElementById('mobileMenuStatusText');
+  if (mobileStatus && mobileText) {
+    mobileStatus.className = 'mobile-menu-status ' + status.statusClass;
+    mobileText.textContent = 'Peoria Boutique · ' + status.statusText;
+  }
 }
+
+/* ── Peoria Boutique Status Popover Toggle ── */
+window.toggleNavStatusPopover = function(e) {
+  if (e) { e.preventDefault(); e.stopPropagation(); }
+  var popover = document.getElementById('navStatusPopover');
+  var pill = document.getElementById('navLiveStatusPill');
+  if (!popover) return;
+  var isOpen = popover.classList.contains('open');
+  if (isOpen) {
+    popover.classList.remove('open');
+    if (pill) pill.setAttribute('aria-expanded', 'false');
+  } else {
+    popover.classList.add('open');
+    if (pill) pill.setAttribute('aria-expanded', 'true');
+  }
+};
+
+document.addEventListener('click', function(e) {
+  var popover = document.getElementById('navStatusPopover');
+  var wrap = document.getElementById('navStatusWrap');
+  if (popover && popover.classList.contains('open') && wrap && !wrap.contains(e.target)) {
+    popover.classList.remove('open');
+    var pill = document.getElementById('navLiveStatusPill');
+    if (pill) pill.setAttribute('aria-expanded', 'false');
+  }
+});
 
 /* ════════════════════════════════════════════════════════
    CANVAS CONFETTI PHYSICS ENGINE
