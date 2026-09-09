@@ -266,6 +266,9 @@ button { font-family: 'Josefin Sans', 'Helvetica Neue', Helvetica, Arial, sans-s
   position: relative;
   overflow: visible;
 }
+.nav-item--has-dropdown {
+  position: static;
+}
 .nav-link {
   display: inline-flex;
   align-items: center;
@@ -313,7 +316,7 @@ button { font-family: 'Josefin Sans', 'Helvetica Neue', Helvetica, Arial, sans-s
 }
 
 /* ══════════════════════════════════════════
-   MEGA-MENUS & DROPDOWNS (Concentric Glass)
+   MEGA-MENUS & DROPDOWNS (Concentric Glass & In-Frame Clamping)
    ══════════════════════════════════════════ */
 .nav-dropdown {
   position: absolute;
@@ -326,6 +329,9 @@ button { font-family: 'Josefin Sans', 'Helvetica Neue', Helvetica, Arial, sans-s
   border: 1px solid rgba(255, 255, 255, 0.90);
   border-radius: 20px;
   padding: 18px;
+  max-height: calc(100vh - 110px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -337,6 +343,15 @@ button { font-family: 'Josefin Sans', 'Helvetica Neue', Helvetica, Arial, sans-s
               inset 0 1px 0 rgba(255, 255, 255, 1);
   z-index: 500;
 }
+/* Invisible hover bridge to prevent pointer drop */
+.nav-dropdown::before {
+  content: '';
+  position: absolute;
+  top: -18px;
+  left: 0;
+  right: 0;
+  height: 18px;
+}
 .nav-item--has-dropdown:hover .nav-dropdown {
   opacity: 1;
   visibility: visible;
@@ -346,7 +361,8 @@ button { font-family: 'Josefin Sans', 'Helvetica Neue', Helvetica, Arial, sans-s
 
 /* 1. BRIDAL MEGA-MENU */
 .nav-dropdown--bridal {
-  width: min(860px, 94vw);
+  width: min(860px, calc(100vw - 48px));
+  max-width: 860px;
   padding: 20px;
   border-radius: 22px;
 }
@@ -506,7 +522,8 @@ button { font-family: 'Josefin Sans', 'Helvetica Neue', Helvetica, Arial, sans-s
 
 /* 2. PROM & HOCO MEGA-MENU */
 .nav-dropdown--ph {
-  width: min(700px, 94vw);
+  width: min(700px, calc(100vw - 48px));
+  max-width: 700px;
   background: rgba(255,255,255,0.96);
   backdrop-filter: saturate(210%) blur(40px);
   -webkit-backdrop-filter: saturate(210%) blur(40px);
@@ -658,7 +675,8 @@ button { font-family: 'Josefin Sans', 'Helvetica Neue', Helvetica, Arial, sans-s
 
 /* 3. TUXEDOS MEGA-MENU */
 .nav-dropdown--tux {
-  width: min(580px, 94vw);
+  width: min(580px, calc(100vw - 48px));
+  max-width: 580px;
   background: #081112;
   border: 1px solid rgba(255,255,255,0.16);
   border-radius: 22px;
