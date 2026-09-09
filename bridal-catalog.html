@@ -1195,8 +1195,12 @@ const DETAIL_LABELS = {
   'strapless': 'Strapless'
 };
 
+// ── Popover Controller ──
 function togglePopover(facet, e) {
-  if (e) e.stopPropagation();
+  if (e) {
+    e.stopPropagation();
+    if (e.preventDefault) e.preventDefault();
+  }
   const map = { sil: 'dropdownSil', des: 'dropdownDes', detail: 'dropdownDetail' };
   const targetId = map[facet];
   const dropdown = document.getElementById(targetId);
@@ -1231,7 +1235,7 @@ document.addEventListener('keydown', function(e) {
   }
 });
 
-// Mobile Bottom Sheet
+// ── Mobile Bottom Sheet ──
 function openMobileFilters() {
   closeAllPopovers();
   const backdrop = document.getElementById('filterSheetBackdrop');
@@ -1240,7 +1244,10 @@ function openMobileFilters() {
 }
 
 function closeMobileFilters(e) {
-  if (e && e.target && e.target !== document.getElementById('filterSheetBackdrop') && !e.target.classList.contains('filter-sheet-close') && !e.target.classList.contains('filter-sheet-btn-apply') && !e.target.classList.contains('filter-sheet-btn-clear')) {
+  if (e && e.target && e.target !== document.getElementById('filterSheetBackdrop') &&
+      !e.target.classList.contains('filter-sheet-close') &&
+      !e.target.classList.contains('filter-sheet-btn-apply') &&
+      !e.target.classList.contains('filter-sheet-btn-clear')) {
     return;
   }
   const backdrop = document.getElementById('filterSheetBackdrop');
@@ -1258,7 +1265,7 @@ function initMobileSheet() {
       const val = btn.dataset.value;
       const nameEl = btn.querySelector('.popover-chip-name');
       const name = nameEl ? nameEl.textContent : val;
-      return `<button type="button" class="filter-sheet-chip ${val === activeSil ? 'active' : ''}" data-filter="sil" data-value="${val}">
+      return `<button type="button" class="filter-sheet-chip ${val.toLowerCase() === activeSil.toLowerCase() ? 'active' : ''}" data-filter="sil" data-value="${val}">
         <span>${name}</span>
         <span class="chip-count"></span>
       </button>`;
@@ -1270,7 +1277,7 @@ function initMobileSheet() {
       const val = btn.dataset.value;
       const nameEl = btn.querySelector('.popover-chip-name');
       const name = nameEl ? nameEl.textContent : val;
-      return `<button type="button" class="filter-sheet-chip ${val === activeDes ? 'active' : ''}" data-filter="des" data-value="${val}">
+      return `<button type="button" class="filter-sheet-chip ${val.toLowerCase() === activeDes.toLowerCase() ? 'active' : ''}" data-filter="des" data-value="${val}">
         <span>${name}</span>
         <span class="chip-count"></span>
       </button>`;
@@ -1282,19 +1289,12 @@ function initMobileSheet() {
       const val = btn.dataset.value;
       const nameEl = btn.querySelector('.popover-chip-name');
       const name = nameEl ? nameEl.textContent : val;
-      return `<button type="button" class="filter-sheet-chip ${val === activeDetail ? 'active' : ''}" data-filter="detail" data-value="${val}">
+      return `<button type="button" class="filter-sheet-chip ${val.toLowerCase() === activeDetail.toLowerCase() ? 'active' : ''}" data-filter="detail" data-value="${val}">
         <span>${name}</span>
         <span class="chip-count"></span>
       </button>`;
     }).join('');
   }
-
-  // Bind click handlers to mobile chips
-  document.querySelectorAll('.filter-sheet-chip').forEach(btn => {
-    btn.addEventListener('click', function() {
-      setFilter(btn.dataset.filter, btn.dataset.value, false);
-    });
-  });
 }
 
 function _showSkeletons(n) {
@@ -1313,8 +1313,8 @@ function _showSkeletons(n) {
 }
 
 function matchesFilter(p, sil, des, detail, q) {
-  if (sil !== 'all' && p.sil !== sil) return false;
-  if (des !== 'all' && p.d !== des) return false;
+  if (sil !== 'all' && (p.sil || '').toLowerCase() !== sil.toLowerCase()) return false;
+  if (des !== 'all' && (p.d || '').toLowerCase() !== des.toLowerCase()) return false;
   if (detail !== 'all') {
     const pat = DETAIL_PATTERNS[detail];
     if (pat) {
@@ -1336,13 +1336,13 @@ function updateChipCounts() {
       let count = 0;
       if (facet === 'sil') {
         count = P.filter(p => matchesFilter(p, val, activeDes, activeDetail, searchQuery)).length;
-        btn.classList.toggle('disabled', count === 0 && val !== 'all' && val !== activeSil);
+        btn.classList.toggle('disabled', count === 0 && val !== 'all' && val.toLowerCase() !== activeSil.toLowerCase());
       } else if (facet === 'des') {
         count = P.filter(p => matchesFilter(p, activeSil, val, activeDetail, searchQuery)).length;
-        btn.classList.toggle('disabled', count === 0 && val !== 'all' && val !== activeDes);
+        btn.classList.toggle('disabled', count === 0 && val !== 'all' && val.toLowerCase() !== activeDes.toLowerCase());
       } else if (facet === 'detail') {
         count = P.filter(p => matchesFilter(p, activeSil, activeDes, val, searchQuery)).length;
-        btn.classList.toggle('disabled', count === 0 && val !== 'all' && val !== activeDetail);
+        btn.classList.toggle('disabled', count === 0 && val !== 'all' && val.toLowerCase() !== activeDetail.toLowerCase());
       }
       const countEl = btn.querySelector('.chip-count');
       if (countEl) countEl.textContent = `(${count})`;
@@ -1352,25 +1352,32 @@ function updateChipCounts() {
 
 function setFilter(type, value, closePopover) {
   if (closePopover === undefined) closePopover = true;
-  if (type === 'sil') activeSil = value;
-  else if (type === 'des') activeDes = value;
-  else if (type === 'detail') activeDetail = value;
 
-  // Sync popover chips
-  document.querySelectorAll(`.filter-popover-chip[data-filter="${type}"]`).forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.value === value);
-  });
+  // Toggle behavior: if clicking the active chip again, reset to 'all'
+  if (type === 'sil') {
+    activeSil = (activeSil.toLowerCase() === value.toLowerCase() && value !== 'all') ? 'all' : value;
+  } else if (type === 'des') {
+    activeDes = (activeDes.toLowerCase() === value.toLowerCase() && value !== 'all') ? 'all' : value;
+  } else if (type === 'detail') {
+    activeDetail = (activeDetail.toLowerCase() === value.toLowerCase() && value !== 'all') ? 'all' : value;
+  }
 
-  // Sync mobile sheet chips
-  document.querySelectorAll(`.filter-sheet-chip[data-filter="${type}"]`).forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.value === value);
-  });
+  syncChipStates();
 
   if (closePopover && window.innerWidth > 860) {
     closeAllPopovers();
   }
 
   applyFilters();
+}
+
+function syncChipStates() {
+  ['sil', 'des', 'detail'].forEach(type => {
+    const activeVal = (type === 'sil' ? activeSil : type === 'des' ? activeDes : activeDetail).toLowerCase();
+    document.querySelectorAll(`[data-filter="${type}"]`).forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.value.toLowerCase() === activeVal);
+    });
+  });
 }
 
 function resetFacet(type) {
@@ -1386,7 +1393,8 @@ function updateTriggerLabels() {
       silLabel.textContent = 'Silhouette';
       silBtn.classList.remove('has-value');
     } else {
-      silLabel.textContent = activeSil;
+      const chip = document.querySelector(`.filter-popover-chip[data-filter="sil"][data-value="${CSS.escape(activeSil)}"] .popover-chip-name`);
+      silLabel.textContent = chip ? chip.textContent.trim() : activeSil;
       silBtn.classList.add('has-value');
     }
   }
@@ -1399,7 +1407,8 @@ function updateTriggerLabels() {
       desLabel.textContent = 'Designer';
       desBtn.classList.remove('has-value');
     } else {
-      desLabel.textContent = activeDes;
+      const chip = document.querySelector(`.filter-popover-chip[data-filter="des"][data-value="${CSS.escape(activeDes)}"] .popover-chip-name`);
+      desLabel.textContent = chip ? chip.textContent.trim() : activeDes;
       desBtn.classList.add('has-value');
     }
   }
@@ -1412,7 +1421,8 @@ function updateTriggerLabels() {
       detailLabel.textContent = 'Detail & Vibe';
       detailBtn.classList.remove('has-value');
     } else {
-      detailLabel.textContent = DETAIL_LABELS[activeDetail] || activeDetail;
+      const chip = document.querySelector(`.filter-popover-chip[data-filter="detail"][data-value="${CSS.escape(activeDetail)}"] .popover-chip-name`);
+      detailLabel.textContent = chip ? chip.textContent.trim() : (DETAIL_LABELS[activeDetail] || activeDetail);
       detailBtn.classList.add('has-value');
     }
   }
@@ -1425,13 +1435,16 @@ function renderActiveTray() {
 
   const activeFilters = [];
   if (activeSil !== 'all') {
-    activeFilters.push({ type: 'sil', label: activeSil });
+    const chip = document.querySelector(`.filter-popover-chip[data-filter="sil"][data-value="${CSS.escape(activeSil)}"] .popover-chip-name`);
+    activeFilters.push({ type: 'sil', label: chip ? chip.textContent.trim() : activeSil });
   }
   if (activeDes !== 'all') {
-    activeFilters.push({ type: 'des', label: activeDes });
+    const chip = document.querySelector(`.filter-popover-chip[data-filter="des"][data-value="${CSS.escape(activeDes)}"] .popover-chip-name`);
+    activeFilters.push({ type: 'des', label: chip ? chip.textContent.trim() : activeDes });
   }
   if (activeDetail !== 'all') {
-    activeFilters.push({ type: 'detail', label: DETAIL_LABELS[activeDetail] || activeDetail });
+    const chip = document.querySelector(`.filter-popover-chip[data-filter="detail"][data-value="${CSS.escape(activeDetail)}"] .popover-chip-name`);
+    activeFilters.push({ type: 'detail', label: chip ? chip.textContent.trim() : (DETAIL_LABELS[activeDetail] || activeDetail) });
   }
   if (searchQuery.length > 0) {
     activeFilters.push({ type: 'search', label: `"${searchQuery}"` });
@@ -1479,6 +1492,26 @@ function updateClearBtn() {
   if (clr) clr.classList.toggle('visible', isFiltered);
 }
 
+function updateUrlParams() {
+  if (!window.history || !window.history.replaceState) return;
+  const params = new URLSearchParams(window.location.search);
+  if (activeDes !== 'all') params.set('designer', activeDes);
+  else { params.delete('designer'); params.delete('des'); }
+
+  if (activeSil !== 'all') params.set('sil', activeSil);
+  else params.delete('sil');
+
+  if (activeDetail !== 'all') params.set('detail', activeDetail);
+  else params.delete('detail');
+
+  if (searchQuery) params.set('q', searchQuery);
+  else { params.delete('q'); params.delete('search'); }
+
+  const newSearch = params.toString();
+  const newUrl = window.location.pathname + (newSearch ? '?' + newSearch : '');
+  window.history.replaceState(null, '', newUrl);
+}
+
 function clearAllFilters() {
   activeSil = 'all';
   activeDes = 'all';
@@ -1490,10 +1523,7 @@ function clearAllFilters() {
   if (searchInput) searchInput.value = '';
   if (searchClear) searchClear.classList.remove('visible');
 
-  document.querySelectorAll('.filter-popover-chip, .filter-sheet-chip').forEach(b => {
-    b.classList.toggle('active', b.dataset.value === 'all');
-  });
-
+  syncChipStates();
   closeAllPopovers();
   applyFilters();
 }
@@ -1502,8 +1532,10 @@ function applyFilters() {
   fil = P.filter(p => matchesFilter(p, activeSil, activeDes, activeDetail, searchQuery));
   updateClearBtn();
   updateTriggerLabels();
+  syncChipStates();
   renderActiveTray();
   updateChipCounts();
+  updateUrlParams();
   render();
 }
 
@@ -1518,30 +1550,35 @@ function applyFilters() {
 
     initMobileSheet();
 
-    // Check URL params: ?designer=Maggie+Sottero or ?sil=A-Line or ?lookbook=... or ?detail=...
+    // Check URL params: ?designer=Maggie+Sottero or ?sil=A-Line or ?lookbook=... or ?detail=... or ?q=...
     const urlParams = new URLSearchParams(window.location.search);
     const desParam = urlParams.get('designer') || urlParams.get('des');
     const silParam = urlParams.get('sil');
     const detailParam = urlParams.get('detail');
+    const qParam = urlParams.get('q') || urlParams.get('search');
     const lookbookParam = urlParams.get('lookbook');
 
     if (desParam) {
-      activeDes = desParam;
-      document.querySelectorAll('.filter-popover-chip[data-filter="des"], .filter-sheet-chip[data-filter="des"]').forEach(b => {
-        b.classList.toggle('active', b.dataset.value === desParam);
-      });
+      const matchChip = document.querySelector(`.filter-popover-chip[data-filter="des"][data-value="${CSS.escape(desParam)}"]`) ||
+                        Array.from(document.querySelectorAll('.filter-popover-chip[data-filter="des"]')).find(b => b.dataset.value.toLowerCase() === desParam.toLowerCase());
+      activeDes = matchChip ? matchChip.dataset.value : desParam;
     }
     if (silParam) {
-      activeSil = silParam;
-      document.querySelectorAll('.filter-popover-chip[data-filter="sil"], .filter-sheet-chip[data-filter="sil"]').forEach(b => {
-        b.classList.toggle('active', b.dataset.value === silParam);
-      });
+      const matchChip = document.querySelector(`.filter-popover-chip[data-filter="sil"][data-value="${CSS.escape(silParam)}"]`) ||
+                        Array.from(document.querySelectorAll('.filter-popover-chip[data-filter="sil"]')).find(b => b.dataset.value.toLowerCase() === silParam.toLowerCase());
+      activeSil = matchChip ? matchChip.dataset.value : silParam;
     }
     if (detailParam) {
-      activeDetail = detailParam;
-      document.querySelectorAll('.filter-popover-chip[data-filter="detail"], .filter-sheet-chip[data-filter="detail"]').forEach(b => {
-        b.classList.toggle('active', b.dataset.value === detailParam);
-      });
+      const matchChip = document.querySelector(`.filter-popover-chip[data-filter="detail"][data-value="${CSS.escape(detailParam)}"]`) ||
+                        Array.from(document.querySelectorAll('.filter-popover-chip[data-filter="detail"]')).find(b => b.dataset.value.toLowerCase() === detailParam.toLowerCase());
+      activeDetail = matchChip ? matchChip.dataset.value : detailParam;
+    }
+    if (qParam) {
+      searchQuery = qParam.trim().toLowerCase();
+      const searchInput = document.getElementById('catalogSearch');
+      const searchClear = document.getElementById('catalogSearchClear');
+      if (searchInput) searchInput.value = qParam;
+      if (searchClear) searchClear.classList.add('visible');
     }
 
     // Lookbook deep linking: auto populate lookbook if URL includes ?lookbook=SKU1,SKU2
@@ -1580,6 +1617,7 @@ function applyFilters() {
     if (cc) cc.textContent = '';
   }
 })();
+
 
 function goToDress(idx, el) {
   const dress = fil[idx];
@@ -1855,12 +1893,36 @@ document.addEventListener('keydown', e => {
   io.observe(document.querySelector('.editorial-feature') || document.querySelector('.bridal-cat-hero') || fp);
 })();
 
-// ── Attach filter events ──
-document.querySelectorAll('.filter-popover-chip[data-filter]').forEach(function(btn) {
-  btn.addEventListener('click', function() {
-    setFilter(btn.dataset.filter, btn.dataset.value, true);
-  });
-});
+// ── Attach filter events via delegation ──
+(function() {
+  const facetsGroup = document.getElementById('filterFacetsGroup');
+  if (facetsGroup) {
+    facetsGroup.addEventListener('click', function(e) {
+      const chip = e.target.closest('.filter-popover-chip');
+      if (chip && chip.dataset.filter) {
+        e.stopPropagation();
+        setFilter(chip.dataset.filter, chip.dataset.value, true);
+        return;
+      }
+      const resetBtn = e.target.closest('.filter-popover-reset');
+      if (resetBtn) {
+        e.stopPropagation();
+      }
+    });
+  }
+
+  const mobileSheet = document.getElementById('filterSheet');
+  if (mobileSheet) {
+    mobileSheet.addEventListener('click', function(e) {
+      const chip = e.target.closest('.filter-sheet-chip');
+      if (chip && chip.dataset.filter) {
+        e.stopPropagation();
+        setFilter(chip.dataset.filter, chip.dataset.value, false);
+        return;
+      }
+    });
+  }
+})();
 
 // ── Search input events ──
 (function() {
