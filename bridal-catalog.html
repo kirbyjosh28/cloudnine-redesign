@@ -330,34 +330,66 @@
 </div>
 <div class="section-catalog">
   <div class="filter-panel" id="fp">
+    <!-- Live Search Row -->
+    <div class="filter-search-row">
+      <div class="filter-search-wrap">
+        <span class="filter-search-icon" aria-hidden="true">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </span>
+        <input type="search" class="filter-search-input" id="catalogSearch" placeholder="Search by style #, designer, neckline, lace, crepe, sparkle..." aria-label="Search bridal collection" autocomplete="off" autocorrect="off" spellcheck="false"/>
+        <button type="button" class="filter-search-clear" id="catalogSearchClear" aria-label="Clear search">✕</button>
+      </div>
+    </div>
+
+    <!-- Silhouette Row -->
     <div class="filter-row">
       <span class="filter-row-label">Silhouette</span>
       <div class="filter-row-btns" id="sil-row">
-        <button class="filter-chip active" data-filter="sil" data-value="all">All</button>
-        <button class="filter-chip" data-filter="sil" data-value="A-Line">A-Line</button>
-        <button class="filter-chip" data-filter="sil" data-value="Ballgown">Ballgown</button>
-        <button class="filter-chip" data-filter="sil" data-value="Fit &amp; Flare">Fit &amp; Flare</button>
-        <button class="filter-chip" data-filter="sil" data-value="Mermaid">Mermaid</button>
-        <button class="filter-chip" data-filter="sil" data-value="Sheath">Sheath</button>
+        <button class="filter-chip active" data-filter="sil" data-value="all">All <span class="chip-count"></span></button>
+        <button class="filter-chip" data-filter="sil" data-value="A-Line">A-Line <span class="chip-count"></span></button>
+        <button class="filter-chip" data-filter="sil" data-value="Fit &amp; Flare">Fit &amp; Flare <span class="chip-count"></span></button>
+        <button class="filter-chip" data-filter="sil" data-value="Mermaid">Mermaid <span class="chip-count"></span></button>
+        <button class="filter-chip" data-filter="sil" data-value="Ballgown">Ballgown <span class="chip-count"></span></button>
+        <button class="filter-chip" data-filter="sil" data-value="Sheath">Sheath <span class="chip-count"></span></button>
       </div>
     </div>
+
+    <!-- Designer Row -->
     <div class="filter-row">
       <span class="filter-row-label">Designer</span>
       <div class="filter-row-btns" id="des-row">
-        <button class="filter-chip active" data-filter="des" data-value="all">All</button>
-        <button class="filter-chip" data-filter="des" data-value="Essense of Australia">Essense of Australia</button>
-        <button class="filter-chip" data-filter="des" data-value="Maggie Sottero">Maggie Sottero</button>
-        <button class="filter-chip" data-filter="des" data-value="Rebecca Ingram">Rebecca Ingram</button>
-        <button class="filter-chip" data-filter="des" data-value="Rose + Grace">Rose + Grace</button>
-        <button class="filter-chip" data-filter="des" data-value="Sottero &amp; Midgley">Sottero &amp; Midgley</button>
-        <button class="filter-chip" data-filter="des" data-value="Stella York">Stella York</button>
+        <button class="filter-chip active" data-filter="des" data-value="all">All <span class="chip-count"></span></button>
+        <button class="filter-chip" data-filter="des" data-value="Essense of Australia">Essense of Australia <span class="chip-count"></span></button>
+        <button class="filter-chip" data-filter="des" data-value="Maggie Sottero">Maggie Sottero <span class="chip-count"></span></button>
+        <button class="filter-chip" data-filter="des" data-value="Rebecca Ingram">Rebecca Ingram <span class="chip-count"></span></button>
+        <button class="filter-chip" data-filter="des" data-value="Rose + Grace">Rose + Grace <span class="chip-count"></span></button>
+        <button class="filter-chip" data-filter="des" data-value="Sottero &amp; Midgley">Sottero &amp; Midgley <span class="chip-count"></span></button>
+        <button class="filter-chip" data-filter="des" data-value="Stella York">Stella York <span class="chip-count"></span></button>
       </div>
     </div>
+
+    <!-- Detail & Vibe Row -->
+    <div class="filter-row">
+      <span class="filter-row-label">Detail &amp; Vibe</span>
+      <div class="filter-row-btns" id="detail-row">
+        <button class="filter-chip active" data-filter="detail" data-value="all">All Details <span class="chip-count"></span></button>
+        <button class="filter-chip" data-filter="detail" data-value="lace">Lace <span class="chip-count"></span></button>
+        <button class="filter-chip" data-filter="detail" data-value="crepe">Crepe <span class="chip-count"></span></button>
+        <button class="filter-chip" data-filter="detail" data-value="satin">Satin <span class="chip-count"></span></button>
+        <button class="filter-chip" data-filter="detail" data-value="beaded">Sparkle &amp; Beaded <span class="chip-count"></span></button>
+        <button class="filter-chip" data-filter="detail" data-value="off-shoulder">Off-the-Shoulder <span class="chip-count"></span></button>
+        <button class="filter-chip" data-filter="detail" data-value="square-neck">Square Neck <span class="chip-count"></span></button>
+        <button class="filter-chip" data-filter="detail" data-value="sweetheart">Sweetheart <span class="chip-count"></span></button>
+        <button class="filter-chip" data-filter="detail" data-value="strapless">Strapless <span class="chip-count"></span></button>
+      </div>
+    </div>
+
     <a href="appointments.html" class="sticky-book-cta" aria-label="Book an appointment">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
       Book Appointment
     </a>
   </div>
+
   <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);background:var(--white);padding-right:12px;">
     <div class="catalog-count" id="cc" style="border-bottom:none;padding-right:0;"></div>
     <div style="display:flex;align-items:center;gap:8px;">
@@ -417,6 +449,21 @@
    Keeps HTML small, enables CDN caching of product data separately. */
 let P = [];
 let _dataLoaded = false;
+const PAGE_SIZE = 24;
+let _page = 0;
+let fil = [], curImgs = [], curIdx = 0;
+let activeSil = 'all', activeDes = 'all', activeDetail = 'all', searchQuery = '';
+
+const DETAIL_PATTERNS = {
+  'lace': /lace/i,
+  'crepe': /crepe/i,
+  'satin': /satin/i,
+  'beaded': /bead|sparkle|glitter|sequin/i,
+  'off-shoulder': /off-the-shoulder|off the shoulder/i,
+  'square-neck': /square/i,
+  'sweetheart': /sweetheart/i,
+  'strapless': /strapless|cat eye/i
+};
 
 function _showSkeletons(n) {
   const grid = document.getElementById('pg');
@@ -433,6 +480,94 @@ function _showSkeletons(n) {
   if (cc) cc.textContent = 'Loading gowns…';
 }
 
+function matchesFilter(p, sil, des, detail, q) {
+  if (sil !== 'all' && p.sil !== sil) return false;
+  if (des !== 'all' && p.d !== des) return false;
+  if (detail !== 'all') {
+    const pat = DETAIL_PATTERNS[detail];
+    if (pat) {
+      const text = ((p.c || '') + ' ' + (p.n || '') + ' ' + (p.s || '')).toLowerCase();
+      if (!pat.test(text)) return false;
+    }
+  }
+  if (q) {
+    const haystack = `${p.s || ''} ${p.d || ''} ${p.n || ''} ${p.sil || ''} ${p.c || ''}`.toLowerCase();
+    if (!haystack.includes(q)) return false;
+  }
+  return true;
+}
+
+function updateChipCounts() {
+  // Update silhouette chips
+  document.querySelectorAll('#sil-row .filter-chip').forEach(btn => {
+    const val = btn.dataset.value;
+    const count = P.filter(p => matchesFilter(p, val, activeDes, activeDetail, searchQuery)).length;
+    const countEl = btn.querySelector('.chip-count');
+    if (countEl) countEl.textContent = `(${count})`;
+    btn.classList.toggle('disabled', count === 0 && val !== 'all' && val !== activeSil);
+  });
+
+  // Update designer chips
+  document.querySelectorAll('#des-row .filter-chip').forEach(btn => {
+    const val = btn.dataset.value;
+    const count = P.filter(p => matchesFilter(p, activeSil, val, activeDetail, searchQuery)).length;
+    const countEl = btn.querySelector('.chip-count');
+    if (countEl) countEl.textContent = `(${count})`;
+    btn.classList.toggle('disabled', count === 0 && val !== 'all' && val !== activeDes);
+  });
+
+  // Update detail chips
+  document.querySelectorAll('#detail-row .filter-chip').forEach(btn => {
+    const val = btn.dataset.value;
+    const count = P.filter(p => matchesFilter(p, activeSil, activeDes, val, searchQuery)).length;
+    const countEl = btn.querySelector('.chip-count');
+    if (countEl) countEl.textContent = `(${count})`;
+    btn.classList.toggle('disabled', count === 0 && val !== 'all' && val !== activeDetail);
+  });
+}
+
+function setFilter(type, value, btn) {
+  const rowId = type === 'sil' ? 'sil-row' : type === 'des' ? 'des-row' : 'detail-row';
+  document.querySelectorAll('#' + rowId + ' .filter-chip').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  if (type === 'sil') activeSil = value;
+  else if (type === 'des') activeDes = value;
+  else if (type === 'detail') activeDetail = value;
+  
+  applyFilters();
+}
+
+function applyFilters() {
+  fil = P.filter(p => matchesFilter(p, activeSil, activeDes, activeDetail, searchQuery));
+  updateClearBtn();
+  updateChipCounts();
+  render();
+}
+
+function updateClearBtn() {
+  const clr = document.getElementById('clearFilters');
+  const isFiltered = activeSil !== 'all' || activeDes !== 'all' || activeDetail !== 'all' || searchQuery.length > 0;
+  if (clr) clr.classList.toggle('visible', isFiltered);
+}
+
+function clearAllFilters() {
+  activeSil = 'all';
+  activeDes = 'all';
+  activeDetail = 'all';
+  searchQuery = '';
+  
+  const searchInput = document.getElementById('catalogSearch');
+  const searchClear = document.getElementById('catalogSearchClear');
+  if (searchInput) searchInput.value = '';
+  if (searchClear) searchClear.classList.remove('visible');
+
+  document.querySelectorAll('.filter-chip').forEach(b => {
+    b.classList.toggle('active', b.dataset.value === 'all');
+  });
+
+  applyFilters();
+}
+
 (async function loadProducts() {
   _showSkeletons(12);
   try {
@@ -442,19 +577,55 @@ function _showSkeletons(n) {
     _dataLoaded = true;
     fil = P.slice();
 
-    // Apply URL params: ?designer=Maggie+Sottero or ?sil=A-Line
+    // Check URL params: ?designer=Maggie+Sottero or ?sil=A-Line or ?lookbook=...
     const urlParams = new URLSearchParams(window.location.search);
-    const desParam = urlParams.get('designer');
+    const desParam = urlParams.get('designer') || urlParams.get('des');
     const silParam = urlParams.get('sil');
+    const lookbookParam = urlParams.get('lookbook');
+
     if (desParam) {
       const btn = document.querySelector(`.filter-chip[data-filter="des"][data-value="${CSS.escape(desParam)}"]`);
-      if (btn) setFilter('des', desParam, btn);
+      if (btn) {
+        document.querySelectorAll('#des-row .filter-chip').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeDes = desParam;
+      }
     }
     if (silParam) {
       const btn = document.querySelector(`.filter-chip[data-filter="sil"][data-value="${CSS.escape(silParam)}"]`);
-      if (btn) setFilter('sil', silParam, btn);
+      if (btn) {
+        document.querySelectorAll('#sil-row .filter-chip').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeSil = silParam;
+      }
     }
-    if (!desParam && !silParam) render();
+
+    // Lookbook deep linking: auto populate lookbook if URL includes ?lookbook=SKU1,SKU2
+    if (lookbookParam) {
+      const skus = lookbookParam.split(',').map(s => decodeURIComponent(s.trim().toLowerCase()));
+      const matches = P.filter(p => skus.includes((p.s || '').toLowerCase()));
+      if (matches.length > 0 && typeof WL !== 'undefined') {
+        const existing = WL.load();
+        const existingIds = new Set(existing.map(x => (x.s || '') + '|' + (x.d || '')));
+        let added = 0;
+        matches.forEach(m => {
+          const id = (m.s || '') + '|' + (m.d || '');
+          if (!existingIds.has(id)) {
+            existing.push(m);
+            added++;
+          }
+        });
+        if (added > 0) {
+          try { localStorage.setItem('cloudnine_wishlist', JSON.stringify(existing)); } catch(e) {}
+          WL.updateBadge();
+        }
+        setTimeout(() => {
+          if (WL && WL.openLookbook) WL.openLookbook();
+        }, 500);
+      }
+    }
+
+    applyFilters();
   } catch (err) {
     console.error('Product data failed to load:', err);
     const grid = document.getElementById('pg');
@@ -465,41 +636,6 @@ function _showSkeletons(n) {
     if (cc) cc.textContent = '';
   }
 })();
-const PAGE_SIZE = 24;
-let _page = 0;
-let fil = [], curImgs = [], curIdx = 0;
-let activeSil = 'all', activeDes = 'all';
-
-/* Silhouette is pre-baked into p.sil in the JSON — no runtime text parsing needed.
-   Designer is p.d. Both filters stack independently. */
-function setFilter(type, value, btn) {
-  const rowId = type === 'sil' ? 'sil-row' : 'des-row';
-  document.querySelectorAll('#' + rowId + ' .filter-chip').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  if (type === 'sil') activeSil = value;
-  else activeDes = value;
-  fil = P.filter(p =>
-    (activeSil === 'all' || p.sil === activeSil) &&
-    (activeDes === 'all' || p.d === activeDes)
-  );
-  updateClearBtn();
-  render();
-}
-
-function updateClearBtn() {
-  var clr = document.getElementById('clearFilters');
-  if (clr) clr.classList.toggle('visible', activeSil !== 'all' || activeDes !== 'all');
-}
-
-function clearAllFilters() {
-  activeSil = 'all'; activeDes = 'all';
-  document.querySelectorAll('.filter-chip').forEach(function(b) {
-    b.classList.toggle('active', b.dataset.value === 'all');
-  });
-  fil = P.slice();
-  updateClearBtn();
-  render();
-}
 
 function goToDress(idx) {
   const dress = fil[idx];
@@ -518,7 +654,6 @@ function render() {
     const label = total === P.length
       ? `${total} gowns`
       : `${total} of ${P.length} gowns`;
-    // Animate count update
     cc.style.opacity = '0';
     cc.style.transform = 'translateY(-4px)';
     cc.style.transition = 'opacity .2s ease, transform .2s ease';
@@ -537,6 +672,25 @@ function _renderPage() {
   const grid   = document.getElementById('pg');
   const frag   = document.createDocumentFragment();
 
+  if (fil.length === 0) {
+    grid.innerHTML = `
+      <div class="catalog-empty-state">
+        <svg class="catalog-empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          <line x1="8" y1="11" x2="14" y2="11"></line>
+        </svg>
+        <h3 class="catalog-empty-title">No matching gowns found</h3>
+        <p class="catalog-empty-desc">We couldn't find any gowns matching your exact search and filter criteria. Try resetting filters or searching with broader keywords.</p>
+        <button class="catalog-empty-btn" onclick="clearAllFilters()">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          Reset All Filters
+        </button>
+      </div>`;
+    _renderPagination();
+    return;
+  }
+
   items.forEach((p, i) => {
     const idx  = start + i;
     const card = document.createElement('div');
@@ -546,9 +700,20 @@ function _renderPage() {
     card.setAttribute('aria-label', (p.d || '') + ' style ' + (p.s || ''));
     card.dataset.idx     = idx;
     card.dataset.product = JSON.stringify({s:p.s,d:p.d,i:p.i,x:p.x||[],_cat:'bridal-catalog.html'});
+    
+    const hasAngles = p.x && p.x.length > 1;
+    const pipsHtml = hasAngles
+      ? `<div class="scrub-pips">${p.x.map((_, pi) => `<span class="scrub-pip ${pi===0?'active':''}"></span>`).join('')}</div>`
+      : '';
+    const badgeHtml = hasAngles
+      ? `<span class="photo-count-badge">${p.x.length} Angles</span>`
+      : '';
+
     card.innerHTML   = `
       <div class="dress-card-img">
         <img src="${p.i}" alt="${(p.d||'')} ${(p.s||'')}" loading="lazy"/>
+        ${pipsHtml}
+        ${badgeHtml}
         <div class="dress-card-overlay"></div>
         <div class="quick-view-badge">Quick View</div>
       </div>
@@ -556,6 +721,45 @@ function _renderPage() {
         <div class="dress-card-name">${p.n || p.s || ''}</div>
         <div class="dress-card-cta">View Details →</div>
       </div>`;
+    
+    // Hover-to-scrub angle preview on desktop
+    if (hasAngles) {
+      let preloaded = false;
+      const img = card.querySelector('.dress-card-img img');
+      const pips = card.querySelectorAll('.scrub-pip');
+      const angles = p.x;
+
+      card.addEventListener('mouseenter', () => {
+        if (!preloaded) {
+          preloaded = true;
+          angles.forEach(src => {
+            const pre = new Image();
+            pre.src = src;
+          });
+        }
+      });
+
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const pct = Math.max(0, Math.min(0.9999, x / rect.width));
+        const angleIdx = Math.floor(pct * angles.length);
+        if (img && img.src !== angles[angleIdx]) {
+          img.src = angles[angleIdx];
+        }
+        pips.forEach((pip, pi) => {
+          pip.classList.toggle('active', pi === angleIdx);
+        });
+      });
+
+      card.addEventListener('mouseleave', () => {
+        if (img) img.src = p.i;
+        pips.forEach((pip, pi) => {
+          pip.classList.toggle('active', pi === 0);
+        });
+      });
+    }
+
     frag.appendChild(card);
   });
 
@@ -590,7 +794,6 @@ function _renderPagination() {
 
   for (let i = 0; i < total; i++) {
     if (total > 9) {
-      // Condensed: show first, last, current ±1, with ellipsis
       const show = i === 0 || i === total-1 || Math.abs(i - _page) <= 1;
       const ellipsisBefore = i === 1 && _page > 3;
       const ellipsisAfter  = i === total-2 && _page < total-4;
@@ -602,7 +805,7 @@ function _renderPagination() {
 
   html += `<button class="pag-btn" ${_page===total-1?'disabled':''} data-page="next">&#8250;</button>`;
   pag.innerHTML = html;
-  pag.onclick=function(e){var b=e.target.closest('[data-page]');if(!b||b.disabled)return;var p=b.dataset.page;if(p==='prev')_goPage(_page-1);else if(p==='next')_goPage(_page+1);else _goPage(+p);};/* Attach page events */
+  pag.onclick=function(e){var b=e.target.closest('[data-page]');if(!b||b.disabled)return;var p=b.dataset.page;if(p==='prev')_goPage(_page-1);else if(p==='next')_goPage(_page+1);else _goPage(+p);};
 }
 
 function _goPage(n) {
@@ -702,6 +905,7 @@ document.addEventListener('keydown', e => {
   var closeBtn = document.querySelector('.modal-x[aria-label="Close"]');
   if (closeBtn) closeBtn.addEventListener('click', closeModal);
 })();
+
 // ── Sticky filter panel ──
 (function() {
   var fp = document.getElementById('fp');
@@ -721,6 +925,33 @@ document.querySelectorAll('.filter-chip[data-filter]').forEach(function(btn) {
   });
 });
 
+// ── Search input events ──
+(function() {
+  const searchInput = document.getElementById('catalogSearch');
+  const searchClear = document.getElementById('catalogSearchClear');
+  if (!searchInput) return;
+
+  let debounceTimer = null;
+  searchInput.addEventListener('input', function(e) {
+    searchQuery = e.target.value.trim().toLowerCase();
+    if (searchClear) searchClear.classList.toggle('visible', searchQuery.length > 0);
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(function() {
+      applyFilters();
+    }, 120);
+  });
+
+  if (searchClear) {
+    searchClear.addEventListener('click', function() {
+      searchInput.value = '';
+      searchQuery = '';
+      searchClear.classList.remove('visible');
+      searchInput.focus();
+      applyFilters();
+    });
+  }
+})();
+
 // ── Grid density toggle ──
 (function() {
   var grid   = document.getElementById('pg');
@@ -733,7 +964,6 @@ document.querySelectorAll('.filter-chip[data-filter]').forEach(function(btn) {
 
   function setDensity(n) {
     if (isMobile()) {
-      // On mobile let CSS media queries control the grid — remove any inline override
       grid.style.gridTemplateColumns = '';
     } else if (n === '4') {
       grid.style.gridTemplateColumns = 'repeat(4, 1fr)';
@@ -755,7 +985,6 @@ document.querySelectorAll('.filter-chip[data-filter]').forEach(function(btn) {
   btn3.addEventListener('click', function() { setDensity('3'); });
   btn4.addEventListener('click', function() { setDensity('4'); });
 
-  // Re-apply on resize so toggling desktop→mobile clears the inline style
   window.addEventListener('resize', function() { setDensity(stored); });
 })();
 </script>

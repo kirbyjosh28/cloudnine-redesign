@@ -358,9 +358,20 @@ function _renderPage() {
     card.setAttribute('aria-label', (p.d || '') + ' style ' + (p.s || ''));
     card.dataset.idx = idx;
     card.dataset.product = JSON.stringify({s:p.s,d:p.d,i:p.i,x:p.x||[],_cat:'hoco-catalog.html'});
+    
+    const hasAngles = p.x && p.x.length > 1;
+    const pipsHtml = hasAngles
+      ? `<div class="scrub-pips">${p.x.map((_, pi) => `<span class="scrub-pip ${pi===0?'active':''}"></span>`).join('')}</div>`
+      : '';
+    const badgeHtml = hasAngles
+      ? `<span class="photo-count-badge">${p.x.length} Angles</span>`
+      : '';
+
     card.innerHTML   = `
       <div class="dress-card-img">
         <img src="${p.i}" alt="${(p.d||'')} ${(p.s||'')}" loading="lazy"/>
+        ${pipsHtml}
+        ${badgeHtml}
         <div class="dress-card-overlay"></div>
         <div class="quick-view-badge">Quick View</div>
       </div>
@@ -368,6 +379,44 @@ function _renderPage() {
         <div class="dress-card-name">${p.n || p.s || ''}</div>
         <div class="dress-card-cta">View Details →</div>
       </div>`;
+
+    if (hasAngles) {
+      let preloaded = false;
+      const img = card.querySelector('.dress-card-img img');
+      const pips = card.querySelectorAll('.scrub-pip');
+      const angles = p.x;
+
+      card.addEventListener('mouseenter', () => {
+        if (!preloaded) {
+          preloaded = true;
+          angles.forEach(src => {
+            const pre = new Image();
+            pre.src = src;
+          });
+        }
+      });
+
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const pct = Math.max(0, Math.min(0.9999, x / rect.width));
+        const angleIdx = Math.floor(pct * angles.length);
+        if (img && img.src !== angles[angleIdx]) {
+          img.src = angles[angleIdx];
+        }
+        pips.forEach((pip, pi) => {
+          pip.classList.toggle('active', pi === angleIdx);
+        });
+      });
+
+      card.addEventListener('mouseleave', () => {
+        if (img) img.src = p.i;
+        pips.forEach((pip, pi) => {
+          pip.classList.toggle('active', pi === 0);
+        });
+      });
+    }
+
     frag.appendChild(card);
   });
 

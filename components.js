@@ -635,7 +635,110 @@ var WL = (function() {
     updateBadge();
   }
 
-  return { load, has, toggle, remove, clearAll, updateBadge, renderDrawer, startObserver };
+  function openLookbook() {
+    var modal = document.getElementById('lookbookModal');
+    if (!modal) return;
+    renderLookbook();
+    
+    // Restore saved metadata
+    try {
+      var meta = JSON.parse(localStorage.getItem('cn_lookbook_meta') || '{}');
+      var nameEl = document.getElementById('lbBrideName');
+      var dateEl = document.getElementById('lbDate');
+      var notesEl = document.getElementById('lbNotes');
+      if (nameEl && meta.name) nameEl.value = meta.name;
+      if (dateEl && meta.date) dateEl.value = meta.date;
+      if (notesEl && meta.notes) notesEl.value = meta.notes;
+    } catch(e) {}
+
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLookbook() {
+    var modal = document.getElementById('lookbookModal');
+    if (!modal) return;
+    modal.classList.remove('open');
+    var drawer = document.getElementById('wlDrawer');
+    if (!drawer || !drawer.classList.contains('open')) {
+      document.body.style.overflow = '';
+    }
+  }
+
+  function saveLookbookMeta() {
+    try {
+      var nameEl = document.getElementById('lbBrideName');
+      var dateEl = document.getElementById('lbDate');
+      var notesEl = document.getElementById('lbNotes');
+      var meta = {
+        name: nameEl ? nameEl.value : '',
+        date: dateEl ? dateEl.value : '',
+        notes: notesEl ? notesEl.value : ''
+      };
+      localStorage.setItem('cn_lookbook_meta', JSON.stringify(meta));
+    } catch(e) {}
+  }
+
+  function renderLookbook() {
+    var container = document.getElementById('lookbookGrid');
+    var subtitle = document.getElementById('lookbookSub');
+    if (!container) return;
+    var items = load();
+    if (subtitle) {
+      subtitle.textContent = items.length + ' Gown' + (items.length !== 1 ? 's' : '') + ' Curated for Fitting Session';
+    }
+
+    if (!items.length) {
+      container.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:48px 16px;color:var(--text-muted);font-style:italic;">No styles currently saved. Add favorite gowns to your wishlist to generate your custom lookbook dossier.</div>';
+      return;
+    }
+
+    var html = '';
+    items.forEach(function(p, i) {
+      var img = (p.x && p.x.length) ? p.x[0] : (p.i || '');
+      html +=
+        '<div class="lookbook-card">' +
+          '<img class="lookbook-card-img" src="' + escapeHTML(img) + '" alt="' + escapeHTML((p.d||'') + ' ' + (p.s||'')) + '" loading="lazy"/>' +
+          '<div>' +
+            '<div class="lookbook-card-sub">' + escapeHTML(p.d || 'Designer Gown') + '</div>' +
+            '<h4 class="lookbook-card-title">' + escapeHTML(p.n || p.s || 'Style #' + (i+1)) + '</h4>' +
+            (p.sil ? '<div style="font-size:10px;color:var(--teal-deep);margin-top:2px;">Silhouette: ' + escapeHTML(p.sil) + '</div>' : '') +
+          '</div>' +
+          '<div class="lookbook-card-notes">' +
+            '<span>Style #' + escapeHTML(p.s || '') + '</span>' +
+            '<span>Fitting: [ ] Love [ ] Maybe</span>' +
+          '</div>' +
+        '</div>';
+    });
+    container.innerHTML = html;
+
+    // Attach persistence listeners
+    ['lbBrideName', 'lbDate', 'lbNotes'].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el && !el._persistBound) {
+        el._persistBound = true;
+        el.addEventListener('input', saveLookbookMeta);
+      }
+    });
+  }
+
+  function copyShareLink() {
+    var items = load();
+    var skus = items.map(function(x) { return encodeURIComponent(x.s || ''); }).filter(Boolean).join(',');
+    var shareUrl = window.location.origin + '/bridal-catalog.html' + (skus ? '?lookbook=' + skus : '');
+    
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(shareUrl).then(function() {
+        alert('Lookbook link copied to clipboard!\n\nShare this link with your bridesmaids or stylist: ' + shareUrl);
+      }).catch(function() {
+        prompt('Copy your lookbook link below:', shareUrl);
+      });
+    } else {
+      prompt('Copy your lookbook link below:', shareUrl);
+    }
+  }
+
+  return { load, has, toggle, remove, clearAll, updateBadge, renderDrawer, startObserver, openLookbook, closeLookbook, renderLookbook, copyShareLink };
 })();
 
 /* ── Wishlist drawer HTML ── */
@@ -654,11 +757,61 @@ function wishlistDrawerHTML() {
       '</div>' +
       '<div class="wl-body" id="wlBody"></div>' +
       '<div class="wl-foot" id="wlFoot" style="display:none">' +
+        '<button type="button" class="wl-foot-lookbook-btn" onclick="WL.openLookbook()">' +
+          '<span>✦ Generate Fitting Lookbook</span>' +
+          '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>' +
+        '</button>' +
         '<a href="appointments.html" class="wl-foot-cta" onclick="closeWishlist()">' +
           'Book a Fitting for These Styles' +
           '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>' +
         '</a>' +
         '<button class="wl-foot-clear" onclick="WL.clearAll()">Clear all saved styles</button>' +
+      '</div>' +
+    '</div>' +
+  '</div>';
+}
+
+/* ── Lookbook Dossier Modal HTML ── */
+function lookbookModalHTML() {
+  return '<div class="lookbook-modal" id="lookbookModal" role="dialog" aria-modal="true" aria-label="Bridal Lookbook Dossier">' +
+    '<div class="lookbook-backdrop" id="lookbookBackdrop" onclick="WL.closeLookbook()"></div>' +
+    '<div class="lookbook-sheet">' +
+      '<div class="lookbook-header">' +
+        '<div class="lookbook-header-left">' +
+          '<span class="lookbook-header-eyebrow">Cloud Nine Bridal Boutique · Peoria, IL</span>' +
+          '<h3 class="lookbook-header-title">Bridal Fitting Lookbook Dossier</h3>' +
+          '<span style="font-size:11px;color:var(--text-muted);" id="lookbookSub">Curated Selection</span>' +
+        '</div>' +
+        '<div class="lookbook-actions">' +
+          '<button type="button" class="lookbook-btn-print" onclick="window.print()" aria-label="Print or save as PDF">' +
+            '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>' +
+            'Print / PDF' +
+          '</button>' +
+          '<button type="button" class="lookbook-btn-share" onclick="WL.copyShareLink()" aria-label="Share Lookbook Link">' +
+            '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>' +
+            'Share' +
+          '</button>' +
+          '<button type="button" class="lookbook-close" onclick="WL.closeLookbook()" aria-label="Close lookbook">' +
+            '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>' +
+          '</button>' +
+        '</div>' +
+      '</div>' +
+      '<div class="lookbook-body">' +
+        '<div class="lookbook-meta-bar">' +
+          '<div class="lookbook-field">' +
+            '<span class="lookbook-field-label">Bride\'s Name</span>' +
+            '<input type="text" class="lookbook-field-input" placeholder="e.g. Jessica Sundby" id="lbBrideName"/>' +
+          '</div>' +
+          '<div class="lookbook-field">' +
+            '<span class="lookbook-field-label">Fitting / Wedding Date</span>' +
+            '<input type="text" class="lookbook-field-input" placeholder="e.g. October 14, 2026" id="lbDate"/>' +
+          '</div>' +
+          '<div class="lookbook-field">' +
+            '<span class="lookbook-field-label">Stylist Notes &amp; Preferred Vibe</span>' +
+            '<input type="text" class="lookbook-field-input" placeholder="e.g. Loved clean crepe &amp; dramatic train details, open to sparkle..." id="lbNotes"/>' +
+          '</div>' +
+        '</div>' +
+        '<div class="lookbook-grid" id="lookbookGrid"></div>' +
       '</div>' +
     '</div>' +
   '</div>';
@@ -681,7 +834,9 @@ window.closeWishlist = function() {
   var drawer = document.getElementById('wlDrawer');
   if (!drawer) return;
   drawer.classList.remove('open');
-  document.body.style.overflow = '';
+  if (!document.getElementById('lookbookModal')?.classList.contains('open')) {
+    document.body.style.overflow = '';
+  }
 };
 
 function injectComponents() {
@@ -708,6 +863,11 @@ function injectComponents() {
   wlDiv.innerHTML = wishlistDrawerHTML();
   document.body.appendChild(wlDiv.firstElementChild);
 
+  // Inject lookbook modal
+  const lbDiv = document.createElement('div');
+  lbDiv.innerHTML = lookbookModalHTML();
+  document.body.appendChild(lbDiv.firstElementChild);
+
   // Inject wishlist toast
   const toast = document.createElement('div');
   toast.className = 'wl-toast';
@@ -724,7 +884,10 @@ function injectComponents() {
   if (backdrop) backdrop.addEventListener('click', closeWishlist);
   if (closeBtn)  closeBtn.addEventListener('click', closeWishlist);
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && document.getElementById('wlDrawer')?.classList.contains('open')) closeWishlist();
+    if (e.key === 'Escape') {
+      if (document.getElementById('lookbookModal')?.classList.contains('open')) WL.closeLookbook();
+      else if (document.getElementById('wlDrawer')?.classList.contains('open')) closeWishlist();
+    }
   });
 
   // Start wishlist card observer (only on catalog pages)
