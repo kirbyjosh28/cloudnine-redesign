@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Josefin+Sans:wght@100;200;300;400&family=Lato:wght@300;400;700;900&display=swap"/>
     <link rel="preload" as="image" href="images/bridal/Bridal-hero.webp" type="image/webp"/>
-  <link rel="stylesheet" href="shared.css?v=20260909b"/>
+  <link rel="stylesheet" href="shared.css?v=20260909c"/>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -943,27 +943,27 @@
                 <button type="button" class="filter-popover-reset" onclick="resetFacet('sil')">Reset</button>
               </div>
               <div class="filter-popover-grid" id="sil-row">
-                <button type="button" class="filter-popover-chip active" data-filter="sil" data-value="all">
+                <button type="button" class="filter-popover-chip active" data-filter="sil" data-value="all" onclick="setFilter('sil', 'all', true)">
                   <span class="popover-chip-name">All Silhouettes</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="sil" data-value="A-Line">
+                <button type="button" class="filter-popover-chip" data-filter="sil" data-value="A-Line" onclick="setFilter('sil', 'A-Line', true)">
                   <span class="popover-chip-name">A-Line</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="sil" data-value="Fit &amp; Flare">
+                <button type="button" class="filter-popover-chip" data-filter="sil" data-value="Fit &amp; Flare" onclick="setFilter('sil', 'Fit &amp; Flare', true)">
                   <span class="popover-chip-name">Fit &amp; Flare</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="sil" data-value="Mermaid">
+                <button type="button" class="filter-popover-chip" data-filter="sil" data-value="Mermaid" onclick="setFilter('sil', 'Mermaid', true)">
                   <span class="popover-chip-name">Mermaid</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="sil" data-value="Ballgown">
+                <button type="button" class="filter-popover-chip" data-filter="sil" data-value="Ballgown" onclick="setFilter('sil', 'Ballgown', true)">
                   <span class="popover-chip-name">Ballgown</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="sil" data-value="Sheath">
+                <button type="button" class="filter-popover-chip" data-filter="sil" data-value="Sheath" onclick="setFilter('sil', 'Sheath', true)">
                   <span class="popover-chip-name">Sheath</span>
                   <span class="chip-count"></span>
                 </button>
@@ -985,31 +985,31 @@
                 <button type="button" class="filter-popover-reset" onclick="resetFacet('des')">Reset</button>
               </div>
               <div class="filter-popover-grid" id="des-row">
-                <button type="button" class="filter-popover-chip active" data-filter="des" data-value="all">
+                <button type="button" class="filter-popover-chip active" data-filter="des" data-value="all" onclick="setFilter('des', 'all', true)">
                   <span class="popover-chip-name">All Designers</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="des" data-value="Essense of Australia">
+                <button type="button" class="filter-popover-chip" data-filter="des" data-value="Essense of Australia" onclick="setFilter('des', 'Essense of Australia', true)">
                   <span class="popover-chip-name">Essense of Australia</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="des" data-value="Maggie Sottero">
+                <button type="button" class="filter-popover-chip" data-filter="des" data-value="Maggie Sottero" onclick="setFilter('des', 'Maggie Sottero', true)">
                   <span class="popover-chip-name">Maggie Sottero</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="des" data-value="Rebecca Ingram">
+                <button type="button" class="filter-popover-chip" data-filter="des" data-value="Rebecca Ingram" onclick="setFilter('des', 'Rebecca Ingram', true)">
                   <span class="popover-chip-name">Rebecca Ingram</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="des" data-value="Rose + Grace">
+                <button type="button" class="filter-popover-chip" data-filter="des" data-value="Rose + Grace" onclick="setFilter('des', 'Rose + Grace', true)">
                   <span class="popover-chip-name">Rose + Grace</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="des" data-value="Sottero &amp; Midgley">
+                <button type="button" class="filter-popover-chip" data-filter="des" data-value="Sottero &amp; Midgley" onclick="setFilter('des', 'Sottero &amp; Midgley', true)">
                   <span class="popover-chip-name">Sottero &amp; Midgley</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="des" data-value="Stella York">
+                <button type="button" class="filter-popover-chip" data-filter="des" data-value="Stella York" onclick="setFilter('des', 'Stella York', true)">
                   <span class="popover-chip-name">Stella York</span>
                   <span class="chip-count"></span>
                 </button>
@@ -1031,39 +1031,39 @@
                 <button type="button" class="filter-popover-reset" onclick="resetFacet('detail')">Reset</button>
               </div>
               <div class="filter-popover-grid filter-popover-grid--2col" id="detail-row">
-                <button type="button" class="filter-popover-chip active" data-filter="detail" data-value="all">
+                <button type="button" class="filter-popover-chip active" data-filter="detail" data-value="all" onclick="setFilter('detail', 'all', true)">
                   <span class="popover-chip-name">All Details</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="lace">
+                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="lace" onclick="setFilter('detail', 'lace', true)">
                   <span class="popover-chip-name">Lace</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="crepe">
+                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="crepe" onclick="setFilter('detail', 'crepe', true)">
                   <span class="popover-chip-name">Crepe</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="satin">
+                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="satin" onclick="setFilter('detail', 'satin', true)">
                   <span class="popover-chip-name">Satin</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="beaded">
+                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="beaded" onclick="setFilter('detail', 'beaded', true)">
                   <span class="popover-chip-name">Sparkle &amp; Beaded</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="off-shoulder">
+                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="off-shoulder" onclick="setFilter('detail', 'off-shoulder', true)">
                   <span class="popover-chip-name">Off-the-Shoulder</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="square-neck">
+                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="square-neck" onclick="setFilter('detail', 'square-neck', true)">
                   <span class="popover-chip-name">Square Neck</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="sweetheart">
+                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="sweetheart" onclick="setFilter('detail', 'sweetheart', true)">
                   <span class="popover-chip-name">Sweetheart</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="strapless">
+                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="strapless" onclick="setFilter('detail', 'strapless', true)">
                   <span class="popover-chip-name">Strapless</span>
                   <span class="chip-count"></span>
                 </button>
@@ -1162,7 +1162,7 @@
 </div>
 
 <div id="site-footer"></div>
-<script src="components.js?v=20260909b" defer></script>
+<script src="components.js?v=20260909c" defer></script>
 <script>
 /* Products loaded from external JSON for performance.
    Keeps HTML small, enables CDN caching of product data separately. */
@@ -1255,6 +1255,12 @@ function closeMobileFilters(e) {
   document.body.style.overflow = '';
 }
 
+function getChip(facet, val) {
+  if (!val || val === 'all') return null;
+  const v = val.toLowerCase();
+  return Array.from(document.querySelectorAll(`.filter-popover-chip[data-filter="${facet}"]`)).find(b => (b.dataset.value || '').toLowerCase() === v) || null;
+}
+
 function initMobileSheet() {
   const silChips = document.getElementById('mobileSilChips');
   const desChips = document.getElementById('mobileDesChips');
@@ -1265,7 +1271,8 @@ function initMobileSheet() {
       const val = btn.dataset.value;
       const nameEl = btn.querySelector('.popover-chip-name');
       const name = nameEl ? nameEl.textContent : val;
-      return `<button type="button" class="filter-sheet-chip ${val.toLowerCase() === activeSil.toLowerCase() ? 'active' : ''}" data-filter="sil" data-value="${val}">
+      const safeVal = val.replace(/'/g, "\\'");
+      return `<button type="button" class="filter-sheet-chip ${val.toLowerCase() === activeSil.toLowerCase() ? 'active' : ''}" data-filter="sil" data-value="${val}" onclick="setFilter('sil', '${safeVal}', false)">
         <span>${name}</span>
         <span class="chip-count"></span>
       </button>`;
@@ -1277,7 +1284,8 @@ function initMobileSheet() {
       const val = btn.dataset.value;
       const nameEl = btn.querySelector('.popover-chip-name');
       const name = nameEl ? nameEl.textContent : val;
-      return `<button type="button" class="filter-sheet-chip ${val.toLowerCase() === activeDes.toLowerCase() ? 'active' : ''}" data-filter="des" data-value="${val}">
+      const safeVal = val.replace(/'/g, "\\'");
+      return `<button type="button" class="filter-sheet-chip ${val.toLowerCase() === activeDes.toLowerCase() ? 'active' : ''}" data-filter="des" data-value="${val}" onclick="setFilter('des', '${safeVal}', false)">
         <span>${name}</span>
         <span class="chip-count"></span>
       </button>`;
@@ -1289,7 +1297,8 @@ function initMobileSheet() {
       const val = btn.dataset.value;
       const nameEl = btn.querySelector('.popover-chip-name');
       const name = nameEl ? nameEl.textContent : val;
-      return `<button type="button" class="filter-sheet-chip ${val.toLowerCase() === activeDetail.toLowerCase() ? 'active' : ''}" data-filter="detail" data-value="${val}">
+      const safeVal = val.replace(/'/g, "\\'");
+      return `<button type="button" class="filter-sheet-chip ${val.toLowerCase() === activeDetail.toLowerCase() ? 'active' : ''}" data-filter="detail" data-value="${val}" onclick="setFilter('detail', '${safeVal}', false)">
         <span>${name}</span>
         <span class="chip-count"></span>
       </button>`;
@@ -1393,8 +1402,9 @@ function updateTriggerLabels() {
       silLabel.textContent = 'Silhouette';
       silBtn.classList.remove('has-value');
     } else {
-      const chip = document.querySelector(`.filter-popover-chip[data-filter="sil"][data-value="${CSS.escape(activeSil)}"] .popover-chip-name`);
-      silLabel.textContent = chip ? chip.textContent.trim() : activeSil;
+      const chip = getChip('sil', activeSil);
+      const name = chip ? (chip.querySelector('.popover-chip-name') ? chip.querySelector('.popover-chip-name').textContent.trim() : chip.dataset.value) : activeSil;
+      silLabel.textContent = name;
       silBtn.classList.add('has-value');
     }
   }
@@ -1407,8 +1417,9 @@ function updateTriggerLabels() {
       desLabel.textContent = 'Designer';
       desBtn.classList.remove('has-value');
     } else {
-      const chip = document.querySelector(`.filter-popover-chip[data-filter="des"][data-value="${CSS.escape(activeDes)}"] .popover-chip-name`);
-      desLabel.textContent = chip ? chip.textContent.trim() : activeDes;
+      const chip = getChip('des', activeDes);
+      const name = chip ? (chip.querySelector('.popover-chip-name') ? chip.querySelector('.popover-chip-name').textContent.trim() : chip.dataset.value) : activeDes;
+      desLabel.textContent = name;
       desBtn.classList.add('has-value');
     }
   }
@@ -1421,8 +1432,9 @@ function updateTriggerLabels() {
       detailLabel.textContent = 'Detail & Vibe';
       detailBtn.classList.remove('has-value');
     } else {
-      const chip = document.querySelector(`.filter-popover-chip[data-filter="detail"][data-value="${CSS.escape(activeDetail)}"] .popover-chip-name`);
-      detailLabel.textContent = chip ? chip.textContent.trim() : (DETAIL_LABELS[activeDetail] || activeDetail);
+      const chip = getChip('detail', activeDetail);
+      const name = chip ? (chip.querySelector('.popover-chip-name') ? chip.querySelector('.popover-chip-name').textContent.trim() : chip.dataset.value) : (DETAIL_LABELS[activeDetail] || activeDetail);
+      detailLabel.textContent = name;
       detailBtn.classList.add('has-value');
     }
   }
@@ -1435,16 +1447,19 @@ function renderActiveTray() {
 
   const activeFilters = [];
   if (activeSil !== 'all') {
-    const chip = document.querySelector(`.filter-popover-chip[data-filter="sil"][data-value="${CSS.escape(activeSil)}"] .popover-chip-name`);
-    activeFilters.push({ type: 'sil', label: chip ? chip.textContent.trim() : activeSil });
+    const chip = getChip('sil', activeSil);
+    const label = chip ? (chip.querySelector('.popover-chip-name') ? chip.querySelector('.popover-chip-name').textContent.trim() : chip.dataset.value) : activeSil;
+    activeFilters.push({ type: 'sil', label: label });
   }
   if (activeDes !== 'all') {
-    const chip = document.querySelector(`.filter-popover-chip[data-filter="des"][data-value="${CSS.escape(activeDes)}"] .popover-chip-name`);
-    activeFilters.push({ type: 'des', label: chip ? chip.textContent.trim() : activeDes });
+    const chip = getChip('des', activeDes);
+    const label = chip ? (chip.querySelector('.popover-chip-name') ? chip.querySelector('.popover-chip-name').textContent.trim() : chip.dataset.value) : activeDes;
+    activeFilters.push({ type: 'des', label: label });
   }
   if (activeDetail !== 'all') {
-    const chip = document.querySelector(`.filter-popover-chip[data-filter="detail"][data-value="${CSS.escape(activeDetail)}"] .popover-chip-name`);
-    activeFilters.push({ type: 'detail', label: chip ? chip.textContent.trim() : (DETAIL_LABELS[activeDetail] || activeDetail) });
+    const chip = getChip('detail', activeDetail);
+    const label = chip ? (chip.querySelector('.popover-chip-name') ? chip.querySelector('.popover-chip-name').textContent.trim() : chip.dataset.value) : (DETAIL_LABELS[activeDetail] || activeDetail);
+    activeFilters.push({ type: 'detail', label: label });
   }
   if (searchQuery.length > 0) {
     activeFilters.push({ type: 'search', label: `"${searchQuery}"` });
@@ -1542,7 +1557,7 @@ function applyFilters() {
 (async function loadProducts() {
   _showSkeletons(12);
   try {
-    const res = await fetch('data/bridal-products.json?v=3');
+    const res = await fetch('data/bridal-products.json?v=20260909b');
     if (!res.ok) throw new Error('Failed to load product data');
     P = await res.json();
     _dataLoaded = true;
@@ -1559,18 +1574,15 @@ function applyFilters() {
     const lookbookParam = urlParams.get('lookbook');
 
     if (desParam) {
-      const matchChip = document.querySelector(`.filter-popover-chip[data-filter="des"][data-value="${CSS.escape(desParam)}"]`) ||
-                        Array.from(document.querySelectorAll('.filter-popover-chip[data-filter="des"]')).find(b => b.dataset.value.toLowerCase() === desParam.toLowerCase());
+      const matchChip = getChip('des', desParam);
       activeDes = matchChip ? matchChip.dataset.value : desParam;
     }
     if (silParam) {
-      const matchChip = document.querySelector(`.filter-popover-chip[data-filter="sil"][data-value="${CSS.escape(silParam)}"]`) ||
-                        Array.from(document.querySelectorAll('.filter-popover-chip[data-filter="sil"]')).find(b => b.dataset.value.toLowerCase() === silParam.toLowerCase());
+      const matchChip = getChip('sil', silParam);
       activeSil = matchChip ? matchChip.dataset.value : silParam;
     }
     if (detailParam) {
-      const matchChip = document.querySelector(`.filter-popover-chip[data-filter="detail"][data-value="${CSS.escape(detailParam)}"]`) ||
-                        Array.from(document.querySelectorAll('.filter-popover-chip[data-filter="detail"]')).find(b => b.dataset.value.toLowerCase() === detailParam.toLowerCase());
+      const matchChip = getChip('detail', detailParam);
       activeDetail = matchChip ? matchChip.dataset.value : detailParam;
     }
     if (qParam) {
