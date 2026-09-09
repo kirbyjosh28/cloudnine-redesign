@@ -28,6 +28,7 @@
 
   /* ── Surfaces ──────────────────────────────────── */
   --white:       #ffffff;
+  --bg:          #fdfbf7;   /* warm luxury bridal cream background */
   --bg-warm:     #f4fbfb;
 
   /* ── Typography ─────────────────────────────────── */
@@ -4116,206 +4117,7 @@ p, li, td, .footer-tagline, .section-sub {
   letter-spacing: .01em;
 }
 
-/* ── "THE EXPERIENCE" SECTION ── */
-.experience-section {
-  background: var(--teal-dark);
-  padding: 0 64px;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
-/* Subtle teal top-edge accent */
-.experience-section::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(152,213,214,.28) 25%, rgba(152,213,214,.5) 50%, rgba(152,213,214,.28) 75%, transparent);
-  pointer-events: none;
-  z-index: 1;
-}
-.experience-header {
-  /* 88px top clears the 80px fixed nav with 8px breathing room */
-  padding: 88px 0 44px;
-  border-bottom: 1px solid rgba(255,255,255,.07);
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  flex-shrink: 0;
-  /* entrance animation */
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity .5s var(--ease-out), transform .5s var(--ease-out);
-}
-.experience-section.in-view .experience-header {
-  opacity: 1;
-  transform: translateY(0);
-}
-.experience-header .eyebrow {
-  color: rgba(255,255,255,.62);
-  margin-bottom: 0;
-}
-.experience-header .eyebrow::before { background: rgba(255,255,255,.35); }
-.experience-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(22px, 2.8vw, 36px);
-  font-weight: 700;
-  letter-spacing: -.025em;
-  color: #fff;
-  margin: 0;
-  line-height: 1;
-}
-.experience-title em { font-style: italic; color: rgba(152,213,214,.6); }
-.experience-steps {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  flex: 1;
-  position: relative;
-  overflow: hidden;
-}
-/* Animated sweep line — runs across top of steps on enter */
-.experience-steps::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  height: 1px;
-  width: 0;
-  background: linear-gradient(90deg, rgba(152,213,214,.65) 0%, rgba(152,213,214,.25) 60%, transparent 100%);
-  transition: width 1.4s var(--ease-out) .25s;
-  z-index: 2;
-}
-.experience-section.in-view .experience-steps::before { width: 100%; }
-.exp-step {
-  padding: 44px 40px 52px;
-  border-right: 1px solid rgba(255,255,255,.06);
-  border-top: 1px solid rgba(255,255,255,.06);
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  position: relative;
-  /* entrance animation + hover background */
-  opacity: 0;
-  transform: translateY(28px);
-  transition: background .35s ease, opacity .55s var(--ease-out), transform .55s var(--ease-out);
-}
-/* Staggered entrance — each step reveals 120ms after the previous */
-.experience-section.in-view .exp-step:nth-child(1) { opacity: 1; transform: none; transition-delay: 80ms; }
-.experience-section.in-view .exp-step:nth-child(2) { opacity: 1; transform: none; transition-delay: 200ms; }
-.experience-section.in-view .exp-step:nth-child(3) { opacity: 1; transform: none; transition-delay: 320ms; }
-.experience-section.in-view .exp-step:nth-child(4) { opacity: 1; transform: none; transition-delay: 440ms; }
-.exp-step:last-child { border-right: none; }
-.exp-step:hover { background: rgba(255,255,255,.035); }
-/* Hover teal left-edge accent */
-.exp-step::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 1px; height: 0;
-  background: rgba(152,213,214,.55);
-  transition: height .4s var(--ease-out);
-}
-.exp-step:hover::after { height: 100%; }
-.exp-num {
-  font-family: 'Playfair Display', serif;
-  font-size: 64px;
-  font-weight: 700;
-  font-style: italic;
-  color: rgba(152,213,214,.10);
-  line-height: 1;
-  margin-bottom: 28px;
-  letter-spacing: -.04em;
-  transition: color .4s;
-}
-.exp-step:hover .exp-num { color: rgba(152,213,214,.28); }
-.exp-icon {
-  width: 40px; height: 40px;
-  border: 1px solid rgba(255,255,255,.14);
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 24px;
-  color: rgba(152,213,214,.7);
-  transition: border-color .3s, color .3s, background .3s;
-}
-.exp-step:hover .exp-icon {
-  border-color: rgba(152,213,214,.45);
-  color: rgba(152,213,214,1);
-  background: rgba(152,213,214,.06);
-}
-.exp-name {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(18px, 1.8vw, 24px);
-  font-weight: 700;
-  font-style: italic;
-  color: #fff;
-  letter-spacing: -.01em;
-  line-height: 1.1;
-  margin-bottom: 14px;
-}
-.exp-desc {
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 12px;
-  font-weight: 300;
-  color: rgba(255,255,255,.52);
-  line-height: 1.85;
-  letter-spacing: .01em;
-  flex: 1;
-}
-.exp-line {
-  width: 28px; height: 1px;
-  background: rgba(152,213,214,.25);
-  margin-top: 28px;
-  transition: width .45s var(--ease-out), background .3s;
-}
-.exp-step:hover .exp-line {
-  width: 60px;
-  background: rgba(152,213,214,.6);
-}
 
-@media (max-width: 1024px) {
-  .experience-steps { grid-template-columns: repeat(2, 1fr); }
-  .exp-step:nth-child(2) { border-right: none; }
-  .exp-step:nth-child(1),
-  .exp-step:nth-child(2) { border-bottom: 1px solid rgba(255,255,255,.06); }
-}
-@media (max-width: 768px) {
-  .experience-section { padding: 0 20px; }
-  /* On mobile, sections are in normal flow — reset entrance animations */
-  .experience-header { opacity: 1; transform: none; padding: 36px 0 28px; flex-direction: column; gap: 8px; }
-  .experience-steps { grid-template-columns: 1fr; }
-  .exp-step { opacity: 1; transform: none; padding: 28px 0 32px; border-right: none; border-top: none; border-bottom: 1px solid rgba(255,255,255,.06); }
-  .exp-step::after { display: none; }
-  .exp-step:last-child { border-bottom: none; }
-  .exp-num { font-size: 40px; margin-bottom: 16px; }
-}
-
-/* ── EXPERIENCE FOOTER CTA ── */
-.exp-footer {
-  display: flex;
-  align-items: center;
-  gap: 28px;
-  padding: 22px 0 28px;
-  flex-shrink: 0;
-  border-top: 1px solid rgba(255,255,255,.06);
-  /* entrance animation — appears after steps */
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity .5s var(--ease-out) .55s, transform .5s var(--ease-out) .55s;
-}
-.experience-section.in-view .exp-footer {
-  opacity: 1;
-  transform: none;
-}
-.exp-footer-note {
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 10px;
-  font-weight: 300;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,.28);
-}
-@media (max-width: 768px) {
-  .exp-footer { opacity: 1; transform: none; flex-direction: column; align-items: flex-start; gap: 14px; padding: 24px 0; }
-  .exp-footer-note { font-size: 9px; }
-}
 
 /* ── DESIGNER STRIP — horizontal scroll of brand names ── */
 .designer-strip {
@@ -4651,10 +4453,10 @@ select {
 }
 
 /* ── 4-STEP IN-STORE EXPERIENCE TIMELINE ── */
-/* ── 4-STEP IN-STORE EXPERIENCE TIMELINE ── */
 .journey-section {
   padding: 100px clamp(20px, 4vw, 48px);
-  background: linear-gradient(180deg, var(--bg) 0%, #f4f0ec 100%);
+  background-color: #faf7f4 !important;
+  background: linear-gradient(180deg, #fdfbf7 0%, #f4eee7 100%) !important;
   position: relative;
   overflow: hidden;
 }
