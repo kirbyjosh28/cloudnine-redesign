@@ -1508,6 +1508,13 @@ function showResults() {
     results.style.opacity = '1';
   });
   window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Celebratory Confetti Burst
+  if (window.triggerConfetti) {
+    setTimeout(() => {
+      window.triggerConfetti({ count: 65, spread: 80 });
+    }, 300);
+  }
 }
 
 function viewGown(d, cardEl) {
@@ -1547,6 +1554,10 @@ function saveAllToLookbook() {
 
   localStorage.setItem(WL_KEY, JSON.stringify(list));
   if (typeof updateWishlistCount === 'function') updateWishlistCount();
+
+  if (window.triggerConfetti) {
+    window.triggerConfetti({ count: 45, spread: 60 });
+  }
 
   const toast = document.getElementById('quizToast');
   toast.textContent = `✦ Added 5 ${activePersona.sil} gowns to your Lookbook!`;

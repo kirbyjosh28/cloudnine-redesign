@@ -69,6 +69,10 @@ function navHTML() {
 
       <!-- Right: wishlist + search + book -->
       <div class="nav-right-actions">
+        <a href="contact.html" class="nav-live-status-pill status--open" id="navLiveStatusPill" title="Peoria Boutique Operating Hours">
+          <span class="live-dot"></span>
+          <span id="navLiveStatusText">Peoria Boutique</span>
+        </a>
         <button class="nav-wl-btn" onclick="openWishlist()" aria-label="Saved styles" id="wlNavBtn" title="Saved styles">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
           <span class="wl-nav-badge" id="wl-nav-badge">0</span>
@@ -1676,21 +1680,231 @@ document.addEventListener('DOMContentLoaded', () => {
   initImageFade();
   injectExclusiveBadges();
   initStatCountUp();
-  initFooterTodayBadge();
+  initBoutiqueStatus();
   initMagneticButtons();
   initHeroParallax();
   initPhotoTilt();
 });
 
-function initFooterTodayBadge() {
-  var badge = document.getElementById('footerTodayBadge');
-  if (!badge) return;
-  var day = new Date().getDay();
-  var hours = { 0:'By Appt.', 1:'10am–5pm', 2:'11am–7pm', 3:'Closed', 4:'11am–7pm', 5:'10am–5pm', 6:'9am–5pm' };
-  var h = hours[day] || '';
-  badge.textContent = h === 'Closed' ? '✕ Closed Today' : '● Open ' + h;
-  if (h === 'Closed') {
-    badge.style.background = 'rgba(200,80,80,.08)';
-    badge.style.color = '#c05060';
+/* ════════════════════════════════════════════════════════
+   PEORIA, IL CST LIVE BOUTIQUE STATUS ENGINE
+   Calculates live Central Time operating status with
+   accurate store schedules & next reopening predictions.
+   ════════════════════════════════════════════════════════ */
+function getPeoriaDateTime() {
+  try {
+    var now = new Date();
+    var peoriaStr = now.toLocaleString('en-US', { timeZone: 'America/Chicago' });
+    return new Date(peoriaStr);
+  } catch(e) {
+    return new Date();
   }
 }
+
+function getPeoriaBoutiqueStatus() {
+  var pNow = getPeoriaDateTime();
+  var day = pNow.getDay(); // 0=Sun, 1=Mon, ..., 6=Sat
+  var hour = pNow.getHours();
+  var min = pNow.getMinutes();
+  var curMin = hour * 60 + min;
+
+  // Bridal Schedule:
+  // Mon, Fri: 10:00 AM – 5:00 PM (600 - 1020)
+  // Tue, Thu: 11:00 AM – 7:00 PM (660 - 1140)
+  // Wed: Closed
+  // Sat: 9:00 AM – 5:00 PM (540 - 1020)
+  // Sun: Closed / By Appt (Jan-Mar season)
+  var schedule = {
+    0: { open: null, close: null, name: 'Sunday', label: 'By Appt Only', sub: 'Reserved bridal parties' },
+    1: { open: 600, close: 1020, name: 'Monday', label: '10am–5pm', closeLabel: '5:00 PM' },
+    2: { open: 660, close: 1140, name: 'Tuesday', label: '11am–7pm', closeLabel: '7:00 PM' },
+    3: { open: null, close: null, name: 'Wednesday', label: 'Closed', sub: 'Stylists resting & restocking' },
+    4: { open: 660, close: 1140, name: 'Thursday', label: '11am–7pm', closeLabel: '7:00 PM' },
+    5: { open: 600, close: 1020, name: 'Friday', label: '10am–5pm', closeLabel: '5:00 PM' },
+    6: { open: 540, close: 1020, name: 'Saturday', label: '9am–5pm', closeLabel: '5:00 PM' }
+  };
+
+  var today = schedule[day];
+  var isOpen = false;
+  var isClosingSoon = false;
+  var statusClass = 'status--closed';
+  var statusText = 'Closed Now';
+  var subText = '';
+
+  if (today.open !== null && today.close !== null) {
+    if (curMin >= today.open && curMin < today.close) {
+      isOpen = true;
+      if (today.close - curMin <= 45) {
+        isClosingSoon = true;
+        statusClass = 'status--closing-soon';
+        statusText = 'Closing Soon · Until ' + today.closeLabel;
+        subText = 'Open today until ' + today.closeLabel + ' CST';
+      } else {
+        statusClass = 'status--open';
+        statusText = 'Open Now · Until ' + today.closeLabel;
+        subText = 'Open today until ' + today.closeLabel + ' CST';
+      }
+    } else if (curMin < today.open) {
+      statusClass = 'status--closed';
+      var openTimeStr = (today.open === 540 ? '9:00 AM' : today.open === 600 ? '10:00 AM' : '11:00 AM');
+      statusText = 'Closed · Opens ' + openTimeStr;
+      subText = 'Opens today at ' + openTimeStr + ' CST';
+    } else {
+      statusClass = 'status--closed';
+      statusText = 'Closed for Today';
+      subText = 'Reopens ' + getNextOpenDayText(day);
+    }
+  } else if (day === 0) {
+    statusClass = 'status--closed';
+    statusText = 'By Appt Today';
+    subText = 'Reopens Mon at 10:00 AM CST';
+  } else {
+    statusClass = 'status--closed';
+    statusText = 'Closed Wednesdays';
+    subText = 'Reopens Thu at 11:00 AM CST';
+  }
+
+  return { isOpen: isOpen, isClosingSoon: isClosingSoon, statusClass: statusClass, statusText: statusText, subText: subText, day: day };
+}
+
+function getNextOpenDayText(curDay) {
+  if (curDay === 2) return 'Thu at 11:00 AM CST';
+  if (curDay === 5) return 'Sat at 9:00 AM CST';
+  if (curDay === 6) return 'Mon at 10:00 AM CST';
+  return 'Tomorrow at 10:00 AM CST';
+}
+
+function initBoutiqueStatus() {
+  var status = getPeoriaBoutiqueStatus();
+
+  // 1. Header live status pill
+  var headerPill = document.getElementById('navLiveStatusPill');
+  var headerText = document.getElementById('navLiveStatusText');
+  if (headerPill && headerText) {
+    headerPill.className = 'nav-live-status-pill ' + status.statusClass;
+    headerText.textContent = status.statusText;
+  }
+
+  // 2. Footer Today badge
+  var badge = document.getElementById('footerTodayBadge');
+  if (badge) {
+    if (status.isOpen) {
+      badge.textContent = status.isClosingSoon ? '● Closing Soon · ' + status.statusText : '● Open Today · ' + status.statusText;
+      badge.style.background = 'rgba(16,185,129,0.12)';
+      badge.style.color = '#065f46';
+    } else {
+      badge.textContent = '○ ' + status.statusText;
+      badge.style.background = 'rgba(28,78,80,0.06)';
+      badge.style.color = 'var(--text-muted)';
+    }
+  }
+
+  // 3. Contact page live status
+  var contactStatus = document.getElementById('contactLiveStatus');
+  if (contactStatus) {
+    contactStatus.className = 'contact-live-pill ' + status.statusClass;
+    contactStatus.innerHTML = '<span class="live-dot"></span><span>' + status.statusText + ' (' + status.subText + ')</span>';
+  }
+}
+
+/* ════════════════════════════════════════════════════════
+   CANVAS CONFETTI PHYSICS ENGINE
+   Lightweight zero-dependency particle engine for
+   celebration micro-interactions (lookbook saves & quiz).
+   ════════════════════════════════════════════════════════ */
+window.triggerConfetti = function(options) {
+  options = options || {};
+  var count = options.count || 45;
+  var spread = options.spread || 60;
+  var colors = options.colors || ['#c9607f', '#d4789a', '#fce8f0', '#98d5d6', '#e4f4f5', '#e85d7a', '#ffffff'];
+
+  var canvas = document.getElementById('cnConfettiCanvas');
+  if (!canvas) {
+    canvas = document.createElement('canvas');
+    canvas.id = 'cnConfettiCanvas';
+    canvas.style.cssText = 'position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:99999;';
+    document.body.appendChild(canvas);
+  }
+
+  var ctx = canvas.getContext('2d');
+  var width = canvas.width = window.innerWidth;
+  var height = canvas.height = window.innerHeight;
+
+  var particles = [];
+  var originX = (options.origin && options.origin.x != null) ? options.origin.x * width : width / 2;
+  var originY = (options.origin && options.origin.y != null) ? options.origin.y * height : height * 0.45;
+
+  for (var i = 0; i < count; i++) {
+    var angle = (-Math.PI / 2) + (Math.random() - 0.5) * (spread * Math.PI / 180);
+    var speed = 4 + Math.random() * 8;
+    particles.push({
+      x: originX,
+      y: originY,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed,
+      size: 4 + Math.random() * 5,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      rotation: Math.random() * Math.PI * 2,
+      vRot: (Math.random() - 0.5) * 0.2,
+      opacity: 1,
+      shape: Math.random() > 0.4 ? 'rect' : 'circle',
+      gravity: 0.18 + Math.random() * 0.08,
+      drag: 0.985
+    });
+  }
+
+  var startTime = performance.now();
+  function loop(now) {
+    var elapsed = now - startTime;
+    ctx.clearRect(0, 0, width, height);
+
+    var alive = false;
+    for (var i = 0; i < particles.length; i++) {
+      var p = particles[i];
+      p.vx *= p.drag;
+      p.vy *= p.drag;
+      p.vy += p.gravity;
+      p.x += p.vx;
+      p.y += p.vy;
+      p.rotation += p.vRot;
+      p.opacity = Math.max(0, 1 - elapsed / 2200);
+
+      if (p.opacity > 0 && p.y < height + 20) {
+        alive = true;
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rotation);
+        ctx.globalAlpha = p.opacity;
+        ctx.fillStyle = p.color;
+
+        if (p.shape === 'rect') {
+          ctx.fillRect(-p.size / 2, -p.size / 3, p.size, p.size * 0.6);
+        } else {
+          ctx.beginPath();
+          ctx.arc(0, 0, p.size / 2, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.restore();
+      }
+    }
+
+    if (alive && elapsed < 2500) {
+      requestAnimationFrame(loop);
+    } else {
+      ctx.clearRect(0, 0, width, height);
+    }
+  }
+  requestAnimationFrame(loop);
+};
+
+// Global Wishlist helper bindings
+window.isItemInWishlist = function(p) {
+  return (typeof WL !== 'undefined' && WL.has) ? WL.has(p) : false;
+};
+window.toggleWishlistItem = function(p) {
+  return (typeof WL !== 'undefined' && WL.toggle) ? WL.toggle(p) : false;
+};
+window.getWishlistItems = function() {
+  return (typeof WL !== 'undefined' && WL.load) ? WL.load() : [];
+};
+
