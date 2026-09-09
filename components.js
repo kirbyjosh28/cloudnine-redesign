@@ -1307,37 +1307,53 @@ window.goToSearchDress = function(idx) {
 };
 
 /* ── NAV SCROLL STATE ── */
-/* ── DOCK MAGNIFICATION ── */
-function initDockNav() {
-  const navMenu = document.querySelector('.nav-center');
-  if (!navMenu) return;
+/* ── ROBUST DROPDOWN & MEGA-MENU INTERACTION ENGINE ── */
+function initDropdownHover() {
+  const items = document.querySelectorAll('.nav-item--has-dropdown');
+  if (!items.length) return;
 
-  const links = Array.from(navMenu.querySelectorAll('.nav-link'));
-  const MAX_SCALE = 1.38;  // noticeable but not overwhelming
-  const RANGE     = 52;    // very tight — only the item under the cursor
+  items.forEach(item => {
+    let timer = null;
+    const dropdown = item.querySelector('.nav-dropdown');
 
-  function applyScales(mouseX) {
-    links.forEach(link => {
-      const rect   = link.getBoundingClientRect();
-      const center = rect.left + rect.width / 2;
-      const dist   = Math.abs(mouseX - center);
-      const ratio  = Math.max(0, 1 - dist / RANGE);
-      // steep power curve = sharp cutoff, neighbours barely move
-      const scale  = 1 + (MAX_SCALE - 1) * Math.pow(ratio, 3);
-      link.style.transform = `scale(${scale.toFixed(3)})`;
-      link.style.zIndex    = scale > 1.05 ? '20' : '1';
-    });
-  }
+    const openMenu = () => {
+      clearTimeout(timer);
+      items.forEach(other => {
+        if (other !== item) other.classList.remove('is-active');
+      });
+      item.classList.add('is-active');
+    };
 
-  function resetScales() {
-    links.forEach(link => {
-      link.style.transform = '';
-      link.style.zIndex    = '';
-    });
-  }
+    const scheduleClose = () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        item.classList.remove('is-active');
+      }, 280); // 280ms grace delay ensures cursor never drops menu during transit
+    };
 
-  navMenu.addEventListener('mousemove', e => applyScales(e.clientX));
-  navMenu.addEventListener('mouseleave', resetScales);
+    item.addEventListener('mouseenter', openMenu);
+    item.addEventListener('mouseleave', scheduleClose);
+    item.addEventListener('focusin', openMenu);
+    item.addEventListener('focusout', scheduleClose);
+
+    if (dropdown) {
+      dropdown.addEventListener('mouseenter', openMenu);
+      dropdown.addEventListener('mouseleave', scheduleClose);
+    }
+  });
+
+  // Dismiss on outside click or Escape
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.nav-item--has-dropdown')) {
+      items.forEach(item => item.classList.remove('is-active'));
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      items.forEach(item => item.classList.remove('is-active'));
+    }
+  });
 }
 
 function initNavScroll() {
@@ -1892,7 +1908,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initReveal();
   initPageTransitions();
   initNavScroll();
-  initDockNav();
+  initDropdownHover();
   initCursor();
   initImageFade();
   injectExclusiveBadges();
