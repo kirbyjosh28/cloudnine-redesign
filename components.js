@@ -34,7 +34,6 @@ function navHTML() {
         <li class="nav-item nav-item--bridal nav-item--has-dropdown">
           <a href="bridal.html" class="nav-link ${isBridal ? 'active' : ''}">
             Bridal
-            <svg class="nav-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
           </a>
           <div class="nav-dropdown nav-dropdown--mega nav-dropdown--bridal">
             <div class="nav-mega-grid">
@@ -46,7 +45,7 @@ function navHTML() {
                   <span class="nav-mega-badge">The 2026 Collection</span>
                   <div class="nav-mega-card-title">Explore 600+ Gowns</div>
                   <div class="nav-mega-card-sub">Essense · Maggie Sottero · Rebecca Ingram · Stella York</div>
-                  <span class="nav-mega-card-cta">Browse Catalog <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                  <span class="nav-mega-card-cta">Browse Catalog</span>
                 </div>
               </a>
 
@@ -58,7 +57,7 @@ function navHTML() {
                   <li><a href="bridal-catalog.html?designer=Maggie+Sottero" class="nav-mega-link"><span class="nav-mega-link-title">Maggie Sottero</span><span class="nav-mega-link-sub">Iconic corset fit &amp; drama</span></a></li>
                   <li><a href="bridal-catalog.html?designer=Rebecca+Ingram" class="nav-mega-link"><span class="nav-mega-link-title">Rebecca Ingram</span><span class="nav-mega-link-sub">Effortless luxury &amp; value</span></a></li>
                   <li><a href="bridal-catalog.html?designer=Stella+York" class="nav-mega-link"><span class="nav-mega-link-title">Stella York</span><span class="nav-mega-link-sub">Modern runway-inspired gowns</span></a></li>
-                  <li><a href="bridal-catalog.html" class="nav-mega-link nav-mega-link--all"><span>View All 2026 Designers →</span></a></li>
+                  <li><a href="bridal-catalog.html" class="nav-mega-link nav-mega-link--all"><span>View All 2026 Designers</span></a></li>
                 </ul>
               </div>
 
@@ -66,10 +65,10 @@ function navHTML() {
               <div class="nav-mega-col">
                 <div class="nav-mega-heading">The Experience</div>
                 <ul class="nav-mega-list">
-                  <li><a href="quiz.html" class="nav-mega-link nav-mega-link--highlight"><span class="nav-mega-link-title">✦ Bridal Style Quiz</span><span class="nav-mega-link-sub">Find your silhouette in 2 minutes</span></a></li>
-                  <li><a href="our-brides.html" class="nav-mega-link"><span class="nav-mega-link-title">👰 Our Real Brides</span><span class="nav-mega-link-sub">Real Peoria weddings &amp; reviews</span></a></li>
-                  <li><a href="appointments.html" class="nav-mega-link"><span class="nav-mega-link-title">🥂 VIP Suites &amp; Rosé</span><span class="nav-mega-link-sub">Private 1-on-1 styling sessions</span></a></li>
-                  <li><a href="mothers.html" class="nav-mega-link"><span class="nav-mega-link-title">💐 Mothers of the Wedding</span><span class="nav-mega-link-sub">Sophisticated MOB &amp; MOG styles</span></a></li>
+                  <li><a href="quiz.html" class="nav-mega-link nav-mega-link--highlight"><span class="nav-mega-link-title">Bridal Style Quiz</span><span class="nav-mega-link-sub">Find your silhouette in 2 minutes</span></a></li>
+                  <li><a href="our-brides.html" class="nav-mega-link"><span class="nav-mega-link-title">Our Real Brides</span><span class="nav-mega-link-sub">Real Peoria weddings &amp; reviews</span></a></li>
+                  <li><a href="appointments.html" class="nav-mega-link"><span class="nav-mega-link-title">VIP Suites &amp; Rosé</span><span class="nav-mega-link-sub">Private 1-on-1 styling sessions</span></a></li>
+                  <li><a href="mothers.html" class="nav-mega-link"><span class="nav-mega-link-title">Mothers of the Wedding</span><span class="nav-mega-link-sub">Sophisticated MOB &amp; MOG styles</span></a></li>
                 </ul>
               </div>
             </div>
@@ -82,7 +81,6 @@ function navHTML() {
         <li class="nav-item nav-item--prom nav-item--has-dropdown">
           <a href="prom.html" class="nav-link ${isPromHoco ? 'active' : ''}">
             Prom &amp; HOCO
-            <svg class="nav-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
           </a>
           <div class="nav-dropdown nav-dropdown--ph">
             <div class="nav-dd-ph-home">
@@ -99,7 +97,7 @@ function navHTML() {
                 <div class="nav-dd-ph-col-content">
                   <div class="nav-dd-ph-col-eyebrow">Spring 2026</div>
                   <div class="nav-dd-ph-col-title">Prom Gowns</div>
-                  <div class="nav-dd-ph-col-cta">Shop Prom <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                  <div class="nav-dd-ph-col-cta">Shop Prom</div>
                 </div>
               </a>
               <a href="hoco-catalog.html" class="nav-dd-ph-col">
@@ -108,17 +106,16 @@ function navHTML() {
                 <div class="nav-dd-ph-col-content">
                   <div class="nav-dd-ph-col-eyebrow">Fall 2026</div>
                   <div class="nav-dd-ph-col-title">HOCO Styles</div>
-                  <div class="nav-dd-ph-col-cta">Shop HOCO <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                  <div class="nav-dd-ph-col-cta">Shop HOCO</div>
                 </div>
               </a>
             </div>
             <a href="prom.html#registry" class="nav-ph-registry-ribbon">
-              <span class="nav-ph-reg-shield">🛡️</span>
               <div class="nav-ph-reg-text">
                 <strong>Central Illinois High School Dress Registry</strong>
                 <span>1 Dress Per Style Per School Guaranteed Exclusivity</span>
               </div>
-              <span class="nav-ph-reg-arrow">Learn More →</span>
+              <span class="nav-ph-reg-arrow">Learn More</span>
             </a>
           </div>
         </li>
@@ -127,7 +124,6 @@ function navHTML() {
         <li class="nav-item nav-item--tuxedos nav-item--has-dropdown">
           <a href="tuxedos.html" class="nav-link ${isTux ? 'active' : ''}">
             Tuxedos
-            <svg class="nav-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
           </a>
           <div class="nav-dropdown nav-dropdown--tux">
             <div class="nav-tux-grid">
@@ -135,25 +131,22 @@ function navHTML() {
                 <div class="nav-tux-badge">Obsidian Edition</div>
                 <div class="nav-tux-title">The Trace Collection</div>
                 <div class="nav-tux-sub">Exclusive modern suits &amp; tuxedo rentals in Peoria</div>
-                <span class="nav-tux-cta">Explore Suits →</span>
+                <span class="nav-tux-cta">Explore Suits</span>
               </a>
               <div class="nav-tux-links">
                 <a href="tuxedos.html#visualizer" class="nav-tux-link">
-                  <span class="nav-tux-link-icon">🤵</span>
                   <div>
                     <strong>Groom Style Builder</strong>
                     <p>Configure lapel, color &amp; swatch match</p>
                   </div>
                 </a>
                 <a href="tuxedos.html#tux-to-door" class="nav-tux-link">
-                  <span class="nav-tux-link-icon">📦</span>
                   <div>
                     <strong>Tux-to-Door Out-of-Town</strong>
                     <p>Doorstep delivery for groomsmen</p>
                   </div>
                 </a>
                 <a href="appointments.html?cat=tux" class="nav-tux-link">
-                  <span class="nav-tux-link-icon">📅</span>
                   <div>
                     <strong>Book Fitting Consultation</strong>
                     <p>Complimentary party styling session</p>
@@ -177,7 +170,6 @@ function navHTML() {
           <button type="button" class="nav-live-status-pill status--open" id="navLiveStatusPill" aria-label="Peoria Boutique Operating Hours" onclick="toggleNavStatusPopover(event)">
             <span class="live-dot"></span>
             <span id="navLiveStatusText">Peoria Boutique</span>
-            <svg class="nav-status-caret" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
           </button>
           <div class="nav-status-popover" id="navStatusPopover" role="dialog" aria-label="Boutique Hours & Contact">
             <div class="nav-sp-head">
@@ -197,11 +189,9 @@ function navHTML() {
             </table>
             <div class="nav-sp-actions">
               <a href="tel:3096933830" class="nav-sp-action-btn nav-sp-action--call">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
                 (309) 693-3830
               </a>
               <a href="https://goo.gl/maps/HXgYuahuNu8ycSXB8" target="_blank" rel="noopener noreferrer" class="nav-sp-action-btn nav-sp-action--maps">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
                 Directions
               </a>
             </div>
@@ -211,7 +201,7 @@ function navHTML() {
         <!-- Lookbook Wishlist Pill & Mini-Tray -->
         <div class="nav-wl-wrap" id="navWlWrap">
           <button class="nav-wl-btn" onclick="openWishlist()" aria-label="Saved styles lookbook" id="wlNavBtn" title="Saved styles">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            <span class="wl-nav-label">Saved</span>
             <span class="wl-nav-badge" id="wl-nav-badge">0</span>
           </button>
           <div class="nav-wl-popover" id="navWlPopover" role="dialog" aria-label="Saved Lookbook Quick Preview">
@@ -224,26 +214,25 @@ function navHTML() {
             </div>
             <div class="nav-wlp-footer">
               <button type="button" class="nav-wlp-view-btn" onclick="openWishlist()">View Lookbook Dossier</button>
-              <a href="appointments.html" class="nav-wlp-book-btn">Book With Saved Rack →</a>
+              <a href="appointments.html" class="nav-wlp-book-btn">Book With Saved Rack</a>
             </div>
           </div>
         </div>
 
-        <!-- Search Button (⌘K) -->
-        <button class="nav-link nav-search-btn-desktop nav-search-hint" onclick="openSearch()" aria-label="Search (⌘K)" title="Search  ⌘K">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-          <span class="search-kbd-hint">⌘K</span>
+        <!-- Search Button (Cmd+K) -->
+        <button class="nav-link nav-search-btn" onclick="openSearch()" aria-label="Search (Cmd+K)" title="Search (Cmd+K)">
+          <span class="search-btn-label">Search</span>
+          <span class="search-kbd-hint">CMD+K</span>
         </button>
 
         <!-- Luxury Appointment CTA Button -->
         <a href="appointments.html" class="btn-nav-appt btn-luxury-pill">
           <span>Book Appointment</span>
-          <span class="btn-pill-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
         </a>
       </div>
 
       <!-- Mobile triggers -->
-      <button class="nav-search-btn nav-search-mobile" aria-label="Search" onclick="openSearch()"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
+      <button class="nav-search-btn nav-search-mobile" aria-label="Search" onclick="openSearch()">Search</button>
       <button class="nav-hamburger" aria-label="Open navigation menu" onclick="openMobileMenu()">
         <span></span><span></span><span></span>
       </button>
@@ -258,9 +247,7 @@ function navHTML() {
 
       <div class="mobile-menu-head">
         <img src="images/logo-transparent.png" alt="Cloud Nine Bridal Boutique" class="mobile-menu-logo-img"/>
-        <button class="mobile-menu-close" onclick="closeMobileMenu()" aria-label="Close navigation menu">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
-        </button>
+        <button class="mobile-menu-close" onclick="closeMobileMenu()" aria-label="Close navigation menu">Close</button>
       </div>
 
       <!-- Mobile Live Status Card -->
@@ -274,7 +261,6 @@ function navHTML() {
         <div class="mobile-nav-section">
           <a href="index.html" class="mobile-nav-item">
             Home
-            <svg class="mobile-nav-item-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
 
@@ -284,17 +270,14 @@ function navHTML() {
           <span class="mobile-nav-section-label">Bridal</span>
           <a href="bridal.html" class="mobile-nav-item">
             Bridal Collection
-            <svg class="mobile-nav-item-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
-          <a href="bridal-catalog.html" class="mobile-nav-sub">Shop All 600+ Gowns →</a>
-          <a href="quiz.html" class="mobile-nav-sub" style="color:var(--teal-mid);font-weight:700;">✦ Take Bridal Style Quiz →</a>
+          <a href="bridal-catalog.html" class="mobile-nav-sub">Shop All 600+ Gowns</a>
+          <a href="quiz.html" class="mobile-nav-sub" style="color:var(--teal-mid);font-weight:700;">Take Bridal Style Quiz</a>
           <a href="mothers.html" class="mobile-nav-item">
             Mothers of the Bride
-            <svg class="mobile-nav-item-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
           <a href="our-brides.html" class="mobile-nav-item">
             Real Brides Gallery
-            <svg class="mobile-nav-item-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
 
@@ -304,17 +287,14 @@ function navHTML() {
           <span class="mobile-nav-section-label">Prom, HOCO &amp; Formal</span>
           <a href="prom.html" class="mobile-nav-item">
             Prom Gowns
-            <svg class="mobile-nav-item-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
-          <a href="prom-catalog.html" class="mobile-nav-sub">Shop Prom Dresses →</a>
+          <a href="prom-catalog.html" class="mobile-nav-sub">Shop Prom Dresses</a>
           <a href="hoco.html" class="mobile-nav-item">
             Homecoming
-            <svg class="mobile-nav-item-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
-          <a href="hoco-catalog.html" class="mobile-nav-sub">Shop HOCO Styles →</a>
+          <a href="hoco-catalog.html" class="mobile-nav-sub">Shop HOCO Styles</a>
           <a href="tuxedos.html" class="mobile-nav-item">
             Tuxedos &amp; Suits
-            <svg class="mobile-nav-item-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
 
@@ -324,15 +304,12 @@ function navHTML() {
           <span class="mobile-nav-section-label">Information &amp; Contact</span>
           <a href="about.html" class="mobile-nav-item">
             About Cloud Nine
-            <svg class="mobile-nav-item-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
           <a href="contact.html" class="mobile-nav-item">
             Contact &amp; Hours
-            <svg class="mobile-nav-item-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
           <button type="button" class="mobile-nav-item" onclick="closeMobileMenu();setTimeout(openSearch,200);" style="background:none;border:none;width:100%;text-align:left;font-family:inherit;cursor:pointer;">
-            Search Catalog (⌘K)
-            <svg class="mobile-nav-item-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            Search Catalog
           </button>
         </div>
 
@@ -341,16 +318,13 @@ function navHTML() {
       <div class="mobile-menu-footer">
         <a href="appointments.html" class="mobile-menu-book-btn">Book an Appointment</a>
         <button type="button" onclick="closeMobileMenu();setTimeout(openWishlist,200);" style="display:flex;align-items:center;justify-content:center;gap:8px;padding:12px;border:1px solid rgba(255,255,255,.12);background:none;color:rgba(255,255,255,.75);font-family:'Josefin Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;width:100%;transition:color .15s,border-color .15s;">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
           View Saved Styles (<span id="wlMobileMenuBadge">0</span>)
         </button>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
           <a href="tel:3096933830" class="mobile-menu-phone-link">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 0122 14.92z"/></svg>
             Call Boutique
           </a>
           <a href="https://goo.gl/maps/HXgYuahuNu8ycSXB8" target="_blank" rel="noopener noreferrer" class="mobile-menu-phone-link">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
             Directions
           </a>
         </div>
@@ -370,28 +344,19 @@ function footerHTML() {
           <p class="footer-tagline">Peoria's premier bridal boutique — helping brides find their dream gown. Come say yes with us.</p>
           <div class="footer-contact">
             <a href="https://goo.gl/maps/HXgYuahuNu8ycSXB8" target="_blank">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
               4711 N. University St, Peoria, IL 61614
             </a>
             <a href="tel:3096933830">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
               (309) 693‑3830
             </a>
             <a href="mailto:sayyes@cloudninepeoria.com">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
               sayyes@cloudninepeoria.com
             </a>
           </div>
           <div class="footer-social">
-            <a href="https://www.facebook.com/cloudninebridalboutique/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
-            </a>
-            <a href="https://www.instagram.com/cloudninebridalpeoria/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-            </a>
-            <a href="https://goo.gl/maps/HXgYuahuNu8ycSXB8" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Google Reviews — 4.9 stars" title="4.9 ★ on Google">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="#f5c842" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            </a>
+            <a href="https://www.facebook.com/cloudninebridalboutique/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">Facebook</a>
+            <a href="https://www.instagram.com/cloudninebridalpeoria/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">Instagram</a>
+            <a href="https://goo.gl/maps/HXgYuahuNu8ycSXB8" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Google Reviews — 4.9 rating" title="4.9 on Google">Google Reviews</a>
           </div>
         </div>
         <div>
@@ -466,16 +431,11 @@ function searchOverlayHTML() {
   <div class="search-panel" role="search">
     <div class="search-top-row">
       <span class="search-eyebrow">Search</span>
-      <button class="search-close-btn" onclick="closeSearch()" aria-label="Close">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
-      </button>
+      <button class="search-close-btn" onclick="closeSearch()" aria-label="Close">Close</button>
     </div>
     <div class="search-input-wrap">
-      <svg class="search-icon-sm" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
       <input type="text" id="searchInput" class="search-input" placeholder="Style number, designer, silhouette…" autocomplete="off" aria-label="Search styles and collections" oninput="onSearchInput(this.value)" onkeydown="if(event.key==='Escape')closeSearch()"/>
-      <button class="search-clear-btn" id="searchClearBtn" onclick="clearSearch()" style="display:none" aria-label="Clear">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
-      </button>
+      <button class="search-clear-btn" id="searchClearBtn" onclick="clearSearch()" style="display:none" aria-label="Clear">Clear</button>
     </div>
     <div id="searchResults" class="search-results" aria-live="polite" aria-atomic="false" role="region" aria-label="Search results"></div>
     <div id="searchCategories" class="search-categories">
@@ -545,30 +505,18 @@ function injectMobileCTABar() {
   bar.setAttribute('aria-label', 'Quick navigation');
   bar.innerHTML =
     '<a href="bridal-catalog.html" class="mobile-tab ' + (page === 'bridal' || page === 'bridal-catalog' ? 'active' : '') + '" aria-label="Browse bridal gowns">' +
-      '<svg class="mobile-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
-        '<path d="M2.7 10.3a2.41 2.41 0 000 3.41l7.59 7.59a2.41 2.41 0 003.41 0l7.59-7.59a2.41 2.41 0 000-3.41l-7.59-7.59a2.41 2.41 0 00-3.41 0Z"/>' +
-      '</svg>' +
       '<span class="mobile-tab-label">Gowns</span>' +
     '</a>' +
     '<a href="appointments.html" class="mobile-tab mobile-tab--book ' + (page === 'appointments' ? 'active' : '') + '" aria-label="Book an appointment">' +
-      '<svg class="mobile-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
-        '<rect x="3" y="4" width="18" height="18"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>' +
-      '</svg>' +
       '<span class="mobile-tab-label">Book</span>' +
     '</a>' +
     '<button type="button" class="mobile-tab mobile-tab--saved" onclick="openWishlist()" aria-label="Saved Styles">' +
       '<span class="mobile-tab-icon-wrap">' +
-        '<svg class="mobile-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
-          '<path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>' +
-        '</svg>' +
         '<span class="wl-tab-badge" id="wlMobileTabBadge">0</span>' +
       '</span>' +
       '<span class="mobile-tab-label">Saved</span>' +
     '</button>' +
     '<a href="tel:3096933830" class="mobile-tab" aria-label="Call us at (309) 693-3830">' +
-      '<svg class="mobile-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
-        '<path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 012 2.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/>' +
-      '</svg>' +
       '<span class="mobile-tab-label">Call</span>' +
     '</a>';
   document.body.appendChild(bar);
@@ -578,7 +526,7 @@ function injectMobileCTABar() {
 /* ════════════════════════════════════════════════════════
    WISHLIST / FAVORITES ENGINE
    Stores product objects in localStorage.
-   Heart buttons injected automatically via MutationObserver.
+   Buttons injected automatically via MutationObserver.
    ════════════════════════════════════════════════════════ */
 var WL = (function() {
   var KEY = 'cloudnine_wishlist';
@@ -616,9 +564,7 @@ var WL = (function() {
     var toast = document.getElementById('wlToast');
     if (!toast) return;
     var msg   = toast.querySelector('.wl-toast-msg');
-    var icon  = toast.querySelector('.wl-toast-icon');
-    if (msg)  msg.textContent  = added ? 'Saved to Wishlist' : 'Removed from Wishlist';
-    if (icon) icon.textContent = added ? '♡' : '×';
+    if (msg)  msg.textContent  = added ? 'Saved to Lookbook' : 'Removed from Lookbook';
     toast.classList.add('visible');
     clearTimeout(_toastTimer);
     _toastTimer = setTimeout(function() { toast.classList.remove('visible'); }, 3200);
@@ -630,10 +576,9 @@ var WL = (function() {
     save(items);
     updateBadge();
     renderDrawer();
-    // Sync heart button on the page if still visible
     document.querySelectorAll('.wl-btn[data-wid="' + id.replace(/"/g, '') + '"]').forEach(function(btn) {
       btn.classList.remove('wl-btn--active');
-      btn.querySelector('svg').setAttribute('fill', 'none');
+      btn.textContent = 'Save';
     });
   }
 
@@ -643,7 +588,7 @@ var WL = (function() {
     renderDrawer();
     document.querySelectorAll('.wl-btn--active').forEach(function(btn) {
       btn.classList.remove('wl-btn--active');
-      btn.querySelector('svg').setAttribute('fill', 'none');
+      btn.textContent = 'Save';
     });
   }
 
@@ -677,9 +622,8 @@ var WL = (function() {
     if (!items.length) {
       itemsEl.innerHTML =
         '<div class="nav-wlp-empty">' +
-          '<div class="nav-wlp-empty-icon">♡</div>' +
-          '<p class="nav-wlp-empty-text">Your Fitting Lookbook is empty.<br/>Tap the heart on any gown to save your favorites.</p>' +
-          '<a href="quiz.html" class="nav-wlp-quiz-btn">✦ Take Style Quiz</a>' +
+          '<p class="nav-wlp-empty-text">Your Fitting Lookbook is empty.<br/>Save your favorite gowns to review them during your styling session.</p>' +
+          '<a href="quiz.html" class="nav-wlp-quiz-btn">Take Style Quiz</a>' +
         '</div>';
       return;
     }
@@ -736,9 +680,8 @@ var WL = (function() {
 
       body.innerHTML =
         '<div class="wl-empty">' +
-          '<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>' +
-          '<p class="wl-empty-title">Your wishlist is empty</p>' +
-          '<p class="wl-empty-sub">Tap the ♡ on any dress to save it here for your appointment.</p>' +
+          '<p class="wl-empty-title">Your lookbook is empty</p>' +
+          '<p class="wl-empty-sub">Save any gown to keep it handy for your upcoming appointment.</p>' +
         '</div>' + rvHtml;
       if (foot) foot.style.display = 'none';
       return;
@@ -758,7 +701,7 @@ var WL = (function() {
             '<span class="wl-item-designer">' + escapeHTML(p.d||'') + '</span>' +
             '<span class="wl-item-name">#' + escapeHTML(p.s||'') + '</span>' +
           '</div>' +
-          '<button class="wl-item-remove" data-wid="' + escapeHTML(id) + '" aria-label="Remove from wishlist">×</button>' +
+          '<button class="wl-item-remove" data-wid="' + escapeHTML(id) + '" aria-label="Remove from wishlist">Remove</button>' +
         '</div>';
     });
     html += '</div>';
@@ -774,7 +717,7 @@ var WL = (function() {
       });
     });
 
-    // Click item → go to dress detail
+    // Click item -> go to dress detail
     body.querySelectorAll('.wl-item').forEach(function(item) {
       item.addEventListener('click', function(e) {
         if (e.target.classList.contains('wl-item-remove')) return;
@@ -794,11 +737,9 @@ var WL = (function() {
 
   function injectHeart(card) {
     if (card.querySelector('.wl-btn')) return;
-    // Prefer compact JSON stored directly on the card (data-product attr)
     var p = null;
     try { p = JSON.parse(card.dataset.product || 'null'); } catch(e) {}
     if (!p) {
-      // Fallback: try global catalog arrays (works if they're var, not let)
       var idx  = parseInt(card.dataset.idx, 10);
       var cats = window.fil || window.P || [];
       if (!isNaN(idx) && cats[idx]) p = cats[idx];
@@ -808,16 +749,16 @@ var WL = (function() {
     var active = has(p);
     var btn    = document.createElement('button');
     btn.className = 'wl-btn' + (active ? ' wl-btn--active' : '');
-    btn.setAttribute('aria-label', active ? 'Remove from wishlist' : 'Save to wishlist');
+    btn.setAttribute('aria-label', active ? 'Remove from lookbook' : 'Save to lookbook');
     btn.dataset.wid = itemId(p);
-    btn.innerHTML = heartSVG(active);
+    btn.textContent = active ? 'Saved' : 'Save';
 
     btn.addEventListener('click', function(e) {
       e.stopPropagation();
       var added = toggle(p);
       btn.classList.toggle('wl-btn--active', added);
-      btn.innerHTML = heartSVG(added);
-      btn.setAttribute('aria-label', added ? 'Remove from wishlist' : 'Save to wishlist');
+      btn.textContent = added ? 'Saved' : 'Save';
+      btn.setAttribute('aria-label', added ? 'Remove from lookbook' : 'Save to lookbook');
       btn.classList.add('wl-btn--pulse');
       setTimeout(function() { btn.classList.remove('wl-btn--pulse'); }, 420);
     });
@@ -825,10 +766,6 @@ var WL = (function() {
     var imgWrap = card.querySelector('.dress-card-img, .bc');
     (imgWrap || card).style.position = 'relative';
     (imgWrap || card).appendChild(btn);
-  }
-
-  function heartSVG(filled) {
-    return '<svg width="15" height="15" viewBox="0 0 24 24" fill="' + (filled ? '#e85d7a' : 'none') + '" stroke="' + (filled ? '#e85d7a' : 'currentColor') + '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>';
   }
 
   function startObserver() {
@@ -845,7 +782,6 @@ var WL = (function() {
       });
     });
     obs.observe(document.body, { childList: true, subtree: true });
-    // Also attach to any cards already in the DOM
     document.querySelectorAll('.dress-card[data-idx]').forEach(injectHeart);
     updateBadge();
   }
@@ -904,7 +840,7 @@ var WL = (function() {
     }
 
     if (!items.length) {
-      container.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:48px 16px;color:var(--text-muted);font-style:italic;">No styles currently saved. Add favorite gowns to your wishlist to generate your custom lookbook dossier.</div>';
+      container.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:48px 16px;color:var(--text-muted);font-style:italic;">No styles currently saved. Add favorite gowns to your lookbook to generate your custom dossier.</div>';
       return;
     }
 
@@ -966,19 +902,15 @@ function wishlistDrawerHTML() {
           '<h2 class="wl-head-title">Saved Styles</h2>' +
           '<span class="wl-head-count" id="wlHeadCount">0 saved styles</span>' +
         '</div>' +
-        '<button class="wl-close" id="wlClose" aria-label="Close wishlist">' +
-          '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>' +
-        '</button>' +
+        '<button class="wl-close" id="wlClose" aria-label="Close wishlist">Close</button>' +
       '</div>' +
       '<div class="wl-body" id="wlBody"></div>' +
       '<div class="wl-foot" id="wlFoot" style="display:none">' +
         '<button type="button" class="wl-foot-lookbook-btn" onclick="WL.openLookbook()">' +
-          '<span>✦ Generate Fitting Lookbook</span>' +
-          '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>' +
+          '<span>Generate Fitting Lookbook</span>' +
         '</button>' +
         '<a href="appointments.html" class="wl-foot-cta" onclick="closeWishlist()">' +
           'Book a Fitting for These Styles' +
-          '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>' +
         '</a>' +
         '<button class="wl-foot-clear" onclick="WL.clearAll()">Clear all saved styles</button>' +
       '</div>' +
@@ -998,17 +930,9 @@ function lookbookModalHTML() {
           '<span style="font-size:11px;color:var(--text-muted);" id="lookbookSub">Curated Selection</span>' +
         '</div>' +
         '<div class="lookbook-actions">' +
-          '<button type="button" class="lookbook-btn-print" onclick="window.print()" aria-label="Print or save as PDF">' +
-            '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>' +
-            'Print / PDF' +
-          '</button>' +
-          '<button type="button" class="lookbook-btn-share" onclick="WL.copyShareLink()" aria-label="Share Lookbook Link">' +
-            '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>' +
-            'Share' +
-          '</button>' +
-          '<button type="button" class="lookbook-close" onclick="WL.closeLookbook()" aria-label="Close lookbook">' +
-            '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>' +
-          '</button>' +
+          '<button type="button" class="lookbook-btn-print" onclick="window.print()" aria-label="Print or save as PDF">Print / PDF</button>' +
+          '<button type="button" class="lookbook-btn-share" onclick="WL.copyShareLink()" aria-label="Share Lookbook Link">Share</button>' +
+          '<button type="button" class="lookbook-close" onclick="WL.closeLookbook()" aria-label="Close lookbook">Close</button>' +
         '</div>' +
       '</div>' +
       '<div class="lookbook-body">' +
@@ -1088,8 +1012,7 @@ function injectComponents() {
   toast.className = 'wl-toast';
   toast.id = 'wlToast';
   toast.innerHTML =
-    '<span class="wl-toast-icon">♡</span>' +
-    '<span class="wl-toast-msg">Saved to Wishlist</span>' +
+    '<span class="wl-toast-msg">Saved to Lookbook</span>' +
     '<a class="wl-toast-action" href="#" onclick="event.preventDefault();openWishlist();">View All</a>';
   document.body.appendChild(toast);
 
@@ -1128,7 +1051,7 @@ function injectBackToTop() {
   var btn = document.createElement('button');
   btn.id = 'back-to-top';
   btn.setAttribute('aria-label', 'Back to top');
-  btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>';
+  btn.textContent = 'Top';
   document.body.appendChild(btn);
 
   var visible = false;
@@ -1279,7 +1202,7 @@ window.onSearchInput = async function(val) {
 
   if (matchedPages.length) {
     results.innerHTML = '<div class="search-results-label">Collections</div>' +
-      matchedPages.map(function(p){ return '<a href="' + p.url + '" class="search-nav-result">' + p.name + ' <span>→</span></a>'; }).join('');
+      matchedPages.map(function(p){ return '<a href="' + p.url + '" class="search-nav-result">' + p.name + '</a>'; }).join('');
   } else {
     _searchMatches = [];
     const noResult = document.createElement('p');
@@ -1582,7 +1505,7 @@ window.submitSubscribe = async function(e, form) {
       body: new FormData(form)
     });
     if (res.ok) {
-      form.innerHTML = '<p style="color:rgba(255,255,255,.7);font-size:13px;">You\'re on the list! ✓</p>';
+      form.innerHTML = '<p style="color:rgba(255,255,255,.7);font-size:13px;">You\'re on the list!</p>';
     }
   } catch { /* silent */ }
 };
@@ -2038,11 +1961,11 @@ function initBoutiqueStatus() {
   var badge = document.getElementById('footerTodayBadge');
   if (badge) {
     if (status.isOpen) {
-      badge.textContent = status.isClosingSoon ? '● Closing Soon · ' + status.statusText : '● Open Today · ' + status.statusText;
+      badge.textContent = status.isClosingSoon ? 'Closing Soon · ' + status.statusText : 'Open Today · ' + status.statusText;
       badge.style.background = 'rgba(16,185,129,0.12)';
       badge.style.color = '#065f46';
     } else {
-      badge.textContent = '○ ' + status.statusText;
+      badge.textContent = status.statusText;
       badge.style.background = 'rgba(28,78,80,0.06)';
       badge.style.color = 'var(--text-muted)';
     }

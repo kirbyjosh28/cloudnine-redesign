@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&display=swap"/>
   <link rel="preload" as="image" href="images/real/brides/hero-main.webp" type="image/webp"/>
-  <link rel="stylesheet" href="shared.css?v=20260908d"/>
+  <link rel="stylesheet" href="shared.css?v=20260908e"/>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -467,7 +467,6 @@
       </div>
       <a href="#be-featured" class="brides-hero-cta">
         Share Your Wedding Story
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>
   </div>
@@ -812,21 +811,15 @@
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer">
   <div class="lb-backdrop" id="lbBackdrop"></div>
 
-  <button class="lb-close" id="lbClose" aria-label="Close photo viewer">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
-  </button>
+  <button class="lb-close" id="lbClose" aria-label="Close photo viewer">Close</button>
 
-  <button class="lb-prev" id="lbPrev" aria-label="Previous photo">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-  </button>
+  <button class="lb-prev" id="lbPrev" aria-label="Previous photo">Prev</button>
 
   <div class="lb-frame">
     <img class="lb-img" id="lbImg" src="" alt=""/>
   </div>
 
-  <button class="lb-next" id="lbNext" aria-label="Next photo">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-  </button>
+  <button class="lb-next" id="lbNext" aria-label="Next photo">Next</button>
 
   <!-- Bottom Info Panel -->
   <div class="lb-info">
@@ -837,7 +830,6 @@
     <div class="lb-actions">
       <a href="bridal-catalog.html" id="lbShopSilBtn" class="btn-luxury-pill" style="padding:7px 16px;font-size:9px;">
         <span>Shop Matching Gowns</span>
-        <span class="btn-luxury-pill-icon"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
       </a>
       <a href="appointments.html" class="btn-outline" style="color:#fff;border-color:rgba(255,255,255,.35);font-size:9px;padding:8px 16px;">
         Reserve Suite
@@ -864,7 +856,7 @@
   <div class="be-featured-wrap">
     <div class="be-featured-img-card reveal-on-scroll">
       <img src="images/real/brides/16-bride.webp" alt="Featured Cloud Nine Bride" loading="lazy"/>
-      <div class="be-featured-tag">✦ Join the Community</div>
+      <div class="be-featured-tag">Join the Community</div>
     </div>
 
     <div class="double-bezel reveal-on-scroll">
@@ -905,12 +897,11 @@
           </div>
           <button type="submit" class="btn-luxury-pill" style="align-self:flex-start;margin-top:8px;">
             <span>Submit Your Story</span>
-            <span class="btn-luxury-pill-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
           </button>
         </form>
 
         <div class="bf-success" id="bfSuccess">
-          ✦ Thank you! We received your wedding story and will be in touch soon about featuring your moments.
+          Thank you! We received your wedding story and will be in touch soon about featuring your moments.
         </div>
       </div>
     </div>
@@ -919,7 +910,7 @@
 
 </main>
 <footer id="site-footer"></footer>
-<script src="components.js?v=20260908d" defer></script>
+<script src="components.js?v=20260908e" defer></script>
 <script>
 (function() {
   var cards = Array.from(document.querySelectorAll('.bc[data-idx]'));

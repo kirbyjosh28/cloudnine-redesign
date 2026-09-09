@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&display=swap"/>
   <link rel="preload" as="image" href="images/real/hoco/03-88900.webp" type="image/webp"/>
-  <link rel="stylesheet" href="shared.css?v=20260908d"/>
+  <link rel="stylesheet" href="shared.css?v=20260908e"/>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -945,34 +945,34 @@
 <div class="hoco-catalog-hero">
   <div class="hoco-hero-card">
     <div>
-      <div class="hoco-hero-tag">✨ Central Illinois Homecoming 2026</div>
+      <div class="hoco-hero-tag">Central Illinois Homecoming 2026</div>
       <h1 class="hoco-hero-title">Shop Designer<br/><em>Homecoming Dresses.</em></h1>
       <p class="hoco-hero-sub">Fresh cocktail silhouettes, fitted glitter minis, and satin A-lines from Amarra and Kate Parker — registered exclusively so no two girls from your school share your style.</p>
     </div>
     <div class="hoco-hero-perks">
       <div class="hoco-perk-item">
-        <div class="hoco-perk-icon">✦</div>
+        <div class="hoco-perk-num" style="font-family:'Josefin Sans',sans-serif;font-size:12px;font-weight:700;color:var(--teal-deep);">01</div>
         <div>
           <div class="hoco-perk-title">1-of-1 School Lock</div>
           <div class="hoco-perk-sub">Exclusive school registry for Peoria &amp; Central Illinois.</div>
         </div>
       </div>
       <div class="hoco-perk-item">
-        <div class="hoco-perk-icon">🪞</div>
+        <div class="hoco-perk-num" style="font-family:'Josefin Sans',sans-serif;font-size:12px;font-weight:700;color:var(--teal-deep);">02</div>
         <div>
           <div class="hoco-perk-title">Instant Try-On Suite</div>
           <div class="hoco-perk-sub">Walk-ins welcome &amp; private group fittings.</div>
         </div>
       </div>
       <div class="hoco-perk-item">
-        <div class="hoco-perk-icon">💎</div>
+        <div class="hoco-perk-num" style="font-family:'Josefin Sans',sans-serif;font-size:12px;font-weight:700;color:var(--teal-deep);">03</div>
         <div>
           <div class="hoco-perk-title">100+ Designer Styles</div>
           <div class="hoco-perk-sub">Fitted sequin minis, corset backs, pockets &amp; satin.</div>
         </div>
       </div>
       <div class="hoco-perk-item">
-        <div class="hoco-perk-icon">📍</div>
+        <div class="hoco-perk-num" style="font-family:'Josefin Sans',sans-serif;font-size:12px;font-weight:700;color:var(--teal-deep);">04</div>
         <div>
           <div class="hoco-perk-title">Peoria Boutique</div>
           <div class="hoco-perk-sub">4711 N. University St · Peoria, IL.</div>
@@ -986,7 +986,6 @@
 <div class="registry-sticky-wrap">
   <div class="registry-bar">
     <div class="registry-bar-left">
-      <div class="registry-badge-icon">🛡️</div>
       <div>
         <div class="registry-info-title">
           <span class="registry-status-dot"></span>
@@ -998,28 +997,27 @@
       </div>
     </div>
     <div class="registry-school-picker">
-      <select class="school-select" id="schoolSelect" onchange="onSelectSchool(this.value)">
-        <option value="">-- Choose Your High School --</option>
+      <select id="registrySchoolSelect" class="registry-select-input" aria-label="Select High School" onchange="onSchoolSelect(this.value)">
+        <option value="">Select Your High School</option>
         <option value="Dunlap High School">Dunlap High School</option>
-        <option value="Peoria Notre Dame High School">Peoria Notre Dame</option>
+        <option value="Peoria Notre Dame">Peoria Notre Dame</option>
         <option value="Richwoods High School">Richwoods High School</option>
+        <option value="Peoria High School">Peoria High School</option>
         <option value="Morton High School">Morton High School</option>
         <option value="Washington Community High">Washington Community High</option>
         <option value="Metamora Township High">Metamora Township High</option>
         <option value="Pekin Community High">Pekin Community High</option>
         <option value="East Peoria Community High">East Peoria Community High</option>
-        <option value="Illinois Valley Central (IVC)">Illinois Valley Central (IVC)</option>
         <option value="Limestone Community High">Limestone Community High</option>
-        <option value="Peoria High School (Central)">Peoria High (Central)</option>
-        <option value="Manual High School">Manual High School</option>
+        <option value="Illinois Valley Central (IVC)">Illinois Valley Central (IVC)</option>
         <option value="Canton High School">Canton High School</option>
         <option value="Galesburg High School">Galesburg High School</option>
         <option value="Normal Community High">Normal Community High</option>
-        <option value="Other Central Illinois School">Other Central Illinois School</option>
+        <option value="Normal West High">Normal West High</option>
+        <option value="Other Area High School">Other Central Illinois High School</option>
       </select>
       <a href="appointments.html" class="registry-btn-book" id="registryBookBtn">
         Book Fitting
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>
   </div>
@@ -1041,16 +1039,15 @@
       <div class="trend-chips-wrap" id="tf">
         <span class="filter-row-label">Silhouettes:</span>
         <button class="trend-chip active" data-trend="all">All Styles</button>
-        <button class="trend-chip" data-trend="fitted">👗 Fitted Bodycon</button>
-        <button class="trend-chip" data-trend="satin">✨ Satin A-Line</button>
-        <button class="trend-chip" data-trend="corset">🪡 Corset &amp; Lace-Up</button>
-        <button class="trend-chip" data-trend="sparkle">💎 Glitter &amp; Sequins</button>
+        <button class="trend-chip" data-trend="fitted">Fitted Bodycon</button>
+        <button class="trend-chip" data-trend="satin">Satin A-Line</button>
+        <button class="trend-chip" data-trend="corset">Corset &amp; Lace-Up</button>
+        <button class="trend-chip" data-trend="sparkle">Glitter &amp; Sequins</button>
       </div>
 
       <div class="instant-search-box">
-        <svg class="instant-search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input type="text" id="skuSearchInput" placeholder="Search Style # or keyword…" aria-label="Search homecoming dresses by style number or keyword" oninput="onSearchInput(this.value)"/>
-        <button class="instant-search-clear" id="searchClearBtn" onclick="clearSearchInput()" aria-label="Clear search">✕</button>
+        <input type="text" id="skuSearchInput" placeholder="Search Style # or keyword…" aria-label="Search homecoming dresses by style number or keyword" oninput="onSearchInput(this.value)" style="padding-left:14px;"/>
+        <button class="instant-search-clear" id="searchClearBtn" onclick="clearSearchInput()" aria-label="Clear search">Clear</button>
       </div>
     </div>
   </div>
@@ -1059,7 +1056,6 @@
   <div class="catalog-summary-bar">
     <div class="catalog-count-text" id="cc">Loading homecoming dresses…</div>
     <button class="clear-all-filters-btn" id="clearAllBtn" onclick="clearAllFilters()">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
       Reset Filters
     </button>
   </div>
@@ -1073,19 +1069,19 @@
 <!-- Upgraded Luxury Modal -->
 <div class="modal-backdrop" id="mb">
   <div class="modal" id="mo" role="dialog" aria-modal="true" aria-labelledby="mTitle">
-    <button class="modal-x" aria-label="Close" onclick="closeModal()">✕</button>
+    <button class="modal-x" aria-label="Close" onclick="closeModal()">Close</button>
 
     <div class="modal-gallery">
       <div class="modal-main-wrap">
-        <button class="modal-nav modal-nav-prev" id="navPrev" aria-label="Previous image">&#8249;</button>
+        <button class="modal-nav modal-nav-prev" id="navPrev" aria-label="Previous image">Prev</button>
         <img class="modal-main-img" id="mImg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""/>
-        <button class="modal-nav modal-nav-next" id="navNext" aria-label="Next image">&#8250;</button>
+        <button class="modal-nav modal-nav-next" id="navNext" aria-label="Next image">Next</button>
       </div>
       <div class="modal-thumbs" id="mThumbs"></div>
     </div>
 
     <div class="modal-info">
-      <div class="modal-guarantee-pill">👑 1-of-1 School Guarantee Active</div>
+      <div class="modal-guarantee-pill">1-of-1 School Guarantee Active</div>
       <div class="m-designer-title" id="mDesigner"></div>
       <div class="m-title" id="mTitle"></div>
       <div class="m-badge" id="mBadge"></div>
@@ -1095,10 +1091,8 @@
       <div class="m-cta">
         <a href="appointments.html" id="modalBookLink" class="m-btn-primary">
           Reserve Try-On at Cloud Nine
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
         <button type="button" class="m-btn-secondary" id="modalWishlistBtn" onclick="toggleModalWishlist()">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
           <span id="modalWishlistLabel">Save to HOCO Lookbook</span>
         </button>
         <a href="contact.html" class="m-btn-secondary" style="font-size:11px;padding:10px 16px;">
@@ -1110,7 +1104,7 @@
 </div>
 
 <div id="site-footer"></div>
-<script src="components.js?v=20260908d" defer></script>
+<script src="components.js?v=20260908e" defer></script>
 <script>
 let P = [];
 let _dataLoaded = false;
@@ -1354,8 +1348,8 @@ function _renderPage() {
       : '';
 
     const schoolNote = selectedSchool 
-      ? `<span>🛡️ 1-of-1 Guarantee for ${selectedSchool.replace(' High School','').replace(' Community High','')}</span>`
-      : '<span>✦ 1-of-1 High School Guarantee</span>';
+      ? `<span>1-of-1 Guarantee for ${selectedSchool.replace(' High School','').replace(' Community High','')}</span>`
+      : '<span>1-of-1 High School Guarantee</span>';
 
     card.innerHTML = `
       <div class="dress-card-img">
@@ -1368,7 +1362,6 @@ function _renderPage() {
         <div class="dress-designer-tag">${p.d || 'Designer HOCO'}</div>
         <div class="dress-card-name">${p.n && p.n !== p.d ? p.n : ('Style #' + (p.s || ''))}</div>
         <div class="dress-card-school-badge">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
           ${schoolNote}
         </div>
       </div>`;
@@ -1522,7 +1515,7 @@ function updateModalWishlistBtn() {
   if (!currentModalDress) return;
   const saved = (window.isItemInWishlist && window.isItemInWishlist(currentModalDress)) || false;
   const label = document.getElementById('modalWishlistLabel');
-  if (label) label.textContent = saved ? 'Saved in My Lookbook ✓' : 'Save to HOCO Lookbook';
+  if (label) label.textContent = saved ? 'Saved in My Lookbook' : 'Save to HOCO Lookbook';
 }
 
 function toggleModalWishlist() {
@@ -1530,7 +1523,7 @@ function toggleModalWishlist() {
   if (window.toggleWishlistItem) {
     const added = window.toggleWishlistItem(currentModalDress);
     const label = document.getElementById('modalWishlistLabel');
-    if (label) label.textContent = added ? 'Saved in My Lookbook ✓' : 'Save to HOCO Lookbook';
+    if (label) label.textContent = added ? 'Saved in My Lookbook' : 'Save to HOCO Lookbook';
     if (added && window.triggerConfetti) {
       window.triggerConfetti({ count: 35, spread: 50 });
     }

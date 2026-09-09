@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Josefin+Sans:wght@100;200;300;400&family=Lato:wght@300;400;700;900&display=swap"/>
-  <link rel="stylesheet" href="shared.css?v=20260908d"/>
+  <link rel="stylesheet" href="shared.css?v=20260908e"/>
   <style>
     /* ── MOTHERS PHOTO HERO ── */
     .mothers-hero {
@@ -281,7 +281,6 @@
   <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);background:var(--white);">
     <div class="catalog-count" id="cc" style="border-bottom:none;padding-right:0;"></div>
     <button class="filter-clear-btn" id="clearFilters" onclick="clearAllFilters()">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
       Clear Filters
     </button>
   </div>
@@ -293,13 +292,13 @@
 <!-- MODAL -->
 <div class="modal-backdrop" id="mb" onclick="closeBg(event)">
   <div class="modal" id="mo" role="dialog" aria-modal="true" aria-labelledby="mTitle">
-    <button class="modal-x" onclick="closeModal()" aria-label="Close">✕</button>
+    <button class="modal-x" onclick="closeModal()" aria-label="Close">Close</button>
 
     <div class="modal-gallery">
       <div class="modal-main-wrap">
-        <button class="modal-nav modal-nav-prev" id="navPrev" onclick="shiftImg(-1)">&#8249;</button>
+        <button class="modal-nav modal-nav-prev" id="navPrev" onclick="shiftImg(-1)">Prev</button>
         <img class="modal-main-img" id="mImg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""/>
-        <button class="modal-nav modal-nav-next" id="navNext" onclick="shiftImg(1)">&#8250;</button>
+        <button class="modal-nav modal-nav-next" id="navNext" onclick="shiftImg(1)">Next</button>
       </div>
       <div class="modal-thumbs" id="mThumbs"></div>
     </div>
@@ -312,7 +311,7 @@
       <p class="m-desc" id="mDesc"></p>
       <div class="m-meta" id="mMeta"></div>
       <div class="m-cta">
-        <a href="appointments.html" class="btn-primary">Book an Appointment <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="appointments.html" class="btn-primary">Book an Appointment</a>
         <a href="contact.html" class="btn-outline">Ask About This Style</a>
       </div>
     </div>
@@ -320,7 +319,7 @@
 </div>
 
 <div id="site-footer"></div>
-<script src="components.js?v=20260908d" defer></script>
+<script src="components.js?v=20260908e" defer></script>
 <script>
 let P = [];
 const BATCH = 12;
@@ -401,7 +400,7 @@ function loadMore() {
       </div>
       <div class="dress-card-body">
         <div class="dress-card-name">${p.n || p.s || ''}</div>
-        <div class="dress-card-cta">View Details →</div>
+        <div class="dress-card-cta">View Details</div>
       </div>`;
 
     if (hasAngles) {

@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Josefin+Sans:wght@100;200;300;400&family=Lato:wght@300;400;700;900&display=swap"/>
-  <link rel="stylesheet" href="shared.css?v=20260908d"/>
+  <link rel="stylesheet" href="shared.css?v=20260908e"/>
   <style>
 
     /* ── DRESS DETAIL PAGE — Galia Lahav editorial style ── */
@@ -414,13 +414,9 @@
         <div class="dp-actions">
           <a href="appointments.html" class="btn-luxury-pill" style="justify-content:center;width:100%;">
             <span>Book a Fitting for This Style</span>
-            <span class="btn-luxury-pill-icon">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </span>
           </a>
           <a href="contact.html" class="btn-outline" style="justify-content:center;text-align:center;">Inquire About This Style</a>
           <button id="dpShareBtn" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px;border:1px solid var(--border);background:none;cursor:pointer;color:var(--text-muted);font-family:'Josefin Sans',sans-serif;font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;transition:border-color .2s,color .2s;width:100%;" aria-label="Share this style">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
             Share This Style
           </button>
         </div>
@@ -434,9 +430,7 @@
   <div class="dp-mobile-cta" id="dpMobileCta">
     <a href="appointments.html" class="dp-mobile-cta-book">Book an Appointment</a>
     <div class="dp-mobile-cta-sep"></div>
-    <a href="contact.html" class="dp-mobile-cta-inquire" aria-label="Inquire about this style">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-    </a>
+    <a href="contact.html" class="dp-mobile-cta-inquire" aria-label="Inquire about this style" style="font-family:'Josefin Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;padding:0 12px;text-decoration:none;">Inquire</a>
   </div>
 
   <!-- Lightbox -->
@@ -445,17 +439,17 @@
       <div class="lb-top-title" id="lbTitle"></div>
       <div style="display:flex;align-items:center;gap:16px;">
         <div class="lb-counter" id="lbCounter"></div>
-        <button class="lb-close" id="lbCloseBtn" aria-label="Close">✕</button>
+        <button class="lb-close" id="lbCloseBtn" aria-label="Close">Close</button>
       </div>
     </div>
-    <button class="lb-nav lb-prev" id="lbPrevBtn" aria-label="Previous">&#8249;</button>
+    <button class="lb-nav lb-prev" id="lbPrevBtn" aria-label="Previous">Prev</button>
     <img class="lb-img" id="lbImg" src="" alt=""/>
-    <button class="lb-nav lb-next" id="lbNextBtn" aria-label="Next">&#8250;</button>
+    <button class="lb-nav lb-next" id="lbNextBtn" aria-label="Next">Next</button>
   </div>
 
   <footer id="site-footer"></footer>
   </main>
-  <script src="components.js?v=20260908d" defer></script>
+  <script src="components.js?v=20260908e" defer></script>
   <script>
   (async function() {
 
@@ -595,7 +589,7 @@
       const breadcrumbHref = isCatalog ? dressSrc : sectionHref;
       bc.innerHTML =
         '<a href="' + breadcrumbHref + '">' + sectionLabel + '</a>' +
-        '<span class="dp-breadcrumb-sep">›</span>' +
+        '<span class="dp-breadcrumb-sep">/</span>' +
         '<span>' + esc(displayTitle) + '</span>';
     }
 
@@ -640,7 +634,7 @@
     const gal = document.getElementById('dpGallery');
     gal.innerHTML = html || '<div style="padding:120px 48px;text-align:center;color:#999;font-size:13px;">No photos available</div>';
 
-    // Gallery click → lightbox
+    // Gallery click -> lightbox
     gal.querySelectorAll('[data-lb]').forEach(function(el) {
       el.addEventListener('click', function() { openLb(parseInt(el.dataset.lb, 10)); });
     });
@@ -716,7 +710,7 @@
         } else {
           navigator.clipboard.writeText(url).then(function() {
             var orig = shareBtn.innerHTML;
-            shareBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Link Copied!';
+            shareBtn.innerHTML = 'Link Copied!';
             shareBtn.style.color = 'var(--teal-deep)';
             shareBtn.style.borderColor = 'var(--teal-mid)';
             setTimeout(function() {

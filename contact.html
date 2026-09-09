@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Josefin+Sans:wght@100;200;300;400&family=Lato:wght@300;400;700;900&display=swap"/>
-  <link rel="stylesheet" href="shared.css?v=20260908d"/>
+  <link rel="stylesheet" href="shared.css?v=20260908e"/>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -204,7 +204,7 @@
       /* Full-width submit */
       .contact-layout button[type="submit"],
       .contact-layout input[type="submit"] { width: 100%; }
-      /* 2-col form row → 1-col */
+      /* 2-col form row -> 1-col */
       .contact-layout .u-grid-2 { grid-template-columns: 1fr !important; }
       .input-field { font-size: 16px !important; }
     }
@@ -226,42 +226,26 @@
 
 <!-- ── BOOKING METHODS ── -->
 <!-- NOTE: Replace YOUR_BRIDALIVE_STORE_ID below with your BridalLive Online Booking URL -->
-<!-- BridalLive → Settings → Online Booking → copy the URL -->
+<!-- BridalLive -> Settings -> Online Booking -> copy the URL -->
 <div class="booking-methods">
   <div class="booking-methods-inner">
 
     <a href="appointments.html#book-now"
        class="booking-method booking-method--online" id="book-online-btn">
-      <div class="bm-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
-        </svg>
-      </div>
       <div class="bm-body">
         <div class="bm-eyebrow">Powered by BridalLive · 24 / 7</div>
         <div class="bm-title">Book Online Now</div>
         <div class="bm-sub">See live availability and confirm your appointment instantly — no phone call needed.</div>
-      </div>
-      <div class="bm-arrow">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </div>
     </a>
 
     <div class="bm-or-divider"><span>or</span></div>
 
     <a href="#request-form" class="booking-method booking-method--request">
-      <div class="bm-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
-        </svg>
-      </div>
       <div class="bm-body">
         <div class="bm-eyebrow">Response within 24 hours</div>
         <div class="bm-title">Send a Request</div>
         <div class="bm-sub">Fill out the form below and our team will personally confirm your details.</div>
-      </div>
-      <div class="bm-arrow">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </div>
     </a>
 
@@ -351,12 +335,10 @@
 
           <button type="submit" class="btn-primary" style="width:100%;justify-content:center;padding:16px;">
             Request My Appointment
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
         </form>
 
         <div id="formSuccess" style="display:none;text-align:center;padding:40px 20px;">
-          <div style="font-size:48px;margin-bottom:16px;">💍</div>
           <h3 style="font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--teal-deep);margin-bottom:8px;">Request Received!</h3>
           <p style="font-size:15px;color:var(--text-muted);line-height:1.7;">Thank you! We'll confirm your appointment within 24 hours. We can't wait to help you find your dream gown.</p>
         </div>
@@ -377,7 +359,7 @@
           <div class="input-group"><label class="input-label" for="gc_message">Message *</label><textarea name="message" class="input-field" placeholder="Your message..." required id="gc_message"></textarea></div>
           <button type="submit" class="btn-outline" style="align-self:flex-start;">Send Message</button>
         </form>
-        <div id="contactSuccess" style="display:none;background:var(--teal-dim);border:1px solid var(--teal-mid);border-radius:var(--radius-sm);padding:16px;margin-top:16px;font-size:14px;color:var(--teal-deep);font-weight:700;">✓ Message sent! We'll be in touch soon.</div>
+        <div id="contactSuccess" style="display:none;background:var(--teal-dim);border:1px solid var(--teal-mid);border-radius:var(--radius-sm);padding:16px;margin-top:16px;font-size:14px;color:var(--teal-deep);font-weight:700;">Message sent! We'll be in touch soon.</div>
       </div>
     </div>
 
@@ -388,15 +370,12 @@
       <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:32px;">
         <h3 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:20px;">Contact Info</h3>
         <div class="info-block">
-          <div class="info-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
           <div><div class="info-title">Address</div><div class="info-value"><a href="https://goo.gl/maps/HXgYuahuNu8ycSXB8" target="_blank" rel="noopener noreferrer">4711 N. University St<br/>Peoria, IL 61614</a></div></div>
         </div>
         <div class="info-block">
-          <div class="info-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg></div>
           <div><div class="info-title">Phone</div><div class="info-value"><a href="tel:3096933830">(309) 693‑3830</a></div></div>
         </div>
         <div class="info-block">
-          <div class="info-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
           <div><div class="info-title">Email</div><div class="info-value"><a href="mailto:sayyes@cloudninepeoria.com">sayyes@cloudninepeoria.com</a></div></div>
         </div>
       </div>
@@ -473,7 +452,6 @@
         <div style="padding:16px 20px;">
           <a href="https://goo.gl/maps/HXgYuahuNu8ycSXB8" target="_blank" rel="noopener noreferrer" style="font-size:13px;font-weight:700;color:var(--teal-deep);display:inline-flex;align-items:center;gap:6px;">
             Get Directions
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
           </a>
         </div>
       </div>
@@ -484,11 +462,9 @@
         <p style="font-size:13px;color:rgba(234,246,247,.65);margin-bottom:18px;">See real brides, new arrivals, and behind-the-scenes on our socials.</p>
         <div style="display:flex;gap:12px;">
           <a href="https://www.facebook.com/cloudninebridalboutique/" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:8px;padding:10px 18px;background:rgba(234,246,247,.12);border:1px solid rgba(234,246,247,.25);border-radius:0;color:var(--white);font-size:13px;font-weight:700;transition:background .2s;" onmouseover="this.style.background='rgba(234,246,247,.2)'" onmouseout="this.style.background='rgba(234,246,247,.12)'">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
             Facebook
           </a>
           <a href="https://www.instagram.com/cloudninebridalpeoria/" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:8px;padding:10px 18px;background:rgba(234,246,247,.12);border:1px solid rgba(234,246,247,.25);border-radius:0;color:var(--white);font-size:13px;font-weight:700;transition:background .2s;" onmouseover="this.style.background='rgba(234,246,247,.2)'" onmouseout="this.style.background='rgba(234,246,247,.12)'">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
             Instagram
           </a>
         </div>
@@ -499,7 +475,7 @@
 </div>
 
 <div id="site-footer"></div>
-<script src="components.js?v=20260908d" defer></script>
+<script src="components.js?v=20260908e" defer></script>
 <script>
 // ── TODAY'S HOURS HIGHLIGHT ──
 (function() {
