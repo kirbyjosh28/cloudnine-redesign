@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Josefin+Sans:wght@100;200;300;400&family=Lato:wght@300;400;700;900&display=swap"/>
     <link rel="preload" as="image" href="images/bridal/Bridal-hero.webp" type="image/webp"/>
-  <link rel="stylesheet" href="shared.css?v=20260909c"/>
+  <link rel="stylesheet" href="shared.css?v=20260909d"/>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -891,7 +891,7 @@
         }
       }
     } catch(err) {}
-  })();
+  });
 
   // Hard fallback
   setTimeout(unmask, 7000);
@@ -932,7 +932,7 @@
       <div class="filter-facets-group" id="filterFacetsGroup">
         <!-- 1. Silhouette Trigger & Popover -->
         <div class="filter-facet-dropdown" id="dropdownSil" data-facet="sil">
-          <button type="button" class="filter-trigger-btn" id="triggerSil" aria-expanded="false" aria-haspopup="true" onclick="togglePopover('sil', event)">
+          <button type="button" class="filter-trigger-btn" id="triggerSil" aria-expanded="false" aria-haspopup="true" onclick="toggleFacetDropdown('sil', event)">
             <span class="filter-trigger-label" id="labelSil">Silhouette</span>
             <span class="filter-trigger-caret">▾</span>
           </button>
@@ -943,27 +943,27 @@
                 <button type="button" class="filter-popover-reset" onclick="resetFacet('sil')">Reset</button>
               </div>
               <div class="filter-popover-grid" id="sil-row">
-                <button type="button" class="filter-popover-chip active" data-filter="sil" data-value="all" onclick="setFilter('sil', 'all', true)">
+                <button type="button" class="filter-popover-chip active" data-filter="sil" data-value="all" onclick="setFilter('sil', 'all', true, event)">
                   <span class="popover-chip-name">All Silhouettes</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="sil" data-value="A-Line" onclick="setFilter('sil', 'A-Line', true)">
+                <button type="button" class="filter-popover-chip" data-filter="sil" data-value="A-Line" onclick="setFilter('sil', 'A-Line', true, event)">
                   <span class="popover-chip-name">A-Line</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="sil" data-value="Fit &amp; Flare" onclick="setFilter('sil', 'Fit &amp; Flare', true)">
+                <button type="button" class="filter-popover-chip" data-filter="sil" data-value="Fit &amp; Flare" onclick="setFilter('sil', 'Fit &amp; Flare', true, event)">
                   <span class="popover-chip-name">Fit &amp; Flare</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="sil" data-value="Mermaid" onclick="setFilter('sil', 'Mermaid', true)">
+                <button type="button" class="filter-popover-chip" data-filter="sil" data-value="Mermaid" onclick="setFilter('sil', 'Mermaid', true, event)">
                   <span class="popover-chip-name">Mermaid</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="sil" data-value="Ballgown" onclick="setFilter('sil', 'Ballgown', true)">
+                <button type="button" class="filter-popover-chip" data-filter="sil" data-value="Ballgown" onclick="setFilter('sil', 'Ballgown', true, event)">
                   <span class="popover-chip-name">Ballgown</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="sil" data-value="Sheath" onclick="setFilter('sil', 'Sheath', true)">
+                <button type="button" class="filter-popover-chip" data-filter="sil" data-value="Sheath" onclick="setFilter('sil', 'Sheath', true, event)">
                   <span class="popover-chip-name">Sheath</span>
                   <span class="chip-count"></span>
                 </button>
@@ -974,7 +974,7 @@
 
         <!-- 2. Designer Trigger & Popover -->
         <div class="filter-facet-dropdown" id="dropdownDes" data-facet="des">
-          <button type="button" class="filter-trigger-btn" id="triggerDes" aria-expanded="false" aria-haspopup="true" onclick="togglePopover('des', event)">
+          <button type="button" class="filter-trigger-btn" id="triggerDes" aria-expanded="false" aria-haspopup="true" onclick="toggleFacetDropdown('des', event)">
             <span class="filter-trigger-label" id="labelDes">Designer</span>
             <span class="filter-trigger-caret">▾</span>
           </button>
@@ -982,34 +982,34 @@
             <div class="filter-popover-inner">
               <div class="filter-popover-header">
                 <span class="filter-popover-title">Select Designer</span>
-                <button type="button" class="filter-popover-reset" onclick="resetFacet('des')">Reset</button>
+                <button type="button" class="filter-popover-reset" onclick="resetFacet('des', event)">Reset</button>
               </div>
               <div class="filter-popover-grid" id="des-row">
-                <button type="button" class="filter-popover-chip active" data-filter="des" data-value="all" onclick="setFilter('des', 'all', true)">
+                <button type="button" class="filter-popover-chip active" data-filter="des" data-value="all" onclick="setFilter('des', 'all', true, event)">
                   <span class="popover-chip-name">All Designers</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="des" data-value="Essense of Australia" onclick="setFilter('des', 'Essense of Australia', true)">
+                <button type="button" class="filter-popover-chip" data-filter="des" data-value="Essense of Australia" onclick="setFilter('des', 'Essense of Australia', true, event)">
                   <span class="popover-chip-name">Essense of Australia</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="des" data-value="Maggie Sottero" onclick="setFilter('des', 'Maggie Sottero', true)">
+                <button type="button" class="filter-popover-chip" data-filter="des" data-value="Maggie Sottero" onclick="setFilter('des', 'Maggie Sottero', true, event)">
                   <span class="popover-chip-name">Maggie Sottero</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="des" data-value="Rebecca Ingram" onclick="setFilter('des', 'Rebecca Ingram', true)">
+                <button type="button" class="filter-popover-chip" data-filter="des" data-value="Rebecca Ingram" onclick="setFilter('des', 'Rebecca Ingram', true, event)">
                   <span class="popover-chip-name">Rebecca Ingram</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="des" data-value="Rose + Grace" onclick="setFilter('des', 'Rose + Grace', true)">
+                <button type="button" class="filter-popover-chip" data-filter="des" data-value="Rose + Grace" onclick="setFilter('des', 'Rose + Grace', true, event)">
                   <span class="popover-chip-name">Rose + Grace</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="des" data-value="Sottero &amp; Midgley" onclick="setFilter('des', 'Sottero &amp; Midgley', true)">
+                <button type="button" class="filter-popover-chip" data-filter="des" data-value="Sottero &amp; Midgley" onclick="setFilter('des', 'Sottero &amp; Midgley', true, event)">
                   <span class="popover-chip-name">Sottero &amp; Midgley</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="des" data-value="Stella York" onclick="setFilter('des', 'Stella York', true)">
+                <button type="button" class="filter-popover-chip" data-filter="des" data-value="Stella York" onclick="setFilter('des', 'Stella York', true, event)">
                   <span class="popover-chip-name">Stella York</span>
                   <span class="chip-count"></span>
                 </button>
@@ -1020,7 +1020,7 @@
 
         <!-- 3. Detail & Vibe Trigger & Popover -->
         <div class="filter-facet-dropdown" id="dropdownDetail" data-facet="detail">
-          <button type="button" class="filter-trigger-btn" id="triggerDetail" aria-expanded="false" aria-haspopup="true" onclick="togglePopover('detail', event)">
+          <button type="button" class="filter-trigger-btn" id="triggerDetail" aria-expanded="false" aria-haspopup="true" onclick="toggleFacetDropdown('detail', event)">
             <span class="filter-trigger-label" id="labelDetail">Detail &amp; Vibe</span>
             <span class="filter-trigger-caret">▾</span>
           </button>
@@ -1028,42 +1028,42 @@
             <div class="filter-popover-inner">
               <div class="filter-popover-header">
                 <span class="filter-popover-title">Select Fabric, Neckline &amp; Details</span>
-                <button type="button" class="filter-popover-reset" onclick="resetFacet('detail')">Reset</button>
+                <button type="button" class="filter-popover-reset" onclick="resetFacet('detail', event)">Reset</button>
               </div>
               <div class="filter-popover-grid filter-popover-grid--2col" id="detail-row">
-                <button type="button" class="filter-popover-chip active" data-filter="detail" data-value="all" onclick="setFilter('detail', 'all', true)">
+                <button type="button" class="filter-popover-chip active" data-filter="detail" data-value="all" onclick="setFilter('detail', 'all', true, event)">
                   <span class="popover-chip-name">All Details</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="lace" onclick="setFilter('detail', 'lace', true)">
+                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="lace" onclick="setFilter('detail', 'lace', true, event)">
                   <span class="popover-chip-name">Lace</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="crepe" onclick="setFilter('detail', 'crepe', true)">
+                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="crepe" onclick="setFilter('detail', 'crepe', true, event)">
                   <span class="popover-chip-name">Crepe</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="satin" onclick="setFilter('detail', 'satin', true)">
+                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="satin" onclick="setFilter('detail', 'satin', true, event)">
                   <span class="popover-chip-name">Satin</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="beaded" onclick="setFilter('detail', 'beaded', true)">
+                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="beaded" onclick="setFilter('detail', 'beaded', true, event)">
                   <span class="popover-chip-name">Sparkle &amp; Beaded</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="off-shoulder" onclick="setFilter('detail', 'off-shoulder', true)">
+                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="off-shoulder" onclick="setFilter('detail', 'off-shoulder', true, event)">
                   <span class="popover-chip-name">Off-the-Shoulder</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="square-neck" onclick="setFilter('detail', 'square-neck', true)">
+                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="square-neck" onclick="setFilter('detail', 'square-neck', true, event)">
                   <span class="popover-chip-name">Square Neck</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="sweetheart" onclick="setFilter('detail', 'sweetheart', true)">
+                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="sweetheart" onclick="setFilter('detail', 'sweetheart', true, event)">
                   <span class="popover-chip-name">Sweetheart</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="strapless" onclick="setFilter('detail', 'strapless', true)">
+                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="strapless" onclick="setFilter('detail', 'strapless', true, event)">
                   <span class="popover-chip-name">Strapless</span>
                   <span class="chip-count"></span>
                 </button>
@@ -1162,7 +1162,7 @@
 </div>
 
 <div id="site-footer"></div>
-<script src="components.js?v=20260909c" defer></script>
+<script src="components.js?v=20260909d" defer></script>
 <script>
 /* Products loaded from external JSON for performance.
    Keeps HTML small, enables CDN caching of product data separately. */
@@ -1196,7 +1196,7 @@ const DETAIL_LABELS = {
 };
 
 // ── Popover Controller ──
-function togglePopover(facet, e) {
+function toggleFacetDropdown(facet, e) {
   if (e) {
     e.stopPropagation();
     if (e.preventDefault) e.preventDefault();
@@ -1206,38 +1206,40 @@ function togglePopover(facet, e) {
   const dropdown = document.getElementById(targetId);
   if (!dropdown) return;
   const wasOpen = dropdown.classList.contains('is-open');
-  closeAllPopovers();
+  closeAllFacetDropdowns();
   if (!wasOpen) {
     dropdown.classList.add('is-open');
     const trigger = dropdown.querySelector('.filter-trigger-btn');
     if (trigger) trigger.setAttribute('aria-expanded', 'true');
   }
 }
+window.toggleFacetDropdown = toggleFacetDropdown;
 
-function closeAllPopovers() {
+function closeAllFacetDropdowns() {
   document.querySelectorAll('.filter-facet-dropdown').forEach(dd => {
     dd.classList.remove('is-open');
     const trigger = dd.querySelector('.filter-trigger-btn');
     if (trigger) trigger.setAttribute('aria-expanded', 'false');
   });
 }
+window.closeAllFacetDropdowns = closeAllFacetDropdowns;
 
 // Global click & esc listener to dismiss popovers
 document.addEventListener('click', function(e) {
   if (!e.target.closest('.filter-facet-dropdown')) {
-    closeAllPopovers();
+    closeAllFacetDropdowns();
   }
 });
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') {
-    closeAllPopovers();
+    closeAllFacetDropdowns();
     closeMobileFilters();
   }
 });
 
 // ── Mobile Bottom Sheet ──
 function openMobileFilters() {
-  closeAllPopovers();
+  closeAllFacetDropdowns();
   const backdrop = document.getElementById('filterSheetBackdrop');
   if (backdrop) backdrop.classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -1359,7 +1361,10 @@ function updateChipCounts() {
   });
 }
 
-function setFilter(type, value, closePopover) {
+function setFilter(type, value, closePopover, e) {
+  if (e && e.stopPropagation) {
+    e.stopPropagation();
+  }
   if (closePopover === undefined) closePopover = true;
 
   // Toggle behavior: if clicking the active chip again, reset to 'all'
@@ -1374,11 +1379,12 @@ function setFilter(type, value, closePopover) {
   syncChipStates();
 
   if (closePopover && window.innerWidth > 860) {
-    closeAllPopovers();
+    closeAllFacetDropdowns();
   }
 
   applyFilters();
 }
+window.setFilter = setFilter;
 
 function syncChipStates() {
   ['sil', 'des', 'detail'].forEach(type => {
@@ -1389,9 +1395,10 @@ function syncChipStates() {
   });
 }
 
-function resetFacet(type) {
-  setFilter(type, 'all', true);
+function resetFacet(type, e) {
+  setFilter(type, 'all', true, e);
 }
+window.resetFacet = resetFacet;
 
 function updateTriggerLabels() {
   // Silhouette
@@ -1500,6 +1507,7 @@ function removeFilter(type) {
     setFilter(type, 'all', false);
   }
 }
+window.removeFilter = removeFilter;
 
 function updateClearBtn() {
   const clr = document.getElementById('clearFilters');
@@ -1539,9 +1547,10 @@ function clearAllFilters() {
   if (searchClear) searchClear.classList.remove('visible');
 
   syncChipStates();
-  closeAllPopovers();
+  closeAllFacetDropdowns();
   applyFilters();
 }
+window.clearAllFilters = clearAllFilters;
 
 function applyFilters() {
   fil = P.filter(p => matchesFilter(p, activeSil, activeDes, activeDetail, searchQuery));
@@ -1553,11 +1562,12 @@ function applyFilters() {
   updateUrlParams();
   render();
 }
+window.applyFilters = applyFilters;
 
 (async function loadProducts() {
   _showSkeletons(12);
   try {
-    const res = await fetch('data/bridal-products.json?v=20260909b');
+    const res = await fetch('data/bridal-products.json?v=20260909d');
     if (!res.ok) throw new Error('Failed to load product data');
     P = await res.json();
     _dataLoaded = true;
@@ -1905,36 +1915,7 @@ document.addEventListener('keydown', e => {
   io.observe(document.querySelector('.editorial-feature') || document.querySelector('.bridal-cat-hero') || fp);
 })();
 
-// ── Attach filter events via delegation ──
-(function() {
-  const facetsGroup = document.getElementById('filterFacetsGroup');
-  if (facetsGroup) {
-    facetsGroup.addEventListener('click', function(e) {
-      const chip = e.target.closest('.filter-popover-chip');
-      if (chip && chip.dataset.filter) {
-        e.stopPropagation();
-        setFilter(chip.dataset.filter, chip.dataset.value, true);
-        return;
-      }
-      const resetBtn = e.target.closest('.filter-popover-reset');
-      if (resetBtn) {
-        e.stopPropagation();
-      }
-    });
-  }
 
-  const mobileSheet = document.getElementById('filterSheet');
-  if (mobileSheet) {
-    mobileSheet.addEventListener('click', function(e) {
-      const chip = e.target.closest('.filter-sheet-chip');
-      if (chip && chip.dataset.filter) {
-        e.stopPropagation();
-        setFilter(chip.dataset.filter, chip.dataset.value, false);
-        return;
-      }
-    });
-  }
-})();
 
 // ── Search input events ──
 (function() {
