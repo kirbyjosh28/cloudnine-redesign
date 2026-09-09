@@ -233,6 +233,598 @@
       .modal-x{width:44px;height:44px;top:10px;right:10px;font-size:20px;background:rgba(0,0,0,0.65);border-color:rgba(255,255,255,0.4);}
       .modal-nav{width:44px;height:44px;font-size:22px;}
     }
+
+    /* ══════════════════════════════════════════════════════════════
+       COMPACT LUXURY FILTER BAR (Option 1: Popovers + Active Tray)
+       ══════════════════════════════════════════════════════════════ */
+    .filter-bar-sticky-wrap {
+      position: sticky;
+      top: 80px;
+      z-index: 95;
+      background: #ffffff;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow 0.3s ease, top 0.3s ease;
+    }
+    .filter-bar-sticky-wrap.sticky-active {
+      box-shadow: 0 10px 30px rgba(28, 78, 80, 0.08);
+    }
+    @media (max-width: 768px) {
+      .filter-bar-sticky-wrap { top: 52px; }
+    }
+
+    .filter-bar-compact {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 10px 48px;
+      min-height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      position: relative;
+    }
+
+    /* ── Live Search Pill ── */
+    .filter-search-box {
+      position: relative;
+      width: 270px;
+      flex-shrink: 0;
+    }
+    .filter-search-input-compact {
+      width: 100%;
+      height: 38px;
+      padding: 0 46px 0 16px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 11.5px;
+      font-weight: 400;
+      letter-spacing: .03em;
+      color: var(--text);
+      transition: all 0.25s ease;
+    }
+    .filter-search-input-compact:focus {
+      outline: none;
+      background: #ffffff;
+      border-color: var(--teal-deep);
+      box-shadow: 0 0 0 3px rgba(28, 78, 80, 0.09);
+    }
+    .filter-search-clear-compact {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--text-light);
+      cursor: pointer;
+      display: none;
+      padding: 4px;
+      transition: color 0.2s;
+      line-height: 1;
+    }
+    .filter-search-clear-compact:hover { color: var(--teal-deep); }
+    .filter-search-clear-compact.visible { display: block; }
+
+    /* ── Center Facets Group ── */
+    .filter-facets-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+      justify-content: flex-start;
+      margin-left: 6px;
+    }
+    .filter-facet-dropdown {
+      position: relative;
+    }
+    .filter-trigger-btn {
+      height: 38px;
+      padding: 0 16px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      background: #ffffff;
+      color: var(--text);
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s cubic-bezier(0.32, 0.72, 0, 1);
+      white-space: nowrap;
+    }
+    .filter-trigger-btn:hover {
+      background: var(--bg);
+      border-color: var(--teal-deep);
+    }
+    .filter-trigger-caret {
+      font-size: 10px;
+      color: var(--text-light);
+      transition: transform 0.25s ease, color 0.2s;
+    }
+    .filter-facet-dropdown.is-open .filter-trigger-caret {
+      transform: rotate(180deg);
+      color: var(--teal-deep);
+    }
+    .filter-facet-dropdown.is-open .filter-trigger-btn {
+      border-color: var(--teal-deep);
+      box-shadow: 0 0 0 3px rgba(28, 78, 80, 0.08);
+      background: #ffffff;
+    }
+    .filter-trigger-btn.has-value {
+      background: var(--teal-deep);
+      color: #ffffff;
+      border-color: var(--teal-deep);
+      box-shadow: 0 4px 12px rgba(28, 78, 80, 0.18);
+    }
+    .filter-trigger-btn.has-value .filter-trigger-caret {
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    /* ── Floating Double-Bezel Popover ── */
+    .filter-popover {
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 0;
+      z-index: 120;
+      min-width: 270px;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 6px;
+      box-shadow: 0 20px 48px -8px rgba(28, 78, 80, 0.2), 0 4px 12px rgba(0, 0, 0, 0.04);
+      opacity: 0;
+      transform: translateY(-8px) scale(0.97);
+      pointer-events: none;
+      transition: opacity 0.24s cubic-bezier(0.32, 0.72, 0, 1),
+                  transform 0.24s cubic-bezier(0.32, 0.72, 0, 1);
+    }
+    .filter-popover--wide {
+      min-width: 380px;
+    }
+    .filter-facet-dropdown.is-open .filter-popover {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+    .filter-popover-inner {
+      background: #faf7f4;
+      border-radius: 13px;
+      padding: 14px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .filter-popover-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 4px 6px;
+      border-bottom: 1px solid rgba(204, 231, 232, 0.6);
+    }
+    .filter-popover-title {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--teal-deep);
+    }
+    .filter-popover-reset {
+      background: none;
+      border: none;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 2px 4px;
+      transition: color 0.15s;
+    }
+    .filter-popover-reset:hover { color: var(--teal-deep); }
+    .filter-popover-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      max-height: 280px;
+      overflow-y: auto;
+      padding-right: 2px;
+    }
+    .filter-popover-grid::-webkit-scrollbar { width: 4px; }
+    .filter-popover-grid::-webkit-scrollbar-thumb { background: var(--border-mid); border-radius: 4px; }
+    .filter-popover-grid--2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      max-height: 320px;
+    }
+    .filter-popover-chip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      background: transparent;
+      font-family: 'Playfair Display', serif;
+      font-size: 14px;
+      color: var(--text);
+      cursor: pointer;
+      text-align: left;
+      width: 100%;
+      transition: all 0.18s ease;
+    }
+    .filter-popover-chip:hover {
+      background: rgba(28, 78, 80, 0.06);
+      color: var(--teal-deep);
+    }
+    .filter-popover-chip.active {
+      background: var(--teal-deep);
+      color: #ffffff;
+      font-weight: 700;
+      border-color: var(--teal-deep);
+    }
+    .popover-chip-name {
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .filter-popover-chip .chip-count {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      margin-left: 8px;
+      color: var(--text-muted);
+      opacity: 0.8;
+    }
+    .filter-popover-chip.active .chip-count {
+      color: #ffffff;
+      opacity: 0.95;
+    }
+    .filter-popover-chip.disabled {
+      opacity: 0.35;
+      pointer-events: none;
+    }
+
+    /* ── Right Bar Controls ── */
+    .filter-bar-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+    .catalog-count-compact {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+    .filter-quick-clear-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--teal-deep);
+      cursor: pointer;
+      text-decoration: underline;
+      padding: 4px;
+      transition: color 0.15s;
+      white-space: nowrap;
+    }
+    .filter-quick-clear-btn:hover { color: var(--teal-darker); }
+    .filter-quick-clear-btn.visible { display: block; }
+    .density-toggle-wrap {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+    .density-toggle-wrap button {
+      height: 30px;
+      padding: 0 10px;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      background: var(--white);
+      color: var(--text-light);
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.18s ease;
+    }
+    .density-toggle-wrap button[aria-pressed="true"] {
+      background: var(--teal-deep);
+      color: #ffffff;
+      border-color: var(--teal-deep);
+    }
+
+    /* ── Active Filter Tray (Removable Pills) ── */
+    .filter-active-tray {
+      background: #faf7f4;
+      border-top: 1px solid var(--border);
+      padding: 8px 48px;
+    }
+    .filter-active-pills-list {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .filter-active-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 12px;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .04em;
+      color: var(--teal-deep);
+      box-shadow: 0 2px 6px rgba(28, 78, 80, 0.04);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .filter-active-pill:hover {
+      background: var(--teal-deep);
+      color: #ffffff;
+      border-color: var(--teal-deep);
+    }
+    .filter-active-pill-x {
+      font-size: 11px;
+      font-weight: 700;
+      opacity: 0.7;
+    }
+    .filter-active-pill:hover .filter-active-pill-x {
+      opacity: 1;
+    }
+    .filter-active-clear-all {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-decoration: underline;
+      margin-left: 6px;
+      padding: 4px 6px;
+    }
+    .filter-active-clear-all:hover { color: var(--teal-deep); }
+
+    /* ── Mobile Filter Trigger & Bottom Sheet ── */
+    .filter-mobile-trigger-btn {
+      display: none;
+      height: 38px;
+      padding: 0 14px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      background: #ffffff;
+      color: var(--teal-deep);
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .mobile-filter-badge {
+      background: var(--teal-deep);
+      color: #ffffff;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      font-weight: 800;
+    }
+    .mobile-filter-badge.has-count {
+      display: inline-flex;
+    }
+
+    .filter-sheet-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(13, 46, 48, 0.6);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 2100;
+      opacity: 0;
+      transition: opacity 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+    }
+    .filter-sheet-backdrop.open {
+      display: block;
+      opacity: 1;
+    }
+    .filter-sheet {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      max-height: 85vh;
+      background: #ffffff;
+      border-radius: 24px 24px 0 0;
+      z-index: 2101;
+      transform: translateY(100%);
+      transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.2);
+    }
+    .filter-sheet-backdrop.open .filter-sheet {
+      transform: translateY(0);
+    }
+    .filter-sheet-handle {
+      width: 40px;
+      height: 4px;
+      background: var(--border-mid);
+      border-radius: 4px;
+      margin: 12px auto 6px;
+      flex-shrink: 0;
+    }
+    .filter-sheet-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 24px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .filter-sheet-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0;
+    }
+    .filter-sheet-close {
+      background: none;
+      border: none;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 6px;
+    }
+    .filter-sheet-body {
+      padding: 20px 24px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      flex: 1;
+    }
+    .filter-sheet-section-title {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--teal-deep);
+      margin-bottom: 10px;
+    }
+    .filter-sheet-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .filter-sheet-chip {
+      padding: 8px 14px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      background: #faf7f4;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .filter-sheet-chip.active {
+      background: var(--teal-deep);
+      color: #ffffff;
+      border-color: var(--teal-deep);
+    }
+    .filter-sheet-footer {
+      padding: 16px 24px 28px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      background: #ffffff;
+    }
+    .filter-sheet-btn-clear {
+      flex: 0 0 auto;
+      padding: 14px 18px;
+      background: #faf7f4;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text);
+      cursor: pointer;
+    }
+    .filter-sheet-btn-apply {
+      flex: 1;
+      padding: 14px 20px;
+      background: var(--teal-deep);
+      color: #ffffff;
+      border: none;
+      border-radius: 100px;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-align: center;
+      box-shadow: 0 4px 16px rgba(28, 78, 80, 0.25);
+    }
+
+    /* ── Responsive Collapse ── */
+    @media (max-width: 1024px) {
+      .filter-bar-compact { padding: 8px 24px; }
+      .filter-active-tray { padding: 8px 24px; }
+      .filter-search-box { width: 220px; }
+    }
+    @media (max-width: 860px) {
+      .filter-facets-group { display: none; }
+      .filter-mobile-trigger-btn { display: inline-flex; }
+      .filter-search-box { width: 100%; max-width: none; flex: 1; }
+      #densityToggle { display: none; }
+    }
+    @media (max-width: 600px) {
+      .filter-bar-compact { padding: 8px 16px; gap: 10px; }
+      .filter-active-tray { padding: 8px 16px; }
+      .catalog-count-compact { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -327,77 +919,211 @@
   </div>
 </div>
 <div class="section-catalog">
-  <div class="filter-panel" id="fp">
-    <!-- Live Search Row -->
-    <div class="filter-search-row">
-      <div class="filter-search-wrap">
-        <input type="search" class="filter-search-input" id="catalogSearch" placeholder="Search by style #, designer, neckline, lace, crepe, sparkle..." aria-label="Search bridal collection" autocomplete="off" autocorrect="off" spellcheck="false" style="padding-left:14px;"/>
-        <button type="button" class="filter-search-clear" id="catalogSearchClear" aria-label="Clear search">Clear</button>
+  <!-- COMPACT LUXURY FILTER BAR -->
+  <div class="filter-bar-sticky-wrap" id="fp">
+    <div class="filter-bar-compact">
+      <!-- Left: Live Search Pill -->
+      <div class="filter-search-box">
+        <input type="search" class="filter-search-input-compact" id="catalogSearch" placeholder="Search style #, designer, fabric..." aria-label="Search bridal collection" autocomplete="off" autocorrect="off" spellcheck="false"/>
+        <button type="button" class="filter-search-clear-compact" id="catalogSearchClear" aria-label="Clear search">Clear</button>
+      </div>
+
+      <!-- Center: Facet Dropdown Triggers -->
+      <div class="filter-facets-group" id="filterFacetsGroup">
+        <!-- 1. Silhouette Trigger & Popover -->
+        <div class="filter-facet-dropdown" id="dropdownSil" data-facet="sil">
+          <button type="button" class="filter-trigger-btn" id="triggerSil" aria-expanded="false" aria-haspopup="true" onclick="togglePopover('sil', event)">
+            <span class="filter-trigger-label" id="labelSil">Silhouette</span>
+            <span class="filter-trigger-caret">▾</span>
+          </button>
+          <div class="filter-popover" id="popoverSil" role="region" aria-label="Silhouette Filters">
+            <div class="filter-popover-inner">
+              <div class="filter-popover-header">
+                <span class="filter-popover-title">Select Silhouette</span>
+                <button type="button" class="filter-popover-reset" onclick="resetFacet('sil')">Reset</button>
+              </div>
+              <div class="filter-popover-grid" id="sil-row">
+                <button type="button" class="filter-popover-chip active" data-filter="sil" data-value="all">
+                  <span class="popover-chip-name">All Silhouettes</span>
+                  <span class="chip-count"></span>
+                </button>
+                <button type="button" class="filter-popover-chip" data-filter="sil" data-value="A-Line">
+                  <span class="popover-chip-name">A-Line</span>
+                  <span class="chip-count"></span>
+                </button>
+                <button type="button" class="filter-popover-chip" data-filter="sil" data-value="Fit &amp; Flare">
+                  <span class="popover-chip-name">Fit &amp; Flare</span>
+                  <span class="chip-count"></span>
+                </button>
+                <button type="button" class="filter-popover-chip" data-filter="sil" data-value="Mermaid">
+                  <span class="popover-chip-name">Mermaid</span>
+                  <span class="chip-count"></span>
+                </button>
+                <button type="button" class="filter-popover-chip" data-filter="sil" data-value="Ballgown">
+                  <span class="popover-chip-name">Ballgown</span>
+                  <span class="chip-count"></span>
+                </button>
+                <button type="button" class="filter-popover-chip" data-filter="sil" data-value="Sheath">
+                  <span class="popover-chip-name">Sheath</span>
+                  <span class="chip-count"></span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Designer Trigger & Popover -->
+        <div class="filter-facet-dropdown" id="dropdownDes" data-facet="des">
+          <button type="button" class="filter-trigger-btn" id="triggerDes" aria-expanded="false" aria-haspopup="true" onclick="togglePopover('des', event)">
+            <span class="filter-trigger-label" id="labelDes">Designer</span>
+            <span class="filter-trigger-caret">▾</span>
+          </button>
+          <div class="filter-popover" id="popoverDes" role="region" aria-label="Designer Filters">
+            <div class="filter-popover-inner">
+              <div class="filter-popover-header">
+                <span class="filter-popover-title">Select Designer</span>
+                <button type="button" class="filter-popover-reset" onclick="resetFacet('des')">Reset</button>
+              </div>
+              <div class="filter-popover-grid" id="des-row">
+                <button type="button" class="filter-popover-chip active" data-filter="des" data-value="all">
+                  <span class="popover-chip-name">All Designers</span>
+                  <span class="chip-count"></span>
+                </button>
+                <button type="button" class="filter-popover-chip" data-filter="des" data-value="Essense of Australia">
+                  <span class="popover-chip-name">Essense of Australia</span>
+                  <span class="chip-count"></span>
+                </button>
+                <button type="button" class="filter-popover-chip" data-filter="des" data-value="Maggie Sottero">
+                  <span class="popover-chip-name">Maggie Sottero</span>
+                  <span class="chip-count"></span>
+                </button>
+                <button type="button" class="filter-popover-chip" data-filter="des" data-value="Rebecca Ingram">
+                  <span class="popover-chip-name">Rebecca Ingram</span>
+                  <span class="chip-count"></span>
+                </button>
+                <button type="button" class="filter-popover-chip" data-filter="des" data-value="Rose + Grace">
+                  <span class="popover-chip-name">Rose + Grace</span>
+                  <span class="chip-count"></span>
+                </button>
+                <button type="button" class="filter-popover-chip" data-filter="des" data-value="Sottero &amp; Midgley">
+                  <span class="popover-chip-name">Sottero &amp; Midgley</span>
+                  <span class="chip-count"></span>
+                </button>
+                <button type="button" class="filter-popover-chip" data-filter="des" data-value="Stella York">
+                  <span class="popover-chip-name">Stella York</span>
+                  <span class="chip-count"></span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Detail & Vibe Trigger & Popover -->
+        <div class="filter-facet-dropdown" id="dropdownDetail" data-facet="detail">
+          <button type="button" class="filter-trigger-btn" id="triggerDetail" aria-expanded="false" aria-haspopup="true" onclick="togglePopover('detail', event)">
+            <span class="filter-trigger-label" id="labelDetail">Detail &amp; Vibe</span>
+            <span class="filter-trigger-caret">▾</span>
+          </button>
+          <div class="filter-popover filter-popover--wide" id="popoverDetail" role="region" aria-label="Detail Filters">
+            <div class="filter-popover-inner">
+              <div class="filter-popover-header">
+                <span class="filter-popover-title">Select Fabric, Neckline &amp; Details</span>
+                <button type="button" class="filter-popover-reset" onclick="resetFacet('detail')">Reset</button>
+              </div>
+              <div class="filter-popover-grid filter-popover-grid--2col" id="detail-row">
+                <button type="button" class="filter-popover-chip active" data-filter="detail" data-value="all">
+                  <span class="popover-chip-name">All Details</span>
+                  <span class="chip-count"></span>
+                </button>
+                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="lace">
+                  <span class="popover-chip-name">Lace</span>
+                  <span class="chip-count"></span>
+                </button>
+                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="crepe">
+                  <span class="popover-chip-name">Crepe</span>
+                  <span class="chip-count"></span>
+                </button>
+                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="satin">
+                  <span class="popover-chip-name">Satin</span>
+                  <span class="chip-count"></span>
+                </button>
+                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="beaded">
+                  <span class="popover-chip-name">Sparkle &amp; Beaded</span>
+                  <span class="chip-count"></span>
+                </button>
+                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="off-shoulder">
+                  <span class="popover-chip-name">Off-the-Shoulder</span>
+                  <span class="chip-count"></span>
+                </button>
+                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="square-neck">
+                  <span class="popover-chip-name">Square Neck</span>
+                  <span class="chip-count"></span>
+                </button>
+                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="sweetheart">
+                  <span class="popover-chip-name">Sweetheart</span>
+                  <span class="chip-count"></span>
+                </button>
+                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="strapless">
+                  <span class="popover-chip-name">Strapless</span>
+                  <span class="chip-count"></span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Trigger Button -->
+      <button type="button" class="filter-mobile-trigger-btn" id="mobileFilterBtn" onclick="openMobileFilters()">
+        <span>Filters</span>
+        <span class="mobile-filter-badge" id="mobileFilterBadge">0</span>
+      </button>
+
+      <!-- Right: Count & Density & Reset -->
+      <div class="filter-bar-right">
+        <div class="catalog-count-compact" id="cc"></div>
+        <button type="button" class="filter-quick-clear-btn" id="clearFilters" onclick="clearAllFilters()">Clear All</button>
+        <div class="density-toggle-wrap" id="densityToggle">
+          <button id="density3" title="3-column view" aria-label="3-column grid view" aria-pressed="true">3 Col</button>
+          <button id="density4" title="4-column view" aria-label="4-column grid view" aria-pressed="false">4 Col</button>
+        </div>
       </div>
     </div>
 
-    <!-- Silhouette Row -->
-    <div class="filter-row">
-      <span class="filter-row-label">Silhouette</span>
-      <div class="filter-row-btns" id="sil-row">
-        <button class="filter-chip active" data-filter="sil" data-value="all">All <span class="chip-count"></span></button>
-        <button class="filter-chip" data-filter="sil" data-value="A-Line">A-Line <span class="chip-count"></span></button>
-        <button class="filter-chip" data-filter="sil" data-value="Fit &amp; Flare">Fit &amp; Flare <span class="chip-count"></span></button>
-        <button class="filter-chip" data-filter="sil" data-value="Mermaid">Mermaid <span class="chip-count"></span></button>
-        <button class="filter-chip" data-filter="sil" data-value="Ballgown">Ballgown <span class="chip-count"></span></button>
-        <button class="filter-chip" data-filter="sil" data-value="Sheath">Sheath <span class="chip-count"></span></button>
-      </div>
+    <!-- Dynamic Active Filter Tags Tray (Removable Pills) -->
+    <div class="filter-active-tray" id="activeFilterTray" style="display:none;">
+      <div class="filter-active-pills-list" id="activePillsList"></div>
     </div>
-
-    <!-- Designer Row -->
-    <div class="filter-row">
-      <span class="filter-row-label">Designer</span>
-      <div class="filter-row-btns" id="des-row">
-        <button class="filter-chip active" data-filter="des" data-value="all">All <span class="chip-count"></span></button>
-        <button class="filter-chip" data-filter="des" data-value="Essense of Australia">Essense of Australia <span class="chip-count"></span></button>
-        <button class="filter-chip" data-filter="des" data-value="Maggie Sottero">Maggie Sottero <span class="chip-count"></span></button>
-        <button class="filter-chip" data-filter="des" data-value="Rebecca Ingram">Rebecca Ingram <span class="chip-count"></span></button>
-        <button class="filter-chip" data-filter="des" data-value="Rose + Grace">Rose + Grace <span class="chip-count"></span></button>
-        <button class="filter-chip" data-filter="des" data-value="Sottero &amp; Midgley">Sottero &amp; Midgley <span class="chip-count"></span></button>
-        <button class="filter-chip" data-filter="des" data-value="Stella York">Stella York <span class="chip-count"></span></button>
-      </div>
-    </div>
-
-    <!-- Detail & Vibe Row -->
-    <div class="filter-row">
-      <span class="filter-row-label">Detail &amp; Vibe</span>
-      <div class="filter-row-btns" id="detail-row">
-        <button class="filter-chip active" data-filter="detail" data-value="all">All Details <span class="chip-count"></span></button>
-        <button class="filter-chip" data-filter="detail" data-value="lace">Lace <span class="chip-count"></span></button>
-        <button class="filter-chip" data-filter="detail" data-value="crepe">Crepe <span class="chip-count"></span></button>
-        <button class="filter-chip" data-filter="detail" data-value="satin">Satin <span class="chip-count"></span></button>
-        <button class="filter-chip" data-filter="detail" data-value="beaded">Sparkle &amp; Beaded <span class="chip-count"></span></button>
-        <button class="filter-chip" data-filter="detail" data-value="off-shoulder">Off-the-Shoulder <span class="chip-count"></span></button>
-        <button class="filter-chip" data-filter="detail" data-value="square-neck">Square Neck <span class="chip-count"></span></button>
-        <button class="filter-chip" data-filter="detail" data-value="sweetheart">Sweetheart <span class="chip-count"></span></button>
-        <button class="filter-chip" data-filter="detail" data-value="strapless">Strapless <span class="chip-count"></span></button>
-      </div>
-    </div>
-
-    <a href="appointments.html" class="sticky-book-cta" aria-label="Book an appointment">
-      Book Appointment
-    </a>
   </div>
 
-  <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);background:var(--white);padding-right:12px;">
-    <div class="catalog-count" id="cc" style="border-bottom:none;padding-right:0;"></div>
-    <div style="display:flex;align-items:center;gap:8px;">
-      <button class="filter-clear-btn" id="clearFilters" onclick="clearAllFilters()">
-        Clear Filters
-      </button>
-      <!-- Grid density toggle -->
-      <div style="display:flex;gap:4px;align-items:center;" id="densityToggle">
-        <button id="density3" title="3-column view" aria-label="3-column grid view" style="height:28px;padding:0 8px;border:1px solid var(--border);background:var(--teal-deep);color:#fff;font-family:'Josefin Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.08em;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;" aria-pressed="true">
-          3 Col
-        </button>
-        <button id="density4" title="4-column view" aria-label="4-column grid view" style="height:28px;padding:0 8px;border:1px solid var(--border);background:var(--white);color:var(--text-light);font-family:'Josefin Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.08em;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;" aria-pressed="false">
-          4 Col
-        </button>
+  <!-- Mobile Bottom Sheet Modal -->
+  <div class="filter-sheet-backdrop" id="filterSheetBackdrop" onclick="closeMobileFilters(event)">
+    <div class="filter-sheet" id="filterSheet" role="dialog" aria-modal="true" aria-label="Filter Collection">
+      <div class="filter-sheet-handle"></div>
+      <div class="filter-sheet-header">
+        <h3 class="filter-sheet-title">Filter Collection</h3>
+        <button type="button" class="filter-sheet-close" onclick="closeMobileFilters()">Close</button>
+      </div>
+      <div class="filter-sheet-body">
+        <!-- Mobile Silhouette Section -->
+        <div class="filter-sheet-section">
+          <div class="filter-sheet-section-title">Silhouette</div>
+          <div class="filter-sheet-chips" id="mobileSilChips"></div>
+        </div>
+        <!-- Mobile Designer Section -->
+        <div class="filter-sheet-section">
+          <div class="filter-sheet-section-title">Designer</div>
+          <div class="filter-sheet-chips" id="mobileDesChips"></div>
+        </div>
+        <!-- Mobile Details Section -->
+        <div class="filter-sheet-section">
+          <div class="filter-sheet-section-title">Detail &amp; Vibe</div>
+          <div class="filter-sheet-chips" id="mobileDetailChips"></div>
+        </div>
+      </div>
+      <div class="filter-sheet-footer">
+        <button type="button" class="filter-sheet-btn-clear" onclick="clearAllFilters(); closeMobileFilters();">Clear All</button>
+        <button type="button" class="filter-sheet-btn-apply" id="mobileApplyBtn" onclick="closeMobileFilters()">Apply Filters</button>
       </div>
     </div>
   </div>
@@ -458,6 +1184,119 @@ const DETAIL_PATTERNS = {
   'strapless': /strapless|cat eye/i
 };
 
+const DETAIL_LABELS = {
+  'lace': 'Lace',
+  'crepe': 'Crepe',
+  'satin': 'Satin',
+  'beaded': 'Sparkle & Beaded',
+  'off-shoulder': 'Off-the-Shoulder',
+  'square-neck': 'Square Neck',
+  'sweetheart': 'Sweetheart',
+  'strapless': 'Strapless'
+};
+
+function togglePopover(facet, e) {
+  if (e) e.stopPropagation();
+  const map = { sil: 'dropdownSil', des: 'dropdownDes', detail: 'dropdownDetail' };
+  const targetId = map[facet];
+  const dropdown = document.getElementById(targetId);
+  if (!dropdown) return;
+  const wasOpen = dropdown.classList.contains('is-open');
+  closeAllPopovers();
+  if (!wasOpen) {
+    dropdown.classList.add('is-open');
+    const trigger = dropdown.querySelector('.filter-trigger-btn');
+    if (trigger) trigger.setAttribute('aria-expanded', 'true');
+  }
+}
+
+function closeAllPopovers() {
+  document.querySelectorAll('.filter-facet-dropdown').forEach(dd => {
+    dd.classList.remove('is-open');
+    const trigger = dd.querySelector('.filter-trigger-btn');
+    if (trigger) trigger.setAttribute('aria-expanded', 'false');
+  });
+}
+
+// Global click & esc listener to dismiss popovers
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.filter-facet-dropdown')) {
+    closeAllPopovers();
+  }
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeAllPopovers();
+    closeMobileFilters();
+  }
+});
+
+// Mobile Bottom Sheet
+function openMobileFilters() {
+  closeAllPopovers();
+  const backdrop = document.getElementById('filterSheetBackdrop');
+  if (backdrop) backdrop.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeMobileFilters(e) {
+  if (e && e.target && e.target !== document.getElementById('filterSheetBackdrop') && !e.target.classList.contains('filter-sheet-close') && !e.target.classList.contains('filter-sheet-btn-apply') && !e.target.classList.contains('filter-sheet-btn-clear')) {
+    return;
+  }
+  const backdrop = document.getElementById('filterSheetBackdrop');
+  if (backdrop) backdrop.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function initMobileSheet() {
+  const silChips = document.getElementById('mobileSilChips');
+  const desChips = document.getElementById('mobileDesChips');
+  const detailChips = document.getElementById('mobileDetailChips');
+
+  if (silChips) {
+    silChips.innerHTML = Array.from(document.querySelectorAll('#sil-row .filter-popover-chip')).map(btn => {
+      const val = btn.dataset.value;
+      const nameEl = btn.querySelector('.popover-chip-name');
+      const name = nameEl ? nameEl.textContent : val;
+      return `<button type="button" class="filter-sheet-chip ${val === activeSil ? 'active' : ''}" data-filter="sil" data-value="${val}">
+        <span>${name}</span>
+        <span class="chip-count"></span>
+      </button>`;
+    }).join('');
+  }
+
+  if (desChips) {
+    desChips.innerHTML = Array.from(document.querySelectorAll('#des-row .filter-popover-chip')).map(btn => {
+      const val = btn.dataset.value;
+      const nameEl = btn.querySelector('.popover-chip-name');
+      const name = nameEl ? nameEl.textContent : val;
+      return `<button type="button" class="filter-sheet-chip ${val === activeDes ? 'active' : ''}" data-filter="des" data-value="${val}">
+        <span>${name}</span>
+        <span class="chip-count"></span>
+      </button>`;
+    }).join('');
+  }
+
+  if (detailChips) {
+    detailChips.innerHTML = Array.from(document.querySelectorAll('#detail-row .filter-popover-chip')).map(btn => {
+      const val = btn.dataset.value;
+      const nameEl = btn.querySelector('.popover-chip-name');
+      const name = nameEl ? nameEl.textContent : val;
+      return `<button type="button" class="filter-sheet-chip ${val === activeDetail ? 'active' : ''}" data-filter="detail" data-value="${val}">
+        <span>${name}</span>
+        <span class="chip-count"></span>
+      </button>`;
+    }).join('');
+  }
+
+  // Bind click handlers to mobile chips
+  document.querySelectorAll('.filter-sheet-chip').forEach(btn => {
+    btn.addEventListener('click', function() {
+      setFilter(btn.dataset.filter, btn.dataset.value, false);
+    });
+  });
+}
+
 function _showSkeletons(n) {
   const grid = document.getElementById('pg');
   if (!grid) return;
@@ -491,50 +1330,147 @@ function matchesFilter(p, sil, des, detail, q) {
 }
 
 function updateChipCounts() {
-  // Update silhouette chips
-  document.querySelectorAll('#sil-row .filter-chip').forEach(btn => {
-    const val = btn.dataset.value;
-    const count = P.filter(p => matchesFilter(p, val, activeDes, activeDetail, searchQuery)).length;
-    const countEl = btn.querySelector('.chip-count');
-    if (countEl) countEl.textContent = `(${count})`;
-    btn.classList.toggle('disabled', count === 0 && val !== 'all' && val !== activeSil);
-  });
-
-  // Update designer chips
-  document.querySelectorAll('#des-row .filter-chip').forEach(btn => {
-    const val = btn.dataset.value;
-    const count = P.filter(p => matchesFilter(p, activeSil, val, activeDetail, searchQuery)).length;
-    const countEl = btn.querySelector('.chip-count');
-    if (countEl) countEl.textContent = `(${count})`;
-    btn.classList.toggle('disabled', count === 0 && val !== 'all' && val !== activeDes);
-  });
-
-  // Update detail chips
-  document.querySelectorAll('#detail-row .filter-chip').forEach(btn => {
-    const val = btn.dataset.value;
-    const count = P.filter(p => matchesFilter(p, activeSil, activeDes, val, searchQuery)).length;
-    const countEl = btn.querySelector('.chip-count');
-    if (countEl) countEl.textContent = `(${count})`;
-    btn.classList.toggle('disabled', count === 0 && val !== 'all' && val !== activeDetail);
+  ['sil', 'des', 'detail'].forEach(facet => {
+    document.querySelectorAll(`[data-filter="${facet}"]`).forEach(btn => {
+      const val = btn.dataset.value;
+      let count = 0;
+      if (facet === 'sil') {
+        count = P.filter(p => matchesFilter(p, val, activeDes, activeDetail, searchQuery)).length;
+        btn.classList.toggle('disabled', count === 0 && val !== 'all' && val !== activeSil);
+      } else if (facet === 'des') {
+        count = P.filter(p => matchesFilter(p, activeSil, val, activeDetail, searchQuery)).length;
+        btn.classList.toggle('disabled', count === 0 && val !== 'all' && val !== activeDes);
+      } else if (facet === 'detail') {
+        count = P.filter(p => matchesFilter(p, activeSil, activeDes, val, searchQuery)).length;
+        btn.classList.toggle('disabled', count === 0 && val !== 'all' && val !== activeDetail);
+      }
+      const countEl = btn.querySelector('.chip-count');
+      if (countEl) countEl.textContent = `(${count})`;
+    });
   });
 }
 
-function setFilter(type, value, btn) {
-  const rowId = type === 'sil' ? 'sil-row' : type === 'des' ? 'des-row' : 'detail-row';
-  document.querySelectorAll('#' + rowId + ' .filter-chip').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
+function setFilter(type, value, closePopover) {
+  if (closePopover === undefined) closePopover = true;
   if (type === 'sil') activeSil = value;
   else if (type === 'des') activeDes = value;
   else if (type === 'detail') activeDetail = value;
-  
+
+  // Sync popover chips
+  document.querySelectorAll(`.filter-popover-chip[data-filter="${type}"]`).forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.value === value);
+  });
+
+  // Sync mobile sheet chips
+  document.querySelectorAll(`.filter-sheet-chip[data-filter="${type}"]`).forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.value === value);
+  });
+
+  if (closePopover && window.innerWidth > 860) {
+    closeAllPopovers();
+  }
+
   applyFilters();
 }
 
-function applyFilters() {
-  fil = P.filter(p => matchesFilter(p, activeSil, activeDes, activeDetail, searchQuery));
-  updateClearBtn();
-  updateChipCounts();
-  render();
+function resetFacet(type) {
+  setFilter(type, 'all', true);
+}
+
+function updateTriggerLabels() {
+  // Silhouette
+  const silBtn = document.getElementById('triggerSil');
+  const silLabel = document.getElementById('labelSil');
+  if (silBtn && silLabel) {
+    if (activeSil === 'all') {
+      silLabel.textContent = 'Silhouette';
+      silBtn.classList.remove('has-value');
+    } else {
+      silLabel.textContent = activeSil;
+      silBtn.classList.add('has-value');
+    }
+  }
+
+  // Designer
+  const desBtn = document.getElementById('triggerDes');
+  const desLabel = document.getElementById('labelDes');
+  if (desBtn && desLabel) {
+    if (activeDes === 'all') {
+      desLabel.textContent = 'Designer';
+      desBtn.classList.remove('has-value');
+    } else {
+      desLabel.textContent = activeDes;
+      desBtn.classList.add('has-value');
+    }
+  }
+
+  // Detail
+  const detailBtn = document.getElementById('triggerDetail');
+  const detailLabel = document.getElementById('labelDetail');
+  if (detailBtn && detailLabel) {
+    if (activeDetail === 'all') {
+      detailLabel.textContent = 'Detail & Vibe';
+      detailBtn.classList.remove('has-value');
+    } else {
+      detailLabel.textContent = DETAIL_LABELS[activeDetail] || activeDetail;
+      detailBtn.classList.add('has-value');
+    }
+  }
+}
+
+function renderActiveTray() {
+  const activeTray = document.getElementById('activeFilterTray');
+  const pillsList = document.getElementById('activePillsList');
+  const mobileBadge = document.getElementById('mobileFilterBadge');
+
+  const activeFilters = [];
+  if (activeSil !== 'all') {
+    activeFilters.push({ type: 'sil', label: activeSil });
+  }
+  if (activeDes !== 'all') {
+    activeFilters.push({ type: 'des', label: activeDes });
+  }
+  if (activeDetail !== 'all') {
+    activeFilters.push({ type: 'detail', label: DETAIL_LABELS[activeDetail] || activeDetail });
+  }
+  if (searchQuery.length > 0) {
+    activeFilters.push({ type: 'search', label: `"${searchQuery}"` });
+  }
+
+  if (mobileBadge) {
+    const count = activeFilters.length;
+    mobileBadge.textContent = count;
+    mobileBadge.classList.toggle('has-count', count > 0);
+  }
+
+  if (!activeTray || !pillsList) return;
+
+  if (activeFilters.length === 0) {
+    activeTray.style.display = 'none';
+    pillsList.innerHTML = '';
+  } else {
+    activeTray.style.display = 'block';
+    const pillsHtml = activeFilters.map(f => `
+      <button type="button" class="filter-active-pill" onclick="removeFilter('${f.type}')" title="Remove ${f.label}">
+        <span>${f.label}</span>
+        <span class="filter-active-pill-x">✕</span>
+      </button>
+    `).join('');
+    pillsList.innerHTML = pillsHtml + `<button type="button" class="filter-active-clear-all" onclick="clearAllFilters()">Clear All</button>`;
+  }
+}
+
+function removeFilter(type) {
+  if (type === 'search') {
+    searchQuery = '';
+    const searchInput = document.getElementById('catalogSearch');
+    const searchClear = document.getElementById('catalogSearchClear');
+    if (searchInput) searchInput.value = '';
+    if (searchClear) searchClear.classList.remove('visible');
+    applyFilters();
+  } else {
+    setFilter(type, 'all', false);
+  }
 }
 
 function updateClearBtn() {
@@ -548,17 +1484,27 @@ function clearAllFilters() {
   activeDes = 'all';
   activeDetail = 'all';
   searchQuery = '';
-  
+
   const searchInput = document.getElementById('catalogSearch');
   const searchClear = document.getElementById('catalogSearchClear');
   if (searchInput) searchInput.value = '';
   if (searchClear) searchClear.classList.remove('visible');
 
-  document.querySelectorAll('.filter-chip').forEach(b => {
+  document.querySelectorAll('.filter-popover-chip, .filter-sheet-chip').forEach(b => {
     b.classList.toggle('active', b.dataset.value === 'all');
   });
 
+  closeAllPopovers();
   applyFilters();
+}
+
+function applyFilters() {
+  fil = P.filter(p => matchesFilter(p, activeSil, activeDes, activeDetail, searchQuery));
+  updateClearBtn();
+  updateTriggerLabels();
+  renderActiveTray();
+  updateChipCounts();
+  render();
 }
 
 (async function loadProducts() {
@@ -570,27 +1516,32 @@ function clearAllFilters() {
     _dataLoaded = true;
     fil = P.slice();
 
-    // Check URL params: ?designer=Maggie+Sottero or ?sil=A-Line or ?lookbook=...
+    initMobileSheet();
+
+    // Check URL params: ?designer=Maggie+Sottero or ?sil=A-Line or ?lookbook=... or ?detail=...
     const urlParams = new URLSearchParams(window.location.search);
     const desParam = urlParams.get('designer') || urlParams.get('des');
     const silParam = urlParams.get('sil');
+    const detailParam = urlParams.get('detail');
     const lookbookParam = urlParams.get('lookbook');
 
     if (desParam) {
-      const btn = document.querySelector(`.filter-chip[data-filter="des"][data-value="${CSS.escape(desParam)}"]`);
-      if (btn) {
-        document.querySelectorAll('#des-row .filter-chip').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        activeDes = desParam;
-      }
+      activeDes = desParam;
+      document.querySelectorAll('.filter-popover-chip[data-filter="des"], .filter-sheet-chip[data-filter="des"]').forEach(b => {
+        b.classList.toggle('active', b.dataset.value === desParam);
+      });
     }
     if (silParam) {
-      const btn = document.querySelector(`.filter-chip[data-filter="sil"][data-value="${CSS.escape(silParam)}"]`);
-      if (btn) {
-        document.querySelectorAll('#sil-row .filter-chip').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        activeSil = silParam;
-      }
+      activeSil = silParam;
+      document.querySelectorAll('.filter-popover-chip[data-filter="sil"], .filter-sheet-chip[data-filter="sil"]').forEach(b => {
+        b.classList.toggle('active', b.dataset.value === silParam);
+      });
+    }
+    if (detailParam) {
+      activeDetail = detailParam;
+      document.querySelectorAll('.filter-popover-chip[data-filter="detail"], .filter-sheet-chip[data-filter="detail"]').forEach(b => {
+        b.classList.toggle('active', b.dataset.value === detailParam);
+      });
     }
 
     // Lookbook deep linking: auto populate lookbook if URL includes ?lookbook=SKU1,SKU2
@@ -905,9 +1856,9 @@ document.addEventListener('keydown', e => {
 })();
 
 // ── Attach filter events ──
-document.querySelectorAll('.filter-chip[data-filter]').forEach(function(btn) {
+document.querySelectorAll('.filter-popover-chip[data-filter]').forEach(function(btn) {
   btn.addEventListener('click', function() {
-    setFilter(btn.dataset.filter, btn.dataset.value, btn);
+    setFilter(btn.dataset.filter, btn.dataset.value, true);
   });
 });
 
