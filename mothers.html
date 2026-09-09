@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Josefin+Sans:wght@100;200;300;400&family=Lato:wght@300;400;700;900&display=swap"/>
-  <link rel="stylesheet" href="shared.css?v=20260908g"/>
+  <link rel="stylesheet" href="shared.css?v=20260908h"/>
   <style>
     /* ── MOTHERS PHOTO HERO ── */
     .mothers-hero {
@@ -319,7 +319,7 @@
 </div>
 
 <div id="site-footer"></div>
-<script src="components.js?v=20260908g" defer></script>
+<script src="components.js?v=20260908h" defer></script>
 <script>
 let P = [];
 const BATCH = 12;
@@ -396,7 +396,6 @@ function loadMore() {
         ${pipsHtml}
         ${badgeHtml}
         <div class="dress-card-overlay"></div>
-        <div class="quick-view-badge">Quick View</div>
       </div>
       <div class="dress-card-body">
         <div class="dress-card-name">${p.n || p.s || ''}</div>
@@ -442,8 +441,6 @@ function loadMore() {
 
     card.addEventListener('click', () => goToDress(idx, card));
     card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); goToDress(idx, card); } });
-    const qv = card.querySelector('.quick-view-badge');
-    if (qv) qv.addEventListener('click', e => { e.stopPropagation(); openModal(idx); });
     frag.appendChild(card);
   });
   document.getElementById('pg').appendChild(frag);

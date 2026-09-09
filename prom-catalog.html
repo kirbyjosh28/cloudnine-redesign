@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&display=swap"/>
   <link rel="preload" as="image" href="images/real/prom/01-11961.webp" type="image/webp"/>
-  <link rel="stylesheet" href="shared.css?v=20260908g"/>
+  <link rel="stylesheet" href="shared.css?v=20260908h"/>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -573,30 +573,6 @@
       border-radius: 100px;
       z-index: 4;
     }
-    .quick-view-badge {
-      position: absolute;
-      bottom: 12px;
-      left: 50%;
-      transform: translateX(-50%) translateY(8px);
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(8px);
-      color: #1a1818;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 7px 16px;
-      border-radius: 100px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-      opacity: 0;
-      transition: all .25s ease;
-      z-index: 5;
-      white-space: nowrap;
-    }
-    .dress-card:hover .quick-view-badge {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
 
     /* Wishlist Heart on Card */
     .wl-btn {
@@ -1108,7 +1084,7 @@
 </div>
 
 <div id="site-footer"></div>
-<script src="components.js?v=20260908g" defer></script>
+<script src="components.js?v=20260908h" defer></script>
 <script>
 let P = [];
 let _dataLoaded = false;
@@ -1361,7 +1337,6 @@ function _renderPage() {
         <img src="${p.i}" alt="${(p.d||'')} ${(p.s||'')}" loading="lazy"/>
         ${pipsHtml}
         ${badgeHtml}
-        <div class="quick-view-badge">Quick View</div>
       </div>
       <div class="dress-card-body">
         <div class="dress-designer-tag">${p.d || 'Designer Prom'}</div>
@@ -1423,13 +1398,6 @@ function _renderPage() {
         goToDress(idx, card);
       }
     });
-    const qv = card.querySelector('.quick-view-badge');
-    if (qv) {
-      qv.addEventListener('click', e => {
-        e.stopPropagation();
-        openModal(idx);
-      });
-    }
   });
 
   _renderPagination();
@@ -1442,7 +1410,7 @@ function _renderPagination() {
   if (!pag) return;
   if (total <= 1) { pag.innerHTML = ''; return; }
 
-  let html = `<button class="pag-btn" ${_page===0?'disabled':''} data-page="prev">&#8249; Prev</button>`;
+  let html = `<button class="pag-btn" ${_page===0?'disabled':''} data-page="prev">Prev</button>`;
   for (let i = 0; i < total; i++) {
     if (total > 9) {
       const show = i === 0 || i === total-1 || Math.abs(i - _page) <= 1;
@@ -1453,7 +1421,7 @@ function _renderPagination() {
     }
     html += `<button class="pag-btn ${i===_page?'active':''}" data-page="${i}">${i+1}</button>`;
   }
-  html += `<button class="pag-btn" ${_page===total-1?'disabled':''} data-page="next">Next &#8250;</button>`;
+  html += `<button class="pag-btn" ${_page===total-1?'disabled':''} data-page="next">Next</button>`;
   pag.innerHTML = html;
   pag.onclick = function(e) {
     const b = e.target.closest('[data-page]');
