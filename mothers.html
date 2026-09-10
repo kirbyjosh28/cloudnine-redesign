@@ -270,12 +270,56 @@
   </div>
 </div>
 <div class="section-catalog" id="gowns">
-  <!-- Condensed Luxury Floating Filter Pill -->
+  <!-- Sticky Sentinel for Smooth IntersectionObserver Detection -->
+  <div id="filterStickySentinel" style="height:1px;width:100%;margin-top:-1px;pointer-events:none;opacity:0;"></div>
+
+  <!-- COMPACT LUXURY FLOATING FILTER PILL -->
   <div class="filter-bar-sticky-wrap" id="filterStickyWrap">
     <div class="filter-bar-compact" id="filterBarCompact">
-      <!-- Dropdown Facets Group -->
-      <div class="filter-facets-group">
-        <!-- 1. Designer Trigger & Popover -->
+      <!-- Left: Facet Dropdown Triggers -->
+      <div class="filter-facets-group" id="filterFacetsGroup">
+        <!-- 1. Silhouette Trigger & Popover -->
+        <div class="filter-facet-dropdown" id="dropdownSil" data-facet="sil">
+          <button type="button" class="filter-trigger-btn" id="triggerSil" aria-expanded="false" aria-haspopup="true" onclick="toggleFacetDropdown('sil', event)">
+            <span class="filter-trigger-label" id="labelSil">Silhouette</span>
+            <span class="filter-trigger-caret" aria-hidden="true"></span>
+          </button>
+          <div class="filter-popover" id="popoverSil" role="region" aria-label="Silhouette Filters">
+            <div class="filter-popover-inner">
+              <div class="filter-popover-header">
+                <span class="filter-popover-title">Select Silhouette</span>
+              </div>
+              <div class="filter-popover-grid" id="sil-row">
+                <button type="button" class="filter-popover-chip active" data-filter="sil" data-value="all" onclick="setFilter('sil', 'all', true, event)">
+                  <span class="popover-chip-name">All Silhouettes</span>
+                  <span class="chip-count"></span>
+                </button>
+                <button type="button" class="filter-popover-chip" data-filter="sil" data-value="Classic Evening" onclick="setFilter('sil', 'Classic Evening', true, event)">
+                  <span class="popover-chip-name">Classic Evening</span>
+                  <span class="chip-count"></span>
+                </button>
+                <button type="button" class="filter-popover-chip" data-filter="sil" data-value="A-Line" onclick="setFilter('sil', 'A-Line', true, event)">
+                  <span class="popover-chip-name">A-Line</span>
+                  <span class="chip-count"></span>
+                </button>
+                <button type="button" class="filter-popover-chip" data-filter="sil" data-value="Mermaid &amp; Fit &amp; Flare" onclick="setFilter('sil', 'Mermaid &amp; Fit &amp; Flare', true, event)">
+                  <span class="popover-chip-name">Mermaid &amp; Fit &amp; Flare</span>
+                  <span class="chip-count"></span>
+                </button>
+                <button type="button" class="filter-popover-chip" data-filter="sil" data-value="Sheath &amp; Column" onclick="setFilter('sil', 'Sheath &amp; Column', true, event)">
+                  <span class="popover-chip-name">Sheath &amp; Column</span>
+                  <span class="chip-count"></span>
+                </button>
+                <button type="button" class="filter-popover-chip" data-filter="sil" data-value="Tea-Length &amp; Midi" onclick="setFilter('sil', 'Tea-Length &amp; Midi', true, event)">
+                  <span class="popover-chip-name">Tea-Length &amp; Midi</span>
+                  <span class="chip-count"></span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Designer Trigger & Popover -->
         <div class="filter-facet-dropdown" id="dropdownDes" data-facet="des">
           <button type="button" class="filter-trigger-btn" id="triggerDes" aria-expanded="false" aria-haspopup="true" onclick="toggleFacetDropdown('des', event)">
             <span class="filter-trigger-label" id="labelDes">Designer</span>
@@ -330,7 +374,7 @@
       </div>
     </div>
 
-    <!-- Dynamic Active Filter Tags Tray -->
+    <!-- Dynamic Active Filter Tags Tray (Removable Pills) -->
     <div class="filter-active-tray" id="activeFilterTray" style="display:none;">
       <div class="filter-active-pills-list" id="activePillsList"></div>
     </div>
@@ -345,6 +389,11 @@
         <button type="button" class="filter-sheet-close" onclick="closeMobileFilters()">Close</button>
       </div>
       <div class="filter-sheet-body">
+        <!-- Mobile Silhouette Section -->
+        <div class="filter-sheet-section">
+          <div class="filter-sheet-section-title">Silhouette</div>
+          <div class="filter-sheet-chips" id="mobileSilChips"></div>
+        </div>
         <!-- Mobile Designer Section -->
         <div class="filter-sheet-section">
           <div class="filter-sheet-section-title">Designer</div>
@@ -401,12 +450,8 @@ let P = [];
 let _dataLoaded = false;
 const PAGE_SIZE = 24;
 let _page = 0;
-let fil = [];
-let curImgs = [], curIdx = 0;
-let currentModalDress = null;
-let currentDesigner = 'all';
-let searchQuery = '';
-let currentDensity = 4;
+let fil = [], curImgs = [], curIdx = 0;
+let activeSil = 'all', activeDes = 'all', searchQuery = '';
 
 // ── Popover Controller ──
 function toggleFacetDropdown(facet, e) {
@@ -414,7 +459,7 @@ function toggleFacetDropdown(facet, e) {
     e.stopPropagation();
     if (e.preventDefault) e.preventDefault();
   }
-  const map = { des: 'dropdownDes' };
+  const map = { sil: 'dropdownSil', des: 'dropdownDes' };
   const targetId = map[facet];
   const dropdown = document.getElementById(targetId);
   if (!dropdown) return;
@@ -479,14 +524,29 @@ function getChip(facet, val) {
 }
 
 function initMobileSheet() {
+  const silChips = document.getElementById('mobileSilChips');
   const desChips = document.getElementById('mobileDesChips');
+
+  if (silChips) {
+    silChips.innerHTML = Array.from(document.querySelectorAll('#sil-row .filter-popover-chip')).map(btn => {
+      const val = btn.dataset.value;
+      const nameEl = btn.querySelector('.popover-chip-name');
+      const name = nameEl ? nameEl.textContent : val;
+      const safeVal = val.replace(/'/g, "\\'");
+      return `<button type="button" class="filter-sheet-chip ${val.toLowerCase() === activeSil.toLowerCase() ? 'active' : ''}" data-filter="sil" data-value="${val}" onclick="setFilter('sil', '${safeVal}', false)">
+        <span>${name}</span>
+        <span class="chip-count"></span>
+      </button>`;
+    }).join('');
+  }
+
   if (desChips) {
     desChips.innerHTML = Array.from(document.querySelectorAll('#des-row .filter-popover-chip')).map(btn => {
       const val = btn.dataset.value;
       const nameEl = btn.querySelector('.popover-chip-name');
       const name = nameEl ? nameEl.textContent : val;
       const safeVal = val.replace(/'/g, "\\'");
-      return `<button type="button" class="filter-sheet-chip ${val.toLowerCase() === currentDesigner.toLowerCase() ? 'active' : ''}" data-filter="des" data-value="${val}" onclick="setFilter('des', '${safeVal}', false)">
+      return `<button type="button" class="filter-sheet-chip ${val.toLowerCase() === activeDes.toLowerCase() ? 'active' : ''}" data-filter="des" data-value="${val}" onclick="setFilter('des', '${safeVal}', false)">
         <span>${name}</span>
         <span class="chip-count"></span>
       </button>`;
@@ -502,7 +562,8 @@ function _showSkeletons(n) {
   if (cc) cc.textContent = 'Loading Mothers Collection…';
 }
 
-function matchesFilter(p, des, q) {
+function matchesFilter(p, sil, des, q) {
+  if (sil !== 'all' && (p.sil || '').toLowerCase() !== sil.toLowerCase()) return false;
   if (des !== 'all' && (p.d || '').toLowerCase() !== des.toLowerCase()) return false;
   if (q) {
     const qLower = q.toLowerCase().trim();
@@ -510,18 +571,27 @@ function matchesFilter(p, des, q) {
     const matchName = (p.n || '').toLowerCase().includes(qLower);
     const matchDes = (p.d || '').toLowerCase().includes(qLower);
     const matchCap = (p.c || '').toLowerCase().includes(qLower);
-    if (!matchSku && !matchName && !matchDes && !matchCap) return false;
+    const matchSil = (p.sil || '').toLowerCase().includes(qLower);
+    if (!matchSku && !matchName && !matchDes && !matchCap && !matchSil) return false;
   }
   return true;
 }
 
 function updateChipCounts() {
-  document.querySelectorAll(`[data-filter="des"]`).forEach(btn => {
-    const val = btn.dataset.value;
-    const count = P.filter(p => matchesFilter(p, val, searchQuery)).length;
-    btn.classList.toggle('disabled', count === 0 && val !== 'all' && val.toLowerCase() !== currentDesigner.toLowerCase());
-    const countEl = btn.querySelector('.chip-count');
-    if (countEl) countEl.textContent = `(${count})`;
+  ['sil', 'des'].forEach(facet => {
+    document.querySelectorAll(`[data-filter="${facet}"]`).forEach(btn => {
+      const val = btn.dataset.value;
+      let count = 0;
+      if (facet === 'sil') {
+        count = P.filter(p => matchesFilter(p, val, activeDes, searchQuery)).length;
+        btn.classList.toggle('disabled', count === 0 && val !== 'all' && val.toLowerCase() !== activeSil.toLowerCase());
+      } else if (facet === 'des') {
+        count = P.filter(p => matchesFilter(p, activeSil, val, searchQuery)).length;
+        btn.classList.toggle('disabled', count === 0 && val !== 'all' && val.toLowerCase() !== activeDes.toLowerCase());
+      }
+      const countEl = btn.querySelector('.chip-count');
+      if (countEl) countEl.textContent = `(${count})`;
+    });
   });
 }
 
@@ -531,8 +601,10 @@ function setFilter(type, value, closePopover, e) {
   }
   if (closePopover === undefined) closePopover = true;
 
-  if (type === 'des') {
-    currentDesigner = (currentDesigner.toLowerCase() === value.toLowerCase() && value !== 'all') ? 'all' : value;
+  if (type === 'sil') {
+    activeSil = (activeSil.toLowerCase() === value.toLowerCase() && value !== 'all') ? 'all' : value;
+  } else if (type === 'des') {
+    activeDes = (activeDes.toLowerCase() === value.toLowerCase() && value !== 'all') ? 'all' : value;
   }
 
   syncChipStates();
@@ -546,22 +618,40 @@ function setFilter(type, value, closePopover, e) {
 window.setFilter = setFilter;
 
 function syncChipStates() {
-  const activeVal = currentDesigner.toLowerCase();
-  document.querySelectorAll(`[data-filter="des"]`).forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.value.toLowerCase() === activeVal);
+  ['sil', 'des'].forEach(type => {
+    const activeVal = (type === 'sil' ? activeSil : activeDes).toLowerCase();
+    document.querySelectorAll(`[data-filter="${type}"]`).forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.value.toLowerCase() === activeVal);
+    });
   });
 }
 
 function updateTriggerLabels() {
+  // Silhouette
+  const silBtn = document.getElementById('triggerSil');
+  const silLabel = document.getElementById('labelSil');
+  if (silBtn && silLabel) {
+    if (activeSil === 'all') {
+      silLabel.textContent = 'Silhouette';
+      silBtn.classList.remove('has-value');
+    } else {
+      const chip = getChip('sil', activeSil);
+      const name = chip ? (chip.querySelector('.popover-chip-name') ? chip.querySelector('.popover-chip-name').textContent.trim() : chip.dataset.value) : activeSil;
+      silLabel.textContent = name;
+      silBtn.classList.add('has-value');
+    }
+  }
+
+  // Designer
   const desBtn = document.getElementById('triggerDes');
   const desLabel = document.getElementById('labelDes');
   if (desBtn && desLabel) {
-    if (currentDesigner === 'all') {
+    if (activeDes === 'all') {
       desLabel.textContent = 'Designer';
       desBtn.classList.remove('has-value');
     } else {
-      const chip = getChip('des', currentDesigner);
-      const name = chip ? (chip.querySelector('.popover-chip-name') ? chip.querySelector('.popover-chip-name').textContent.trim() : chip.dataset.value) : currentDesigner;
+      const chip = getChip('des', activeDes);
+      const name = chip ? (chip.querySelector('.popover-chip-name') ? chip.querySelector('.popover-chip-name').textContent.trim() : chip.dataset.value) : activeDes;
       desLabel.textContent = name;
       desBtn.classList.add('has-value');
     }
@@ -574,9 +664,14 @@ function renderActiveTray() {
   const mobileBadge = document.getElementById('mobileFilterBadge');
 
   const activeFilters = [];
-  if (currentDesigner !== 'all') {
-    const chip = getChip('des', currentDesigner);
-    const label = chip ? (chip.querySelector('.popover-chip-name') ? chip.querySelector('.popover-chip-name').textContent.trim() : chip.dataset.value) : currentDesigner;
+  if (activeSil !== 'all') {
+    const chip = getChip('sil', activeSil);
+    const label = chip ? (chip.querySelector('.popover-chip-name') ? chip.querySelector('.popover-chip-name').textContent.trim() : chip.dataset.value) : activeSil;
+    activeFilters.push({ type: 'sil', label: label });
+  }
+  if (activeDes !== 'all') {
+    const chip = getChip('des', activeDes);
+    const label = chip ? (chip.querySelector('.popover-chip-name') ? chip.querySelector('.popover-chip-name').textContent.trim() : chip.dataset.value) : activeDes;
     activeFilters.push({ type: 'des', label: label });
   }
   if (searchQuery.length > 0) {
@@ -618,15 +713,19 @@ window.removeFilter = removeFilter;
 
 function updateClearBtn() {
   const clr = document.getElementById('clearFilters');
-  const isFiltered = currentDesigner !== 'all' || searchQuery.length > 0;
+  const isFiltered = activeSil !== 'all' || activeDes !== 'all' || searchQuery.length > 0;
   if (clr) clr.classList.toggle('visible', isFiltered);
 }
 
 function updateUrlParams() {
   if (!window.history || !window.history.replaceState) return;
   const params = new URLSearchParams(window.location.search);
-  if (currentDesigner !== 'all') params.set('designer', currentDesigner);
+  if (activeDes !== 'all') params.set('designer', activeDes);
   else params.delete('designer');
+
+  if (activeSil !== 'all') params.set('sil', activeSil);
+  else params.delete('sil');
+
   if (searchQuery) params.set('q', searchQuery);
   else params.delete('q');
 
@@ -635,7 +734,6 @@ function updateUrlParams() {
 }
 
 function setDensity(cols) {
-  currentDensity = cols;
   const grid = document.getElementById('pg');
   const d3 = document.getElementById('density3');
   const d4 = document.getElementById('density4');
@@ -647,6 +745,7 @@ function setDensity(cols) {
     d3.setAttribute('aria-pressed', cols === 3 ? 'true' : 'false');
     d4.setAttribute('aria-pressed', cols === 4 ? 'true' : 'false');
   }
+  localStorage.setItem('cn_mothers_density', cols.toString());
 }
 window.setDensity = setDensity;
 
@@ -657,16 +756,30 @@ window.setDensity = setDensity;
     if (!res.ok) throw new Error('Failed to load product data');
     P = await res.json();
     _dataLoaded = true;
+    fil = P.slice();
 
     initMobileSheet();
 
     // Check URL parameters
     const urlParams = new URLSearchParams(window.location.search);
     const desParam = urlParams.get('designer') || urlParams.get('d');
+    const silParam = urlParams.get('sil');
     const qParam = urlParams.get('q') || urlParams.get('sku');
 
-    if (desParam) currentDesigner = desParam;
+    if (desParam) {
+      const matchChip = getChip('des', desParam);
+      activeDes = matchChip ? matchChip.dataset.value : desParam;
+    }
+    if (silParam) {
+      const matchChip = getChip('sil', silParam);
+      activeSil = matchChip ? matchChip.dataset.value : silParam;
+    }
     if (qParam) searchQuery = qParam;
+
+    const savedDensity = localStorage.getItem('cn_mothers_density');
+    if (savedDensity) {
+      setDensity(parseInt(savedDensity, 10));
+    }
 
     syncChipStates();
     applyFilters();
@@ -678,7 +791,7 @@ window.setDensity = setDensity;
 })();
 
 function applyFilters() {
-  fil = P.filter(p => matchesFilter(p, currentDesigner, searchQuery));
+  fil = P.filter(p => matchesFilter(p, activeSil, activeDes, searchQuery));
 
   _page = 0;
   const cc = document.getElementById('cc');
@@ -694,9 +807,11 @@ function applyFilters() {
   updateUrlParams();
   _renderPage();
 }
+window.applyFilters = applyFilters;
 
 function clearAllFilters() {
-  currentDesigner = 'all';
+  activeSil = 'all';
+  activeDes = 'all';
   searchQuery = '';
   syncChipStates();
   closeAllFacetDropdowns();
@@ -930,11 +1045,31 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Tab') {
     var mo = document.getElementById('mo');
     var focusable = mo.querySelectorAll('button:not([disabled]),[href],input,select,textarea,[tabindex]:not([tabindex="-1"])');
-    var first = focusable[0], last = focusable[focusable.length - 1];
     if (e.shiftKey) { if (document.activeElement === first) { e.preventDefault(); last.focus(); } }
     else { if (document.activeElement === last) { e.preventDefault(); first.focus(); } }
   }
 });
+
+// ── Sticky filter pill observer ──
+(function() {
+  const sentinel = document.getElementById('filterStickySentinel');
+  const stickyWrap = document.getElementById('filterStickyWrap');
+  if (!stickyWrap) return;
+
+  if (sentinel && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        stickyWrap.classList.toggle('is-stuck', !entry.isIntersecting);
+      });
+    }, { rootMargin: '-76px 0px 0px 0px', threshold: [0, 1] });
+    observer.observe(sentinel);
+  } else {
+    window.addEventListener('scroll', () => {
+      const top = stickyWrap.getBoundingClientRect().top;
+      stickyWrap.classList.toggle('is-stuck', top <= 80);
+    }, { passive: true });
+  }
+})();
 </script>
 </main>
 </body>

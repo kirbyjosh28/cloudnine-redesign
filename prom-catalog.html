@@ -866,53 +866,15 @@
   </div>
 </div>
 
-<!-- Condensed Luxury Floating Filter Pill -->
+<!-- Sticky Sentinel for Smooth IntersectionObserver Detection -->
+<div id="filterStickySentinel" style="height:1px;width:100%;margin-top:-1px;pointer-events:none;opacity:0;"></div>
+
+<!-- COMPACT LUXURY FLOATING FILTER PILL -->
 <div class="filter-bar-sticky-wrap" id="filterStickyWrap">
   <div class="filter-bar-compact" id="filterBarCompact">
-    <!-- Dropdown Facets Group -->
-    <div class="filter-facets-group">
-      <!-- 1. Designer Trigger & Popover -->
-      <div class="filter-facet-dropdown" id="dropdownDes" data-facet="des">
-        <button type="button" class="filter-trigger-btn" id="triggerDes" aria-expanded="false" aria-haspopup="true" onclick="toggleFacetDropdown('des', event)">
-          <span class="filter-trigger-label" id="labelDes">Designer</span>
-          <span class="filter-trigger-caret" aria-hidden="true"></span>
-        </button>
-        <div class="filter-popover" id="popoverDes" role="region" aria-label="Designer Filters">
-          <div class="filter-popover-inner">
-            <div class="filter-popover-header">
-              <span class="filter-popover-title">Select Designer</span>
-            </div>
-            <div class="filter-popover-grid" id="des-row">
-              <button type="button" class="filter-popover-chip active" data-filter="des" data-value="all" onclick="setFilter('des', 'all', true, event)">
-                <span class="popover-chip-name">All Designers</span>
-                <span class="chip-count"></span>
-              </button>
-              <button type="button" class="filter-popover-chip" data-filter="des" data-value="Amarra" onclick="setFilter('des', 'Amarra', true, event)">
-                <span class="popover-chip-name">Amarra</span>
-                <span class="chip-count"></span>
-              </button>
-              <button type="button" class="filter-popover-chip" data-filter="des" data-value="Ashley Lauren" onclick="setFilter('des', 'Ashley Lauren', true, event)">
-                <span class="popover-chip-name">Ashley Lauren</span>
-                <span class="chip-count"></span>
-              </button>
-              <button type="button" class="filter-popover-chip" data-filter="des" data-value="Rachel Allan" onclick="setFilter('des', 'Rachel Allan', true, event)">
-                <span class="popover-chip-name">Rachel Allan</span>
-                <span class="chip-count"></span>
-              </button>
-              <button type="button" class="filter-popover-chip" data-filter="des" data-value="Rose + Grace" onclick="setFilter('des', 'Rose + Grace', true, event)">
-                <span class="popover-chip-name">Rose + Grace</span>
-                <span class="chip-count"></span>
-              </button>
-              <button type="button" class="filter-popover-chip" data-filter="des" data-value="Sydney's Prom" onclick="setFilter('des', 'Sydney\'s Prom', true, event)">
-                <span class="popover-chip-name">Sydney's Prom</span>
-                <span class="chip-count"></span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 2. Trend / Style Trigger & Popover -->
+    <!-- Left: Facet Dropdown Triggers -->
+    <div class="filter-facets-group" id="filterFacetsGroup">
+      <!-- 1. Trend / Style Trigger & Popover -->
       <div class="filter-facet-dropdown" id="dropdownTrend" data-facet="trend">
         <button type="button" class="filter-trigger-btn" id="triggerTrend" aria-expanded="false" aria-haspopup="true" onclick="toggleFacetDropdown('trend', event)">
           <span class="filter-trigger-label" id="labelTrend">Style &amp; Trend</span>
@@ -952,6 +914,47 @@
           </div>
         </div>
       </div>
+
+      <!-- 2. Designer Trigger & Popover -->
+      <div class="filter-facet-dropdown" id="dropdownDes" data-facet="des">
+        <button type="button" class="filter-trigger-btn" id="triggerDes" aria-expanded="false" aria-haspopup="true" onclick="toggleFacetDropdown('des', event)">
+          <span class="filter-trigger-label" id="labelDes">Designer</span>
+          <span class="filter-trigger-caret" aria-hidden="true"></span>
+        </button>
+        <div class="filter-popover" id="popoverDes" role="region" aria-label="Designer Filters">
+          <div class="filter-popover-inner">
+            <div class="filter-popover-header">
+              <span class="filter-popover-title">Select Designer</span>
+            </div>
+            <div class="filter-popover-grid" id="des-row">
+              <button type="button" class="filter-popover-chip active" data-filter="des" data-value="all" onclick="setFilter('des', 'all', true, event)">
+                <span class="popover-chip-name">All Designers</span>
+                <span class="chip-count"></span>
+              </button>
+              <button type="button" class="filter-popover-chip" data-filter="des" data-value="Amarra" onclick="setFilter('des', 'Amarra', true, event)">
+                <span class="popover-chip-name">Amarra</span>
+                <span class="chip-count"></span>
+              </button>
+              <button type="button" class="filter-popover-chip" data-filter="des" data-value="Ashley Lauren" onclick="setFilter('des', 'Ashley Lauren', true, event)">
+                <span class="popover-chip-name">Ashley Lauren</span>
+                <span class="chip-count"></span>
+              </button>
+              <button type="button" class="filter-popover-chip" data-filter="des" data-value="Rachel Allan" onclick="setFilter('des', 'Rachel Allan', true, event)">
+                <span class="popover-chip-name">Rachel Allan</span>
+                <span class="chip-count"></span>
+              </button>
+              <button type="button" class="filter-popover-chip" data-filter="des" data-value="Rose + Grace" onclick="setFilter('des', 'Rose + Grace', true, event)">
+                <span class="popover-chip-name">Rose + Grace</span>
+                <span class="chip-count"></span>
+              </button>
+              <button type="button" class="filter-popover-chip" data-filter="des" data-value="Sydney's Prom" onclick="setFilter('des', 'Sydney\'s Prom', true, event)">
+                <span class="popover-chip-name">Sydney's Prom</span>
+                <span class="chip-count"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Mobile Trigger Button -->
@@ -971,7 +974,7 @@
     </div>
   </div>
 
-  <!-- Dynamic Active Filter Tags Tray -->
+  <!-- Dynamic Active Filter Tags Tray (Removable Pills) -->
   <div class="filter-active-tray" id="activeFilterTray" style="display:none;">
     <div class="filter-active-pills-list" id="activePillsList"></div>
   </div>
@@ -986,15 +989,15 @@
       <button type="button" class="filter-sheet-close" onclick="closeMobileFilters()">Close</button>
     </div>
     <div class="filter-sheet-body">
-      <!-- Mobile Designer Section -->
-      <div class="filter-sheet-section">
-        <div class="filter-sheet-section-title">Designer</div>
-        <div class="filter-sheet-chips" id="mobileDesChips"></div>
-      </div>
       <!-- Mobile Trend Section -->
       <div class="filter-sheet-section">
         <div class="filter-sheet-section-title">Style &amp; Trend</div>
         <div class="filter-sheet-chips" id="mobileTrendChips"></div>
+      </div>
+      <!-- Mobile Designer Section -->
+      <div class="filter-sheet-section">
+        <div class="filter-sheet-section-title">Designer</div>
+        <div class="filter-sheet-chips" id="mobileDesChips"></div>
       </div>
     </div>
     <div class="filter-sheet-footer">
@@ -1739,6 +1742,27 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowLeft') shiftImg(-1);
   if (e.key === 'ArrowRight') shiftImg(1);
 });
+
+// ── Sticky filter pill observer ──
+(function() {
+  const sentinel = document.getElementById('filterStickySentinel');
+  const stickyWrap = document.getElementById('filterStickyWrap');
+  if (!stickyWrap) return;
+
+  if (sentinel && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        stickyWrap.classList.toggle('is-stuck', !entry.isIntersecting);
+      });
+    }, { rootMargin: '-76px 0px 0px 0px', threshold: [0, 1] });
+    observer.observe(sentinel);
+  } else {
+    window.addEventListener('scroll', () => {
+      const top = stickyWrap.getBoundingClientRect().top;
+      stickyWrap.classList.toggle('is-stuck', top <= 80);
+    }, { passive: true });
+  }
+})();
 </script>
 </main>
 </body>
