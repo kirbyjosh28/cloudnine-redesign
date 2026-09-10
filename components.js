@@ -1099,10 +1099,10 @@ async function ensureGlobalCatalog() {
   _globalLoading = true;
   try {
     const [bRes, pRes, mRes, hRes] = await Promise.allSettled([
-      fetch('data/bridal-products.json?v=20260909h').then(r => r.json()),
-      fetch('data/prom-products.json?v=2').then(r => r.json()),
-      fetch('data/mothers-products.json?v=1').then(r => r.json()),
-      fetch('data/hoco-products.json?v=2').then(r => r.json())
+      fetch('data/bridal-products.json?v=20260909k').then(r => r.json()),
+      fetch('data/prom-products.json?v=20260909k').then(r => r.json()),
+      fetch('data/mothers-products.json?v=20260909k').then(r => r.json()),
+      fetch('data/hoco-products.json?v=20260909k').then(r => r.json())
     ]);
     const b = bRes.status === 'fulfilled' && Array.isArray(bRes.value) ? bRes.value.map(x => Object.assign({}, x, { _cat: 'bridal-catalog.html', _type: 'bridal' })) : [];
     const p = pRes.status === 'fulfilled' && Array.isArray(pRes.value) ? pRes.value.map(x => Object.assign({}, x, { _cat: 'prom-catalog.html', _type: 'prom' })) : [];
@@ -2024,94 +2024,9 @@ document.addEventListener('click', function(e) {
 });
 
 /* ════════════════════════════════════════════════════════
-   CANVAS CONFETTI PHYSICS ENGINE
-   Lightweight zero-dependency particle engine for
-   celebration micro-interactions (lookbook saves & quiz).
+   CONFETTI NO-OP STUB
    ════════════════════════════════════════════════════════ */
-window.triggerConfetti = function(options) {
-  options = options || {};
-  var count = options.count || 45;
-  var spread = options.spread || 60;
-  var colors = options.colors || ['#c9607f', '#d4789a', '#fce8f0', '#98d5d6', '#e4f4f5', '#e85d7a', '#ffffff'];
-
-  var canvas = document.getElementById('cnConfettiCanvas');
-  if (!canvas) {
-    canvas = document.createElement('canvas');
-    canvas.id = 'cnConfettiCanvas';
-    canvas.style.cssText = 'position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:99999;';
-    document.body.appendChild(canvas);
-  }
-
-  var ctx = canvas.getContext('2d');
-  var width = canvas.width = window.innerWidth;
-  var height = canvas.height = window.innerHeight;
-
-  var particles = [];
-  var originX = (options.origin && options.origin.x != null) ? options.origin.x * width : width / 2;
-  var originY = (options.origin && options.origin.y != null) ? options.origin.y * height : height * 0.45;
-
-  for (var i = 0; i < count; i++) {
-    var angle = (-Math.PI / 2) + (Math.random() - 0.5) * (spread * Math.PI / 180);
-    var speed = 4 + Math.random() * 8;
-    particles.push({
-      x: originX,
-      y: originY,
-      vx: Math.cos(angle) * speed,
-      vy: Math.sin(angle) * speed,
-      size: 4 + Math.random() * 5,
-      color: colors[Math.floor(Math.random() * colors.length)],
-      rotation: Math.random() * Math.PI * 2,
-      vRot: (Math.random() - 0.5) * 0.2,
-      opacity: 1,
-      shape: Math.random() > 0.4 ? 'rect' : 'circle',
-      gravity: 0.18 + Math.random() * 0.08,
-      drag: 0.985
-    });
-  }
-
-  var startTime = performance.now();
-  function loop(now) {
-    var elapsed = now - startTime;
-    ctx.clearRect(0, 0, width, height);
-
-    var alive = false;
-    for (var i = 0; i < particles.length; i++) {
-      var p = particles[i];
-      p.vx *= p.drag;
-      p.vy *= p.drag;
-      p.vy += p.gravity;
-      p.x += p.vx;
-      p.y += p.vy;
-      p.rotation += p.vRot;
-      p.opacity = Math.max(0, 1 - elapsed / 2200);
-
-      if (p.opacity > 0 && p.y < height + 20) {
-        alive = true;
-        ctx.save();
-        ctx.translate(p.x, p.y);
-        ctx.rotate(p.rotation);
-        ctx.globalAlpha = p.opacity;
-        ctx.fillStyle = p.color;
-
-        if (p.shape === 'rect') {
-          ctx.fillRect(-p.size / 2, -p.size / 3, p.size, p.size * 0.6);
-        } else {
-          ctx.beginPath();
-          ctx.arc(0, 0, p.size / 2, 0, Math.PI * 2);
-          ctx.fill();
-        }
-        ctx.restore();
-      }
-    }
-
-    if (alive && elapsed < 2500) {
-      requestAnimationFrame(loop);
-    } else {
-      ctx.clearRect(0, 0, width, height);
-    }
-  }
-  requestAnimationFrame(loop);
-};
+window.triggerConfetti = function() {};
 
 // Global Wishlist helper bindings
 window.isItemInWishlist = function(p) {

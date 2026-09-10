@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&display=swap"/>
-  <link rel="stylesheet" href="shared.css?v=20260909d"/>
+  <link rel="stylesheet" href="shared.css?v=20260909k"/>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -1242,7 +1242,7 @@
 </main>
 
 <footer id="site-footer"></footer>
-<script src="components.js?v=20260909d" defer></script>
+<script src="components.js?v=20260909k" defer></script>
 <script>
 /* ── QUIZ STATE ── */
 const TOTAL = 7;
@@ -1503,13 +1503,6 @@ function showResults() {
     results.style.opacity = '1';
   });
   window.scrollTo({ top: 0, behavior: 'smooth' });
-
-  // Celebratory Confetti Burst
-  if (window.triggerConfetti) {
-    setTimeout(() => {
-      window.triggerConfetti({ count: 65, spread: 80 });
-    }, 300);
-  }
 }
 
 function viewGown(d, cardEl) {
@@ -1549,10 +1542,6 @@ function saveAllToLookbook() {
 
   localStorage.setItem(WL_KEY, JSON.stringify(list));
   if (typeof updateWishlistCount === 'function') updateWishlistCount();
-
-  if (window.triggerConfetti) {
-    window.triggerConfetti({ count: 45, spread: 60 });
-  }
 
   const toast = document.getElementById('quizToast');
   toast.textContent = `Added 5 ${activePersona.sil} gowns to your Lookbook!`;
