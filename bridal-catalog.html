@@ -413,9 +413,6 @@
       transition: opacity 0.24s cubic-bezier(0.32, 0.72, 0, 1),
                   transform 0.24s cubic-bezier(0.32, 0.72, 0, 1);
     }
-    .filter-popover--wide {
-      min-width: 380px;
-    }
     .filter-facet-dropdown.is-open .filter-popover {
       opacity: 1;
       transform: translateY(0) scale(1);
@@ -454,44 +451,6 @@
     }
     .filter-popover-grid::-webkit-scrollbar { width: 4px; }
     .filter-popover-grid::-webkit-scrollbar-thumb { background: var(--border-mid); border-radius: 4px; }
-    .filter-popover-grid--2col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6px;
-      max-height: 380px;
-    }
-    .filter-popover-subhead {
-      grid-column: 1 / -1;
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 8.5px;
-      font-weight: 700;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--teal-deep);
-      padding: 10px 4px 4px;
-      border-bottom: 1px solid rgba(204, 231, 232, 0.6);
-      margin-top: 6px;
-    }
-    .filter-popover-subhead:first-of-type {
-      margin-top: 0;
-      padding-top: 2px;
-    }
-    .filter-sheet-subhead {
-      width: 100%;
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 8.5px;
-      font-weight: 700;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--teal-deep);
-      padding: 12px 4px 4px;
-      margin-top: 6px;
-      border-bottom: 1px solid rgba(204, 231, 232, 0.6);
-    }
-    .filter-sheet-subhead:first-of-type {
-      margin-top: 0;
-      padding-top: 2px;
-    }
     .filter-popover-chip {
       display: flex;
       align-items: center;
@@ -1075,100 +1034,6 @@
             </div>
           </div>
         </div>
-
-        <!-- 3. Detail & Vibe Trigger & Popover -->
-        <div class="filter-facet-dropdown" id="dropdownDetail" data-facet="detail">
-          <button type="button" class="filter-trigger-btn" id="triggerDetail" aria-expanded="false" aria-haspopup="true" onclick="toggleFacetDropdown('detail', event)">
-            <span class="filter-trigger-label" id="labelDetail">Detail &amp; Vibe</span>
-            <span class="filter-trigger-caret">▾</span>
-          </button>
-          <div class="filter-popover filter-popover--wide" id="popoverDetail" role="region" aria-label="Detail Filters">
-            <div class="filter-popover-inner">
-              <div class="filter-popover-header">
-                <span class="filter-popover-title">Fabric, Neckline &amp; Details</span>
-              </div>
-              <div class="filter-popover-grid filter-popover-grid--2col" id="detail-row">
-                <button type="button" class="filter-popover-chip active" style="grid-column: 1 / -1;" data-filter="detail" data-value="all" onclick="setFilter('detail', 'all', true, event)">
-                  <span class="popover-chip-name">All Details</span>
-                  <span class="chip-count"></span>
-                </button>
-
-                <!-- Fabric -->
-                <div class="filter-popover-subhead">Fabric</div>
-                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="lace" onclick="setFilter('detail', 'lace', true, event)">
-                  <span class="popover-chip-name">Lace</span>
-                  <span class="chip-count"></span>
-                </button>
-                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="crepe" onclick="setFilter('detail', 'crepe', true, event)">
-                  <span class="popover-chip-name">Crepe</span>
-                  <span class="chip-count"></span>
-                </button>
-                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="satin" onclick="setFilter('detail', 'satin', true, event)">
-                  <span class="popover-chip-name">Satin &amp; Mikado</span>
-                  <span class="chip-count"></span>
-                </button>
-                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="tulle" onclick="setFilter('detail', 'tulle', true, event)">
-                  <span class="popover-chip-name">Tulle &amp; Organza</span>
-                  <span class="chip-count"></span>
-                </button>
-                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="chiffon" onclick="setFilter('detail', 'chiffon', true, event)">
-                  <span class="popover-chip-name">Chiffon</span>
-                  <span class="chip-count"></span>
-                </button>
-
-                <!-- Neckline & Sleeves -->
-                <div class="filter-popover-subhead">Neckline &amp; Sleeves</div>
-                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="strapless" onclick="setFilter('detail', 'strapless', true, event)">
-                  <span class="popover-chip-name">Strapless &amp; Cat Eye</span>
-                  <span class="chip-count"></span>
-                </button>
-                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="square-neck" onclick="setFilter('detail', 'square-neck', true, event)">
-                  <span class="popover-chip-name">Square Neck</span>
-                  <span class="chip-count"></span>
-                </button>
-                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="sweetheart" onclick="setFilter('detail', 'sweetheart', true, event)">
-                  <span class="popover-chip-name">Sweetheart</span>
-                  <span class="chip-count"></span>
-                </button>
-                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="off-shoulder" onclick="setFilter('detail', 'off-shoulder', true, event)">
-                  <span class="popover-chip-name">Off-the-Shoulder</span>
-                  <span class="chip-count"></span>
-                </button>
-                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="v-neck" onclick="setFilter('detail', 'v-neck', true, event)">
-                  <span class="popover-chip-name">V-Neck &amp; Plunge</span>
-                  <span class="chip-count"></span>
-                </button>
-                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="sleeves" onclick="setFilter('detail', 'sleeves', true, event)">
-                  <span class="popover-chip-name">Long Sleeves</span>
-                  <span class="chip-count"></span>
-                </button>
-
-                <!-- Vibe & Embellishment -->
-                <div class="filter-popover-subhead">Vibe &amp; Aesthetic</div>
-                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="beaded" onclick="setFilter('detail', 'beaded', true, event)">
-                  <span class="popover-chip-name">Sparkle &amp; Beaded</span>
-                  <span class="chip-count"></span>
-                </button>
-                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="clean" onclick="setFilter('detail', 'clean', true, event)">
-                  <span class="popover-chip-name">Clean &amp; Minimalist</span>
-                  <span class="chip-count"></span>
-                </button>
-                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="floral" onclick="setFilter('detail', 'floral', true, event)">
-                  <span class="popover-chip-name">Romantic &amp; Floral</span>
-                  <span class="chip-count"></span>
-                </button>
-                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="boho" onclick="setFilter('detail', 'boho', true, event)">
-                  <span class="popover-chip-name">Boho Glam</span>
-                  <span class="chip-count"></span>
-                </button>
-                <button type="button" class="filter-popover-chip" data-filter="detail" data-value="basque" onclick="setFilter('detail', 'basque', true, event)">
-                  <span class="popover-chip-name">Basque &amp; Corset</span>
-                  <span class="chip-count"></span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
 
       <!-- Mobile Trigger Button -->
@@ -1213,11 +1078,6 @@
           <div class="filter-sheet-section-title">Designer</div>
           <div class="filter-sheet-chips" id="mobileDesChips"></div>
         </div>
-        <!-- Mobile Details Section -->
-        <div class="filter-sheet-section">
-          <div class="filter-sheet-section-title">Detail &amp; Vibe</div>
-          <div class="filter-sheet-chips" id="mobileDetailChips"></div>
-        </div>
       </div>
       <div class="filter-sheet-footer">
         <button type="button" class="filter-sheet-btn-clear" onclick="clearAllFilters(); closeMobileFilters();">Clear All</button>
@@ -1260,7 +1120,7 @@
 </div>
 
 <div id="site-footer"></div>
-<script src="components.js?v=20260909f" defer></script>
+<script src="components.js?v=20260909g" defer></script>
 <script>
 /* Products loaded from external JSON for performance.
    Keeps HTML small, enables CDN caching of product data separately. */
@@ -1269,7 +1129,7 @@ let _dataLoaded = false;
 const PAGE_SIZE = 24;
 let _page = 0;
 let fil = [], curImgs = [], curIdx = 0;
-let activeSil = 'all', activeDes = 'all', activeDetail = 'all', searchQuery = '';
+let activeSil = 'all', activeDes = 'all', searchQuery = '';
 
 const BRIDAL_SYNONYMS = {
   'sparkly': ['sparkle', 'bead', 'beaded', 'glitter', 'sequin', 'shimmer', 'crystal', 'rhinestone'],
@@ -1304,36 +1164,13 @@ const BRIDAL_SYNONYMS = {
   'trumpet': ['fit & flare', 'mermaid', 'trumpet']
 };
 
-const DETAIL_CONFIG = {
-  'all': { label: 'All Details', match: () => true },
-  // Fabric
-  'lace': { label: 'Lace', match: p => (p.f && p.f.includes('Lace')) || /lace|chantilly|guipure/i.test((p.c||'') + ' ' + (p.n||'')) },
-  'crepe': { label: 'Crepe', match: p => (p.f && p.f.includes('Crepe')) || /crepe/i.test((p.c||'') + ' ' + (p.n||'')) },
-  'satin': { label: 'Satin & Mikado', match: p => (p.f && (p.f.includes('Satin') || p.f.includes('Mikado'))) || /satin|mikado|silk|jacquard/i.test((p.c||'') + ' ' + (p.n||'')) },
-  'tulle': { label: 'Tulle & Organza', match: p => (p.f && (p.f.includes('Tulle') || p.f.includes('Organza'))) || /tulle|organza/i.test((p.c||'') + ' ' + (p.n||'')) },
-  'chiffon': { label: 'Chiffon', match: p => (p.f && p.f.includes('Chiffon')) || /chiffon/i.test((p.c||'') + ' ' + (p.n||'')) },
-  // Neckline & Sleeves
-  'strapless': { label: 'Strapless & Cat Eye', match: p => (p.nk && p.nk.includes('Strapless')) || /strapless|cat eye|cat-eye/i.test((p.c||'') + ' ' + (p.n||'')) },
-  'square-neck': { label: 'Square Neck', match: p => (p.nk && p.nk.includes('Square Neck')) || /square/i.test((p.c||'') + ' ' + (p.n||'')) },
-  'sweetheart': { label: 'Sweetheart', match: p => (p.nk && p.nk.includes('Sweetheart')) || /sweetheart/i.test((p.c||'') + ' ' + (p.n||'')) },
-  'off-shoulder': { label: 'Off-the-Shoulder', match: p => (p.nk && p.nk.includes('Off-the-Shoulder')) || /off-the-shoulder|off the shoulder|bardot/i.test((p.c||'') + ' ' + (p.n||'')) },
-  'v-neck': { label: 'V-Neck & Plunge', match: p => (p.nk && (p.nk.includes('V-Neck') || p.nk.includes('Plunge'))) || /v-neck|v-neckline|plunge/i.test((p.c||'') + ' ' + (p.n||'')) },
-  'sleeves': { label: 'Long Sleeves', match: p => (p.nk && p.nk.includes('Long Sleeve')) || /sleeve|sleeves|long sleeve/i.test((p.c||'') + ' ' + (p.n||'')) },
-  // Vibe & Aesthetic
-  'beaded': { label: 'Sparkle & Beaded', match: p => (p.v && p.v.includes('Sparkle & Beaded')) || /bead|sparkle|glitter|sequin|pearl|shimmer|crystals/i.test((p.c||'') + ' ' + (p.n||'')) },
-  'clean': { label: 'Clean & Minimalist', match: p => (p.v && p.v.includes('Clean & Minimalist')) || /clean|minimal|sleek|unembellished|simple/i.test((p.c||'') + ' ' + (p.n||'')) },
-  'floral': { label: 'Romantic & Floral', match: p => (p.v && p.v.includes('Romantic & Floral')) || /floral|flower|botanical|3-d floral|3d flower|rose|petal/i.test((p.c||'') + ' ' + (p.n||'')) },
-  'boho': { label: 'Boho Glam', match: p => (p.v && p.v.includes('Boho Glam')) || /boho|bohemian|whimsical|ethereal|rustic/i.test((p.c||'') + ' ' + (p.n||'')) },
-  'basque': { label: 'Basque & Corset', match: p => (p.v && p.v.includes('Basque Waist')) || /basque|corset|boning/i.test((p.c||'') + ' ' + (p.n||'')) }
-};
-
 // ── Popover Controller ──
 function toggleFacetDropdown(facet, e) {
   if (e) {
     e.stopPropagation();
     if (e.preventDefault) e.preventDefault();
   }
-  const map = { sil: 'dropdownSil', des: 'dropdownDes', detail: 'dropdownDetail' };
+  const map = { sil: 'dropdownSil', des: 'dropdownDes' };
   const targetId = map[facet];
   const dropdown = document.getElementById(targetId);
   if (!dropdown) return;
@@ -1398,7 +1235,6 @@ function getChip(facet, val) {
 function initMobileSheet() {
   const silChips = document.getElementById('mobileSilChips');
   const desChips = document.getElementById('mobileDesChips');
-  const detailChips = document.getElementById('mobileDetailChips');
 
   if (silChips) {
     silChips.innerHTML = Array.from(document.querySelectorAll('#sil-row .filter-popover-chip')).map(btn => {
@@ -1424,28 +1260,6 @@ function initMobileSheet() {
         <span class="chip-count"></span>
       </button>`;
     }).join('');
-  }
-
-  if (detailChips) {
-    const detailRow = document.getElementById('detail-row');
-    if (detailRow) {
-      let html = '';
-      Array.from(detailRow.children).forEach(node => {
-        if (node.classList.contains('filter-popover-subhead')) {
-          html += `<div class="filter-sheet-subhead">${node.textContent}</div>`;
-        } else if (node.classList.contains('filter-popover-chip')) {
-          const val = node.dataset.value;
-          const nameEl = node.querySelector('.popover-chip-name');
-          const name = nameEl ? nameEl.textContent : (DETAIL_CONFIG[val] ? DETAIL_CONFIG[val].label : val);
-          const safeVal = val.replace(/'/g, "\\'");
-          html += `<button type="button" class="filter-sheet-chip ${val.toLowerCase() === activeDetail.toLowerCase() ? 'active' : ''}" data-filter="detail" data-value="${val}" onclick="setFilter('detail', '${safeVal}', false)">
-            <span>${name}</span>
-            <span class="chip-count"></span>
-          </button>`;
-        }
-      });
-      detailChips.innerHTML = html;
-    }
   }
 }
 
@@ -1487,33 +1301,24 @@ function matchesSearch(p, q) {
   });
 }
 
-function matchesFilter(p, sil, des, detail, q) {
+function matchesFilter(p, sil, des, q) {
   if (sil !== 'all' && (p.sil || '').toLowerCase() !== sil.toLowerCase()) return false;
   if (des !== 'all' && (p.d || '').toLowerCase() !== des.toLowerCase()) return false;
-  if (detail !== 'all') {
-    const config = DETAIL_CONFIG[detail.toLowerCase()];
-    if (config && config.match) {
-      if (!config.match(p)) return false;
-    }
-  }
   if (q && !matchesSearch(p, q)) return false;
   return true;
 }
 
 function updateChipCounts() {
-  ['sil', 'des', 'detail'].forEach(facet => {
+  ['sil', 'des'].forEach(facet => {
     document.querySelectorAll(`[data-filter="${facet}"]`).forEach(btn => {
       const val = btn.dataset.value;
       let count = 0;
       if (facet === 'sil') {
-        count = P.filter(p => matchesFilter(p, val, activeDes, activeDetail, searchQuery)).length;
+        count = P.filter(p => matchesFilter(p, val, activeDes, searchQuery)).length;
         btn.classList.toggle('disabled', count === 0 && val !== 'all' && val.toLowerCase() !== activeSil.toLowerCase());
       } else if (facet === 'des') {
-        count = P.filter(p => matchesFilter(p, activeSil, val, activeDetail, searchQuery)).length;
+        count = P.filter(p => matchesFilter(p, activeSil, val, searchQuery)).length;
         btn.classList.toggle('disabled', count === 0 && val !== 'all' && val.toLowerCase() !== activeDes.toLowerCase());
-      } else if (facet === 'detail') {
-        count = P.filter(p => matchesFilter(p, activeSil, activeDes, val, searchQuery)).length;
-        btn.classList.toggle('disabled', count === 0 && val !== 'all' && val.toLowerCase() !== activeDetail.toLowerCase());
       }
       const countEl = btn.querySelector('.chip-count');
       if (countEl) countEl.textContent = `(${count})`;
@@ -1532,8 +1337,6 @@ function setFilter(type, value, closePopover, e) {
     activeSil = (activeSil.toLowerCase() === value.toLowerCase() && value !== 'all') ? 'all' : value;
   } else if (type === 'des') {
     activeDes = (activeDes.toLowerCase() === value.toLowerCase() && value !== 'all') ? 'all' : value;
-  } else if (type === 'detail') {
-    activeDetail = (activeDetail.toLowerCase() === value.toLowerCase() && value !== 'all') ? 'all' : value;
   }
 
   syncChipStates();
@@ -1547,8 +1350,8 @@ function setFilter(type, value, closePopover, e) {
 window.setFilter = setFilter;
 
 function syncChipStates() {
-  ['sil', 'des', 'detail'].forEach(type => {
-    const activeVal = (type === 'sil' ? activeSil : type === 'des' ? activeDes : activeDetail).toLowerCase();
+  ['sil', 'des'].forEach(type => {
+    const activeVal = (type === 'sil' ? activeSil : activeDes).toLowerCase();
     document.querySelectorAll(`[data-filter="${type}"]`).forEach(btn => {
       btn.classList.toggle('active', btn.dataset.value.toLowerCase() === activeVal);
     });
@@ -1590,21 +1393,6 @@ function updateTriggerLabels() {
       desBtn.classList.add('has-value');
     }
   }
-
-  // Detail
-  const detailBtn = document.getElementById('triggerDetail');
-  const detailLabel = document.getElementById('labelDetail');
-  if (detailBtn && detailLabel) {
-    if (activeDetail === 'all') {
-      detailLabel.textContent = 'Detail & Vibe';
-      detailBtn.classList.remove('has-value');
-    } else {
-      const chip = getChip('detail', activeDetail);
-      const name = chip ? (chip.querySelector('.popover-chip-name') ? chip.querySelector('.popover-chip-name').textContent.trim() : chip.dataset.value) : (DETAIL_CONFIG[activeDetail] ? DETAIL_CONFIG[activeDetail].label : activeDetail);
-      detailLabel.textContent = name;
-      detailBtn.classList.add('has-value');
-    }
-  }
 }
 
 function renderActiveTray() {
@@ -1622,11 +1410,6 @@ function renderActiveTray() {
     const chip = getChip('des', activeDes);
     const label = chip ? (chip.querySelector('.popover-chip-name') ? chip.querySelector('.popover-chip-name').textContent.trim() : chip.dataset.value) : activeDes;
     activeFilters.push({ type: 'des', label: label });
-  }
-  if (activeDetail !== 'all') {
-    const chip = getChip('detail', activeDetail);
-    const label = chip ? (chip.querySelector('.popover-chip-name') ? chip.querySelector('.popover-chip-name').textContent.trim() : chip.dataset.value) : (DETAIL_CONFIG[activeDetail] ? DETAIL_CONFIG[activeDetail].label : activeDetail);
-    activeFilters.push({ type: 'detail', label: label });
   }
   if (searchQuery.length > 0) {
     activeFilters.push({ type: 'search', label: `"${searchQuery}"` });
@@ -1669,7 +1452,7 @@ window.removeFilter = removeFilter;
 
 function updateClearBtn() {
   const clr = document.getElementById('clearFilters');
-  const isFiltered = activeSil !== 'all' || activeDes !== 'all' || activeDetail !== 'all' || searchQuery.length > 0;
+  const isFiltered = activeSil !== 'all' || activeDes !== 'all' || searchQuery.length > 0;
   if (clr) clr.classList.toggle('visible', isFiltered);
 }
 
@@ -1682,8 +1465,7 @@ function updateUrlParams() {
   if (activeSil !== 'all') params.set('sil', activeSil);
   else params.delete('sil');
 
-  if (activeDetail !== 'all') params.set('detail', activeDetail);
-  else params.delete('detail');
+  params.delete('detail');
 
   if (searchQuery) params.set('q', searchQuery);
   else { params.delete('q'); params.delete('search'); }
@@ -1696,7 +1478,6 @@ function updateUrlParams() {
 function clearAllFilters() {
   activeSil = 'all';
   activeDes = 'all';
-  activeDetail = 'all';
   searchQuery = '';
 
   const searchInput = document.getElementById('catalogSearch');
@@ -1709,7 +1490,7 @@ function clearAllFilters() {
 window.clearAllFilters = clearAllFilters;
 
 function applyFilters() {
-  fil = P.filter(p => matchesFilter(p, activeSil, activeDes, activeDetail, searchQuery));
+  fil = P.filter(p => matchesFilter(p, activeSil, activeDes, searchQuery));
   updateClearBtn();
   updateTriggerLabels();
   syncChipStates();
@@ -1723,7 +1504,7 @@ window.applyFilters = applyFilters;
 (async function loadProducts() {
   _showSkeletons(12);
   try {
-    const res = await fetch('data/bridal-products.json?v=20260909f');
+    const res = await fetch('data/bridal-products.json?v=20260909g');
     if (!res.ok) throw new Error('Failed to load product data');
     P = await res.json();
     _dataLoaded = true;
@@ -1731,11 +1512,10 @@ window.applyFilters = applyFilters;
 
     initMobileSheet();
 
-    // Check URL params: ?designer=Maggie+Sottero or ?sil=A-Line or ?lookbook=... or ?detail=... or ?q=...
+    // Check URL params: ?designer=Maggie+Sottero or ?sil=A-Line or ?lookbook=... or ?q=...
     const urlParams = new URLSearchParams(window.location.search);
     const desParam = urlParams.get('designer') || urlParams.get('des');
     const silParam = urlParams.get('sil');
-    const detailParam = urlParams.get('detail');
     const qParam = urlParams.get('q') || urlParams.get('search');
     const lookbookParam = urlParams.get('lookbook');
 
@@ -1746,10 +1526,6 @@ window.applyFilters = applyFilters;
     if (silParam) {
       const matchChip = getChip('sil', silParam);
       activeSil = matchChip ? matchChip.dataset.value : silParam;
-    }
-    if (detailParam) {
-      const matchChip = getChip('detail', detailParam);
-      activeDetail = matchChip ? matchChip.dataset.value : detailParam;
     }
     if (qParam) {
       searchQuery = qParam.trim().toLowerCase();
