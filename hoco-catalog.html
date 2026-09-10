@@ -294,189 +294,56 @@
       transform: translateY(-1px);
     }
 
-    /* ── Controls & Filter Panel ── */
+    /* ── Density Grids & Hoco Filter Overrides ── */
     .catalog-control-panel {
       max-width: 1520px;
       margin: 0 auto;
       padding: 0 32px;
     }
-    .catalog-filters-card {
-      background: #ffffff;
-      border: 1px solid rgba(201,96,127,0.22);
-      border-radius: 16px;
-      box-shadow: 0 8px 30px rgba(201,96,127,0.06);
-      overflow: hidden;
-      margin-bottom: 28px;
+    @media (max-width: 768px) {
+      .catalog-control-panel {
+        padding: 0 16px;
+      }
     }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    @media (max-width: 860px) { .grid-3 { grid-template-columns: repeat(2, 1fr); gap: 16px; } }
+    @media (max-width: 480px) { .grid-3 { grid-template-columns: 1fr; } }
 
-    /* Row 1: Designers */
-    .designer-filter-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 14px 24px;
-      border-bottom: 1px solid rgba(201,96,127,0.15);
-      overflow-x: auto;
-      scrollbar-width: none;
-      background: rgba(253, 240, 245, 0.4);
+    /* Hoco Theme Accents for Filter Pill */
+    #filterStickyWrap .filter-trigger-btn.has-value,
+    #filterStickyWrap .filter-popover-chip.active,
+    #filterSheetBackdrop .filter-sheet-chip.active,
+    #filterSheetBackdrop .filter-sheet-btn-apply,
+    #filterStickyWrap .density-toggle-wrap button[aria-pressed="true"],
+    #filterStickyWrap .mobile-filter-badge {
+      background: var(--prom-burgundy, #8a3a52);
+      border-color: var(--prom-burgundy, #8a3a52);
+      color: #ffffff;
     }
-    .designer-filter-row::-webkit-scrollbar { display: none; }
-    .filter-row-label {
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #94586d;
-      white-space: nowrap;
-      margin-right: 8px;
+    #filterStickyWrap .filter-active-pill:hover,
+    #filterStickyWrap .filter-main-clear-btn:hover {
+      background: var(--prom-burgundy, #8a3a52);
+      border-color: var(--prom-burgundy, #8a3a52);
+      color: #ffffff;
     }
-    .filter-pill {
-      padding: 8px 18px;
-      border-radius: 100px;
-      border: 1px solid rgba(201,96,127,0.25);
-      background: #fff;
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 13px;
-      font-weight: 600;
-      color: #3b2f34;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: all .2s ease;
-      line-height: 1;
+    #filterStickyWrap .filter-popover-title,
+    #filterSheetBackdrop .filter-sheet-section-title {
+      color: var(--prom-burgundy, #8a3a52);
     }
-    .filter-pill:hover {
-      border-color: #c9607f;
-      color: #c9607f;
-      background: rgba(201,96,127,0.06);
+    #filterStickyWrap .filter-active-pill {
+      color: var(--prom-burgundy, #8a3a52);
+      border-color: rgba(138, 58, 82, 0.2);
+      background: rgba(138, 58, 82, 0.06);
     }
-    .filter-pill.active {
-      background: #c9607f;
-      color: #fff;
-      border-color: #c9607f;
-      box-shadow: 0 4px 12px rgba(201,96,127,0.25);
+    #filterStickyWrap .filter-main-clear-btn {
+      color: var(--prom-burgundy, #8a3a52);
+      border-color: rgba(138, 58, 82, 0.22);
+      background: rgba(138, 58, 82, 0.06);
     }
-
-    /* Row 2: Silhouette Chips & Instant Search */
-    .trend-search-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 14px 24px;
-      flex-wrap: wrap;
-    }
-    .trend-chips-wrap {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      overflow-x: auto;
-      scrollbar-width: none;
-      flex: 1;
-    }
-    .trend-chips-wrap::-webkit-scrollbar { display: none; }
-    .trend-chip {
-      padding: 7px 15px;
-      border-radius: 8px;
-      border: 1px solid rgba(201,96,127,0.2);
-      background: #fdf0f5;
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 12px;
-      font-weight: 600;
-      color: #5c3e4a;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: all .2s ease;
-    }
-    .trend-chip:hover {
-      background: rgba(201,96,127,0.12);
-      color: #c9607f;
-      border-color: #c9607f;
-    }
-    .trend-chip.active {
-      background: #8a3a52;
-      color: #fff;
-      border-color: #8a3a52;
-    }
-
-    /* Instant Search */
-    .instant-search-box {
-      position: relative;
-      min-width: 240px;
-    }
-    .instant-search-box input {
-      width: 100%;
-      background: #fdf0f5;
-      border: 1.5px solid rgba(201,96,127,0.25);
-      border-radius: 100px;
-      padding: 8px 36px 8px 36px;
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 13px;
-      color: #1a1818;
-      outline: none;
-      transition: all .2s ease;
-    }
-    .instant-search-box input:focus {
-      background: #fff;
-      border-color: #c9607f;
-      box-shadow: 0 0 0 3px rgba(201,96,127,0.15);
-    }
-    .instant-search-icon {
-      position: absolute;
-      left: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #94586d;
-      pointer-events: none;
-    }
-    .instant-search-clear {
-      position: absolute;
-      right: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
-      color: #94586d;
-      cursor: pointer;
-      font-size: 14px;
-      display: none;
-      padding: 0;
-      line-height: 1;
-    }
-    .instant-search-clear.visible { display: block; }
-
-    /* Results Header */
-    .catalog-summary-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 4px 16px;
-      border-bottom: 1px solid rgba(201,96,127,0.2);
-      margin-bottom: 24px;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-    .catalog-count-text {
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #7a4d5d;
-    }
-    .clear-all-filters-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #c9607f;
-      background: none;
-      border: none;
-      cursor: pointer;
-      transition: opacity .2s;
-    }
-    .clear-all-filters-btn:hover { opacity: 0.7; }
 
     /* ── Product Grid & Double-Bezel Cards ── */
     .grid-4 {
@@ -999,43 +866,87 @@
   </div>
 </div>
 
-<!-- Controls & Filters Card -->
-<div class="catalog-control-panel">
-  <div class="catalog-filters-card">
-    <!-- Designer Filter Pills -->
-    <div class="designer-filter-row" id="df">
-      <span class="filter-row-label">Designers:</span>
-      <button class="filter-pill active" data-designer="all">All Designers</button>
-      <button class="filter-pill" data-designer="Amarra">Amarra</button>
-      <button class="filter-pill" data-designer="Kate Parker">Kate Parker</button>
+<!-- Condensed Luxury Floating Filter Pill -->
+<div class="filter-bar-sticky-wrap" id="filterStickyWrap">
+  <div class="filter-bar-compact" id="filterBarCompact">
+    <!-- Dropdown Facets Group -->
+    <div class="filter-facets-group">
+      <!-- 1. Designer Trigger & Popover -->
+      <div class="filter-facet-dropdown" id="dropdownDes" data-facet="des">
+        <button type="button" class="filter-trigger-btn" id="triggerDes" aria-expanded="false" aria-haspopup="true" onclick="toggleFacetDropdown('des', event)">
+          <span class="filter-trigger-label" id="labelDes">Designer</span>
+          <span class="filter-trigger-caret" aria-hidden="true"></span>
+        </button>
+        <div class="filter-popover" id="popoverDes" role="region" aria-label="Designer Filters">
+          <div class="filter-popover-inner">
+            <div class="filter-popover-header">
+              <span class="filter-popover-title">Select Designer</span>
+            </div>
+            <div class="filter-popover-grid" id="des-row">
+              <button type="button" class="filter-popover-chip active" data-filter="des" data-value="all" onclick="setFilter('des', 'all', true, event)">
+                <span class="popover-chip-name">All Designers</span>
+                <span class="chip-count"></span>
+              </button>
+              <button type="button" class="filter-popover-chip" data-filter="des" data-value="Amarra" onclick="setFilter('des', 'Amarra', true, event)">
+                <span class="popover-chip-name">Amarra</span>
+                <span class="chip-count"></span>
+              </button>
+              <button type="button" class="filter-popover-chip" data-filter="des" data-value="Kate Parker" onclick="setFilter('des', 'Kate Parker', true, event)">
+                <span class="popover-chip-name">Kate Parker</span>
+                <span class="chip-count"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- Silhouette Chips & Instant Search -->
-    <div class="trend-search-row">
-      <div class="trend-chips-wrap" id="tf">
-        <span class="filter-row-label">Silhouettes:</span>
-        <button class="trend-chip active" data-trend="all">All Styles</button>
-        <button class="trend-chip" data-trend="fitted">Fitted Bodycon</button>
-        <button class="trend-chip" data-trend="satin">Satin A-Line</button>
-        <button class="trend-chip" data-trend="corset">Corset &amp; Lace-Up</button>
-        <button class="trend-chip" data-trend="sparkle">Glitter &amp; Sequins</button>
-      </div>
-
-      <div class="instant-search-box">
-        <input type="text" id="skuSearchInput" placeholder="Search Style # or keyword…" aria-label="Search homecoming dresses by style number or keyword" oninput="onSearchInput(this.value)" style="padding-left:14px;"/>
-        <button class="instant-search-clear" id="searchClearBtn" onclick="clearSearchInput()" aria-label="Clear search">Clear</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Summary Row -->
-  <div class="catalog-summary-bar">
-    <div class="catalog-count-text" id="cc">Loading homecoming dresses…</div>
-    <button class="clear-all-filters-btn" id="clearAllBtn" onclick="clearAllFilters()">
-      Reset Filters
+    <!-- Mobile Trigger Button -->
+    <button type="button" class="filter-mobile-trigger-btn" id="mobileFilterBtn" onclick="openMobileFilters()">
+      <span>Filters</span>
+      <span class="mobile-filter-badge" id="mobileFilterBadge">0</span>
     </button>
+
+    <!-- Right: Count, Single Clear Button & Density Toggle -->
+    <div class="filter-bar-right">
+      <div class="catalog-count-compact" id="cc"></div>
+      <button type="button" class="filter-main-clear-btn" id="clearFilters" onclick="clearAllFilters()" aria-label="Clear all filters">Clear</button>
+      <div class="density-toggle-wrap" id="densityToggle">
+        <button id="density3" title="3-column view" aria-label="3-column grid view" aria-pressed="false" onclick="setDensity(3)">3 Col</button>
+        <button id="density4" title="4-column view" aria-label="4-column grid view" aria-pressed="true" onclick="setDensity(4)">4 Col</button>
+      </div>
+    </div>
   </div>
 
+  <!-- Dynamic Active Filter Tags Tray -->
+  <div class="filter-active-tray" id="activeFilterTray" style="display:none;">
+    <div class="filter-active-pills-list" id="activePillsList"></div>
+  </div>
+</div>
+
+<!-- Mobile Bottom Sheet Modal -->
+<div class="filter-sheet-backdrop" id="filterSheetBackdrop" onclick="closeMobileFilters(event)">
+  <div class="filter-sheet" id="filterSheet" role="dialog" aria-modal="true" aria-label="Filter Homecoming Collection">
+    <div class="filter-sheet-handle"></div>
+    <div class="filter-sheet-header">
+      <h3 class="filter-sheet-title">Filter Homecoming Collection</h3>
+      <button type="button" class="filter-sheet-close" onclick="closeMobileFilters()">Close</button>
+    </div>
+    <div class="filter-sheet-body">
+      <!-- Mobile Designer Section -->
+      <div class="filter-sheet-section">
+        <div class="filter-sheet-section-title">Designer</div>
+        <div class="filter-sheet-chips" id="mobileDesChips"></div>
+      </div>
+    </div>
+    <div class="filter-sheet-footer">
+      <button type="button" class="filter-sheet-btn-clear" onclick="clearAllFilters(); closeMobileFilters();">Clear All</button>
+      <button type="button" class="filter-sheet-btn-apply" id="mobileApplyBtn" onclick="closeMobileFilters()">Apply Filters</button>
+    </div>
+  </div>
+</div>
+
+<div class="catalog-control-panel">
   <!-- Product Grid -->
   <div class="grid-4" id="pg"></div>
   <p class="catalog-stock-note">Not all gowns are kept in store &mdash; <a href="contact.html">contact us</a> for stock, sizes, and trial availability.</p>
@@ -1090,20 +1001,112 @@ let fil = [];
 let curImgs = [], curIdx = 0;
 let currentModalDress = null;
 let currentDesigner = 'all';
-let currentTrend = 'all';
 let searchQuery = '';
 let selectedSchool = '';
+let currentDensity = 4;
+
+// ── Popover Controller ──
+function toggleFacetDropdown(facet, e) {
+  if (e) {
+    e.stopPropagation();
+    if (e.preventDefault) e.preventDefault();
+  }
+  const map = { des: 'dropdownDes' };
+  const targetId = map[facet];
+  const dropdown = document.getElementById(targetId);
+  if (!dropdown) return;
+  const wasOpen = dropdown.classList.contains('is-open');
+  closeAllFacetDropdowns();
+  if (!wasOpen) {
+    dropdown.classList.add('is-open');
+    const trigger = dropdown.querySelector('.filter-trigger-btn');
+    if (trigger) trigger.setAttribute('aria-expanded', 'true');
+  }
+}
+window.toggleFacetDropdown = toggleFacetDropdown;
+
+function closeAllFacetDropdowns() {
+  document.querySelectorAll('.filter-facet-dropdown').forEach(dd => {
+    dd.classList.remove('is-open');
+    const trigger = dd.querySelector('.filter-trigger-btn');
+    if (trigger) trigger.setAttribute('aria-expanded', 'false');
+  });
+}
+window.closeAllFacetDropdowns = closeAllFacetDropdowns;
+
+// Global click & esc listener to dismiss popovers
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.filter-facet-dropdown')) {
+    closeAllFacetDropdowns();
+  }
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeAllFacetDropdowns();
+    closeMobileFilters();
+  }
+});
+
+// ── Mobile Bottom Sheet ──
+function openMobileFilters() {
+  closeAllFacetDropdowns();
+  const backdrop = document.getElementById('filterSheetBackdrop');
+  if (backdrop) backdrop.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+window.openMobileFilters = openMobileFilters;
+
+function closeMobileFilters(e) {
+  if (e && e.target && e.target !== document.getElementById('filterSheetBackdrop') &&
+      !e.target.classList.contains('filter-sheet-close') &&
+      !e.target.classList.contains('filter-sheet-btn-apply') &&
+      !e.target.classList.contains('filter-sheet-btn-clear')) {
+    return;
+  }
+  const backdrop = document.getElementById('filterSheetBackdrop');
+  if (backdrop) backdrop.classList.remove('open');
+  document.body.style.overflow = '';
+}
+window.closeMobileFilters = closeMobileFilters;
+
+function getChip(facet, val) {
+  if (!val || val === 'all') return null;
+  const v = val.toLowerCase();
+  return Array.from(document.querySelectorAll(`.filter-popover-chip[data-filter="${facet}"]`)).find(b => (b.dataset.value || '').toLowerCase() === v) || null;
+}
+
+function initMobileSheet() {
+  const desChips = document.getElementById('mobileDesChips');
+
+  if (desChips) {
+    desChips.innerHTML = Array.from(document.querySelectorAll('#des-row .filter-popover-chip')).map(btn => {
+      const val = btn.dataset.value;
+      const nameEl = btn.querySelector('.popover-chip-name');
+      const name = nameEl ? nameEl.textContent : val;
+      const safeVal = val.replace(/'/g, "\\'");
+      return `<button type="button" class="filter-sheet-chip ${val.toLowerCase() === currentDesigner.toLowerCase() ? 'active' : ''}" data-filter="des" data-value="${val}" onclick="setFilter('des', '${safeVal}', false)">
+        <span>${name}</span>
+        <span class="chip-count"></span>
+      </button>`;
+    }).join('');
+  }
+}
 
 // High School Registry Storage
 function initSchoolRegistry() {
   const savedSchool = sessionStorage.getItem('cloudnine_prom_school') || '';
   if (savedSchool) {
     selectedSchool = savedSchool;
-    const select = document.getElementById('schoolSelect');
+    const select = document.getElementById('registrySchoolSelect');
     if (select) select.value = savedSchool;
     updateSchoolUI(savedSchool);
   }
 }
+
+function onSchoolSelect(school) {
+  onSelectSchool(school);
+}
+window.onSchoolSelect = onSchoolSelect;
 
 function onSelectSchool(school) {
   selectedSchool = school;
@@ -1118,6 +1121,7 @@ function onSelectSchool(school) {
   updateSchoolUI(school);
   _renderPage(); // refresh badges on cards
 }
+window.onSelectSchool = onSelectSchool;
 
 function updateSchoolUI(school) {
   const nameEl = document.getElementById('activeSchoolName');
@@ -1144,6 +1148,154 @@ function _showSkeletons(n) {
   if (cc) cc.textContent = 'Loading Homecoming Styles…';
 }
 
+function matchesFilter(p, des, q) {
+  if (des !== 'all' && (p.d || '').toLowerCase() !== des.toLowerCase()) return false;
+  if (q) {
+    const qLower = q.toLowerCase().trim();
+    const matchSku = (p.s || '').toLowerCase().includes(qLower);
+    const matchName = (p.n || '').toLowerCase().includes(qLower);
+    const matchDes = (p.d || '').toLowerCase().includes(qLower);
+    const matchCap = (p.c || '').toLowerCase().includes(qLower);
+    if (!matchSku && !matchName && !matchDes && !matchCap) return false;
+  }
+  return true;
+}
+
+function updateChipCounts() {
+  document.querySelectorAll(`[data-filter="des"]`).forEach(btn => {
+    const val = btn.dataset.value;
+    const count = P.filter(p => matchesFilter(p, val, searchQuery)).length;
+    btn.classList.toggle('disabled', count === 0 && val !== 'all' && val.toLowerCase() !== currentDesigner.toLowerCase());
+    const countEl = btn.querySelector('.chip-count');
+    if (countEl) countEl.textContent = `(${count})`;
+  });
+}
+
+function setFilter(type, value, closePopover, e) {
+  if (e && e.stopPropagation) {
+    e.stopPropagation();
+  }
+  if (closePopover === undefined) closePopover = true;
+
+  if (type === 'des') {
+    currentDesigner = (currentDesigner.toLowerCase() === value.toLowerCase() && value !== 'all') ? 'all' : value;
+  }
+
+  syncChipStates();
+
+  if (closePopover && window.innerWidth > 860) {
+    closeAllFacetDropdowns();
+  }
+
+  applyFilters();
+}
+window.setFilter = setFilter;
+
+function syncChipStates() {
+  const activeVal = currentDesigner.toLowerCase();
+  document.querySelectorAll(`[data-filter="des"]`).forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.value.toLowerCase() === activeVal);
+  });
+}
+
+function updateTriggerLabels() {
+  const desBtn = document.getElementById('triggerDes');
+  const desLabel = document.getElementById('labelDes');
+  if (desBtn && desLabel) {
+    if (currentDesigner === 'all') {
+      desLabel.textContent = 'Designer';
+      desBtn.classList.remove('has-value');
+    } else {
+      const chip = getChip('des', currentDesigner);
+      const name = chip ? (chip.querySelector('.popover-chip-name') ? chip.querySelector('.popover-chip-name').textContent.trim() : chip.dataset.value) : currentDesigner;
+      desLabel.textContent = name;
+      desBtn.classList.add('has-value');
+    }
+  }
+}
+
+function renderActiveTray() {
+  const activeTray = document.getElementById('activeFilterTray');
+  const pillsList = document.getElementById('activePillsList');
+  const mobileBadge = document.getElementById('mobileFilterBadge');
+
+  const activeFilters = [];
+  if (currentDesigner !== 'all') {
+    const chip = getChip('des', currentDesigner);
+    const label = chip ? (chip.querySelector('.popover-chip-name') ? chip.querySelector('.popover-chip-name').textContent.trim() : chip.dataset.value) : currentDesigner;
+    activeFilters.push({ type: 'des', label: label });
+  }
+  if (searchQuery.length > 0) {
+    activeFilters.push({ type: 'search', label: `"${searchQuery}"` });
+  }
+
+  if (mobileBadge) {
+    const count = activeFilters.length;
+    mobileBadge.textContent = count;
+    mobileBadge.classList.toggle('has-count', count > 0);
+  }
+
+  if (!activeTray || !pillsList) return;
+
+  if (activeFilters.length === 0) {
+    activeTray.style.display = 'none';
+    pillsList.innerHTML = '';
+  } else {
+    activeTray.style.display = 'flex';
+    const pillsHtml = activeFilters.map(f => `
+      <button type="button" class="filter-active-pill" onclick="removeFilter('${f.type}')" title="Remove ${f.label}">
+        <span>${f.label}</span>
+        <span class="filter-active-pill-x">x</span>
+      </button>
+    `).join('');
+    pillsList.innerHTML = pillsHtml;
+  }
+}
+
+function removeFilter(type) {
+  if (type === 'search') {
+    searchQuery = '';
+    applyFilters();
+  } else {
+    setFilter(type, 'all', false);
+  }
+}
+window.removeFilter = removeFilter;
+
+function updateClearBtn() {
+  const clr = document.getElementById('clearFilters');
+  const isFiltered = currentDesigner !== 'all' || searchQuery.length > 0;
+  if (clr) clr.classList.toggle('visible', isFiltered);
+}
+
+function updateUrlParams() {
+  if (!window.history || !window.history.replaceState) return;
+  const params = new URLSearchParams(window.location.search);
+  if (currentDesigner !== 'all') params.set('designer', currentDesigner);
+  else params.delete('designer');
+  if (searchQuery) params.set('q', searchQuery);
+  else params.delete('q');
+
+  const newUrl = window.location.pathname + (params.toString() ? '?' + params.toString() : '');
+  window.history.replaceState(null, '', newUrl);
+}
+
+function setDensity(cols) {
+  currentDensity = cols;
+  const grid = document.getElementById('pg');
+  const d3 = document.getElementById('density3');
+  const d4 = document.getElementById('density4');
+  if (grid) {
+    grid.classList.toggle('grid-3', cols === 3);
+    grid.classList.toggle('grid-4', cols === 4);
+  }
+  if (d3 && d4) {
+    d3.setAttribute('aria-pressed', cols === 3 ? 'true' : 'false');
+    d4.setAttribute('aria-pressed', cols === 4 ? 'true' : 'false');
+  }
+}
+window.setDensity = setDensity;
+
 (async function loadProducts() {
   _showSkeletons(12);
   initSchoolRegistry();
@@ -1153,36 +1305,17 @@ function _showSkeletons(n) {
     P = await res.json();
     _dataLoaded = true;
 
+    initMobileSheet();
+
     // Check URL parameters
     const urlParams = new URLSearchParams(window.location.search);
     const desParam = urlParams.get('designer') || urlParams.get('d');
-    const trendParam = urlParams.get('trend') || urlParams.get('silhouette');
     const qParam = urlParams.get('q') || urlParams.get('sku');
 
-    if (desParam) {
-      currentDesigner = desParam;
-      const btn = Array.from(document.querySelectorAll('#df .filter-pill')).find(b => (b.dataset.designer || '').toLowerCase() === desParam.trim().toLowerCase());
-      if (btn) {
-        document.querySelectorAll('#df .filter-pill').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-      }
-    }
-    if (trendParam) {
-      currentTrend = trendParam;
-      const tbtn = Array.from(document.querySelectorAll('#tf .trend-chip')).find(b => (b.dataset.trend || '').toLowerCase() === trendParam.trim().toLowerCase());
-      if (tbtn) {
-        document.querySelectorAll('#tf .trend-chip').forEach(b => b.classList.remove('active'));
-        tbtn.classList.add('active');
-      }
-    }
-    if (qParam) {
-      searchQuery = qParam;
-      const inp = document.getElementById('skuSearchInput');
-      if (inp) inp.value = qParam;
-      const clr = document.getElementById('searchClearBtn');
-      if (clr) clr.classList.add('visible');
-    }
+    if (desParam) currentDesigner = desParam;
+    if (qParam) searchQuery = qParam;
 
+    syncChipStates();
     applyFilters();
   } catch (err) {
     console.error('Product data failed to load:', err);
@@ -1192,88 +1325,31 @@ function _showSkeletons(n) {
 })();
 
 function applyFilters() {
-  fil = P.filter(p => {
-    // Designer match
-    if (currentDesigner !== 'all' && (p.d || '').toLowerCase() !== currentDesigner.toLowerCase()) {
-      return false;
-    }
-    // Search query match
-    if (searchQuery) {
-      const q = searchQuery.toLowerCase().trim();
-      const matchSku = (p.s || '').toLowerCase().includes(q);
-      const matchName = (p.n || '').toLowerCase().includes(q);
-      const matchDes = (p.d || '').toLowerCase().includes(q);
-      const matchCap = (p.c || '').toLowerCase().includes(q);
-      if (!matchSku && !matchName && !matchDes && !matchCap) return false;
-    }
-    // Trend / Silhouette filter match
-    if (currentTrend !== 'all') {
-      const text = ((p.c || '') + ' ' + (p.sil || '') + ' ' + (p.n || '') + ' ' + (p.s || '')).toLowerCase();
-      if (currentTrend === 'fitted' && !text.includes('fit') && !text.includes('bodycon') && !text.includes('sheath')) return false;
-      if (currentTrend === 'satin' && !text.includes('satin') && !text.includes('a-line') && !text.includes('flare')) return false;
-      if (currentTrend === 'corset' && !text.includes('corset') && !text.includes('lace') && !text.includes('boned') && !text.includes('back')) return false;
-      if (currentTrend === 'sparkle' && !text.includes('glitter') && !text.includes('sequin') && !text.includes('sparkle') && !text.includes('bead') && !text.includes('shimmer')) return false;
-    }
-    return true;
-  });
+  fil = P.filter(p => matchesFilter(p, currentDesigner, searchQuery));
 
   _page = 0;
   const cc = document.getElementById('cc');
   if (cc) {
     const total = fil.length;
-    cc.textContent = `Showing ${total === P.length ? total : total + ' of ' + P.length} styles`;
+    cc.textContent = `${total === P.length ? total + ' Styles' : total + ' of ' + P.length + ' Styles'}`;
   }
+
+  updateTriggerLabels();
+  updateChipCounts();
+  renderActiveTray();
+  updateClearBtn();
+  updateUrlParams();
   _renderPage();
-}
-
-function onSearchInput(val) {
-  searchQuery = val;
-  const clr = document.getElementById('searchClearBtn');
-  if (clr) clr.classList.toggle('visible', val.length > 0);
-  applyFilters();
-}
-
-function clearSearchInput() {
-  searchQuery = '';
-  const inp = document.getElementById('skuSearchInput');
-  if (inp) inp.value = '';
-  const clr = document.getElementById('searchClearBtn');
-  if (clr) clr.classList.remove('visible');
-  applyFilters();
 }
 
 function clearAllFilters() {
   currentDesigner = 'all';
-  currentTrend = 'all';
   searchQuery = '';
-  document.querySelectorAll('#df .filter-pill').forEach(b => b.classList.toggle('active', b.dataset.designer === 'all'));
-  document.querySelectorAll('#tf .trend-chip').forEach(b => b.classList.toggle('active', b.dataset.trend === 'all'));
-  const inp = document.getElementById('skuSearchInput');
-  if (inp) inp.value = '';
-  const clr = document.getElementById('searchClearBtn');
-  if (clr) clr.classList.remove('visible');
+  syncChipStates();
+  closeAllFacetDropdowns();
   applyFilters();
 }
-
-// Designer pill click
-document.querySelectorAll('#df .filter-pill').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('#df .filter-pill').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    currentDesigner = btn.dataset.designer;
-    applyFilters();
-  });
-});
-
-// Trend chip click
-document.querySelectorAll('#tf .trend-chip').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('#tf .trend-chip').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    currentTrend = btn.dataset.trend;
-    applyFilters();
-  });
-});
+window.clearAllFilters = clearAllFilters;
 
 function goToDress(idx, el) {
   const dress = fil[idx];

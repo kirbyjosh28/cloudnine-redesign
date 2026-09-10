@@ -915,8 +915,8 @@
   <div id="filterStickySentinel" style="height:1px;width:100%;margin-top:-1px;pointer-events:none;opacity:0;"></div>
 
   <!-- COMPACT LUXURY FLOATING FILTER PILL -->
-  <div class="filter-bar-sticky-wrap" id="fp">
-    <div class="filter-bar-compact">
+  <div class="filter-bar-sticky-wrap" id="filterStickyWrap">
+    <div class="filter-bar-compact" id="filterBarCompact">
       <!-- Left: Facet Dropdown Triggers -->
       <div class="filter-facets-group" id="filterFacetsGroup">
         <!-- 1. Silhouette Trigger & Popover -->
@@ -1801,7 +1801,7 @@ document.addEventListener('keydown', e => {
 // ── Sticky filter pill observer ──
 (function() {
   const sentinel = document.getElementById('filterStickySentinel');
-  const stickyWrap = document.getElementById('fp');
+  const stickyWrap = document.getElementById('filterStickyWrap') || document.getElementById('fp');
   if (!stickyWrap) return;
 
   if (sentinel && 'IntersectionObserver' in window) {
