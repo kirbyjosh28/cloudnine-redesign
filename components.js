@@ -65,7 +65,7 @@ function navHTML() {
               <div class="nav-mega-col">
                 <div class="nav-mega-heading">The Experience</div>
                 <ul class="nav-mega-list">
-                  <li><a href="experience.html" class="nav-mega-link nav-mega-link--highlight"><span class="nav-mega-link-title">The Boutique Experience</span><span class="nav-mega-link-sub">Bridal lounges, 1-on-1 styling &amp; celebrations</span></a></li>
+                  <li><a href="experience.html" class="nav-mega-link nav-mega-link--highlight"><span class="nav-mega-link-title">The Boutique Experience</span><span class="nav-mega-link-sub">1-on-1 styling, boutique comfort &amp; celebrations</span></a></li>
                   <li><a href="quiz.html" class="nav-mega-link"><span class="nav-mega-link-title">Bridal Style Quiz</span><span class="nav-mega-link-sub">Find your silhouette in 2 minutes</span></a></li>
                   <li><a href="our-brides.html" class="nav-mega-link"><span class="nav-mega-link-title">Our Real Brides</span><span class="nav-mega-link-sub">Real Peoria weddings &amp; reviews</span></a></li>
                   <li><a href="appointments.html" class="nav-mega-link"><span class="nav-mega-link-title">Robes &amp; Rosé VIP</span><span class="nav-mega-link-sub">Celebratory bridal styling upgrades</span></a></li>

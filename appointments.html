@@ -620,7 +620,7 @@
         <span class="appt-card-badge appt-card-badge--free">Complimentary</span>
       </div>
       <h3>Bridal Appointment</h3>
-      <div class="appt-card-duration">90 minutes · Dedicated Bridal Lounge</div>
+      <div class="appt-card-duration">90 minutes · 1-on-1 Dedicated Stylist</div>
       <p>Our signature 1-on-1 bridal styling appointment. Work closely with an expert stylist to explore our handpicked collection of designer gowns ($1,200–$4,000, sizes up to 26 in store / 38 special order).</p>
       <div class="appt-card-perks">
         <div class="appt-card-perk">Dedicated 1-on-1 expert bridal stylist</div>
@@ -787,9 +787,9 @@
 
       <!-- Right: Entourage Size & Timeline Calculator -->
       <div class="prep-box double-bezel">
-        <div class="eyebrow">Bridal Lounge Comfort &amp; Party Size</div>
+        <div class="eyebrow">Seating Comfort &amp; Party Size</div>
         <h3 style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;margin:0 0 10px;color:var(--text);">Entourage Size <em>Advisor</em></h3>
-        <p style="font-size:13.5px;color:var(--text-muted);margin:0 0 16px;font-weight:300;">Select how many loved ones you plan to bring to view our lounge recommendations:</p>
+        <p style="font-size:13.5px;color:var(--text-muted);margin:0 0 16px;font-weight:300;">Select how many loved ones you plan to bring to view our recommendations:</p>
 
         <div class="entourage-options">
           <button class="entourage-btn" onclick="setEntourage(1, this)">1–2 Guests</button>
@@ -896,7 +896,7 @@
     <div class="appt-tip">
       <div>
         <h4>Bring Your VIP Circle</h4>
-        <p>We recommend 3–4 guests for bridal fittings — genuine support without conflicting opinions. Up to 6 guests comfortably accommodated in our bridal lounges. Please leave children at home for the best experience.</p>
+        <p>We recommend 3–4 guests for bridal fittings — genuine support without conflicting opinions. Up to 6 guests comfortably accommodated in our boutique seating areas. Please leave children at home for the best experience.</p>
       </div>
     </div>
     <div class="appt-tip">
@@ -986,7 +986,7 @@ function selectExperience(tierName, btn) {
 
     var p = personas[personaKey] || { title: 'Curated Bridal Persona', sil: silKey || 'Favorite Silhouettes', vibe: 'Tailored styling' };
     titleEl.textContent = 'Welcome, ' + p.title + ' Bride!';
-    descEl.textContent = 'We noted your aesthetic: ' + p.vibe + ' (Favorite Silhouette: ' + (silKey || p.sil) + '). Your bridal lounge is ready!';
+    descEl.textContent = 'We noted your aesthetic: ' + p.vibe + ' (Favorite Silhouette: ' + (silKey || p.sil) + '). Your stylist and fitting area are ready!';
     banner.classList.add('is-visible');
   }
 })();
@@ -1044,7 +1044,7 @@ function setEntourage(size, btn) {
   } else if (size <= 4) {
     feedback.innerHTML = '<strong>The Sweet Spot (3–4 Guests):</strong> Highly recommended! Gives you genuine support, laughs, and diverse perspectives without overwhelming conflicting opinions when saying yes.';
   } else if (size <= 6) {
-    feedback.innerHTML = '<strong>Full Lounge Celebration (5–6 Guests):</strong> Festive and lively! Our bridal lounges comfortably seat up to 6 guests. Consider our <em>Robes &amp; Rosé VIP</em> package for celebratory toasts.';
+    feedback.innerHTML = '<strong>Celebration Group (5–6 Guests):</strong> Festive and lively! Our boutique seating comfortably accommodates up to 6 guests. Consider our <em>Robes &amp; Rosé VIP</em> package for celebratory toasts.';
   } else {
     feedback.innerHTML = '<strong>Party Policy (Over 6 Guests):</strong> For the best and most comfortable experience, we ask brides bring no more than 6 guests and leave children at home. Please call us directly at <strong>(309) 693‑3830</strong> if you have special questions.';
   }
