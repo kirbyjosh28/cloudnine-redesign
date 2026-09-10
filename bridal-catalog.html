@@ -243,7 +243,10 @@
       z-index: 95;
       width: 100%;
       pointer-events: none;
-      padding: 14px 24px;
+      padding: 12px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       transition: padding 0.4s cubic-bezier(0.16, 1, 0.3, 1), top 0.3s ease;
     }
     @media (max-width: 768px) {
@@ -254,14 +257,15 @@
     }
 
     .filter-bar-compact {
-      max-width: 1200px;
+      width: fit-content;
+      max-width: 640px;
       margin: 0 auto;
-      padding: 8px 18px;
-      min-height: 52px;
-      display: flex;
+      padding: 6px 16px;
+      min-height: 48px;
+      display: inline-flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 12px;
+      justify-content: center;
+      gap: 14px;
       position: relative;
       pointer-events: auto;
       background: rgba(255, 255, 255, 0.95);
@@ -280,13 +284,14 @@
 
     /* Floating condensed state when scrolled/stuck */
     .filter-bar-sticky-wrap.is-stuck {
-      padding-top: 10px;
-      padding-bottom: 10px;
+      padding-top: 8px;
+      padding-bottom: 8px;
     }
     .filter-bar-sticky-wrap.is-stuck .filter-bar-compact {
-      max-width: 960px;
-      padding: 6px 14px;
-      min-height: 48px;
+      max-width: 580px;
+      padding: 5px 12px;
+      min-height: 44px;
+      gap: 10px;
       background: rgba(255, 255, 255, 0.92);
       -webkit-backdrop-filter: blur(28px);
       backdrop-filter: blur(28px);
@@ -295,48 +300,11 @@
       transform: translateY(2px) scale(0.995);
     }
 
-    /* ── Live Search Pill ── */
-    .filter-search-box {
-      position: relative;
-      width: 250px;
-      flex-shrink: 0;
-      transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .filter-bar-sticky-wrap.is-stuck .filter-search-box {
-      width: 190px;
-    }
-    .filter-bar-sticky-wrap.is-stuck .filter-search-box:focus-within {
-      width: 240px;
-    }
-    .filter-search-input-compact {
-      width: 100%;
-      height: 36px;
-      padding: 0 16px;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 11px;
-      font-weight: 400;
-      letter-spacing: .03em;
-      color: var(--text);
-      transition: all 0.25s ease;
-    }
-    .filter-search-input-compact:focus {
-      outline: none;
-      background: #ffffff;
-      border-color: var(--teal-deep);
-      box-shadow: 0 0 0 3px rgba(28, 78, 80, 0.09);
-    }
-
-    /* ── Center Facets Group ── */
+    /* ── Facets Dropdowns Group ── */
     .filter-facets-group {
       display: flex;
       align-items: center;
       gap: 8px;
-      flex: 1;
-      justify-content: flex-start;
-      margin-left: 4px;
     }
     .filter-facet-dropdown {
       position: relative;
@@ -370,13 +338,17 @@
       border-color: var(--teal-deep);
     }
     .filter-trigger-caret {
-      font-size: 10px;
-      color: var(--text-light);
-      transition: transform 0.25s ease, color 0.2s;
+      display: inline-block;
+      width: 0;
+      height: 0;
+      border-left: 3.5px solid transparent;
+      border-right: 3.5px solid transparent;
+      border-top: 4.5px solid var(--text-light);
+      transition: transform 0.25s ease, border-top-color 0.2s;
     }
     .filter-facet-dropdown.is-open .filter-trigger-caret {
       transform: rotate(180deg);
-      color: var(--teal-deep);
+      border-top-color: var(--teal-deep);
     }
     .filter-facet-dropdown.is-open .filter-trigger-btn {
       border-color: var(--teal-deep);
@@ -390,7 +362,7 @@
       box-shadow: 0 4px 12px rgba(28, 78, 80, 0.18);
     }
     .filter-trigger-btn.has-value .filter-trigger-caret {
-      color: rgba(255, 255, 255, 0.85);
+      border-top-color: rgba(255, 255, 255, 0.85);
     }
 
     /* ── Floating Double-Bezel Popover ── */
@@ -826,21 +798,24 @@
     }
 
     /* ── Responsive Collapse ── */
-    @media (max-width: 1024px) {
-      .filter-bar-compact { padding: 8px 16px; }
-      .filter-search-box { width: 200px; }
-      .filter-bar-sticky-wrap.is-stuck .filter-search-box { width: 170px; }
-    }
     @media (max-width: 860px) {
+      .filter-bar-compact {
+        width: 100%;
+        max-width: 360px;
+        justify-content: space-between;
+        padding: 6px 14px;
+      }
       .filter-facets-group { display: none; }
       .filter-mobile-trigger-btn { display: inline-flex; }
-      .filter-search-box { width: 100%; max-width: none; flex: 1; }
-      .filter-bar-sticky-wrap.is-stuck .filter-search-box { width: 100%; }
       #densityToggle { display: none; }
     }
-    @media (max-width: 600px) {
-      .filter-bar-compact { padding: 6px 12px; gap: 8px; border-radius: 30px; }
-      .catalog-count-compact { display: none; }
+    @media (max-width: 480px) {
+      .filter-bar-compact {
+        max-width: 100%;
+        padding: 5px 12px;
+        gap: 8px;
+      }
+      .catalog-count-compact { font-size: 10px; }
     }
   </style>
 </head>
@@ -942,18 +917,13 @@
   <!-- COMPACT LUXURY FLOATING FILTER PILL -->
   <div class="filter-bar-sticky-wrap" id="fp">
     <div class="filter-bar-compact">
-      <!-- Left: Live Search Pill -->
-      <div class="filter-search-box">
-        <input type="search" class="filter-search-input-compact" id="catalogSearch" placeholder="Search style #, designer, fabric..." aria-label="Search bridal collection" autocomplete="off" autocorrect="off" spellcheck="false"/>
-      </div>
-
-      <!-- Center: Facet Dropdown Triggers -->
+      <!-- Left: Facet Dropdown Triggers -->
       <div class="filter-facets-group" id="filterFacetsGroup">
         <!-- 1. Silhouette Trigger & Popover -->
         <div class="filter-facet-dropdown" id="dropdownSil" data-facet="sil">
           <button type="button" class="filter-trigger-btn" id="triggerSil" aria-expanded="false" aria-haspopup="true" onclick="toggleFacetDropdown('sil', event)">
             <span class="filter-trigger-label" id="labelSil">Silhouette</span>
-            <span class="filter-trigger-caret">▾</span>
+            <span class="filter-trigger-caret" aria-hidden="true"></span>
           </button>
           <div class="filter-popover" id="popoverSil" role="region" aria-label="Silhouette Filters">
             <div class="filter-popover-inner">
@@ -994,7 +964,7 @@
         <div class="filter-facet-dropdown" id="dropdownDes" data-facet="des">
           <button type="button" class="filter-trigger-btn" id="triggerDes" aria-expanded="false" aria-haspopup="true" onclick="toggleFacetDropdown('des', event)">
             <span class="filter-trigger-label" id="labelDes">Designer</span>
-            <span class="filter-trigger-caret">▾</span>
+            <span class="filter-trigger-caret" aria-hidden="true"></span>
           </button>
           <div class="filter-popover" id="popoverDes" role="region" aria-label="Designer Filters">
             <div class="filter-popover-inner">
@@ -1120,7 +1090,7 @@
 </div>
 
 <div id="site-footer"></div>
-<script src="components.js?v=20260909g" defer></script>
+<script src="components.js?v=20260909h" defer></script>
 <script>
 /* Products loaded from external JSON for performance.
    Keeps HTML small, enables CDN caching of product data separately. */
@@ -1431,7 +1401,7 @@ function renderActiveTray() {
     const pillsHtml = activeFilters.map(f => `
       <button type="button" class="filter-active-pill" onclick="removeFilter('${f.type}')" title="Remove ${f.label}">
         <span>${f.label}</span>
-        <span class="filter-active-pill-x">✕</span>
+        <span class="filter-active-pill-x">x</span>
       </button>
     `).join('');
     pillsList.innerHTML = pillsHtml;
@@ -1441,8 +1411,6 @@ function renderActiveTray() {
 function removeFilter(type) {
   if (type === 'search') {
     searchQuery = '';
-    const searchInput = document.getElementById('catalogSearch');
-    if (searchInput) searchInput.value = '';
     applyFilters();
   } else {
     setFilter(type, 'all', false);
@@ -1480,9 +1448,6 @@ function clearAllFilters() {
   activeDes = 'all';
   searchQuery = '';
 
-  const searchInput = document.getElementById('catalogSearch');
-  if (searchInput) searchInput.value = '';
-
   syncChipStates();
   closeAllFacetDropdowns();
   applyFilters();
@@ -1504,7 +1469,7 @@ window.applyFilters = applyFilters;
 (async function loadProducts() {
   _showSkeletons(12);
   try {
-    const res = await fetch('data/bridal-products.json?v=20260909g');
+    const res = await fetch('data/bridal-products.json?v=20260909h');
     if (!res.ok) throw new Error('Failed to load product data');
     P = await res.json();
     _dataLoaded = true;
@@ -1529,8 +1494,6 @@ window.applyFilters = applyFilters;
     }
     if (qParam) {
       searchQuery = qParam.trim().toLowerCase();
-      const searchInput = document.getElementById('catalogSearch');
-      if (searchInput) searchInput.value = qParam;
     }
 
     // Lookbook deep linking: auto populate lookbook if URL includes ?lookbook=SKU1,SKU2
@@ -1854,21 +1817,6 @@ document.addEventListener('keydown', e => {
       stickyWrap.classList.toggle('is-stuck', top <= 80);
     }, { passive: true });
   }
-})();
-
-// ── Search input events ──
-(function() {
-  const searchInput = document.getElementById('catalogSearch');
-  if (!searchInput) return;
-
-  let debounceTimer = null;
-  searchInput.addEventListener('input', function(e) {
-    searchQuery = e.target.value.trim().toLowerCase();
-    clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(function() {
-      applyFilters();
-    }, 120);
-  });
 })();
 
 // ── Grid density toggle ──
