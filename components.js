@@ -65,10 +65,10 @@ function navHTML() {
               <div class="nav-mega-col">
                 <div class="nav-mega-heading">The Experience</div>
                 <ul class="nav-mega-list">
-                  <li><a href="experience.html" class="nav-mega-link nav-mega-link--highlight"><span class="nav-mega-link-title">The Boutique Experience</span><span class="nav-mega-link-sub">Private suites, champagne &amp; styling</span></a></li>
+                  <li><a href="experience.html" class="nav-mega-link nav-mega-link--highlight"><span class="nav-mega-link-title">The Boutique Experience</span><span class="nav-mega-link-sub">Bridal lounges, 1-on-1 styling &amp; celebrations</span></a></li>
                   <li><a href="quiz.html" class="nav-mega-link"><span class="nav-mega-link-title">Bridal Style Quiz</span><span class="nav-mega-link-sub">Find your silhouette in 2 minutes</span></a></li>
                   <li><a href="our-brides.html" class="nav-mega-link"><span class="nav-mega-link-title">Our Real Brides</span><span class="nav-mega-link-sub">Real Peoria weddings &amp; reviews</span></a></li>
-                  <li><a href="appointments.html" class="nav-mega-link"><span class="nav-mega-link-title">VIP Suites &amp; Rosé</span><span class="nav-mega-link-sub">Private 1-on-1 styling sessions</span></a></li>
+                  <li><a href="appointments.html" class="nav-mega-link"><span class="nav-mega-link-title">Robes &amp; Rosé VIP</span><span class="nav-mega-link-sub">Celebratory bridal styling upgrades</span></a></li>
                   <li><a href="mothers.html" class="nav-mega-link"><span class="nav-mega-link-title">Mothers of the Wedding</span><span class="nav-mega-link-sub">Sophisticated MOB &amp; MOG styles</span></a></li>
                 </ul>
               </div>
@@ -86,10 +86,10 @@ function navHTML() {
           <div class="nav-dropdown nav-dropdown--ph">
             <div class="nav-dd-ph-home">
               <div class="nav-dd-ph-home-left">
-                <div class="nav-dd-ph-home-title">Prom &amp; Homecoming 2026</div>
-                <div class="nav-dd-ph-home-sub">Cloud Nine · Peoria, Illinois</div>
+                <div class="nav-dd-ph-home-title">Prom &amp; Homecoming Boutique</div>
+                <div class="nav-dd-ph-home-sub">Walk-Ins Only · 4701 N. University St, Peoria</div>
               </div>
-              <a href="prom.html" class="nav-dd-ph-home-badge">View Guide</a>
+              <a href="prom.html" class="nav-dd-ph-home-badge">Walk-Ins Welcome</a>
             </div>
             <div class="nav-dd-ph-cols">
               <a href="prom-catalog.html" class="nav-dd-ph-col">
@@ -347,15 +347,20 @@ function footerHTML() {
           <div class="footer-logo"><img src="${LOGO}" alt="Cloud Nine Bridal Boutique"/></div>
           <p class="footer-tagline">Peoria's premier bridal boutique — helping brides find their dream gown. Come say yes with us.</p>
           <div class="footer-contact">
+            <div style="font-size:12px;color:rgba(28,78,80,.8);margin-bottom:4px;font-weight:600;">Bridal Boutique (By Appointment):</div>
             <a href="https://goo.gl/maps/HXgYuahuNu8ycSXB8" target="_blank">
               4711 N. University St, Peoria, IL 61614
             </a>
-            <a href="tel:3096933830">
-              (309) 693‑3830
+            <div style="font-size:12px;color:rgba(28,78,80,.8);margin-top:6px;margin-bottom:4px;font-weight:600;">Prom Boutique (Walk-Ins Only):</div>
+            <a href="https://goo.gl/maps/HXgYuahuNu8ycSXB8" target="_blank">
+              4701 N. University St, Peoria, IL 61614
             </a>
-            <a href="mailto:sayyes@cloudninepeoria.com">
-              sayyes@cloudninepeoria.com
-            </a>
+            <div style="margin-top:6px;">
+              <a href="tel:3096933830">(309) 693‑3830</a>
+            </div>
+            <div>
+              <a href="mailto:sayyes@cloudninepeoria.com">sayyes@cloudninepeoria.com</a>
+            </div>
           </div>
           <div class="footer-social">
             <a href="https://www.facebook.com/cloudninebridalboutique/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">Facebook</a>

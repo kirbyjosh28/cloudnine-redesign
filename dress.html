@@ -412,7 +412,7 @@
         <div class="dp-accordion" id="dpAccordion"></div>
 
         <div class="dp-actions">
-          <a href="appointments.html" class="btn-luxury-pill" style="justify-content:center;width:100%;">
+          <a href="appointments.html" id="dpBookBtn" class="btn-luxury-pill" style="justify-content:center;width:100%;">
             <span>Book a Fitting for This Style</span>
           </a>
           <a href="contact.html" class="btn-outline" style="justify-content:center;text-align:center;">Inquire About This Style</a>
@@ -428,7 +428,7 @@
 
   <!-- Mobile sticky CTA -->
   <div class="dp-mobile-cta" id="dpMobileCta">
-    <a href="appointments.html" class="dp-mobile-cta-book">Book an Appointment</a>
+    <a href="appointments.html" id="dpMobileBookBtn" class="dp-mobile-cta-book">Book an Appointment</a>
     <div class="dp-mobile-cta-sep"></div>
     <a href="contact.html" class="dp-mobile-cta-inquire" aria-label="Inquire about this style" style="font-family:'Josefin Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;padding:0 12px;text-decoration:none;">Inquire</a>
   </div>
@@ -522,6 +522,17 @@
       r.setProperty('--teal-logo',    '#e8a0b4');
       const gal = document.querySelector('.dp-gallery');
       if (gal) gal.style.background = '#f9f0f3';
+
+      const dpBookBtn = document.getElementById('dpBookBtn');
+      if (dpBookBtn) {
+        dpBookBtn.href = isProm ? 'prom.html#visit' : 'hoco.html';
+        dpBookBtn.innerHTML = '<span>Visit Boutique (Walk-Ins Only)</span>';
+      }
+      const dpMobileBookBtn = document.getElementById('dpMobileBookBtn');
+      if (dpMobileBookBtn) {
+        dpMobileBookBtn.href = isProm ? 'prom.html#visit' : 'hoco.html';
+        dpMobileBookBtn.textContent = 'Visit Boutique (Walk-Ins)';
+      }
     }
 
     /* ── Helpers ── */
