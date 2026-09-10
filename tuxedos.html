@@ -239,66 +239,6 @@
       margin: 0;
     }
 
-    /* ── LOOKBOOK GALLERY ── */
-    .tux-gallery-section {
-      padding: clamp(60px, 8vw, 96px) clamp(24px, 5vw, 64px);
-      background: #ffffff;
-      border-bottom: 1px solid var(--border);
-    }
-    .tux-gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-    }
-    .tux-gallery-card {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-    .tux-gallery-img-wrap {
-      aspect-ratio: 4/5;
-      overflow: hidden;
-      background: #e8e4df;
-    }
-    .tux-gallery-img-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      display: block;
-      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .tux-gallery-card:hover .tux-gallery-img-wrap img {
-      transform: scale(1.03);
-    }
-    .tux-gallery-info {
-      padding: 24px;
-    }
-    .tux-gallery-tag {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--teal-deep);
-      margin-bottom: 6px;
-    }
-    .tux-gallery-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--text);
-      margin: 0 0 6px;
-    }
-    .tux-gallery-desc {
-      font-size: 13px;
-      font-weight: 300;
-      color: var(--text-muted);
-      line-height: 1.6;
-      margin: 0;
-    }
 
     /* ── JIM'S FORMAL WEAR PORTAL CALLOUT ── */
     .tux-portal-section {
@@ -381,7 +321,6 @@
       .tux-hero-inner { grid-template-columns: 1fr; gap: 40px; }
       .tux-pillars-grid { grid-template-columns: 1fr; }
       .tux-process-grid { grid-template-columns: repeat(2, 1fr); }
-      .tux-gallery-grid { grid-template-columns: 1fr; }
       .tux-portal-card { grid-template-columns: 1fr; gap: 24px; }
     }
     @media (max-width: 640px) {
@@ -476,48 +415,6 @@
   </div>
 </div>
 
-<!-- ── LOOKBOOK GALLERY ── -->
-<div class="tux-gallery-section">
-  <div class="tux-section-inner">
-    <div class="tux-section-header">
-      <div class="tux-eyebrow">Editorial Lookbook</div>
-      <h2>Featured <em>Styles</em></h2>
-      <p>A glimpse into the refined tailoring available for weddings, galas, and prom.</p>
-    </div>
-    <div class="tux-gallery-grid">
-      <div class="tux-gallery-card double-bezel">
-        <div class="tux-gallery-img-wrap">
-          <img src="images/real/tuxedos/tux-1.webp" alt="Classic Black Satin Peak Lapel Tuxedo" loading="lazy"/>
-        </div>
-        <div class="tux-gallery-info">
-          <div class="tux-gallery-tag">Black Tie Classic</div>
-          <h3 class="tux-gallery-title">Obsidian Peak Tuxedo</h3>
-          <p class="tux-gallery-desc">Tailored slim fit in deep black wool with satin lapels and matching accessories.</p>
-        </div>
-      </div>
-      <div class="tux-gallery-card double-bezel">
-        <div class="tux-gallery-img-wrap">
-          <img src="images/real/tuxedos/tux-2.webp" alt="Midnight Navy Wool Suit" loading="lazy"/>
-        </div>
-        <div class="tux-gallery-info">
-          <div class="tux-gallery-tag">Modern Formal</div>
-          <h3 class="tux-gallery-title">Midnight Navy 3-Piece</h3>
-          <p class="tux-gallery-desc">Versatile navy suit with matching vest, ideal for daytime and evening ceremonies.</p>
-        </div>
-      </div>
-      <div class="tux-gallery-card double-bezel">
-        <div class="tux-gallery-img-wrap">
-          <img src="images/tuxedos/01-groom-tux.jpg" alt="Tailored Groom &amp; Bride Coordination" loading="lazy"/>
-        </div>
-        <div class="tux-gallery-info">
-          <div class="tux-gallery-tag">Wedding Day</div>
-          <h3 class="tux-gallery-title">Harmonized Party Styling</h3>
-          <p class="tux-gallery-desc">Complete lookbook alignment between Cloud Nine gowns and groomsmen formalwear.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- ── JIM'S FORMAL WEAR PORTAL ── -->
 <div class="tux-portal-section">
