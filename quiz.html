@@ -678,8 +678,8 @@
   <div class="qslide qslide-intro active" data-q="-1">
     <div class="qslide-inner">
       <div class="qslide-eyebrow">Interactive Style Matcher · Peoria, IL</div>
-      <h1 class="qslide-title">Find Your<br/><em>Dream</em> Style.</h1>
-      <p class="qslide-sub">Answer 7 quick visual questions to reveal your bridal persona and unlock a personalized 5-gown curated fitting rack.</p>
+      <h1 class="qslide-title">Find Your<br/><em>Bridal</em> Style.</h1>
+      <p class="qslide-sub">Answer 7 visual questions to match your venue, silhouette preferences, and style with gowns available in our Peoria showroom.</p>
       
       <div class="intro-gallery">
         <div class="intro-card">
@@ -706,8 +706,8 @@
   <div class="qslide" data-q="0">
     <div class="qslide-inner">
       <span class="qslide-eyebrow">Question 01 of 07</span>
-      <h2 class="qslide-title">First things first!<br/>When is the <em>big day</em>?</h2>
-      <p class="qslide-sub">Let us know where you are in your bridal journey.</p>
+      <h2 class="qslide-title">First things first.<br/>When is the <em>wedding date</em>?</h2>
+      <p class="qslide-sub">Designer gown production and delivery typically takes 4–6 months.</p>
       
       <div class="qoptions-grid">
         <div class="qoption-card" data-value="classic" onclick="selectOption(this)">
@@ -1029,7 +1029,7 @@
             <div class="qoption-body">
               <span class="qoption-num">Option 04</span>
               <h3 class="qoption-title">Statement Heels &amp; Sparkle Belt</h3>
-              <p class="qoption-desc">Unforgettable personal flair with a pop of drama.</p>
+              <p class="qoption-desc">Bold personal styling with modern accessories.</p>
             </div>
           </div>
         </div>
@@ -1042,7 +1042,7 @@
     <div class="qslide-inner">
       <span class="qslide-eyebrow">Question 06 of 07</span>
       <h2 class="qslide-title">Your signature wedding<br/><em>celebration treat</em> is…</h2>
-      <p class="qslide-sub">Because an unforgettable wedding deserves delicious moments.</p>
+      <p class="qslide-sub">Thoughtful food and dessert pairings for your reception.</p>
       
       <div class="qoptions-grid">
         <div class="qoption-card" data-value="classic" onclick="selectOption(this)">
@@ -1054,7 +1054,7 @@
             <div class="qoption-body">
               <span class="qoption-num">Option 01</span>
               <h3 class="qoption-title">Champagne Tower &amp; Charcuterie</h3>
-              <p class="qoption-desc">Curated artisan cheeses, chilled bubbly, timeless sophistication.</p>
+              <p class="qoption-desc">Artisan cheeses, chilled bubbly, and timeless presentation.</p>
             </div>
           </div>
         </div>
@@ -1202,16 +1202,16 @@
   <div class="qresults-rack-section">
     <div class="qresults-rack-header reveal-on-scroll">
       <div>
-        <span class="journey-eyebrow">Personalized Selection</span>
-        <h2 class="journey-title" style="font-size:clamp(28px,3.5vw,46px);margin-bottom:6px;">Your Curated <em>Fitting Rack</em></h2>
-        <p style="font-size:14px;color:var(--text-muted);font-weight:300;">Our senior stylists hand-matched these 5 gowns to your silhouette and wedding aesthetic.</p>
+        <span class="eyebrow">Personalized Selection</span>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(28px,3.5vw,46px);font-weight:700;line-height:1.1;color:var(--text);margin-bottom:6px;">Your Recommended <em>Fitting Rack</em></h2>
+        <p style="font-size:14px;color:var(--text-muted);font-weight:300;">These 5 gowns from our Peoria collection match your silhouette and venue preferences.</p>
       </div>
       <div style="display:flex;gap:12px;flex-wrap:wrap;">
         <button class="btn-luxury-pill" id="btnSaveAllLookbook" onclick="saveAllToLookbook()" style="background:var(--teal-dark);">
-          <span>Save All to Fitting Lookbook</span>
+          <span>Save All to Lookbook</span>
         </button>
         <button class="btn-outline" id="btnSharePersona" onclick="sharePersonaResults()" style="font-size:10px;padding:12px 20px;">
-          Share My Persona
+          Share My Results
         </button>
       </div>
     </div>
@@ -1221,8 +1221,8 @@
     <!-- Booking CTA Banner -->
     <div class="qresults-banner reveal-on-scroll">
       <div>
-        <h3 class="qresults-banner-title">Ready to try on your <em>curated rack</em>?</h3>
-        <p class="qresults-banner-desc">Book your bridal appointment at Cloud Nine in Peoria. Your stylist will have these styles ready in your fitting area when you arrive.</p>
+        <h3 class="qresults-banner-title">Ready to try on your <em>selected styles</em>?</h3>
+        <p class="qresults-banner-desc">Book your bridal appointment at Cloud Nine in Peoria. Your stylist will have these gowns ready in your private fitting area.</p>
       </div>
       <div class="qresults-banner-actions">
         <a href="appointments.html" id="rBookBtn" class="btn-white" style="font-size:11px;padding:14px 28px;text-align:center;">
@@ -1254,12 +1254,12 @@ const PERSONAS = {
     title: 'The <em>Classic</em> Romantic',
     personaKey: 'classic',
     sil: 'Ballgown',
-    desc: 'You are drawn to enduring, royal grace — the kind that photographs in timeless monochrome and still takes your breath away fifty years later. Poised, statuesque, and flawlessly elegant.',
+    desc: 'You are drawn to timeless, royal grace that photographs beautifully and remains classic for decades. Poised, statuesque, and flawlessly elegant.',
     traits: [
       { label: 'Ideal Silhouette', value: 'Royal Ballgown & A-Line', desc: 'Dramatic volume, structured waistline, and a sweeping train.' },
       { label: 'Signature Fabric', value: 'Duchess Satin & Mikado', desc: 'Rich architectural weight with a luminous silk sheen.' },
       { label: 'Lace & Details', value: 'Heirloom Embroidery', desc: 'Intricate button-lined backs and scalloped cathedral hems.' },
-      { label: 'Iconic Inspiration', value: 'Grace Kelly', desc: 'Regal composure, timeless dignity, and unforgettable presence.' },
+      { label: 'Iconic Inspiration', value: 'Grace Kelly', desc: 'Regal composure, timeless dignity, and refined presence.' },
     ],
     dresses: [
       { designer: 'Maggie Sottero', name: 'Hudson', style: '26MS412A01', img: 'https://dy9ihb9itgy3g.cloudfront.net/products/13051/26ms412a01/26ms412a01__f_3.740.webp', x: ['https://dy9ihb9itgy3g.cloudfront.net/products/13051/26ms412a01/26ms412a01__f_3.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13051/26ms412a01/26ms412a01__f_1.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13051/26ms412a01/26ms412a01__d_f.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13051/26ms412a01/26ms412a01__b_1.2000.webp'], c: 'Hudson Traditional Strapless Draped Bodice Cat Eye Ballgown' },
@@ -1273,12 +1273,12 @@ const PERSONAS = {
     title: 'The <em>Romantic</em> Dreamer',
     personaKey: 'romantic',
     sil: 'A-Line',
-    desc: 'You see your wedding day like a sunlit film — soft blush tones, scattered garden petals, and whispered vows beneath flowering pergolas. Tender, ethereal, and endlessly feminine.',
+    desc: 'Soft blush undertones, garden florals, and delicate lace layers. Flowing, graceful, and feminine.',
     traits: [
-      { label: 'Ideal Silhouette', value: 'Flowing Soft A-Line', desc: 'Floats effortlessly with every step down the aisle.' },
-      { label: 'Signature Fabric', value: 'Layered Chiffon & Tulle', desc: 'Gossamer-light fabrics that catch the natural breeze.' },
+      { label: 'Ideal Silhouette', value: 'Flowing Soft A-Line', desc: 'Floats gracefully with every step down the aisle.' },
+      { label: 'Signature Fabric', value: 'Layered Chiffon & Tulle', desc: 'Lightweight fabrics that catch natural light.' },
       { label: 'Lace & Details', value: '3D Floral Appliqués', desc: 'Dimensional hand-placed blooms across a sheer bodice.' },
-      { label: 'Iconic Inspiration', value: 'Audrey Hepburn', desc: 'Whimsical tenderness, soft laughter, and pure radiance.' },
+      { label: 'Iconic Inspiration', value: 'Audrey Hepburn', desc: 'Whimsical grace, soft lines, and understated elegance.' },
     ],
     dresses: [
       { designer: 'Rebecca Ingram', name: 'Blossom', style: '26RB445A01', img: 'https://dy9ihb9itgy3g.cloudfront.net/products/13015/26rb445a01/26rb445a01__f_2.740.webp', x: ['https://dy9ihb9itgy3g.cloudfront.net/products/13015/26rb445a01/26rb445a01__f_2.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13015/26rb445a01/26rb445a01__d_f.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13015/26rb445a01/26rb445a01__b_1.2000.webp'], c: 'Enchanting Strapless 3-D Floral Lace A-Line Wedding Dress' },
@@ -1292,12 +1292,12 @@ const PERSONAS = {
     title: 'The <em>Bohemian</em> Spirit',
     personaKey: 'boho',
     sil: 'Mermaid',
-    desc: 'Rules were made to be reimagined. You want a gown that moves like water — as free-spirited, joyful, and uniquely beautiful as your love story. Unfussy, artistic, and magnetic.',
+    desc: 'Free-flowing textures and botanical lace that move naturally. Artistic, expressive, and comfortable.',
     traits: [
       { label: 'Ideal Silhouette', value: 'Flowing Column & Mermaid', desc: 'Effortless curves, body-skimming lines, and relaxed charm.' },
       { label: 'Signature Fabric', value: 'Crochet & Cotton Lace', desc: 'Textured artisan weaves and soft organic touch.' },
       { label: 'Lace & Details', value: 'Geometric & Leaf Motifs', desc: 'Botanical vine embroidery, tassel accents, and open backs.' },
-      { label: 'Iconic Inspiration', value: 'Stevie Nicks', desc: 'Wild heart, golden spirit, dancing barefoot under the stars.' },
+      { label: 'Iconic Inspiration', value: 'Stevie Nicks', desc: 'Free spirit, organic textures, and bold expression.' },
     ],
     dresses: [
       { designer: 'Maggie Sottero', name: 'Dakota', style: '25MB849A01', img: 'https://dy9ihb9itgy3g.cloudfront.net/products/12607/dakota/dakota__d_f.740.webp', x: ['https://dy9ihb9itgy3g.cloudfront.net/products/12607/dakota/dakota__d_f.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/12607/dakota/dakota__f_4.2000.webp'], c: 'Simple boho allover lace mermaid bridal dress' },
@@ -1311,12 +1311,12 @@ const PERSONAS = {
     title: 'The <em>Modern</em> Minimalist',
     personaKey: 'modern',
     sil: 'Sheath',
-    desc: 'For you, beauty lives in precision and restraint. Your aesthetic is sharp, intentional, and radiates a quiet luxury that speaks volumes without shouting. Clean lines, pure confidence.',
+    desc: 'Precision tailoring, sculptural necklines, and clean architectural lines. Understated, sharp, and confident.',
     traits: [
       { label: 'Ideal Silhouette', value: 'Architectural Sheath', desc: 'Sharp sculpted necklines, tailored waist, and clean drape.' },
-      { label: 'Signature Fabric', value: 'Stretch Crepe & Silk Twill', desc: 'Sculptural matte finish that sculpts the body seamlessly.' },
-      { label: 'Lace & Details', value: 'Pure Form & Basque Waist', desc: 'Square cutouts, subtle cowl drapery, and zero fussy clutter.' },
-      { label: 'Iconic Inspiration', value: 'Carolyn Bessette', desc: 'Understated high fashion, effortless poise, and timeless coolness.' },
+      { label: 'Signature Fabric', value: 'Stretch Crepe & Silk Twill', desc: 'Sculptural matte finish with structured form.' },
+      { label: 'Lace & Details', value: 'Pure Form & Basque Waist', desc: 'Square cutouts, subtle cowl drapery, and tailored seams.' },
+      { label: 'Iconic Inspiration', value: 'Carolyn Bessette', desc: 'Understated elegance, tailored lines, and clean simplicity.' },
     ],
     dresses: [
       { designer: 'Rebecca Ingram', name: 'Brenda', style: '26RB438A01', img: 'https://dy9ihb9itgy3g.cloudfront.net/products/13015/26rb438a01/26rb438a01__d_f.740.webp', x: ['https://dy9ihb9itgy3g.cloudfront.net/products/13015/26rb438a01/26rb438a01__d_f.2000.webp','https://dy9ihb9itgy3g.cloudfront.net/products/13015/26rb438a01/26rb438a01__b_1.2000.webp'], c: 'Sophisticated crepe sheath with draped cowl neckline' },
