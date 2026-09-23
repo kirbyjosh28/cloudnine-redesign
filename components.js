@@ -321,7 +321,7 @@ function navHTML() {
 
       <div class="mobile-menu-footer">
         <a href="appointments.html" class="mobile-menu-book-btn">Book an Appointment</a>
-        <button type="button" onclick="closeMobileMenu();setTimeout(openWishlist,200);" style="display:flex;align-items:center;justify-content:center;gap:8px;padding:12px;border:1px solid rgba(255,255,255,.12);background:none;color:rgba(255,255,255,.75);font-family:'Josefin Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;width:100%;transition:color .15s,border-color .15s;">
+        <button type="button" onclick="closeMobileMenu();setTimeout(openWishlist,200);" style="display:flex;align-items:center;justify-content:center;gap:8px;padding:12px;border:1px solid rgba(255,255,255,.12);background:none;color:rgba(255,255,255,.75);font-family:var(--font-kicker,'Josefin Sans',sans-serif);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;width:100%;transition:color .15s,border-color .15s;">
           View Saved Styles (<span id="wlMobileMenuBadge">0</span>)
         </button>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
@@ -394,7 +394,7 @@ function footerHTML() {
         <div>
           <div class="footer-col-title" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
             Bridal Hours
-            <span id="footerTodayBadge" style="font-size:9px;font-weight:700;letter-spacing:.12em;padding:2px 7px;border-radius:20px;background:var(--teal-dim2);color:var(--teal-deep);"></span>
+            <span id="footerTodayBadge" style="font-family:var(--font-kicker,'Josefin Sans',sans-serif);font-size:11px;font-weight:700;letter-spacing:.12em;padding:2px 7px;border-radius:20px;background:var(--teal-dim2);color:var(--teal-deep);"></span>
           </div>
           <table class="hours-table" style="margin-top:10px;">
             <tr><td>Mon, Fri</td><td>10am – 5pm</td></tr>
@@ -403,7 +403,7 @@ function footerHTML() {
             <tr><td>Sat</td><td>9am – 5pm</td></tr>
             <tr><td>Sun</td><td>By Appt. Only</td></tr>
           </table>
-          <div style="font-size:10px;color:var(--text-light);margin-top:3px;font-style:italic;">*Open Sundays Jan–Mar seasonally</div>
+          <div style="font-size:11px;color:var(--text-light);margin-top:3px;font-style:italic;">*Open Sundays Jan–Mar seasonally</div>
           <div class="hours-sub">Prom Hours</div>
           <table class="hours-table">
             <tr><td>Mon</td><td>10am – 5pm</td></tr>
@@ -420,7 +420,7 @@ function footerHTML() {
               <input type="email" name="email" placeholder="your@email.com" required aria-label="Email address"/>
               <button type="submit">Subscribe</button>
             </form>
-            <p style="font-size:10px;color:var(--text-light);margin-top:8px;line-height:1.5;">No spam, ever. Unsubscribe anytime.</p>
+            <p style="font-size:11px;color:var(--text-light);margin-top:8px;line-height:1.5;">No spam, ever. Unsubscribe anytime.</p>
           </div>
         </div>
       </div>
@@ -675,7 +675,7 @@ var WL = (function() {
       var rvHtml = '';
       if (recentlyViewed.length) {
         rvHtml = '<div style="margin-top:20px;">' +
-          '<div style="font-family:\'Josefin Sans\',sans-serif;font-size:8px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--text-light);margin-bottom:12px;">Recently Viewed</div>' +
+          '<div style="font-family:var(--font-kicker,\'Josefin Sans\',sans-serif);font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--text-light);margin-bottom:12px;">Recently Viewed</div>' +
           '<div class="wl-grid">' +
           recentlyViewed.map(function(p) {
             var img = (p.x && p.x.length) ? p.x[0] : (p.i || '');
@@ -863,7 +863,7 @@ var WL = (function() {
           '<div>' +
             '<div class="lookbook-card-sub">' + escapeHTML(p.d || 'Designer Gown') + '</div>' +
             '<h4 class="lookbook-card-title">' + escapeHTML(p.n || p.s || 'Style #' + (i+1)) + '</h4>' +
-            (p.sil ? '<div style="font-size:10px;color:var(--teal-deep);margin-top:2px;">Silhouette: ' + escapeHTML(p.sil) + '</div>' : '') +
+            (p.sil ? '<div style="font-size:11px;color:var(--teal-deep);margin-top:2px;">Silhouette: ' + escapeHTML(p.sil) + '</div>' : '') +
           '</div>' +
           '<div class="lookbook-card-notes">' +
             '<span>Style #' + escapeHTML(p.s || '') + '</span>' +

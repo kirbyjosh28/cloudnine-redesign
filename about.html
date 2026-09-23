@@ -20,7 +20,7 @@
     <!-- Fonts: preconnect first, then non-blocking stylesheet -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Josefin+Sans:wght@100;200;300;400&family=Lato:wght@300;400;700;900&display=swap"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&display=swap"/>
   <link rel="stylesheet" href="shared.css?v=20260909k"/>
   <script type="application/ld+json">
   {
@@ -51,15 +51,16 @@
   }
   </script>
   <style>
-    /* ── EDITORIAL TEAM — luxury portrait layout ── */
-
-    /* Jennifer — full-width feature card */
+    /* Team grid — bespoke editorial layout */
     .team-feature {
       display: grid;
-      grid-template-columns: 42% 1fr;
-      min-height: 520px;
-      background: #f4f0eb;
-      margin-bottom: 3px;
+      grid-template-columns: 1fr 1fr;
+      background: var(--teal-xlight);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 24px;
+      min-height: 480px;
     }
     .team-feature-photo {
       position: relative;
@@ -79,9 +80,9 @@
       justify-content: center;
     }
     .team-feature-role {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 9px; font-weight: 700;
-      letter-spacing: .30em; text-transform: uppercase;
+      font-family: var(--font-kicker, 'Josefin Sans', sans-serif);
+      font-size: 11px; font-weight: 700;
+      letter-spacing: .28em; text-transform: uppercase;
       color: var(--teal-deep);
       margin-bottom: 18px;
     }
@@ -157,8 +158,8 @@
       letter-spacing: -.01em;
     }
     .team-portrait-role {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 8px; font-weight: 700;
+      font-family: var(--font-kicker, 'Josefin Sans', sans-serif);
+      font-size: 11px; font-weight: 700;
       letter-spacing: .18em; text-transform: uppercase;
       color: rgba(255,255,255,.58);
       display: block;
@@ -355,7 +356,7 @@
       .team-editorial-grid { grid-template-columns: repeat(2, 1fr) !important; }
       .team-portrait-info { padding: 0 14px 14px; }
       .team-portrait-info h4 { font-size: 17px; }
-      .team-portrait-role { font-size: 7.5px; letter-spacing: .14em; }
+      .team-portrait-role { font-size: 11px; letter-spacing: .14em; }
     }
 
     /* About CTA — mobile */
@@ -742,7 +743,7 @@
     <a href="appointments.html" class="btn-luxury-pill">
       <span>Book Your Bridal Fitting</span>
     </a>
-    <a href="experience.html" class="btn-outline" style="border-radius:100px;font-size:10px;padding:12px 24px;">
+    <a href="experience.html" class="btn-outline" style="border-radius:100px;font-family:var(--font-kicker,'Josefin Sans',sans-serif);font-size:11px;padding:12px 24px;">
       <span>Explore Fitting Details</span>
     </a>
   </div>

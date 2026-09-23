@@ -65,7 +65,7 @@
     <!-- Fonts: preconnect first, then non-blocking stylesheet -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Josefin+Sans:wght@100;200;300;400&family=Lato:wght@300;400;700;900&display=swap"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&display=swap"/>
   <link rel="preload" as="image" href="images/bridal/hero-option-1-veil-bride.webp?v=20260909i" type="image/webp"/>
   <link rel="stylesheet" href="shared.css?v=20260909k"/>
   <style>
@@ -109,9 +109,9 @@
       animation: loaderFill .9s cubic-bezier(.16,1,.3,1) .7s forwards;
     }
     .loader-tag {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 8px; font-weight: 700;
-      letter-spacing: .32em; text-transform: uppercase;
+      font-family: var(--font-kicker);
+      font-size: 11px; font-weight: 700;
+      letter-spacing: .28em; text-transform: uppercase;
       color: rgba(255,255,255,.62);
       opacity: 0;
       animation: loaderFadeIn .4s ease 1s forwards;
@@ -158,13 +158,14 @@
       justify-content: space-between;
     }
     .hero-c-eyebrow {
-      font-size: 10px; font-weight: 600;
-      letter-spacing: .28em; text-transform: uppercase;
+      font-family: var(--font-kicker);
+      font-size: 11px; font-weight: 700;
+      letter-spacing: .24em; text-transform: uppercase;
       color: rgba(255,255,255,.65);
       margin-bottom: 22px;
     }
     .hero-c-title {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-serif);
       font-size: clamp(60px, 9vw, 128px);
       font-weight: 700;
       line-height: .9;
@@ -178,7 +179,8 @@
       display: inline-flex; align-items: center; gap: 12px;
       padding: 15px 38px;
       background: #fff; color: var(--teal-dark);
-      font-size: 10px; font-weight: 700;
+      font-family: var(--font-kicker);
+      font-size: 11px; font-weight: 700;
       letter-spacing: .16em; text-transform: uppercase;
       border: 1px solid #fff;
       transition: background .3s, color .3s;
@@ -188,7 +190,8 @@
       display: inline-flex; align-items: center; gap: 12px;
       padding: 14px 36px;
       background: transparent; color: rgba(255,255,255,.8);
-      font-size: 10px; font-weight: 600;
+      font-family: var(--font-kicker);
+      font-size: 11px; font-weight: 700;
       letter-spacing: .16em; text-transform: uppercase;
       border: 1px solid rgba(255,255,255,.35);
       transition: border-color .3s, color .3s;
@@ -200,13 +203,15 @@
       padding-bottom: 4px;
     }
     .hero-c-tagline {
-      font-size: 13px; font-weight: 300;
+      font-family: var(--font-sans);
+      font-size: 14px; font-weight: 300;
       color: rgba(255,255,255,.65);
-      text-align: center; max-width: 180px;
+      text-align: center; max-width: 200px;
       line-height: 1.85; letter-spacing: .01em;
     }
     .hero-c-scroll {
-      font-size: 9px; font-weight: 600;
+      font-family: var(--font-kicker);
+      font-size: 11px; font-weight: 700;
       letter-spacing: .24em; text-transform: uppercase;
       color: rgba(255,255,255,.58);
       display: flex; flex-direction: column;
@@ -503,9 +508,9 @@
       padding: 80px 64px 80px 80px;
     }
     .testi-eyebrow {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 9px; font-weight: 700;
-      letter-spacing: .32em; text-transform: uppercase;
+      font-family: var(--font-kicker);
+      font-size: 11px; font-weight: 700;
+      letter-spacing: .28em; text-transform: uppercase;
       color: rgba(255,255,255,.65);
       margin: 0 0 36px;
       opacity: 0;
@@ -524,7 +529,7 @@
     .testimonials-section.in-view .testi-quote-wrap { opacity: 1; transform: translateY(0); }
 
     .testi-mark {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-serif);
       font-size: 96px;
       line-height: .6;
       color: rgba(152,213,214,.25);
@@ -533,7 +538,7 @@
       font-style: italic;
     }
     .testi-quote {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-serif);
       font-size: clamp(20px, 2.2vw, 30px);
       font-style: italic;
       font-weight: 700;
@@ -587,19 +592,20 @@
       gap: 3px;
     }
     .testi-name {
-      font-family: 'Josefin Sans', sans-serif;
+      font-family: var(--font-kicker);
       font-size: 11px; font-weight: 700;
       letter-spacing: .18em; text-transform: uppercase;
       color: #fff;
     }
     .testi-detail {
-      font-size: 11px;
+      font-family: var(--font-sans);
+      font-size: 12px;
       color: rgba(255,255,255,.58);
       letter-spacing: .02em;
       line-height: 1.5;
     }
     .testi-dress {
-      color: rgba(152,213,214,.55);
+      color: rgba(152,213,214,.75);
       font-style: italic;
     }
 
@@ -684,8 +690,8 @@
     }
     .snap-dot-label {
       position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 8px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+      font-family: var(--font-kicker);
+      font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
       color: rgba(255,255,255,.0); white-space: nowrap;
       transition: color .2s;
       pointer-events: none;
@@ -758,7 +764,7 @@
       /* Reframe couple — shift left so groom is fully in frame */
       .hero-c-bg img { object-position: 38% top !important; }
       .hero-c-content { padding: 0 20px 84px; gap: 16px; }
-      .hero-c-eyebrow { font-size: 9px; margin-bottom: 12px; }
+      .hero-c-eyebrow { font-size: 11px; margin-bottom: 12px; }
       .hero-c-title {
         font-size: clamp(34px, 9vw, 58px);
         line-height: .94;
@@ -778,6 +784,7 @@
         width: 100%;
         justify-content: center;
         padding: 18px 24px;
+        font-family: var(--font-kicker);
         font-size: 11px;
         letter-spacing: .15em;
       }
@@ -786,7 +793,8 @@
         background: none;
         color: rgba(255,255,255,.68);
         padding: 14px 0 0;
-        font-size: 10px;
+        font-family: var(--font-kicker);
+        font-size: 11px;
         letter-spacing: .16em;
         justify-content: flex-start;
         gap: 8px;
@@ -900,7 +908,7 @@
 
     /* ── QUIZ editorial typographic ── */
     .progress-wrap{display:flex;align-items:center;justify-content:space-between;margin-bottom:64px;padding-bottom:24px;border-bottom:1px solid var(--border)}
-    .progress-label{font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--text-light)}
+    .progress-label{font-family:var(--font-kicker);font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--text-light)}
     .progress-steps{display:flex;align-items:center;gap:6px}
     .step-dot{width:20px;height:1px;background:var(--border-mid);transition:all .3s}
     .step-dot.active{background:var(--teal-deep);width:40px}
@@ -908,8 +916,8 @@
     .question-slide{display:none;animation:fadeUp .45s ease forwards}
     .question-slide.active{display:block}
     @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-    .question-title{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,58px);font-weight:700;line-height:1.05;letter-spacing:-.03em;color:var(--text);margin-bottom:12px}
-    .question-subtitle{font-size:14px;color:var(--text-muted);margin-bottom:52px;font-weight:300;letter-spacing:.01em}
+    .question-title{font-family:var(--font-serif);font-size:clamp(32px,4.5vw,58px);font-weight:700;line-height:1.05;letter-spacing:-.03em;color:var(--text);margin-bottom:12px}
+    .question-subtitle{font-family:var(--font-sans);font-size:15px;color:var(--text-muted);margin-bottom:52px;font-weight:300;letter-spacing:.01em}
     .options-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-bottom:64px;background:var(--border)}
     @media(max-width:900px){.options-grid{grid-template-columns:repeat(2,1fr)}}
     @media(max-width:540px){.options-grid{grid-template-columns:1fr 1fr}}
@@ -923,14 +931,14 @@
     .option-card:hover{background:var(--teal-deep)}
     .option-card.selected{background:var(--teal-deep)}
     .option-num{
-      font-size:10px;font-weight:300;letter-spacing:.2em;
-      color:var(--text-light);font-family:'Josefin Sans',sans-serif;
+      font-size:11px;font-weight:700;letter-spacing:.2em;
+      color:var(--text-light);font-family:var(--font-kicker);
       transition:color .3s;flex:1;
     }
     .option-card:hover .option-num,.option-card.selected .option-num{color:rgba(255,255,255,.62)}
     .card-label{padding:0;background:transparent;border:none}
     .card-label-title{
-      font-family:'Playfair Display',serif;
+      font-family:var(--font-serif);
       font-size:clamp(18px,2vw,24px);font-weight:700;font-style:italic;
       line-height:1.15;letter-spacing:-.01em;
       color:var(--text);margin-bottom:10px;
@@ -938,7 +946,8 @@
     }
     .option-card:hover .card-label-title,.option-card.selected .card-label-title{color:#fff}
     .card-label-desc{
-      font-size:9px;font-weight:500;letter-spacing:.2em;
+      font-family:var(--font-kicker);
+      font-size:11px;font-weight:700;letter-spacing:.16em;
       text-transform:uppercase;color:var(--text-muted);line-height:1.7;
       transition:color .3s;
     }
@@ -955,31 +964,31 @@
     .option-card.selected .card-check{opacity:1;transform:scale(1)}
     /* Nav */
     .quiz-nav{display:flex;align-items:center;justify-content:space-between}
-    .btn-back{display:inline-flex;align-items:center;gap:10px;padding:13px 28px;border-radius:0;border:1px solid var(--border-mid);font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);background:transparent;cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif}
+    .btn-back{display:inline-flex;align-items:center;gap:10px;padding:13px 28px;border-radius:0;border:1px solid var(--border-mid);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);background:transparent;cursor:pointer;transition:all .2s;font-family:var(--font-kicker)}
     .btn-back:hover{border-color:var(--text);color:var(--text)}
-    .btn-next{display:inline-flex;align-items:center;gap:12px;padding:14px 36px;border-radius:0;background:var(--teal-deep);color:white;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--teal-deep);cursor:pointer;transition:background .25s,color .25s,opacity .2s;font-family:'Inter',sans-serif}
+    .btn-next{display:inline-flex;align-items:center;gap:12px;padding:14px 36px;border-radius:0;background:var(--teal-deep);color:white;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--teal-deep);cursor:pointer;transition:background .25s,color .25s,opacity .2s;font-family:var(--font-kicker)}
     .btn-next:hover{background:transparent;color:var(--teal-deep)}
     .btn-next:disabled{opacity:.25;cursor:not-allowed}
     /* Results */
     #results{display:none;animation:fadeUp .5s ease forwards}
     .results-header{text-align:center;margin-bottom:72px}
-    .results-eyebrow{font-size:10px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--text-muted);margin-bottom:20px}
-    .results-title{font-family:'Playfair Display',serif;font-size:clamp(42px,6vw,72px);font-weight:700;line-height:1.0;letter-spacing:-.03em;color:var(--text);margin-bottom:18px}
+    .results-eyebrow{font-family:var(--font-kicker);font-size:11px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--text-muted);margin-bottom:20px}
+    .results-title{font-family:var(--font-serif);font-size:clamp(42px,6vw,72px);font-weight:700;line-height:1.0;letter-spacing:-.03em;color:var(--text);margin-bottom:18px}
     .results-title em{font-style:italic;color:var(--teal-deep)}
-    .results-desc{font-size:16px;font-weight:300;color:var(--text-muted);max-width:520px;margin:0 auto;line-height:1.9;letter-spacing:.01em}
+    .results-desc{font-family:var(--font-sans);font-size:16px;font-weight:300;color:var(--text-muted);max-width:520px;margin:0 auto;line-height:1.9;letter-spacing:.01em}
     .results-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;overflow:hidden;margin-bottom:2px;background:var(--border)}
     @media(max-width:640px){.results-grid{grid-template-columns:1fr}}
     .result-trait{background:var(--white);padding:36px 32px}
-    .trait-label{font-size:9px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px}
-    .trait-value{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;font-style:italic;color:var(--text);margin-bottom:8px;letter-spacing:-.01em}
-    .trait-desc{font-size:14px;color:var(--text-muted);line-height:1.7;font-weight:300}
+    .trait-label{font-family:var(--font-kicker);font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px}
+    .trait-value{font-family:var(--font-serif);font-size:24px;font-weight:700;font-style:italic;color:var(--text);margin-bottom:8px;letter-spacing:-.01em}
+    .trait-desc{font-family:var(--font-sans);font-size:14px;color:var(--text-muted);line-height:1.7;font-weight:300}
     .results-cta{background:var(--teal-deep);padding:72px 48px;text-align:center;color:white}
-    .results-cta-title{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,42px);font-weight:700;margin-bottom:16px;color:white;line-height:1.1;letter-spacing:-.02em}
+    .results-cta-title{font-family:var(--font-serif);font-size:clamp(28px,4vw,42px);font-weight:700;margin-bottom:16px;color:white;line-height:1.1;letter-spacing:-.02em}
     .results-cta-title em{font-style:italic;color:var(--teal-light)}
-    .results-cta-sub{font-size:15px;color:rgba(255,255,255,.55);margin-bottom:40px;font-weight:300;letter-spacing:.01em}
+    .results-cta-sub{font-family:var(--font-sans);font-size:15px;color:rgba(255,255,255,.65);margin-bottom:40px;font-weight:300;letter-spacing:.01em}
     .cta-buttons{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
-    .btn-retake{background:none;border:none;color:rgba(255,255,255,.3);font-size:12px;cursor:pointer;letter-spacing:.1em;text-transform:uppercase;margin-top:24px;display:block;transition:color .2s;font-family:'Inter',sans-serif}
-    .btn-retake:hover{color:rgba(255,255,255,.7)}
+    .btn-retake{background:none;border:none;color:rgba(255,255,255,.5);font-size:12px;font-weight:700;cursor:pointer;letter-spacing:.14em;text-transform:uppercase;margin-top:24px;display:block;transition:color .2s;font-family:var(--font-kicker)}
+    .btn-retake:hover{color:rgba(255,255,255,.85)}
 
     /* ── SECTION ENTRANCE ANIMATIONS (triggered by .in-view on snap enter) ── */
 
@@ -1064,17 +1073,18 @@
     .hero-c-proof {
       display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
       margin-top: 40px;
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 9px; font-weight: 700; letter-spacing: .20em; text-transform: uppercase;
+      font-family: var(--font-kicker);
+      font-size: 11px; font-weight: 700; letter-spacing: .20em; text-transform: uppercase;
       color: rgba(255,255,255,.55);
+      font-variant-numeric: tabular-nums;
     }
     .hero-c-proof-sep {
       color: rgba(255,255,255,.18);
       font-weight: 300; letter-spacing: 0;
     }
     @media (max-width: 768px) {
-      .hero-c-proof { margin-top: 22px; font-size: 10px; gap: 8px; }
-      .hero-c-proof-sep { font-size: 10px; }
+      .hero-c-proof { margin-top: 22px; font-size: 11px; gap: 8px; }
+      .hero-c-proof-sep { font-size: 11px; }
     }
 
     /* ══════════════════════════════════════
@@ -1112,7 +1122,7 @@
       margin-bottom: 60px;
     }
     .designers-title {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-serif);
       font-size: clamp(30px, 4vw, 54px);
       font-weight: 700;
       letter-spacing: -.03em;
@@ -1122,10 +1132,10 @@
     }
     .designers-title em { font-style: italic; color: var(--teal-deep); }
     .designers-sub {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 13px; font-weight: 300;
+      font-family: var(--font-sans);
+      font-size: 15px; font-weight: 300;
       color: var(--text-muted);
-      line-height: 1.9;
+      line-height: 1.8;
       letter-spacing: .01em;
     }
     .designers-grid {
@@ -1157,14 +1167,14 @@
     .designer-card:hover { background: var(--teal-xlight); }
     .designer-card:hover::after { height: 100%; }
     .designer-num {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 9px; font-weight: 700;
+      font-family: var(--font-kicker);
+      font-size: 11px; font-weight: 700;
       letter-spacing: .28em; text-transform: uppercase;
       color: var(--text-light);
       margin-bottom: 18px;
     }
     .designer-name {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-serif);
       font-size: clamp(17px, 1.7vw, 22px);
       font-weight: 700;
       font-style: italic;
@@ -1176,17 +1186,17 @@
     }
     .designer-card:hover .designer-name { color: var(--teal-deep); }
     .designer-desc {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 11.5px; font-weight: 300;
+      font-family: var(--font-sans);
+      font-size: 13.5px; font-weight: 300;
       color: var(--text-muted);
-      line-height: 1.8;
+      line-height: 1.75;
       letter-spacing: .01em;
       flex: 1;
       margin-bottom: 20px;
     }
     .designer-link {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 9px; font-weight: 700;
+      font-family: var(--font-kicker);
+      font-size: 11px; font-weight: 700;
       letter-spacing: .2em; text-transform: uppercase;
       color: var(--teal-deep);
       display: inline-flex; align-items: center; gap: 6px;
@@ -1356,7 +1366,7 @@
       transform: none;
     }
     .snap-progress { gap: 8px; }
-    .snap-dot-label { right: 18px; font-size: 7.5px; letter-spacing: .22em; }
+    .snap-dot-label { right: 18px; font-family: var(--font-kicker); font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
 
     /* ── Mobile: guard large sizes ───────────────────────── */
     @media (max-width: 768px) {
@@ -1434,8 +1444,8 @@
     <div class="editorial-text">
       <div class="eyebrow">About Cloud Nine</div>
       <h2 class="section-title">A Boutique Built<br/><em>For Your Moment</em></h2>
-      <p style="font-size:16px;color:var(--text-muted);line-height:1.85;margin-bottom:20px;">For over 12 years, Cloud Nine has been the boutique Central Illinois brides drive past every other shop to reach. Our stylists don't just pull dresses — they listen first. To your story, your nerves, your vision. Then they guide you with warmth and excitement into gowns that make your heart skip a beat.</p>
-      <p style="font-size:16px;color:var(--text-muted);line-height:1.85;margin-bottom:28px;">We proudly carry world-class collections from Essense of Australia, Maggie Sottero, Rebecca Ingram, Sottero &amp; Midgley, Stella York, and our exclusive in-house line Rose + Grace ($1,200–$4,000, sizes 0–38). And just steps down at 4701 N. University St, our dedicated Prom Boutique offers 800+ gowns (walk-ins only!).</p>
+      <p style="font-family:var(--font-sans);font-size:16px;color:var(--text-muted);line-height:1.85;margin-bottom:20px;">For over 12 years, Cloud Nine has been the boutique Central Illinois brides drive past every other shop to reach. Our stylists don't just pull dresses — they listen first. To your story, your nerves, your vision. Then they guide you with warmth and excitement into gowns that make your heart skip a beat.</p>
+      <p style="font-family:var(--font-sans);font-size:16px;color:var(--text-muted);line-height:1.85;margin-bottom:28px;">We proudly carry world-class collections from Essense of Australia, Maggie Sottero, Rebecca Ingram, Sottero &amp; Midgley, Stella York, and our exclusive in-house line Rose + Grace ($1,200–$4,000, sizes 0–38). And just steps down at 4701 N. University St, our dedicated Prom Boutique offers 800+ gowns (walk-ins only!).</p>
       <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:0;">
         <a href="about.html" class="btn-outline">Our Story</a>
         <a href="appointments.html" class="btn-primary">Book Appointment</a>
@@ -1516,7 +1526,7 @@
 
   <div class="journey-footer-cta reveal-on-scroll">
     <a href="appointments.html" class="btn-luxury-pill"><span>Book Your Bridal Fitting</span></a>
-    <a href="experience.html" class="btn-outline" style="border-radius:100px;font-size:10px;padding:12px 24px;"><span>Explore Fitting Details</span></a>
+    <a href="experience.html" class="btn-outline" style="border-radius:100px;font-family:var(--font-kicker);font-size:11px;padding:12px 24px;"><span>Explore Fitting Details</span></a>
   </div>
 </section>
 
@@ -1527,7 +1537,7 @@
       <div class="eyebrow">Real Brides</div>
       <h2>Our <em>Brides</em></h2>
     </div>
-    <a href="our-brides.html" style="font-family:'Josefin Sans',sans-serif;font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.45);text-decoration:none;padding-bottom:32px;transition:color .2s;white-space:nowrap;" onmouseover="this.style.color='rgba(255,255,255,.85)'" onmouseout="this.style.color='rgba(255,255,255,.45)'">View All Our Brides</a>
+    <a href="our-brides.html" style="font-family:var(--font-kicker);font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.45);text-decoration:none;padding-bottom:32px;transition:color .2s;white-space:nowrap;" onmouseover="this.style.color='rgba(255,255,255,.85)'" onmouseout="this.style.color='rgba(255,255,255,.45)'">View All Our Brides</a>
   </div>
   <!-- Row 1: photos 01–14 scrolling left, duplicated for seamless loop -->
   <div class="marquee-row marquee-row--fwd">
@@ -1620,7 +1630,7 @@
             <span class="testi-detail testi-dress"></span>
           </div>
         </div>
-        <div class="testi-source" style="margin-top:8px;font-family:'Josefin Sans',sans-serif;font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);"></div>
+        <div class="testi-source" style="margin-top:8px;font-family:var(--font-kicker);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);"></div>
       </div>
       <div class="testi-nav">
         <button class="testi-prev" aria-label="Previous">Prev</button>
@@ -1695,19 +1705,19 @@
   <!-- Social proof strip -->
   <div style="display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap;margin-bottom:52px;">
     <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
-      <span style="font-family:'Josefin Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal-light);">5-Star Rated</span>
-      <span style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#fff;line-height:1;letter-spacing:-.01em;margin-top:2px;">4.9</span>
-      <span style="font-family:'Josefin Sans',sans-serif;font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.38);">180+ Google Reviews</span>
+      <span style="font-family:var(--font-kicker);font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal-light);">5-Star Rated</span>
+      <span style="font-family:var(--font-serif);font-size:20px;font-weight:700;color:#fff;line-height:1;letter-spacing:-.01em;margin-top:2px;font-variant-numeric:tabular-nums;">4.9</span>
+      <span style="font-family:var(--font-kicker);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5);font-variant-numeric:tabular-nums;">180+ Google Reviews</span>
     </div>
     <div style="width:1px;height:28px;background:rgba(255,255,255,.12);"></div>
     <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
-      <span style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:#fff;line-height:1;letter-spacing:-.02em;">18+</span>
-      <span style="font-family:'Josefin Sans',sans-serif;font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.38);">Years in Peoria</span>
+      <span style="font-family:var(--font-serif);font-size:28px;font-weight:700;color:#fff;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums;">18+</span>
+      <span style="font-family:var(--font-kicker);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5);">Years in Peoria</span>
     </div>
     <div style="width:1px;height:28px;background:rgba(255,255,255,.12);"></div>
     <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
-      <span style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:#fff;line-height:1;letter-spacing:-.02em;">3,200+</span>
-      <span style="font-family:'Josefin Sans',sans-serif;font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.38);">Brides Served</span>
+      <span style="font-family:var(--font-serif);font-size:28px;font-weight:700;color:#fff;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums;">3,200+</span>
+      <span style="font-family:var(--font-kicker);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5);font-variant-numeric:tabular-nums;">Brides Served</span>
     </div>
   </div>
 
@@ -1886,7 +1896,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var prevBtn   = section.querySelector('.testi-prev');
   var nextBtn   = section.querySelector('.testi-next');
 
-  var starLabel = '<span style="font-family:\'Josefin Sans\',sans-serif;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.8);">Verified 5-Star Experience</span>';
+  var starLabel = '<span style="font-family:var(--font-kicker);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.8);">Verified 5-Star Experience</span>';
 
   var slides  = [];
   var current = 0;

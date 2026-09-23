@@ -20,7 +20,7 @@
     <!-- Fonts: preconnect first, then non-blocking stylesheet -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Josefin+Sans:wght@100;200;300;400&family=Lato:wght@300;400;700;900&display=swap"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&display=swap"/>
   <link rel="stylesheet" href="shared.css?v=20260909k"/>
   <script type="application/ld+json">
   {
@@ -110,20 +110,20 @@
     .booking-method--request .bm-icon { background: var(--teal-dim); color: var(--teal-deep); }
     .bm-body { flex: 1; }
     .bm-eyebrow {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 9px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
+      font-family: var(--font-kicker);
+      font-size: 11px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
       margin-bottom: 4px;
     }
     .booking-method--online .bm-eyebrow { color: rgba(255,255,255,.55); }
     .booking-method--request .bm-eyebrow { color: var(--text-muted); }
     .bm-title {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-serif);
       font-size: 21px; font-weight: 700; letter-spacing: -.01em; line-height: 1.1;
       margin-bottom: 5px;
     }
     .booking-method--online .bm-title { color: #fff; }
     .booking-method--request .bm-title { color: var(--text); }
-    .bm-sub { font-size: 13px; line-height: 1.55; font-weight: 300; }
+    .bm-sub { font-family: var(--font-sans); font-size: 14px; line-height: 1.55; font-weight: 300; }
     .booking-method--online .bm-sub { color: rgba(255,255,255,.62); }
     .booking-method--request .bm-sub { color: var(--text-muted); }
     .bm-arrow { flex-shrink: 0; transition: transform .25s; }
@@ -136,8 +136,8 @@
       padding: 0 20px; flex-shrink: 0;
     }
     .bm-or-divider span {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 11px; font-weight: 300; letter-spacing: .12em; text-transform: uppercase;
+      font-family: var(--font-kicker);
+      font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
       color: var(--text-light);
       display: flex; flex-direction: column; align-items: center; gap: 8px;
     }
@@ -154,15 +154,15 @@
     }
     .wte-step:last-child { border-bottom: none; padding-bottom: 0; }
     .wte-num {
-      flex-shrink: 0; width: 26px; height: 26px;
+      flex-shrink: 0; width: 28px; height: 28px;
       background: rgba(255,255,255,.12); border-radius: 0;
       display: flex; align-items: center; justify-content: center;
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 9px; font-weight: 700; letter-spacing: .1em;
-      color: rgba(255,255,255,.65); margin-top: 1px;
+      font-family: var(--font-kicker);
+      font-size: 11px; font-weight: 700; letter-spacing: .1em;
+      color: rgba(255,255,255,.85); margin-top: 1px;
     }
-    .wte-title { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 2px; }
-    .wte-desc { font-size: 12px; color: rgba(255,255,255,.72); line-height: 1.55; }
+    .wte-title { font-family: var(--font-sans); font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 2px; }
+    .wte-desc { font-family: var(--font-sans); font-size: 13px; color: rgba(255,255,255,.72); line-height: 1.55; }
 
     /* Today's hours highlight */
     .hours-today {
@@ -431,7 +431,7 @@
           <tr data-days="0"><td style="color:var(--text);font-weight:700;padding-right:16px;">Sun</td><td class="u-text-muted">By Appointment Only</td></tr>
         </table>
         <div style="font-size:11px;color:var(--text-muted);margin-top:6px;font-style:italic;">*Open Sundays Jan–Mar seasonally by appointment</div>
-        <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-light);margin:18px 0 8px;">Prom Hours</div>
+        <div style="font-family:var(--font-kicker);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-light);margin:18px 0 8px;">Prom Hours</div>
         <table class="hours-table">
           <tr><td style="color:var(--text);font-weight:700;padding-right:16px;">Mon</td><td class="u-text-muted">10am – 5pm</td></tr>
           <tr><td style="color:var(--text);font-weight:700;padding-right:16px;">Tues, Thur</td><td class="u-text-muted">12pm – 7pm</td></tr>

@@ -14,7 +14,7 @@
     <!-- Fonts: preconnect first, then non-blocking stylesheet -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Josefin+Sans:wght@100;200;300;400&family=Lato:wght@300;400;700;900&display=swap"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&display=swap"/>
   <link rel="stylesheet" href="shared.css?v=20260909k"/>
   <style>
 
@@ -94,7 +94,8 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      font-size: 8px;
+      font-family: var(--font-kicker);
+      font-size: 11px;
       font-weight: 700;
       letter-spacing: .28em;
       text-transform: uppercase;
@@ -113,11 +114,12 @@
 
     /* Gown title */
     .dp-title {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-serif);
       font-size: clamp(28px, 3vw, 48px);
       font-weight: 700;
       line-height: 1.05;
       letter-spacing: -.03em;
+      text-wrap: balance;
       color: var(--text);
       margin-bottom: 8px;
     }
@@ -126,8 +128,8 @@
     /* Style number */
     .dp-style-num:empty { display: none; }
     .dp-style-num {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 9px; font-weight: 700; letter-spacing: .2em;
+      font-family: var(--font-kicker);
+      font-size: 11px; font-weight: 700; letter-spacing: .2em;
       text-transform: uppercase; color: var(--text-light);
       margin-bottom: 20px;
     }
@@ -142,12 +144,14 @@
 
     /* Description */
     .dp-desc {
-      font-size: 13.5px;
+      font-family: var(--font-sans);
+      font-size: 14px;
       font-weight: 300;
       color: var(--text-muted);
       line-height: 1.88;
       letter-spacing: .01em;
       font-style: italic;
+      text-wrap: pretty;
       margin-bottom: 0;
     }
 
@@ -165,14 +169,16 @@
     }
     .dp-meta-row:first-child { border-top: 1px solid var(--border); }
     .dp-meta-key {
-      font-size: 8px;
+      font-family: var(--font-kicker);
+      font-size: 11px;
       font-weight: 700;
       letter-spacing: .24em;
       text-transform: uppercase;
       color: var(--text-light);
     }
     .dp-meta-val {
-      font-size: 12px;
+      font-family: var(--font-sans);
+      font-size: 13px;
       font-weight: 500;
       color: var(--text);
       letter-spacing: .02em;
@@ -188,7 +194,8 @@
       align-items: center;
       padding: 16px 0;
       background: none; border: none;
-      font-size: 9px; font-weight: 700; letter-spacing: .2em;
+      font-family: var(--font-kicker);
+      font-size: 11px; font-weight: 700; letter-spacing: .2em;
       text-transform: uppercase; color: var(--text);
       cursor: pointer; transition: color .2s;
     }
@@ -297,8 +304,8 @@
       position: absolute; top: 12px; right: 12px;
       background: rgba(0,0,0,.42); backdrop-filter: blur(6px);
       color: #fff; padding: 4px 10px; border-radius: 0;
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 9px; font-weight: 700; letter-spacing: .12em;
+      font-family: var(--font-kicker);
+      font-size: 11px; font-weight: 700; letter-spacing: .12em;
       pointer-events: none; opacity: 0;
       transition: opacity .3s;
     }
@@ -323,13 +330,13 @@
       background: linear-gradient(to bottom, rgba(0,0,0,.6) 0%, transparent 100%);
     }
     .lb-top-title {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-serif);
       font-size: 15px; font-weight: 700; font-style: italic;
       color: rgba(255,255,255,.8);
     }
     .lb-counter {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 9px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+      font-family: var(--font-kicker);
+      font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
       color: rgba(255,255,255,.65);
     }
     .lb-close {
@@ -354,8 +361,8 @@
     /* ── Breadcrumb ── */
     .dp-breadcrumb {
       display: flex; align-items: center; gap: 6px;
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 9px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+      font-family: var(--font-kicker);
+      font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
       color: var(--text-light); margin-bottom: 32px;
     }
     .dp-breadcrumb a { color: var(--text-light); text-decoration: none; transition: color .2s; }
@@ -366,7 +373,8 @@
     .dp-also {
       margin-top: 20px; padding: 16px 0;
       border-top: 1px solid var(--border);
-      font-size: 12px; color: var(--text-muted); line-height: 1.6;
+      font-family: var(--font-sans);
+      font-size: 13px; color: var(--text-muted); line-height: 1.6;
       display: flex; align-items: flex-start; gap: 10px;
     }
     .dp-also svg { flex-shrink: 0; color: var(--teal-deep); margin-top: 1px; }
@@ -416,7 +424,7 @@
             <span>Book a Fitting for This Style</span>
           </a>
           <a href="contact.html" class="btn-outline" style="justify-content:center;text-align:center;">Inquire About This Style</a>
-          <button id="dpShareBtn" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px;border:1px solid var(--border);background:none;cursor:pointer;color:var(--text-muted);font-family:'Josefin Sans',sans-serif;font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;transition:border-color .2s,color .2s;width:100%;" aria-label="Share this style">
+          <button id="dpShareBtn" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px;border:1px solid var(--border);background:none;cursor:pointer;color:var(--text-muted);font-family:var(--font-kicker);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;transition:border-color .2s,color .2s;width:100%;" aria-label="Share this style">
             Share This Style
           </button>
         </div>
@@ -430,7 +438,7 @@
   <div class="dp-mobile-cta" id="dpMobileCta">
     <a href="appointments.html" id="dpMobileBookBtn" class="dp-mobile-cta-book">Book an Appointment</a>
     <div class="dp-mobile-cta-sep"></div>
-    <a href="contact.html" class="dp-mobile-cta-inquire" aria-label="Inquire about this style" style="font-family:'Josefin Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;padding:0 12px;text-decoration:none;">Inquire</a>
+    <a href="contact.html" class="dp-mobile-cta-inquire" aria-label="Inquire about this style" style="font-family:var(--font-kicker);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;padding:0 12px;text-decoration:none;">Inquire</a>
   </div>
 
   <!-- Lightbox -->

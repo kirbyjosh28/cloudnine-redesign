@@ -72,11 +72,12 @@
   z-index: 200;
 }
 .qprogress-badge {
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 9.5px;
+  font-family: var(--font-kicker, 'Josefin Sans', sans-serif);
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: .24em;
   text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
   color: var(--teal-deep);
   background: rgba(255,255,255,0.85);
   backdrop-filter: blur(8px);
@@ -128,10 +129,10 @@
 
 /* ── QUESTION HEADER ── */
 .qslide-eyebrow {
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 9px;
+  font-family: var(--font-kicker, 'Josefin Sans', sans-serif);
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: .32em;
+  letter-spacing: .28em;
   text-transform: uppercase;
   color: var(--teal-deep);
   margin-bottom: 16px;
@@ -260,11 +261,12 @@
   flex: 1;
 }
 .qoption-num {
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 8.5px;
+  font-family: var(--font-kicker, 'Josefin Sans', sans-serif);
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: .22em;
   text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
   color: var(--text-light);
   margin-bottom: 6px;
 }
@@ -272,7 +274,7 @@
   color: var(--teal-deep);
 }
 .qoption-title {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif, 'Playfair Display', serif);
   font-size: 17px;
   font-weight: 700;
   color: var(--text);
@@ -280,7 +282,8 @@
   margin-bottom: 6px;
 }
 .qoption-desc {
-  font-size: 11.5px;
+  font-family: var(--font-sans, 'Lato', sans-serif);
+  font-size: 12px;
   font-weight: 300;
   line-height: 1.6;
   color: var(--text-muted);
@@ -323,8 +326,8 @@
   padding: 16px;
 }
 .intro-card-tag {
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 9px;
+  font-family: var(--font-kicker, 'Josefin Sans', sans-serif);
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: .22em;
   text-transform: uppercase;
@@ -351,8 +354,8 @@
   gap: 10px;
   background: none;
   border: none;
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 9.5px;
+  font-family: var(--font-kicker, 'Josefin Sans', sans-serif);
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: .22em;
   text-transform: uppercase;
@@ -369,8 +372,8 @@
   pointer-events: none;
 }
 .qnav-keyboard-hint {
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 9px;
+  font-family: var(--font-kicker, 'Josefin Sans', sans-serif);
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: .16em;
   text-transform: uppercase;
@@ -402,8 +405,8 @@
   padding: 6px 16px;
   background: rgba(28, 78, 80, 0.08);
   border-radius: 9999px;
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 9px;
+  font-family: var(--font-kicker, 'Josefin Sans', sans-serif);
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: .24em;
   text-transform: uppercase;
@@ -411,7 +414,7 @@
   margin-bottom: 18px;
 }
 .qresults-title {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif, 'Playfair Display', serif);
   font-size: clamp(38px, 5.5vw, 76px);
   font-weight: 700;
   line-height: 1.02;
@@ -449,8 +452,8 @@
   box-shadow: 0 4px 18px rgba(28, 78, 80, 0.03);
 }
 .qtrait-tag {
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 8.5px;
+  font-family: var(--font-kicker, 'Josefin Sans', sans-serif);
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: .24em;
   text-transform: uppercase;
@@ -458,14 +461,15 @@
   margin-bottom: 8px;
 }
 .qtrait-val {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif, 'Playfair Display', serif);
   font-size: 20px;
   font-weight: 700;
   color: var(--text);
   margin-bottom: 6px;
 }
 .qtrait-info {
-  font-size: 12.5px;
+  font-family: var(--font-sans, 'Lato', sans-serif);
+  font-size: 13px;
   font-weight: 300;
   line-height: 1.6;
   color: var(--text-muted);
@@ -529,8 +533,8 @@
   flex: 1;
 }
 .qrack-designer {
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 8.5px;
+  font-family: var(--font-kicker, 'Josefin Sans', sans-serif);
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: .24em;
   text-transform: uppercase;
@@ -538,15 +542,15 @@
   margin-bottom: 6px;
 }
 .qrack-name {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif, 'Playfair Display', serif);
   font-size: 21px;
   font-weight: 700;
   color: var(--text);
   margin-bottom: 8px;
 }
 .qrack-style-num {
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 9px;
+  font-family: var(--font-kicker, 'Josefin Sans', sans-serif);
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: .16em;
   text-transform: uppercase;
@@ -554,6 +558,7 @@
   margin-bottom: 12px;
 }
 .qrack-desc {
+  font-family: var(--font-sans, 'Lato', sans-serif);
   font-size: 13px;
   font-weight: 300;
   color: var(--text-muted);
@@ -562,8 +567,8 @@
   margin-bottom: 18px;
 }
 .qrack-cta {
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 9px;
+  font-family: var(--font-kicker, 'Josefin Sans', sans-serif);
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: .2em;
   text-transform: uppercase;
@@ -587,7 +592,7 @@
   margin-top: 40px;
 }
 .qresults-banner-title {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif, 'Playfair Display', serif);
   font-size: clamp(28px, 3.5vw, 44px);
   font-weight: 700;
   line-height: 1.1;
@@ -595,6 +600,7 @@
   margin-bottom: 12px;
 }
 .qresults-banner-desc {
+  font-family: var(--font-sans, 'Lato', sans-serif);
   font-size: 14.5px;
   font-weight: 300;
   line-height: 1.75;
@@ -620,8 +626,8 @@
   color: #ffffff;
   padding: 12px 24px;
   border-radius: 9999px;
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 10px;
+  font-family: var(--font-kicker, 'Josefin Sans', sans-serif);
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: .18em;
   text-transform: uppercase;
@@ -1210,7 +1216,7 @@
         <button class="btn-luxury-pill" id="btnSaveAllLookbook" onclick="saveAllToLookbook()" style="background:var(--teal-dark);">
           <span>Save All to Lookbook</span>
         </button>
-        <button class="btn-outline" id="btnSharePersona" onclick="sharePersonaResults()" style="font-size:10px;padding:12px 20px;">
+        <button class="btn-outline" id="btnSharePersona" onclick="sharePersonaResults()" style="font-family:var(--font-kicker,'Josefin Sans',sans-serif);font-size:11px;padding:12px 20px;">
           Share My Results
         </button>
       </div>
@@ -1225,10 +1231,10 @@
         <p class="qresults-banner-desc">Book your bridal appointment at Cloud Nine in Peoria. Your stylist will have these gowns ready in your private fitting area.</p>
       </div>
       <div class="qresults-banner-actions">
-        <a href="appointments.html" id="rBookBtn" class="btn-white" style="font-size:11px;padding:14px 28px;text-align:center;">
+        <a href="appointments.html" id="rBookBtn" class="btn-white" style="font-family:var(--font-kicker,'Josefin Sans',sans-serif);font-size:11px;padding:14px 28px;text-align:center;">
           Book Fitting with My Quiz Results
         </a>
-        <button onclick="retake()" style="background:none;border:none;color:rgba(255,255,255,0.7);font-family:'Josefin Sans',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;padding:6px;transition:color .2s;">
+        <button onclick="retake()" style="background:none;border:none;color:rgba(255,255,255,0.7);font-family:var(--font-kicker,'Josefin Sans',sans-serif);font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;padding:6px;transition:color .2s;">
           Retake Style Quiz
         </button>
       </div>

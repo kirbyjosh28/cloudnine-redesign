@@ -91,8 +91,8 @@
       background: rgba(255,255,255,0.12);
       border: 1px solid rgba(255,255,255,0.22);
       border-radius: 100px;
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 9.5px;
+      font-family: var(--font-kicker);
+      font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.22em;
       text-transform: uppercase;
@@ -102,11 +102,12 @@
       -webkit-backdrop-filter: blur(8px);
     }
     .exp-hero-title {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-serif);
       font-size: clamp(42px, 6vw, 84px);
       font-weight: 700;
       line-height: 0.94;
       letter-spacing: -0.035em;
+      text-wrap: balance;
       color: #ffffff;
       margin-bottom: 24px;
     }
@@ -116,8 +117,10 @@
       font-weight: 400;
     }
     .exp-hero-desc {
+      font-family: var(--font-sans);
       font-size: 16px;
       font-weight: 300;
+      text-wrap: pretty;
       line-height: 1.85;
       color: rgba(255,255,255,0.82);
       max-width: 580px;
@@ -215,19 +218,20 @@
       gap: 12px;
     }
     .exp-badge-title {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-serif);
       font-size: 15px;
       font-weight: 700;
       color: #ffffff;
     }
     .exp-badge-sub {
-      font-size: 11px;
+      font-family: var(--font-sans);
+      font-size: 12px;
       color: rgba(255,255,255,0.7);
       font-weight: 300;
     }
     .exp-badge-tag {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 9px;
+      font-family: var(--font-kicker);
+      font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.14em;
       text-transform: uppercase;
@@ -266,22 +270,24 @@
       border-color: var(--teal-mid);
     }
     .exp-metric-num {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-serif);
       font-size: 32px;
       font-weight: 700;
       color: var(--teal-deep);
       line-height: 1;
+      font-variant-numeric: tabular-nums;
     }
     .exp-metric-label {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 10px;
+      font-family: var(--font-kicker);
+      font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--text);
     }
     .exp-metric-desc {
-      font-size: 12px;
+      font-family: var(--font-sans);
+      font-size: 13px;
       color: var(--text-muted);
       font-weight: 300;
       line-height: 1.5;
@@ -302,8 +308,8 @@
     }
     .exp-eyebrow {
       display: inline-block;
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 9.5px;
+      font-family: var(--font-kicker);
+      font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.26em;
       text-transform: uppercase;
@@ -311,11 +317,12 @@
       margin-bottom: 12px;
     }
     .exp-title {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-serif);
       font-size: clamp(32px, 4.5vw, 54px);
       font-weight: 700;
       line-height: 1.06;
       letter-spacing: -0.025em;
+      text-wrap: balance;
       color: var(--text);
       margin-bottom: 16px;
     }
@@ -324,9 +331,11 @@
       color: var(--teal-deep);
     }
     .exp-subtitle {
+      font-family: var(--font-sans);
       font-size: 15px;
       font-weight: 300;
       line-height: 1.8;
+      text-wrap: pretty;
       color: var(--text-muted);
     }
 
@@ -399,8 +408,8 @@
       flex: 1;
     }
     .exp-step-tag {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 9px;
+      font-family: var(--font-kicker);
+      font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.2em;
       text-transform: uppercase;
@@ -408,7 +417,7 @@
       margin-bottom: 8px;
     }
     .exp-step-name {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-serif);
       font-size: 20px;
       font-weight: 700;
       color: var(--text);
@@ -416,7 +425,8 @@
       margin-bottom: 12px;
     }
     .exp-step-body {
-      font-size: 13.5px;
+      font-family: var(--font-sans);
+      font-size: 14px;
       color: var(--text-muted);
       font-weight: 300;
       line-height: 1.75;
@@ -457,8 +467,8 @@
       transform: translateX(-50%);
       background: var(--teal-deep);
       color: #ffffff;
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 9px;
+      font-family: var(--font-kicker);
+      font-size: 11px;
       font-weight: 800;
       letter-spacing: 0.2em;
       text-transform: uppercase;
@@ -475,8 +485,8 @@
       flex: 1;
     }
     .exp-suite-tag {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 9px;
+      font-family: var(--font-kicker);
+      font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.2em;
       text-transform: uppercase;
@@ -484,7 +494,7 @@
       margin-bottom: 6px;
     }
     .exp-suite-title {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-serif);
       font-size: 26px;
       font-weight: 700;
       color: var(--text);
@@ -500,18 +510,21 @@
       border-bottom: 1px solid var(--border);
     }
     .exp-suite-price {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-serif);
       font-size: 34px;
       font-weight: 700;
       color: var(--teal-deep);
       line-height: 1;
+      font-variant-numeric: tabular-nums;
     }
     .exp-suite-time {
+      font-family: var(--font-sans);
       font-size: 13px;
       color: var(--text-muted);
       font-weight: 400;
     }
     .exp-suite-desc {
+      font-family: var(--font-sans);
       font-size: 14px;
       color: var(--text-muted);
       font-weight: 300;
@@ -528,7 +541,8 @@
       flex: 1;
     }
     .exp-perk-item {
-      font-size: 13px;
+      font-family: var(--font-sans);
+      font-size: 13.5px;
       color: #333333;
       font-weight: 400;
       line-height: 1.5;
@@ -552,8 +566,8 @@
       padding: 14px 24px;
       background: var(--teal-deep);
       color: #ffffff;
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 10.5px;
+      font-family: var(--font-kicker);
+      font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.16em;
       text-transform: uppercase;
@@ -601,15 +615,16 @@
       grid-column: span 2;
     }
     .exp-bento-num {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-serif);
       font-size: 40px;
       font-weight: 700;
       color: rgba(28,78,80,0.15);
       line-height: 1;
       margin-bottom: 12px;
+      font-variant-numeric: tabular-nums;
     }
     .exp-bento-title {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-serif);
       font-size: 22px;
       font-weight: 700;
       color: var(--text);
@@ -617,6 +632,7 @@
       margin-bottom: 10px;
     }
     .exp-bento-desc {
+      font-family: var(--font-sans);
       font-size: 14px;
       color: var(--text-muted);
       font-weight: 300;
@@ -648,7 +664,7 @@
       padding: 22px 28px;
       background: none;
       border: none;
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-serif);
       font-size: 18px;
       font-weight: 700;
       color: var(--text);
@@ -660,8 +676,8 @@
       user-select: none;
     }
     .exp-faq-state {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 10px;
+      font-family: var(--font-kicker);
+      font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -674,7 +690,8 @@
     .exp-faq-content {
       display: none;
       padding: 0 28px 24px;
-      font-size: 14.5px;
+      font-family: var(--font-sans);
+      font-size: 15px;
       font-weight: 300;
       line-height: 1.8;
       color: var(--text-muted);

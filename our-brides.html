@@ -71,7 +71,7 @@
     .brides-hero-content .eyebrow { color: rgba(255,255,255,.65); margin-bottom: 20px; }
     .brides-hero-content .eyebrow::before { background: rgba(255,255,255,.35); }
     .brides-hero-h1 {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-serif);
       font-size: clamp(52px, 8vw, 110px); font-weight: 700;
       letter-spacing: -.04em; line-height: .9;
       color: #fff; margin: 0;
@@ -82,21 +82,22 @@
       padding-bottom: 6px; flex-shrink: 0;
     }
     .brides-hero-count {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-serif);
       font-size: clamp(56px, 7vw, 80px); font-weight: 700;
       letter-spacing: -.04em; color: #fff; line-height: .9;
+      font-variant-numeric: tabular-nums;
     }
     .brides-hero-count-label {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 9px; font-weight: 700; letter-spacing: .28em; text-transform: uppercase;
+      font-family: var(--font-kicker);
+      font-size: 11px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase;
       color: rgba(255,255,255,.62); text-align: right;
     }
     .brides-hero-cta {
       display: inline-flex; align-items: center; gap: 10px;
       padding: 12px 28px;
       border: 1px solid rgba(255,255,255,.3);
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 9px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+      font-family: var(--font-kicker);
+      font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
       color: rgba(255,255,255,.85); text-decoration: none;
       transition: border-color .2s, color .2s;
     }
@@ -125,13 +126,14 @@
     }
     .brides-stat:last-child { border-right: none; }
     .brides-stat-num {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-serif);
       font-size: clamp(36px, 5vw, 60px); font-weight: 700;
       letter-spacing: -.04em; color: var(--teal-deep); line-height: 1;
+      font-variant-numeric: tabular-nums;
     }
     .brides-stat-label {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 9px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
+      font-family: var(--font-kicker);
+      font-size: 11px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
       color: var(--text-light);
     }
     @media (max-width: 600px) {
@@ -166,8 +168,8 @@
       border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 9999px;
       color: rgba(255, 255, 255, 0.7);
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 9.5px;
+      font-family: var(--font-kicker);
+      font-size: 11px;
       font-weight: 700;
       letter-spacing: .18em;
       text-transform: uppercase;
@@ -186,8 +188,9 @@
       box-shadow: 0 4px 16px rgba(28, 78, 80, 0.4);
     }
     .bfilter-count {
-      font-size: 9px;
-      opacity: 0.7;
+      font-size: 11px;
+      opacity: 0.75;
+      font-variant-numeric: tabular-nums;
     }
 
     /* ── EDITORIAL GALLERY ── */
@@ -243,21 +246,21 @@
       z-index: 2;
     }
     .bc-name {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-serif);
       font-size: clamp(14px, 1.5vw, 20px); font-weight: 700;
       color: #fff; line-height: 1.1; letter-spacing: -.01em;
     }
     .bc--lg .bc-name { font-size: clamp(18px, 2.2vw, 28px); }
     .bc-vibe-tag {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 8px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
+      font-family: var(--font-kicker);
+      font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
       color: rgba(152,213,214,.8);
       margin-bottom: 4px;
       display: inline-block;
     }
     .bc-quote {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(11px, 1.2vw, 13.5px); font-style: italic;
+      font-family: var(--font-serif);
+      font-size: clamp(12px, 1.2vw, 14px); font-style: italic;
       color: rgba(255,255,255,.75); line-height: 1.45;
       margin-top: 4px;
       opacity: 0;
@@ -330,12 +333,13 @@
       gap: 16px;
     }
     .lb-name {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-serif);
       font-size: clamp(16px, 1.8vw, 22px); font-weight: 700; font-style: italic;
       color: #fff;
     }
     .lb-quote-text {
-      font-size: 13px;
+      font-family: var(--font-sans);
+      font-size: 14px;
       color: rgba(255,255,255,0.75);
       max-width: 480px;
       font-style: italic;
@@ -358,7 +362,7 @@
     }
     .bq-eyebrow { color: rgba(255,255,255,.62); margin-bottom: 28px; }
     .bq-quote {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-serif);
       font-size: clamp(22px, 3.5vw, 42px); font-style: italic; font-weight: 700;
       color: #fff; line-height: 1.35; letter-spacing: -.02em;
       margin: 0 0 32px;
@@ -366,8 +370,8 @@
     .bq-author { display: flex; align-items: center; gap: 16px; }
     .bq-line { width: 36px; height: 1px; background: rgba(255,255,255,.25); }
     .bq-name {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 10px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+      font-family: var(--font-kicker);
+      font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
       color: rgba(255,255,255,.75);
     }
     .bq-dress { color: rgba(152,213,214,.75); }
@@ -399,22 +403,22 @@
       backdrop-filter: blur(8px);
       padding: 8px 18px;
       border-radius: 9999px;
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 8.5px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
+      font-family: var(--font-kicker);
+      font-size: 11px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
       color: #fff;
     }
     .bf-form { display: flex; flex-direction: column; gap: 16px; }
     .bf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     .bf-group { display: flex; flex-direction: column; gap: 6px; }
     .bf-label {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 9px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
+      font-family: var(--font-kicker);
+      font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
       color: var(--teal-deep);
     }
     .bf-input {
       width: 100%; padding: 13px 16px;
       border: 1px solid var(--border); background: var(--white);
-      font-family: 'Lato', sans-serif; font-size: 14px; color: var(--text);
+      font-family: var(--font-sans); font-size: 15px; color: var(--text);
       outline: none; transition: border-color .2s, box-shadow .2s; border-radius: 8px;
     }
     .bf-input:focus {
@@ -428,7 +432,7 @@
       border: 1px solid var(--teal-mid);
       padding: 24px;
       border-radius: 12px;
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-serif);
       font-size: 18px; font-weight: 700; font-style: italic;
       color: var(--teal-deep);
       text-align: center;
@@ -828,13 +832,13 @@
       <div class="lb-quote-text" id="lbQuote"></div>
     </div>
     <div class="lb-actions">
-      <a href="bridal-catalog.html" id="lbShopSilBtn" class="btn-luxury-pill" style="padding:7px 16px;font-size:9px;">
+      <a href="bridal-catalog.html" id="lbShopSilBtn" class="btn-luxury-pill" style="padding:8px 18px;font-family:var(--font-kicker);font-size:11px;">
         <span>Shop Matching Gowns</span>
       </a>
-      <a href="appointments.html" class="btn-outline" style="color:#fff;border-color:rgba(255,255,255,.35);font-size:9px;padding:8px 16px;">
+      <a href="appointments.html" class="btn-outline" style="color:#fff;border-color:rgba(255,255,255,.35);font-family:var(--font-kicker);font-size:11px;padding:8px 18px;">
         Book Appointment
       </a>
-      <span class="lb-counter" id="lbCounter" style="color:rgba(255,255,255,0.6);font-size:9px;margin-left:8px;"></span>
+      <span class="lb-counter" id="lbCounter" style="color:rgba(255,255,255,0.7);font-family:var(--font-kicker);font-size:11px;margin-left:8px;font-variant-numeric:tabular-nums;"></span>
     </div>
   </div>
 </div>
