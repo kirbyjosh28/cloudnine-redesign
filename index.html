@@ -65,8 +65,8 @@
     <!-- Fonts: preconnect first, then non-blocking stylesheet -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"/>
-  <link rel="preload" as="image" href="images/bridal/hero-option-1-veil-bride.webp?v=20260909i" type="image/webp"/>
+  <link rel="preload" as="image" href="images/bridal/hero-option-1-veil-bride.webp?v=20260923a" type="image/webp" media="(min-width: 769px)"/>
+  <link rel="preload" as="image" href="images/bridal/hero-option-1-veil-bride-mobile.webp?v=20260923a" type="image/webp" media="(max-width: 768px)"/>
   <link rel="stylesheet" href="shared.css?v=20260909k"/>
   <style>
     /* ── LOADING SCREEN ── */
@@ -766,11 +766,19 @@
       /* Hero — mobile adjustments */
       .hero-cinematic {
         height: 100svh;
-        min-height: 560px;
+        min-height: 580px;
         margin-top: -68px;
       }
-      /* Reframe couple — shift left so groom is fully in frame */
-      .hero-c-bg img { object-position: 38% top !important; }
+      /* Frame bride with cathedral veil perfectly in mobile viewport */
+      .hero-c-bg img {
+        object-fit: cover !important;
+        object-position: center top !important;
+      }
+      .hero-c-vignette {
+        background:
+          linear-gradient(to bottom, rgba(13,46,48,0.15) 0%, transparent 35%, rgba(13,46,48,0.60) 65%, rgba(13,46,48,0.92) 100%),
+          linear-gradient(to right, rgba(13,46,48,0.40) 0%, transparent 100%) !important;
+      }
       .hero-c-content { padding: 0 20px 84px; gap: 16px; }
       .hero-c-eyebrow { font-size: 11px; margin-bottom: 12px; }
       .hero-c-title {
@@ -1274,12 +1282,22 @@
     /* ── Hero: Ken Burns on photo ─────────────────────────── */
     @keyframes hero-ken-burns {
       from { transform: scale(1) translate(0, 0); }
-      to   { transform: scale(1.09) translate(-1.5%, .8%); }
+      to   { transform: scale(1.08) translate(-1.2%, .6%); }
+    }
+    @keyframes hero-ken-burns-mobile {
+      from { transform: scale(1) translate(0, 0); }
+      to   { transform: scale(1.04) translate(0, -1%); }
     }
     @media (prefers-reduced-motion: no-preference) {
       .hero-c-bg img {
         animation: hero-ken-burns 24s ease-in-out infinite alternate;
         transform-origin: 55% 43%;
+      }
+    }
+    @media (prefers-reduced-motion: no-preference) and (max-width: 768px) {
+      .hero-c-bg img {
+        animation: hero-ken-burns-mobile 24s ease-in-out infinite alternate !important;
+        transform-origin: 50% 25% !important;
       }
     }
 
@@ -1403,8 +1421,10 @@
 <section class="hero-cinematic">
   <div class="hero-c-bg">
     <picture>
-      <source srcset="images/bridal/hero-option-1-veil-bride.webp?v=20260909i" type="image/webp"/>
-      <img src="images/bridal/hero-option-1-veil-bride.jpg?v=20260909i" alt="Radiant bride in a couture lace wedding gown with sweeping cathedral veil at golden hour" loading="eager" fetchpriority="high" style="object-position: center top;"/>
+      <source media="(max-width: 768px)" srcset="images/bridal/hero-option-1-veil-bride-mobile.webp?v=20260923a" type="image/webp"/>
+      <source media="(max-width: 768px)" srcset="images/bridal/hero-option-1-veil-bride-mobile.jpg?v=20260923a" type="image/jpeg"/>
+      <source srcset="images/bridal/hero-option-1-veil-bride.webp?v=20260923a" type="image/webp"/>
+      <img src="images/bridal/hero-option-1-veil-bride.jpg?v=20260923a" alt="Radiant bride in a couture lace wedding gown with sweeping cathedral veil at golden hour" loading="eager" fetchpriority="high"/>
     </picture>
   </div>
   <div class="hero-c-vignette"></div>
