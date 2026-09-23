@@ -259,7 +259,7 @@
     <div>
       <div id="request-form" style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:48px;">
 
-        <form id="contactForm" name="appointment-request" data-netlify="true" onsubmit="submitForm(event)" style="display:flex;flex-direction:column;gap:20px;">
+        <form id="contactForm" name="appointment-request" onsubmit="submitForm(event)" style="display:flex;flex-direction:column;gap:20px;">
           <input type="hidden" name="form-name" value="appointment-request"/>
           <div class="u-grid-2">
             <div class="input-group">
@@ -348,7 +348,7 @@
       <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:48px;margin-top:24px;">
         <h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;margin-bottom:8px;">Send Us a Message</h2>
         <p style="font-size:14px;color:var(--text-muted);margin-bottom:28px;">Have a general question? Reach out and we'll get back to you as soon as possible.</p>
-        <form name="general-contact" data-netlify="true" onsubmit="submitContact(event)" style="display:flex;flex-direction:column;gap:16px;">
+        <form name="general-contact" onsubmit="submitContact(event)" style="display:flex;flex-direction:column;gap:16px;">
           <input type="hidden" name="form-name" value="general-contact"/>
           <div class="u-grid-2">
             <div class="input-group"><label class="input-label" for="gc_name">Name *</label><input type="text" name="name" class="input-field" placeholder="Your Name" required id="gc_name"></div>
