@@ -2039,3 +2039,28 @@ window.getWishlistItems = function() {
   return (typeof WL !== 'undefined' && WL.load) ? WL.load() : [];
 };
 
+/* ════════════════════════════════════════════════════════
+   AGENTATION VISUAL FEEDBACK & MCP SYNC (LOCAL DEV ONLY)
+   ════════════════════════════════════════════════════════ */
+(function() {
+  if (typeof window === 'undefined' || !window.location) return;
+  var hostname = window.location.hostname || '';
+  var protocol = window.location.protocol || '';
+
+  var isLocalEnv = (
+    hostname === 'localhost' ||
+    hostname === '127.0.0.1' ||
+    hostname === '0.0.0.0' ||
+    hostname === '[::1]' ||
+    hostname.endsWith('.local') ||
+    protocol === 'file:'
+  );
+
+  if (isLocalEnv && !window.__agentationMounted && !document.querySelector('script[src*="agentation.js"]')) {
+    import('./src/agentation.js').catch(function(err) {
+      console.warn('[Agentation] Local feedback toolbar notice:', err);
+    });
+  }
+})();
+
+
