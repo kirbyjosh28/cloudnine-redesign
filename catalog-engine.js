@@ -154,14 +154,29 @@ class CloudNineCatalog {
     const stored = localStorage.getItem(`cn_${this.category}_density`) || localStorage.getItem('cn_catalog_density') || (this.category === 'bridal' ? '3' : '4');
     this.setDensity(stored);
 
-    if (btn3) btn3.addEventListener('click', () => this.setDensity('3'));
-    if (btn4) btn4.addEventListener('click', () => this.setDensity('4'));
+    if (btn3) btn3.addEventListener('click', () => {
+      const isMob = typeof window !== 'undefined' && window.innerWidth <= 900;
+      this.setDensity(isMob ? '1' : '3');
+    });
+    if (btn4) btn4.addEventListener('click', () => {
+      const isMob = typeof window !== 'undefined' && window.innerWidth <= 900;
+      this.setDensity(isMob ? '2' : '4');
+    });
     if (typeof window !== 'undefined' && typeof window.addEventListener === 'function') {
       window.addEventListener('resize', () => {
-        const cur = localStorage.getItem(`cn_${this.category}_density`) || localStorage.getItem('cn_catalog_density') || (this.category === 'bridal' ? '3' : '4');
-        this.setDensity(cur);
+        this.updateDensityLabels();
       });
     }
+    this.updateDensityLabels();
+  }
+
+  updateDensityLabels() {
+    if (typeof window === 'undefined') return;
+    const btn3 = document.getElementById('density3');
+    const btn4 = document.getElementById('density4');
+    const isMobile = window.innerWidth <= 900;
+    if (btn3) btn3.textContent = isMobile ? '1 Col' : '3 Col';
+    if (btn4) btn4.textContent = isMobile ? '2 Col' : '4 Col';
   }
 
   setDensity(n) {
@@ -169,19 +184,27 @@ class CloudNineCatalog {
     const grid = document.getElementById(this.gridId);
     const btn3 = document.getElementById('density3');
     const btn4 = document.getElementById('density4');
+    const isMobile = typeof window !== 'undefined' && window.innerWidth <= 900;
+
     if (grid) {
-      grid.classList.toggle('grid-3', cols === 3);
-      grid.classList.toggle('grid-4', cols === 4);
-      if (window.innerWidth > 900) {
-        grid.style.gridTemplateColumns = cols === 4 ? 'repeat(4, 1fr)' : 'repeat(3, 1fr)';
-      } else {
+      if (isMobile) {
+        grid.classList.toggle('density-1col', cols === 1 || cols === 3);
+        grid.classList.toggle('density-2col', cols === 2 || cols === 4);
         grid.style.gridTemplateColumns = '';
+      } else {
+        grid.classList.remove('density-1col', 'density-2col');
+        grid.classList.toggle('grid-3', cols === 3 || cols === 1);
+        grid.classList.toggle('grid-4', cols === 4 || cols === 2);
+        grid.style.gridTemplateColumns = (cols === 4 || cols === 2) ? 'repeat(4, 1fr)' : 'repeat(3, 1fr)';
       }
     }
-    if (btn3) btn3.setAttribute('aria-pressed', cols === 3 ? 'true' : 'false');
-    if (btn4) btn4.setAttribute('aria-pressed', cols === 4 ? 'true' : 'false');
-    localStorage.setItem(`cn_${this.category}_density`, cols.toString());
-    localStorage.setItem('cn_catalog_density', cols.toString());
+    const isLeftActive = isMobile ? (cols === 1 || cols === 3) : (cols === 3 || cols === 1);
+    if (btn3) btn3.setAttribute('aria-pressed', isLeftActive ? 'true' : 'false');
+    if (btn4) btn4.setAttribute('aria-pressed', !isLeftActive ? 'true' : 'false');
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem(`cn_${this.category}_density`, cols.toString());
+      localStorage.setItem('cn_catalog_density', cols.toString());
+    }
   }
 
   initSchoolRegistry() {
@@ -640,6 +663,13 @@ class CloudNineCatalog {
     this.renderActiveTray();
     this.updateChipCounts();
     this.updateUrlParams();
+
+    const mobileApplyBtn = document.getElementById('mobileApplyBtn');
+    if (mobileApplyBtn) {
+      const noun = this.category === 'bridal' ? 'Gowns' : 'Dresses';
+      mobileApplyBtn.textContent = `Show ${this.fil.length} ${noun}`;
+    }
+
     this.render();
   }
 
@@ -755,14 +785,14 @@ class CloudNineCatalog {
           </div>`;
       }
 
-      // Angle scrubbing on hover
+      // Angle scrubbing on hover & mobile touch
       if (hasAngles) {
         let preloaded = false;
         const img = card.querySelector('.dress-card-img img');
         const pips = card.querySelectorAll('.scrub-pip');
         const angles = p.x;
 
-        card.addEventListener('mouseenter', () => {
+        const preloadAngles = () => {
           if (!preloaded) {
             preloaded = true;
             angles.forEach(src => {
@@ -770,7 +800,10 @@ class CloudNineCatalog {
               pre.src = src;
             });
           }
-        });
+        };
+
+        card.addEventListener('mouseenter', preloadAngles);
+        card.addEventListener('touchstart', preloadAngles, { passive: true });
 
         card.addEventListener('mousemove', (e) => {
           const rect = card.getBoundingClientRect();
@@ -789,6 +822,17 @@ class CloudNineCatalog {
           if (img) img.src = p.i;
           pips.forEach((pip, pi) => {
             pip.classList.toggle('active', pi === 0);
+          });
+        });
+
+        // Direct tap on pip for instant mobile angle preview
+        pips.forEach((pip, pi) => {
+          pip.addEventListener('click', (ev) => {
+            ev.stopPropagation();
+            if (img && angles[pi]) {
+              img.src = angles[pi];
+              pips.forEach((p2, p2i) => p2.classList.toggle('active', p2i === pi));
+            }
           });
         });
       }

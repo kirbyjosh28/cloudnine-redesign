@@ -501,7 +501,7 @@ document.addEventListener('keydown', function(e) {
   }
 });
 
-/* ── MOBILE TAB BAR (4-tab luxury bottom navigation) ── */
+/* ── MOBILE TAB BAR (Apple HIG Floating Glass Capsule) ── */
 function injectMobileCTABar() {
   if (window.innerWidth > 768) return;
   if (document.getElementById('mobileCTABar')) return;
@@ -531,6 +531,21 @@ function injectMobileCTABar() {
     '</a>';
   document.body.appendChild(bar);
   if (typeof WL !== 'undefined' && WL.updateBadge) WL.updateBadge();
+
+  // Smart Auto-Collapsing on Scroll Down (re-appears on upward flick)
+  var lastScrollY = window.pageYOffset || document.documentElement.scrollTop;
+  var scrollThreshold = 14;
+  window.addEventListener('scroll', function() {
+    var currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
+    var diff = currentScrollY - lastScrollY;
+    if (Math.abs(diff) < scrollThreshold) return;
+    if (diff > 0 && currentScrollY > 120) {
+      bar.classList.add('mobile-tab-bar--hidden');
+    } else if (diff < 0) {
+      bar.classList.remove('mobile-tab-bar--hidden');
+    }
+    lastScrollY = currentScrollY;
+  }, { passive: true });
 }
 
 /* ════════════════════════════════════════════════════════
@@ -613,6 +628,7 @@ var WL = (function() {
     if (mBadge) {
       mBadge.textContent = n;
       mBadge.classList.toggle('visible', n > 0);
+      mBadge.classList.toggle('has-items', n > 0);
     }
     var menuBadge = document.getElementById('wlMobileMenuBadge');
     if (menuBadge) {
