@@ -24,7 +24,8 @@
   --bg-warm:     #f4fbfb;
 
   /* ── Typography Triad & Tokens ────────────────── */
-  --font-serif:  "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-editorial: "Cormorant Garamond", "Bodoni Moda", "Playfair Display", Georgia, serif;
+  --font-serif:  "Cormorant Garamond", "Playfair Display", Georgia, "Times New Roman", serif;
   --font-sans:   "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-kicker: "Josefin Sans", -apple-system, sans-serif;
 

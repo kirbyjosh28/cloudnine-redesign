@@ -65,7 +65,7 @@
     <!-- Fonts: preconnect first, then non-blocking stylesheet -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&display=swap"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"/>
   <link rel="preload" as="image" href="images/bridal/hero-option-1-veil-bride.webp?v=20260909i" type="image/webp"/>
   <link rel="stylesheet" href="shared.css?v=20260909k"/>
   <style>
@@ -165,15 +165,23 @@
       margin-bottom: 22px;
     }
     .hero-c-title {
-      font-family: var(--font-serif);
-      font-size: clamp(60px, 9vw, 128px);
-      font-weight: 700;
-      line-height: .9;
-      letter-spacing: -.04em;
+      font-family: var(--font-editorial, "Cormorant Garamond", "Bodoni Moda", "Playfair Display", Georgia, serif);
+      font-size: clamp(68px, 10.5vw, 148px);
+      font-weight: 500;
+      line-height: .92;
+      letter-spacing: -.02em;
       color: #fff;
-      margin-bottom: 48px;
+      margin-bottom: 44px;
+      text-wrap: balance;
     }
-    .hero-c-title em { font-style: italic; color: rgba(255,255,255,.68); }
+    .hero-c-title em {
+      font-family: var(--font-editorial, "Cormorant Garamond", "Bodoni Moda", "Playfair Display", Georgia, serif);
+      font-style: italic;
+      font-weight: 300;
+      color: rgba(255,255,255,.92);
+      display: block;
+      letter-spacing: -.01em;
+    }
     .hero-c-actions { display: flex; gap: 14px; align-items: center; }
     .btn-hero-c {
       display: inline-flex; align-items: center; gap: 12px;
@@ -1275,17 +1283,7 @@
       }
     }
 
-    /* ── Hero: elevated display headline ─────────────────── */
-    .hero-c-title {
-      font-size: clamp(72px, 11vw, 156px);
-      line-height: .88;
-      letter-spacing: -.048em;
-      margin-bottom: 44px;
-    }
-    .hero-c-title em {
-      color: rgba(255,255,255,.70);
-      display: block;
-    }
+    /* ── Hero: display eyebrow spacing ─────────────────── */
     .hero-c-eyebrow {
       letter-spacing: .30em;
       margin-bottom: 28px;
