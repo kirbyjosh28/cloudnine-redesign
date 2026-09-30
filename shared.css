@@ -2240,7 +2240,7 @@ a { transition: opacity .18s; }
 .mobile-menu-head {
   display: flex;
   align-items: center; justify-content: space-between;
-  padding: 16px 18px;
+  padding: max(16px, env(safe-area-inset-top, 16px)) 18px 16px;
   border-bottom: 1px solid rgba(255,255,255,.07);
   flex-shrink: 0;
 }
@@ -2868,8 +2868,10 @@ body.cur-out #cn-cursor-dot {
   .btn-hoco-primary:active, .btn-hoco-ghost:active,
   .btn-hero-c:active, .btn-hero-c-ghost:active,
   .bhero-btn-primary:active, .bhero-btn-ghost:active,
+  .btn-luxury-pill:active, .quick-pill:active,
+  .designer-card:active, .dress-card:active,
   .mobile-tab-bar a:active, .mobile-tab-bar button:active {
-    opacity: 0.75;
+    opacity: 0.82;
     transform: scale(0.97);
     transition: opacity 0.08s, transform 0.08s;
   }
