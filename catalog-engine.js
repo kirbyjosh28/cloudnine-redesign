@@ -746,44 +746,47 @@ class CloudNineCatalog {
         ? `<span class="photo-count-badge">${p.x.length} Angles</span>`
         : '';
 
-      if (this.category === 'prom' || this.category === 'hoco') {
-        const schoolNote = this.selectedSchool 
-          ? `<span>1-of-1 Guarantee for ${this.selectedSchool.replace(' High School','').replace(' Community High','')}</span>`
-          : '<span>1-of-1 High School Guarantee</span>';
-        const defaultDes = this.category === 'prom' ? 'Designer Prom' : 'Designer HOCO';
+        const isAboveFold = this.page === 0 && i < 4;
+        const loadingAttr = isAboveFold ? `loading="eager" fetchpriority="${i === 0 ? 'high' : 'auto'}"` : 'loading="lazy"';
 
-        card.innerHTML = `
-          <div class="dress-card-img">
-            <img src="${p.i}" alt="${(p.d||'')} ${(p.s||'')}" loading="lazy"/>
-            ${pipsHtml}
-            ${badgeHtml}
-          </div>
-          <div class="dress-card-body">
-            <div class="dress-designer-tag">${p.d || defaultDes}</div>
-            <div class="dress-card-name">${p.n && p.n !== p.d ? p.n : ('Style #' + (p.s || ''))}</div>
-            <div class="dress-card-school-badge">
-              ${schoolNote}
+        if (this.category === 'prom' || this.category === 'hoco') {
+          const schoolNote = this.selectedSchool 
+            ? `<span>1-of-1 Guarantee for ${this.selectedSchool.replace(' High School','').replace(' Community High','')}</span>`
+            : '<span>1-of-1 High School Guarantee</span>';
+          const defaultDes = this.category === 'prom' ? 'Designer Prom' : 'Designer HOCO';
+
+          card.innerHTML = `
+            <div class="dress-card-img">
+              <img src="${p.i}" alt="${(p.d||'')} ${(p.s||'')}" ${loadingAttr}/>
+              ${pipsHtml}
+              ${badgeHtml}
             </div>
-          </div>`;
-      } else {
-        const designerTag = (p.d && this.category !== 'bridal')
-          ? `<div class="dress-designer-tag">${p.d}</div>`
-          : '';
-        const cardTitle = p.n || (p.s ? '#' + p.s : 'Designer Gown');
+            <div class="dress-card-body">
+              <div class="dress-designer-tag">${p.d || defaultDes}</div>
+              <div class="dress-card-name">${p.n && p.n !== p.d ? p.n : ('Style #' + (p.s || ''))}</div>
+              <div class="dress-card-school-badge">
+                ${schoolNote}
+              </div>
+            </div>`;
+        } else {
+          const designerTag = (p.d && this.category !== 'bridal')
+            ? `<div class="dress-designer-tag">${p.d}</div>`
+            : '';
+          const cardTitle = p.n || (p.s ? '#' + p.s : 'Designer Gown');
 
-        card.innerHTML = `
-          <div class="dress-card-img">
-            <img src="${p.i}" alt="${(p.d||'')} ${(p.s||'')}" loading="lazy"/>
-            ${pipsHtml}
-            ${badgeHtml}
-            ${designerTag}
-            <div class="dress-card-overlay"></div>
-          </div>
-          <div class="dress-card-body">
-            <div class="dress-card-name">${cardTitle}</div>
-            <div class="dress-card-cta">View Details</div>
-          </div>`;
-      }
+          card.innerHTML = `
+            <div class="dress-card-img">
+              <img src="${p.i}" alt="${(p.d||'')} ${(p.s||'')}" ${loadingAttr}/>
+              ${pipsHtml}
+              ${badgeHtml}
+              ${designerTag}
+              <div class="dress-card-overlay"></div>
+            </div>
+            <div class="dress-card-body">
+              <div class="dress-card-name">${cardTitle}</div>
+              <div class="dress-card-cta">View Details</div>
+            </div>`;
+        }
 
       // Angle scrubbing on hover & mobile touch
       if (hasAngles) {
