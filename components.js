@@ -451,6 +451,19 @@ function searchOverlayHTML() {
       <input type="text" id="searchInput" class="search-input" placeholder="Style number, designer, silhouette…" autocomplete="off" aria-label="Search styles and collections" oninput="onSearchInput(this.value)" onkeydown="if(event.key==='Escape')closeSearch()"/>
       <button class="search-clear-btn" id="searchClearBtn" onclick="clearSearch()" style="display:none" aria-label="Clear">Clear</button>
     </div>
+    <div class="search-quick-tags" id="searchQuickTags">
+      <span class="search-quick-label">Trending Searches</span>
+      <div class="search-quick-pills">
+        <button type="button" class="search-quick-pill" onclick="quickSearch('Maggie Sottero')">Maggie Sottero</button>
+        <button type="button" class="search-quick-pill" onclick="quickSearch('Essense of Australia')">Essense of Australia</button>
+        <button type="button" class="search-quick-pill" onclick="quickSearch('Stella York')">Stella York</button>
+        <button type="button" class="search-quick-pill" onclick="quickSearch('A-Line')">A-Line</button>
+        <button type="button" class="search-quick-pill" onclick="quickSearch('Ballgown')">Ballgown</button>
+        <button type="button" class="search-quick-pill" onclick="quickSearch('Fitted')">Fitted / Mermaid</button>
+        <button type="button" class="search-quick-pill" onclick="quickSearch('Sparkle')">Sparkle</button>
+        <button type="button" class="search-quick-pill" onclick="quickSearch('Corset')">Corset</button>
+      </div>
+    </div>
     <div id="searchResults" class="search-results" aria-live="polite" aria-atomic="false" role="region" aria-label="Search results"></div>
     <div id="searchCategories" class="search-categories">
       <div class="search-cat-label">Browse Collections</div>
@@ -1234,25 +1247,38 @@ window.closeSearchBg = function(e) {
   if (e.target === document.getElementById('searchOverlay')) closeSearch();
 };
 
+window.quickSearch = function(query) {
+  const input = document.getElementById('searchInput');
+  if (!input) return;
+  input.value = query;
+  window.onSearchInput(query);
+};
+
 window.clearSearch = function() {
   const input = document.getElementById('searchInput');
   if (input) { input.value = ''; input.focus(); }
   document.getElementById('searchClearBtn').style.display = 'none';
   document.getElementById('searchResults').innerHTML = '';
-  document.getElementById('searchCategories').style.display = '';
+  const cats = document.getElementById('searchCategories');
+  if (cats) cats.style.display = '';
+  const tags = document.getElementById('searchQuickTags');
+  if (tags) tags.style.display = '';
 };
 
 window.onSearchInput = async function(val) {
   const clearBtn = document.getElementById('searchClearBtn');
   const results = document.getElementById('searchResults');
   const cats = document.getElementById('searchCategories');
+  const tags = document.getElementById('searchQuickTags');
   if (clearBtn) clearBtn.style.display = val ? 'flex' : 'none';
   if (!val.trim()) {
     results.innerHTML = '';
     if (cats) cats.style.display = '';
+    if (tags) tags.style.display = '';
     return;
   }
   if (cats) cats.style.display = 'none';
+  if (tags) tags.style.display = 'none';
 
   let catalog = window.fil || window.P || (typeof P !== 'undefined' ? P : null);
   if (!catalog || !catalog.length) {

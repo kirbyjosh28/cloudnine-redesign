@@ -747,7 +747,7 @@ class CloudNineCatalog {
         : '';
 
         const isAboveFold = this.page === 0 && i < 4;
-        const loadingAttr = isAboveFold ? `loading="eager" fetchpriority="${i === 0 ? 'high' : 'auto'}"` : 'loading="lazy"';
+        const loadHandlers = `onload="this.classList.add('img-loaded');if(this.parentElement)this.parentElement.classList.remove('loading');" onerror="if(this.parentElement)this.parentElement.classList.remove('loading');"`;
 
         if (this.category === 'prom' || this.category === 'hoco') {
           const schoolNote = this.selectedSchool 
@@ -756,8 +756,8 @@ class CloudNineCatalog {
           const defaultDes = this.category === 'prom' ? 'Designer Prom' : 'Designer HOCO';
 
           card.innerHTML = `
-            <div class="dress-card-img">
-              <img src="${p.i}" alt="${(p.d||'')} ${(p.s||'')}" ${loadingAttr}/>
+            <div class="dress-card-img loading">
+              <img src="${p.i}" alt="${(p.d||'')} ${(p.s||'')}" ${loadingAttr} ${loadHandlers}/>
               ${pipsHtml}
               ${badgeHtml}
             </div>
@@ -775,8 +775,8 @@ class CloudNineCatalog {
           const cardTitle = p.n || (p.s ? '#' + p.s : 'Designer Gown');
 
           card.innerHTML = `
-            <div class="dress-card-img">
-              <img src="${p.i}" alt="${(p.d||'')} ${(p.s||'')}" ${loadingAttr}/>
+            <div class="dress-card-img loading">
+              <img src="${p.i}" alt="${(p.d||'')} ${(p.s||'')}" ${loadingAttr} ${loadHandlers}/>
               ${pipsHtml}
               ${badgeHtml}
               ${designerTag}
@@ -786,6 +786,12 @@ class CloudNineCatalog {
               <div class="dress-card-name">${cardTitle}</div>
               <div class="dress-card-cta">View Details</div>
             </div>`;
+        }
+
+        const cardImg = card.querySelector('.dress-card-img img');
+        if (cardImg && cardImg.complete) {
+          cardImg.classList.add('img-loaded');
+          if (cardImg.parentElement) cardImg.parentElement.classList.remove('loading');
         }
 
       // Angle scrubbing on hover & mobile touch

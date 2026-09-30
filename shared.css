@@ -1453,11 +1453,21 @@ button { font-family: var(--font-kicker); cursor: pointer; }
   cursor: pointer;
   position: relative;
 }
+@keyframes skeletonShimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
 .dress-card-img {
   aspect-ratio: 2/3;
   overflow: hidden;
   position: relative;
   display: block;
+  background: #edeae5;
+}
+.dress-card-img.loading {
+  background: linear-gradient(90deg, #edeae5 25%, #f6f3ee 37%, #edeae5 63%);
+  background-size: 400% 100%;
+  animation: skeletonShimmer 1.5s ease infinite;
 }
 .dress-card-img img {
   width: 100%; height: 100%;
@@ -2178,6 +2188,50 @@ a { transition: opacity .18s; }
   transition: color .2s, transform .2s;
 }
 .search-cat-link:hover { color: #fff; transform: translateX(6px); }
+
+/* ── SEARCH QUICK SUGGESTION PILLS ── */
+.search-quick-tags {
+  margin: 10px 0 28px;
+}
+.search-quick-label {
+  display: block;
+  font-family: var(--font-kicker);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 12px;
+}
+.search-quick-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.search-quick-pill {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: rgba(255, 255, 255, 0.88);
+  font-family: var(--font-kicker);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.search-quick-pill:hover, .search-quick-pill:active {
+  background: var(--teal-mid);
+  color: var(--teal-darker);
+  border-color: var(--teal-mid);
+  transform: scale(0.98);
+}
 @media (max-width: 600px) {
   .search-panel { padding: 32px 24px 48px; }
   .search-results-grid { grid-template-columns: repeat(2,1fr); gap: 8px; }
@@ -2976,22 +3030,46 @@ body.cur-out #cn-cursor-dot {
   }
 }
 
-/* ── SEARCH OVERLAY — mobile improvements ── */
+/* ── SEARCH OVERLAY — mobile full-screen sheet elevation ── */
 @media (max-width: 768px) {
   .search-overlay {
-    padding: calc(16px + env(safe-area-inset-top, 0px)) 16px calc(32px + env(safe-area-inset-bottom, 0px));
+    padding: 0 !important;
+    align-items: flex-start !important;
+    background: rgba(13, 46, 48, 0.98) !important;
+    backdrop-filter: blur(28px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
   .search-panel {
     width: 100% !important;
     max-width: 100% !important;
-    padding: 24px 20px 40px;
-    border-radius: 0;
+    min-height: 100vh !important;
+    min-height: 100dvh !important;
+    padding: max(20px, env(safe-area-inset-top, 20px)) 20px calc(88px + env(safe-area-inset-bottom, 16px)) !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    animation: none !important;
+  }
+  .search-top-row {
+    margin-bottom: 20px !important;
+  }
+  .search-close-btn {
+    min-height: 40px !important;
+    min-width: 40px !important;
+    padding: 6px 14px !important;
+    background: rgba(255, 255, 255, 0.12) !important;
+    border-color: rgba(255, 255, 255, 0.22) !important;
+  }
+  .search-input-wrap {
+    margin-bottom: 20px !important;
+    padding-bottom: 14px !important;
   }
   .search-results-grid { grid-template-columns: repeat(2,1fr); gap: 8px; }
-  .search-input { font-size: 18px !important; }
-  .search-cat-link { font-size: 14px; }
+  .search-input { font-size: 20px !important; }
+  .search-cat-link { font-size: 15px; padding: 14px 0 !important; }
 }
 
 /* ── CONTACT LAYOUT — stack on mobile ── */
@@ -3410,6 +3488,8 @@ body.cur-out #cn-cursor-dot {
     max-width: 100%;
     position: relative;
     z-index: 10;
+    mask-image: linear-gradient(to right, black calc(100% - 36px), transparent);
+    -webkit-mask-image: linear-gradient(to right, black calc(100% - 36px), transparent);
   }
   .mobile-quick-filter-rail::-webkit-scrollbar { display: none; }
   .quick-pill {
