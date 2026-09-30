@@ -802,8 +802,36 @@ class CloudNineCatalog {
           }
         };
 
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let currentAngleIdx = 0;
+
         card.addEventListener('mouseenter', preloadAngles);
-        card.addEventListener('touchstart', preloadAngles, { passive: true });
+        card.addEventListener('touchstart', (e) => {
+          preloadAngles();
+          if (e.touches && e.touches[0]) {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+          }
+        }, { passive: true });
+
+        card.addEventListener('touchend', (e) => {
+          if (e.changedTouches && e.changedTouches[0]) {
+            const dx = e.changedTouches[0].clientX - touchStartX;
+            const dy = e.changedTouches[0].clientY - touchStartY;
+            if (Math.abs(dx) > 36 && Math.abs(dx) > Math.abs(dy) * 1.4) {
+              if (dx < 0 && currentAngleIdx < angles.length - 1) {
+                currentAngleIdx++;
+              } else if (dx > 0 && currentAngleIdx > 0) {
+                currentAngleIdx--;
+              }
+              if (img && angles[currentAngleIdx]) {
+                img.src = angles[currentAngleIdx];
+                pips.forEach((p2, p2i) => p2.classList.toggle('active', p2i === currentAngleIdx));
+              }
+            }
+          }
+        }, { passive: true });
 
         card.addEventListener('mousemove', (e) => {
           const rect = card.getBoundingClientRect();
@@ -812,6 +840,7 @@ class CloudNineCatalog {
           const angleIdx = Math.floor(pct * angles.length);
           if (img && img.src !== angles[angleIdx]) {
             img.src = angles[angleIdx];
+            currentAngleIdx = angleIdx;
           }
           pips.forEach((pip, pi) => {
             pip.classList.toggle('active', pi === angleIdx);
@@ -820,6 +849,7 @@ class CloudNineCatalog {
 
         card.addEventListener('mouseleave', () => {
           if (img) img.src = p.i;
+          currentAngleIdx = 0;
           pips.forEach((pip, pi) => {
             pip.classList.toggle('active', pi === 0);
           });
@@ -831,6 +861,7 @@ class CloudNineCatalog {
             ev.stopPropagation();
             if (img && angles[pi]) {
               img.src = angles[pi];
+              currentAngleIdx = pi;
               pips.forEach((p2, p2i) => p2.classList.toggle('active', p2i === pi));
             }
           });

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
   <title>Cloud Nine Bridal Boutique | Peoria, IL — Bridal Gowns & Prom Dresses</title>
   <meta name="description" content="Cloud Nine Bridal Boutique in Peoria, IL — bridal gowns, prom dresses, and HOCO styles from top designers. Book your personal styling appointment today."/>
   <meta name="keywords" content="bridal boutique Peoria IL, wedding dresses Peoria, prom dresses Peoria, bridal gowns Illinois, Maggie Sottero Peoria, Cloud Nine Bridal"/>
@@ -2026,7 +2026,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (section) {
       section.addEventListener('mouseenter', stopTimer);
-      section.addEventListener('touchstart', stopTimer, { passive: true });
+      var touchStartX = 0;
+      var touchStartY = 0;
+      section.addEventListener('touchstart', function(e) {
+        stopTimer();
+        if (e.touches && e.touches[0]) {
+          touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
+        }
+      }, { passive: true });
+      section.addEventListener('touchend', function(e) {
+        if (!paused) startTimer();
+        if (e.changedTouches && e.changedTouches[0]) {
+          var dx = e.changedTouches[0].clientX - touchStartX;
+          var dy = e.changedTouches[0].clientY - touchStartY;
+          if (Math.abs(dx) > 36 && Math.abs(dx) > Math.abs(dy) * 1.4) {
+            if (dx < 0) {
+              goTo(current + 1);
+            } else {
+              goTo(current - 1);
+            }
+          }
+        }
+      }, { passive: true });
       section.addEventListener('mouseleave', function() { if (!paused) startTimer(); });
     }
   }

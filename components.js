@@ -233,7 +233,9 @@ function navHTML() {
       </div>
 
       <!-- Mobile triggers -->
-      <button class="nav-search-btn nav-search-mobile" aria-label="Search" onclick="openSearch()">Search</button>
+      <button class="nav-search-btn nav-search-mobile" aria-label="Search" onclick="openSearch()">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      </button>
       <button class="nav-hamburger" aria-label="Open navigation menu" onclick="openMobileMenu()">
         <span></span><span></span><span></span>
       </button>
@@ -248,7 +250,9 @@ function navHTML() {
 
       <div class="mobile-menu-head">
         <img src="images/logo-transparent.png" alt="Cloud Nine Bridal Boutique" class="mobile-menu-logo-img"/>
-        <button class="mobile-menu-close" onclick="closeMobileMenu()" aria-label="Close navigation menu">Close</button>
+        <button class="mobile-menu-close" onclick="closeMobileMenu()" aria-label="Close navigation menu">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
       </div>
 
       <!-- Mobile Live Status Card -->
@@ -474,6 +478,7 @@ window.openMobileMenu = function() {
   /* Slide nav out so it doesn't overlap the drawer */
   if (nav) nav.classList.add('nav-hidden');
   document.body.style.overflow = 'hidden';
+  document.body.classList.add('mobile-menu-open');
   /* Move focus to the close button for accessibility */
   setTimeout(function() {
     const closeBtn = menu.querySelector('.mobile-menu-close');
@@ -491,6 +496,7 @@ window.closeMobileMenu = function() {
   /* Restore nav */
   if (nav) nav.classList.remove('nav-hidden');
   document.body.style.overflow = '';
+  document.body.classList.remove('mobile-menu-open');
 };
 
 /* Close on Escape */
@@ -989,6 +995,7 @@ window.openWishlist = function() {
   WL.renderDrawer();
   drawer.classList.add('open');
   document.body.style.overflow = 'hidden';
+  document.body.classList.add('wishlist-open');
   setTimeout(function() {
     var cl = document.getElementById('wlClose');
     if (cl) cl.focus();
@@ -999,6 +1006,7 @@ window.closeWishlist = function() {
   var drawer = document.getElementById('wlDrawer');
   if (!drawer) return;
   drawer.classList.remove('open');
+  document.body.classList.remove('wishlist-open');
   if (!document.getElementById('lookbookModal')?.classList.contains('open')) {
     document.body.style.overflow = '';
   }
@@ -1143,6 +1151,7 @@ window.openSearch = function() {
   if (!overlay) return;
   overlay.classList.add('open');
   document.body.style.overflow = 'hidden';
+  document.body.classList.add('search-open');
   ensureGlobalCatalog();
   setTimeout(function() {
     const input = document.getElementById('searchInput');
@@ -1154,6 +1163,7 @@ window.closeSearch = function() {
   const overlay = document.getElementById('searchOverlay');
   if (!overlay) return;
   overlay.classList.remove('open');
+  document.body.classList.remove('search-open');
   document.body.style.overflow = '';
 };
 

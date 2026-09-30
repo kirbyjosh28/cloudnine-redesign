@@ -2045,6 +2045,8 @@ a { transition: opacity .18s; }
   transition: opacity .3s, visibility .3s;
   display: flex; align-items: flex-start; justify-content: center;
   padding: 60px 24px 40px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .search-overlay.open { opacity: 1; visibility: visible; }
 .search-panel {
@@ -2379,10 +2381,14 @@ a { transition: opacity .18s; }
     transition: transform 0.38s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.3s ease;
     will-change: transform, opacity;
   }
-  .mobile-tab-bar--hidden {
-    transform: translateY(calc(100% + 36px));
-    opacity: 0;
-    pointer-events: none;
+  .mobile-tab-bar--hidden,
+  body.mobile-menu-open .mobile-tab-bar,
+  body.search-open .mobile-tab-bar,
+  body.wishlist-open .mobile-tab-bar,
+  body.modal-open .mobile-tab-bar {
+    transform: translateY(calc(100% + 36px)) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
   }
   .mobile-tab {
     flex: 1;
@@ -2529,6 +2535,12 @@ a { transition: opacity .18s; }
     padding: 0 8px;
   }
   .nav-logo-img { height: 32px; }
+}
+
+@media (max-width: 360px) {
+  .nav-logo-img { height: 26px; }
+  .nav-search-mobile { width: 38px; height: 38px; }
+  .nav-hamburger { width: 38px; height: 38px; padding: 9px; }
 }
 
 /* ════════════════════════════════
@@ -2924,7 +2936,7 @@ body.cur-out #cn-cursor-dot {
   .footer-links a { font-size: 13px; }
   .footer-col-title { margin-bottom: 14px; }
   .footer-subscribe-form { flex-direction: column; gap: 8px; }
-  .footer-subscribe-form input { width: 100%; font-size: 14px; padding: 13px 16px; }
+  .footer-subscribe-form input { width: 100%; font-size: 16px; padding: 13px 16px; }
   .footer-subscribe-form button {
     width: 100%; padding: 14px 20px;
     font-size: 11px; font-weight: 700; letter-spacing: .1em;
@@ -2955,7 +2967,8 @@ body.cur-out #cn-cursor-dot {
 @media (max-width: 768px) {
   input, select, textarea,
   .input-field, .bf-input, .search-input,
-  .footer-subscribe-form input {
+  .footer-subscribe-form input,
+  .lookbook-field-input {
     font-size: 16px !important;
     touch-action: manipulation;
   }
@@ -2963,6 +2976,11 @@ body.cur-out #cn-cursor-dot {
 
 /* ── SEARCH OVERLAY — mobile improvements ── */
 @media (max-width: 768px) {
+  .search-overlay {
+    padding: calc(16px + env(safe-area-inset-top, 0px)) 16px calc(32px + env(safe-area-inset-bottom, 0px));
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
   .search-panel {
     width: 100% !important;
     max-width: 100% !important;
@@ -3228,17 +3246,33 @@ body.cur-out #cn-cursor-dot {
 }
 .wl-item-remove {
   position: absolute; top: 6px; right: 6px;
-  width: 22px; height: 22px; border-radius: 0;
-  background: rgba(0,0,0,.52); border: none;
-  color: rgba(255,255,255,.75); cursor: pointer;
+  width: 32px; height: 32px; border-radius: 50%;
+  background: rgba(0,0,0,.6); border: 1px solid rgba(255,255,255,.2);
+  color: rgba(255,255,255,.85); cursor: pointer;
   display: flex; align-items: center; justify-content: center;
-  font-size: 13px; line-height: 1;
-  transition: background .15s, color .15s;
+  font-size: 14px; line-height: 1;
   opacity: 0;
-  transition: opacity .2s, background .15s;
+  transition: opacity .2s, background .15s, color .15s;
 }
 .wl-item:hover .wl-item-remove { opacity: 1; }
 .wl-item-remove:hover { background: rgba(220,50,50,.85); color: #fff; }
+
+@media (hover: none), (max-width: 768px) {
+  .wl-item-remove {
+    opacity: 1;
+    width: 36px;
+    height: 36px;
+    background: rgba(13,46,48,.84);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  .wl-item-remove::before {
+    content: '';
+    position: absolute;
+    top: -6px; bottom: -6px;
+    left: -6px; right: -6px;
+  }
+}
 
 .wl-foot {
   flex-shrink: 0; padding: 16px 20px;
@@ -3285,33 +3319,57 @@ body.cur-out #cn-cursor-dot {
 }
 .wl-foot-clear:hover { color: var(--text-muted); }
 
-/* ── HOVER SCRUBBER ON DRESS CARDS ── */
+/* ── HOVER & TOUCH SCRUBBER ON DRESS CARDS ── */
 .scrub-pips {
   position: absolute;
   top: 10px;
   left: 10px;
   z-index: 6;
   display: flex;
-  gap: 4px;
+  align-items: center;
+  gap: 5px;
   opacity: 0;
   transform: translateY(-4px);
   transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  pointer-events: none;
+  pointer-events: auto;
 }
 .dress-card:hover .scrub-pips {
   opacity: 1;
   transform: translateY(0);
 }
 .scrub-pip {
-  width: 14px;
-  height: 2.5px;
-  background: rgba(255, 255, 255, 0.45);
-  border-radius: 1px;
+  position: relative;
+  width: 16px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 2px;
   transition: background 0.2s, width 0.2s;
+  cursor: pointer;
+}
+/* Generous touch target for mobile/pointer */
+.scrub-pip::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  bottom: -12px;
+  left: -4px;
+  right: -4px;
 }
 .scrub-pip.active {
   background: #ffffff;
-  width: 20px;
+  width: 22px;
+}
+@media (hover: none), (max-width: 768px) {
+  .scrub-pips {
+    opacity: 1;
+    transform: translateY(0);
+    background: rgba(13, 46, 48, 0.76);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 6px 10px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  }
 }
 .photo-count-badge {
   position: absolute;
@@ -4360,7 +4418,7 @@ select {
 
   /* Pagination wraps cleanly */
   .pag-wrap { gap: 4px; }
-  .pag-btn { min-width: 40px; height: 40px; font-size: 12px; padding: 0 8px; }
+  .pag-btn { min-width: 44px; height: 44px; font-size: 12px; padding: 0 8px; }
 
   /* Testimonials section — comfortable reading */
   .testi-quote { font-size: clamp(17px, 4.5vw, 24px); line-height: 1.6; }
