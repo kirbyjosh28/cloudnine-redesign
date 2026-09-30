@@ -859,12 +859,58 @@
         display: block !important;
       }
       .journey-grid {
-        grid-template-columns: 1fr !important;
-        gap: 20px !important;
-        margin-bottom: 32px !important;
+        display: flex !important;
+        flex-direction: row !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: none !important;
+        gap: 16px !important;
+        padding: 6px 20px 20px !important;
+        margin: 0 -20px 16px !important;
       }
-      .journey-img-wrap { height: 200px !important; }
+      .journey-grid::-webkit-scrollbar { display: none !important; }
+      .journey-card {
+        flex: 0 0 84% !important;
+        max-width: 320px !important;
+        scroll-snap-align: center !important;
+        margin: 0 !important;
+      }
+      .journey-img-wrap { height: 210px !important; }
       .journey-card-body { padding: 22px 18px !important; }
+
+      .journey-mobile-progress {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        margin: 0 0 28px;
+      }
+      .journey-progress-dots {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+      }
+      .j-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: rgba(13, 46, 48, 0.2);
+        transition: all 0.25s ease;
+      }
+      .j-dot.active {
+        width: 20px;
+        border-radius: 10px;
+        background: var(--teal-deep);
+      }
+      .journey-progress-step {
+        font-family: var(--font-kicker);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        color: var(--teal-deep);
+      }
 
       /* Brides marquee */
       .brides-marquee { padding: 56px 0 72px; }
@@ -1539,7 +1585,17 @@
           <p class="journey-step-desc">When that feeling hits and you know it's the one, we make it unforgettable. Snap your commemorative photo with the iconic sign, pop celebratory confetti, and celebrate your moment with your crew.</p>
         </div>
       </div>
+  </div>
+
+  <!-- Mobile Step Indicator -->
+  <div class="journey-mobile-progress" id="journeyMobileProgress" aria-hidden="true">
+    <div class="journey-progress-dots">
+      <span class="j-dot active"></span>
+      <span class="j-dot"></span>
+      <span class="j-dot"></span>
+      <span class="j-dot"></span>
     </div>
+    <span class="journey-progress-step" id="journeyProgressStep">Step 01 · Settle In</span>
   </div>
 
   <div class="journey-footer-cta reveal-on-scroll">
@@ -2059,6 +2115,20 @@ document.addEventListener('DOMContentLoaded', function() {
     .catch(function(err) { console.warn('Testimonials failed to load:', err); });
 })();
 
+// Horizontal Journey Carousel Progress Tracker (Mobile)
+(function() {
+  var jGrid = document.querySelector('.journey-grid');
+  var jStep = document.getElementById('journeyProgressStep');
+  var jDots = document.querySelectorAll('.j-dot');
+  if (!jGrid || !jStep) return;
+  var stepTitles = ['Settle In', 'The Pulls', 'The Reveal', 'Say YES'];
+  jGrid.addEventListener('scroll', function() {
+    var cardWidth = jGrid.children[0] ? jGrid.children[0].offsetWidth : 300;
+    var idx = Math.min(3, Math.max(0, Math.round(jGrid.scrollLeft / (cardWidth + 16))));
+    jDots.forEach(function(dot, i) { dot.classList.toggle('active', i === idx); });
+    jStep.textContent = 'Step 0' + (idx + 1) + ' · ' + stepTitles[idx];
+  }, { passive: true });
+})();
 </script>
 
 <footer id="site-footer"></footer>

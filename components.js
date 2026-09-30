@@ -587,6 +587,18 @@ var WL = (function() {
     updateBadge();
     renderDrawer();
     showToast(added, p);
+    if (added) {
+      var bar = document.getElementById('mobileCTABar');
+      if (bar) {
+        bar.classList.add('tab-saved-glow');
+        setTimeout(function() { bar.classList.remove('tab-saved-glow'); }, 850);
+      }
+      var mBadge = document.getElementById('wlMobileTabBadge');
+      if (mBadge) {
+        mBadge.classList.add('pulse-pop');
+        setTimeout(function() { mBadge.classList.remove('pulse-pop'); }, 500);
+      }
+    }
     return added;
   }
 
@@ -909,10 +921,26 @@ var WL = (function() {
     var items = load();
     var skus = items.map(function(x) { return encodeURIComponent(x.s || ''); }).filter(Boolean).join(',');
     var shareUrl = window.location.origin + '/bridal-catalog.html' + (skus ? '?lookbook=' + skus : '');
-    
+    var count = items.length;
+    var shareData = {
+      title: 'My Cloud Nine Bridal Lookbook',
+      text: 'Take a look at the ' + count + ' wedding gowns I saved at Cloud Nine Bridal Boutique in Peoria, IL!',
+      url: shareUrl
+    };
+
+    if (navigator.share) {
+      navigator.share(shareData).catch(function(err) {
+        if (err.name !== 'AbortError') copyToClipboard(shareUrl);
+      });
+    } else {
+      copyToClipboard(shareUrl);
+    }
+  }
+
+  function copyToClipboard(shareUrl) {
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(shareUrl).then(function() {
-        alert('Lookbook link copied to clipboard!\n\nShare this link with your bridesmaids or stylist: ' + shareUrl);
+        showToast(true, { d: 'Lookbook Link Copied' });
       }).catch(function() {
         prompt('Copy your lookbook link below:', shareUrl);
       });
@@ -927,19 +955,26 @@ var WL = (function() {
 /* ── Wishlist drawer HTML ── */
 function wishlistDrawerHTML() {
   return '<div class="wl-drawer" id="wlDrawer" role="dialog" aria-modal="true" aria-label="Saved styles">' +
-    '<div class="wl-backdrop" id="wlBackdrop"></div>' +
+    '<div class="wl-backdrop" id="wlBackdrop" onclick="closeWishlist()"></div>' +
     '<div class="wl-panel">' +
       '<div class="wl-head">' +
+        '<div class="wl-sheet-handle" aria-hidden="true"></div>' +
         '<div class="wl-head-left">' +
           '<h2 class="wl-head-title">Saved Styles</h2>' +
           '<span class="wl-head-count" id="wlHeadCount">0 saved styles</span>' +
         '</div>' +
-        '<button class="wl-close" id="wlClose" aria-label="Close wishlist">Close</button>' +
+        '<button class="wl-close" id="wlClose" onclick="closeWishlist()" aria-label="Close wishlist">' +
+          '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>' +
+        '</button>' +
       '</div>' +
       '<div class="wl-body" id="wlBody"></div>' +
       '<div class="wl-foot" id="wlFoot" style="display:none">' +
         '<button type="button" class="wl-foot-lookbook-btn" onclick="WL.openLookbook()">' +
           '<span>Generate Fitting Lookbook</span>' +
+        '</button>' +
+        '<button type="button" class="wl-foot-share-btn" onclick="WL.copyShareLink()" aria-label="Share Lookbook with friends or family">' +
+          '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>' +
+          '<span>Share Lookbook</span>' +
         '</button>' +
         '<a href="appointments.html" class="wl-foot-cta" onclick="closeWishlist()">' +
           'Book a Fitting for These Styles' +
@@ -1000,6 +1035,34 @@ window.openWishlist = function() {
     var cl = document.getElementById('wlClose');
     if (cl) cl.focus();
   }, 420);
+
+  // Bottom sheet swipe-down to dismiss
+  var panel = drawer.querySelector('.wl-panel');
+  if (panel && !panel._hasSwipe) {
+    panel._hasSwipe = true;
+    var startY = 0;
+    var currentY = 0;
+    panel.addEventListener('touchstart', function(e) {
+      if (e.touches && e.touches[0]) startY = e.touches[0].clientY;
+    }, { passive: true });
+    panel.addEventListener('touchmove', function(e) {
+      if (e.touches && e.touches[0]) {
+        currentY = e.touches[0].clientY - startY;
+        var bodyEl = drawer.querySelector('.wl-body');
+        if (currentY > 0 && (!bodyEl || bodyEl.scrollTop <= 0)) {
+          panel.style.transform = 'translateY(' + currentY + 'px)';
+        }
+      }
+    }, { passive: true });
+    panel.addEventListener('touchend', function(e) {
+      var bodyEl = drawer.querySelector('.wl-body');
+      if (currentY > 70 && (!bodyEl || bodyEl.scrollTop <= 0)) {
+        closeWishlist();
+      }
+      panel.style.transform = '';
+      currentY = 0;
+    }, { passive: true });
+  }
 };
 
 window.closeWishlist = function() {
