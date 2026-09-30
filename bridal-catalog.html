@@ -1029,16 +1029,6 @@
       <div class="filter-active-pills-list" id="activePillsList"></div>
     </div>
 
-    <!-- Mobile Horizontal Quick-Filter Rail -->
-    <div class="mobile-quick-filter-rail" id="mobileQuickFilters" role="region" aria-label="Quick filters">
-      <button type="button" class="quick-pill active" data-facet="sil" data-val="all" onclick="handleQuickFilter('sil', 'all', this)">All Gowns</button>
-      <button type="button" class="quick-pill" data-facet="sil" data-val="A-Line" onclick="handleQuickFilter('sil', 'A-Line', this)">A-Line</button>
-      <button type="button" class="quick-pill" data-facet="sil" data-val="Fit &amp; Flare" onclick="handleQuickFilter('sil', 'Fit & Flare', this)">Fitted / Mermaid</button>
-      <button type="button" class="quick-pill" data-facet="sil" data-val="Ballgown" onclick="handleQuickFilter('sil', 'Ballgown', this)">Ballgown</button>
-      <button type="button" class="quick-pill" data-facet="des" data-val="Maggie Sottero" onclick="handleQuickFilter('des', 'Maggie Sottero', this)">Maggie Sottero</button>
-      <button type="button" class="quick-pill" data-facet="des" data-val="Essense of Australia" onclick="handleQuickFilter('des', 'Essense of Australia', this)">Essense of Australia</button>
-      <button type="button" class="quick-pill" data-facet="des" data-val="Stella York" onclick="handleQuickFilter('des', 'Stella York', this)">Stella York</button>
-    </div>
   </div>
 
   <!-- Mobile Bottom Sheet Modal -->
@@ -1062,8 +1052,8 @@
         </div>
       </div>
       <div class="filter-sheet-footer">
-        <button type="button" class="filter-sheet-btn-clear" onclick="clearAllFilters(); closeMobileFilters();">Clear All</button>
-        <button type="button" class="filter-sheet-btn-apply" id="mobileApplyBtn" onclick="closeMobileFilters()">Apply Filters</button>
+        <button type="button" class="filter-sheet-btn-clear" onclick="clearAllFilters(false)">Clear All</button>
+        <button type="button" class="filter-sheet-btn-apply" id="mobileApplyBtn" onclick="closeMobileFilters(event, true)">Apply Filters</button>
       </div>
     </div>
   </div>
@@ -1136,14 +1126,6 @@ const BRIDAL_SYNONYMS = {
   'rose': ['rose + grace', 'rose and grace', 'rose'],
   'fit-and-flare': ['fit & flare', 'fit-and-flare', 'fit to flare', 'mermaid', 'trumpet'],
   'trumpet': ['fit & flare', 'mermaid', 'trumpet']
-};
-
-window.handleQuickFilter = function(facet, val, btn) {
-  document.querySelectorAll('.quick-pill').forEach(function(p) { p.classList.remove('active'); });
-  if (btn) btn.classList.add('active');
-  if (window.setFilter) {
-    window.setFilter(facet, val, true);
-  }
 };
 
 function initBridalCatalog() {

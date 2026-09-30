@@ -3472,56 +3472,6 @@ body.cur-out #cn-cursor-dot {
   animation: tabGlow 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
 }
 
-/* ── Mobile Quick-Filter Rail ── */
-.mobile-quick-filter-rail {
-  display: none;
-}
-@media (max-width: 900px) {
-  .mobile-quick-filter-rail {
-    display: flex;
-    gap: 8px;
-    overflow-x: auto;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-    padding: 6px 16px 14px;
-    margin: -6px auto 16px;
-    max-width: 100%;
-    position: relative;
-    z-index: 10;
-    mask-image: linear-gradient(to right, black calc(100% - 36px), transparent);
-    -webkit-mask-image: linear-gradient(to right, black calc(100% - 36px), transparent);
-  }
-  .mobile-quick-filter-rail::-webkit-scrollbar { display: none; }
-  .quick-pill {
-    flex-shrink: 0;
-    height: 38px;
-    padding: 0 16px;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.92);
-    border: 1px solid var(--border);
-    color: var(--text-muted);
-    font-family: var(--font-kicker);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  }
-  .quick-pill:active, .quick-pill.active {
-    background: var(--teal-deep);
-    color: #ffffff;
-    border-color: var(--teal-deep);
-    box-shadow: 0 4px 14px rgba(13, 46, 48, 0.22);
-  }
-}
 
 /* ── HOVER & TOUCH SCRUBBER ON DRESS CARDS ── */
 .scrub-pips {
@@ -5566,6 +5516,14 @@ select {
   color: #ffffff;
   border-color: var(--teal-deep);
   box-shadow: 0 3px 10px rgba(28, 78, 80, 0.25);
+}
+.filter-sheet-chip.active .chip-count {
+  color: rgba(255, 255, 255, 0.85);
+}
+.filter-sheet-chip.disabled {
+  opacity: 0.35;
+  pointer-events: none;
+  cursor: default;
 }
 .filter-sheet-footer {
   padding: 16px 24px max(24px, env(safe-area-inset-bottom, 24px));

@@ -67,8 +67,8 @@ class CloudNineCatalog {
     window.toggleFacetDropdown = (facet, e) => this.toggleFacetDropdown(facet, e);
     window.closeAllFacetDropdowns = () => this.closeAllFacetDropdowns();
     window.openMobileFilters = () => this.openMobileFilters();
-    window.closeMobileFilters = (e) => this.closeMobileFilters(e);
-    window.clearAllFilters = () => this.clearAllFilters();
+    window.closeMobileFilters = (e, scroll) => this.closeMobileFilters(e, scroll);
+    window.clearAllFilters = (closeMobile) => this.clearAllFilters(closeMobile);
     window.removeFilter = (type) => this.removeFilter(type);
     window.resetFacet = (type, e) => this.resetFacet(type, e);
     window.goToDress = (idx, el) => this.goToDress(idx, el);
@@ -309,12 +309,13 @@ class CloudNineCatalog {
         const name = nameEl ? nameEl.textContent : val;
         const safeVal = val.replace(/'/g, "\\'");
         const isActive = (val.toLowerCase() === (this.activeFilters[facet] || '').toLowerCase());
-        return `<button type="button" class="filter-sheet-chip ${isActive ? 'active' : ''}" data-filter="${facet}" data-value="${val}" onclick="setFilter('${facet}', '${safeVal}', false)">
+        return `<button type="button" class="filter-sheet-chip ${isActive ? 'active' : ''}" data-filter="${facet}" data-value="${val}" role="checkbox" aria-checked="${isActive ? 'true' : 'false'}" onclick="setFilter('${facet}', '${safeVal}', false, event)">
           <span>${name}</span>
           <span class="chip-count"></span>
         </button>`;
       }).join('');
     });
+    this.initMobileSheetGestures();
   }
 
   hydrateFromUrl() {
@@ -411,14 +412,57 @@ class CloudNineCatalog {
     });
   }
 
+  initMobileSheetGestures() {
+    const sheet = document.getElementById('filterSheet');
+    if (!sheet || typeof sheet.querySelector !== 'function' || sheet._gesturesInit) return;
+    sheet._gesturesInit = true;
+
+    const handle = sheet.querySelector('.filter-sheet-handle');
+    if (!handle || typeof handle.addEventListener !== 'function') return;
+
+    let startY = 0;
+    let currentY = 0;
+    let isDragging = false;
+
+    handle.addEventListener('touchstart', (e) => {
+      startY = e.touches[0].clientY;
+      currentY = startY;
+      isDragging = true;
+      sheet.style.transition = 'none';
+    }, { passive: true });
+
+    handle.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      currentY = e.touches[0].clientY;
+      const diff = currentY - startY;
+      if (diff > 0) {
+        sheet.style.transform = `translateY(${diff}px)`;
+      }
+    }, { passive: true });
+
+    handle.addEventListener('touchend', () => {
+      if (!isDragging) return;
+      isDragging = false;
+      sheet.style.transition = '';
+      const diff = currentY - startY;
+      if (diff > 70) {
+        this.closeMobileFilters();
+      } else {
+        sheet.style.transform = '';
+      }
+    }, { passive: true });
+  }
+
   openMobileFilters() {
     this.closeAllFacetDropdowns();
     const backdrop = document.getElementById('filterSheetBackdrop');
     if (backdrop) backdrop.classList.add('open');
+    const sheet = document.getElementById('filterSheet');
+    if (sheet) sheet.style.transform = '';
     document.body.style.overflow = 'hidden';
   }
 
-  closeMobileFilters(e) {
+  closeMobileFilters(e, scrollToGrid = false) {
     if (e && e.target && e.target !== document.getElementById('filterSheetBackdrop') &&
         !e.target.classList.contains('filter-sheet-close') &&
         !e.target.classList.contains('filter-sheet-btn-apply') &&
@@ -427,7 +471,17 @@ class CloudNineCatalog {
     }
     const backdrop = document.getElementById('filterSheetBackdrop');
     if (backdrop) backdrop.classList.remove('open');
+    const sheet = document.getElementById('filterSheet');
+    if (sheet) sheet.style.transform = '';
     document.body.style.overflow = '';
+
+    if (scrollToGrid) {
+      const grid = document.getElementById(this.gridId);
+      if (grid) {
+        const y = grid.getBoundingClientRect().top + window.pageYOffset - 120;
+        window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+      }
+    }
   }
 
   setFilter(type, value, closePopover = true, e) {
@@ -455,7 +509,11 @@ class CloudNineCatalog {
     this.facets.forEach(type => {
       const activeVal = (this.activeFilters[type] || 'all').toLowerCase();
       document.querySelectorAll(`[data-filter="${type}"]`).forEach(btn => {
-        btn.classList.toggle('active', (btn.dataset.value || '').toLowerCase() === activeVal);
+        const isActive = (btn.dataset.value || '').toLowerCase() === activeVal;
+        btn.classList.toggle('active', isActive);
+        if (btn.classList.contains('filter-sheet-chip')) {
+          btn.setAttribute('aria-checked', isActive ? 'true' : 'false');
+        }
       });
     });
   }
@@ -644,7 +702,7 @@ class CloudNineCatalog {
     window.history.replaceState(null, '', newUrl);
   }
 
-  clearAllFilters() {
+  clearAllFilters(closeMobile = true) {
     this.facets.forEach(f => { this.activeFilters[f] = 'all'; });
     this.searchQuery = '';
     const searchInput = document.getElementById('catalogSearchInput');
@@ -652,6 +710,9 @@ class CloudNineCatalog {
 
     this.syncChipStates();
     this.closeAllFacetDropdowns();
+    if (closeMobile) {
+      this.closeMobileFilters();
+    }
     this.applyFilters();
   }
 
@@ -747,6 +808,7 @@ class CloudNineCatalog {
         : '';
 
         const isAboveFold = this.page === 0 && i < 4;
+        const loadingAttr = isAboveFold ? 'loading="eager" fetchpriority="high"' : 'loading="lazy" decoding="async"';
         const loadHandlers = `onload="this.classList.add('img-loaded');if(this.parentElement)this.parentElement.classList.remove('loading');" onerror="if(this.parentElement)this.parentElement.classList.remove('loading');"`;
 
         if (this.category === 'prom' || this.category === 'hoco') {
