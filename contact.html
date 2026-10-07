@@ -338,8 +338,8 @@
           </button>
         </form>
 
-        <div id="formSuccess" style="display:none;text-align:center;padding:40px 20px;">
-          <h3 style="font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--teal-deep);margin-bottom:8px;">Request Received!</h3>
+        <div id="formSuccess" role="status" aria-live="polite" style="display:none;text-align:center;padding:40px 20px;">
+          <h3 id="formSuccessTitle" tabindex="-1" style="font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--teal-deep);margin-bottom:8px;">Request Received!</h3>
           <p style="font-size:15px;color:var(--text-muted);line-height:1.7;">Thank you! We'll confirm your appointment within 24 hours. We can't wait to help you find your dream gown.</p>
         </div>
       </div>
@@ -359,7 +359,7 @@
           <div class="input-group"><label class="input-label" for="gc_message">Message *</label><textarea name="message" class="input-field" placeholder="Your message..." required id="gc_message"></textarea></div>
           <button type="submit" class="btn-outline" style="align-self:flex-start;">Send Message</button>
         </form>
-        <div id="contactSuccess" style="display:none;background:var(--teal-dim);border:1px solid var(--teal-mid);border-radius:var(--radius-sm);padding:16px;margin-top:16px;font-size:14px;color:var(--teal-deep);font-weight:700;">Message sent! We'll be in touch soon.</div>
+        <div id="contactSuccess" role="status" aria-live="polite" tabindex="-1" style="display:none;background:var(--teal-dim);border:1px solid var(--teal-mid);border-radius:var(--radius-sm);padding:16px;margin-top:16px;font-size:14px;color:var(--teal-deep);font-weight:700;">Message sent! We'll be in touch soon.</div>
       </div>
     </div>
 
@@ -525,7 +525,12 @@ async function submitForm(e) {
       body: new URLSearchParams(new FormData(form)).toString()
     });
     document.getElementById('contactForm').style.display = 'none';
-    document.getElementById('formSuccess').style.display = 'block';
+    const fsEl = document.getElementById('formSuccess');
+    if (fsEl) {
+      fsEl.style.display = 'block';
+      const titleEl = document.getElementById('formSuccessTitle');
+      if (titleEl && typeof titleEl.focus === 'function') titleEl.focus();
+    }
   } catch(err) {
     if (btn) { btn.disabled = false; btn.textContent = 'Try Again'; }
     alert('Something went wrong sending your request. Please call us at (309) 693‑3830 or email sayyes@cloudninepeoria.com');
@@ -545,7 +550,11 @@ async function submitContact(e) {
       body: new URLSearchParams(new FormData(form)).toString()
     });
     form.reset();
-    document.getElementById('contactSuccess').style.display = 'block';
+    const cs = document.getElementById('contactSuccess');
+    if (cs) {
+      cs.style.display = 'block';
+      if (typeof cs.focus === 'function') cs.focus();
+    }
     if (btn) { btn.disabled = false; btn.textContent = 'Send Message'; }
   } catch(err) {
     if (btn) { btn.disabled = false; btn.textContent = 'Try Again'; }

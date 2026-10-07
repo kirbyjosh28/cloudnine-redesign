@@ -54,7 +54,7 @@
 
   /* ── Colors ───────────────────────────────────── */
   --text:        #1c3d3e;
-  --text-muted:  #5a8082;
+  --text-muted:  #385b5d; /* 7.20:1 on warm cream #fdfbf7; 7.45:1 on white (WCAG AAA) */
   --text-light:  #90b4b6;
 
   /* ── Borders & shadows ──────────────────────────── */
@@ -2713,10 +2713,18 @@ body.cur-out #cn-cursor-dot {
   outline: 2px solid var(--teal-deep);
   outline-offset: 3px;
 }
-/* On dark backgrounds (hero, CTA section), use white ring */
+/* ── DUAL-SURFACE FOCUS APPEARANCE (WCAG 2.4.13 Level AAA) ── */
+/* On dark backgrounds, use high-contrast pure white ring (> 19:1 contrast) */
+.hero-c :focus-visible,
+.hero :focus-visible,
+.bridal-cat-hero :focus-visible,
 .cta-section :focus-visible,
-.mobile-menu :focus-visible {
-  outline-color: #fff;
+.mobile-menu :focus-visible,
+.search-overlay :focus-visible,
+.site-footer :focus-visible,
+.modal-backdrop :focus-visible {
+  outline: 2px solid #ffffff !important;
+  outline-offset: 3px !important;
 }
 
 /* ════════════════════════════════
@@ -2751,6 +2759,19 @@ body.cur-out #cn-cursor-dot {
   .reveal {
     opacity: 1 !important;
     transform: none !important;
+    transition: none !important;
+  }
+
+  /* Disable dynamic shimmer animation */
+  .dress-card-img.loading {
+    background: #edeae5 !important;
+    animation: none !important;
+  }
+
+  /* Instant modal and sheet display without sliding motion */
+  .filter-sheet,
+  .mobile-menu,
+  .search-modal {
     transition: none !important;
   }
 }
@@ -2852,9 +2873,9 @@ body.cur-out #cn-cursor-dot {
   .section-catalog .grid-4 { grid-template-columns: repeat(2,1fr); }
   .section-catalog .catalog-count { padding: 10px 16px; font-size: 11px; font-family: var(--font-kicker); }
 
-  /* Pagination — smaller */
-  .pag-wrap { padding: 32px 16px 16px; gap: 3px; }
-  .pag-btn { min-width: 36px; height: 44px; font-size: 12px; }
+  /* Pagination — 44px touch targets */
+  .pag-wrap { padding: 32px 16px 16px; gap: 4px; }
+  .pag-btn { min-width: 44px; height: 44px; font-size: 13px; }
 }
 
 /* ── BUTTONS — bigger touch targets on mobile ── */
@@ -3523,6 +3544,12 @@ body.cur-out #cn-cursor-dot {
     padding: 6px 10px;
     border-radius: 20px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  }
+  .scrub-pip::before {
+    top: -20px;
+    bottom: -20px;
+    left: -14px;
+    right: -14px;
   }
 }
 .photo-count-badge {
@@ -5281,12 +5308,13 @@ select {
   align-items: center;
 }
 .density-toggle-wrap button {
-  height: 30px;
-  padding: 0 10px;
+  position: relative;
+  height: 34px;
+  padding: 0 12px;
   border: 1px solid var(--border);
   border-radius: 100px;
   background: var(--white);
-  color: var(--text-light);
+  color: var(--text-muted);
   font-family: var(--font-kicker);
   font-size: 11px;
   font-weight: 700;
@@ -5297,6 +5325,14 @@ select {
   align-items: center;
   justify-content: center;
   transition: all 0.18s ease;
+}
+.density-toggle-wrap button::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  bottom: -5px;
+  left: -4px;
+  right: -4px;
 }
 .density-toggle-wrap button[aria-pressed="true"] {
   background: var(--teal-deep);
@@ -5579,7 +5615,7 @@ select {
   }
   .filter-mobile-trigger-btn {
     display: inline-flex;
-    min-height: 38px;
+    min-height: 44px;
   }
   .density-toggle-wrap {
     display: flex;

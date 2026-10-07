@@ -236,7 +236,7 @@ function navHTML() {
       <button class="nav-search-btn nav-search-mobile" aria-label="Search" onclick="openSearch()">
         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
       </button>
-      <button class="nav-hamburger" aria-label="Open navigation menu" onclick="openMobileMenu()">
+      <button class="nav-hamburger" aria-label="Open navigation menu" aria-controls="mobileMenu" aria-expanded="false" onclick="openMobileMenu()">
         <span></span><span></span><span></span>
       </button>
 
@@ -486,8 +486,12 @@ window.openMobileMenu = function() {
   const hamburger = document.querySelector('.nav-hamburger');
   const nav = document.querySelector('.main-nav');
   if (!menu) return;
+  window._lastFocusedNav = document.activeElement;
   menu.classList.add('open');
-  if (hamburger) hamburger.classList.add('open');
+  if (hamburger) {
+    hamburger.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+  }
   /* Slide nav out so it doesn't overlap the drawer */
   if (nav) nav.classList.add('nav-hidden');
   document.body.style.overflow = 'hidden';
@@ -495,7 +499,7 @@ window.openMobileMenu = function() {
   /* Move focus to the close button for accessibility */
   setTimeout(function() {
     const closeBtn = menu.querySelector('.mobile-menu-close');
-    if (closeBtn) closeBtn.focus();
+    if (closeBtn && typeof closeBtn.focus === 'function') closeBtn.focus();
   }, 420);
 };
 
@@ -505,18 +509,39 @@ window.closeMobileMenu = function() {
   const nav = document.querySelector('.main-nav');
   if (!menu) return;
   menu.classList.remove('open');
-  if (hamburger) hamburger.classList.remove('open');
+  if (hamburger) {
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+  }
   /* Restore nav */
   if (nav) nav.classList.remove('nav-hidden');
   document.body.style.overflow = '';
   document.body.classList.remove('mobile-menu-open');
+  if (window._lastFocusedNav && typeof window._lastFocusedNav.focus === 'function') {
+    window._lastFocusedNav.focus();
+    window._lastFocusedNav = null;
+  }
 };
 
-/* Close on Escape */
+/* Close on Escape & Tab Focus Trap */
 document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') {
-    const menu = document.getElementById('mobileMenu');
-    if (menu && menu.classList.contains('open')) closeMobileMenu();
+  const menu = document.getElementById('mobileMenu');
+  if (menu && menu.classList.contains('open')) {
+    if (e.key === 'Escape') closeMobileMenu();
+    if (e.key === 'Tab') {
+      const focusable = menu.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])');
+      if (focusable.length) {
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    }
   }
 });
 
@@ -1225,6 +1250,7 @@ function initSearch() {
 window.openSearch = function() {
   const overlay = document.getElementById('searchOverlay');
   if (!overlay) return;
+  window._lastFocusedSearch = document.activeElement;
   overlay.classList.add('open');
   document.body.style.overflow = 'hidden';
   document.body.classList.add('search-open');
@@ -1241,11 +1267,37 @@ window.closeSearch = function() {
   overlay.classList.remove('open');
   document.body.classList.remove('search-open');
   document.body.style.overflow = '';
+  if (window._lastFocusedSearch && typeof window._lastFocusedSearch.focus === 'function') {
+    window._lastFocusedSearch.focus();
+    window._lastFocusedSearch = null;
+  }
 };
 
 window.closeSearchBg = function(e) {
   if (e.target === document.getElementById('searchOverlay')) closeSearch();
 };
+
+/* Search Overlay Focus Trap */
+document.addEventListener('keydown', function(e) {
+  const overlay = document.getElementById('searchOverlay');
+  if (overlay && overlay.classList.contains('open')) {
+    if (e.key === 'Escape') closeSearch();
+    if (e.key === 'Tab') {
+      const focusable = overlay.querySelectorAll('input, button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])');
+      if (focusable.length) {
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    }
+  }
+});
 
 window.quickSearch = function(query) {
   const input = document.getElementById('searchInput');

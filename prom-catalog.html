@@ -783,6 +783,7 @@
       .modal-backdrop { padding: 0; }
       .modal-main-wrap { min-height: 380px; }
       .modal-info { max-height: none; padding: 24px 20px 48px; }
+      .modal-x { width: 44px; height: 44px; font-size: 18px; top: 12px; right: 12px; }
     }
   </style>
 </head>
@@ -964,14 +965,14 @@
     </div>
 
     <!-- Mobile Trigger Button -->
-    <button type="button" class="filter-mobile-trigger-btn" id="mobileFilterBtn" onclick="openMobileFilters()">
+    <button type="button" class="filter-mobile-trigger-btn" id="mobileFilterBtn" aria-haspopup="dialog" aria-expanded="false" onclick="openMobileFilters()">
       <span>Filters</span>
       <span class="mobile-filter-badge" id="mobileFilterBadge">0</span>
     </button>
 
     <!-- Right: Count, Single Clear Button & Density Toggle -->
     <div class="filter-bar-right">
-      <div class="catalog-count-compact" id="cc"></div>
+      <div class="catalog-count-compact" id="cc" role="status" aria-live="polite" aria-atomic="true"></div>
       <button type="button" class="filter-main-clear-btn" id="clearFilters" onclick="clearAllFilters()" aria-label="Clear all filters">Clear</button>
       <div class="density-toggle-wrap" id="densityToggle">
         <button id="density3" title="3-column view" aria-label="3-column grid view" aria-pressed="false" onclick="setDensity(3)">3 Col</button>

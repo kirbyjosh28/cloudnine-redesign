@@ -105,6 +105,10 @@ class CloudNineCatalog {
         if (e.key === 'ArrowRight') this.shiftImg(1);
         if (e.key === 'Tab') this.trapModalFocus(e);
       }
+      const fsBackdrop = document.getElementById('filterSheetBackdrop');
+      if (fsBackdrop && fsBackdrop.classList.contains('open')) {
+        if (e.key === 'Tab') this.trapFilterSheetFocus(e);
+      }
     });
 
     // Modal backdrop click
@@ -455,11 +459,19 @@ class CloudNineCatalog {
 
   openMobileFilters() {
     this.closeAllFacetDropdowns();
+    this.lastFocusedMobileFilter = document.activeElement;
     const backdrop = document.getElementById('filterSheetBackdrop');
     if (backdrop) backdrop.classList.add('open');
     const sheet = document.getElementById('filterSheet');
     if (sheet) sheet.style.transform = '';
+    const triggerBtn = document.getElementById('mobileFilterBtn');
+    if (triggerBtn) triggerBtn.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
+
+    setTimeout(() => {
+      const closeBtn = (sheet && typeof sheet.querySelector === 'function') ? sheet.querySelector('.filter-sheet-close') : null;
+      if (closeBtn && typeof closeBtn.focus === 'function') closeBtn.focus();
+    }, 40);
   }
 
   closeMobileFilters(e, scrollToGrid = false) {
@@ -473,7 +485,14 @@ class CloudNineCatalog {
     if (backdrop) backdrop.classList.remove('open');
     const sheet = document.getElementById('filterSheet');
     if (sheet) sheet.style.transform = '';
+    const triggerBtn = document.getElementById('mobileFilterBtn');
+    if (triggerBtn) triggerBtn.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
+
+    if (this.lastFocusedMobileFilter && typeof this.lastFocusedMobileFilter.focus === 'function') {
+      this.lastFocusedMobileFilter.focus();
+      this.lastFocusedMobileFilter = null;
+    }
 
     if (scrollToGrid) {
       const grid = document.getElementById(this.gridId);
@@ -481,6 +500,22 @@ class CloudNineCatalog {
         const y = grid.getBoundingClientRect().top + window.pageYOffset - 120;
         window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
       }
+    }
+  }
+
+  trapFilterSheetFocus(e) {
+    const sheet = document.getElementById('filterSheet');
+    if (!sheet || typeof sheet.querySelectorAll !== 'function') return;
+    const focusable = sheet.querySelectorAll('button:not([disabled]), [tabindex]:not([tabindex="-1"])');
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
     }
   }
 
