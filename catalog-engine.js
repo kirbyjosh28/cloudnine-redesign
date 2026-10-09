@@ -688,9 +688,9 @@ class CloudNineCatalog {
     } else {
       activeTray.style.display = 'flex';
       pillsList.innerHTML = activeList.map(f => `
-        <button type="button" class="filter-active-pill" onclick="removeFilter('${f.type}')" title="Remove ${f.label}">
+        <button type="button" class="filter-active-pill" onclick="removeFilter('${f.type}')" title="Remove ${f.label}" aria-label="Remove filter: ${f.label}">
           <span>${f.label}</span>
-          <span class="filter-active-pill-x">x</span>
+          <span class="filter-active-pill-x" aria-hidden="true">&times;</span>
         </button>
       `).join('');
     }
@@ -788,14 +788,17 @@ class CloudNineCatalog {
     const cc = document.getElementById(this.countId);
     if (cc) {
       const total = this.fil.length;
-      const label = total === this.P.length
+      const fullLabel = total === this.P.length
         ? `${total} styles`
         : `${total} of ${this.P.length} styles`;
+      const shortLabel = total === this.P.length
+        ? `${total} styles`
+        : `${total} / ${this.P.length}`;
       cc.style.opacity = '0';
       cc.style.transform = 'translateY(-4px)';
       cc.style.transition = 'opacity .2s ease, transform .2s ease';
       setTimeout(() => {
-        cc.textContent = 'Showing ' + label;
+        cc.innerHTML = `<span class="cc-full">Showing ${fullLabel}</span><span class="cc-short">${shortLabel}</span>`;
         cc.style.opacity = '1';
         cc.style.transform = 'translateY(0)';
       }, 180);
