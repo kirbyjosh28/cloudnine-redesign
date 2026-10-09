@@ -2426,118 +2426,8 @@ a { transition: opacity .18s; }
 }
 .mobile-menu-phone-link:active { border-color: rgba(255,255,255,.4); color: #fff; }
 
-/* ── MOBILE TAB BAR (Apple HIG Floating Glass Capsule) ── */
-.mobile-tab-bar { display: none; }
-@media (max-width: 768px) {
-  .mobile-tab-bar {
-    display: flex;
-    position: fixed;
-    bottom: max(14px, env(safe-area-inset-bottom, 14px));
-    left: 16px;
-    right: 16px;
-    max-width: 390px;
-    margin: 0 auto;
-    z-index: 149;
-    background: rgba(13, 46, 48, 0.88);
-    backdrop-filter: saturate(180%) blur(24px);
-    -webkit-backdrop-filter: saturate(180%) blur(24px);
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    border-radius: 36px;
-    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.32), 0 2px 10px rgba(0, 0, 0, 0.2);
-    align-items: center;
-    padding: 6px;
-    gap: 4px;
-    transition: transform 0.38s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.3s ease;
-    will-change: transform, opacity;
-  }
-  .mobile-tab-bar--hidden,
-  body.mobile-menu-open .mobile-tab-bar,
-  body.search-open .mobile-tab-bar,
-  body.wishlist-open .mobile-tab-bar,
-  body.modal-open .mobile-tab-bar {
-    transform: translateY(calc(100% + 36px)) !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-  }
-  .mobile-tab {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 3px;
-    padding: 8px 4px;
-    color: rgba(255,255,255,.62);
-    text-decoration: none;
-    background: none;
-    border: none;
-    border-radius: 28px;
-    font-family: inherit;
-    cursor: pointer;
-    transition: color .2s, background .2s, transform .15s cubic-bezier(0.32, 0.72, 0, 1);
-    -webkit-tap-highlight-color: transparent;
-    border-left: none;
-    min-height: 44px;
-  }
-  .mobile-tab:first-child { border-left: none; }
-  .mobile-tab:active {
-    transform: scale(0.92);
-  }
-  .mobile-tab.active {
-    color: #fff;
-    background: rgba(255, 255, 255, 0.12);
-  }
-  .mobile-tab--book {
-    color: #ffffff;
-    background: var(--teal-deep);
-    border: 1px solid rgba(152, 213, 214, 0.35);
-    box-shadow: 0 4px 14px rgba(28, 78, 80, 0.4);
-    padding: 8px 12px;
-  }
-  .mobile-tab--book .mobile-tab-label {
-    color: #ffffff;
-    font-weight: 800;
-  }
-  .mobile-tab-icon-wrap {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .mobile-tab-icon {
-    width: 18px; height: 18px;
-    flex-shrink: 0;
-  }
-  .mobile-tab-label {
-    font-family: var(--font-kicker);
-    font-size: 11px; font-weight: 700;
-    letter-spacing: .12em; text-transform: uppercase;
-    line-height: 1;
-  }
-  .wl-tab-badge {
-    position: absolute;
-    top: -4px;
-    right: -7px;
-    background: var(--teal-mid);
-    color: var(--teal-darker);
-    font-family: var(--font-kicker);
-    font-size: 11px;
-    font-weight: 700;
-    min-width: 16px;
-    height: 16px;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 4px;
-    transform: scale(0);
-    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-  .wl-tab-badge.has-items,
-  .wl-tab-badge.visible {
-    transform: scale(1);
-    display: flex;
-  }
-}
+/* ── MOBILE TAB BAR REMOVED ── */
+.mobile-tab-bar { display: none !important; }
 
 /* ── RESPONSIVE FLOATING CAPSULE NAV ── */
 @media (max-width: 1100px) {
@@ -2584,8 +2474,6 @@ a { transition: opacity .18s; }
     padding: 0;
   }
   .nav-search-mobile svg { width: 18px; height: 18px; }
-  /* Reserve space for sticky CTA bar */
-  body { padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px)); }
   .section, .section-sm { padding: 52px 20px; }
   .section-full, .section-catalog { padding: 32px 0 52px; }
   .site-footer { padding: 52px 20px 0; }
@@ -2959,8 +2847,7 @@ body.cur-out #cn-cursor-dot {
   .btn-hero-c:active, .btn-hero-c-ghost:active,
   .bhero-btn-primary:active, .bhero-btn-ghost:active,
   .btn-luxury-pill:active, .quick-pill:active,
-  .designer-card:active, .dress-card:active,
-  .mobile-tab-bar a:active, .mobile-tab-bar button:active {
+  .designer-card:active, .dress-card:active {
     opacity: 0.82;
     transform: scale(0.97);
     transition: opacity 0.08s, transform 0.08s;
@@ -3038,8 +2925,8 @@ body.cur-out #cn-cursor-dot {
     padding: 24px 0; text-align: center;
   }
   .footer-legal { justify-content: center; flex-wrap: wrap; gap: 12px 20px; }
-  /* Extra padding so sticky CTA bar doesn't cover footer */
-  .site-footer { padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px)); }
+  /* Clean mobile footer padding with safe area inset */
+  .site-footer { padding-bottom: max(24px, env(safe-area-inset-bottom, 24px)); }
 }
 @media (max-width: 540px) {
   /* Single column footer on small phones */
@@ -3082,7 +2969,7 @@ body.cur-out #cn-cursor-dot {
     max-width: 100% !important;
     min-height: 100vh !important;
     min-height: 100dvh !important;
-    padding: max(20px, env(safe-area-inset-top, 20px)) 20px calc(88px + env(safe-area-inset-bottom, 16px)) !important;
+    padding: max(20px, env(safe-area-inset-top, 20px)) 20px max(24px, env(safe-area-inset-bottom, 24px)) !important;
     border-radius: 0 !important;
     background: transparent !important;
     border: none !important;
@@ -3897,7 +3784,7 @@ body.cur-out #cn-cursor-dot {
 #back-to-top:hover { background: var(--teal-darker); transform: translateY(-2px); }
 @media (max-width: 768px) {
   #back-to-top {
-    bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+    bottom: max(20px, env(safe-area-inset-bottom, 20px));
     right: 16px; padding: 6px 12px;
   }
 }
@@ -3973,7 +3860,7 @@ body.cur-out #cn-cursor-dot {
 /* ── WISHLIST TOAST NOTIFICATION ── */
 .wl-toast {
   position: fixed;
-  bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+  bottom: max(24px, env(safe-area-inset-bottom, 24px));
   left: 50%; transform: translateX(-50%) translateY(20px);
   z-index: 500;
   background: #1c3d3e;
@@ -4008,7 +3895,7 @@ body.cur-out #cn-cursor-dot {
 .wl-toast-action:hover { color: #fff; border-color: #fff; }
 @media (max-width: 768px) {
   .wl-toast {
-    bottom: calc(68px + env(safe-area-inset-bottom, 0px));
+    bottom: max(20px, env(safe-area-inset-bottom, 20px));
     left: 16px; right: 16px;
     transform: translateX(0) translateY(20px);
     min-width: 0;
@@ -4606,12 +4493,6 @@ select {
 @media (max-width: 768px) {
   body { overflow-x: hidden; }
 
-  /* Tab bar — slightly tighter on small screens */
-  .mobile-tab-label {
-    font-family: var(--font-kicker);
-    font-size: 11px;
-  }
-
   /* Pagination wraps cleanly */
   .pag-wrap { gap: 4px; }
   .pag-btn { min-width: 44px; height: 44px; font-size: 12px; padding: 0 8px; }
@@ -4661,8 +4542,7 @@ select {
   .hero-c-title { font-size: clamp(32px, 9vw, 52px); }
   .bridal-cat-hero-title { font-size: clamp(28px, 8vw, 42px); }
   .section, .section-sm { padding: 44px 16px; }
-  .site-footer { padding: 44px 16px calc(96px + env(safe-area-inset-bottom, 16px)) !important; }
-  .mobile-tab-label { font-family: var(--font-kicker); font-size: 11px; letter-spacing: .11em; }
+  .site-footer { padding: 44px 16px max(24px, env(safe-area-inset-bottom, 24px)) !important; }
 }
 
 /* ── PERFORMANCE: Content-Visibility for Below-the-Fold Sections ── */
@@ -4700,29 +4580,6 @@ select {
 }
 .testi-couple-photo {
   aspect-ratio: 4 / 5;
-}
-
-/* ── Frosted glass tab bar on supported browsers ── */
-@supports (backdrop-filter: blur(20px)) {
-  @media (max-width: 768px) {
-    .mobile-tab-bar {
-      background: rgba(13, 46, 48, 0.86);
-      backdrop-filter: saturate(180%) blur(24px);
-      -webkit-backdrop-filter: saturate(180%) blur(24px);
-    }
-  }
-}
-
-/* ── Safe area insets for notched phones (iPhone X+) ── */
-@supports (padding-bottom: env(safe-area-inset-bottom)) {
-  @media (max-width: 768px) {
-    .mobile-tab-bar {
-      padding-bottom: env(safe-area-inset-bottom, 0px);
-    }
-    body {
-      padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
-    }
-  }
 }
 
 /* ════════════════════════════════════════════════════════════

@@ -551,51 +551,9 @@ document.addEventListener('keydown', function(e) {
   }
 });
 
-/* ── MOBILE TAB BAR (Apple HIG Floating Glass Capsule) ── */
+/* ── MOBILE TAB BAR REMOVED ── */
 function injectMobileCTABar() {
-  if (window.innerWidth > 768) return;
-  if (document.getElementById('mobileCTABar')) return;
-  if (document.body.classList.contains('page-quiz')) return;
-  var page = getActivePage();
-  if (page === 'dress' || document.querySelector('.dp-mobile-cta')) return;
-
-  var bar = document.createElement('nav');
-  bar.className = 'mobile-tab-bar';
-  bar.id = 'mobileCTABar';
-  bar.setAttribute('aria-label', 'Quick navigation');
-  bar.innerHTML =
-    '<a href="bridal-catalog.html" class="mobile-tab ' + (page === 'bridal' || page === 'bridal-catalog' ? 'active' : '') + '" aria-label="Browse bridal gowns">' +
-      '<span class="mobile-tab-label">Gowns</span>' +
-    '</a>' +
-    '<a href="appointments.html" class="mobile-tab mobile-tab--book ' + (page === 'appointments' ? 'active' : '') + '" aria-label="Book an appointment">' +
-      '<span class="mobile-tab-label">Book</span>' +
-    '</a>' +
-    '<button type="button" class="mobile-tab mobile-tab--saved" onclick="openWishlist()" aria-label="Saved Styles">' +
-      '<span class="mobile-tab-icon-wrap">' +
-        '<span class="wl-tab-badge" id="wlMobileTabBadge">0</span>' +
-      '</span>' +
-      '<span class="mobile-tab-label">Saved</span>' +
-    '</button>' +
-    '<a href="tel:3096933830" class="mobile-tab" aria-label="Call us at (309) 693-3830">' +
-      '<span class="mobile-tab-label">Call</span>' +
-    '</a>';
-  document.body.appendChild(bar);
-  if (typeof WL !== 'undefined' && WL.updateBadge) WL.updateBadge();
-
-  // Smart Auto-Collapsing on Scroll Down (re-appears on upward flick)
-  var lastScrollY = window.pageYOffset || document.documentElement.scrollTop;
-  var scrollThreshold = 14;
-  window.addEventListener('scroll', function() {
-    var currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
-    var diff = currentScrollY - lastScrollY;
-    if (Math.abs(diff) < scrollThreshold) return;
-    if (diff > 0 && currentScrollY > 120) {
-      bar.classList.add('mobile-tab-bar--hidden');
-    } else if (diff < 0) {
-      bar.classList.remove('mobile-tab-bar--hidden');
-    }
-    lastScrollY = currentScrollY;
-  }, { passive: true });
+  // Navigation pill bar removed per user request
 }
 
 /* ════════════════════════════════════════════════════════
@@ -1176,8 +1134,6 @@ function injectComponents() {
     WL.updateBadge();
   }
 
-  // Inject mobile sticky CTA bar
-  injectMobileCTABar();
   // Inject back-to-top
   injectBackToTop();
   // Sync all badges & preview trays
