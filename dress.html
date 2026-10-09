@@ -117,8 +117,8 @@
       font-family: var(--font-serif);
       font-size: clamp(28px, 3vw, 48px);
       font-weight: 700;
-      line-height: 1.05;
-      letter-spacing: -.03em;
+      line-height: 1.15;
+      letter-spacing: -.02em;
       text-wrap: balance;
       color: var(--text);
       margin-bottom: 8px;
@@ -276,26 +276,31 @@
         position: fixed; bottom: 0; left: 0; right: 0;
         z-index: 190;
         display: flex; align-items: stretch;
-        background: #fff;
+        background: rgba(255, 255, 255, 0.94);
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
         border-top: 1px solid var(--border);
-        box-shadow: 0 -4px 24px rgba(0,0,0,.10);
-        padding-bottom: max(6px, env(safe-area-inset-bottom, 0px));
+        box-shadow: 0 -4px 24px rgba(0,0,0,.08);
+        padding-bottom: max(10px, env(safe-area-inset-bottom, 10px));
       }
       .dp-mobile-cta-btn {
         width: 54px;
         display: flex;
         align-items: center;
         justify-content: center;
-        background: #ffffff;
+        background: transparent;
         border: none;
         border-right: 1px solid var(--border);
         color: var(--teal-deep);
         cursor: pointer;
         flex-shrink: 0;
-        transition: background 0.15s, color 0.15s;
+        transition: background 0.15s, color 0.15s, transform 0.12s;
         -webkit-tap-highlight-color: transparent;
       }
-      .dp-mobile-cta-btn:active { background: #f2f2f2; }
+      .dp-mobile-cta-btn:active {
+        background: rgba(28, 78, 80, 0.08);
+        transform: scale(0.96);
+      }
       .dp-mobile-cta-heart.active svg {
         fill: var(--teal-deep);
         stroke: var(--teal-deep);
@@ -304,15 +309,19 @@
         flex: 1;
         display: flex; align-items: center; justify-content: center;
         background: var(--teal-deep); color: #fff;
-        font-family: 'Josefin Sans', sans-serif;
+        font-family: var(--font-kicker);
         font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
-        min-height: 54px; text-decoration: none;
+        min-height: 52px; text-decoration: none;
         touch-action: manipulation;
         -webkit-tap-highlight-color: transparent;
+        transition: background .2s, transform 0.12s;
       }
-      .dp-mobile-cta-book:active { background: var(--teal-darker); }
+      .dp-mobile-cta-book:active {
+        background: var(--teal-darker);
+        transform: scale(0.98);
+      }
       /* Push content above the sticky bar */
-      .dp-info { padding-bottom: 88px; }
+      .dp-info { padding-bottom: 96px; }
     }
     @media (min-width: 961px) {
       .dp-mobile-cta { display: none; }
@@ -443,7 +452,7 @@
       .dp-info {
         position: static; height: auto;
         border-left: none; border-top: 1px solid var(--border);
-        padding: 40px 28px;
+        padding: 36px var(--mob-gutter, 20px) 96px;
       }
       .dp-back { margin-bottom: 32px; }
       .dp-thumbs { display: flex; }

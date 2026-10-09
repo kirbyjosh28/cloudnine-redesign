@@ -86,10 +86,14 @@
     .appt-hero-meta-item svg { color: rgba(152,213,214,.85); }
 
     @media (max-width: 768px) {
-      .appt-hero { padding: 52px 20px 56px; }
-      .appt-hero h1 { font-size: clamp(40px, 10vw, 68px); line-height: .88; }
-      .appt-hero p { font-size: 15px; line-height: 1.75; }
-      .appt-hero-meta { gap: 20px; }
+      .appt-hero { padding: 44px var(--mob-gutter, 20px) 48px; }
+      .appt-hero h1 {
+        font-size: var(--text-mob-hero, clamp(32px, 8.5vw, 44px));
+        line-height: var(--leading-mob-title, 1.14);
+        letter-spacing: -0.02em;
+      }
+      .appt-hero p { font-size: var(--text-mob-body, 15px); line-height: var(--leading-mob-body, 1.6); }
+      .appt-hero-meta { gap: 16px; flex-wrap: wrap; }
       .appt-hero-meta-item { font-size: 11px; }
     }
 
@@ -510,8 +514,8 @@
     .booking-alt-link a:hover { gap: 10px; }
 
     @media (max-width: 768px) {
-      .booking-embed { padding: 48px 20px; }
-      .booking-embed-header p { text-align: left; max-width: 100%; }
+      .booking-embed { padding: var(--mob-section-pad, 56px) var(--mob-gutter, 20px); }
+      .booking-embed-header p { text-align: left; max-width: 100%; font-size: var(--text-mob-body, 15px); line-height: var(--leading-mob-body, 1.6); }
       .bridalive-iframe { min-height: 800px; }
       .bridalive-wrap { min-height: 800px; }
     }
@@ -527,21 +531,21 @@
     }
     .appt-tip { display: flex; align-items: flex-start; gap: 18px; }
     .appt-tip-icon {
-      width: 48px; height: 48px; border-radius: 0;
+      width: 48px; height: 48px; border-radius: var(--radius-card-inner, 8px);
       background: rgba(255,255,255,.08); flex-shrink: 0;
       display: flex; align-items: center; justify-content: center;
       color: rgba(152,213,214,.9);
     }
     .appt-tip h4 {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+      font-family: var(--font-kicker);
+      font-size: 11px; font-weight: 700; letter-spacing: var(--tracking-mob-kicker, 0.12em); text-transform: uppercase;
       color: #fff; margin: 0 0 8px;
     }
-    .appt-tip p { font-size: 13.5px; color: rgba(255,255,255,.68); line-height: 1.65; margin: 0; font-weight: 300; }
+    .appt-tip p { font-size: 14px; color: rgba(255,255,255,.75); line-height: 1.6; margin: 0; font-weight: 300; }
 
     @media (max-width: 900px) {
-      .appt-tips { padding: 48px 28px; }
-      .appt-tips-inner { grid-template-columns: 1fr; gap: 32px; }
+      .appt-tips { padding: var(--mob-section-pad, 56px) var(--mob-gutter, 20px); }
+      .appt-tips-inner { grid-template-columns: 1fr; gap: 28px; }
     }
   </style>
 </head>

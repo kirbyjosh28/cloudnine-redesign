@@ -52,6 +52,33 @@
   --tracking-wide:   0.08em;
   --tracking-kicker: 0.2em;
 
+  /* ── Mobile Modular Type System (tuned for 360px–430px) ── */
+  --text-mob-hero:       clamp(32px, 8.5vw, 44px);
+  --text-mob-h2:         clamp(24px, 6.2vw, 32px);
+  --text-mob-h3:         clamp(18px, 4.8vw, 22px);
+  --text-mob-subhead:    clamp(14px, 3.8vw, 16px);
+  --text-mob-body:       15px;
+  --text-mob-sm:         13px;
+  --text-mob-kicker:     11px;
+
+  /* ── Mobile Leading & Tracking (Prevents clipping & word breaks) ── */
+  --leading-mob-title:   1.14;
+  --leading-mob-snug:    1.28;
+  --leading-mob-body:    1.60;
+  --tracking-mob-kicker: 0.12em;
+
+  /* ── Spatial Grid (better-layout 8pt system) ── */
+  --mob-gutter:          20px;
+  --mob-gutter-sm:       16px; /* <= 375px screens */
+  --mob-section-pad:     56px;
+  --mob-gap-within:      8px;
+  --mob-gap-between:     20px;
+
+  /* ── Concentric Radius Tokens (better-ui outer = inner + pad) ── */
+  --radius-card-outer:   12px;
+  --radius-card-inner:   8px;
+  --radius-pill:         9999px;
+
   /* ── Colors ───────────────────────────────────── */
   --text:        #1c3d3e;
   --text-muted:  #385b5d; /* 7.20:1 on warm cream #fdfbf7; 7.45:1 on white (WCAG AAA) */
@@ -2474,9 +2501,9 @@ a { transition: opacity .18s; }
     padding: 0;
   }
   .nav-search-mobile svg { width: 18px; height: 18px; }
-  .section, .section-sm { padding: 52px 20px; }
-  .section-full, .section-catalog { padding: 32px 0 52px; }
-  .site-footer { padding: 52px 20px 0; }
+  .section, .section-sm { padding: var(--mob-section-pad) var(--mob-gutter); }
+  .section-full, .section-catalog { padding: 32px 0 var(--mob-section-pad); }
+  .site-footer { padding: var(--mob-section-pad) var(--mob-gutter) 0; }
 }
 
 @media (max-width: 480px) {
@@ -2820,17 +2847,26 @@ body.cur-out #cn-cursor-dot {
   .eyebrow { margin-bottom: 12px; font-size: 11px; font-family: var(--font-kicker); }
 }
 
-/* ── PAGE HERO — better mobile layout ── */
+/* ── PAGE HERO — refined mobile layout ── */
 @media (max-width: 768px) {
-  .page-hero { padding: 32px 20px 28px; }
+  .page-hero { padding: 32px var(--mob-gutter) 28px; }
   .page-hero-main {
     grid-template-columns: 1fr;
     gap: 16px;
-    padding: 32px 0 36px;
+    padding: 28px 0 32px;
   }
-  .page-hero-title { font-size: clamp(36px, 10vw, 52px); line-height: .92; }
+  .page-hero-title {
+    font-size: var(--text-mob-hero);
+    line-height: var(--leading-mob-title);
+    letter-spacing: -0.02em;
+  }
   .page-hero-right { align-items: flex-start; }
-  .page-hero-sub  { text-align: left; max-width: 100%; font-size: 14px; line-height: 1.7; }
+  .page-hero-sub {
+    text-align: left;
+    max-width: 100%;
+    font-size: var(--text-mob-body);
+    line-height: var(--leading-mob-body);
+  }
 }
 
 /* ── UX: Prevent reveal animation blanking above-fold content ── */
@@ -2839,18 +2875,22 @@ body.cur-out #cn-cursor-dot {
   opacity: 1 !important; transform: none !important;
 }
 
-/* ── UX: Touch active states — tactile feedback on all interactive elements ── */
+/* ── UX: Touch active states — tactile spring feedback (better-ui standard) ── */
 @media (hover: none) and (pointer: coarse) {
+  button:active,
   .btn-primary:active, .btn-outline:active, .btn-white:active,
   .btn-cta-ghost:active, .btn-prom-primary:active, .btn-prom-ghost:active,
   .btn-hoco-primary:active, .btn-hoco-ghost:active,
   .btn-hero-c:active, .btn-hero-c-ghost:active,
   .bhero-btn-primary:active, .bhero-btn-ghost:active,
   .btn-luxury-pill:active, .quick-pill:active,
-  .designer-card:active, .dress-card:active {
-    opacity: 0.82;
-    transform: scale(0.97);
-    transition: opacity 0.08s, transform 0.08s;
+  .designer-card:active, .dress-card:active,
+  .filter-sheet-chip:active, .pag-btn:active,
+  .filter-btn-compact:active, .density-toggle-wrap button:active,
+  .mobile-menu-book-btn:active {
+    opacity: 0.88;
+    transform: scale(0.97) !important;
+    transition: transform 0.12s cubic-bezier(0.2, 0, 0, 1), opacity 0.12s ease !important;
   }
   .nav-hamburger:active { opacity: 0.6; transform: scale(0.92); }
   .testimonial-arrow:active { opacity: 0.6; }
@@ -3000,12 +3040,44 @@ body.cur-out #cn-cursor-dot {
   .contact-layout { grid-template-columns: 1fr; gap: 28px; }
 }
 
-/* ── DRESS CARD — mobile text sizing ── */
+/* ── DRESS CARD — refined mobile styling (better-ui concentric & depth) ── */
 @media (max-width: 768px) {
-  .dress-card-name { font-size: 13.5px; letter-spacing: .01em; }
-  .dress-card-designer { font-size: 11px; margin-bottom: 4px; font-family: var(--font-kicker); }
-  .dress-card-cta { font-size: 11px; margin-top: 6px; font-family: var(--font-kicker); }
-  .dress-card-body { padding: 12px 10px 12px; }
+  .dress-card {
+    border-radius: var(--radius-card-outer);
+  }
+  .dress-card-img {
+    aspect-ratio: 3 / 4;
+    border-radius: var(--radius-card-outer);
+    overflow: hidden;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+  }
+  .dress-card-name {
+    font-size: 14px;
+    letter-spacing: .01em;
+    line-height: 1.25;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .dress-card-designer,
+  .dress-designer-tag {
+    font-size: 10.5px;
+    margin-bottom: 4px;
+    font-family: var(--font-kicker);
+    letter-spacing: var(--tracking-mob-kicker);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .dress-card-cta {
+    font-size: 11px;
+    margin-top: 6px;
+    font-family: var(--font-kicker);
+    letter-spacing: .12em;
+  }
+  .dress-card-body {
+    padding: 10px 4px 12px;
+  }
 }
 
 /* ── HERO BUTTONS — stack on mobile ── */

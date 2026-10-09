@@ -777,12 +777,20 @@
 
     /* Responsive */
     @media (max-width: 900px) {
-      .prom-hero-card { grid-template-columns: 1fr; padding: 32px 24px; }
-      .prom-catalog-hero, .registry-sticky-wrap, .catalog-control-panel { padding: 0 16px; }
+      .prom-hero-card { grid-template-columns: 1fr; padding: 28px var(--mob-gutter, 20px); border-radius: var(--radius-card-outer, 12px); }
+      .prom-hero-title {
+        font-size: var(--text-mob-hero, clamp(30px, 8vw, 44px)) !important;
+        line-height: var(--leading-mob-title, 1.14) !important;
+      }
+      .prom-hero-sub {
+        font-size: var(--text-mob-body, 15px) !important;
+        line-height: var(--leading-mob-body, 1.6) !important;
+      }
+      .prom-catalog-hero, .registry-sticky-wrap, .catalog-control-panel { padding: 0 var(--mob-gutter, 20px); }
       .modal { grid-template-columns: 1fr; border-radius: 0; min-height: 100dvh; margin: 0; }
       .modal-backdrop { padding: 0; }
       .modal-main-wrap { min-height: 380px; }
-      .modal-info { max-height: none; padding: 24px 20px 48px; }
+      .modal-info { max-height: none; padding: 24px var(--mob-gutter, 20px) 48px; }
       .modal-x { width: 44px; height: 44px; font-size: 18px; top: 12px; right: 12px; }
     }
   </style>

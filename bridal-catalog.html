@@ -146,9 +146,18 @@
     .bridal-video-btn.playing .icon-pause { display: block; }
 
     @media (max-width: 768px) {
-      .bridal-cat-hero { height: 72vw; min-height: 420px; }
-      .bridal-cat-hero-content { padding: 0 20px 84px; flex-direction: column; align-items: flex-start; gap: 10px; }
-      .bridal-cat-hero-title { font-size: clamp(30px, 8vw, 46px); line-height: .94; }
+      .bridal-cat-hero { height: 72vw; min-height: 400px; }
+      .bridal-cat-hero-content {
+        padding: 0 var(--mob-gutter, 20px) 44px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      .bridal-cat-hero-title {
+        font-size: var(--text-mob-hero, clamp(32px, 8.5vw, 44px));
+        line-height: var(--leading-mob-title, 1.14);
+        letter-spacing: -0.02em;
+      }
       .bridal-cat-hero-right { display: none; }
     }
 
