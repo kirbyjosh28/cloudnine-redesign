@@ -1026,11 +1026,10 @@ class CloudNineCatalog {
       return;
     }
 
-    // Mobile Continuous Discovery Stream ("Show 24 More Gowns")
+    // Mobile Continuous Discovery Stream ("Show 24 More Gowns") — Clean, minimal (no progress bar)
     if (window.innerWidth <= 768) {
       const totalItems = this.fil.length;
       const shown = Math.min((this.page + 1) * this.pageSize, totalItems);
-      const pct = Math.min(100, Math.round((shown / totalItems) * 100));
       const remaining = Math.max(0, totalItems - shown);
       const nextBatch = Math.min(this.pageSize, remaining);
       const noun = this.category === 'bridal' ? 'Gowns' : 'Styles';
@@ -1038,15 +1037,11 @@ class CloudNineCatalog {
       pag.innerHTML = `
         <div class="cn-load-more-wrap">
           <div class="cn-load-more-status">Showing <strong>${shown}</strong> of <strong>${totalItems}</strong> ${noun}</div>
-          <div class="cn-load-more-track" role="progressbar" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100" aria-label="Catalog browse progress">
-            <div class="cn-load-more-fill" style="width:${pct}%"></div>
-          </div>
           ${remaining > 0 ? `
             <button type="button" class="cn-load-more-btn" data-action="load-more">
               <span>Show ${nextBatch} More ${noun}</span>
-              <span class="cn-load-more-icon" aria-hidden="true">↓</span>
             </button>
-          ` : `<div class="cn-load-more-end">You've explored all ${totalItems} ${noun.toLowerCase()} in this collection</div>`}
+          ` : `<div class="cn-load-more-end">All ${totalItems} ${noun.toLowerCase()} shown</div>`}
         </div>`;
 
       pag.onclick = (e) => {
