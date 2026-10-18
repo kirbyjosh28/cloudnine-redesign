@@ -556,6 +556,16 @@ function injectMobileCTABar() {
   // Navigation pill bar removed per user request
 }
 
+/* ── TACTILE HAPTIC FEEDBACK HELPER ── */
+window.cnHaptic = function(pattern) {
+  try {
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (typeof navigator !== 'undefined' && typeof navigator.vibrate === 'function') {
+      navigator.vibrate(pattern || 10);
+    }
+  } catch (e) {}
+};
+
 /* ════════════════════════════════════════════════════════
    WISHLIST / FAVORITES ENGINE
    Stores product objects in localStorage.
@@ -563,6 +573,11 @@ function injectMobileCTABar() {
    ════════════════════════════════════════════════════════ */
 var WL = (function() {
   var KEY = 'cloudnine_wishlist';
+  var HEART_SVG = '<svg class="wl-btn-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>';
+
+  function renderBtnHTML(active) {
+    return HEART_SVG + '<span class="wl-btn-label">' + (active ? 'Saved' : 'Save') + '</span>';
+  }
 
   function load() {
     try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch(e) { return []; }
@@ -586,6 +601,7 @@ var WL = (function() {
     if (idx >= 0) { items.splice(idx, 1); added = false; }
     else { items.push(p); added = true; }
     save(items);
+    if (window.cnHaptic) window.cnHaptic(added ? 12 : 6);
     updateBadge();
     renderDrawer();
     showToast(added, p);
@@ -609,7 +625,7 @@ var WL = (function() {
     var toast = document.getElementById('wlToast');
     if (!toast) return;
     var msg   = toast.querySelector('.wl-toast-msg');
-    if (msg)  msg.textContent  = added ? 'Saved to Lookbook' : 'Removed from Lookbook';
+    if (msg)  msg.textContent  = (p && p._customToast) ? p._customToast : (added ? 'Saved to Lookbook' : 'Removed from Lookbook');
     toast.classList.add('visible');
     clearTimeout(_toastTimer);
     _toastTimer = setTimeout(function() { toast.classList.remove('visible'); }, 3200);
@@ -623,7 +639,7 @@ var WL = (function() {
     renderDrawer();
     document.querySelectorAll('.wl-btn[data-wid="' + id.replace(/"/g, '') + '"]').forEach(function(btn) {
       btn.classList.remove('wl-btn--active');
-      btn.textContent = 'Save';
+      btn.innerHTML = renderBtnHTML(false);
     });
   }
 
@@ -633,7 +649,7 @@ var WL = (function() {
     renderDrawer();
     document.querySelectorAll('.wl-btn--active').forEach(function(btn) {
       btn.classList.remove('wl-btn--active');
-      btn.textContent = 'Save';
+      btn.innerHTML = renderBtnHTML(false);
     });
   }
 
@@ -797,13 +813,13 @@ var WL = (function() {
     btn.className = 'wl-btn' + (active ? ' wl-btn--active' : '');
     btn.setAttribute('aria-label', active ? 'Remove from lookbook' : 'Save to lookbook');
     btn.dataset.wid = itemId(p);
-    btn.textContent = active ? 'Saved' : 'Save';
+    btn.innerHTML = renderBtnHTML(active);
 
     btn.addEventListener('click', function(e) {
       e.stopPropagation();
       var added = toggle(p);
       btn.classList.toggle('wl-btn--active', added);
-      btn.textContent = added ? 'Saved' : 'Save';
+      btn.innerHTML = renderBtnHTML(added);
       btn.setAttribute('aria-label', added ? 'Remove from lookbook' : 'Save to lookbook');
       btn.classList.add('wl-btn--pulse');
       setTimeout(function() { btn.classList.remove('wl-btn--pulse'); }, 420);
@@ -919,17 +935,36 @@ var WL = (function() {
     });
   }
 
-  function copyShareLink() {
+  function getConciergeSummary() {
     var items = load();
+    var styleList = items.map(function(x) {
+      var des = x.d ? (x.d + ' ') : '';
+      var num = x.s ? ('#' + x.s) : (x.n || 'Gown');
+      return des + num;
+    });
+    var textSummary = styleList.length
+      ? 'Saved Lookbook Styles (' + styleList.length + '): ' + styleList.join(', ')
+      : '';
+    return { items: items, styleList: styleList, textSummary: textSummary };
+  }
+
+  function copyShareLink() {
+    var summary = getConciergeSummary();
+    var items = summary.items;
     var skus = items.map(function(x) { return encodeURIComponent(x.s || ''); }).filter(Boolean).join(',');
-    var shareUrl = window.location.origin + '/bridal-catalog.html' + (skus ? '?lookbook=' + skus : '');
+    var targetCatalog = (items[0] && items[0]._cat) ? items[0]._cat : 'bridal-catalog.html';
+    var shareUrl = window.location.origin + '/' + targetCatalog.replace(/^\//, '') + (skus ? '?lookbook=' + skus : '');
     var count = items.length;
+    var previewNames = summary.styleList.slice(0, 4).join(', ') + (count > 4 ? ' +' + (count - 4) + ' more' : '');
     var shareData = {
-      title: 'My Cloud Nine Bridal Lookbook',
-      text: 'Take a look at the ' + count + ' wedding gowns I saved at Cloud Nine Bridal Boutique in Peoria, IL!',
+      title: 'My Cloud Nine Fitting Lookbook',
+      text: count
+        ? ('Take a look at the ' + count + ' styles I saved at Cloud Nine Bridal Boutique (' + previewNames + ')!')
+        : 'Browse my saved lookbook at Cloud Nine Bridal Boutique in Peoria, IL!',
       url: shareUrl
     };
 
+    if (window.cnHaptic) window.cnHaptic(10);
     if (navigator.share) {
       navigator.share(shareData).catch(function(err) {
         if (err.name !== 'AbortError') copyToClipboard(shareUrl);
@@ -939,19 +974,19 @@ var WL = (function() {
     }
   }
 
-  function copyToClipboard(shareUrl) {
+  function copyToClipboard(shareUrl, customMsg) {
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(shareUrl).then(function() {
-        showToast(true, { d: 'Lookbook Link Copied' });
+        showToast(true, { _customToast: customMsg || 'Lookbook Link Copied' });
       }).catch(function() {
-        prompt('Copy your lookbook link below:', shareUrl);
+        prompt('Copy your lookbook details below:', shareUrl);
       });
     } else {
-      prompt('Copy your lookbook link below:', shareUrl);
+      prompt('Copy your lookbook details below:', shareUrl);
     }
   }
 
-  return { load, has, toggle, remove, clearAll, updateBadge, renderDrawer, startObserver, openLookbook, closeLookbook, renderLookbook, copyShareLink };
+  return { load, has, toggle, remove, clearAll, updateBadge, renderDrawer, startObserver, openLookbook, closeLookbook, renderLookbook, copyShareLink, getConciergeSummary, copyToClipboard };
 })();
 
 /* ── Wishlist drawer HTML ── */
@@ -1958,6 +1993,129 @@ function initMagneticButtons() {
   });
 }
 
+/* ── SPECULATION RULES — 0ms Page Prefetching ── */
+function initSpeculationRules() {
+  try {
+    if (typeof HTMLScriptElement === 'undefined' || !HTMLScriptElement.supports || !HTMLScriptElement.supports('speculationrules')) return;
+    if (document.querySelector('script[type="speculationrules"]')) return;
+    var specScript = document.createElement('script');
+    specScript.type = 'speculationrules';
+    specScript.textContent = JSON.stringify({
+      prefetch: [
+        {
+          source: 'list',
+          urls: [
+            'bridal-catalog.html',
+            'prom-catalog.html',
+            'hoco-catalog.html',
+            'mothers.html',
+            'appointments.html',
+            'contact.html',
+            'dress.html'
+          ],
+          eagerness: 'moderate'
+        }
+      ]
+    });
+    document.head.appendChild(specScript);
+  } catch (e) {}
+}
+
+/* ── CONCIERGE LOOKBOOK & FITTING ROOM PRE-LOAD ── */
+function initLookbookConcierge() {
+  if (typeof WL === 'undefined') return;
+  var urlParams = new URLSearchParams(window.location.search || '');
+  var urlSku = (urlParams.get('sku') || urlParams.get('s') || '').trim();
+  var urlDes = (urlParams.get('des') || urlParams.get('d') || '').trim();
+
+  var savedItems = WL.load().slice();
+  if (urlSku && !savedItems.some(function(x) { return String(x.s || '').toLowerCase() === urlSku.toLowerCase(); })) {
+    savedItems.unshift({
+      s: urlSku,
+      d: urlDes || 'Selected Gown',
+      i: 'images/bridal/Bridal-hero.webp'
+    });
+  }
+
+  if (!savedItems.length) return;
+
+  var styleLabels = savedItems.map(function(x) {
+    var des = x.d ? (x.d + ' ') : '';
+    var code = x.s ? ('#' + x.s) : (x.n || 'Gown');
+    return des + code;
+  });
+  var copyNote = 'My Saved Cloud Nine Styles (' + styleLabels.length + '): ' + styleLabels.join(', ');
+
+  // 1. Appointments Page: Inject Curated Fitting Lookbook Concierge Bar above #bridaliveWrap
+  var bridaliveWrap = document.getElementById('bridaliveWrap');
+  if (bridaliveWrap && !document.getElementById('lookbookConciergeBanner')) {
+    var banner = document.createElement('div');
+    banner.id = 'lookbookConciergeBanner';
+    banner.className = 'lookbook-concierge-banner double-bezel';
+
+    var pillsHtml = savedItems.slice(0, 6).map(function(item) {
+      var img = (item.x && item.x.length) ? item.x[0] : (item.i || 'images/bridal/Bridal-hero.webp');
+      var label = escapeHTML((item.d ? item.d + ' ' : '') + (item.s ? '#' + item.s : (item.n || 'Style')));
+      return '<div class="lc-gown-pill">' +
+        '<img src="' + escapeHTML(img) + '" alt="' + label + '" class="lc-gown-thumb" loading="lazy"/>' +
+        '<span class="lc-gown-label">' + label + '</span>' +
+      '</div>';
+    }).join('');
+    if (savedItems.length > 6) {
+      pillsHtml += '<div class="lc-gown-pill lc-gown-more">+' + (savedItems.length - 6) + ' more</div>';
+    }
+
+    banner.innerHTML =
+      '<div class="double-bezel-inner lc-banner-inner">' +
+        '<div class="lc-banner-top">' +
+          '<div class="lc-banner-copy">' +
+            '<span class="lc-eyebrow">Fitting Room Pre-Load · Concierge Ready</span>' +
+            '<h3 class="lc-title">Your Curated Fitting Lookbook (' + savedItems.length + ' ' + (savedItems.length === 1 ? 'Style' : 'Styles') + ')</h3>' +
+            '<p class="lc-desc">Tap below to copy your saved style numbers and paste them into the BridalLive scheduler notes so your stylist can prepare these gowns before you arrive.</p>' +
+          '</div>' +
+          '<div class="lc-actions">' +
+            '<button type="button" class="btn-primary lc-copy-btn" id="lcCopyStylesBtn">' +
+              '<span>Copy Saved Style Numbers</span>' +
+            '</button>' +
+            '<button type="button" class="btn-outline lc-dossier-btn" onclick="if(window.WL)WL.openLookbook()">' +
+              '<span>View Dossier</span>' +
+            '</button>' +
+          '</div>' +
+        '</div>' +
+        '<div class="lc-pills-row">' + pillsHtml + '</div>' +
+      '</div>';
+
+    bridaliveWrap.parentNode.insertBefore(banner, bridaliveWrap);
+
+    var copyBtn = document.getElementById('lcCopyStylesBtn');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', function() {
+        if (window.cnHaptic) window.cnHaptic(12);
+        WL.copyToClipboard(copyNote, 'Style Numbers Copied for Scheduler');
+        copyBtn.classList.add('is-copied');
+        copyBtn.innerHTML = '<span>✓ Copied! Paste in Scheduler Notes</span>';
+        setTimeout(function() {
+          copyBtn.classList.remove('is-copied');
+          copyBtn.innerHTML = '<span>Copy Saved Style Numbers</span>';
+        }, 4000);
+      });
+    }
+  }
+
+  // 2. Contact Page: Auto-Populate Inquiry Textarea with Saved Lookbook Gowns
+  var msgField = document.getElementById('message');
+  if (msgField && !msgField.value.trim()) {
+    msgField.value = 'Hi Cloud Nine! I would love to inquire about availability and fitting options for my saved Lookbook styles: ' + styleLabels.join(', ') + '.';
+    var group = msgField.closest('.input-group');
+    if (group && !group.querySelector('.lc-contact-badge')) {
+      var badge = document.createElement('div');
+      badge.className = 'lc-contact-badge';
+      badge.textContent = '✓ Pre-loaded ' + styleLabels.length + ' saved style' + (styleLabels.length === 1 ? '' : 's') + ' from your Fitting Lookbook';
+      group.insertBefore(badge, msgField);
+    }
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   (function() {
     var s = document.createElement('script');
@@ -1979,6 +2137,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initMagneticButtons();
   initHeroParallax();
   initPhotoTilt();
+  initSpeculationRules();
+  initLookbookConcierge();
 });
 
 /* ════════════════════════════════════════════════════════

@@ -806,7 +806,7 @@ class CloudNineCatalog {
     this.renderPage();
   }
 
-  renderPage() {
+  renderPage(append = false) {
     const start = this.page * this.pageSize;
     const items = this.fil.slice(start, start + this.pageSize);
     const grid = document.getElementById(this.gridId);
@@ -835,7 +835,7 @@ class CloudNineCatalog {
       card.setAttribute('role', 'button');
       card.setAttribute('aria-label', (p.d || '') + ' style ' + (p.s || ''));
       card.dataset.idx = idx;
-      card.dataset.product = JSON.stringify({ s: p.s, d: p.d, i: p.i, x: p.x || [], _cat: `${this.category}-catalog.html` });
+      card.dataset.product = JSON.stringify({ s: p.s, d: p.d, n: p.n || '', sil: p.sil || '', i: p.i, x: p.x || [], _cat: `${this.category}-catalog.html` });
 
       const hasAngles = p.x && p.x.length > 1;
       const pipsHtml = hasAngles
@@ -845,54 +845,54 @@ class CloudNineCatalog {
         ? `<span class="photo-count-badge">${p.x.length} Angles</span>`
         : '';
 
-        const isAboveFold = this.page === 0 && i < 4;
-        const loadingAttr = isAboveFold ? 'loading="eager" fetchpriority="high"' : 'loading="lazy" decoding="async"';
-        const loadHandlers = `onload="this.classList.add('img-loaded');if(this.parentElement)this.parentElement.classList.remove('loading');" onerror="if(this.parentElement)this.parentElement.classList.remove('loading');"`;
+      const isAboveFold = this.page === 0 && i < 4;
+      const loadingAttr = isAboveFold ? 'loading="eager" fetchpriority="high"' : 'loading="lazy" decoding="async"';
+      const loadHandlers = `onload="this.classList.add('img-loaded');if(this.parentElement)this.parentElement.classList.remove('loading');" onerror="if(this.parentElement)this.parentElement.classList.remove('loading');"`;
 
-        if (this.category === 'prom' || this.category === 'hoco') {
-          const schoolNote = this.selectedSchool 
-            ? `<span>1-of-1 Guarantee for ${this.selectedSchool.replace(' High School','').replace(' Community High','')}</span>`
-            : '<span>1-of-1 High School Guarantee</span>';
-          const defaultDes = this.category === 'prom' ? 'Designer Prom' : 'Designer HOCO';
+      if (this.category === 'prom' || this.category === 'hoco') {
+        const schoolNote = this.selectedSchool 
+          ? `<span>1-of-1 Guarantee for ${this.selectedSchool.replace(' High School','').replace(' Community High','')}</span>`
+          : '<span>1-of-1 High School Guarantee</span>';
+        const defaultDes = this.category === 'prom' ? 'Designer Prom' : 'Designer HOCO';
 
-          card.innerHTML = `
-            <div class="dress-card-img loading">
-              <img src="${p.i}" alt="${(p.d||'')} ${(p.s||'')}" ${loadingAttr} ${loadHandlers}/>
-              ${pipsHtml}
-              ${badgeHtml}
+        card.innerHTML = `
+          <div class="dress-card-img loading">
+            <img src="${p.i}" alt="${(p.d||'')} ${(p.s||'')}" ${loadingAttr} ${loadHandlers}/>
+            ${pipsHtml}
+            ${badgeHtml}
+          </div>
+          <div class="dress-card-body">
+            <div class="dress-designer-tag">${p.d || defaultDes}</div>
+            <div class="dress-card-name">${p.n && p.n !== p.d ? p.n : ('Style #' + (p.s || ''))}</div>
+            <div class="dress-card-school-badge">
+              ${schoolNote}
             </div>
-            <div class="dress-card-body">
-              <div class="dress-designer-tag">${p.d || defaultDes}</div>
-              <div class="dress-card-name">${p.n && p.n !== p.d ? p.n : ('Style #' + (p.s || ''))}</div>
-              <div class="dress-card-school-badge">
-                ${schoolNote}
-              </div>
-            </div>`;
-        } else {
-          const designerTag = (p.d && this.category !== 'bridal')
-            ? `<div class="dress-designer-tag">${p.d}</div>`
-            : '';
-          const cardTitle = p.n || (p.s ? '#' + p.s : 'Designer Gown');
+          </div>`;
+      } else {
+        const designerTag = (p.d && this.category !== 'bridal')
+          ? `<div class="dress-designer-tag">${p.d}</div>`
+          : '';
+        const cardTitle = p.n || (p.s ? '#' + p.s : 'Designer Gown');
 
-          card.innerHTML = `
-            <div class="dress-card-img loading">
-              <img src="${p.i}" alt="${(p.d||'')} ${(p.s||'')}" ${loadingAttr} ${loadHandlers}/>
-              ${pipsHtml}
-              ${badgeHtml}
-              ${designerTag}
-              <div class="dress-card-overlay"></div>
-            </div>
-            <div class="dress-card-body">
-              <div class="dress-card-name">${cardTitle}</div>
-              <div class="dress-card-cta">View Details</div>
-            </div>`;
-        }
+        card.innerHTML = `
+          <div class="dress-card-img loading">
+            <img src="${p.i}" alt="${(p.d||'')} ${(p.s||'')}" ${loadingAttr} ${loadHandlers}/>
+            ${pipsHtml}
+            ${badgeHtml}
+            ${designerTag}
+            <div class="dress-card-overlay"></div>
+          </div>
+          <div class="dress-card-body">
+            <div class="dress-card-name">${cardTitle}</div>
+            <div class="dress-card-cta">View Details</div>
+          </div>`;
+      }
 
-        const cardImg = card.querySelector('.dress-card-img img');
-        if (cardImg && cardImg.complete) {
-          cardImg.classList.add('img-loaded');
-          if (cardImg.parentElement) cardImg.parentElement.classList.remove('loading');
-        }
+      const cardImg = card.querySelector('.dress-card-img img');
+      if (cardImg && cardImg.complete) {
+        cardImg.classList.add('img-loaded');
+        if (cardImg.parentElement) cardImg.parentElement.classList.remove('loading');
+      }
 
       // Angle scrubbing on hover & mobile touch
       if (hasAngles) {
@@ -977,32 +977,84 @@ class CloudNineCatalog {
         });
       }
 
-      frag.appendChild(card);
-    });
-
-    grid.innerHTML = '';
-    grid.appendChild(frag);
-
-    // Event listeners
-    grid.querySelectorAll('.dress-card').forEach(card => {
-      const idx = parseInt(card.dataset.idx, 10);
-      card.addEventListener('click', () => this.goToDress(idx, card));
+      // Bind card tap/click: Mobile opens zero-scroll-loss Bottom Sheet Quick-Look; Desktop opens full editorial PDP
+      const handleActivate = () => {
+        if (window.innerWidth <= 768 && document.getElementById(this.modalBackdropId)) {
+          if (window.cnHaptic) window.cnHaptic(8);
+          this.openModal(idx);
+        } else {
+          this.goToDress(idx, card);
+        }
+      };
+      card.addEventListener('click', handleActivate);
       card.addEventListener('keydown', e => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          this.goToDress(idx, card);
+          handleActivate();
         }
       });
+
+      frag.appendChild(card);
     });
 
+    if (!append) {
+      grid.innerHTML = '';
+    }
+    grid.appendChild(frag);
+
     this.renderPagination();
-    if (this.page > 0) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (this.page > 0 && !append) {
+      grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  loadMore() {
+    const total = Math.ceil(this.fil.length / this.pageSize);
+    if (this.page + 1 >= total) return;
+    if (window.cnHaptic) window.cnHaptic(10);
+    this.page += 1;
+    this.renderPage(true);
   }
 
   renderPagination() {
     const total = Math.ceil(this.fil.length / this.pageSize);
     const pag = document.getElementById(this.paginationId);
     if (!pag) return;
+
+    if (this.fil.length === 0) {
+      pag.innerHTML = '';
+      return;
+    }
+
+    // Mobile Continuous Discovery Stream ("Show 24 More Gowns")
+    if (window.innerWidth <= 768) {
+      const totalItems = this.fil.length;
+      const shown = Math.min((this.page + 1) * this.pageSize, totalItems);
+      const pct = Math.min(100, Math.round((shown / totalItems) * 100));
+      const remaining = Math.max(0, totalItems - shown);
+      const nextBatch = Math.min(this.pageSize, remaining);
+      const noun = this.category === 'bridal' ? 'Gowns' : 'Styles';
+
+      pag.innerHTML = `
+        <div class="cn-load-more-wrap">
+          <div class="cn-load-more-status">Showing <strong>${shown}</strong> of <strong>${totalItems}</strong> ${noun}</div>
+          <div class="cn-load-more-track" role="progressbar" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100" aria-label="Catalog browse progress">
+            <div class="cn-load-more-fill" style="width:${pct}%"></div>
+          </div>
+          ${remaining > 0 ? `
+            <button type="button" class="cn-load-more-btn" data-action="load-more">
+              <span>Show ${nextBatch} More ${noun}</span>
+              <span class="cn-load-more-icon" aria-hidden="true">↓</span>
+            </button>
+          ` : `<div class="cn-load-more-end">You've explored all ${totalItems} ${noun.toLowerCase()} in this collection</div>`}
+        </div>`;
+
+      pag.onclick = (e) => {
+        const btn = e.target.closest('[data-action="load-more"]');
+        if (btn) this.loadMore();
+      };
+      return;
+    }
 
     if (total <= 1) {
       pag.innerHTML = '';
@@ -1048,10 +1100,82 @@ class CloudNineCatalog {
     this.lastFocused = document.activeElement;
     const p = this.fil[idx];
     if (!p) return;
-    this.currentModalDress = p;
+    this.currentModalIdx = idx;
+    this.currentModalDress = Object.assign({}, p, { _cat: `${this.category}-catalog.html` });
 
     this.curImgs = (p.x && p.x.length) ? p.x : [p.i];
     this.curIdx = 0;
+
+    const mo = document.getElementById('mo');
+    if (mo && !mo.querySelector('.modal-drag-handle')) {
+      const handle = document.createElement('div');
+      handle.className = 'modal-drag-handle';
+      handle.setAttribute('aria-hidden', 'true');
+      mo.insertBefore(handle, mo.firstChild);
+    }
+
+    // Bind touch swipe-down dismissal on mobile sheet
+    if (mo && !mo._hasSheetDrag) {
+      mo._hasSheetDrag = true;
+      let startY = 0;
+      let deltaY = 0;
+      let dragging = false;
+      mo.addEventListener('touchstart', (e) => {
+        if (window.innerWidth > 768) return;
+        const infoEl = mo.querySelector('.modal-info');
+        const atTop = (!infoEl || infoEl.scrollTop <= 2) && mo.scrollTop <= 2;
+        if (atTop && e.touches && e.touches[0]) {
+          startY = e.touches[0].clientY;
+          deltaY = 0;
+          dragging = true;
+        } else {
+          dragging = false;
+        }
+      }, { passive: true });
+      mo.addEventListener('touchmove', (e) => {
+        if (!dragging || !e.touches || !e.touches[0]) return;
+        deltaY = e.touches[0].clientY - startY;
+        if (deltaY > 0) {
+          mo.style.transition = 'none';
+          mo.style.transform = `translateY(${Math.min(deltaY * 0.75, 260)}px)`;
+        }
+      }, { passive: true });
+      mo.addEventListener('touchend', () => {
+        if (!dragging) return;
+        dragging = false;
+        mo.style.transition = '';
+        if (deltaY > 75) {
+          mo.style.transform = '';
+          this.closeModal();
+        } else {
+          mo.style.transform = '';
+        }
+      }, { passive: true });
+    }
+
+    // Bind horizontal touch swipe on modal main image gallery
+    const mainWrap = mo ? mo.querySelector('.modal-main-wrap') : null;
+    if (mainWrap && !mainWrap._hasGallerySwipe) {
+      mainWrap._hasGallerySwipe = true;
+      let gx = 0;
+      let gy = 0;
+      mainWrap.addEventListener('touchstart', (e) => {
+        if (e.touches && e.touches[0]) {
+          gx = e.touches[0].clientX;
+          gy = e.touches[0].clientY;
+        }
+      }, { passive: true });
+      mainWrap.addEventListener('touchend', (e) => {
+        if (!e.changedTouches || !e.changedTouches[0] || this.curImgs.length <= 1) return;
+        const dx = e.changedTouches[0].clientX - gx;
+        const dy = e.changedTouches[0].clientY - gy;
+        if (Math.abs(dx) > 36 && Math.abs(dx) > Math.abs(dy) * 1.25) {
+          if (window.cnHaptic) window.cnHaptic(6);
+          if (dx < 0) this.shiftImg(1);
+          else this.shiftImg(-1);
+        }
+      }, { passive: true });
+    }
 
     const mDes = document.getElementById('mDesigner');
     const mTitle = document.getElementById('mTitle');
@@ -1061,7 +1185,7 @@ class CloudNineCatalog {
 
     if (mDes) mDes.textContent = p.d || (this.category === 'prom' ? 'Prom Collection' : (this.category === 'hoco' ? 'Homecoming Collection' : ''));
     if (mTitle) mTitle.textContent = p.n && p.n !== p.d ? p.n : ('Style #' + (p.s || ''));
-    if (mBadge) mBadge.textContent = p.s ? `Designer Code: ${p.s}` : '';
+    if (mBadge) mBadge.textContent = p.s ? `Style #${p.s}` : '';
 
     if (mDesc) {
       if (p.c && p.c.trim()) {
@@ -1118,14 +1242,51 @@ class CloudNineCatalog {
       ).join('');
     }
 
-    const bookLink = document.getElementById('modalBookLink');
-    if (bookLink) {
-      if (this.category === 'prom') {
-        bookLink.href = 'prom.html#visit';
-      } else if (this.category === 'hoco') {
-        bookLink.href = `appointments.html?cat=hoco&sku=${encodeURIComponent(p.s||'')}&des=${encodeURIComponent(p.d||'')}${this.selectedSchool ? `&school=${encodeURIComponent(this.selectedSchool)}` : ''}`;
-      } else {
-        bookLink.href = 'appointments.html';
+    // Upgrade CTA stack inside .m-cta across all 4 catalogs
+    const mCta = mo ? mo.querySelector('.m-cta') : null;
+    if (mCta) {
+      const skuParam = encodeURIComponent(p.s || '');
+      const desParam = encodeURIComponent(p.d || '');
+      const apptHref = this.category === 'prom'
+        ? 'prom.html#visit'
+        : `appointments.html?cat=${this.category}&sku=${skuParam}&des=${desParam}${this.selectedSchool ? `&school=${encodeURIComponent(this.selectedSchool)}` : ''}#book-now`;
+
+      const bookLink = mCta.querySelector('#modalBookLink, a[href*="appointments.html"], a[href*="prom.html"]');
+      if (bookLink) {
+        bookLink.href = apptHref;
+      }
+
+      const contactLink = mCta.querySelector('a[href*="contact.html"]');
+      if (contactLink) {
+        contactLink.href = `contact.html?cat=${this.category}&sku=${skuParam}&des=${desParam}#request-form`;
+      }
+
+      // Ensure Save to Lookbook button exists on Bridal & Mothers modals as well
+      let wlBtn = document.getElementById('modalWishlistBtn');
+      if (!wlBtn) {
+        wlBtn = document.createElement('button');
+        wlBtn.type = 'button';
+        wlBtn.id = 'modalWishlistBtn';
+        wlBtn.className = 'btn-outline modal-wl-btn';
+        wlBtn.innerHTML = `<span id="modalWishlistLabel">Save to Lookbook</span>`;
+        wlBtn.addEventListener('click', () => this.toggleModalWishlist());
+        mCta.insertBefore(wlBtn, contactLink || mCta.lastElementChild);
+      }
+
+      // Ensure "View Full Gown Page →" button exists for full editorial view
+      let fullBtn = document.getElementById('modalFullPageBtn');
+      if (!fullBtn) {
+        fullBtn = document.createElement('button');
+        fullBtn.type = 'button';
+        fullBtn.id = 'modalFullPageBtn';
+        fullBtn.className = 'modal-full-page-btn';
+        fullBtn.innerHTML = `<span>View Full Gown Page</span><span aria-hidden="true">→</span>`;
+        fullBtn.addEventListener('click', () => {
+          const targetIdx = this.currentModalIdx;
+          this.closeModal();
+          this.goToDress(targetIdx);
+        });
+        mCta.appendChild(fullBtn);
       }
     }
 
@@ -1147,19 +1308,24 @@ class CloudNineCatalog {
     if (!this.currentModalDress) return;
     const saved = (window.isItemInWishlist && window.isItemInWishlist(this.currentModalDress)) || false;
     const label = document.getElementById('modalWishlistLabel');
+    const btn = document.getElementById('modalWishlistBtn');
+    const defaultLabel = this.category === 'hoco'
+      ? 'Save to HOCO Lookbook'
+      : (this.category === 'prom' ? 'Save to Prom Lookbook' : 'Save to Fitting Lookbook');
     if (label) {
-      label.textContent = saved ? 'Saved in My Lookbook' : (this.category === 'hoco' ? 'Save to HOCO Lookbook' : 'Save to Prom Lookbook');
+      label.textContent = saved ? '♥ Saved in My Lookbook' : defaultLabel;
+    }
+    if (btn) {
+      btn.classList.toggle('is-saved', saved);
     }
   }
 
   toggleModalWishlist() {
     if (!this.currentModalDress) return;
+    if (window.cnHaptic) window.cnHaptic(12);
     if (window.toggleWishlistItem) {
-      const added = window.toggleWishlistItem(this.currentModalDress);
-      const label = document.getElementById('modalWishlistLabel');
-      if (label) {
-        label.textContent = added ? 'Saved in My Lookbook' : (this.category === 'hoco' ? 'Save to HOCO Lookbook' : 'Save to Prom Lookbook');
-      }
+      window.toggleWishlistItem(this.currentModalDress);
+      this.updateModalWishlistBtn();
     }
   }
 
@@ -1188,6 +1354,23 @@ class CloudNineCatalog {
       nn.onclick = () => this.shiftImg(1);
     }
 
+    // Inject/update angle counter pill inside .modal-main-wrap
+    const mainWrap = document.querySelector('#mo .modal-main-wrap');
+    if (mainWrap) {
+      let pill = mainWrap.querySelector('.modal-angle-pill');
+      if (nav) {
+        if (!pill) {
+          pill = document.createElement('span');
+          pill.className = 'modal-angle-pill';
+          mainWrap.appendChild(pill);
+        }
+        pill.textContent = `1 / ${this.curImgs.length}`;
+        pill.style.display = 'inline-flex';
+      } else if (pill) {
+        pill.style.display = 'none';
+      }
+    }
+
     thumbsContainer.onclick = (e) => {
       const t = e.target.closest('[data-idx]');
       if (t) this.showImg(+t.dataset.idx);
@@ -1205,6 +1388,10 @@ class CloudNineCatalog {
     document.querySelectorAll('.modal-thumb').forEach((t, idx) => {
       t.classList.toggle('active', idx === i);
     });
+    const pill = document.querySelector('#mo .modal-angle-pill');
+    if (pill && this.curImgs.length > 1) {
+      pill.textContent = `${i + 1} / ${this.curImgs.length}`;
+    }
   }
 
   shiftImg(dir) {

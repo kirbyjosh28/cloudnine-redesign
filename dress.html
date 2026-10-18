@@ -78,7 +78,7 @@
       top: 96px;
       height: calc(100vh - 96px);
       overflow-y: auto;
-      background: #fff;
+      background: var(--bg, #fdfbf7);
       border-left: 1px solid var(--border);
       display: flex;
       flex-direction: column;
@@ -184,8 +184,8 @@
       letter-spacing: .02em;
     }
 
-    /* Accordion */
-    .dp-accordion { margin: 8px 0 32px; }
+    /* Zero-Lag CSS Grid Accordion */
+    .dp-accordion { margin: 8px 0 28px; }
     .dp-acc-item { border-bottom: 1px solid var(--border); }
     .dp-acc-trigger {
       width: 100%;
@@ -202,27 +202,52 @@
     .dp-acc-trigger:hover { color: var(--teal-deep); }
     .dp-acc-icon {
       font-size: 20px; font-weight: 200; line-height: 1;
-      transition: transform .35s cubic-bezier(.16,1,.3,1);
+      transition: transform .35s cubic-bezier(.2,0,0,1);
       flex-shrink: 0;
     }
     .dp-acc-item.open .dp-acc-icon { transform: rotate(45deg); }
     .dp-acc-body {
-      max-height: 0; overflow: hidden;
-      transition: max-height .45s cubic-bezier(.16,1,.3,1);
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows .36s cubic-bezier(.2,0,0,1);
     }
     .dp-acc-inner {
-      padding: 0 0 20px;
+      overflow: hidden;
+      padding: 0;
       font-size: 13px; font-weight: 300;
       color: var(--text-muted); line-height: 1.88;
+      transition: padding .36s cubic-bezier(.2,0,0,1);
     }
-    .dp-acc-item.open .dp-acc-body { max-height: 400px; }
+    .dp-acc-item.open .dp-acc-body { grid-template-rows: 1fr; }
+    .dp-acc-item.open .dp-acc-inner { padding: 0 0 20px; }
+
+    /* Double-Bezel Atelier Consultation Card */
+    .dp-atelier-card {
+      margin-top: 8px;
+    }
+    .dp-atelier-inner {
+      padding: 20px;
+      background: linear-gradient(180deg, #ffffff 0%, #faf7f2 100%);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .dp-atelier-kicker {
+      font-family: var(--font-kicker);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--teal-deep);
+      text-align: center;
+      margin-bottom: 2px;
+    }
 
     /* Actions */
     .dp-actions {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      padding-top: 4px;
+      gap: 10px;
     }
     .dp-actions .btn-primary,
     .dp-actions .btn-outline {
@@ -276,11 +301,11 @@
         position: fixed; bottom: 0; left: 0; right: 0;
         z-index: 190;
         display: flex; align-items: stretch;
-        background: rgba(255, 255, 255, 0.94);
-        backdrop-filter: blur(20px) saturate(180%);
-        -webkit-backdrop-filter: blur(20px) saturate(180%);
-        border-top: 1px solid var(--border);
-        box-shadow: 0 -4px 24px rgba(0,0,0,.08);
+        background: rgba(253, 251, 247, 0.92);
+        backdrop-filter: blur(22px) saturate(180%);
+        -webkit-backdrop-filter: blur(22px) saturate(180%);
+        border-top: 1px solid rgba(28, 78, 80, 0.12);
+        box-shadow: 0 -8px 28px rgba(13, 46, 48, 0.10);
         padding-bottom: max(10px, env(safe-area-inset-bottom, 10px));
       }
       .dp-mobile-cta-btn {
@@ -486,18 +511,23 @@
 
         <div class="dp-accordion" id="dpAccordion"></div>
 
-        <div class="dp-actions">
-          <a href="appointments.html" id="dpBookBtn" class="btn-luxury-pill" style="justify-content:center;width:100%;">
-            <span>Book a Fitting for This Style</span>
-          </a>
-          <button id="dpSaveBtn" class="btn-outline" style="justify-content:center;text-align:center;display:flex;align-items:center;gap:8px;width:100%;cursor:pointer;min-height:48px;" aria-label="Save to Lookbook">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-            <span id="dpSaveBtnText">Save to Lookbook</span>
-          </button>
-          <a href="contact.html" class="btn-outline" style="justify-content:center;text-align:center;">Inquire About This Style</a>
-          <button id="dpShareBtn" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px;border:1px solid var(--border);background:none;cursor:pointer;color:var(--text-muted);font-family:var(--font-kicker);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;transition:border-color .2s,color .2s;width:100%;min-height:44px;" aria-label="Share this style">
-            Share This Style
-          </button>
+        <div class="dp-atelier-card double-bezel">
+          <div class="double-bezel-inner dp-atelier-inner">
+            <div class="dp-atelier-kicker">Peoria Atelier Concierge</div>
+            <div class="dp-actions">
+              <a href="appointments.html" id="dpBookBtn" class="btn-luxury-pill" style="justify-content:center;width:100%;">
+                <span>Book a Fitting for This Style</span>
+              </a>
+              <button id="dpSaveBtn" class="btn-outline" style="justify-content:center;text-align:center;display:flex;align-items:center;gap:8px;width:100%;cursor:pointer;min-height:48px;" aria-label="Save to Lookbook">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                <span id="dpSaveBtnText">Save to Lookbook</span>
+              </button>
+              <a href="contact.html" id="dpInquireBtn" class="btn-outline" style="justify-content:center;text-align:center;">Inquire About This Style</a>
+              <button id="dpShareBtn" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px;border:1px solid var(--border);border-radius:9999px;background:#fff;cursor:pointer;color:var(--text-muted);font-family:var(--font-kicker);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;transition:border-color .2s,color .2s,transform .18s;width:100%;min-height:44px;" aria-label="Share this style">
+                Share This Style
+              </button>
+            </div>
+          </div>
         </div>
         <p class="dp-disclaimer">Not all gowns are kept in store. <a href="contact.html">Contact us</a> for stock and availability details.</p>
       </div>
@@ -595,6 +625,15 @@
     const isMothers = /mothers/.test(dressSrc) || catParam === 'mothers';
     const activeCat = isProm ? 'prom' : isHoco ? 'hoco' : isMothers ? 'mothers' : 'bridal';
 
+    const dpBookBtn = document.getElementById('dpBookBtn');
+    const dpMobileBookBtn = document.getElementById('dpMobileBookBtn');
+    const dpInquireBtn = document.getElementById('dpInquireBtn');
+    const skuQuery = `cat=${activeCat}&sku=${encodeURIComponent(dress.s || '')}&des=${encodeURIComponent(dress.d || '')}`;
+
+    if (dpInquireBtn) {
+      dpInquireBtn.href = `contact.html?${skuQuery}#request-form`;
+    }
+
     if (isProm || isHoco) {
       const r = document.documentElement.style;
       r.setProperty('--teal-deep',    '#c9607f');
@@ -609,16 +648,17 @@
       const gal = document.querySelector('.dp-gallery');
       if (gal) gal.style.background = '#f9f0f3';
 
-      const dpBookBtn = document.getElementById('dpBookBtn');
       if (dpBookBtn) {
-        dpBookBtn.href = isProm ? 'prom.html#visit' : 'hoco.html';
+        dpBookBtn.href = isProm ? 'prom.html#visit' : `appointments.html?${skuQuery}#book-now`;
         dpBookBtn.innerHTML = '<span>Visit Boutique (Walk-Ins Only)</span>';
       }
-      const dpMobileBookBtn = document.getElementById('dpMobileBookBtn');
       if (dpMobileBookBtn) {
-        dpMobileBookBtn.href = isProm ? 'prom.html#visit' : 'hoco.html';
+        dpMobileBookBtn.href = isProm ? 'prom.html#visit' : `appointments.html?${skuQuery}#book-now`;
         dpMobileBookBtn.textContent = 'Visit Boutique (Walk-Ins)';
       }
+    } else {
+      if (dpBookBtn) dpBookBtn.href = `appointments.html?${skuQuery}#book-now`;
+      if (dpMobileBookBtn) dpMobileBookBtn.href = `appointments.html?${skuQuery}#book-now`;
     }
 
     /* ── Helpers ── */
