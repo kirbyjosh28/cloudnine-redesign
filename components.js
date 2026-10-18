@@ -2021,12 +2021,28 @@ function initSpeculationRules() {
   } catch (e) {}
 }
 
-/* ── CONCIERGE LOOKBOOK & FITTING ROOM PRE-LOAD ── */
+/* ── CONCIERGE LOOKBOOK & FITTING ROOM PRE-LOAD (WITH STYLE QUIZ SYNC) ── */
 function initLookbookConcierge() {
   if (typeof WL === 'undefined') return;
   var urlParams = new URLSearchParams(window.location.search || '');
   var urlSku = (urlParams.get('sku') || urlParams.get('s') || '').trim();
   var urlDes = (urlParams.get('des') || urlParams.get('d') || '').trim();
+  var urlPersona = (urlParams.get('persona') || '').trim();
+  var urlSil = (urlParams.get('sil') || '').trim();
+
+  var quizData = null;
+  try {
+    var rawQuiz = sessionStorage.getItem('cloudnine_quiz_persona') || localStorage.getItem('cloudnine_quiz_persona');
+    if (rawQuiz) quizData = JSON.parse(rawQuiz);
+  } catch (e) {}
+
+  if (!quizData && urlPersona) {
+    quizData = {
+      key: urlPersona,
+      title: 'The ' + urlPersona.charAt(0).toUpperCase() + urlPersona.slice(1) + ' Bride',
+      sil: urlSil || 'A-Line'
+    };
+  }
 
   var savedItems = WL.load().slice();
   if (urlSku && !savedItems.some(function(x) { return String(x.s || '').toLowerCase() === urlSku.toLowerCase(); })) {
@@ -2037,14 +2053,36 @@ function initLookbookConcierge() {
     });
   }
 
-  if (!savedItems.length) return;
+  // If user arrived from Style Quiz without saving to Lookbook yet, use quiz top recommended gowns
+  if (!savedItems.length && quizData && Array.isArray(quizData.dresses) && quizData.dresses.length) {
+    savedItems = quizData.dresses.slice(0, 6).map(function(d) {
+      return {
+        s: d.s || d.style || '',
+        d: d.d || d.designer || 'Bridal Collection',
+        n: d.n || d.name || '',
+        i: d.i || d.img || 'images/bridal/Bridal-hero.webp',
+        x: d.x || []
+      };
+    });
+  }
+
+  if (!savedItems.length && !quizData) return;
 
   var styleLabels = savedItems.map(function(x) {
     var des = x.d ? (x.d + ' ') : '';
     var code = x.s ? ('#' + x.s) : (x.n || 'Gown');
     return des + code;
   });
-  var copyNote = 'My Saved Cloud Nine Styles (' + styleLabels.length + '): ' + styleLabels.join(', ');
+
+  var personaSummaryParts = [];
+  if (quizData && quizData.title) {
+    personaSummaryParts.push('Bridal Persona: ' + quizData.title);
+    if (quizData.sil) personaSummaryParts.push('Silhouette: ' + quizData.sil);
+    if (quizData.nk) personaSummaryParts.push('Neckline: ' + quizData.nk);
+    if (quizData.timelineLabel) personaSummaryParts.push('Timeline: ' + quizData.timelineLabel);
+  }
+  var personaPrefix = personaSummaryParts.length ? (personaSummaryParts.join(' · ') + ' | ') : '';
+  var copyNote = personaPrefix + (styleLabels.length ? ('Saved Cloud Nine Styles (' + styleLabels.length + '): ' + styleLabels.join(', ')) : '');
 
   // 1. Appointments Page: Inject Curated Fitting Lookbook Concierge Bar above #bridaliveWrap
   var bridaliveWrap = document.getElementById('bridaliveWrap');
@@ -2065,24 +2103,39 @@ function initLookbookConcierge() {
       pillsHtml += '<div class="lc-gown-pill lc-gown-more">+' + (savedItems.length - 6) + ' more</div>';
     }
 
+    var quizMetaHtml = '';
+    if (quizData && quizData.title) {
+      quizMetaHtml =
+        '<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;">' +
+          '<span style="display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:9999px;background:rgba(28,78,80,0.09);color:var(--teal-deep);font-family:var(--font-kicker);font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;">✦ ' + escapeHTML(quizData.title) + '</span>' +
+          (quizData.sil ? '<span style="display:inline-flex;align-items:center;padding:4px 10px;border-radius:9999px;background:#fff;border:1px solid rgba(28,78,80,0.14);color:var(--text);font-family:var(--font-kicker);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">Silhouette: ' + escapeHTML(quizData.sil) + '</span>' : '') +
+          (quizData.timelineLabel ? '<span style="display:inline-flex;align-items:center;padding:4px 10px;border-radius:9999px;background:#fff;border:1px solid rgba(28,78,80,0.14);color:var(--text-muted);font-family:var(--font-kicker);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">' + escapeHTML(quizData.timelineLabel) + '</span>' : '') +
+        '</div>';
+    }
+
+    var headingText = savedItems.length
+      ? ('Your Curated Fitting Lookbook (' + savedItems.length + ' ' + (savedItems.length === 1 ? 'Style' : 'Styles') + ')')
+      : ('Your Bridal Style Quiz Profile: ' + escapeHTML(quizData.title || 'Custom Match'));
+
     banner.innerHTML =
       '<div class="double-bezel-inner lc-banner-inner">' +
         '<div class="lc-banner-top">' +
           '<div class="lc-banner-copy">' +
             '<span class="lc-eyebrow">Fitting Room Pre-Load · Concierge Ready</span>' +
-            '<h3 class="lc-title">Your Curated Fitting Lookbook (' + savedItems.length + ' ' + (savedItems.length === 1 ? 'Style' : 'Styles') + ')</h3>' +
-            '<p class="lc-desc">Tap below to copy your saved style numbers and paste them into the BridalLive scheduler notes so your stylist can prepare these gowns before you arrive.</p>' +
+            quizMetaHtml +
+            '<h3 class="lc-title">' + headingText + '</h3>' +
+            '<p class="lc-desc">Tap below to copy your style profile &amp; gown numbers, then paste them into the BridalLive scheduler notes so your stylist can prepare your private suite before you arrive.</p>' +
           '</div>' +
           '<div class="lc-actions">' +
             '<button type="button" class="btn-primary lc-copy-btn" id="lcCopyStylesBtn">' +
-              '<span>Copy Saved Style Numbers</span>' +
+              '<span>Copy Profile &amp; Style Numbers</span>' +
             '</button>' +
             '<button type="button" class="btn-outline lc-dossier-btn" onclick="if(window.WL)WL.openLookbook()">' +
               '<span>View Dossier</span>' +
             '</button>' +
           '</div>' +
         '</div>' +
-        '<div class="lc-pills-row">' + pillsHtml + '</div>' +
+        (pillsHtml ? '<div class="lc-pills-row">' + pillsHtml + '</div>' : '') +
       '</div>';
 
     bridaliveWrap.parentNode.insertBefore(banner, bridaliveWrap);
@@ -2091,26 +2144,32 @@ function initLookbookConcierge() {
     if (copyBtn) {
       copyBtn.addEventListener('click', function() {
         if (window.cnHaptic) window.cnHaptic(12);
-        WL.copyToClipboard(copyNote, 'Style Numbers Copied for Scheduler');
+        WL.copyToClipboard(copyNote, 'Profile & Style Numbers Copied for Scheduler');
         copyBtn.classList.add('is-copied');
         copyBtn.innerHTML = '<span>✓ Copied! Paste in Scheduler Notes</span>';
         setTimeout(function() {
           copyBtn.classList.remove('is-copied');
-          copyBtn.innerHTML = '<span>Copy Saved Style Numbers</span>';
+          copyBtn.innerHTML = '<span>Copy Profile &amp; Style Numbers</span>';
         }, 4000);
       });
     }
   }
 
-  // 2. Contact Page: Auto-Populate Inquiry Textarea with Saved Lookbook Gowns
+  // 2. Contact Page: Auto-Populate Inquiry Textarea with Saved Lookbook Gowns & Quiz Persona
   var msgField = document.getElementById('message');
   if (msgField && !msgField.value.trim()) {
-    msgField.value = 'Hi Cloud Nine! I would love to inquire about availability and fitting options for my saved Lookbook styles: ' + styleLabels.join(', ') + '.';
+    var quizIntro = (quizData && quizData.title)
+      ? ('My Bridal Style Quiz matched me with "' + quizData.title + '"' + (quizData.sil ? ' (' + quizData.sil + ' silhouette)' : '') + '. ')
+      : '';
+    var stylesPart = styleLabels.length
+      ? ('I would love to inquire about availability and fitting options for these styles: ' + styleLabels.join(', ') + '.')
+      : 'I would love to schedule a consultation with a stylist for my upcoming wedding.';
+    msgField.value = 'Hi Cloud Nine! ' + quizIntro + stylesPart;
     var group = msgField.closest('.input-group');
     if (group && !group.querySelector('.lc-contact-badge')) {
       var badge = document.createElement('div');
       badge.className = 'lc-contact-badge';
-      badge.textContent = '✓ Pre-loaded ' + styleLabels.length + ' saved style' + (styleLabels.length === 1 ? '' : 's') + ' from your Fitting Lookbook';
+      badge.textContent = '✓ Pre-loaded ' + (quizData && quizData.title ? quizData.title + ' + ' : '') + styleLabels.length + ' style' + (styleLabels.length === 1 ? '' : 's') + ' from your Fitting Lookbook';
       group.insertBefore(badge, msgField);
     }
   }
