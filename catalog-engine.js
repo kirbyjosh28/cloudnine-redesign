@@ -841,9 +841,6 @@ class CloudNineCatalog {
       const pipsHtml = hasAngles
         ? `<div class="scrub-pips">${p.x.map((_, pi) => `<span class="scrub-pip ${pi===0?'active':''}"></span>`).join('')}</div>`
         : '';
-      const badgeHtml = hasAngles
-        ? `<span class="photo-count-badge">${p.x.length} Angles</span>`
-        : '';
 
       const isAboveFold = this.page === 0 && i < 4;
       const loadingAttr = isAboveFold ? 'loading="eager" fetchpriority="high"' : 'loading="lazy" decoding="async"';
@@ -859,7 +856,6 @@ class CloudNineCatalog {
           <div class="dress-card-img loading">
             <img src="${p.i}" alt="${(p.d||'')} ${(p.s||'')}" ${loadingAttr} ${loadHandlers}/>
             ${pipsHtml}
-            ${badgeHtml}
           </div>
           <div class="dress-card-body">
             <div class="dress-designer-tag">${p.d || defaultDes}</div>
@@ -878,7 +874,6 @@ class CloudNineCatalog {
           <div class="dress-card-img loading">
             <img src="${p.i}" alt="${(p.d||'')} ${(p.s||'')}" ${loadingAttr} ${loadHandlers}/>
             ${pipsHtml}
-            ${badgeHtml}
             ${designerTag}
             <div class="dress-card-overlay"></div>
           </div>

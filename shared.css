@@ -3514,29 +3514,7 @@ body.cur-out #cn-cursor-dot {
   }
 }
 .photo-count-badge {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  z-index: 5;
-  background: rgba(13, 46, 48, 0.75);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  color: #fff;
-  font-family: var(--font-kicker);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  padding: 3px 8px;
-  border-radius: 2px;
-  pointer-events: none;
-  opacity: 0.85;
-  transition: opacity 0.2s;
-}
-@media (hover: hover) {
-  .dress-card:hover .photo-count-badge {
-    opacity: 0;
-  }
+  display: none !important;
 }
 
 /* ── FITTING LOOKBOOK DOSSIER MODAL ── */
