@@ -2182,7 +2182,7 @@ document.addEventListener('DOMContentLoaded', () => {
   (function() {
     var s = document.createElement('script');
     s.defer = true;
-    s.dataset.domain = 'cloudninebridal.com';
+    s.dataset.domain = 'cloudninepeoria.com';
     s.src = 'https://plausible.io/js/script.js';
     document.head.appendChild(s);
   })();
@@ -2230,9 +2230,9 @@ function getPeoriaBoutiqueStatus() {
   // Tue, Thu: 11:00 AM – 7:00 PM (660 - 1140)
   // Wed: Closed
   // Sat: 9:00 AM – 5:00 PM (540 - 1020)
-  // Sun: Closed / By Appt (Jan-Mar season)
+  // Sun: Closed (Open Sundays seasonally Jan-Mar)
   var schedule = {
-    0: { open: null, close: null, name: 'Sunday', label: 'By Appt Only', sub: 'Reserved bridal parties' },
+    0: { open: null, close: null, name: 'Sunday', label: 'Closed (Open Jan–Mar)', sub: 'Open Sundays seasonally Jan–Mar' },
     1: { open: 600, close: 1020, name: 'Monday', label: '10am–5pm', closeLabel: '5:00 PM' },
     2: { open: 660, close: 1140, name: 'Tuesday', label: '11am–7pm', closeLabel: '7:00 PM' },
     3: { open: null, close: null, name: 'Wednesday', label: 'Closed', sub: 'Stylists resting & restocking' },
@@ -2273,7 +2273,7 @@ function getPeoriaBoutiqueStatus() {
     }
   } else if (day === 0) {
     statusClass = 'status--closed';
-    statusText = 'By Appt Today';
+    statusText = 'Closed Sundays (Open Jan–Mar)';
     subText = 'Reopens Mon at 10:00 AM CST';
   } else {
     statusClass = 'status--closed';
