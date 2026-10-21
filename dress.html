@@ -565,7 +565,7 @@
 
   <footer id="site-footer"></footer>
   </main>
-  <script src="components.js?v=20261021c" defer></script>
+  <script src="components.js?v=20261021d" defer></script>
   <script>
   (async function() {
 
@@ -581,8 +581,8 @@
     if (!dress && skuParam) {
       const catFiles = {
         'bridal': 'data/bridal-products.json?v=20260909k',
-        'prom': 'data/prom-products.json?v=20260909k',
-        'hoco': 'data/hoco-products.json?v=20260909k',
+        'prom': 'data/prom-products.json?v=20261021d',
+        'hoco': 'data/hoco-products.json?v=20261021d',
         'mothers': 'data/mothers-products.json?v=20260909k'
       };
       const filesToTry = catParam && catFiles[catParam] ? [catFiles[catParam]] : Object.values(catFiles);
@@ -649,11 +649,11 @@
       if (gal) gal.style.background = '#f9f0f3';
 
       if (dpBookBtn) {
-        dpBookBtn.href = isProm ? 'prom.html#visit' : `appointments.html?${skuQuery}#book-now`;
+        dpBookBtn.href = isProm ? 'prom.html#visit' : 'hoco.html#hoco-faq';
         dpBookBtn.innerHTML = '<span>Visit Boutique (Walk-Ins Only)</span>';
       }
       if (dpMobileBookBtn) {
-        dpMobileBookBtn.href = isProm ? 'prom.html#visit' : `appointments.html?${skuQuery}#book-now`;
+        dpMobileBookBtn.href = isProm ? 'prom.html#visit' : 'hoco.html#hoco-faq';
         dpMobileBookBtn.textContent = 'Visit Boutique (Walk-Ins)';
       }
     } else {

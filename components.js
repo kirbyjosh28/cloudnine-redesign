@@ -113,12 +113,12 @@ function navHTML() {
                 </div>
               </a>
             </div>
-            <a href="prom.html#registry" class="nav-ph-registry-ribbon">
+            <a href="prom.html#collections" class="nav-ph-registry-ribbon">
               <div class="nav-ph-reg-text">
-                <strong>Central Illinois High School Dress Registry</strong>
-                <span>1 Dress Per Style Per School Guaranteed Exclusivity</span>
+                <strong>Peoria's Largest Prom &amp; Formalwear Boutique · Top 10 Prom Store</strong>
+                <span>Prom ($150–$1,000) · HOCO ($90–$580) · Pageant &amp; Formal · Walk-Ins Only at 4701 N. University St</span>
               </div>
-              <span class="nav-ph-reg-arrow">Learn More</span>
+              <span class="nav-ph-reg-arrow">Explore</span>
             </a>
           </div>
         </li>
@@ -419,11 +419,10 @@ function footerHTML() {
           <div style="font-size:11px;color:var(--text-light);margin-top:3px;font-style:italic;">*We are open on Sundays seasonally from January–March.</div>
           <div class="hours-sub">Prom Hours</div>
           <table class="hours-table">
-            <tr><td>Mon</td><td>10am – 5pm</td></tr>
+            <tr><td>Mon, Fri</td><td>12pm – 6pm</td></tr>
             <tr><td>Tues, Thur</td><td>12pm – 7pm</td></tr>
             <tr><td>Wed</td><td>Closed</td></tr>
-            <tr><td>Fri</td><td>10am – 5pm</td></tr>
-            <tr><td>Sat</td><td>11am – 5pm</td></tr>
+            <tr><td>Sat</td><td>10am – 5pm</td></tr>
             <tr><td>Sun</td><td>Closed</td></tr>
           </table>
           <div style="margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);">
@@ -1225,9 +1224,9 @@ async function ensureGlobalCatalog() {
   try {
     const [bRes, pRes, mRes, hRes] = await Promise.allSettled([
       fetch('data/bridal-products.json?v=20260909k').then(r => r.json()),
-      fetch('data/prom-products.json?v=20260909k').then(r => r.json()),
+      fetch('data/prom-products.json?v=20261021d').then(r => r.json()),
       fetch('data/mothers-products.json?v=20260909k').then(r => r.json()),
-      fetch('data/hoco-products.json?v=20260909k').then(r => r.json())
+      fetch('data/hoco-products.json?v=20261021d').then(r => r.json())
     ]);
     const b = bRes.status === 'fulfilled' && Array.isArray(bRes.value) ? bRes.value.map(x => Object.assign({}, x, { _cat: 'bridal-catalog.html', _type: 'bridal' })) : [];
     const p = pRes.status === 'fulfilled' && Array.isArray(pRes.value) ? pRes.value.map(x => Object.assign({}, x, { _cat: 'prom-catalog.html', _type: 'prom' })) : [];
@@ -1877,7 +1876,7 @@ function injectExclusiveBadges() {
   var isHoco = /hoco-catalog/.test(page);
   if (!isProm && !isHoco) return;
 
-  var label = isProm ? '1 Per School' : 'Exclusive Style';
+  var label = isProm ? 'Prom Collection' : 'HOCO Collection';
 
   // Inject onto existing cards + watch for new ones
   function addBadge(card) {

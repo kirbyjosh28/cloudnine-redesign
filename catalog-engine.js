@@ -13,7 +13,6 @@
  * - Full Pagination & Filter State in URL Query Params
  * - Accessible Modal Quick-View with Keyboard & Focus Trapping
  * - Wishlist / Lookbook Deep-Linking Integration
- * - High School 1-of-1 Registry Integration with Session Storage
  * - Grid Column Density (3 vs 4 columns) with LocalStorage
  * - Sticky Filter Bar with IntersectionObserver Detection
  */
@@ -26,7 +25,7 @@ class CloudNineCatalog {
     this.facets = config.facets || ['sil', 'des'];
     this.facetLabels = config.facetLabels || { sil: 'Silhouette', des: 'Designer' };
     this.synonyms = config.synonyms || {};
-    this.schoolRegistry = config.schoolRegistry || (this.category === 'prom' || this.category === 'hoco');
+    this.schoolRegistry = Boolean(config.schoolRegistry);
     this.gridId = config.gridId || 'pg';
     this.countId = config.countId || 'cc';
     this.paginationId = config.paginationId || 'pag';
@@ -847,9 +846,9 @@ class CloudNineCatalog {
       const loadHandlers = `onload="this.classList.add('img-loaded');if(this.parentElement)this.parentElement.classList.remove('loading');" onerror="if(this.parentElement)this.parentElement.classList.remove('loading');"`;
 
       if (this.category === 'prom' || this.category === 'hoco') {
-        const schoolNote = this.selectedSchool 
-          ? `<span>1-of-1 Guarantee for ${this.selectedSchool.replace(' High School','').replace(' Community High','')}</span>`
-          : '<span>1-of-1 High School Guarantee</span>';
+        const boutiqueNote = this.category === 'prom'
+          ? '<span>Walk-Ins Welcome · 4701 N. University</span>'
+          : '<span>Walk-Ins Welcome · In-Stock &amp; Special Order</span>';
         const defaultDes = this.category === 'prom' ? 'Designer Prom' : 'Designer HOCO';
 
         card.innerHTML = `
@@ -861,7 +860,7 @@ class CloudNineCatalog {
             <div class="dress-designer-tag">${p.d || defaultDes}</div>
             <div class="dress-card-name">${p.n && p.n !== p.d ? p.n : ('Style #' + (p.s || ''))}</div>
             <div class="dress-card-school-badge">
-              ${schoolNote}
+              ${boutiqueNote}
             </div>
           </div>`;
       } else {
@@ -1181,9 +1180,9 @@ class CloudNineCatalog {
       if (p.c && p.c.trim()) {
         mDesc.textContent = p.c;
       } else if (this.category === 'prom') {
-        mDesc.textContent = 'Stunning designer evening gown with sculpted fit and runway finish. Available for exclusive school registry and in-store fitting at Cloud Nine Peoria.';
+        mDesc.textContent = 'Show-stopping designer prom gown from Cloud Nine Prom in Peoria, IL (4701 N. University St). Please note that we show the full collections from our designers — contact us to confirm in-store availability, sizes, and special order options.';
       } else if (this.category === 'hoco') {
-        mDesc.textContent = 'Flirty, fashion-forward homecoming mini designed to make a statement under the lights. Eligible for our exclusive 1-of-1 school registry at Cloud Nine Peoria.';
+        mDesc.textContent = 'Fun, fashionable designer homecoming style from Cloud Nine Prom in Peoria, IL (4701 N. University St). Walk-ins only — no appointment needed! Contact us to confirm in-store availability and special order options.';
       } else {
         mDesc.innerHTML = '<em>Not all gowns are kept in store. Contact us to confirm availability, special order options, sizing, and colors. Our stylists will find the right fit and timeline for you.</em>';
       }
@@ -1192,19 +1191,17 @@ class CloudNineCatalog {
     if (mMeta) {
       let metaItems = [];
       if (this.category === 'prom') {
-        const school = this.selectedSchool || 'Your Central Illinois High School';
         metaItems = [
           ['Designer', p.d || 'Prom Collection'],
-          ['School Lock', `1-of-1 Lock for ${school.replace(' High School','')}`],
-          ['Experience', 'Walk-Ins Welcome (No Appt Needed)'],
+          ['Prom Pricing', '$150 – $1,000'],
+          ['Experience', 'Walk-Ins Only (No Appt Needed)'],
           ['Location', '4701 N. University St, Peoria IL']
         ];
       } else if (this.category === 'hoco') {
-        const school = this.selectedSchool || 'Your Central Illinois High School';
         metaItems = [
           ['Designer', p.d || 'HOCO Designer'],
-          ['School Lock', `Exclusive to ${school.replace(' High School','')}`],
-          ['Try-On', 'Walk-In Fitting Rooms'],
+          ['HOCO Pricing', '$90 – $580'],
+          ['Experience', 'Walk-Ins Only (No Appt Needed)'],
           ['Availability', 'In-Store & Special Order']
         ];
       } else if (this.category === 'mothers') {
@@ -1237,9 +1234,9 @@ class CloudNineCatalog {
     if (mCta) {
       const skuParam = encodeURIComponent(p.s || '');
       const desParam = encodeURIComponent(p.d || '');
-      const apptHref = this.category === 'prom'
+      const apptHref = (this.category === 'prom' || this.category === 'hoco')
         ? 'prom.html#visit'
-        : `appointments.html?cat=${this.category}&sku=${skuParam}&des=${desParam}${this.selectedSchool ? `&school=${encodeURIComponent(this.selectedSchool)}` : ''}#book-now`;
+        : `appointments.html?cat=${this.category}&sku=${skuParam}&des=${desParam}#book-now`;
 
       const bookLink = mCta.querySelector('#modalBookLink, a[href*="appointments.html"], a[href*="prom.html"]');
       if (bookLink) {
