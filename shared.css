@@ -131,6 +131,15 @@ h1, h2, h3, h4, h5, h6, .serif-title, .hero-title, .page-title {
   color: var(--teal-deep);
 }
 
+.about-cta-section h1,
+.about-cta-section h2,
+.about-cta-section h3,
+.cta-section h1,
+.cta-section h2,
+.cta-section h3 {
+  color: var(--white);
+}
+
 p, .body-copy, .section-desc, .hero-desc, .editorial-p {
   font-family: var(--font-sans);
   font-size: var(--text-base);
