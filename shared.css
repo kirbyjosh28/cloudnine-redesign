@@ -1481,6 +1481,15 @@ button { font-family: var(--font-kicker); cursor: pointer; }
 }
 .btn-white:hover { background: transparent; color: var(--white); }
 
+.btn-cta-ghost {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 15px 32px; border-radius: 0;
+  border: 1px solid rgba(255, 255, 255, 0.35); color: var(--white);
+  font-family: var(--font-kicker); font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  background: transparent; cursor: pointer; transition: border-color .25s, background .25s, color .25s;
+}
+.btn-cta-ghost:hover { border-color: var(--white); background: rgba(255, 255, 255, 0.1); color: var(--white); }
+
 /* ── DRESS CARD — editorial, zero radius, photo forward ── */
 .dress-card {
   background: var(--teal-dark);
