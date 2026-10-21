@@ -412,21 +412,62 @@ body.quiz-nav-hidden .qprogress-bar-wrap {
   color: var(--text-muted);
 }
 
-/* ── INTRO SLIDE ── */
+/* ──INTRO SLIDE ── */
 .qslide-intro .qslide-inner {
   text-align: center;
   max-width: 1020px;
 }
 .qslide-intro .qslide-sub {
-  margin: 0 auto 20px;
+  margin: 0 auto 24px;
 }
 .intro-cta-row {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 14px;
+  gap: 16px;
   flex-wrap: wrap;
   margin-bottom: 24px;
+}
+.btn-start-quiz-hero {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  min-height: 60px;
+  padding: 14px 18px 14px 38px;
+  border-radius: 9999px;
+  background: var(--teal-deep, #1c4e50);
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.22);
+  font-family: var(--font-kicker, 'Josefin Sans', sans-serif);
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 14px 36px rgba(28, 78, 80, 0.34), 0 0 0 5px rgba(28, 78, 80, 0.12);
+  transition: transform 0.25s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.25s ease, background-color 0.25s ease;
+}
+.btn-start-quiz-hero:hover {
+  background: #143b3d;
+  transform: translateY(-2px);
+  box-shadow: 0 18px 42px rgba(28, 78, 80, 0.42), 0 0 0 6px rgba(28, 78, 80, 0.16);
+}
+.btn-start-quiz-hero .btn-luxury-pill-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: var(--teal-deep, #1c4e50);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  transition: transform 0.25s ease;
+}
+.btn-start-quiz-hero:hover .btn-luxury-pill-icon {
+  transform: translateX(3px);
 }
 .intro-resume-pill {
   display: none;
@@ -603,12 +644,12 @@ body.quiz-nav-hidden .qprogress-bar-wrap {
   right: 0;
   width: 100%;
   margin-top: auto;
-  padding: 14px 32px max(16px, env(safe-area-inset-bottom, 16px));
-  background: rgba(253, 251, 247, 0.94);
+  padding: 16px 32px max(18px, env(safe-area-inset-bottom, 18px));
+  background: rgba(253, 251, 247, 0.96);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-top: 1px solid rgba(28, 78, 80, 0.12);
-  box-shadow: 0 -8px 28px rgba(28, 78, 80, 0.05);
+  border-top: 1px solid rgba(28, 78, 80, 0.14);
+  box-shadow: 0 -8px 28px rgba(28, 78, 80, 0.06);
   z-index: 180;
 }
 .qnav-bar-inner {
@@ -618,6 +659,37 @@ body.quiz-nav-hidden .qprogress-bar-wrap {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
+}
+.qnav-bar.qnav-intro-mode .qnav-bar-inner {
+  justify-content: center;
+}
+.qnav-bar.qnav-intro-mode .qnav-btn-back,
+.qnav-bar.qnav-intro-mode .qnav-keyboard-hint {
+  display: none !important;
+}
+#qNext {
+  min-height: 52px;
+  padding: 10px 14px 10px 30px;
+  font-size: 12.5px;
+  letter-spacing: 0.17em;
+  background: var(--teal-deep, #1c4e50);
+  color: #ffffff;
+  box-shadow: 0 10px 28px rgba(28, 78, 80, 0.28);
+}
+.qnav-bar.qnav-intro-mode #qNext {
+  min-height: 58px;
+  padding: 13px 18px 13px 38px;
+  font-size: 13.5px;
+  letter-spacing: 0.18em;
+  box-shadow: 0 14px 36px rgba(28, 78, 80, 0.34), 0 0 0 4px rgba(28, 78, 80, 0.12);
+}
+#qNext .btn-luxury-pill-icon {
+  width: 34px;
+  height: 34px;
+  background: #ffffff;
+  color: var(--teal-deep, #1c4e50);
+  font-size: 15px;
+  font-weight: 700;
 }
 .qnav-btn-back {
   display: inline-flex;
@@ -1802,17 +1874,6 @@ body.quiz-nav-hidden .qprogress-bar-wrap {
 
 <main id="main-content">
 
-<!-- ── STICKY INTERACTIVE STEP-PILL HEADER BAR ── -->
-<div class="qprogress-bar-wrap" id="qProgressWrap">
-  <div class="qprogress">
-    <div class="qprogress-fill" id="qFill"></div>
-  </div>
-  <div class="qstep-strip" id="qHeader">
-    <div class="qstep-pills" id="qStepPills" role="tablist" aria-label="Style Quiz Steps"></div>
-    <span class="qprogress-badge" id="qLabel">Welcome</span>
-  </div>
-</div>
-
 <!-- ── 3-BEAT CURATION REVEAL OVERLAY ── -->
 <div class="qcuration-overlay" id="qCurationOverlay" aria-live="polite">
   <div class="qcuration-spinner" aria-hidden="true"></div>
@@ -1835,7 +1896,7 @@ body.quiz-nav-hidden .qprogress-bar-wrap {
         <p class="qslide-sub">Answer 7 visual questions to match your silhouette, neckline, fabric, and venue with real designer gowns waiting in our Peoria showroom—or tap a signature persona below to preview its curated rack.</p>
 
         <div class="intro-cta-row">
-          <button type="button" class="btn-luxury-pill" onclick="goNext()">
+          <button type="button" class="btn-start-quiz-hero" onclick="goNext()">
             <span>Begin 90-Second Style Quiz</span>
             <span class="btn-luxury-pill-icon" aria-hidden="true">→</span>
           </button>
@@ -1852,7 +1913,7 @@ body.quiz-nav-hidden .qprogress-bar-wrap {
 
         <div class="intro-gallery">
           <button type="button" class="intro-card" onclick="previewIntroPersona('classic')">
-            <img src="images/bridal/hero-option-1-veil-bride.webp" alt="The Classic Romantic Bride" loading="eager" fetchpriority="high"/>
+            <img src="images/real/bridal/01-adina.webp" alt="The Classic Romantic Bride — Regal Satin &amp; Lace Ballgown" loading="eager" fetchpriority="high"/>
             <div class="intro-card-overlay">
               <span class="intro-card-tag">Persona 01 · Ballgown</span>
               <div class="intro-card-title">The Classic Romantic</div>
@@ -1860,7 +1921,7 @@ body.quiz-nav-hidden .qprogress-bar-wrap {
             </div>
           </button>
           <button type="button" class="intro-card" onclick="previewIntroPersona('romantic')">
-            <img src="images/bridal/hero-option-3-ethereal-salon.webp" alt="The Romantic Dreamer Bride" loading="eager"/>
+            <img src="images/real/bridal/11-antonella.webp" alt="The Romantic Dreamer Bride — 3D Floral Soft A-Line Gown" loading="eager"/>
             <div class="intro-card-overlay">
               <span class="intro-card-tag">Persona 02 · Soft A-Line</span>
               <div class="intro-card-title">The Romantic Dreamer</div>
@@ -1868,7 +1929,7 @@ body.quiz-nav-hidden .qprogress-bar-wrap {
             </div>
           </button>
           <button type="button" class="intro-card" onclick="previewIntroPersona('modern')">
-            <img src="images/bridal/Bridal-hero.webp" alt="The Modern Minimalist Bride" loading="eager"/>
+            <img src="images/real/bridal/07-althea.webp" alt="The Modern Minimalist Bride — Architectural Satin &amp; Crepe Gown" loading="eager"/>
             <div class="intro-card-overlay">
               <span class="intro-card-tag">Persona 03 · Sheath</span>
               <div class="intro-card-title">The Modern Minimalist</div>
@@ -1876,7 +1937,7 @@ body.quiz-nav-hidden .qprogress-bar-wrap {
             </div>
           </button>
           <button type="button" class="intro-card" onclick="previewIntroPersona('boho')">
-            <img src="images/bridal/hero-option-2-sunset-couple.webp" alt="The Bohemian Spirit Bride" loading="eager"/>
+            <img src="images/real/bridal/02-norah.webp" alt="The Bohemian Spirit Bride — Botanical Lace Fit &amp; Flare Gown" loading="eager"/>
             <div class="intro-card-overlay">
               <span class="intro-card-tag">Persona 04 · Fit &amp; Flare</span>
               <div class="intro-card-title">The Bohemian Spirit</div>
@@ -1904,7 +1965,7 @@ body.quiz-nav-hidden .qprogress-bar-wrap {
               <div class="qoption-img-wrap">
                 <span class="qoption-check-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
                 <span class="qoption-facet-pill">Priority Rush</span>
-                <img class="qoption-img" src="images/brides/01-stephanie-joseph.jpg" alt="Under 6 months away" loading="lazy"/>
+                <img class="qoption-img" src="images/real/brides/14-bride.webp" alt="Under 6 months away" loading="lazy"/>
               </div>
               <div class="qoption-body">
                 <span class="qoption-num">Option 01</span>
@@ -1919,7 +1980,7 @@ body.quiz-nav-hidden .qprogress-bar-wrap {
               <div class="qoption-img-wrap">
                 <span class="qoption-check-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
                 <span class="qoption-facet-pill">Sweet Spot</span>
-                <img class="qoption-img" src="images/brides/02-jacelyn-blake.jpg" alt="6 to 12 months out" loading="lazy"/>
+                <img class="qoption-img" src="images/real/brides/16-bride.webp" alt="6 to 12 months out" loading="lazy"/>
               </div>
               <div class="qoption-body">
                 <span class="qoption-num">Option 02</span>
@@ -1934,7 +1995,7 @@ body.quiz-nav-hidden .qprogress-bar-wrap {
               <div class="qoption-img-wrap">
                 <span class="qoption-check-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
                 <span class="qoption-facet-pill">Full Custom</span>
-                <img class="qoption-img" src="images/brides/03-chris-veronica.jpg" alt="1 to 2+ years from now" loading="lazy"/>
+                <img class="qoption-img" src="images/real/brides/04-bride.webp" alt="1 to 2+ years from now" loading="lazy"/>
               </div>
               <div class="qoption-body">
                 <span class="qoption-num">Option 03</span>
@@ -1949,7 +2010,7 @@ body.quiz-nav-hidden .qprogress-bar-wrap {
               <div class="qoption-img-wrap">
                 <span class="qoption-check-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
                 <span class="qoption-facet-pill">Newly Engaged</span>
-                <img class="qoption-img" src="images/brides/08-kim-tony.jpg" alt="Date not set yet" loading="lazy"/>
+                <img class="qoption-img" src="images/real/brides/18-bride.webp" alt="Date not set yet" loading="lazy"/>
               </div>
               <div class="qoption-body">
                 <span class="qoption-num">Option 04</span>
@@ -1979,7 +2040,7 @@ body.quiz-nav-hidden .qprogress-bar-wrap {
               <div class="qoption-img-wrap">
                 <span class="qoption-check-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
                 <span class="qoption-facet-pill">Timeless &amp; Regal</span>
-                <img class="qoption-img" src="images/bridal/09-grand-ballroom.jpg" alt="Classic & Timeless" loading="lazy"/>
+                <img class="qoption-img" src="images/real/bridal/10-annevay.webp" alt="Classic & Timeless" loading="lazy"/>
               </div>
               <div class="qoption-body">
                 <span class="qoption-num">Option 01</span>
@@ -1994,7 +2055,7 @@ body.quiz-nav-hidden .qprogress-bar-wrap {
               <div class="qoption-img-wrap">
                 <span class="qoption-check-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
                 <span class="qoption-facet-pill">Soft &amp; Ethereal</span>
-                <img class="qoption-img" src="images/bridal/05-romantic-aline.jpg" alt="Romantic & Whimsical" loading="lazy"/>
+                <img class="qoption-img" src="images/real/brides/11-bride.webp" alt="Romantic & Whimsical" loading="lazy"/>
               </div>
               <div class="qoption-body">
                 <span class="qoption-num">Option 02</span>
@@ -2009,7 +2070,7 @@ body.quiz-nav-hidden .qprogress-bar-wrap {
               <div class="qoption-img-wrap">
                 <span class="qoption-check-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
                 <span class="qoption-facet-pill">Quiet Luxury</span>
-                <img class="qoption-img" src="images/bridal/07-modern-sheath.jpg" alt="Modern & Editorial" loading="lazy"/>
+                <img class="qoption-img" src="images/real/brides/26-bride.webp" alt="Modern & Editorial" loading="lazy"/>
               </div>
               <div class="qoption-body">
                 <span class="qoption-num">Option 03</span>
@@ -2024,7 +2085,7 @@ body.quiz-nav-hidden .qprogress-bar-wrap {
               <div class="qoption-img-wrap">
                 <span class="qoption-check-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
                 <span class="qoption-facet-pill">Artisan &amp; Free</span>
-                <img class="qoption-img" src="images/bridal/08-boho-outdoor.jpg" alt="Boho & Free-Spirited" loading="lazy"/>
+                <img class="qoption-img" src="images/real/bridal/12-apolline.webp" alt="Boho & Free-Spirited" loading="lazy"/>
               </div>
               <div class="qoption-body">
                 <span class="qoption-num">Option 04</span>
@@ -2054,7 +2115,7 @@ body.quiz-nav-hidden .qprogress-bar-wrap {
               <div class="qoption-img-wrap">
                 <span class="qoption-check-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
                 <span class="qoption-facet-pill">86 Gowns in Store</span>
-                <img class="qoption-img" src="images/real/bridal/01-adina.webp" alt="Regal Ballgown" loading="lazy"/>
+                <img class="qoption-img" src="images/real/bridal/09-andora.webp" alt="Regal Ballgown" loading="lazy"/>
               </div>
               <div class="qoption-body">
                 <span class="qoption-num">Option 01</span>
@@ -2069,7 +2130,7 @@ body.quiz-nav-hidden .qprogress-bar-wrap {
               <div class="qoption-img-wrap">
                 <span class="qoption-check-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
                 <span class="qoption-facet-pill">236 Gowns in Store</span>
-                <img class="qoption-img" src="images/real/bridal/05-aliza.webp" alt="Soft Flowing A-Line" loading="lazy"/>
+                <img class="qoption-img" src="images/real/bridal/06-alora.webp" alt="Soft Flowing A-Line" loading="lazy"/>
               </div>
               <div class="qoption-body">
                 <span class="qoption-num">Option 02</span>
@@ -2084,7 +2145,7 @@ body.quiz-nav-hidden .qprogress-bar-wrap {
               <div class="qoption-img-wrap">
                 <span class="qoption-check-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
                 <span class="qoption-facet-pill">265 Gowns in Store</span>
-                <img class="qoption-img" src="images/real/bridal/09-andora.webp" alt="Fit & Flare or Mermaid" loading="lazy"/>
+                <img class="qoption-img" src="images/real/bridal/02-norah.webp" alt="Fit & Flare or Mermaid" loading="lazy"/>
               </div>
               <div class="qoption-body">
                 <span class="qoption-num">Option 03</span>
@@ -2099,7 +2160,7 @@ body.quiz-nav-hidden .qprogress-bar-wrap {
               <div class="qoption-img-wrap">
                 <span class="qoption-check-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
                 <span class="qoption-facet-pill">84 Gowns in Store</span>
-                <img class="qoption-img" src="images/real/bridal/11-antonella.webp" alt="Sleek Architectural Sheath" loading="lazy"/>
+                <img class="qoption-img" src="images/real/brides/06-bride.webp" alt="Sleek Architectural Sheath" loading="lazy"/>
               </div>
               <div class="qoption-body">
                 <span class="qoption-num">Option 04</span>
@@ -2129,7 +2190,7 @@ body.quiz-nav-hidden .qprogress-bar-wrap {
               <div class="qoption-img-wrap">
                 <span class="qoption-check-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
                 <span class="qoption-facet-pill">Sweetheart &amp; Cat-Eye</span>
-                <img class="qoption-img" src="images/real/bridal/02-norah.webp" alt="Strapless or Sweetheart" loading="lazy"/>
+                <img class="qoption-img" src="images/real/bridal/08-alton.webp" alt="Strapless or Sweetheart" loading="lazy"/>
               </div>
               <div class="qoption-body">
                 <span class="qoption-num">Option 01</span>
@@ -2159,7 +2220,7 @@ body.quiz-nav-hidden .qprogress-bar-wrap {
               <div class="qoption-img-wrap">
                 <span class="qoption-check-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
                 <span class="qoption-facet-pill">Square &amp; Cowl</span>
-                <img class="qoption-img" src="images/real/bridal/07-althea.webp" alt="Modern Square or Cowl Neck" loading="lazy"/>
+                <img class="qoption-img" src="images/real/brides/03-bride.webp" alt="Modern Square or Cowl Neck" loading="lazy"/>
               </div>
               <div class="qoption-body">
                 <span class="qoption-num">Option 03</span>
@@ -2174,7 +2235,7 @@ body.quiz-nav-hidden .qprogress-bar-wrap {
               <div class="qoption-img-wrap">
                 <span class="qoption-check-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
                 <span class="qoption-facet-pill">V-Neck &amp; Sleeves</span>
-                <img class="qoption-img" src="images/real/bridal/06-alora.webp" alt="Plunging V-Neck or Illusion Sleeves" loading="lazy"/>
+                <img class="qoption-img" src="images/real/bridal/01-adina.webp" alt="Plunging V-Neck or Illusion Sleeves" loading="lazy"/>
               </div>
               <div class="qoption-body">
                 <span class="qoption-num">Option 04</span>
@@ -2204,7 +2265,7 @@ body.quiz-nav-hidden .qprogress-bar-wrap {
               <div class="qoption-img-wrap">
                 <span class="qoption-check-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
                 <span class="qoption-facet-pill">Satin &amp; Mikado</span>
-                <img class="qoption-img" src="images/bridal/06-classic-gown.jpg" alt="Luminous Satin & Mikado" loading="lazy"/>
+                <img class="qoption-img" src="images/real/bridal/07-althea.webp" alt="Luminous Satin & Mikado" loading="lazy"/>
               </div>
               <div class="qoption-body">
                 <span class="qoption-num">Option 01</span>
@@ -2219,7 +2280,7 @@ body.quiz-nav-hidden .qprogress-bar-wrap {
               <div class="qoption-img-wrap">
                 <span class="qoption-check-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
                 <span class="qoption-facet-pill">3D Florals &amp; Tulle</span>
-                <img class="qoption-img" src="images/real/bridal/10-annevay.webp" alt="3D Floral Appliques & Tulle" loading="lazy"/>
+                <img class="qoption-img" src="images/real/bridal/11-antonella.webp" alt="3D Floral Appliques & Tulle" loading="lazy"/>
               </div>
               <div class="qoption-body">
                 <span class="qoption-num">Option 02</span>
@@ -2234,7 +2295,7 @@ body.quiz-nav-hidden .qprogress-bar-wrap {
               <div class="qoption-img-wrap">
                 <span class="qoption-check-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
                 <span class="qoption-facet-pill">Stretch Crepe</span>
-                <img class="qoption-img" src="images/bridal/12-elegant-bride.jpg" alt="Clean Sculptural Crepe" loading="lazy"/>
+                <img class="qoption-img" src="images/real/brides/28-bride.webp" alt="Clean Sculptural Crepe" loading="lazy"/>
               </div>
               <div class="qoption-body">
                 <span class="qoption-num">Option 03</span>
@@ -2294,7 +2355,7 @@ body.quiz-nav-hidden .qprogress-bar-wrap {
               <div class="qoption-img-wrap">
                 <span class="qoption-check-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
                 <span class="qoption-facet-pill">Garden Estate</span>
-                <img class="qoption-img" src="images/brides/06-grace-ethan.jpg" alt="Botanical Garden or Estate" loading="lazy"/>
+                <img class="qoption-img" src="images/real/brides/03-bride.webp" alt="Botanical Garden or Estate" loading="lazy"/>
               </div>
               <div class="qoption-body">
                 <span class="qoption-num">Option 02</span>
@@ -2309,7 +2370,7 @@ body.quiz-nav-hidden .qprogress-bar-wrap {
               <div class="qoption-img-wrap">
                 <span class="qoption-check-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
                 <span class="qoption-facet-pill">City Rooftop</span>
-                <img class="qoption-img" src="images/brides/04-gabrielle-joshua.jpg" alt="Modern Loft or Lakeside" loading="lazy"/>
+                <img class="qoption-img" src="images/real/brides/09-bride.webp" alt="Modern Loft or Lakeside" loading="lazy"/>
               </div>
               <div class="qoption-body">
                 <span class="qoption-num">Option 03</span>
@@ -2324,7 +2385,7 @@ body.quiz-nav-hidden .qprogress-bar-wrap {
               <div class="qoption-img-wrap">
                 <span class="qoption-check-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
                 <span class="qoption-facet-pill">Open-Air Charm</span>
-                <img class="qoption-img" src="images/brides/05-krissamarie-brandon.jpg" alt="Rustic Barn or Woodland" loading="lazy"/>
+                <img class="qoption-img" src="images/real/brides/17-bride.webp" alt="Rustic Barn or Woodland" loading="lazy"/>
               </div>
               <div class="qoption-body">
                 <span class="qoption-num">Option 04</span>
@@ -2354,7 +2415,7 @@ body.quiz-nav-hidden .qprogress-bar-wrap {
               <div class="qoption-img-wrap">
                 <span class="qoption-check-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
                 <span class="qoption-facet-pill">Royal Veil</span>
-                <img class="qoption-img" src="images/bridal/02-aline-veil.jpg" alt="Cathedral Length Veil" loading="lazy"/>
+                <img class="qoption-img" src="images/real/brides/25-bride.webp" alt="Cathedral Length Veil" loading="lazy"/>
               </div>
               <div class="qoption-body">
                 <span class="qoption-num">Option 01</span>
@@ -2369,7 +2430,7 @@ body.quiz-nav-hidden .qprogress-bar-wrap {
               <div class="qoption-img-wrap">
                 <span class="qoption-check-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
                 <span class="qoption-facet-pill">Floral Details</span>
-                <img class="qoption-img" src="images/bridal/10-dreamy-romantic.jpg" alt="3D Floral Veil & Soft Waves" loading="lazy"/>
+                <img class="qoption-img" src="images/real/bridal/05-aliza.webp" alt="3D Floral Veil & Soft Waves" loading="lazy"/>
               </div>
               <div class="qoption-body">
                 <span class="qoption-num">Option 02</span>
@@ -2384,7 +2445,7 @@ body.quiz-nav-hidden .qprogress-bar-wrap {
               <div class="qoption-img-wrap">
                 <span class="qoption-check-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
                 <span class="qoption-facet-pill">Editorial Chic</span>
-                <img class="qoption-img" src="images/real/bridal/12-apolline.webp" alt="Sleek Neck Scarf or Pearl Drop" loading="lazy"/>
+                <img class="qoption-img" src="images/real/brides/05-bride.webp" alt="Sleek Neck Scarf or Pearl Drop" loading="lazy"/>
               </div>
               <div class="qoption-body">
                 <span class="qoption-num">Option 03</span>
@@ -2399,7 +2460,7 @@ body.quiz-nav-hidden .qprogress-bar-wrap {
               <div class="qoption-img-wrap">
                 <span class="qoption-check-badge"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
                 <span class="qoption-facet-pill">Boho Crown</span>
-                <img class="qoption-img" src="images/brides/14-amy-nathan.jpg" alt="Botanical Hair Vine & Cape" loading="lazy"/>
+                <img class="qoption-img" src="images/real/bridal/12-apolline.webp" alt="Botanical Hair Vine & Cape" loading="lazy"/>
               </div>
               <div class="qoption-body">
                 <span class="qoption-num">Option 04</span>
@@ -2415,7 +2476,7 @@ body.quiz-nav-hidden .qprogress-bar-wrap {
   </div>
 
   <!-- ── BOTTOM NAVIGATION CONTROLS (STICKY DOCK ABOVE SITE FOOTER) ── -->
-  <div class="qnav-bar" id="qNav">
+  <div class="qnav-bar qnav-intro-mode" id="qNav">
     <div class="qnav-bar-inner">
       <button type="button" class="qnav-btn-back hidden" id="qBack" onclick="goBack()" aria-label="Go back">
         <span aria-hidden="true">←</span>
@@ -2876,24 +2937,30 @@ function renderStepPills() {
 }
 
 function updateProgress() {
-  if (current < 0) {
-    fill.style.width = '0%';
-    label.textContent = 'Welcome';
-  } else {
-    fill.style.width = ((current + 1) / TOTAL * 100) + '%';
-    const num = String(current + 1).padStart(2, '0');
-    const tot = String(TOTAL).padStart(2, '0');
-    label.textContent = `${num} / ${tot}`;
+  if (fill) {
+    fill.style.width = current < 0 ? '0%' : ((current + 1) / TOTAL * 100) + '%';
+  }
+  if (label) {
+    if (current < 0) {
+      label.textContent = 'Welcome';
+    } else {
+      const num = String(current + 1).padStart(2, '0');
+      const tot = String(TOTAL).padStart(2, '0');
+      label.textContent = `${num} / ${tot}`;
+    }
   }
   renderStepPills();
 }
 
 function updateNav() {
+  const navBar = document.getElementById('qNav');
   if (current < 0) {
+    if (navBar) navBar.classList.add('qnav-intro-mode');
     backBtn.classList.add('hidden');
     nextLabel.textContent = 'Begin Style Quiz';
     nextBtn.disabled = false;
   } else {
+    if (navBar) navBar.classList.remove('qnav-intro-mode');
     backBtn.classList.remove('hidden');
     const isLast = current === TOTAL - 1;
     const hasAnswer = stepSelections[current] !== null;
@@ -2909,7 +2976,8 @@ function goTo(next) {
     results.classList.remove('visible');
     document.getElementById('quizShell').style.display = '';
     document.getElementById('qNav').style.display = '';
-    document.getElementById('qProgressWrap').style.display = '';
+    const progWrap = document.getElementById('qProgressWrap');
+    if (progWrap) progWrap.style.display = '';
     document.body.classList.add('quiz-stage-active');
   }
 
@@ -3296,7 +3364,8 @@ function showResults(precomputedDna) {
   document.body.classList.remove('quiz-stage-active');
   document.getElementById('quizShell').style.display = 'none';
   document.getElementById('qNav').style.display = 'none';
-  document.getElementById('qProgressWrap').style.display = 'none';
+  const progWrap = document.getElementById('qProgressWrap');
+  if (progWrap) progWrap.style.display = 'none';
 
   // Hero & Narrative
   document.getElementById('rTitle').innerHTML = activePersona.title;
@@ -3794,7 +3863,8 @@ function retake() {
     document.body.classList.add('quiz-stage-active');
     document.getElementById('quizShell').style.display = '';
     document.getElementById('qNav').style.display = '';
-    document.getElementById('qProgressWrap').style.display = '';
+    const progWrap = document.getElementById('qProgressWrap');
+    if (progWrap) progWrap.style.display = '';
 
     slides.forEach(s => s.classList.remove('active'));
     document.querySelector('.qslide[data-q="-1"]').classList.add('active');
