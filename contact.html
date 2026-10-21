@@ -286,11 +286,12 @@
             <label class="input-label" for="appointment_type">Appointment Type *</label>
             <select name="appointment_type" class="input-field" required id="appointment_type">
               <option value="" disabled selected>Select an appointment type</option>
-              <option>Bridal Standard Fitting (Free · 90 min)</option>
-              <option>Robes &amp; Rosé VIP ($100 · 90 min)</option>
-              <option>On Cloud Nine VIP ($250 · 2 hr · Mon–Fri)</option>
-              <option>Mother of the Bride / Groom (60 min)</option>
-              <option>Tuxedo &amp; Suit Fitting (Jim's Formal Wear)</option>
+              <option>Bridal Appointment (Complimentary · 90 min)</option>
+              <option>Robes &amp; Rosé Bridal Appointment ($100 · 90 min)</option>
+              <option>On Cloud Nine Bridal Appointment ($250 · 2 hr · Mon–Fri, 48hr notice)</option>
+              <option>Bling Appointment (Accessories, Veils &amp; Jewelry)</option>
+              <option>Mothers Appointment (1 hr · MOB / MOG / Grandmothers)</option>
+              <option>Tux Selection Appointment (Trace Collection · Menswear)</option>
               <option>Prom Inquiry (Walk-Ins Only · 4701 N. University St)</option>
               <option>General Inquiry / Other</option>
             </select>
@@ -370,7 +371,10 @@
       <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:32px;">
         <h3 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:20px;">Contact Info</h3>
         <div class="info-block">
-          <div><div class="info-title">Address</div><div class="info-value"><a href="https://goo.gl/maps/HXgYuahuNu8ycSXB8" target="_blank" rel="noopener noreferrer">4711 N. University St<br/>Peoria, IL 61614</a></div></div>
+          <div><div class="info-title">Bridal Boutique (By Appointment)</div><div class="info-value"><a href="https://goo.gl/maps/HXgYuahuNu8ycSXB8" target="_blank" rel="noopener noreferrer">4711 N. University St<br/>Peoria, IL 61614</a></div></div>
+        </div>
+        <div class="info-block">
+          <div><div class="info-title">Prom Boutique (Walk-Ins Only)</div><div class="info-value"><a href="https://goo.gl/maps/HXgYuahuNu8ycSXB8" target="_blank" rel="noopener noreferrer">4701 N. University St<br/>Peoria, IL 61614</a><div style="font-size:12.5px;color:var(--text-muted);margin-top:4px;">Just steps down from our bridal store!</div></div></div>
         </div>
         <div class="info-block">
           <div><div class="info-title">Phone</div><div class="info-value"><a href="tel:3096933830">(309) 693‑3830</a></div></div>
@@ -428,9 +432,9 @@
           <tr data-days="2,4"><td style="color:var(--text);font-weight:700;padding-right:16px;">Tues, Thur</td><td class="u-text-muted">11am – 7pm</td></tr>
           <tr data-days="3"><td style="color:var(--text);font-weight:700;padding-right:16px;">Wed</td><td class="u-text-muted">Closed</td></tr>
           <tr data-days="6"><td style="color:var(--text);font-weight:700;padding-right:16px;">Sat</td><td class="u-text-muted">9am – 5pm</td></tr>
-          <tr data-days="0"><td style="color:var(--text);font-weight:700;padding-right:16px;">Sun</td><td class="u-text-muted">By Appointment Only</td></tr>
+          <tr data-days="0"><td style="color:var(--text);font-weight:700;padding-right:16px;">Sun</td><td class="u-text-muted">Closed</td></tr>
         </table>
-        <div style="font-size:11px;color:var(--text-muted);margin-top:6px;font-style:italic;">*Open Sundays Jan–Mar seasonally by appointment</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:6px;font-style:italic;">*We are open on Sundays seasonally from January–March.</div>
         <div style="font-family:var(--font-kicker);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-light);margin:18px 0 8px;">Prom Hours</div>
         <table class="hours-table">
           <tr><td style="color:var(--text);font-weight:700;padding-right:16px;">Mon</td><td class="u-text-muted">10am – 5pm</td></tr>
@@ -477,7 +481,7 @@
 </div>
 
 <div id="site-footer"></div>
-<script src="components.js?v=20261021b" defer></script>
+<script src="components.js?v=20261021c" defer></script>
 <script>
 // ── TODAY'S HOURS HIGHLIGHT ──
 (function() {

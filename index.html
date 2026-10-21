@@ -1015,7 +1015,7 @@
     }
     .designers-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       border-top: 1px solid var(--border);
       border-left: 1px solid var(--border);
     }
@@ -1094,9 +1094,11 @@
     }
     body.page-home .designers-section.in-view .designer-card { opacity: 1; transform: none; }
     body.page-home .designers-section.in-view .designer-card:nth-child(1) { transition-delay: 80ms; }
-    body.page-home .designers-section.in-view .designer-card:nth-child(2) { transition-delay: 180ms; }
-    body.page-home .designers-section.in-view .designer-card:nth-child(3) { transition-delay: 280ms; }
-    body.page-home .designers-section.in-view .designer-card:nth-child(4) { transition-delay: 380ms; }
+    body.page-home .designers-section.in-view .designer-card:nth-child(2) { transition-delay: 160ms; }
+    body.page-home .designers-section.in-view .designer-card:nth-child(3) { transition-delay: 240ms; }
+    body.page-home .designers-section.in-view .designer-card:nth-child(4) { transition-delay: 320ms; }
+    body.page-home .designers-section.in-view .designer-card:nth-child(5) { transition-delay: 400ms; }
+    body.page-home .designers-section.in-view .designer-card:nth-child(6) { transition-delay: 480ms; }
 
     /* Responsive */
     @media (max-width: 1024px) {
@@ -1295,7 +1297,7 @@
       <div class="hero-c-proof">
         <span>4.9 / 5.0 Google Rating · 180+ Reviews</span>
         <span class="hero-c-proof-sep" aria-hidden="true">·</span>
-        <span>12+ Years in Peoria</span>
+        <span>18+ Years in Peoria</span>
         <span class="hero-c-proof-sep" aria-hidden="true">·</span>
         <span>3,200+ Brides Served</span>
       </div>
@@ -1318,8 +1320,8 @@
     <div class="editorial-text">
       <div class="eyebrow">About Cloud Nine</div>
       <h2 class="section-title">A Boutique Built<br/><em>For Your Moment</em></h2>
-      <p style="font-family:var(--font-sans);font-size:16px;color:var(--text-muted);line-height:1.85;margin-bottom:20px;">For over 12 years, Cloud Nine has been the boutique Central Illinois brides drive past every other shop to reach. Our stylists don't just pull dresses — they listen first. To your story, your nerves, your vision. Then they guide you with warmth and excitement into gowns that make your heart skip a beat.</p>
-      <p style="font-family:var(--font-sans);font-size:16px;color:var(--text-muted);line-height:1.85;margin-bottom:28px;">We proudly carry world-class collections from Essense of Australia, Maggie Sottero, Rebecca Ingram, Sottero &amp; Midgley, Stella York, and our exclusive in-house line Rose + Grace ($1,200–$4,000, sizes 0–38). And just steps down at 4701 N. University St, our dedicated Prom Boutique offers 800+ gowns (walk-ins only!).</p>
+      <p style="font-family:var(--font-sans);font-size:16px;color:var(--text-muted);line-height:1.85;margin-bottom:20px;">Since 2007, Cloud Nine Bridal Boutique at 4711 N. University St has been the destination Central Illinois brides drive past every other shop to reach. We know how long you have dreamt of your perfect day — when you arrive for your appointment, our stylists listen first and help make your bridal vision a reality.</p>
+      <p style="font-family:var(--font-sans);font-size:16px;color:var(--text-muted);line-height:1.85;margin-bottom:28px;">We proudly carry world-class collections from Essense of Australia, Maggie Sottero, Rebecca Ingram, Sottero &amp; Midgley, Stella York, and our exclusive in-house line Rose + Grace ($1,200–$4,000, most around $2,000; sample sizes up to 26 in store, special orders up to 38). Plus, just steps down at 4701 N. University St, our dedicated Prom Boutique offers 800+ gowns (walk-ins only!).</p>
       <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:0;">
         <a href="about.html" class="btn-outline">Our Story</a>
         <a href="appointments.html" class="btn-primary">Book Appointment</a>
@@ -1532,6 +1534,20 @@
         <div class="designer-num">04</div>
         <div class="designer-name">Stella York</div>
         <p class="designer-desc">Runway-inspired glamour with exceptional craftsmanship. Glamorous details, versatile silhouettes, and modern romance made to celebrate every bride.</p>
+        <span class="designer-link">Browse Collection</span>
+      </a>
+
+      <a href="bridal-catalog.html?designer=Sottero+%26+Midgley" class="designer-card">
+        <div class="designer-num">05</div>
+        <div class="designer-name">Sottero &amp; Midgley</div>
+        <p class="designer-desc">Avant-garde couture, striking textures, and statement luxury crafted for the daring, fashion-forward bride who wants an unforgettable entrance.</p>
+        <span class="designer-link">Browse Collection</span>
+      </a>
+
+      <a href="bridal-catalog.html?designer=Rose+%2B+Grace" class="designer-card">
+        <div class="designer-num">06 · EXCLUSIVE</div>
+        <div class="designer-name">Rose + Grace</div>
+        <p class="designer-desc">Celebrate your individuality with Cloud Nine's exclusive collection. Unique, artistic designs with unconventional silhouettes, bohemian details, and romance.</p>
         <span class="designer-link">Browse Collection</span>
       </a>
 
@@ -1764,7 +1780,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <footer id="site-footer"></footer>
-<script src="components.js?v=20261021b" defer></script>
+<script src="components.js?v=20261021c" defer></script>
 </main>
 </body>
 </html>

@@ -288,6 +288,28 @@
     <p class="editorial-feature-quote">"Elegance that honors the moment —<br/>and the woman wearing it."</p>
   </div>
 </div>
+
+<!-- MOTHERS KEY DETAILS & UPCOMING SALE STRIP -->
+<div style="background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:36px clamp(20px,5vw,64px);">
+  <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;">
+    <div>
+      <div style="font-family:var(--font-kicker);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:6px;">5 Premier Designers</div>
+      <p style="font-size:13.5px;color:var(--text-muted);line-height:1.6;margin:0;">Featuring sophisticated collections from <strong>Jasmine</strong>, <strong>Cameron Blake</strong>, <strong>Alexander By Daymor</strong>, <strong>MLNY</strong>, and <strong>Ivonne D</strong>.</p>
+    </div>
+    <div>
+      <div style="font-family:var(--font-kicker);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:6px;">Inclusive Sizing</div>
+      <p style="font-size:13.5px;color:var(--text-muted);line-height:1.6;margin:0;">Flattering silhouettes available across sizes <strong>00–24</strong>, <strong>16W–26W</strong>, and <strong>XS–XL</strong> for Mother of the Bride, Mother of the Groom, and Grandmothers.</p>
+    </div>
+    <div>
+      <div style="font-family:var(--font-kicker);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:6px;">Shopping Timeline</div>
+      <p style="font-size:13.5px;color:var(--text-muted);line-height:1.6;margin:0;">We recommend booking your <strong>1-hour Mothers Appointment</strong> at least <strong>6 to 8 months</strong> before the wedding date.</p>
+    </div>
+    <div style="background:var(--teal-xlight);padding:16px 20px;border:1px solid var(--border);">
+      <div style="font-family:var(--font-kicker);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:4px;">Nov 9 – Nov 14 · Special Event</div>
+      <p style="font-size:13px;color:var(--text);line-height:1.55;margin:0;"><strong>Mother of the Bride/Groom Sale:</strong> Shop discounted off-the-rack dresses and take yours home the same day! <a href="appointments.html?cat=mothers-bling" style="color:var(--teal-deep);font-weight:700;">Book Appt →</a></p>
+    </div>
+  </div>
+</div>
 <div class="section-catalog" id="gowns">
   <!-- Sticky Sentinel for Smooth IntersectionObserver Detection -->
   <div id="filterStickySentinel" style="height:1px;width:100%;margin-top:-1px;pointer-events:none;opacity:0;"></div>
@@ -368,6 +390,10 @@
                 </button>
                 <button type="button" class="filter-popover-chip" data-filter="des" data-value="MLNY" onclick="setFilter('des', 'MLNY', true, event)">
                   <span class="popover-chip-name">MLNY</span>
+                  <span class="chip-count"></span>
+                </button>
+                <button type="button" class="filter-popover-chip" data-filter="des" data-value="Ivonne D" onclick="setFilter('des', 'Ivonne D', true, event)">
+                  <span class="popover-chip-name">Ivonne D</span>
                   <span class="chip-count"></span>
                 </button>
               </div>
@@ -463,7 +489,7 @@
 </div>
 
 <div id="site-footer"></div>
-<script src="components.js?v=20261021b" defer></script>
+<script src="components.js?v=20261021c" defer></script>
 <script src="catalog-engine.js?v=20261021b" defer></script>
 <script>
 const MOTHERS_SYNONYMS = {

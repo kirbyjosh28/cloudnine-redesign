@@ -44,7 +44,7 @@ function navHTML() {
                 <div class="nav-mega-card-content">
                   <span class="nav-mega-badge">The 2026 Collection</span>
                   <div class="nav-mega-card-title">Explore 600+ Gowns</div>
-                  <div class="nav-mega-card-sub">Essense · Maggie Sottero · Rebecca Ingram · Stella York</div>
+                  <div class="nav-mega-card-sub">Essense · Maggie Sottero · Sottero &amp; Midgley · Rebecca Ingram · Stella York · Rose + Grace</div>
                   <span class="nav-mega-card-cta">Browse Catalog</span>
                 </div>
               </a>
@@ -53,11 +53,12 @@ function navHTML() {
               <div class="nav-mega-col">
                 <div class="nav-mega-heading">Curated Designers</div>
                 <ul class="nav-mega-list">
-                  <li><a href="bridal-catalog.html?designer=Essense+of+Australia" class="nav-mega-link"><span class="nav-mega-link-title">Essense of Australia</span><span class="nav-mega-link-sub">Romantic lace &amp; boho glam</span></a></li>
-                  <li><a href="bridal-catalog.html?designer=Maggie+Sottero" class="nav-mega-link"><span class="nav-mega-link-title">Maggie Sottero</span><span class="nav-mega-link-sub">Iconic corset fit &amp; drama</span></a></li>
-                  <li><a href="bridal-catalog.html?designer=Rebecca+Ingram" class="nav-mega-link"><span class="nav-mega-link-title">Rebecca Ingram</span><span class="nav-mega-link-sub">Effortless luxury &amp; value</span></a></li>
-                  <li><a href="bridal-catalog.html?designer=Stella+York" class="nav-mega-link"><span class="nav-mega-link-title">Stella York</span><span class="nav-mega-link-sub">Modern runway-inspired gowns</span></a></li>
-                  <li><a href="bridal-catalog.html" class="nav-mega-link nav-mega-link--all"><span>View All 2026 Designers</span></a></li>
+                  <li><a href="bridal-catalog.html?designer=Essense+of+Australia" class="nav-mega-link"><span class="nav-mega-link-title">Essense of Australia</span><span class="nav-mega-link-sub">Romantic lace &amp; EveryBody EveryBride</span></a></li>
+                  <li><a href="bridal-catalog.html?designer=Maggie+Sottero" class="nav-mega-link"><span class="nav-mega-link-title">Maggie Sottero</span><span class="nav-mega-link-sub">Iconic corset fit &amp; timeless romance</span></a></li>
+                  <li><a href="bridal-catalog.html?designer=Sottero+%26+Midgley" class="nav-mega-link"><span class="nav-mega-link-title">Sottero &amp; Midgley</span><span class="nav-mega-link-sub">Couture drama &amp; statement luxury</span></a></li>
+                  <li><a href="bridal-catalog.html?designer=Rebecca+Ingram" class="nav-mega-link"><span class="nav-mega-link-title">Rebecca Ingram</span><span class="nav-mega-link-sub">Flirty, timeless &amp; effortless value</span></a></li>
+                  <li><a href="bridal-catalog.html?designer=Stella+York" class="nav-mega-link"><span class="nav-mega-link-title">Stella York</span><span class="nav-mega-link-sub">Glamorous runway-inspired silhouettes</span></a></li>
+                  <li><a href="bridal-catalog.html?designer=Rose+%2B+Grace" class="nav-mega-link"><span class="nav-mega-link-title">Rose + Grace</span><span class="nav-mega-link-sub">Exclusive bohemian &amp; artistic collection</span></a></li>
                 </ul>
               </div>
 
@@ -66,10 +67,11 @@ function navHTML() {
                 <div class="nav-mega-heading">The Experience</div>
                 <ul class="nav-mega-list">
                   <li><a href="experience.html" class="nav-mega-link nav-mega-link--highlight"><span class="nav-mega-link-title">The Boutique Experience</span><span class="nav-mega-link-sub">1-on-1 styling, boutique comfort &amp; celebrations</span></a></li>
+                  <li><a href="appointments.html" class="nav-mega-link"><span class="nav-mega-link-title">Robes &amp; Rosé / On Cloud Nine VIP</span><span class="nav-mega-link-sub">$100 &amp; $250 celebratory bridal packages</span></a></li>
+                  <li><a href="bridal.html#accessories" class="nav-mega-link"><span class="nav-mega-link-title">Bridal Accessories &amp; Bling</span><span class="nav-mega-link-sub">Bel Aire · Toni Federici · Heirloom · Boomba</span></a></li>
                   <li><a href="quiz.html" class="nav-mega-link"><span class="nav-mega-link-title">Bridal Style Quiz</span><span class="nav-mega-link-sub">Find your silhouette in 2 minutes</span></a></li>
-                  <li><a href="our-brides.html" class="nav-mega-link"><span class="nav-mega-link-title">Our Real Brides</span><span class="nav-mega-link-sub">Real Peoria weddings &amp; reviews</span></a></li>
-                  <li><a href="appointments.html" class="nav-mega-link"><span class="nav-mega-link-title">Robes &amp; Rosé VIP</span><span class="nav-mega-link-sub">Celebratory bridal styling upgrades</span></a></li>
-                  <li><a href="mothers.html" class="nav-mega-link"><span class="nav-mega-link-title">Mothers of the Wedding</span><span class="nav-mega-link-sub">Sophisticated MOB &amp; MOG styles</span></a></li>
+                  <li><a href="our-brides.html" class="nav-mega-link"><span class="nav-mega-link-title">Our Real Brides</span><span class="nav-mega-link-sub">Real Peoria weddings &amp; stories</span></a></li>
+                  <li><a href="mothers.html" class="nav-mega-link"><span class="nav-mega-link-title">Mothers of the Wedding</span><span class="nav-mega-link-sub">Jasmine · Cameron Blake · Daymor · MLNY · Ivonne D</span></a></li>
                 </ul>
               </div>
             </div>
@@ -175,7 +177,7 @@ function navHTML() {
           <div class="nav-status-popover" id="navStatusPopover" role="dialog" aria-label="Boutique Hours & Contact">
             <div class="nav-sp-head">
               <div class="nav-sp-title">Cloud Nine Bridal Boutique</div>
-              <div class="nav-sp-sub">4711 N. University St, Peoria, IL 61614</div>
+              <div class="nav-sp-sub">Bridal: 4711 N. University St · Prom: 4701 N. University St</div>
             </div>
             <div class="nav-sp-status-banner" id="navSpStatusBanner">
               <span class="live-dot"></span>
@@ -186,7 +188,7 @@ function navHTML() {
               <tr data-days="2,4"><td>Tue, Thu</td><td>11:00 AM – 7:00 PM</td></tr>
               <tr data-days="3"><td>Wednesday</td><td>Closed</td></tr>
               <tr data-days="6"><td>Saturday</td><td>9:00 AM – 5:00 PM</td></tr>
-              <tr data-days="0"><td>Sunday</td><td>By Appt Only</td></tr>
+              <tr data-days="0"><td>Sunday</td><td>Closed (Open Jan–Mar)</td></tr>
             </table>
             <div class="nav-sp-actions">
               <a href="tel:3096933830" class="nav-sp-action-btn nav-sp-action--call">
@@ -395,6 +397,7 @@ function footerHTML() {
           <ul class="footer-links">
             <li><a href="about.html">About Us</a></li>
             <li><a href="about.html#team">Our Team</a></li>
+            <li><a href="about.html#events">Upcoming Events</a></li>
             <li><a href="about.html#testimonials">Testimonials</a></li>
             <li><a href="about.html#awards">Awards</a></li>
             <li><a href="about.html#faq">FAQ</a></li>
@@ -411,9 +414,9 @@ function footerHTML() {
             <tr><td>Tues, Thur</td><td>11am – 7pm</td></tr>
             <tr><td>Wed</td><td>Closed</td></tr>
             <tr><td>Sat</td><td>9am – 5pm</td></tr>
-            <tr><td>Sun</td><td>By Appt. Only</td></tr>
+            <tr><td>Sun</td><td>Closed</td></tr>
           </table>
-          <div style="font-size:11px;color:var(--text-light);margin-top:3px;font-style:italic;">*Open Sundays Jan–Mar seasonally</div>
+          <div style="font-size:11px;color:var(--text-light);margin-top:3px;font-style:italic;">*We are open on Sundays seasonally from January–March.</div>
           <div class="hours-sub">Prom Hours</div>
           <table class="hours-table">
             <tr><td>Mon</td><td>10am – 5pm</td></tr>
