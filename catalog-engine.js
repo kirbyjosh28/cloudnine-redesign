@@ -21,7 +21,8 @@ class CloudNineCatalog {
   constructor(config = {}) {
     this.category = config.category || 'bridal';
     this.dataPath = config.dataPath || 'data/bridal-products.json';
-    this.pageSize = config.pageSize || 24;
+    const isMobViewport = typeof window !== 'undefined' && window.innerWidth <= 768;
+    this.pageSize = isMobViewport ? 12 : (config.pageSize || 24);
     this.facets = config.facets || ['sil', 'des'];
     this.facetLabels = config.facetLabels || { sil: 'Silhouette', des: 'Designer' };
     this.synonyms = config.synonyms || {};
@@ -154,7 +155,10 @@ class CloudNineCatalog {
     const btn4 = document.getElementById('density4');
     if (!grid) return;
 
-    const stored = localStorage.getItem(`cn_${this.category}_density`) || localStorage.getItem('cn_catalog_density') || (this.category === 'bridal' ? '3' : '4');
+    const isMobInit = typeof window !== 'undefined' && window.innerWidth <= 900;
+    const stored = isMobInit
+      ? (localStorage.getItem('cn_mob_density') || '2')
+      : (localStorage.getItem(`cn_${this.category}_density`) || localStorage.getItem('cn_catalog_density') || (this.category === 'bridal' ? '3' : '4'));
     this.setDensity(stored);
 
     if (btn3) btn3.addEventListener('click', () => {
@@ -191,8 +195,9 @@ class CloudNineCatalog {
 
     if (grid) {
       if (isMobile) {
-        grid.classList.toggle('density-1col', cols === 1 || cols === 3);
-        grid.classList.toggle('density-2col', cols === 2 || cols === 4);
+        const use1Col = cols === 1;
+        grid.classList.toggle('density-1col', use1Col);
+        grid.classList.toggle('density-2col', !use1Col);
         grid.style.gridTemplateColumns = '';
       } else {
         grid.classList.remove('density-1col', 'density-2col');
@@ -201,12 +206,16 @@ class CloudNineCatalog {
         grid.style.gridTemplateColumns = (cols === 4 || cols === 2) ? 'repeat(4, 1fr)' : 'repeat(3, 1fr)';
       }
     }
-    const isLeftActive = isMobile ? (cols === 1 || cols === 3) : (cols === 3 || cols === 1);
+    const isLeftActive = isMobile ? (cols === 1) : (cols === 3 || cols === 1);
     if (btn3) btn3.setAttribute('aria-pressed', isLeftActive ? 'true' : 'false');
     if (btn4) btn4.setAttribute('aria-pressed', !isLeftActive ? 'true' : 'false');
     if (typeof localStorage !== 'undefined') {
-      localStorage.setItem(`cn_${this.category}_density`, cols.toString());
-      localStorage.setItem('cn_catalog_density', cols.toString());
+      if (isMobile) {
+        localStorage.setItem('cn_mob_density', (cols === 1 ? '1' : '2'));
+      } else {
+        localStorage.setItem(`cn_${this.category}_density`, cols.toString());
+        localStorage.setItem('cn_catalog_density', cols.toString());
+      }
     }
   }
 

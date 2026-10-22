@@ -360,7 +360,7 @@ function footerHTML() {
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-top">
-        <div>
+        <div class="footer-col-brand">
           <div class="footer-logo"><img src="${LOGO}" alt="Cloud Nine Bridal Boutique"/></div>
           <p class="footer-tagline">Peoria's premier bridal boutique — helping brides find their dream gown. Come say yes with us.</p>
           <div class="footer-contact">
@@ -383,7 +383,7 @@ function footerHTML() {
             </a>
           </div>
         </div>
-        <div>
+        <div class="footer-col-explore">
           <div class="footer-col-title">Explore</div>
           <ul class="footer-links">
             <li><a href="experience.html">The Experience</a></li>
@@ -395,7 +395,7 @@ function footerHTML() {
             <li><a href="our-brides.html">Our Brides</a></li>
           </ul>
         </div>
-        <div>
+        <div class="footer-col-company">
           <div class="footer-col-title">Company</div>
           <ul class="footer-links">
             <li><a href="about.html">About Us</a></li>
@@ -407,35 +407,41 @@ function footerHTML() {
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
-        <div>
-          <div class="footer-col-title" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-            Bridal Hours
-            <span id="footerTodayBadge" style="font-family:var(--font-kicker,'Josefin Sans',sans-serif);font-size:11px;font-weight:700;letter-spacing:.12em;padding:2px 7px;border-radius:20px;background:var(--teal-dim2);color:var(--teal-deep);"></span>
+        <div class="footer-col-hours">
+          <div class="footer-hours-grid">
+            <div class="footer-hours-block">
+              <div class="footer-col-title" style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+                Bridal Hours
+                <span id="footerTodayBadge" style="font-family:var(--font-kicker,'Josefin Sans',sans-serif);font-size:10px;font-weight:700;letter-spacing:.1em;padding:2px 6px;border-radius:20px;background:var(--teal-dim2);color:var(--teal-deep);"></span>
+              </div>
+              <table class="hours-table" style="margin-top:6px;">
+                <tr><td>Mon, Fri</td><td>10am – 5pm</td></tr>
+                <tr><td>Tues, Thur</td><td>11am – 7pm</td></tr>
+                <tr><td>Wed</td><td>Closed</td></tr>
+                <tr><td>Sat</td><td>9am – 5pm</td></tr>
+                <tr><td>Sun</td><td>Closed</td></tr>
+              </table>
+              <div class="footer-hours-note" style="font-size:11px;color:var(--text-light);margin-top:3px;font-style:italic;">*Open Sundays Jan–Mar.</div>
+            </div>
+            <div class="footer-hours-block">
+              <div class="hours-sub">Prom Hours</div>
+              <table class="hours-table">
+                <tr><td>Mon, Fri</td><td>12pm – 6pm</td></tr>
+                <tr><td>Tues, Thur</td><td>12pm – 7pm</td></tr>
+                <tr><td>Wed</td><td>Closed</td></tr>
+                <tr><td>Sat</td><td>10am – 5pm</td></tr>
+                <tr><td>Sun</td><td>Closed</td></tr>
+              </table>
+            </div>
           </div>
-          <table class="hours-table" style="margin-top:10px;">
-            <tr><td>Mon, Fri</td><td>10am – 5pm</td></tr>
-            <tr><td>Tues, Thur</td><td>11am – 7pm</td></tr>
-            <tr><td>Wed</td><td>Closed</td></tr>
-            <tr><td>Sat</td><td>9am – 5pm</td></tr>
-            <tr><td>Sun</td><td>Closed</td></tr>
-          </table>
-          <div style="font-size:11px;color:var(--text-light);margin-top:3px;font-style:italic;">*We are open on Sundays seasonally from January–March.</div>
-          <div class="hours-sub">Prom Hours</div>
-          <table class="hours-table">
-            <tr><td>Mon, Fri</td><td>12pm – 6pm</td></tr>
-            <tr><td>Tues, Thur</td><td>12pm – 7pm</td></tr>
-            <tr><td>Wed</td><td>Closed</td></tr>
-            <tr><td>Sat</td><td>10am – 5pm</td></tr>
-            <tr><td>Sun</td><td>Closed</td></tr>
-          </table>
-          <div style="margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);">
+          <div class="footer-newsletter-wrap" style="margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);">
             <div class="footer-col-title" style="margin-bottom:6px;">Get Inspired</div>
-            <p style="font-size:12px;color:rgba(28,78,80,.45);margin-bottom:14px;line-height:1.65;">New arrivals, seasonal events &amp; bridal inspo — delivered to your inbox.</p>
+            <p class="footer-newsletter-desc" style="font-size:12px;color:rgba(28,78,80,.45);margin-bottom:14px;line-height:1.65;">New arrivals, seasonal events &amp; bridal inspo — delivered to your inbox.</p>
             <form class="footer-subscribe-form" onsubmit="submitSubscribe(event, this)">
               <input type="email" name="email" placeholder="your@email.com" required aria-label="Email address"/>
               <button type="submit">Subscribe</button>
             </form>
-            <p style="font-size:11px;color:var(--text-light);margin-top:8px;line-height:1.5;">No spam, ever. Unsubscribe anytime.</p>
+            <p class="footer-newsletter-fine" style="font-size:11px;color:var(--text-light);margin-top:8px;line-height:1.5;">No spam, ever. Unsubscribe anytime.</p>
           </div>
         </div>
       </div>

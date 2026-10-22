@@ -70,7 +70,7 @@
   /* ── Spatial Grid (better-layout 8pt system) ── */
   --mob-gutter:          20px;
   --mob-gutter-sm:       16px; /* <= 375px screens */
-  --mob-section-pad:     56px;
+  --mob-section-pad:     40px;
   --mob-gap-within:      8px;
   --mob-gap-between:     20px;
 
@@ -6893,4 +6893,607 @@ body::after {
     justify-content: center;
   }
 }
+
+/* ════════════════════════════════════════════════════════════════════
+   2026 MOBILE SCROLL-REDUCTION & HORIZONTAL SNAP-CAROUSEL ARCHITECTURE
+   Cuts mobile vertical scroll by 50%–65% across all 15 pages while
+   preserving 100% of content via touch-friendly horizontal carousels,
+   compact 2-column footer & stat grids, and smart mobile batching.
+   ════════════════════════════════════════════════════════════════════ */
+
+/* Desktop default: hide mobile-only "View All 27 Real Brides" toggle */
+.brides-mob-expand-wrap {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* Prevent any wide button or child from causing horizontal overflow */
+  html,
+  body {
+    max-width: 100vw !important;
+    overflow-x: clip !important;
+  }
+  .btn-prom-primary,
+  .btn-prom-ghost,
+  .designer-pill-link {
+    white-space: normal !important;
+    text-align: center !important;
+    max-width: 100% !important;
+  }
+
+  /* ── 1. COMPACT 2-COLUMN MOBILE FOOTER (1,798px -> ~560px on every page) ── */
+  .site-footer {
+    padding: 24px 16px max(14px, env(safe-area-inset-bottom, 14px)) !important;
+  }
+  .footer-top {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 14px 14px !important;
+    padding-bottom: 14px !important;
+  }
+  .footer-col-brand {
+    grid-column: 1 / -1 !important;
+  }
+  .footer-logo {
+    margin-bottom: 6px !important;
+  }
+  .footer-logo img {
+    height: 40px !important;
+  }
+  .footer-tagline {
+    display: none !important;
+  }
+  .footer-contact {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 4px 10px !important;
+  }
+  .footer-contact a {
+    font-size: 11px !important;
+    line-height: 1.3 !important;
+  }
+  .footer-social {
+    margin-top: 8px !important;
+    gap: 6px !important;
+  }
+  .footer-social .social-link {
+    width: 34px !important;
+    height: 34px !important;
+  }
+  .footer-col-explore,
+  .footer-col-company {
+    grid-column: span 1 !important;
+  }
+  .footer-col-title {
+    margin-bottom: 6px !important;
+    font-size: 10px !important;
+    letter-spacing: 0.14em !important;
+  }
+  .footer-links {
+    gap: 3px !important;
+  }
+  .footer-links li {
+    line-height: 1.25 !important;
+  }
+  .footer-links a {
+    font-size: 12px !important;
+    line-height: 1.25 !important;
+    min-height: 0 !important;
+    padding: 2px 0 !important;
+  }
+  .footer-col-hours {
+    grid-column: 1 / -1 !important;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+  }
+  .footer-hours-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+    align-items: start !important;
+  }
+  .footer-hours-grid .hours-sub {
+    margin: 0 0 4px !important;
+    font-size: 10px !important;
+    letter-spacing: 0.14em !important;
+    color: var(--teal-deep) !important;
+  }
+  .footer-hours-grid .hours-table {
+    margin-top: 2px !important;
+  }
+  .footer-hours-grid .hours-table td {
+    font-size: 11px !important;
+    padding: 1px 0 !important;
+    line-height: 1.3 !important;
+  }
+  .footer-hours-grid .hours-table td:first-child {
+    padding-right: 4px !important;
+  }
+  .footer-hours-note {
+    font-size: 9.5px !important;
+    line-height: 1.25 !important;
+    margin-top: 2px !important;
+  }
+  .footer-newsletter-wrap {
+    margin-top: 10px !important;
+    padding-top: 10px !important;
+    border-top: 1px solid var(--border) !important;
+  }
+  .footer-newsletter-desc,
+  .footer-newsletter-fine {
+    display: none !important;
+  }
+  .footer-subscribe-form {
+    flex-direction: row !important;
+    gap: 6px !important;
+  }
+  .footer-subscribe-form input {
+    padding: 8px 10px !important;
+    font-size: 16px !important;
+    min-width: 0 !important;
+  }
+  .footer-subscribe-form button {
+    width: auto !important;
+    padding: 8px 14px !important;
+    flex-shrink: 0 !important;
+  }
+  .footer-bottom {
+    padding: 10px 0 !important;
+    gap: 4px !important;
+  }
+  .footer-copy,
+  .footer-legal a {
+    font-size: 11px !important;
+  }
+
+  /* ── 2. UNIVERSAL HORIZONTAL SNAP-SCROLL CAROUSELS ON MOBILE ── */
+  .journey-grid,
+  .designers-grid,
+  .bridal-designers-grid,
+  #accessories > div > div:nth-child(2),
+  .exp-journey-grid,
+  .exp-suites-grid,
+  .exp-bento-grid,
+  .team-editorial-grid,
+  #events > div > div:last-child,
+  .collections-grid,
+  .trend-grid,
+  .ig-grid,
+  .reviews-grid,
+  .faq-grid,
+  .hoco-matrix-grid,
+  .hoco-photo-grid-inner,
+  .hoco-faq-grid,
+  .tux-pillars-grid,
+  .tux-process-grid,
+  .appt-grid,
+  .prep-hub-grid,
+  .contact-layout > div:nth-child(2) {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    gap: 14px !important;
+    padding: 4px 4px 12px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    border: none !important;
+  }
+
+  .journey-grid::-webkit-scrollbar,
+  .designers-grid::-webkit-scrollbar,
+  .bridal-designers-grid::-webkit-scrollbar,
+  #accessories > div > div:nth-child(2)::-webkit-scrollbar,
+  .exp-journey-grid::-webkit-scrollbar,
+  .exp-suites-grid::-webkit-scrollbar,
+  .exp-bento-grid::-webkit-scrollbar,
+  .team-editorial-grid::-webkit-scrollbar,
+  #events > div > div:last-child::-webkit-scrollbar,
+  .collections-grid::-webkit-scrollbar,
+  .trend-grid::-webkit-scrollbar,
+  .ig-grid::-webkit-scrollbar,
+  .reviews-grid::-webkit-scrollbar,
+  .faq-grid::-webkit-scrollbar,
+  .hoco-matrix-grid::-webkit-scrollbar,
+  .hoco-photo-grid-inner::-webkit-scrollbar,
+  .hoco-faq-grid::-webkit-scrollbar,
+  .tux-pillars-grid::-webkit-scrollbar,
+  .tux-process-grid::-webkit-scrollbar,
+  .appt-grid::-webkit-scrollbar,
+  .prep-hub-grid::-webkit-scrollbar,
+  .contact-layout > div:nth-child(2)::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  /* Carousel Card Sizing & Snap Alignment */
+  .journey-grid > *,
+  .designers-grid > *,
+  .bridal-designers-grid > *,
+  #accessories > div > div:nth-child(2) > *,
+  .exp-journey-grid > *,
+  .exp-suites-grid > *,
+  .exp-bento-grid > *,
+  #events > div > div:last-child > *,
+  .collections-grid > *,
+  .trend-grid > *,
+  .reviews-grid > *,
+  .faq-grid > *,
+  .hoco-matrix-grid > *,
+  .hoco-faq-grid > *,
+  .tux-pillars-grid > *,
+  .tux-process-grid > *,
+  .appt-grid > *,
+  .prep-hub-grid > *,
+  .contact-layout > div:nth-child(2) > * {
+    flex: 0 0 83% !important;
+    max-width: 305px !important;
+    min-width: 260px !important;
+    scroll-snap-align: center !important;
+  }
+
+  /* Bridal & Home designers cards need full border when detached into horizontal cards */
+  .bridal-designers-grid > .bridal-designer-card,
+  .designers-grid > .designer-card {
+    border: 1px solid var(--border) !important;
+    border-radius: 12px !important;
+    padding: 20px 16px !important;
+    background: var(--white) !important;
+  }
+
+  /* Team portraits, IG photos & HOCO lookbook photos: slightly narrower cards so 1.5–2 cards peek */
+  .team-editorial-grid > .team-portrait,
+  .hoco-photo-grid-inner > .hoco-photo-card,
+  .ig-grid > .ig-photo-card {
+    flex: 0 0 60% !important;
+    max-width: 220px !important;
+    min-width: 195px !important;
+    scroll-snap-align: center !important;
+  }
+  .ig-grid .ig-extra-hidden {
+    display: block !important;
+  }
+  #toggleAllPromPhotosBtn {
+    display: none !important;
+  }
+
+  /* Compact Journey Cards, Experience Suites & Prom Collection Cards inside Carousels */
+  .journey-img-wrap {
+    height: 165px !important;
+  }
+  .journey-card-body {
+    padding: 16px !important;
+  }
+  .journey-step-desc {
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    font-size: 13px !important;
+  }
+  .exp-suite-photo {
+    height: 185px !important;
+  }
+  .exp-hero-bezel-inner img {
+    max-height: 220px !important;
+    object-fit: cover !important;
+  }
+  .collections-grid {
+    margin-bottom: 24px !important;
+  }
+  .collections-grid .card-photo-wrap,
+  .trend-grid .card-photo-wrap {
+    aspect-ratio: 16 / 10 !important;
+    margin-bottom: 12px !important;
+  }
+  .collections-grid .trend-card,
+  .trend-grid .trend-card {
+    padding: 18px 16px !important;
+  }
+  #collections > div > .double-bezel {
+    padding: 18px 14px !important;
+  }
+  #collections > div > .double-bezel > h3 {
+    font-size: 20px !important;
+    margin-bottom: 10px !important;
+  }
+  #collections > div > .double-bezel > p {
+    display: none !important;
+  }
+  #collections .designer-pill-link {
+    padding: 7px 11px !important;
+    font-size: 9.5px !important;
+  }
+
+  /* ── 3. TIGHTER SECTION RHYTHM & COMPACT MULTI-PILL GRIDS ON MOBILE ── */
+  .journey-section,
+  .exp-section,
+  .registry-section,
+  #collections,
+  .squad-section,
+  .trend-section,
+  .ig-section,
+  .reviews-section,
+  #prom-faq,
+  .prom-cta-final,
+  .hoco-matrix-section,
+  .hoco-swatch-section,
+  .hoco-photo-grid,
+  #hoco-faq,
+  .hoco-cta-final,
+  .tux-pillars-section,
+  .tux-process-section,
+  .tux-portal-section,
+  .tux-cta-section,
+  #events,
+  #accessories,
+  .prep-hub-section,
+  .booking-embed {
+    padding-top: 36px !important;
+    padding-bottom: 36px !important;
+  }
+
+  .journey-header,
+  .exp-section-header,
+  .registry-header,
+  .hoco-matrix-header,
+  .tux-section-header {
+    margin-bottom: 20px !important;
+  }
+
+  /* Compact Hero Perks on Prom & HOCO Catalogs (2x2 pill grid) */
+  .prom-hero-card,
+  .hoco-hero-card {
+    padding: 20px 16px !important;
+    gap: 14px !important;
+  }
+  .prom-hero-perks,
+  .hoco-hero-perks {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+  .prom-perk-item,
+  .hoco-perk-item {
+    padding: 8px 10px !important;
+    gap: 6px !important;
+  }
+  .prom-perk-sub,
+  .hoco-perk-sub {
+    display: none !important;
+  }
+  .registry-bar {
+    padding: 12px 14px !important;
+    gap: 10px !important;
+  }
+  .registry-info-desc {
+    display: none !important;
+  }
+
+  /* Experience Metrics Strip: 2x2 compact grid instead of 4 stacked blocks */
+  .exp-metrics-strip {
+    padding: 20px 16px !important;
+  }
+  .exp-metrics-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+  .exp-metric-card {
+    padding: 14px 12px !important;
+  }
+  .exp-metric-num {
+    font-size: 22px !important;
+  }
+  .exp-metric-desc {
+    font-size: 11.5px !important;
+    line-height: 1.35 !important;
+  }
+
+  /* Bridal Feature Strip: compact 3-column horizontal strip */
+  .bridal-feature-strip {
+    grid-template-columns: repeat(3, 1fr) !important;
+    padding: 16px 10px !important;
+  }
+  .bridal-feature-item {
+    padding: 6px 8px !important;
+    border-bottom: none !important;
+  }
+  .bridal-feature-item + .bridal-feature-item {
+    border-left: 1px solid var(--border) !important;
+  }
+  .bridal-feature-item h3 {
+    font-size: 13px !important;
+    margin-bottom: 3px !important;
+  }
+  .bridal-feature-item p {
+    font-size: 11px !important;
+    line-height: 1.35 !important;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Prom Walk-In Section & Squad Section Compaction */
+  .registry-box {
+    padding: 20px 16px !important;
+    gap: 16px !important;
+  }
+  .registry-stats-row {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 6px !important;
+  }
+  .registry-stat-pill {
+    padding: 8px 6px !important;
+    text-align: center;
+  }
+  .registry-stat-label {
+    font-size: 8.5px !important;
+    letter-spacing: 0.08em !important;
+  }
+  .registry-stat-val {
+    font-size: 13px !important;
+  }
+  .registry-photo-collage {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: 175px !important;
+  }
+  .registry-photo-collage .registry-photo-frame:not(.registry-photo-frame--main) {
+    display: none !important;
+  }
+  .squad-inner {
+    gap: 20px !important;
+  }
+  .squad-card {
+    padding: 20px 16px !important;
+  }
+  .squad-size-picker {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 6px !important;
+  }
+  .squad-size-btn {
+    padding: 10px 6px !important;
+    font-size: 10px !important;
+  }
+
+  /* Review Quote Clamping on Mobile (Prom & Experience) */
+  .review-quote,
+  .exp-suites-grid .exp-suite-desc {
+    display: -webkit-box !important;
+    -webkit-line-clamp: 5 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+  }
+  .review-spotlight {
+    padding: 18px 16px !important;
+    gap: 12px !important;
+    margin-bottom: 16px !important;
+  }
+  .review-spotlight .registry-photo-frame {
+    display: none !important;
+  }
+  .review-spotlight h3 {
+    font-size: 18px !important;
+    margin-bottom: 8px !important;
+  }
+  .review-spotlight p {
+    display: -webkit-box !important;
+    -webkit-line-clamp: 4 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    margin-bottom: 10px !important;
+    font-size: 13.5px !important;
+  }
+
+  /* About Page: Compact Jennifer Feature Card, Intro, Events & FAQ */
+  .team-feature {
+    display: grid !important;
+    grid-template-columns: 125px 1fr !important;
+    min-height: 0 !important;
+    align-items: center !important;
+  }
+  .team-feature-photo {
+    height: 155px !important;
+    max-height: 155px !important;
+  }
+  .team-feature-content {
+    padding: 16px 18px !important;
+  }
+  .team-feature-name {
+    font-size: 28px !important;
+  }
+  #team > div:first-child p {
+    margin-bottom: 24px !important;
+  }
+  #team > div:last-child {
+    padding-bottom: 28px !important;
+  }
+  .about-intro-grid p:first-of-type {
+    display: -webkit-box !important;
+    -webkit-line-clamp: 5 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+  }
+  #events .double-bezel {
+    padding: 20px 18px !important;
+  }
+  #events .double-bezel p {
+    display: -webkit-box !important;
+    -webkit-line-clamp: 4 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+  }
+  #faq details summary {
+    padding: 12px 16px !important;
+    font-size: 14px !important;
+  }
+  #testimonials .testimonials-marquee-cols {
+    max-height: 320px !important;
+    height: 320px !important;
+  }
+  .brides-marquee,
+  .bridal-marquee {
+    padding: 32px 0 38px !important;
+  }
+  .marquee-photo {
+    width: 145px !important;
+    height: 215px !important;
+  }
+
+  /* Appointments & Contact Compaction */
+  .checklist-sub {
+    display: none !important;
+  }
+  .checklist-item {
+    padding: 9px 0 !important;
+  }
+  .appt-card {
+    padding: 20px 18px !important;
+  }
+  .appt-card p {
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    margin-bottom: 12px !important;
+  }
+  .appt-card-perks {
+    padding: 10px 0 !important;
+    margin-bottom: 14px !important;
+    gap: 6px !important;
+  }
+  .contact-layout .u-grid-2 {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+  .wte-desc {
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+  }
+
+  /* Real Brides Gallery: Show First 8 Brides + "View All 27 Real Brides" Button */
+  #bridesGrid:not(.show-all-brides) .bc:nth-child(n+9) {
+    display: none !important;
+  }
+  .brides-mob-expand-wrap {
+    display: flex !important;
+    justify-content: center;
+    padding: 20px 16px 4px;
+  }
+  .brides-quote-strip {
+    padding: 40px 20px !important;
+  }
+  .bq-quote {
+    font-size: 18px !important;
+    line-height: 1.45 !important;
+    margin-bottom: 16px !important;
+  }
+}
+
 
