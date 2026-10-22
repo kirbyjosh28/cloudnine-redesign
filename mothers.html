@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"/>
-  <link rel="stylesheet" href="shared.css?v=20261021b"/>
+  <link rel="stylesheet" href="shared.css?v=20261022f"/>
   <style>
     /* ── MOTHERS PHOTO HERO ── */
     .mothers-hero {
@@ -297,8 +297,8 @@
       <p style="font-size:13.5px;color:var(--text-muted);line-height:1.6;margin:0;">Featuring sophisticated collections from <strong>Jasmine</strong>, <strong>Cameron Blake</strong>, <strong>Alexander By Daymor</strong>, <strong>MLNY</strong>, and <strong>Ivonne D</strong>.</p>
     </div>
     <div>
-      <div style="font-family:var(--font-kicker);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:6px;">Inclusive Sizing</div>
-      <p style="font-size:13.5px;color:var(--text-muted);line-height:1.6;margin:0;">Flattering silhouettes available across sizes <strong>00–24</strong>, <strong>16W–26W</strong>, and <strong>XS–XL</strong> for Mother of the Bride, Mother of the Groom, and Grandmothers.</p>
+      <div style="font-family:var(--font-kicker);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:6px;">In-Store Availability</div>
+      <p style="font-size:13.5px;color:var(--text-muted);line-height:1.6;margin:0;"><strong>Not all gowns are kept in store.</strong> Contact us for stock and availability details.</p>
     </div>
     <div>
       <div style="font-family:var(--font-kicker);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:6px;">Shopping Timeline</div>
@@ -311,6 +311,9 @@
   </div>
 </div>
 <div class="section-catalog" id="gowns">
+  <div style="max-width:1280px;margin:0 auto 20px;padding:14px 20px;background:var(--teal-xlight);border:1px solid var(--border);text-align:center;font-family:var(--font-sans);font-size:14px;font-weight:600;color:var(--teal-deep);">
+    Not all gowns are kept in store. <a href="contact.html" style="color:var(--teal-deep);text-decoration:underline;font-weight:700;">Contact us</a> for stock and availability details.
+  </div>
   <!-- Sticky Sentinel for Smooth IntersectionObserver Detection -->
   <div id="filterStickySentinel" style="height:1px;width:100%;margin-top:-1px;pointer-events:none;opacity:0;"></div>
 
@@ -319,48 +322,7 @@
     <div class="filter-bar-compact" id="filterBarCompact">
       <!-- Left: Facet Dropdown Triggers -->
       <div class="filter-facets-group" id="filterFacetsGroup">
-        <!-- 1. Silhouette Trigger & Popover -->
-        <div class="filter-facet-dropdown" id="dropdownSil" data-facet="sil">
-          <button type="button" class="filter-trigger-btn" id="triggerSil" aria-expanded="false" aria-haspopup="true" onclick="toggleFacetDropdown('sil', event)">
-            <span class="filter-trigger-label" id="labelSil">Silhouette</span>
-            <span class="filter-trigger-caret" aria-hidden="true"></span>
-          </button>
-          <div class="filter-popover" id="popoverSil" role="region" aria-label="Silhouette Filters">
-            <div class="filter-popover-inner">
-              <div class="filter-popover-header">
-                <span class="filter-popover-title">Select Silhouette</span>
-              </div>
-              <div class="filter-popover-grid" id="sil-row">
-                <button type="button" class="filter-popover-chip active" data-filter="sil" data-value="all" onclick="setFilter('sil', 'all', true, event)">
-                  <span class="popover-chip-name">All Silhouettes</span>
-                  <span class="chip-count"></span>
-                </button>
-                <button type="button" class="filter-popover-chip" data-filter="sil" data-value="Classic Evening" onclick="setFilter('sil', 'Classic Evening', true, event)">
-                  <span class="popover-chip-name">Classic Evening</span>
-                  <span class="chip-count"></span>
-                </button>
-                <button type="button" class="filter-popover-chip" data-filter="sil" data-value="A-Line" onclick="setFilter('sil', 'A-Line', true, event)">
-                  <span class="popover-chip-name">A-Line</span>
-                  <span class="chip-count"></span>
-                </button>
-                <button type="button" class="filter-popover-chip" data-filter="sil" data-value="Mermaid &amp; Fit &amp; Flare" onclick="setFilter('sil', 'Mermaid &amp; Fit &amp; Flare', true, event)">
-                  <span class="popover-chip-name">Mermaid &amp; Fit &amp; Flare</span>
-                  <span class="chip-count"></span>
-                </button>
-                <button type="button" class="filter-popover-chip" data-filter="sil" data-value="Sheath &amp; Column" onclick="setFilter('sil', 'Sheath &amp; Column', true, event)">
-                  <span class="popover-chip-name">Sheath &amp; Column</span>
-                  <span class="chip-count"></span>
-                </button>
-                <button type="button" class="filter-popover-chip" data-filter="sil" data-value="Tea-Length &amp; Midi" onclick="setFilter('sil', 'Tea-Length &amp; Midi', true, event)">
-                  <span class="popover-chip-name">Tea-Length &amp; Midi</span>
-                  <span class="chip-count"></span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 2. Designer Trigger & Popover -->
+        <!-- Designer Trigger & Popover -->
         <div class="filter-facet-dropdown" id="dropdownDes" data-facet="des">
           <button type="button" class="filter-trigger-btn" id="triggerDes" aria-expanded="false" aria-haspopup="true" onclick="toggleFacetDropdown('des', event)">
             <span class="filter-trigger-label" id="labelDes">Designer</span>
@@ -434,11 +396,6 @@
         <button type="button" class="filter-sheet-close" onclick="closeMobileFilters()">Close</button>
       </div>
       <div class="filter-sheet-body">
-        <!-- Mobile Silhouette Section -->
-        <div class="filter-sheet-section">
-          <div class="filter-sheet-section-title">Silhouette</div>
-          <div class="filter-sheet-chips" id="mobileSilChips"></div>
-        </div>
         <!-- Mobile Designer Section -->
         <div class="filter-sheet-section">
           <div class="filter-sheet-section-title">Designer</div>
@@ -454,7 +411,7 @@
 
   <div class="catalog-control-panel">
     <div class="grid-4" id="pg"></div>
-    <p class="catalog-stock-note">Not all gowns are kept in store &mdash; <a href="contact.html">contact us</a> for stock and availability details.</p>
+    <p class="catalog-stock-note">Not all gowns are kept in store. <a href="contact.html">Contact us</a> for stock and availability details.</p>
     <div class="pag-wrap" id="pag"></div>
   </div>
 </div>
@@ -481,15 +438,14 @@
       <p class="m-desc" id="mDesc"></p>
       <div class="m-meta" id="mMeta"></div>
       <div class="m-cta">
-        <a href="appointments.html" class="btn-primary">Book an Appointment</a>
-        <a href="contact.html" class="btn-outline">Ask About This Style</a>
+        <a href="contact.html" class="btn-primary">Ask About This Style</a>
       </div>
     </div>
   </div>
 </div>
 
 <div id="site-footer"></div>
-<script src="components.js?v=20261021c" defer></script>
+<script src="components.js?v=20261022f" defer></script>
 <script src="catalog-engine.js?v=20261021b" defer></script>
 <script>
 const MOTHERS_SYNONYMS = {
@@ -520,8 +476,8 @@ function initMothersCatalog() {
     new CloudNineCatalog({
       category: 'mothers',
       dataPath: 'data/mothers-products.json?v=20260909k',
-      facets: ['sil', 'des'],
-      facetLabels: { sil: 'Silhouette', des: 'Designer' },
+      facets: ['des'],
+      facetLabels: { des: 'Designer' },
       synonyms: MOTHERS_SYNONYMS
     });
   } else {

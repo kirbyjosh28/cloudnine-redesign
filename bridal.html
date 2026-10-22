@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"/>
     <link rel="preload" as="image" href="images/bridal/Bridal-hero.webp" type="image/webp"/>
-  <link rel="stylesheet" href="shared.css?v=20261021b"/>
+  <link rel="stylesheet" href="shared.css?v=20261022f"/>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -246,7 +246,7 @@
       border-bottom: 1px solid var(--border);
       padding: 48px 64px;
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 0;
     }
     .bridal-feature-item {
@@ -390,9 +390,9 @@
         font-size: 11px;
       }
 
-      /* Feature strip — 2x2 grid */
+      /* Feature strip — 1-col stack on mobile */
       .bridal-feature-strip {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
         padding: 0;
         gap: 0;
       }
@@ -401,7 +401,7 @@
         border-bottom: 1px solid var(--border);
       }
       .bridal-feature-item + .bridal-feature-item { border-left: none; }
-      .bridal-feature-item:nth-child(odd) { border-right: 1px solid var(--border); }
+      .bridal-feature-item:nth-child(odd) { border-right: none; }
       .bridal-feature-item h3 { font-size: 15px; }
       .bridal-feature-item p  { font-size: 12px; }
 
@@ -479,16 +479,12 @@
     <p>Essense of Australia, Maggie Sottero, Rebecca Ingram, Stella York, Sottero &amp; Midgley &amp; Rose + Grace.</p>
   </div>
   <div class="bridal-feature-item">
-    <h3>Sizes Up to 38</h3>
-    <p>EveryBody EveryBride certified with in-store sample sizes up to 26 and special orders up to size 38.</p>
-  </div>
-  <div class="bridal-feature-item">
     <h3>$1,200 – $4,000</h3>
-    <p>Most brides find their perfect dress right around the $2,000 mark (select gowns available off the rack).</p>
+    <p>Most brides find their perfect dress right around the $2,000 mark.</p>
   </div>
   <div class="bridal-feature-item">
     <h3>1-on-1 Styling</h3>
-    <p>90-minute private appointments, comfortable seating for up to 6 guests &amp; dedicated bridal stylists.</p>
+    <p>90-minute appointments, comfortable seating for up to 6 guests &amp; dedicated bridal stylists.</p>
   </div>
 </div>
 
@@ -668,7 +664,7 @@
 </section>
 
 <div id="site-footer"></div>
-<script src="components.js?v=20261021c" defer></script>
+<script src="components.js?v=20261022f" defer></script>
 </main>
 </body>
 </html>

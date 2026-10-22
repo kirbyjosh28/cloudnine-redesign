@@ -67,10 +67,10 @@ function navHTML() {
                 <div class="nav-mega-heading">The Experience</div>
                 <ul class="nav-mega-list">
                   <li><a href="experience.html" class="nav-mega-link nav-mega-link--highlight"><span class="nav-mega-link-title">The Boutique Experience</span><span class="nav-mega-link-sub">1-on-1 styling, boutique comfort &amp; celebrations</span></a></li>
-                  <li><a href="appointments.html" class="nav-mega-link"><span class="nav-mega-link-title">Robes &amp; Rosé / On Cloud Nine VIP</span><span class="nav-mega-link-sub">$100 &amp; $250 celebratory bridal packages</span></a></li>
+                  <li><a href="appointments.html" class="nav-mega-link"><span class="nav-mega-link-title">Robes &amp; Rosé / On Cloud Nine</span><span class="nav-mega-link-sub">$100 &amp; $250 celebratory bridal packages</span></a></li>
                   <li><a href="bridal.html#accessories" class="nav-mega-link"><span class="nav-mega-link-title">Bridal Accessories &amp; Bling</span><span class="nav-mega-link-sub">Bel Aire · Toni Federici · Heirloom · Boomba</span></a></li>
-                  <li><a href="quiz.html" class="nav-mega-link"><span class="nav-mega-link-title">Bridal Style Quiz</span><span class="nav-mega-link-sub">Find your silhouette in 2 minutes</span></a></li>
-                  <li><a href="our-brides.html" class="nav-mega-link"><span class="nav-mega-link-title">Our Real Brides</span><span class="nav-mega-link-sub">Real Peoria weddings &amp; stories</span></a></li>
+                  <li><a href="quiz.html" class="nav-mega-link"><span class="nav-mega-link-title">Find Your Bridal Style</span><span class="nav-mega-link-sub">Discover your dream bridal aesthetic &amp; gowns</span></a></li>
+                  <li><a href="our-brides.html" class="nav-mega-link"><span class="nav-mega-link-title">Our Real Brides</span><span class="nav-mega-link-sub">15 years of saying yes</span></a></li>
                   <li><a href="mothers.html" class="nav-mega-link"><span class="nav-mega-link-title">Mothers of the Wedding</span><span class="nav-mega-link-sub">Jasmine · Cameron Blake · Daymor · MLNY · Ivonne D</span></a></li>
                 </ul>
               </div>
@@ -89,7 +89,7 @@ function navHTML() {
             <div class="nav-dd-ph-home">
               <div class="nav-dd-ph-home-left">
                 <div class="nav-dd-ph-home-title">Prom &amp; Homecoming Boutique</div>
-                <div class="nav-dd-ph-home-sub">Walk-Ins Only · 4701 N. University St, Peoria</div>
+                <div class="nav-dd-ph-home-sub">Walk-Ins Only · Peoria, IL</div>
               </div>
               <a href="prom.html" class="nav-dd-ph-home-badge">Walk-Ins Welcome</a>
             </div>
@@ -116,7 +116,7 @@ function navHTML() {
             <a href="prom.html#collections" class="nav-ph-registry-ribbon">
               <div class="nav-ph-reg-text">
                 <strong>Peoria's Largest Prom &amp; Formalwear Boutique · Top 10 Prom Store</strong>
-                <span>Prom ($150–$1,000) · HOCO ($90–$580) · Pageant &amp; Formal · Walk-Ins Only at 4701 N. University St</span>
+                <span>Prom ($150–$1,000) · HOCO ($90–$580) · Pageant &amp; Formal · Walk-Ins Only</span>
               </div>
               <span class="nav-ph-reg-arrow">Explore</span>
             </a>
@@ -162,10 +162,9 @@ function navHTML() {
 
         <li class="nav-item"><a href="about.html" class="nav-link ${active('about')}">About</a></li>
         <li class="nav-item"><a href="contact.html" class="nav-link ${active('contact')}">Contact</a></li>
-        <li class="nav-item nav-item--quiz"><a href="quiz.html" class="nav-link ${active('quiz')}">Style Quiz</a></li>
       </ul>
 
-      <!-- Right Actions: Live Peoria Status + Lookbook Preview + Search + Book CTA -->
+      <!-- Right Actions: Live Peoria Status + Search + Book CTA + Cloud Bridal Style CTA -->
       <div class="nav-right-actions">
 
         <!-- Live Peoria Boutique Status with Interactive Popover -->
@@ -177,7 +176,7 @@ function navHTML() {
           <div class="nav-status-popover" id="navStatusPopover" role="dialog" aria-label="Boutique Hours & Contact">
             <div class="nav-sp-head">
               <div class="nav-sp-title">Cloud Nine Bridal Boutique</div>
-              <div class="nav-sp-sub">Bridal: 4711 N. University St · Prom: 4701 N. University St</div>
+              <div class="nav-sp-sub">Peoria, Illinois</div>
             </div>
             <div class="nav-sp-status-banner" id="navSpStatusBanner">
               <span class="live-dot"></span>
@@ -197,27 +196,6 @@ function navHTML() {
               <a href="https://goo.gl/maps/HXgYuahuNu8ycSXB8" target="_blank" rel="noopener noreferrer" class="nav-sp-action-btn nav-sp-action--maps">
                 Directions
               </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Lookbook Wishlist Pill & Mini-Tray -->
-        <div class="nav-wl-wrap" id="navWlWrap">
-          <button class="nav-wl-btn" onclick="openWishlist()" aria-label="Saved styles lookbook" id="wlNavBtn" title="Saved styles">
-            <span class="wl-nav-label">Saved</span>
-            <span class="wl-nav-badge" id="wl-nav-badge">0</span>
-          </button>
-          <div class="nav-wl-popover" id="navWlPopover" role="dialog" aria-label="Saved Lookbook Quick Preview">
-            <div class="nav-wlp-head">
-              <span class="nav-wlp-title">Fitting Lookbook</span>
-              <span class="nav-wlp-count" id="navWlpCount">0 Saved</span>
-            </div>
-            <div class="nav-wlp-items" id="navWlpItems">
-              <!-- Populated dynamically by WL -->
-            </div>
-            <div class="nav-wlp-footer">
-              <button type="button" class="nav-wlp-view-btn" onclick="openWishlist()">View Lookbook Dossier</button>
-              <a href="appointments.html" class="nav-wlp-book-btn">Book With Saved Rack</a>
             </div>
           </div>
         </div>
@@ -243,6 +221,40 @@ function navHTML() {
       </button>
 
     </div>
+
+    <!-- Sticky Floating Cloud CTA (Anchored to .main-nav: Floats Below at Top, Docks into Right Slot on Scroll) -->
+    <a href="quiz.html" class="nav-cloud-cta ${active('quiz')}" id="navCloudCta" aria-label="Find Your Bridal Style">
+      <svg class="nav-cloud-bg" viewBox="0 0 280 128" aria-hidden="true">
+        <defs>
+          <linearGradient id="navCloudGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff"/>
+            <stop offset="72%" stop-color="#ffffff"/>
+            <stop offset="100%" stop-color="#dcf2f3"/>
+          </linearGradient>
+          <linearGradient id="navCloudUnder" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="rgba(152, 213, 214, 0.55)"/>
+            <stop offset="100%" stop-color="rgba(28, 78, 80, 0.28)"/>
+          </linearGradient>
+          <linearGradient id="navCloudStroke" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#296e71"/>
+            <stop offset="100%" stop-color="#123537"/>
+          </linearGradient>
+        </defs>
+        <!-- Soft 3D under-billow layer -->
+        <path d="M 52,115 A 34,34 0 1,1 55.9,47.2 A 35,35 0 0,1 105.1,23.4 A 40,40 0 0,1 174.9,23.4 A 35,35 0 0,1 224.1,47.2 A 34,34 0 1,1 228,115 Q 184,121 140,116 Q 96,121 52,115 Z" fill="url(#navCloudUnder)" transform="translate(0, 4)"/>
+        <!-- Main 5-lobe cumulus cloud silhouette built from true circular arcs -->
+        <path d="M 52,112 A 34,34 0 1,1 55.9,44.2 A 35,35 0 0,1 105.1,20.4 A 40,40 0 0,1 174.9,20.4 A 35,35 0 0,1 224.1,44.2 A 34,34 0 1,1 228,112 Q 184,118 140,113 Q 96,118 52,112 Z" fill="url(#navCloudGrad)" stroke="url(#navCloudStroke)" stroke-width="2.2" stroke-linejoin="round"/>
+        <!-- Inner 3D cloud puff highlights -->
+        <path d="M 56,48 A 30,30 0 0,1 103,26 M 107,24 A 35,35 0 0,1 173,24 M 177,26 A 30,30 0 0,1 222,48" fill="none" stroke="rgba(152, 213, 214, 0.65)" stroke-width="2" stroke-linecap="round"/>
+        <!-- Delicate four-point star sparkles on outer puffs -->
+        <path d="M 40,66 L 42,71 L 47,73 L 42,75 L 40,80 L 38,75 L 33,73 L 38,71 Z" fill="#296e71" opacity="0.55"/>
+        <path d="M 240,62 L 241.5,66 L 245.5,67.5 L 241.5,69 L 240,73 L 238.5,69 L 234.5,67.5 L 238.5,66 Z" fill="#296e71" opacity="0.55"/>
+      </svg>
+      <span class="nav-cloud-content">
+        <span class="nav-cloud-kicker">✦ Style Quiz</span>
+        <span class="nav-cloud-label">Find Your<br/>Bridal Style <span class="nav-cloud-arrow" aria-hidden="true">→</span></span>
+      </span>
+    </a>
   </nav>
 
   <!-- MOBILE MENU DRAWER -->
@@ -275,14 +287,16 @@ function navHTML() {
 
         <div class="mobile-nav-section">
           <span class="mobile-nav-section-label">Bridal</span>
-          <a href="experience.html" class="mobile-nav-item" style="color:var(--teal-mid);font-weight:700;">
+          <a href="quiz.html" class="mobile-nav-item" style="color:var(--teal-mid);font-weight:700;">
+            ✦ Find Your Bridal Style
+          </a>
+          <a href="experience.html" class="mobile-nav-item">
             The Boutique Experience
           </a>
           <a href="bridal.html" class="mobile-nav-item">
             Bridal Collection
           </a>
           <a href="bridal-catalog.html" class="mobile-nav-sub">Shop All 600+ Gowns</a>
-          <a href="quiz.html" class="mobile-nav-sub">Take Bridal Style Quiz</a>
           <a href="mothers.html" class="mobile-nav-item">
             Mothers of the Bride
           </a>
@@ -327,9 +341,6 @@ function navHTML() {
 
       <div class="mobile-menu-footer">
         <a href="appointments.html" class="mobile-menu-book-btn">Book an Appointment</a>
-        <button type="button" onclick="closeMobileMenu();setTimeout(openWishlist,200);" style="display:flex;align-items:center;justify-content:center;gap:8px;padding:12px;border:1px solid rgba(255,255,255,.12);background:none;color:rgba(255,255,255,.75);font-family:var(--font-kicker,'Josefin Sans',sans-serif);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;width:100%;transition:color .15s,border-color .15s;">
-          View Saved Styles (<span id="wlMobileMenuBadge">0</span>)
-        </button>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
           <a href="tel:3096933830" class="mobile-menu-phone-link">
             Call Boutique
@@ -353,15 +364,7 @@ function footerHTML() {
           <div class="footer-logo"><img src="${LOGO}" alt="Cloud Nine Bridal Boutique"/></div>
           <p class="footer-tagline">Peoria's premier bridal boutique — helping brides find their dream gown. Come say yes with us.</p>
           <div class="footer-contact">
-            <div style="font-size:12px;color:rgba(28,78,80,.8);margin-bottom:4px;font-weight:600;">Bridal Boutique (By Appointment):</div>
-            <a href="https://goo.gl/maps/HXgYuahuNu8ycSXB8" target="_blank">
-              4711 N. University St, Peoria, IL 61614
-            </a>
-            <div style="font-size:12px;color:rgba(28,78,80,.8);margin-top:6px;margin-bottom:4px;font-weight:600;">Prom Boutique (Walk-Ins Only):</div>
-            <a href="https://goo.gl/maps/HXgYuahuNu8ycSXB8" target="_blank">
-              4701 N. University St, Peoria, IL 61614
-            </a>
-            <div style="margin-top:6px;">
+            <div>
               <a href="tel:3096933830">(309) 693‑3830</a>
             </div>
             <div>
@@ -375,7 +378,7 @@ function footerHTML() {
             <a href="https://www.instagram.com/cloudninebridalpeoria/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Cloud Nine on Instagram (opens in new tab)" title="Instagram">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
             </a>
-            <a href="https://goo.gl/maps/HXgYuahuNu8ycSXB8" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Google Reviews — 4.9 Stars (opens in new tab)" title="Google Reviews (4.9 Stars)">
+            <a href="https://goo.gl/maps/HXgYuahuNu8ycSXB8" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Google Reviews — 5.0 Stars, 1.7k Reviews (opens in new tab)" title="Google Reviews (5.0 Stars · 1.7k Reviews)">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.24 10.285V14.4h6.806c-.275 1.765-2.056 5.174-6.806 5.174-4.095 0-7.439-3.389-7.439-7.574s3.345-7.574 7.439-7.574c2.33 0 3.891.989 4.785 1.849l3.254-3.138C18.189 1.186 15.479 0 12.24 0c-6.635 0-12 5.365-12 12s5.365 12 12 12c6.926 0 11.52-4.869 11.52-11.726 0-.788-.085-1.39-.189-1.989H12.24z"/></svg>
             </a>
           </div>
@@ -481,7 +484,7 @@ function searchOverlayHTML() {
         <a href="prom.html" class="search-cat-link">Prom</a>
         <a href="hoco.html" class="search-cat-link">Homecoming</a>
         <a href="tuxedos.html" class="search-cat-link">Tuxedos &amp; Suits</a>
-        <a href="quiz.html" class="search-cat-link">Style Quiz</a>
+        <a href="quiz.html" class="search-cat-link">Find Your Bridal Style</a>
       </div>
     </div>
   </div>
@@ -569,550 +572,36 @@ window.cnHaptic = function(pattern) {
 };
 
 /* ════════════════════════════════════════════════════════
-   WISHLIST / FAVORITES ENGINE
-   Stores product objects in localStorage.
-   Buttons injected automatically via MutationObserver.
+   WISHLIST / FAVORITES ENGINE (REMOVED — NO-OP STUB)
    ════════════════════════════════════════════════════════ */
 var WL = (function() {
-  var KEY = 'cloudnine_wishlist';
-  var HEART_SVG = '<svg class="wl-btn-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>';
-
-  function renderBtnHTML(active) {
-    return HEART_SVG + '<span class="wl-btn-label">' + (active ? 'Saved' : 'Save') + '</span>';
-  }
-
-  function load() {
-    try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch(e) { return []; }
-  }
-  function save(items) {
-    try { localStorage.setItem(KEY, JSON.stringify(items)); } catch(e) {}
-  }
-  function itemId(p) { return (p.s || '') + '|' + (p.d || ''); }
-
-  function has(p) {
-    var id = itemId(p);
-    return load().some(function(x) { return itemId(x) === id; });
-  }
-
-  function toggle(p) {
-    var items = load();
-    var id = itemId(p);
-    var idx = -1;
-    items.forEach(function(x, i) { if (itemId(x) === id) idx = i; });
-    var added;
-    if (idx >= 0) { items.splice(idx, 1); added = false; }
-    else { items.push(p); added = true; }
-    save(items);
-    if (window.cnHaptic) window.cnHaptic(added ? 12 : 6);
-    updateBadge();
-    renderDrawer();
-    showToast(added, p);
-    if (added) {
-      var bar = document.getElementById('mobileCTABar');
-      if (bar) {
-        bar.classList.add('tab-saved-glow');
-        setTimeout(function() { bar.classList.remove('tab-saved-glow'); }, 850);
-      }
-      var mBadge = document.getElementById('wlMobileTabBadge');
-      if (mBadge) {
-        mBadge.classList.add('pulse-pop');
-        setTimeout(function() { mBadge.classList.remove('pulse-pop'); }, 500);
-      }
-    }
-    return added;
-  }
-
-  var _toastTimer = null;
-  function showToast(added, p) {
-    var toast = document.getElementById('wlToast');
-    if (!toast) return;
-    var msg   = toast.querySelector('.wl-toast-msg');
-    if (msg)  msg.textContent  = (p && p._customToast) ? p._customToast : (added ? 'Saved to Lookbook' : 'Removed from Lookbook');
-    toast.classList.add('visible');
-    clearTimeout(_toastTimer);
-    _toastTimer = setTimeout(function() { toast.classList.remove('visible'); }, 3200);
-  }
-
-  function remove(p) {
-    var id = itemId(p);
-    var items = load().filter(function(x) { return itemId(x) !== id; });
-    save(items);
-    updateBadge();
-    renderDrawer();
-    document.querySelectorAll('.wl-btn[data-wid="' + id.replace(/"/g, '') + '"]').forEach(function(btn) {
-      btn.classList.remove('wl-btn--active');
-      btn.innerHTML = renderBtnHTML(false);
-    });
-  }
-
-  function clearAll() {
-    save([]);
-    updateBadge();
-    renderDrawer();
-    document.querySelectorAll('.wl-btn--active').forEach(function(btn) {
-      btn.classList.remove('wl-btn--active');
-      btn.innerHTML = renderBtnHTML(false);
-    });
-  }
-
-  function updateBadge() {
-    var n = load().length;
-    var badge = document.getElementById('wl-nav-badge');
-    if (badge) {
-      badge.textContent = n;
-      badge.classList.toggle('visible', n > 0);
-    }
-    var mBadge = document.getElementById('wlMobileTabBadge');
-    if (mBadge) {
-      mBadge.textContent = n;
-      mBadge.classList.toggle('visible', n > 0);
-      mBadge.classList.toggle('has-items', n > 0);
-    }
-    var menuBadge = document.getElementById('wlMobileMenuBadge');
-    if (menuBadge) {
-      menuBadge.textContent = n;
-    }
-    renderNavPreview();
-  }
-
-  function renderNavPreview() {
-    var countEl = document.getElementById('navWlpCount');
-    var itemsEl = document.getElementById('navWlpItems');
-    if (!itemsEl) return;
-
-    var items = load();
-    if (countEl) countEl.textContent = items.length + ' Saved';
-
-    if (!items.length) {
-      itemsEl.innerHTML =
-        '<div class="nav-wlp-empty">' +
-          '<p class="nav-wlp-empty-text">Your Fitting Lookbook is empty.<br/>Save your favorite gowns to review them during your styling session.</p>' +
-          '<a href="quiz.html" class="nav-wlp-quiz-btn">Take Style Quiz</a>' +
-        '</div>';
-      return;
-    }
-
-    var preview = items.slice(-3).reverse();
-    var html = preview.map(function(p) {
-      var img = p.i || 'images/bridal/Bridal-hero.webp';
-      var title = escapeHTML(p.n || p.s || 'Gown');
-      var designer = escapeHTML(p.d || 'Cloud Nine');
-      var link = (p.cat === 'prom' || p.cat === 'hoco') ? (p.cat + '-catalog.html') : ('dress.html?s=' + encodeURIComponent(p.s || '') + '&cat=' + encodeURIComponent(p.cat || 'bridal'));
-      return '<a href="' + link + '" class="nav-wlp-item">' +
-        '<img src="' + img + '" alt="' + title + '" class="nav-wlp-img"/>' +
-        '<div class="nav-wlp-info">' +
-          '<div class="nav-wlp-item-title">' + title + '</div>' +
-          '<div class="nav-wlp-item-designer">' + designer + '</div>' +
-        '</div>' +
-      '</a>';
-    }).join('');
-
-    if (items.length > 3) {
-      html += '<div class="nav-wlp-more">+' + (items.length - 3) + ' more saved gowns in your lookbook</div>';
-    }
-    itemsEl.innerHTML = html;
-  }
-
-  function renderDrawer() {
-    var body   = document.getElementById('wlBody');
-    var head   = document.getElementById('wlHeadCount');
-    var foot   = document.getElementById('wlFoot');
-    if (!body) return;
-    var items = load();
-    if (head) head.textContent = items.length + ' saved style' + (items.length !== 1 ? 's' : '');
-
-    if (!items.length) {
-      // Try to show recently viewed
-      var recentlyViewed = [];
-      try { recentlyViewed = JSON.parse(localStorage.getItem('cloudnine_recentlyViewed') || '[]').slice(0,4); } catch(e) {}
-
-      var rvHtml = '';
-      if (recentlyViewed.length) {
-        rvHtml = '<div style="margin-top:20px;">' +
-          '<div style="font-family:var(--font-kicker,\'Josefin Sans\',sans-serif);font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--text-light);margin-bottom:12px;">Recently Viewed</div>' +
-          '<div class="wl-grid">' +
-          recentlyViewed.map(function(p) {
-            var img = (p.x && p.x.length) ? p.x[0] : (p.i || '');
-            return '<div class="wl-item" style="cursor:pointer;" onclick="(function(){sessionStorage.setItem(\'cloudnine_dress\',JSON.stringify(' + JSON.stringify(p) + '));sessionStorage.setItem(\'cloudnine_dress_src\',' + JSON.stringify(p._cat || 'bridal-catalog.html') + ');closeWishlist();setTimeout(function(){window.location.href=\'dress.html\';},200);})()">' +
-              '<img class="wl-item-img" src="' + escapeHTML(img) + '" alt="' + escapeHTML((p.d||'') + ' ' + (p.s||'')) + '" loading="lazy"/>' +
-              '<div class="wl-item-overlay"></div>' +
-              '<div class="wl-item-info"><span class="wl-item-designer">' + escapeHTML(p.d||'') + '</span><span class="wl-item-name">#' + escapeHTML(p.s||'') + '</span></div>' +
-            '</div>';
-          }).join('') +
-          '</div></div>';
-      }
-
-      body.innerHTML =
-        '<div class="wl-empty">' +
-          '<p class="wl-empty-title">Your lookbook is empty</p>' +
-          '<p class="wl-empty-sub">Save any gown to keep it handy for your upcoming appointment.</p>' +
-        '</div>' + rvHtml;
-      if (foot) foot.style.display = 'none';
-      return;
-    }
-
-    if (foot) foot.style.display = 'flex';
-
-    var html = '<div class="wl-grid">';
-    items.forEach(function(p) {
-      var id = itemId(p);
-      var imgSrc = (p.x && p.x.length) ? p.x[0] : (p.i || '');
-      html +=
-        '<div class="wl-item" data-wid="' + escapeHTML(id) + '">' +
-          '<img class="wl-item-img" src="' + escapeHTML(imgSrc) + '" alt="' + escapeHTML((p.d||'') + ' ' + (p.s||'')) + '" loading="lazy"/>' +
-          '<div class="wl-item-overlay"></div>' +
-          '<div class="wl-item-info">' +
-            '<span class="wl-item-designer">' + escapeHTML(p.d||'') + '</span>' +
-            '<span class="wl-item-name">#' + escapeHTML(p.s||'') + '</span>' +
-          '</div>' +
-          '<button class="wl-item-remove" data-wid="' + escapeHTML(id) + '" aria-label="Remove from wishlist">Remove</button>' +
-        '</div>';
-    });
-    html += '</div>';
-    body.innerHTML = html;
-
-    // Attach remove handlers
-    body.querySelectorAll('.wl-item-remove').forEach(function(btn) {
-      btn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        var wid = btn.dataset.wid;
-        var p = load().filter(function(x) { return itemId(x) === wid; })[0];
-        if (p) remove(p);
-      });
-    });
-
-    // Click item -> go to dress detail
-    body.querySelectorAll('.wl-item').forEach(function(item) {
-      item.addEventListener('click', function(e) {
-        if (e.target.classList.contains('wl-item-remove')) return;
-        var wid = item.dataset.wid;
-        var p = load().filter(function(x) { return itemId(x) === wid; })[0];
-        if (p) {
-          sessionStorage.setItem('cloudnine_dress', JSON.stringify(p));
-          sessionStorage.setItem('cloudnine_dress_src', p._cat || 'bridal-catalog.html');
-          closeWishlist();
-          var cat = p._type || (/prom/.test(p._cat||'') ? 'prom' : /hoco/.test(p._cat||'') ? 'hoco' : /mothers/.test(p._cat||'') ? 'mothers' : 'bridal');
-          var sku = encodeURIComponent(p.s || '');
-          setTimeout(function() { window.location.href = `dress.html?cat=${cat}&sku=${sku}`; }, 200);
-        }
-      });
-    });
-  }
-
-  function injectHeart(card) {
-    if (card.querySelector('.wl-btn')) return;
-    var p = null;
-    try { p = JSON.parse(card.dataset.product || 'null'); } catch(e) {}
-    if (!p) {
-      var idx  = parseInt(card.dataset.idx, 10);
-      var cats = window.fil || window.P || [];
-      if (!isNaN(idx) && cats[idx]) p = cats[idx];
-    }
-    if (!p || !p.s) return;
-
-    var active = has(p);
-    var btn    = document.createElement('button');
-    btn.className = 'wl-btn' + (active ? ' wl-btn--active' : '');
-    btn.setAttribute('aria-label', active ? 'Remove from lookbook' : 'Save to lookbook');
-    btn.dataset.wid = itemId(p);
-    btn.innerHTML = renderBtnHTML(active);
-
-    btn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      var added = toggle(p);
-      btn.classList.toggle('wl-btn--active', added);
-      btn.innerHTML = renderBtnHTML(added);
-      btn.setAttribute('aria-label', added ? 'Remove from lookbook' : 'Save to lookbook');
-      btn.classList.add('wl-btn--pulse');
-      setTimeout(function() { btn.classList.remove('wl-btn--pulse'); }, 420);
-    });
-
-    var imgWrap = card.querySelector('.dress-card-img, .bc');
-    (imgWrap || card).style.position = 'relative';
-    (imgWrap || card).appendChild(btn);
-  }
-
-  function startObserver() {
-    var obs = new MutationObserver(function(mutations) {
-      mutations.forEach(function(m) {
-        m.addedNodes.forEach(function(node) {
-          if (node.nodeType !== 1) return;
-          if (node.classList && node.classList.contains('dress-card')) {
-            injectHeart(node);
-          } else if (node.querySelectorAll) {
-            node.querySelectorAll('.dress-card[data-idx]').forEach(injectHeart);
-          }
-        });
-      });
-    });
-    obs.observe(document.body, { childList: true, subtree: true });
-    document.querySelectorAll('.dress-card[data-idx]').forEach(injectHeart);
-    updateBadge();
-  }
-
-  function openLookbook() {
-    var modal = document.getElementById('lookbookModal');
-    if (!modal) return;
-    renderLookbook();
-    
-    // Restore saved metadata
-    try {
-      var meta = JSON.parse(localStorage.getItem('cn_lookbook_meta') || '{}');
-      var nameEl = document.getElementById('lbBrideName');
-      var dateEl = document.getElementById('lbDate');
-      var notesEl = document.getElementById('lbNotes');
-      if (nameEl && meta.name) nameEl.value = meta.name;
-      if (dateEl && meta.date) dateEl.value = meta.date;
-      if (notesEl && meta.notes) notesEl.value = meta.notes;
-    } catch(e) {}
-
-    modal.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeLookbook() {
-    var modal = document.getElementById('lookbookModal');
-    if (!modal) return;
-    modal.classList.remove('open');
-    var drawer = document.getElementById('wlDrawer');
-    if (!drawer || !drawer.classList.contains('open')) {
-      document.body.style.overflow = '';
-    }
-  }
-
-  function saveLookbookMeta() {
-    try {
-      var nameEl = document.getElementById('lbBrideName');
-      var dateEl = document.getElementById('lbDate');
-      var notesEl = document.getElementById('lbNotes');
-      var meta = {
-        name: nameEl ? nameEl.value : '',
-        date: dateEl ? dateEl.value : '',
-        notes: notesEl ? notesEl.value : ''
-      };
-      localStorage.setItem('cn_lookbook_meta', JSON.stringify(meta));
-    } catch(e) {}
-  }
-
-  function renderLookbook() {
-    var container = document.getElementById('lookbookGrid');
-    var subtitle = document.getElementById('lookbookSub');
-    if (!container) return;
-    var items = load();
-    if (subtitle) {
-      subtitle.textContent = items.length + ' Gown' + (items.length !== 1 ? 's' : '') + ' Curated for Fitting Session';
-    }
-
-    if (!items.length) {
-      container.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:48px 16px;color:var(--text-muted);font-style:italic;">No styles currently saved. Add favorite gowns to your lookbook to generate your custom dossier.</div>';
-      return;
-    }
-
-    var html = '';
-    items.forEach(function(p, i) {
-      var img = (p.x && p.x.length) ? p.x[0] : (p.i || '');
-      html +=
-        '<div class="lookbook-card">' +
-          '<img class="lookbook-card-img" src="' + escapeHTML(img) + '" alt="' + escapeHTML((p.d||'') + ' ' + (p.s||'')) + '" loading="lazy"/>' +
-          '<div>' +
-            '<div class="lookbook-card-sub">' + escapeHTML(p.d || 'Designer Gown') + '</div>' +
-            '<h4 class="lookbook-card-title">' + escapeHTML(p.n || p.s || 'Style #' + (i+1)) + '</h4>' +
-            (p.sil ? '<div style="font-size:11px;color:var(--teal-deep);margin-top:2px;">Silhouette: ' + escapeHTML(p.sil) + '</div>' : '') +
-          '</div>' +
-          '<div class="lookbook-card-notes">' +
-            '<span>Style #' + escapeHTML(p.s || '') + '</span>' +
-            '<span>Fitting: [ ] Love [ ] Maybe</span>' +
-          '</div>' +
-        '</div>';
-    });
-    container.innerHTML = html;
-
-    // Attach persistence listeners
-    ['lbBrideName', 'lbDate', 'lbNotes'].forEach(function(id) {
-      var el = document.getElementById(id);
-      if (el && !el._persistBound) {
-        el._persistBound = true;
-        el.addEventListener('input', saveLookbookMeta);
-      }
-    });
-  }
-
-  function getConciergeSummary() {
-    var items = load();
-    var styleList = items.map(function(x) {
-      var des = x.d ? (x.d + ' ') : '';
-      var num = x.s ? ('#' + x.s) : (x.n || 'Gown');
-      return des + num;
-    });
-    var textSummary = styleList.length
-      ? 'Saved Lookbook Styles (' + styleList.length + '): ' + styleList.join(', ')
-      : '';
-    return { items: items, styleList: styleList, textSummary: textSummary };
-  }
-
-  function copyShareLink() {
-    var summary = getConciergeSummary();
-    var items = summary.items;
-    var skus = items.map(function(x) { return encodeURIComponent(x.s || ''); }).filter(Boolean).join(',');
-    var targetCatalog = (items[0] && items[0]._cat) ? items[0]._cat : 'bridal-catalog.html';
-    var shareUrl = window.location.origin + '/' + targetCatalog.replace(/^\//, '') + (skus ? '?lookbook=' + skus : '');
-    var count = items.length;
-    var previewNames = summary.styleList.slice(0, 4).join(', ') + (count > 4 ? ' +' + (count - 4) + ' more' : '');
-    var shareData = {
-      title: 'My Cloud Nine Fitting Lookbook',
-      text: count
-        ? ('Take a look at the ' + count + ' styles I saved at Cloud Nine Bridal Boutique (' + previewNames + ')!')
-        : 'Browse my saved lookbook at Cloud Nine Bridal Boutique in Peoria, IL!',
-      url: shareUrl
-    };
-
-    if (window.cnHaptic) window.cnHaptic(10);
-    if (navigator.share) {
-      navigator.share(shareData).catch(function(err) {
-        if (err.name !== 'AbortError') copyToClipboard(shareUrl);
-      });
-    } else {
-      copyToClipboard(shareUrl);
-    }
-  }
-
+  function load() { return []; }
+  function has() { return false; }
+  function toggle() { return false; }
+  function remove() {}
+  function clearAll() {}
+  function updateBadge() {}
+  function renderDrawer() {}
+  function startObserver() {}
+  function openLookbook() {}
+  function closeLookbook() {}
+  function renderLookbook() {}
+  function copyShareLink() {}
+  function getConciergeSummary() { return { items: [], styleList: [], textSummary: '' }; }
   function copyToClipboard(shareUrl, customMsg) {
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(shareUrl).then(function() {
-        showToast(true, { _customToast: customMsg || 'Lookbook Link Copied' });
-      }).catch(function() {
-        prompt('Copy your lookbook details below:', shareUrl);
+      navigator.clipboard.writeText(shareUrl).catch(function() {
+        prompt('Copy details below:', shareUrl);
       });
     } else {
-      prompt('Copy your lookbook details below:', shareUrl);
+      prompt('Copy details below:', shareUrl);
     }
   }
-
   return { load, has, toggle, remove, clearAll, updateBadge, renderDrawer, startObserver, openLookbook, closeLookbook, renderLookbook, copyShareLink, getConciergeSummary, copyToClipboard };
 })();
 
-/* ── Wishlist drawer HTML ── */
-function wishlistDrawerHTML() {
-  return '<div class="wl-drawer" id="wlDrawer" role="dialog" aria-modal="true" aria-label="Saved styles">' +
-    '<div class="wl-backdrop" id="wlBackdrop" onclick="closeWishlist()"></div>' +
-    '<div class="wl-panel">' +
-      '<div class="wl-head">' +
-        '<div class="wl-sheet-handle" aria-hidden="true"></div>' +
-        '<div class="wl-head-left">' +
-          '<h2 class="wl-head-title">Saved Styles</h2>' +
-          '<span class="wl-head-count" id="wlHeadCount">0 saved styles</span>' +
-        '</div>' +
-        '<button class="wl-close" id="wlClose" onclick="closeWishlist()" aria-label="Close wishlist">' +
-          '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>' +
-        '</button>' +
-      '</div>' +
-      '<div class="wl-body" id="wlBody"></div>' +
-      '<div class="wl-foot" id="wlFoot" style="display:none">' +
-        '<button type="button" class="wl-foot-lookbook-btn" onclick="WL.openLookbook()">' +
-          '<span>Generate Fitting Lookbook</span>' +
-        '</button>' +
-        '<button type="button" class="wl-foot-share-btn" onclick="WL.copyShareLink()" aria-label="Share Lookbook with friends or family">' +
-          '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>' +
-          '<span>Share Lookbook</span>' +
-        '</button>' +
-        '<a href="appointments.html" class="wl-foot-cta" onclick="closeWishlist()">' +
-          'Book a Fitting for These Styles' +
-        '</a>' +
-        '<button class="wl-foot-clear" onclick="WL.clearAll()">Clear all saved styles</button>' +
-      '</div>' +
-    '</div>' +
-  '</div>';
-}
-
-/* ── Lookbook Dossier Modal HTML ── */
-function lookbookModalHTML() {
-  return '<div class="lookbook-modal" id="lookbookModal" role="dialog" aria-modal="true" aria-label="Bridal Lookbook Dossier">' +
-    '<div class="lookbook-backdrop" id="lookbookBackdrop" onclick="WL.closeLookbook()"></div>' +
-    '<div class="lookbook-sheet">' +
-      '<div class="lookbook-header">' +
-        '<div class="lookbook-header-left">' +
-          '<span class="lookbook-header-eyebrow">Cloud Nine Bridal Boutique · Peoria, IL</span>' +
-          '<h3 class="lookbook-header-title">Bridal Fitting Lookbook Dossier</h3>' +
-          '<span style="font-size:11px;color:var(--text-muted);" id="lookbookSub">Curated Selection</span>' +
-        '</div>' +
-        '<div class="lookbook-actions">' +
-          '<button type="button" class="lookbook-btn-print" onclick="window.print()" aria-label="Print or save as PDF">Print / PDF</button>' +
-          '<button type="button" class="lookbook-btn-share" onclick="WL.copyShareLink()" aria-label="Share Lookbook Link">Share</button>' +
-          '<button type="button" class="lookbook-close" onclick="WL.closeLookbook()" aria-label="Close lookbook">Close</button>' +
-        '</div>' +
-      '</div>' +
-      '<div class="lookbook-body">' +
-        '<div class="lookbook-meta-bar">' +
-          '<div class="lookbook-field">' +
-            '<span class="lookbook-field-label">Bride\'s Name</span>' +
-            '<input type="text" class="lookbook-field-input" placeholder="e.g. Jessica Sundby" id="lbBrideName"/>' +
-          '</div>' +
-          '<div class="lookbook-field">' +
-            '<span class="lookbook-field-label">Fitting / Wedding Date</span>' +
-            '<input type="text" class="lookbook-field-input" placeholder="e.g. October 14, 2026" id="lbDate"/>' +
-          '</div>' +
-          '<div class="lookbook-field">' +
-            '<span class="lookbook-field-label">Stylist Notes &amp; Preferred Vibe</span>' +
-            '<input type="text" class="lookbook-field-input" placeholder="e.g. Loved clean crepe &amp; dramatic train details, open to sparkle..." id="lbNotes"/>' +
-          '</div>' +
-        '</div>' +
-        '<div class="lookbook-grid" id="lookbookGrid"></div>' +
-      '</div>' +
-    '</div>' +
-  '</div>';
-}
-
-/* ── Open / close wishlist ── */
-window.openWishlist = function() {
-  var drawer = document.getElementById('wlDrawer');
-  if (!drawer) return;
-  WL.renderDrawer();
-  drawer.classList.add('open');
-  document.body.style.overflow = 'hidden';
-  document.body.classList.add('wishlist-open');
-  setTimeout(function() {
-    var cl = document.getElementById('wlClose');
-    if (cl) cl.focus();
-  }, 420);
-
-  // Bottom sheet swipe-down to dismiss
-  var panel = drawer.querySelector('.wl-panel');
-  if (panel && !panel._hasSwipe) {
-    panel._hasSwipe = true;
-    var startY = 0;
-    var currentY = 0;
-    panel.addEventListener('touchstart', function(e) {
-      if (e.touches && e.touches[0]) startY = e.touches[0].clientY;
-    }, { passive: true });
-    panel.addEventListener('touchmove', function(e) {
-      if (e.touches && e.touches[0]) {
-        currentY = e.touches[0].clientY - startY;
-        var bodyEl = drawer.querySelector('.wl-body');
-        if (currentY > 0 && (!bodyEl || bodyEl.scrollTop <= 0)) {
-          panel.style.transform = 'translateY(' + currentY + 'px)';
-        }
-      }
-    }, { passive: true });
-    panel.addEventListener('touchend', function(e) {
-      var bodyEl = drawer.querySelector('.wl-body');
-      if (currentY > 70 && (!bodyEl || bodyEl.scrollTop <= 0)) {
-        closeWishlist();
-      }
-      panel.style.transform = '';
-      currentY = 0;
-    }, { passive: true });
-  }
-};
-
-window.closeWishlist = function() {
-  var drawer = document.getElementById('wlDrawer');
-  if (!drawer) return;
-  drawer.classList.remove('open');
-  document.body.classList.remove('wishlist-open');
-  if (!document.getElementById('lookbookModal')?.classList.contains('open')) {
-    document.body.style.overflow = '';
-  }
-};
+window.openWishlist = function() {};
+window.closeWishlist = function() {};
 
 function injectComponents() {
   // ── Skip-to-content link (WCAG 2.4.1 Level A) ──
@@ -1133,48 +622,8 @@ function injectComponents() {
   document.body.appendChild(searchDiv.firstElementChild);
   initSearch();
 
-  // Inject wishlist drawer
-  const wlDiv = document.createElement('div');
-  wlDiv.innerHTML = wishlistDrawerHTML();
-  document.body.appendChild(wlDiv.firstElementChild);
-
-  // Inject lookbook modal
-  const lbDiv = document.createElement('div');
-  lbDiv.innerHTML = lookbookModalHTML();
-  document.body.appendChild(lbDiv.firstElementChild);
-
-  // Inject wishlist toast
-  const toast = document.createElement('div');
-  toast.className = 'wl-toast';
-  toast.id = 'wlToast';
-  toast.innerHTML =
-    '<span class="wl-toast-msg">Saved to Lookbook</span>' +
-    '<a class="wl-toast-action" href="#" onclick="event.preventDefault();openWishlist();">View All</a>';
-  document.body.appendChild(toast);
-
-  // Wire drawer close events
-  const backdrop = document.getElementById('wlBackdrop');
-  const closeBtn = document.getElementById('wlClose');
-  if (backdrop) backdrop.addEventListener('click', closeWishlist);
-  if (closeBtn)  closeBtn.addEventListener('click', closeWishlist);
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      if (document.getElementById('lookbookModal')?.classList.contains('open')) WL.closeLookbook();
-      else if (document.getElementById('wlDrawer')?.classList.contains('open')) closeWishlist();
-    }
-  });
-
-  // Start wishlist card observer (only on catalog pages)
-  if (document.querySelector('.section-catalog, .grid-4')) {
-    WL.startObserver();
-  } else {
-    WL.updateBadge();
-  }
-
   // Inject back-to-top
   injectBackToTop();
-  // Sync all badges & preview trays
-  WL.updateBadge();
 }
 
 function injectBackToTop() {
@@ -1370,7 +819,7 @@ window.onSearchInput = async function(val) {
     {name:'Prom', url:'prom-catalog.html', keys:['prom']},
     {name:'Homecoming', url:'hoco-catalog.html', keys:['hoco','homecoming']},
     {name:'Tuxedos & Suits', url:'tuxedos.html', keys:['tux','suit','groom','men']},
-    {name:'Style Quiz', url:'quiz.html', keys:['quiz','style','find']},
+    {name:'Find Your Bridal Style', url:'quiz.html', keys:['quiz','style','find','bridal']},
   ];
   const matchedPages = pages.filter(function(p) {
     return p.name.toLowerCase().includes(q) || p.keys.some(function(k){ return k.includes(q) || q.includes(k); });
@@ -1457,32 +906,28 @@ function initDropdownHover() {
 
 function initNavScroll() {
   const nav = document.querySelector('.main-nav');
+  const cloud = document.getElementById('navCloudCta');
   if (!nav) return;
 
-  // Scrolled background state & height compression
+  // Continuous scroll-linked interpolation + class docking state (Desktop, Tablet & Mobile)
   const update = () => {
-    const isScrolled = window.scrollY > 24;
+    const y = window.scrollY || 0;
+    const isQuizPage = document.body.classList.contains('page-quiz');
+    const isScrolled = y > 20 || isQuizPage;
+    const rawP = isQuizPage ? 1 : Math.min(1, Math.max(0, y / 72));
+    // Smooth cubic ease-out progress (0 = floating below nav, 1 = docked inside right nav slot)
+    const easedP = 1 - Math.pow(1 - rawP, 3);
+    nav.style.setProperty('--nav-cloud-p', easedP.toFixed(4));
     nav.classList.toggle('scrolled', isScrolled);
     nav.classList.toggle('nav-scrolled', isScrolled);
+    nav.classList.remove('nav-hidden');
+    if (cloud) {
+      cloud.classList.toggle('is-attached', isScrolled);
+    }
   };
   update();
   window.addEventListener('scroll', update, { passive: true });
-
-  // Hide on scroll-down, reveal on scroll-up (mobile only)
-  let lastY = window.scrollY;
-  window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    if (window.innerWidth <= 768) {
-      if (y > lastY && y > 80) {
-        nav.classList.add('nav-hidden');
-      } else {
-        nav.classList.remove('nav-hidden');
-      }
-    } else {
-      nav.classList.remove('nav-hidden');
-    }
-    lastY = y;
-  }, { passive: true });
+  window.addEventListener('resize', update, { passive: true });
 }
 
 /* ── SCROLL REVEAL ── */
@@ -1723,7 +1168,7 @@ function initSnapScroll(selectors, options) {
 
   /* ── INIT — position every section as a fixed full-screen panel ── */
   sections.forEach(function(s, i) {
-    s.style.cssText += ';position:fixed;top:0;left:0;width:100%;height:100vh' +
+    s.style.cssText += ';position:fixed;top:0;left:0;margin:0;width:100%;height:100vh' +
                        ';overflow:hidden;will-change:transform;transition:none';
     s.setAttribute('aria-hidden', i === 0 ? 'false' : 'true');
     if (i === 0) {
@@ -1871,36 +1316,8 @@ function initImageFade() {
 
 /* ── PROM / HOCO EXCLUSIVE BADGE INJECTION ── */
 function injectExclusiveBadges() {
-  var page = getActivePage();
-  var isProm = /prom-catalog/.test(page);
-  var isHoco = /hoco-catalog/.test(page);
-  if (!isProm && !isHoco) return;
-
-  var label = isProm ? 'Prom Collection' : 'HOCO Collection';
-
-  // Inject onto existing cards + watch for new ones
-  function addBadge(card) {
-    if (card.querySelector('.prom-exclusive-badge')) return;
-    var imgWrap = card.querySelector('.dress-card-img');
-    if (!imgWrap) return;
-    imgWrap.style.position = 'relative';
-    var badge = document.createElement('span');
-    badge.className = 'prom-exclusive-badge';
-    badge.textContent = label;
-    imgWrap.appendChild(badge);
-  }
-
-  document.querySelectorAll('.dress-card').forEach(addBadge);
-  var cardObs = new MutationObserver(function(muts) {
-    muts.forEach(function(m) {
-      m.addedNodes.forEach(function(node) {
-        if (node.nodeType !== 1) return;
-        if (node.classList && node.classList.contains('dress-card')) addBadge(node);
-        else node.querySelectorAll && node.querySelectorAll('.dress-card').forEach(addBadge);
-      });
-    });
-  });
-  cardObs.observe(document.body, { childList: true, subtree: true });
+  // Card metadata is cleanly displayed in .dress-card-body below each image
+  return;
 }
 
 /* ── ABOUT PAGE STAT COUNT-UP ── */
@@ -1939,16 +1356,17 @@ function initHeroParallax() {
   const bg = hero.querySelector('.hero-c-bg img');
   if (!bg) return;
 
-  bg.style.transform = 'scale(1.07)';
+  bg.style.transformOrigin = '58% 0%';
+  bg.style.transform = 'scale(1.03)';
   bg.style.willChange = 'transform';
 
   let raf;
   document.addEventListener('mousemove', (e) => {
     cancelAnimationFrame(raf);
     raf = requestAnimationFrame(() => {
-      const x = (e.clientX / window.innerWidth  - 0.5) * -16;
-      const y = (e.clientY / window.innerHeight - 0.5) * -9;
-      bg.style.transform = `scale(1.07) translate(${x.toFixed(1)}px,${y.toFixed(1)}px)`;
+      const x = (e.clientX / window.innerWidth  - 0.5) * -14;
+      const y = Math.max(0, (0.5 - e.clientY / window.innerHeight) * 8);
+      bg.style.transform = `scale(1.03) translate(${x.toFixed(1)}px,${y.toFixed(1)}px)`;
     });
   });
 }
@@ -2079,12 +1497,99 @@ function initLookbookConcierge() {
   var personaSummaryParts = [];
   if (quizData && quizData.title) {
     personaSummaryParts.push('Bridal Persona: ' + quizData.title);
+    if (Array.isArray(quizData.dna) && quizData.dna[0]) {
+      var topDna = quizData.dna[0];
+      var secDna = quizData.dna[1];
+      personaSummaryParts.push('Style DNA: ' + topDna.pct + '% ' + topDna.label + (secDna ? ' / ' + secDna.pct + '% ' + secDna.label : ''));
+    }
     if (quizData.sil) personaSummaryParts.push('Silhouette: ' + quizData.sil);
     if (quizData.nk) personaSummaryParts.push('Neckline: ' + quizData.nk);
+    if (quizData.fab) personaSummaryParts.push('Fabric: ' + quizData.fab);
     if (quizData.timelineLabel) personaSummaryParts.push('Timeline: ' + quizData.timelineLabel);
   }
   var personaPrefix = personaSummaryParts.length ? (personaSummaryParts.join(' · ') + ' | ') : '';
   var copyNote = personaPrefix + (styleLabels.length ? ('Saved Cloud Nine Styles (' + styleLabels.length + '): ' + styleLabels.join(', ')) : '');
+
+  var pillsHtml = savedItems.slice(0, 6).map(function(item) {
+    var img = (item.x && item.x.length) ? item.x[0] : (item.i || 'images/bridal/Bridal-hero.webp');
+    var label = escapeHTML((item.d ? item.d + ' ' : '') + (item.s ? '#' + item.s : (item.n || 'Style')));
+    return '<div class="lc-gown-pill">' +
+      '<img src="' + escapeHTML(img) + '" alt="' + label + '" class="lc-gown-thumb" loading="lazy"/>' +
+      '<span class="lc-gown-label">' + label + '</span>' +
+    '</div>';
+  }).join('');
+  if (savedItems.length > 6) {
+    pillsHtml += '<div class="lc-gown-pill lc-gown-more">+' + (savedItems.length - 6) + ' more</div>';
+  }
+
+  var quizMetaHtml = '';
+  if (quizData && quizData.title) {
+    var dnaPillHtml = (Array.isArray(quizData.dna) && quizData.dna[0])
+      ? '<span style="display:inline-flex;align-items:center;padding:4px 10px;border-radius:9999px;background:#fff;border:1px solid rgba(28,78,80,0.14);color:var(--teal-deep);font-family:var(--font-kicker);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">DNA: ' + escapeHTML(quizData.dna[0].pct + '% ' + quizData.dna[0].label) + '</span>'
+      : '';
+    quizMetaHtml =
+      '<div class="lc-quiz-meta-pills" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;">' +
+        '<span style="display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:9999px;background:rgba(28,78,80,0.09);color:var(--teal-deep);font-family:var(--font-kicker);font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;">✦ ' + escapeHTML(quizData.title) + '</span>' +
+        dnaPillHtml +
+        (quizData.sil ? '<span style="display:inline-flex;align-items:center;padding:4px 10px;border-radius:9999px;background:#fff;border:1px solid rgba(28,78,80,0.14);color:var(--text);font-family:var(--font-kicker);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">Silhouette: ' + escapeHTML(quizData.sil) + '</span>' : '') +
+        (quizData.nk ? '<span style="display:inline-flex;align-items:center;padding:4px 10px;border-radius:9999px;background:#fff;border:1px solid rgba(28,78,80,0.14);color:var(--text);font-family:var(--font-kicker);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">Neckline: ' + escapeHTML(quizData.nk) + '</span>' : '') +
+        (quizData.timelineLabel ? '<span style="display:inline-flex;align-items:center;padding:4px 10px;border-radius:9999px;background:#fff;border:1px solid rgba(28,78,80,0.14);color:var(--text-muted);font-family:var(--font-kicker);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">' + escapeHTML(quizData.timelineLabel) + '</span>' : '') +
+      '</div>';
+  }
+
+  function clearSharedQuizFromPage() {
+    if (window.cnHaptic) window.cnHaptic(10);
+    try {
+      sessionStorage.removeItem('cloudnine_quiz_persona');
+      localStorage.removeItem('cloudnine_quiz_persona');
+    } catch (e) {}
+
+    try {
+      var cleanParams = new URLSearchParams(window.location.search || '');
+      cleanParams.delete('from');
+      cleanParams.delete('persona');
+      cleanParams.delete('sil');
+      cleanParams.delete('tl');
+      var qs = cleanParams.toString();
+      var nextUrl = window.location.pathname + (qs ? '?' + qs : '') + (window.location.hash || '');
+      window.history.replaceState({}, '', nextUrl);
+    } catch (e) {}
+
+    var contactBanner = document.getElementById('contactQuizConciergeBanner');
+    if (contactBanner) contactBanner.remove();
+
+    var apptBanner = document.getElementById('lookbookConciergeBanner');
+    if (apptBanner) {
+      var remainingLookbook = WL.load();
+      if (!remainingLookbook.length) {
+        apptBanner.remove();
+      } else {
+        var metaRow = apptBanner.querySelector('.lc-quiz-meta-pills');
+        if (metaRow) metaRow.remove();
+        var clearApptBtn = document.getElementById('lcClearQuizApptBtn');
+        if (clearApptBtn) clearApptBtn.remove();
+      }
+    }
+
+    document.querySelectorAll('.lc-contact-badge').forEach(function(b) { b.remove(); });
+
+    ['message', 'gc_message'].forEach(function(fieldId) {
+      var f = document.getElementById(fieldId);
+      if (f && f.dataset.quizAutofilled === 'true') {
+        f.value = '';
+        delete f.dataset.quizAutofilled;
+      }
+    });
+
+    var toast = document.getElementById('wlToast');
+    if (toast) {
+      var msg = toast.querySelector('.wl-toast-msg');
+      if (msg) msg.textContent = 'Quiz Results Cleared';
+      toast.classList.add('visible');
+      setTimeout(function() { toast.classList.remove('visible'); }, 3000);
+    }
+  }
+  window.clearSharedQuizResults = clearSharedQuizFromPage;
 
   // 1. Appointments Page: Inject Curated Fitting Lookbook Concierge Bar above #bridaliveWrap
   var bridaliveWrap = document.getElementById('bridaliveWrap');
@@ -2092,28 +1597,6 @@ function initLookbookConcierge() {
     var banner = document.createElement('div');
     banner.id = 'lookbookConciergeBanner';
     banner.className = 'lookbook-concierge-banner double-bezel';
-
-    var pillsHtml = savedItems.slice(0, 6).map(function(item) {
-      var img = (item.x && item.x.length) ? item.x[0] : (item.i || 'images/bridal/Bridal-hero.webp');
-      var label = escapeHTML((item.d ? item.d + ' ' : '') + (item.s ? '#' + item.s : (item.n || 'Style')));
-      return '<div class="lc-gown-pill">' +
-        '<img src="' + escapeHTML(img) + '" alt="' + label + '" class="lc-gown-thumb" loading="lazy"/>' +
-        '<span class="lc-gown-label">' + label + '</span>' +
-      '</div>';
-    }).join('');
-    if (savedItems.length > 6) {
-      pillsHtml += '<div class="lc-gown-pill lc-gown-more">+' + (savedItems.length - 6) + ' more</div>';
-    }
-
-    var quizMetaHtml = '';
-    if (quizData && quizData.title) {
-      quizMetaHtml =
-        '<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;">' +
-          '<span style="display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:9999px;background:rgba(28,78,80,0.09);color:var(--teal-deep);font-family:var(--font-kicker);font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;">✦ ' + escapeHTML(quizData.title) + '</span>' +
-          (quizData.sil ? '<span style="display:inline-flex;align-items:center;padding:4px 10px;border-radius:9999px;background:#fff;border:1px solid rgba(28,78,80,0.14);color:var(--text);font-family:var(--font-kicker);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">Silhouette: ' + escapeHTML(quizData.sil) + '</span>' : '') +
-          (quizData.timelineLabel ? '<span style="display:inline-flex;align-items:center;padding:4px 10px;border-radius:9999px;background:#fff;border:1px solid rgba(28,78,80,0.14);color:var(--text-muted);font-family:var(--font-kicker);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">' + escapeHTML(quizData.timelineLabel) + '</span>' : '') +
-        '</div>';
-    }
 
     var headingText = savedItems.length
       ? ('Your Curated Fitting Lookbook (' + savedItems.length + ' ' + (savedItems.length === 1 ? 'Style' : 'Styles') + ')')
@@ -2132,9 +1615,7 @@ function initLookbookConcierge() {
             '<button type="button" class="btn-primary lc-copy-btn" id="lcCopyStylesBtn">' +
               '<span>Copy Profile &amp; Style Numbers</span>' +
             '</button>' +
-            '<button type="button" class="btn-outline lc-dossier-btn" onclick="if(window.WL)WL.openLookbook()">' +
-              '<span>View Dossier</span>' +
-            '</button>' +
+            (quizData ? '<button type="button" class="btn-outline lc-clear-quiz-btn" id="lcClearQuizApptBtn" onclick="window.clearSharedQuizResults()"><span>✕ Clear Quiz Results</span></button>' : '') +
           '</div>' +
         '</div>' +
         (pillsHtml ? '<div class="lc-pills-row">' + pillsHtml + '</div>' : '') +
@@ -2157,22 +1638,114 @@ function initLookbookConcierge() {
     }
   }
 
-  // 2. Contact Page: Auto-Populate Inquiry Textarea with Saved Lookbook Gowns & Quiz Persona
+  // 2. Contact Page: Inject Rich Quiz Results & Lookbook Banner + Auto-Populate Inquiry Textareas
   var msgField = document.getElementById('message');
-  if (msgField && !msgField.value.trim()) {
+  var gcMsgField = document.getElementById('gc_message');
+  if (msgField || gcMsgField) {
+    var dnaDetail = '';
+    if (quizData && Array.isArray(quizData.dna) && quizData.dna[0]) {
+      var d0 = quizData.dna[0];
+      var d1 = quizData.dna[1];
+      dnaDetail = ' (' + d0.pct + '% ' + d0.label + (d1 ? ', ' + d1.pct + '% ' + d1.label : '') + (quizData.sil ? ' · Silhouette: ' + quizData.sil : '') + ')';
+    } else if (quizData && quizData.sil) {
+      dnaDetail = ' (' + quizData.sil + ' silhouette)';
+    }
+
+    var traitExtras = [];
+    if (quizData && quizData.nk) traitExtras.push('Neckline: ' + quizData.nk);
+    if (quizData && quizData.fab) traitExtras.push('Fabric: ' + quizData.fab);
+    if (quizData && quizData.timelineLabel) traitExtras.push('Timeline: ' + quizData.timelineLabel);
+
     var quizIntro = (quizData && quizData.title)
-      ? ('My Bridal Style Quiz matched me with "' + quizData.title + '"' + (quizData.sil ? ' (' + quizData.sil + ' silhouette)' : '') + '. ')
+      ? ('My Bridal Style Quiz matched me with "' + quizData.title + '"' + dnaDetail + (traitExtras.length ? ' [' + traitExtras.join(' · ') + ']' : '') + '. ')
       : '';
     var stylesPart = styleLabels.length
-      ? ('I would love to inquire about availability and fitting options for these styles: ' + styleLabels.join(', ') + '.')
+      ? ('I would love to inquire about availability and fitting options for these matched styles: ' + styleLabels.join(', ') + '.')
       : 'I would love to schedule a consultation with a stylist for my upcoming wedding.';
-    msgField.value = 'Hi Cloud Nine! ' + quizIntro + stylesPart;
-    var group = msgField.closest('.input-group');
-    if (group && !group.querySelector('.lc-contact-badge')) {
-      var badge = document.createElement('div');
-      badge.className = 'lc-contact-badge';
-      badge.textContent = '✓ Pre-loaded ' + (quizData && quizData.title ? quizData.title + ' + ' : '') + styleLabels.length + ' style' + (styleLabels.length === 1 ? '' : 's') + ' from your Fitting Lookbook';
-      group.insertBefore(badge, msgField);
+    var fullMessageText = 'Hi Cloud Nine! ' + quizIntro + stylesPart;
+
+    var reqSection = document.getElementById('request-form');
+    var reqInner = reqSection ? reqSection.querySelector('.appt-req-inner') : null;
+    if (reqInner && !document.getElementById('contactQuizConciergeBanner')) {
+      var cBanner = document.createElement('div');
+      cBanner.id = 'contactQuizConciergeBanner';
+      cBanner.className = 'lookbook-concierge-banner double-bezel';
+      cBanner.style.marginBottom = '36px';
+
+      var contactTitle = (quizData && quizData.title)
+        ? ('Shared from Style Quiz: ' + escapeHTML(quizData.title))
+        : ('Your Curated Fitting Lookbook (' + savedItems.length + ' ' + (savedItems.length === 1 ? 'Style' : 'Styles') + ')');
+
+      cBanner.innerHTML =
+        '<div class="double-bezel-inner lc-banner-inner">' +
+          '<div class="lc-banner-top">' +
+            '<div class="lc-banner-copy">' +
+              '<span class="lc-eyebrow">✦ Style Quiz &amp; Lookbook Attached · Pre-Loaded into Your Inquiry</span>' +
+              quizMetaHtml +
+              '<h3 class="lc-title">' + contactTitle + '</h3>' +
+              '<p class="lc-desc">Your Bridal Style DNA and matched showroom gowns have been pre-loaded into the inquiry form below so our Peoria stylist team can review your profile right away.</p>' +
+            '</div>' +
+            '<div class="lc-actions">' +
+              '<button type="button" class="btn-outline lc-dossier-btn" id="lcJumpGeneralFormBtn">' +
+                '<span>Use General Contact Form ↓</span>' +
+              '</button>' +
+              '<a href="quiz.html" class="btn-outline lc-dossier-btn" style="text-decoration:none;display:inline-flex;align-items:center;justify-content:center;">' +
+                '<span>Retake / View Quiz</span>' +
+              '</a>' +
+              '<button type="button" class="btn-outline lc-clear-quiz-btn" id="lcClearQuizContactBtn" onclick="window.clearSharedQuizResults()">' +
+                '<span>✕ Clear Quiz Results</span>' +
+              '</button>' +
+            '</div>' +
+          '</div>' +
+          (pillsHtml ? '<div class="lc-pills-row">' + pillsHtml + '</div>' : '') +
+        '</div>';
+
+      reqInner.insertBefore(cBanner, reqInner.firstElementChild);
+
+      var jumpGenBtn = document.getElementById('lcJumpGeneralFormBtn');
+      if (jumpGenBtn) {
+        jumpGenBtn.addEventListener('click', function() {
+          var genForm = document.getElementById('generalContactForm');
+          if (genForm) {
+            genForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            var subj = document.getElementById('gc_subject');
+            if (subj && !subj.value) subj.value = 'Bridal Gown Inquiry';
+            setTimeout(function() {
+              var nameInput = document.getElementById('gc_name');
+              if (nameInput) nameInput.focus();
+            }, 450);
+          }
+        });
+      }
+    }
+
+    function populateContactTextarea(field) {
+      if (!field || field.value.trim()) return;
+      field.value = fullMessageText;
+      field.dataset.quizAutofilled = 'true';
+      var group = field.closest('.input-group');
+      if (group && !group.querySelector('.lc-contact-badge')) {
+        var badge = document.createElement('div');
+        badge.className = 'lc-contact-badge';
+        badge.innerHTML =
+          '<span>✓ Pre-loaded ' + escapeHTML(quizData && quizData.title ? quizData.title + (styleLabels.length ? ' + ' + styleLabels.length + ' matched styles' : '') : styleLabels.length + ' saved styles') + '</span>' +
+          '<button type="button" class="lc-badge-clear-btn" onclick="window.clearSharedQuizResults()" aria-label="Clear pre-loaded quiz results">✕ Clear</button>';
+        group.insertBefore(badge, field);
+      }
+    }
+
+    populateContactTextarea(msgField);
+    populateContactTextarea(gcMsgField);
+
+    var gcSubj = document.getElementById('gc_subject');
+    if (gcSubj && !gcSubj.value && quizData) {
+      gcSubj.value = 'Bridal Gown Inquiry';
+    }
+
+    if (urlParams.get('from') === 'quiz' && reqSection) {
+      setTimeout(function() {
+        reqSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 150);
     }
   }
 }

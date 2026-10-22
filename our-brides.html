@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"/>
   <link rel="preload" as="image" href="images/real/brides/hero-main.webp" type="image/webp"/>
-  <link rel="stylesheet" href="shared.css?v=20261021b"/>
+  <link rel="stylesheet" href="shared.css?v=20261022f"/>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -110,120 +110,68 @@
       .brides-hero-h1 { font-size: clamp(42px, 10vw, 72px); }
     }
 
-    /* ── STATS STRIP ── */
-    .brides-stats {
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-    }
-    .brides-stat {
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      padding: 40px 24px; gap: 7px;
-      border-right: 1px solid var(--border);
-      position: relative;
-    }
-    .brides-stat:last-child { border-right: none; }
-    .brides-stat-num {
-      font-family: var(--font-serif);
-      font-size: clamp(36px, 5vw, 60px); font-weight: 700;
-      letter-spacing: -.04em; color: var(--teal-deep); line-height: 1;
-      font-variant-numeric: tabular-nums;
-    }
-    .brides-stat-label {
-      font-family: var(--font-kicker);
-      font-size: 11px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
-      color: var(--text-light);
-    }
-    @media (max-width: 600px) {
-      .brides-stat { padding: 28px 12px; }
-      .brides-stat-num { font-size: clamp(28px, 7vw, 40px); }
-    }
-
-    /* ── SEGMENTED FILTER BAR (APPLE HIG) ── */
-    .bfilter-bar-wrap {
-      background: #0d1617;
-      padding: 24px 40px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    .bfilter-bar {
-      max-width: 1400px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    .bfilter-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 18px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 9999px;
-      color: rgba(255, 255, 255, 0.7);
-      font-family: var(--font-kicker);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all 0.25s cubic-bezier(0.32, 0.72, 0, 1);
-    }
-    .bfilter-btn:hover {
-      background: rgba(255, 255, 255, 0.12);
-      color: #ffffff;
-      border-color: rgba(255, 255, 255, 0.25);
-    }
-    .bfilter-btn.active {
-      background: var(--teal-deep);
-      border-color: var(--teal-mid);
-      color: #ffffff;
-      box-shadow: 0 4px 16px rgba(28, 78, 80, 0.4);
-    }
-    .bfilter-count {
-      font-size: 11px;
-      opacity: 0.75;
-      font-variant-numeric: tabular-nums;
-    }
-
-    /* ── EDITORIAL GALLERY ── */
+    /* ── SIMPLE PRETTY PHOTO GALLERY ── */
     .brides-gallery-section {
-      background: #080c0d;
-      padding: 0;
+      background: var(--bg);
+      padding: 64px clamp(16px, 4vw, 48px) 80px;
+    }
+    .brides-gallery-header {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 48px;
+    }
+    .brides-gallery-tagline {
+      font-family: var(--font-kicker);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--teal-deep);
+      margin-bottom: 12px;
+      display: block;
+    }
+    .brides-gallery-title {
+      font-family: var(--font-serif);
+      font-size: clamp(32px, 4.5vw, 52px);
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.08;
+      letter-spacing: -.025em;
+      margin: 0;
+    }
+    .brides-gallery-title em {
+      font-style: italic;
+      color: var(--teal-deep);
     }
     .brides-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 3px;
-      max-width: 100%;
-      background: #080c0d;
+      gap: 20px;
+      max-width: 1360px;
+      margin: 0 auto;
     }
-    @media (min-width: 901px) {
-      .brides-grid { grid-auto-rows: clamp(360px, 30vw, 460px); }
-      .bc--lg { grid-column: span 2; }
+    @media (max-width: 1080px) {
+      .brides-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
     }
-    @media (max-width: 900px) {
-      .brides-grid { grid-template-columns: repeat(2, 1fr); gap: 3px; }
-      .bc--lg { grid-column: span 2; }
+    @media (max-width: 768px) {
+      .brides-gallery-section { padding: 44px 16px 56px; }
+      .brides-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
     }
 
     .bc {
       position: relative;
       overflow: hidden;
       cursor: pointer;
-      background: var(--teal-dark);
-      transition: opacity .4s cubic-bezier(0.32, 0.72, 0, 1),
-                  transform .4s cubic-bezier(0.32, 0.72, 0, 1);
+      aspect-ratio: 3 / 4;
+      border-radius: 16px;
+      background: var(--teal-xlight);
+      box-shadow: 0 8px 24px rgba(28, 78, 80, 0.08);
+      transition: transform .4s cubic-bezier(0.32, 0.72, 0, 1),
+                  box-shadow .4s cubic-bezier(0.32, 0.72, 0, 1);
     }
-    .bc.is-hidden {
-      display: none !important;
+    .bc:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 40px rgba(28, 78, 80, 0.16);
     }
     .bc-img {
       width: 100%;
@@ -233,43 +181,29 @@
       display: block;
       transition: transform .8s cubic-bezier(.16,1,.3,1);
     }
-    .bc:hover .bc-img { transform: scale(1.06); }
+    .bc:hover .bc-img { transform: scale(1.05); }
     .bc-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,.78) 0%, rgba(0,0,0,.15) 40%, transparent 65%);
-      transition: opacity .4s;
+      background: linear-gradient(to top, rgba(0,0,0,.52) 0%, transparent 45%);
+      opacity: 0;
+      transition: opacity .35s ease;
     }
-    .bc:hover .bc-overlay { opacity: 1.1; }
+    .bc:hover .bc-overlay { opacity: 1; }
     .bc-info {
       position: absolute; bottom: 0; left: 0; right: 0;
-      padding: 20px 18px;
+      padding: 16px 18px;
       z-index: 2;
-    }
-    .bc-name {
-      font-family: var(--font-serif);
-      font-size: clamp(14px, 1.5vw, 20px); font-weight: 700;
-      color: #fff; line-height: 1.1; letter-spacing: -.01em;
-    }
-    .bc--lg .bc-name { font-size: clamp(18px, 2.2vw, 28px); }
-    .bc-vibe-tag {
-      font-family: var(--font-kicker);
-      font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
-      color: rgba(152,213,214,.8);
-      margin-bottom: 4px;
-      display: inline-block;
-    }
-    .bc-quote {
-      font-family: var(--font-serif);
-      font-size: clamp(12px, 1.2vw, 14px); font-style: italic;
-      color: rgba(255,255,255,.75); line-height: 1.45;
-      margin-top: 4px;
       opacity: 0;
       transform: translateY(6px);
-      transition: opacity .4s .05s, transform .4s .05s;
-      max-height: 0; overflow: hidden;
+      transition: opacity .35s ease, transform .35s ease;
     }
-    .bc--lg .bc-quote { display: block; max-height: 5em; }
-    .bc:hover .bc-quote { opacity: 1; transform: translateY(0); }
+    .bc:hover .bc-info { opacity: 1; transform: translateY(0); }
+    .bc-name {
+      font-family: var(--font-serif);
+      font-size: 18px; font-weight: 700;
+      color: #fff; line-height: 1.15; letter-spacing: -.01em;
+    }
+    .bc-vibe-tag { display: none; }
 
     /* ── LIGHTBOX (SHOP THIS LOOK MODAL) ── */
     .lb {
@@ -443,6 +377,27 @@
       .be-featured-section { padding: 64px 20px; }
       .bfilter-bar-wrap { padding: 16px 20px; }
     }
+    @media (hover: none), (max-width: 768px) {
+      .bc-overlay {
+        opacity: 1;
+        background: linear-gradient(to top, rgba(0,0,0,.62) 0%, transparent 45%);
+      }
+      .bc-info {
+        opacity: 1;
+        transform: translateY(0);
+        padding: 12px 12px;
+      }
+      .bc-name {
+        font-size: 14.5px;
+      }
+    }
+    @media (max-width: 640px) {
+      .bf-row { grid-template-columns: 1fr; gap: 14px; }
+      .brides-quote-strip { padding: 56px 20px; }
+      .lb-info { padding: 16px 20px; }
+      .lb-prev { left: 8px; width: 40px; height: 40px; }
+      .lb-next { right: 8px; width: 40px; height: 40px; }
+    }
   </style>
 </head>
 <body>
@@ -460,15 +415,11 @@
   <div class="brides-hero-vignette"></div>
   <div class="brides-hero-content">
     <div class="brides-hero-left">
-      <div class="eyebrow">Cloud Nine Bridal · Peoria, IL</div>
-      <h1 class="brides-hero-h1">Their Stories,<br/><em>Their Moments.</em></h1>
-      <p style="font-size:14px;font-weight:300;color:rgba(255,255,255,.75);margin-top:14px;max-width:400px;line-height:1.7;">Real Central Illinois brides who found their dream gown at Cloud Nine. Filter by silhouette and wedding aesthetic.</p>
+      <div class="eyebrow">15 years of saying yes</div>
+      <h1 class="brides-hero-h1">Our Real<br/><em>Brides.</em></h1>
+      <p style="font-size:15px;font-weight:300;color:rgba(255,255,255,.8);margin-top:14px;max-width:440px;line-height:1.75;">15 years of saying yes — celebrating the brides who found their dream wedding gown at Cloud Nine Bridal Boutique.</p>
     </div>
     <div class="brides-hero-right">
-      <div>
-        <div class="brides-hero-count">27</div>
-        <div class="brides-hero-count-label">Real Wedding Stories</div>
-      </div>
       <a href="#be-featured" class="brides-hero-cta">
         Share Your Wedding Story
       </a>
@@ -476,50 +427,12 @@
   </div>
 </div>
 
-<!-- ── STATS STRIP ── -->
-<div class="brides-stats" aria-hidden="true">
-  <div class="brides-stat">
-    <div class="brides-stat-num">18<span style="font-size:.6em;letter-spacing:0">+</span></div>
-    <div class="brides-stat-label">Years of "Yes"</div>
-  </div>
-  <div class="brides-stat">
-    <div class="brides-stat-num" style="font-size:clamp(28px,4vw,48px)">1,000s</div>
-    <div class="brides-stat-label">Brides Styled</div>
-  </div>
-  <div class="brides-stat">
-    <div class="brides-stat-num">27</div>
-    <div class="brides-stat-label">Featured Photo Stories</div>
-  </div>
-</div>
-
-<!-- ── SEGMENTED FILTER BAR ── -->
-<div class="bfilter-bar-wrap">
-  <div class="bfilter-bar" role="tablist" aria-label="Filter real weddings by style">
-    <button class="bfilter-btn active" data-filter="all" onclick="filterBrides('all', this)">
-      <span>All Weddings</span>
-      <span class="bfilter-count">(27)</span>
-    </button>
-    <button class="bfilter-btn" data-filter="classic" onclick="filterBrides('classic', this)">
-      <span>Classic &amp; Ballroom</span>
-      <span class="bfilter-count">(7)</span>
-    </button>
-    <button class="bfilter-btn" data-filter="romantic" onclick="filterBrides('romantic', this)">
-      <span>Romantic &amp; Garden</span>
-      <span class="bfilter-count">(7)</span>
-    </button>
-    <button class="bfilter-btn" data-filter="boho" onclick="filterBrides('boho', this)">
-      <span>Boho &amp; Rustic</span>
-      <span class="bfilter-count">(6)</span>
-    </button>
-    <button class="bfilter-btn" data-filter="modern" onclick="filterBrides('modern', this)">
-      <span>Modern &amp; Chic</span>
-      <span class="bfilter-count">(7)</span>
-    </button>
-  </div>
-</div>
-
-<!-- ── EDITORIAL GALLERY ── -->
+<!-- ── SIMPLE PRETTY PHOTO GALLERY ── -->
 <div class="brides-gallery-section">
+  <div class="brides-gallery-header">
+    <span class="brides-gallery-tagline">15 years of saying yes</span>
+    <h2 class="brides-gallery-title">Cloud Nine <em>Bride Gallery</em></h2>
+  </div>
   <div class="brides-grid" id="bridesGrid">
 
     <!-- Card 00: Stephanie & Joseph -->
@@ -816,9 +729,6 @@
       <div class="lb-quote-text" id="lbQuote"></div>
     </div>
     <div class="lb-actions">
-      <a href="bridal-catalog.html" id="lbShopSilBtn" class="btn-luxury-pill" style="padding:8px 18px;font-family:var(--font-kicker);font-size:11px;">
-        <span>Shop Matching Gowns</span>
-      </a>
       <a href="appointments.html" class="btn-outline" style="color:#fff;border-color:rgba(255,255,255,.35);font-family:var(--font-kicker);font-size:11px;padding:8px 18px;">
         Book Appointment
       </a>
@@ -918,7 +828,7 @@
 
 </main>
 <footer id="site-footer"></footer>
-<script src="components.js?v=20261021c" defer></script>
+<script src="components.js?v=20261022f" defer></script>
 <script>
 (function() {
   var cards = Array.from(document.querySelectorAll('.bc[data-idx]'));
@@ -963,9 +873,6 @@
     lbName.textContent = d.name;
     lbQuote.textContent = d.quote ? `"${d.quote}"` : '';
     lbCtr.textContent  = (curIdx + 1) + ' / ' + data.length;
-    if (lbShopBtn) {
-      lbShopBtn.href = `bridal-catalog.html?sil=${encodeURIComponent(d.sil)}`;
-    }
   }
 
   function closeLb() {

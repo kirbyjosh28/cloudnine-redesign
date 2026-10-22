@@ -841,14 +841,14 @@ class CloudNineCatalog {
         ? `<div class="scrub-pips">${p.x.map((_, pi) => `<span class="scrub-pip ${pi===0?'active':''}"></span>`).join('')}</div>`
         : '';
 
-      const isAboveFold = this.page === 0 && i < 4;
+      const isAboveFold = this.page === 0 && i < 8;
       const loadingAttr = isAboveFold ? 'loading="eager" fetchpriority="high"' : 'loading="lazy" decoding="async"';
       const loadHandlers = `onload="this.classList.add('img-loaded');if(this.parentElement)this.parentElement.classList.remove('loading');" onerror="if(this.parentElement)this.parentElement.classList.remove('loading');"`;
 
       if (this.category === 'prom' || this.category === 'hoco') {
         const boutiqueNote = this.category === 'prom'
-          ? '<span>Walk-Ins Welcome · 4701 N. University</span>'
-          : '<span>Walk-Ins Welcome · In-Stock &amp; Special Order</span>';
+          ? '<span>In-Store &amp; Special Order · Sizes 000–36</span>'
+          : '<span>In-Stock &amp; Special Order · Walk-Ins Only</span>';
         const defaultDes = this.category === 'prom' ? 'Designer Prom' : 'Designer HOCO';
 
         card.innerHTML = `
@@ -1177,14 +1177,11 @@ class CloudNineCatalog {
     if (mBadge) mBadge.textContent = p.s ? `Style #${p.s}` : '';
 
     if (mDesc) {
+      const stockNotice = '<div style="font-weight:600;color:var(--teal-deep);background:var(--teal-xlight);border:1px solid var(--border);padding:10px 14px;margin-bottom:14px;">Not all gowns are kept in store. Contact us for stock and availability details.</div>';
       if (p.c && p.c.trim()) {
-        mDesc.textContent = p.c;
-      } else if (this.category === 'prom') {
-        mDesc.textContent = 'Show-stopping designer prom gown from Cloud Nine Prom in Peoria, IL (4701 N. University St). Please note that we show the full collections from our designers — contact us to confirm in-store availability, sizes, and special order options.';
-      } else if (this.category === 'hoco') {
-        mDesc.textContent = 'Fun, fashionable designer homecoming style from Cloud Nine Prom in Peoria, IL (4701 N. University St). Walk-ins only — no appointment needed! Contact us to confirm in-store availability and special order options.';
+        mDesc.innerHTML = stockNotice + `<div>${this.esc(p.c)}</div>`;
       } else {
-        mDesc.innerHTML = '<em>Not all gowns are kept in store. Contact us to confirm availability, special order options, sizing, and colors. Our stylists will find the right fit and timeline for you.</em>';
+        mDesc.innerHTML = stockNotice;
       }
     }
 
@@ -1195,7 +1192,7 @@ class CloudNineCatalog {
           ['Designer', p.d || 'Prom Collection'],
           ['Prom Pricing', '$150 – $1,000'],
           ['Experience', 'Walk-Ins Only (No Appt Needed)'],
-          ['Location', '4701 N. University St, Peoria IL']
+          ['Location', 'Peoria, IL']
         ];
       } else if (this.category === 'hoco') {
         metaItems = [
@@ -1206,18 +1203,14 @@ class CloudNineCatalog {
         ];
       } else if (this.category === 'mothers') {
         metaItems = [
-          p.sil ? ['Silhouette', this.titleCase(p.sil)] : null,
           p.d ? ['Designer', p.d] : null,
-          (p.f && p.f.length) ? ['Fabric', p.f.join(', ')] : null,
-          ['Availability', 'In-Store & Special Order'],
+          ['Availability', 'Contact Us'],
           ['Stylist Consultation', 'Recommended']
         ].filter(Boolean);
       } else {
         // Bridal
         metaItems = [
-          p.sil ? ['Silhouette', this.titleCase(p.sil)] : null,
-          (p.f && p.f.length) ? ['Fabric', p.f.join(', ')] : null,
-          (p.nk && p.nk.length) ? ['Neckline', p.nk.join(', ')] : null,
+          p.d ? ['Designer', p.d] : null,
           p.tr ? ['Trend', p.tr] : null,
           ['Availability', 'Contact Us'],
           ['Appointment', 'Recommended']
@@ -1248,18 +1241,6 @@ class CloudNineCatalog {
         contactLink.href = `contact.html?cat=${this.category}&sku=${skuParam}&des=${desParam}#request-form`;
       }
 
-      // Ensure Save to Lookbook button exists on Bridal & Mothers modals as well
-      let wlBtn = document.getElementById('modalWishlistBtn');
-      if (!wlBtn) {
-        wlBtn = document.createElement('button');
-        wlBtn.type = 'button';
-        wlBtn.id = 'modalWishlistBtn';
-        wlBtn.className = 'btn-outline modal-wl-btn';
-        wlBtn.innerHTML = `<span id="modalWishlistLabel">Save to Lookbook</span>`;
-        wlBtn.addEventListener('click', () => this.toggleModalWishlist());
-        mCta.insertBefore(wlBtn, contactLink || mCta.lastElementChild);
-      }
-
       // Ensure "View Full Gown Page →" button exists for full editorial view
       let fullBtn = document.getElementById('modalFullPageBtn');
       if (!fullBtn) {
@@ -1277,7 +1258,6 @@ class CloudNineCatalog {
       }
     }
 
-    this.updateModalWishlistBtn();
     this.renderThumbs();
     this.showImg(0);
 

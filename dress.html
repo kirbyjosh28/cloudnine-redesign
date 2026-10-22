@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"/>
-  <link rel="stylesheet" href="shared.css?v=20261021b"/>
+  <link rel="stylesheet" href="shared.css?v=20261022f"/>
   <style>
 
     /* ── DRESS DETAIL PAGE — Galia Lahav editorial style ── */
@@ -504,6 +504,7 @@
         <div class="dp-designer" id="dpDesigner">Cloud Nine Bridal</div>
         <h1 class="dp-title" id="dpTitle">Gown Detail</h1>
         <div class="dp-style-num" id="dpStyleNum"></div>
+        <p class="dp-stock-prominent" style="font-family:var(--font-sans);font-size:14px;font-weight:600;color:var(--teal-deep);background:var(--teal-xlight);border:1px solid var(--border);padding:12px 16px;margin:0 0 20px;line-height:1.55;">Not all gowns are kept in store. <a href="contact.html" id="dpStockContactLink" style="color:var(--teal-deep);text-decoration:underline;font-weight:700;">Contact us</a> for stock and availability details.</p>
 
         <div class="dp-rule"></div>
 
@@ -515,14 +516,7 @@
           <div class="double-bezel-inner dp-atelier-inner">
             <div class="dp-atelier-kicker">Peoria Atelier Concierge</div>
             <div class="dp-actions">
-              <a href="appointments.html" id="dpBookBtn" class="btn-luxury-pill" style="justify-content:center;width:100%;">
-                <span>Book a Fitting for This Style</span>
-              </a>
-              <button id="dpSaveBtn" class="btn-outline" style="justify-content:center;text-align:center;display:flex;align-items:center;gap:8px;width:100%;cursor:pointer;min-height:48px;" aria-label="Save to Lookbook">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                <span id="dpSaveBtnText">Save to Lookbook</span>
-              </button>
-              <a href="contact.html" id="dpInquireBtn" class="btn-outline" style="justify-content:center;text-align:center;">Inquire About This Style</a>
+              <a href="contact.html" id="dpInquireBtn" class="btn-luxury-pill" style="justify-content:center;text-align:center;width:100%;"><span>Inquire About This Style</span></a>
               <button id="dpShareBtn" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px;border:1px solid var(--border);border-radius:9999px;background:#fff;cursor:pointer;color:var(--text-muted);font-family:var(--font-kicker);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;transition:border-color .2s,color .2s,transform .18s;width:100%;min-height:44px;" aria-label="Share this style">
                 Share This Style
               </button>
@@ -537,13 +531,10 @@
 
   <!-- Mobile sticky CTA -->
   <div class="dp-mobile-cta" id="dpMobileCta">
-    <button type="button" class="dp-mobile-cta-btn dp-mobile-cta-heart" id="dpMobileHeartBtn" aria-label="Save to Lookbook">
-      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-    </button>
     <button type="button" class="dp-mobile-cta-btn dp-mobile-cta-share" id="dpMobileShareBtn" aria-label="Share Gown">
       <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>
     </button>
-    <a href="appointments.html" id="dpMobileBookBtn" class="dp-mobile-cta-book">Book an Appointment</a>
+    <a href="contact.html" id="dpMobileBookBtn" class="dp-mobile-cta-book">Inquire About This Style</a>
   </div>
 
   <!-- Lightbox (Lace & Detail Inspector) -->
@@ -564,8 +555,7 @@
   </div>
 
   <footer id="site-footer"></footer>
-  </main>
-  <script src="components.js?v=20261021d" defer></script>
+  <script src="components.js?v=20261022f" defer></script>
   <script>
   (async function() {
 
@@ -625,40 +615,34 @@
     const isMothers = /mothers/.test(dressSrc) || catParam === 'mothers';
     const activeCat = isProm ? 'prom' : isHoco ? 'hoco' : isMothers ? 'mothers' : 'bridal';
 
-    const dpBookBtn = document.getElementById('dpBookBtn');
     const dpMobileBookBtn = document.getElementById('dpMobileBookBtn');
     const dpInquireBtn = document.getElementById('dpInquireBtn');
+    const dpStockContactLink = document.getElementById('dpStockContactLink');
     const skuQuery = `cat=${activeCat}&sku=${encodeURIComponent(dress.s || '')}&des=${encodeURIComponent(dress.d || '')}`;
 
     if (dpInquireBtn) {
       dpInquireBtn.href = `contact.html?${skuQuery}#request-form`;
     }
+    if (dpStockContactLink) {
+      dpStockContactLink.href = `contact.html?${skuQuery}#request-form`;
+    }
+    if (dpMobileBookBtn) {
+      dpMobileBookBtn.href = `contact.html?${skuQuery}#request-form`;
+    }
 
     if (isProm || isHoco) {
       const r = document.documentElement.style;
-      r.setProperty('--teal-deep',    '#c9607f');
-      r.setProperty('--teal-darker',  '#a8495f');
-      r.setProperty('--teal-mid',     '#e8a0b4');
-      r.setProperty('--teal-light',   '#fce8ef');
-      r.setProperty('--teal-xlight',  '#fff5f7');
-      r.setProperty('--teal-dim',     'rgba(201,96,127,0.06)');
-      r.setProperty('--teal-dim2',    'rgba(201,96,127,0.11)');
-      r.setProperty('--teal-dark',    '#7d3348');
-      r.setProperty('--teal-logo',    '#e8a0b4');
+      r.setProperty('--teal-deep',    '#9b2c4e');
+      r.setProperty('--teal-darker',  '#7d1f3d');
+      r.setProperty('--teal-mid',     '#f4b8c8');
+      r.setProperty('--teal-light',   '#f4cbd9');
+      r.setProperty('--teal-xlight',  '#fdf2f6');
+      r.setProperty('--teal-dim',     'rgba(155,44,78,0.07)');
+      r.setProperty('--teal-dim2',    'rgba(155,44,78,0.13)');
+      r.setProperty('--teal-dark',    '#882342');
+      r.setProperty('--teal-logo',    '#d4728f');
       const gal = document.querySelector('.dp-gallery');
       if (gal) gal.style.background = '#f9f0f3';
-
-      if (dpBookBtn) {
-        dpBookBtn.href = isProm ? 'prom.html#visit' : 'hoco.html#hoco-faq';
-        dpBookBtn.innerHTML = '<span>Visit Boutique (Walk-Ins Only)</span>';
-      }
-      if (dpMobileBookBtn) {
-        dpMobileBookBtn.href = isProm ? 'prom.html#visit' : 'hoco.html#hoco-faq';
-        dpMobileBookBtn.textContent = 'Visit Boutique (Walk-Ins)';
-      }
-    } else {
-      if (dpBookBtn) dpBookBtn.href = `appointments.html?${skuQuery}#book-now`;
-      if (dpMobileBookBtn) dpMobileBookBtn.href = `appointments.html?${skuQuery}#book-now`;
     }
 
     /* ── Helpers ── */
@@ -737,9 +721,7 @@
 
     /* ── Meta rows ── */
     const metaRows = [
-      dress.sil ? ['Silhouette', titleCase(dress.sil)] : null,
-      (dress.f && dress.f.length) ? ['Fabric', dress.f.join(', ')] : null,
-      (dress.nk && dress.nk.length) ? ['Neckline', dress.nk.join(', ')] : null,
+      dress.d ? ['Designer', dress.d] : null,
       ['Availability', 'Contact Us'],
     ].filter(Boolean);
     document.getElementById('dpMeta').innerHTML = metaRows.map(([k,v]) =>

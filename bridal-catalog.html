@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"/>
     <link rel="preload" as="image" href="images/bridal/Bridal-hero.webp" type="image/webp"/>
-  <link rel="stylesheet" href="shared.css?v=20261021b"/>
+  <link rel="stylesheet" href="shared.css?v=20261022f"/>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -345,48 +345,7 @@
     <div class="filter-bar-compact" id="filterBarCompact">
       <!-- Left: Facet Dropdown Triggers -->
       <div class="filter-facets-group" id="filterFacetsGroup">
-        <!-- 1. Silhouette Trigger & Popover -->
-        <div class="filter-facet-dropdown" id="dropdownSil" data-facet="sil">
-          <button type="button" class="filter-trigger-btn" id="triggerSil" aria-expanded="false" aria-haspopup="true" onclick="toggleFacetDropdown('sil', event)">
-            <span class="filter-trigger-label" id="labelSil">Silhouette</span>
-            <span class="filter-trigger-caret" aria-hidden="true"></span>
-          </button>
-          <div class="filter-popover" id="popoverSil" role="region" aria-label="Silhouette Filters">
-            <div class="filter-popover-inner">
-              <div class="filter-popover-header">
-                <span class="filter-popover-title">Select Silhouette</span>
-              </div>
-              <div class="filter-popover-grid" id="sil-row">
-                <button type="button" class="filter-popover-chip active" data-filter="sil" data-value="all" onclick="setFilter('sil', 'all', true, event)">
-                  <span class="popover-chip-name">All Silhouettes</span>
-                  <span class="chip-count"></span>
-                </button>
-                <button type="button" class="filter-popover-chip" data-filter="sil" data-value="A-Line" onclick="setFilter('sil', 'A-Line', true, event)">
-                  <span class="popover-chip-name">A-Line</span>
-                  <span class="chip-count"></span>
-                </button>
-                <button type="button" class="filter-popover-chip" data-filter="sil" data-value="Fit &amp; Flare" onclick="setFilter('sil', 'Fit &amp; Flare', true, event)">
-                  <span class="popover-chip-name">Fit &amp; Flare</span>
-                  <span class="chip-count"></span>
-                </button>
-                <button type="button" class="filter-popover-chip" data-filter="sil" data-value="Mermaid" onclick="setFilter('sil', 'Mermaid', true, event)">
-                  <span class="popover-chip-name">Mermaid</span>
-                  <span class="chip-count"></span>
-                </button>
-                <button type="button" class="filter-popover-chip" data-filter="sil" data-value="Ballgown" onclick="setFilter('sil', 'Ballgown', true, event)">
-                  <span class="popover-chip-name">Ballgown</span>
-                  <span class="chip-count"></span>
-                </button>
-                <button type="button" class="filter-popover-chip" data-filter="sil" data-value="Sheath" onclick="setFilter('sil', 'Sheath', true, event)">
-                  <span class="popover-chip-name">Sheath</span>
-                  <span class="chip-count"></span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 2. Designer Trigger & Popover -->
+        <!-- Designer Trigger & Popover -->
         <div class="filter-facet-dropdown" id="dropdownDes" data-facet="des">
           <button type="button" class="filter-trigger-btn" id="triggerDes" aria-expanded="false" aria-haspopup="true" onclick="toggleFacetDropdown('des', event)">
             <span class="filter-trigger-label" id="labelDes">Designer</span>
@@ -465,11 +424,6 @@
         <button type="button" class="filter-sheet-close" onclick="closeMobileFilters()">Close</button>
       </div>
       <div class="filter-sheet-body">
-        <!-- Mobile Silhouette Section -->
-        <div class="filter-sheet-section">
-          <div class="filter-sheet-section-title">Silhouette</div>
-          <div class="filter-sheet-chips" id="mobileSilChips"></div>
-        </div>
         <!-- Mobile Designer Section -->
         <div class="filter-sheet-section">
           <div class="filter-sheet-section-title">Designer</div>
@@ -509,7 +463,6 @@
       <p class="m-desc" id="mDesc"></p>
       <div class="m-meta" id="mMeta"></div>
       <div class="m-cta">
-        <a href="appointments.html" class="btn-primary">Book an Appointment</a>
         <a href="contact.html" class="btn-outline">Ask About This Style</a>
       </div>
     </div>
@@ -517,7 +470,7 @@
 </div>
 
 <div id="site-footer"></div>
-<script src="components.js?v=20261021c" defer></script>
+<script src="components.js?v=20261022f" defer></script>
 <script src="catalog-engine.js?v=20261021b" defer></script>
 <script>
 const BRIDAL_SYNONYMS = {
@@ -558,8 +511,8 @@ function initBridalCatalog() {
     new CloudNineCatalog({
       category: 'bridal',
       dataPath: 'data/bridal-products.json?v=20260909k',
-      facets: ['sil', 'des'],
-      facetLabels: { sil: 'Silhouette', des: 'Designer' },
+      facets: ['des'],
+      facetLabels: { des: 'Designer' },
       synonyms: BRIDAL_SYNONYMS
     });
   } else {

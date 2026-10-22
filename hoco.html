@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"/>
   <link rel="preload" as="image" href="images/real/hoco/03-88900.webp" type="image/webp"/>
-  <link rel="stylesheet" href="shared.css?v=20261021b"/>
+  <link rel="stylesheet" href="shared.css?v=20261022f"/>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -39,40 +39,50 @@
   }
   </script>
   <style>
-    /* ── Pink Theme Override ── */
+    /* ── High-Contrast Couture Berry Theme Override (WCAG AAA/AA Compliant) ── */
     :root {
-      --teal-deep:   #c9607f;
-      --teal-darker: #a84d68;
-      --teal-dark:   #b5566f;
-      --teal-mid:    #d4789a;
+      --teal-deep:   #9b2c4e;
+      --teal-darker: #7d1f3d;
+      --teal-dark:   #882342;
+      --teal-mid:    #f4b8c8;
       --teal-dim:    #fce8f0;
-      --teal-xlight: #fdf0f5;
+      --teal-xlight: #fdf2f6;
       --white:       #ffffff;
-      --text:        #1a1a1a;
-      --text-muted:  #7a4555;
-      --border:      rgba(201,96,127,.20);
-      --border-mid:  rgba(201,96,127,.35);
-      --shadow:      rgba(201,96,127,.12);
+      --text:        #1a1215;
+      --text-muted:  #4a2531;
+      --border:      rgba(155,44,78,.22);
+      --border-mid:  rgba(155,44,78,.38);
+      --shadow:      rgba(155,44,78,.12);
+      --shadow-border:
+        0px 0px 0px 1px oklch(0 0 0 / 0.06),
+        0px 1px 2px -1px oklch(0 0 0 / 0.06),
+        0px 2px 4px 0px oklch(0 0 0 / 0.04);
+      --shadow-border-hover:
+        0px 0px 0px 1px oklch(0 0 0 / 0.08),
+        0px 8px 20px -4px rgba(155, 44, 78, 0.12),
+        0px 4px 8px -2px oklch(0 0 0 / 0.06);
     }
-    body { background: #faf4f7; color: var(--text); }
+    body { background: #faf4f7; color: var(--text); font-weight: 400; }
+    p { font-weight: 400; }
 
     /* Frosted luxury capsule nav override */
     .main-nav {
-      background: rgba(255,255,255,0.88) !important;
-      border-color: rgba(201,96,127,.28) !important;
-      box-shadow: 0 16px 40px -10px rgba(201,96,127,0.16), 0 0 0 1px rgba(201,96,127,0.10), inset 0 1px 0 rgba(255,255,255,0.95) !important;
+      background: rgba(255,255,255,0.92) !important;
+      border-color: rgba(155,44,78,.28) !important;
+      box-shadow: 0 16px 40px -10px rgba(155,44,78,0.16), 0 0 0 1px rgba(155,44,78,0.10), inset 0 1px 0 rgba(255,255,255,0.95) !important;
     }
     .main-nav.scrolled {
-      background: rgba(255,255,255,0.96) !important;
-      box-shadow: 0 20px 48px -8px rgba(201,96,127,0.22), 0 0 0 1px rgba(201,96,127,0.15), inset 0 1px 0 rgba(255,255,255,1) !important;
+      background: rgba(255,255,255,0.97) !important;
+      box-shadow: 0 20px 48px -8px rgba(155,44,78,0.22), 0 0 0 1px rgba(155,44,78,0.15), inset 0 1px 0 rgba(255,255,255,1) !important;
     }
 
     /* ── HOCO CINEMATIC VIDEO HERO ── */
     .hoco-video-hero {
       position: relative;
-      min-height: 85vh;
+      height: clamp(620px, 82vh, 820px);
+      min-height: 620px;
       overflow: hidden;
-      background: #1a0a10;
+      background: #16060c;
       display: flex;
       align-items: flex-end;
     }
@@ -84,85 +94,136 @@
     .hoco-video-vignette {
       position: absolute; inset: 0;
       background:
-        linear-gradient(to bottom, rgba(40,8,18,.6) 0%, transparent 35%, rgba(15,2,7,.92) 100%),
-        linear-gradient(to left, rgba(0,0,0,.5) 0%, transparent 60%);
+        linear-gradient(to bottom, rgba(24,5,12,.68) 0%, rgba(18,4,9,.42) 45%, rgba(14,2,6,.94) 100%),
+        linear-gradient(to left, rgba(14,2,6,.84) 0%, rgba(14,2,6,.48) 58%, rgba(14,2,6,.25) 100%);
     }
     .hoco-video-content {
       position: relative; z-index: 2;
-      width: 100%; max-width: 1440px; margin: 0 auto;
-      padding: 120px clamp(20px, 5vw, 64px) 72px;
+      width: 100%; max-width: 1360px; margin: 0 auto;
+      padding: 132px clamp(20px, 5vw, 64px) 64px;
       display: flex; justify-content: space-between; align-items: flex-end;
       gap: 40px; flex-wrap: wrap;
     }
     .hhero-left {
-      max-width: 240px;
-      background: rgba(255,255,255,.1); backdrop-filter: blur(12px);
-      border: 1px solid rgba(255,190,210,.3);
-      padding: 24px; text-align: center;
+      max-width: 260px;
+      background: rgba(20, 5, 11, 0.84); backdrop-filter: blur(16px);
+      border: 1px solid oklch(1 0 0 / 0.14);
+      box-shadow: 0 0 0 1px oklch(1 0 0 / 0.08), 0 16px 36px oklch(0 0 0 / 0.4);
+      padding: 26px 28px; text-align: center;
     }
     .hhero-right { max-width: 680px; text-align: right; }
+    @media (prefers-reduced-motion: no-preference) {
+      .hhero-right > * {
+        opacity: 0;
+        transform: translateY(12px);
+        filter: blur(4px);
+        animation: hocoHeroFadeInUp 400ms cubic-bezier(0.2, 0, 0, 1) forwards;
+      }
+      .hhero-right > *:nth-child(1) { animation-delay: 0ms; }
+      .hhero-right > *:nth-child(2) { animation-delay: 100ms; }
+      .hhero-right > *:nth-child(3) { animation-delay: 200ms; }
+      .hhero-right > *:nth-child(4) { animation-delay: 300ms; }
+      @keyframes hocoHeroFadeInUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+          filter: blur(0px);
+        }
+      }
+    }
     .hhero-eyebrow {
       font-family: var(--font-kicker);
       font-size: 11px; font-weight: 700;
-      letter-spacing: .30em; text-transform: uppercase;
-      color: rgba(255,190,210,.9);
+      letter-spacing: .26em; text-transform: uppercase;
+      color: #ffccd9;
       margin-bottom: 14px;
     }
     .hoco-video-title {
       font-family: var(--font-serif);
-      font-size: clamp(48px, 7.5vw, 96px);
+      font-size: clamp(46px, 6.8vw, 88px);
       font-weight: 700;
       color: #fff;
-      line-height: .92;
+      line-height: .94;
       letter-spacing: -.03em;
-      margin: 0 0 24px;
+      margin: 0 0 20px;
     }
-    .hoco-video-title em { font-style: italic; color: rgba(255,190,210,.85); }
+    .hoco-video-title em { font-style: italic; color: #ffccd9; }
     .hhero-desc {
       font-family: var(--font-sans);
-      font-size: 16px; font-weight: 300;
-      color: rgba(255,255,255,.8);
-      line-height: 1.8; margin-bottom: 32px; max-width: 540px; margin-left: auto;
+      font-size: 16px; font-weight: 400;
+      color: rgba(255,255,255,.94);
+      line-height: 1.7; margin-bottom: 28px; max-width: 560px; margin-left: auto;
     }
-    .hoco-video-actions { display: flex; gap: 14px; justify-content: flex-end; flex-wrap: wrap; }
+    .hoco-video-actions { display: flex; gap: 12px; justify-content: flex-end; flex-wrap: wrap; align-items: center; }
     .btn-hoco-primary {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 16px 36px;
-      background: #c9607f; color: #fff;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 15px 30px;
+      background: #9b2c4e; color: #fff;
+      border: 1.5px solid #9b2c4e;
+      border-radius: 8px;
       font-family: var(--font-kicker);
       font-size: 11px; font-weight: 700; letter-spacing: .16em;
       text-transform: uppercase; text-decoration: none;
-      transition: all .2s cubic-bezier(.16,1,.3,1);
+      transition: background-color 150ms cubic-bezier(0.2, 0, 0, 1), border-color 150ms cubic-bezier(0.2, 0, 0, 1), transform 150ms cubic-bezier(0.2, 0, 0, 1), scale 150ms ease-out;
     }
-    .btn-hoco-primary:hover { background: #a84d68; transform: translateY(-2px); }
+    .btn-hoco-primary:hover { background: #7d1f3d; border-color: #7d1f3d; transform: translateY(-2px); }
+    .btn-hoco-primary:active { scale: 0.96; }
     .btn-hoco-ghost {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 15px 32px;
-      border: 1px solid rgba(255,255,255,.45); color: #fff;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 15px 26px;
+      background: rgba(20,5,11,.58);
+      border: 1.5px solid rgba(255,255,255,.78); color: #fff;
+      border-radius: 8px;
       font-family: var(--font-kicker);
       font-size: 11px; font-weight: 700; letter-spacing: .16em;
       text-transform: uppercase; text-decoration: none;
-      transition: all .2s;
+      transition: background-color 150ms cubic-bezier(0.2, 0, 0, 1), border-color 150ms cubic-bezier(0.2, 0, 0, 1), transform 150ms cubic-bezier(0.2, 0, 0, 1), scale 150ms ease-out;
     }
-    .btn-hoco-ghost:hover { border-color: #fff; background: rgba(255,255,255,.1); }
+    .btn-hoco-ghost:hover { border-color: #fff; background: rgba(255,255,255,.18); }
+    .btn-hoco-ghost:active { scale: 0.96; }
+    .btn-white {
+      border-radius: 8px;
+      transition: background-color 150ms cubic-bezier(0.2, 0, 0, 1), color 150ms cubic-bezier(0.2, 0, 0, 1), transform 150ms cubic-bezier(0.2, 0, 0, 1), scale 150ms ease-out;
+    }
+    .btn-white:active { scale: 0.96; }
+
+    /* ── STRIP TICKER ── */
+    .hoco-ticker-strip {
+      background: #9b2c4e; color: #fff;
+      padding: 16px clamp(20px, 5vw, 64px);
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 20px; flex-wrap: wrap;
+    }
+    .hoco-ticker-left {
+      display: flex; align-items: center; gap: 12px;
+      font-family: var(--font-kicker);
+      font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
+      color: #ffffff;
+    }
+    .hoco-ticker-text { font-family: var(--font-sans); font-size: 13.5px; font-weight: 500; color: #ffffff; margin: 0; }
 
     /* ── HOCO SILHOUETTES MATRIX ── */
     .hoco-matrix-section {
-      padding: 90px clamp(20px, 5vw, 64px);
-      max-width: 1440px; margin: 0 auto;
+      padding: 88px clamp(20px, 5vw, 64px);
+      max-width: 1360px; margin: 0 auto;
     }
     .hoco-matrix-header {
-      text-align: center; max-width: 720px; margin: 0 auto 56px;
+      text-align: center; max-width: 720px; margin: 0 auto 48px;
+    }
+    .hoco-matrix-header .eyebrow,
+    .hoco-swatch-section .eyebrow,
+    .hoco-photo-grid .eyebrow {
+      justify-content: center;
     }
     .hoco-matrix-header h2 {
       font-family: var(--font-serif);
-      font-size: clamp(36px, 5vw, 60px); font-weight: 700;
-      color: var(--text); margin: 0 0 14px; line-height: 1.05;
+      font-size: clamp(34px, 4.6vw, 54px); font-weight: 700;
+      color: var(--text); margin: 0 0 14px; line-height: 1.06;
     }
     .hoco-matrix-header h2 em { font-style: italic; color: var(--teal-deep); }
     .hoco-matrix-header p {
       font-family: var(--font-sans);
-      font-size: 15px; color: var(--text-muted); font-weight: 300; line-height: 1.8; margin: 0;
+      font-size: 15.5px; color: var(--text-muted); font-weight: 400; line-height: 1.7; margin: 0;
     }
 
     .hoco-matrix-grid {
@@ -172,93 +233,113 @@
       background: var(--white);
       padding: 32px 24px;
       border: 1px solid var(--border);
+      box-shadow: var(--shadow-border);
       text-align: center;
-      transition: transform .25s cubic-bezier(.16,1,.3,1), box-shadow .25s;
+      transition: transform 200ms cubic-bezier(0.2, 0, 0, 1), box-shadow 200ms cubic-bezier(0.2, 0, 0, 1);
       display: flex; flex-direction: column; align-items: center;
     }
     .hoco-matrix-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 12px 28px rgba(201,96,127,.12);
-    }
-    .hoco-matrix-icon {
-      font-size: 28px; margin-bottom: 14px; color: var(--teal-deep);
+      box-shadow: var(--shadow-border-hover);
     }
     .hoco-matrix-title {
       font-family: var(--font-serif);
-      font-size: 20px; font-weight: 700; color: var(--text); margin: 0 0 8px;
+      font-size: 21px; font-weight: 700; color: var(--text); margin: 0 0 8px;
     }
     .hoco-matrix-desc {
       font-family: var(--font-sans);
-      font-size: 13.5px; color: var(--text-muted); font-weight: 300; line-height: 1.6; margin: 0 0 20px; flex: 1;
+      font-size: 14px; color: var(--text-muted); font-weight: 400; line-height: 1.65; margin: 0 0 20px; flex: 1;
     }
     .hoco-matrix-cta {
       font-family: var(--font-kicker);
       font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
       color: var(--teal-deep); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 6px;
+      transition: color 150ms cubic-bezier(0.2, 0, 0, 1), gap 150ms cubic-bezier(0.2, 0, 0, 1);
     }
+    .hoco-matrix-cta:hover { color: var(--teal-darker); gap: 9px; }
 
     /* ── SWATCH BAR ── */
     .hoco-swatch-section {
       background: var(--teal-dim);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
-      padding: 72px clamp(20px, 5vw, 64px);
+      padding: 76px clamp(20px, 5vw, 64px);
       text-align: center;
     }
     .hoco-swatches-grid {
-      display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-top: 32px;
+      display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 24px;
     }
     .hoco-swatch-pill {
       display: flex; align-items: center; gap: 10px;
-      padding: 10px 20px;
+      padding: 11px 20px;
       background: var(--white);
-      border: 1px solid var(--border);
+      border: 1.5px solid var(--border-mid);
+      border-radius: 8px;
+      box-shadow: var(--shadow-border);
       font-family: var(--font-kicker);
-      font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      font-size: 11px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase;
       color: var(--text);
+      transition: background-color 150ms cubic-bezier(0.2, 0, 0, 1), border-color 150ms cubic-bezier(0.2, 0, 0, 1), color 150ms cubic-bezier(0.2, 0, 0, 1), box-shadow 150ms cubic-bezier(0.2, 0, 0, 1), scale 150ms ease-out;
     }
+    a.hoco-swatch-pill:hover {
+      background: var(--teal-deep);
+      border-color: var(--teal-deep);
+      color: #ffffff;
+      box-shadow: var(--shadow-border-hover);
+    }
+    a.hoco-swatch-pill:active { scale: 0.96; }
     .hoco-swatch-dot {
-      width: 16px; height: 16px; border-radius: 50%;
-      border: 1px solid rgba(0,0,0,.15);
+      width: 15px; height: 15px; border-radius: 50%;
+      border: 1px solid rgba(0,0,0,.18);
     }
 
     /* ── PHOTO GRID ── */
     .hoco-photo-grid {
-      padding: 90px clamp(20px, 5vw, 64px);
-      max-width: 1440px; margin: 0 auto;
+      padding: 88px clamp(20px, 5vw, 64px);
+      max-width: 1360px; margin: 0 auto;
     }
     .hoco-photo-grid-inner {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 20px;
-      margin-top: 48px;
+      margin-top: 44px;
     }
     .hoco-photo-card {
       aspect-ratio: 3/4;
       overflow: hidden;
-      background: #000;
+      background: var(--white);
+      outline: 1px solid oklch(0 0 0 / 0.1);
+      outline-offset: -1px;
     }
     .hoco-photo-card img {
       width: 100%; height: 100%;
       object-fit: cover; object-position: center top;
-      transition: transform .6s cubic-bezier(.16,1,.3,1);
+      transition: transform .5s cubic-bezier(0.2, 0, 0, 1);
     }
     .hoco-photo-card:hover img { transform: scale(1.06); }
 
+    .hoco-faq-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
     /* ── CTA ── */
     .hoco-cta-final {
-      background: #c9607f; padding: 80px clamp(20px, 5vw, 64px);
+      background: #9b2c4e; padding: 80px clamp(20px, 5vw, 64px);
       text-align: center; color: #fff;
     }
     .hoco-cta-final h2 {
       font-family: var(--font-serif);
-      font-size: clamp(32px, 5vw, 56px); font-weight: 700; margin: 0 0 14px; line-height: 1.05;
+      font-size: clamp(32px, 4.6vw, 52px); font-weight: 700; margin: 0 0 14px; line-height: 1.06;
+      color: #ffffff;
     }
-    .hoco-cta-final h2 em { font-style: italic; color: rgba(255,220,230,.85); }
+    .hoco-cta-final h2 em { font-style: italic; color: #ffccd9; }
     .hoco-cta-final p {
       font-family: var(--font-sans);
-      font-size: 15px; color: rgba(255,255,255,.85); max-width: 520px; margin: 0 auto 36px;
-      font-weight: 300; line-height: 1.8;
+      font-size: 15.5px; color: rgba(255,255,255,.94); max-width: 560px; margin: 0 auto 32px;
+      font-weight: 400; line-height: 1.7;
     }
     .hoco-cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
@@ -268,6 +349,9 @@
       .hhero-right { text-align: left; }
       .hoco-video-actions { justify-content: flex-start; }
       .hhero-desc { margin-left: 0; }
+    }
+    @media (max-width: 768px) {
+      .hoco-faq-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 640px) {
       .hoco-matrix-grid { grid-template-columns: 1fr; }
@@ -288,23 +372,29 @@
 
   <div class="hoco-video-content">
     <div class="hhero-left double-bezel">
-      <div style="font-family:var(--font-serif);font-size:28px;font-weight:700;font-style:italic;color:#fff;margin-bottom:4px;">$90–$580</div>
-      <div style="font-family:var(--font-kicker);font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,190,210,.9);margin-bottom:8px;">Walk-Ins Only</div>
-      <p style="font-family:var(--font-sans);font-size:12.5px;color:rgba(255,255,255,.75);margin:0;line-height:1.5;">No appointment needed! In-stock dresses ready to take home same day at 4701 N. University St, Peoria, IL.</p>
+      <div style="font-family:var(--font-serif);font-size:30px;font-weight:700;font-style:italic;color:#fff;margin-bottom:6px;line-height:1;">$90–$580</div>
+      <div style="font-family:var(--font-kicker);font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#ffccd9;margin-bottom:10px;">Walk-Ins Only</div>
+      <p style="font-family:var(--font-sans);font-size:13px;color:rgba(255,255,255,.92);font-weight:400;margin:0;line-height:1.55;">No appointment needed. In-stock dresses ready to take home the same day at 4701 N. University St.</p>
     </div>
 
     <div class="hhero-right">
       <div class="hhero-eyebrow">Cloud Nine Prom · Walk-Ins Only · 4701 N. University St</div>
       <h1 class="hoco-video-title">The HOCO<br/><em>Moment.</em></h1>
-      <p class="hhero-desc">Get ready for an amazing night with the perfect homecoming dress from Cloud Nine Prom! We specialize in fun, fashionable, and sophisticated short and long styles ($90–$580, sizes 000–26 &amp; 14W–24W) from Faviana, Ashley Lauren, Amarra, Sherri Hill, Jovani, Rachel Allan, Jessica Angel, and Johnathan Kayne.</p>
+      <p class="hhero-desc">Find your homecoming dress at Cloud Nine Prom. Browse short and long HOCO styles ($90–$580, sizes 000–26 and 14W–24W) from Faviana, Ashley Lauren, Amarra, Sherri Hill, Jovani, and more.</p>
       <div class="hoco-video-actions">
-        <a href="hoco-catalog.html" class="btn-hoco-primary">
-          Shop HOCO Dresses
-        </a>
-        <a href="https://goo.gl/maps/HXgYuahuNu8ycSXB8" target="_blank" rel="noopener noreferrer" class="btn-hoco-ghost">Visit Boutique (4701 N. University)</a>
+        <a href="hoco-catalog.html" class="btn-hoco-primary">Shop HOCO Dresses</a>
+        <a href="https://goo.gl/maps/HXgYuahuNu8ycSXB8" target="_blank" rel="noopener noreferrer" class="btn-hoco-ghost">Get Directions</a>
       </div>
     </div>
   </div>
+</div>
+
+<!-- ── TICKER STRIP ── -->
+<div class="hoco-ticker-strip">
+  <div class="hoco-ticker-left">
+    <span>Walk-Ins Only · No Appointment Needed</span>
+  </div>
+  <p class="hoco-ticker-text">4701 N. University St, Peoria, IL 61614 &nbsp;·&nbsp; Mon &amp; Fri: 12pm–6pm &nbsp;|&nbsp; Tue &amp; Thu: 12pm–7pm &nbsp;|&nbsp; Sat: 10am–5pm &nbsp;|&nbsp; Wed &amp; Sun: Closed</p>
 </div>
 
 <!-- ── HOCO SILHOUETTES MATRIX ── -->
@@ -312,33 +402,33 @@
   <div class="hoco-matrix-header">
     <div class="eyebrow">Find Your Vibe</div>
     <h2>Homecoming <em>Silhouettes</em></h2>
-    <p>From sparkling sequined looks to chic, simple cocktail dresses — we focus on fit, quality, and the hottest trends to make sure you look and feel confident on the dance floor.</p>
+    <p>Sequined minis, corset bodices, and satin cocktail dresses in stock and ready to take home the same day.</p>
   </div>
 
   <div class="hoco-matrix-grid">
     
     <div class="hoco-matrix-card double-bezel">
       <h3 class="hoco-matrix-title">Fitted Sequin Minis</h3>
-      <p class="hoco-matrix-desc">Show-stopping sparkle designed to catch every light on the dance floor with figure-hugging stretch lining.</p>
-      <a href="hoco-catalog.html?trend=sparkle" class="hoco-matrix-cta">Browse Sparkle</a>
+      <p class="hoco-matrix-desc">All-over beadwork and sequin minis lined with comfortable stretch jersey made for dancing.</p>
+      <a href="hoco-catalog.html" class="hoco-matrix-cta">Browse Sparkle →</a>
     </div>
 
     <div class="hoco-matrix-card double-bezel">
       <h3 class="hoco-matrix-title">Satin A-Lines</h3>
-      <p class="hoco-matrix-desc">Flirty and playful with structured pleats, flattering v-necklines, and built-in hidden pockets!</p>
-      <a href="hoco-catalog.html?trend=flare" class="hoco-matrix-cta">Browse A-Lines</a>
+      <p class="hoco-matrix-desc">Box-pleated satin skirts with structured bodices, V-necklines, and hidden side pockets.</p>
+      <a href="hoco-catalog.html" class="hoco-matrix-cta">Browse A-Lines →</a>
     </div>
 
     <div class="hoco-matrix-card double-bezel">
       <h3 class="hoco-matrix-title">Corset Lace-Up Minis</h3>
-      <p class="hoco-matrix-desc">Exposed boning and adjustable lace-up ties for a custom, glove-like fit and romantic edge.</p>
-      <a href="hoco-catalog.html?trend=corset" class="hoco-matrix-cta">Browse Corset</a>
+      <p class="hoco-matrix-desc">Structured boning and adjustable lace-up backs for a secure, custom fit.</p>
+      <a href="hoco-catalog.html" class="hoco-matrix-cta">Browse Corset →</a>
     </div>
 
     <div class="hoco-matrix-card double-bezel">
       <h3 class="hoco-matrix-title">Chic Cocktail &amp; Satin</h3>
-      <p class="hoco-matrix-desc">Sleek liquid satins and sophisticated cocktail silhouettes in rich jewel tones and timeless black.</p>
-      <a href="hoco-catalog.html?trend=satin" class="hoco-matrix-cta">Browse Satin</a>
+      <p class="hoco-matrix-desc">Fitted stretch satin and charmeuse minis in jewel tones, metallics, and classic black.</p>
+      <a href="hoco-catalog.html" class="hoco-matrix-cta">Browse Satin →</a>
     </div>
 
   </div>
@@ -347,9 +437,9 @@
 <!-- ── OFFICIAL HOMECOMING DESIGNERS & SWATCH BAR ── -->
 <div class="hoco-swatch-section">
   <div class="eyebrow">8 Official Homecoming Designers</div>
-  <h3 style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--text);margin:0 0 10px;">Shop by HOCO <em>Designer</em></h3>
-  <p style="font-size:14px;color:var(--text-muted);max-width:640px;margin:0 auto 24px;">Explore short and long homecoming collections from our 8 official HOCO designers at Cloud Nine Prom (4701 N. University St, Peoria, IL).</p>
-  <div class="hoco-swatches-grid" style="margin-top:0;margin-bottom:40px;">
+  <h3 style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--text);margin:0 0 8px;">Shop by HOCO <em>Designer</em></h3>
+  <p style="font-size:14.5px;color:var(--text-muted);font-weight:400;max-width:640px;margin:0 auto 24px;line-height:1.6;">Browse short and long homecoming collections from our 8 official HOCO designers at Cloud Nine Prom (4701 N. University St, Peoria, IL).</p>
+  <div class="hoco-swatches-grid" style="margin-top:0;margin-bottom:44px;">
     <a href="hoco-catalog.html?designer=Amarra" class="hoco-swatch-pill double-bezel" style="text-decoration:none;"><span>Amarra</span></a>
     <a href="hoco-catalog.html?designer=Ashley+Lauren" class="hoco-swatch-pill double-bezel" style="text-decoration:none;"><span>Ashley Lauren</span></a>
     <a href="hoco-catalog.html?designer=Faviana" class="hoco-swatch-pill double-bezel" style="text-decoration:none;"><span>Faviana</span></a>
@@ -365,7 +455,7 @@
   <div class="hoco-swatches-grid">
     <div class="hoco-swatch-pill double-bezel"><span class="hoco-swatch-dot" style="background:#0f2027;"></span><span>Royal Navy</span></div>
     <div class="hoco-swatch-pill double-bezel"><span class="hoco-swatch-dot" style="background:#1b4d3e;"></span><span>Emerald Green</span></div>
-    <div class="hoco-swatch-pill double-bezel"><span class="hoco-swatch-dot" style="background:#c9607f;"></span><span>Hot Pink</span></div>
+    <div class="hoco-swatch-pill double-bezel"><span class="hoco-swatch-dot" style="background:#9b2c4e;"></span><span>Berry Rose</span></div>
     <div class="hoco-swatch-pill double-bezel"><span class="hoco-swatch-dot" style="background:#7b1113;"></span><span>Ruby Red</span></div>
     <div class="hoco-swatch-pill double-bezel"><span class="hoco-swatch-dot" style="background:#c8a2c8;"></span><span>Lilac Shimmer</span></div>
     <div class="hoco-swatch-pill double-bezel"><span class="hoco-swatch-dot" style="background:#1a1a1a;"></span><span>Classic Black</span></div>
@@ -377,7 +467,7 @@
   <div style="text-align:center;max-width:720px;margin:0 auto;">
     <div class="eyebrow">The Real Lookbook</div>
     <h2 class="section-title">Dresses That Make <em>Memories.</em></h2>
-    <p style="font-size:15px;color:var(--text-muted);font-weight:300;line-height:1.8;">Explore our homecoming styles at our Peoria Prom &amp; Formalwear Boutique.</p>
+    <p style="font-size:15.5px;color:var(--text-muted);font-weight:400;line-height:1.7;">Browse homecoming styles from our Peoria Prom &amp; Formalwear Boutique.</p>
   </div>
 
   <div class="hoco-photo-grid-inner">
@@ -393,29 +483,29 @@
 </div>
 
 <!-- ── OFFICIAL HOCO FAQ (from cloudnineprom.com/faq) ── -->
-<div id="hoco-faq" style="background:var(--teal-xlight);border-top:1px solid var(--border);padding:80px clamp(20px, 5vw, 64px);">
-  <div style="max-width:1100px;margin:0 auto;">
+<div id="hoco-faq" style="background:var(--teal-xlight);border-top:1px solid var(--border);padding:88px clamp(20px, 5vw, 64px);">
+  <div style="max-width:1200px;margin:0 auto;">
     <div class="hoco-matrix-header" style="margin-bottom:44px;">
       <div class="eyebrow">HOCO (Homecoming) FAQ</div>
       <h2>Everything About <em>HOCO Shopping</em></h2>
       <p>Located at <strong>4701 N. University St, Peoria, IL 61614</strong> · Open Mon &amp; Fri 12–6pm, Tue &amp; Thu 12–7pm, Sat 10am–5pm (Closed Wed &amp; Sun).</p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;">
-      <div class="double-bezel" style="background:var(--white);padding:24px;">
+    <div class="hoco-faq-grid">
+      <div class="double-bezel" style="background:var(--white);padding:26px;">
         <h3 style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--text);margin:0 0 8px;">What is the price range for HOCO dresses?</h3>
-        <p style="font-size:14px;color:var(--text-muted);line-height:1.65;margin:0;">Our homecoming dresses range from <strong>$90 to $580</strong>, offering fun, fashionable, and affordable options for every style and budget.</p>
+        <p style="font-size:14px;color:var(--text-muted);font-weight:400;line-height:1.65;margin:0;">Our homecoming dresses range from <strong>$90 to $580</strong> across short and long styles.</p>
       </div>
-      <div class="double-bezel" style="background:var(--white);padding:24px;">
+      <div class="double-bezel" style="background:var(--white);padding:26px;">
         <h3 style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--text);margin:0 0 8px;">Are HOCO dresses in stock or special order?</h3>
-        <p style="font-size:14px;color:var(--text-muted);line-height:1.65;margin:0;">Our dresses are in stock and available for immediate purchase! Special order options are also available for select styles and sizes.</p>
+        <p style="font-size:14px;color:var(--text-muted);font-weight:400;line-height:1.65;margin:0;">Our dresses are in stock and available for immediate same-day purchase. Special order options are also available on select styles and sizes.</p>
       </div>
-      <div class="double-bezel" style="background:var(--white);padding:24px;">
+      <div class="double-bezel" style="background:var(--white);padding:26px;">
         <h3 style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--text);margin:0 0 8px;">Do you carry accessories to complete my look?</h3>
-        <p style="font-size:14px;color:var(--text-muted);line-height:1.65;margin:0;">Yes — we carry a curated selection of <strong>earrings</strong> chosen to pair beautifully with our dresses. We do not carry shoes or clutches.</p>
+        <p style="font-size:14px;color:var(--text-muted);font-weight:400;line-height:1.65;margin:0;">Yes. We carry statement <strong>earrings</strong> in store to pair with your dress (we don't carry shoes or clutches).</p>
       </div>
-      <div class="double-bezel" style="background:var(--white);padding:24px;">
+      <div class="double-bezel" style="background:var(--white);padding:26px;">
         <h3 style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--text);margin:0 0 8px;">Do I need an appointment?</h3>
-        <p style="font-size:14px;color:var(--text-muted);line-height:1.65;margin:0;">No appointment needed! Cloud Nine Prom is walk-in only and first come, first serve. Fill out a short check-in form when you arrive and a stylist will match you with a fitting room!</p>
+        <p style="font-size:14px;color:var(--text-muted);font-weight:400;line-height:1.65;margin:0;">No appointment needed. Cloud Nine Prom is walk-in only and first come, first serve. Fill out a short check-in form when you arrive and a stylist will match you with a fitting room.</p>
       </div>
     </div>
   </div>
@@ -424,7 +514,7 @@
 <!-- ── BOTTOM CTA ── -->
 <div class="hoco-cta-final">
   <h2>Ready to Find Your <em>Homecoming Dress?</em></h2>
-  <p>No appointments necessary — walk-ins only, first come, first serve! Visit Cloud Nine Prom at 4701 N. University St, Peoria, IL 61614.</p>
+  <p>No appointment needed. Walk in during store hours at 4701 N. University St, Peoria, IL 61614.</p>
   <div class="hoco-cta-actions">
     <a href="hoco-catalog.html" class="btn-white">Shop All HOCO Dresses</a>
     <a href="https://goo.gl/maps/HXgYuahuNu8ycSXB8" target="_blank" rel="noopener noreferrer" class="btn-hoco-ghost">Get Directions (4701 N. University)</a>
@@ -432,7 +522,7 @@
 </div>
 
 <div id="site-footer"></div>
-<script src="components.js?v=20261021d" defer></script>
+<script src="components.js?v=20261022f" defer></script>
 </main>
 </body>
 </html>
