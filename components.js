@@ -200,10 +200,12 @@ function navHTML() {
           </div>
         </div>
 
-        <!-- Search Button (Cmd+K) -->
-        <button class="nav-link nav-search-btn" onclick="openSearch()" aria-label="Search (Cmd+K)" title="Search (Cmd+K)">
-          <span class="search-btn-label">Search</span>
-          <span class="search-kbd-hint">CMD+K</span>
+        <!-- Search Bar / Pill Button (Cmd+K) -->
+        <button type="button" class="nav-search-bar-btn" onclick="openSearch()" aria-label="Search by dress name or style number (Cmd+K)" title="Search by dress name or style number (Cmd+K)">
+          <svg class="nav-search-bar-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <span class="nav-search-bar-text">Search name or #style…</span>
+          <span class="nav-search-bar-short">Search</span>
+          <kbd class="nav-search-kbd">⌘K</kbd>
         </button>
 
         <!-- Luxury Appointment CTA Button -->
@@ -213,8 +215,9 @@ function navHTML() {
       </div>
 
       <!-- Mobile triggers -->
-      <button class="nav-search-btn nav-search-mobile" aria-label="Search" onclick="openSearch()">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <button type="button" class="nav-search-mobile" aria-label="Search dresses by name or style number" onclick="openSearch()">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <span class="nav-search-mobile-label">Search</span>
       </button>
       <button class="nav-hamburger" aria-label="Open navigation menu" aria-controls="mobileMenu" aria-expanded="false" onclick="openMobileMenu()">
         <span></span><span></span><span></span>
@@ -273,6 +276,14 @@ function navHTML() {
       <div class="mobile-menu-status" id="mobileMenuStatus">
         <span class="live-dot"></span>
         <span id="mobileMenuStatusText">Peoria Boutique · Open Today</span>
+      </div>
+
+      <!-- Prominent Search Bar inside Mobile Menu Drawer -->
+      <div class="mobile-menu-search-wrap">
+        <button type="button" class="mobile-menu-search-bar" onclick="closeMobileMenu();setTimeout(openSearch,180);" aria-label="Search by dress name or style number">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <span>Search dress name or #style…</span>
+        </button>
       </div>
 
       <nav class="mobile-menu-nav" aria-label="Site navigation">
@@ -461,23 +472,32 @@ function searchOverlayHTML() {
   return `<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search" onclick="closeSearchBg(event)">
   <div class="search-panel" role="search">
     <div class="search-top-row">
-      <span class="search-eyebrow">Search</span>
+      <span class="search-eyebrow">Search by Dress Name or Style #</span>
       <button class="search-close-btn" onclick="closeSearch()" aria-label="Close">Close</button>
     </div>
     <div class="search-input-wrap">
-      <input type="text" id="searchInput" class="search-input" placeholder="Style number, designer, silhouette…" autocomplete="off" aria-label="Search styles and collections" oninput="onSearchInput(this.value)" onkeydown="if(event.key==='Escape')closeSearch()"/>
+      <input type="search" id="searchInput" class="search-input" placeholder="Dress name (Dakota, Addie) or style # (57042, D4257)…" autocomplete="off" spellcheck="false" aria-label="Search dresses by name, style number, or designer" oninput="onSearchInput(this.value)" onkeydown="onSearchKeyDown(event)"/>
       <button class="search-clear-btn" id="searchClearBtn" onclick="clearSearch()" style="display:none" aria-label="Clear">Clear</button>
     </div>
+    <div class="search-scope-bar" id="searchScopeBar" role="tablist" aria-label="Filter search by collection">
+      <button type="button" class="search-scope-pill active" data-scope="all" role="tab" aria-selected="true" onclick="setSearchScope('all')">All Collections <span class="scope-count" id="scopeCount-all"></span></button>
+      <button type="button" class="search-scope-pill" data-scope="bridal" role="tab" aria-selected="false" onclick="setSearchScope('bridal')">Bridal <span class="scope-count" id="scopeCount-bridal"></span></button>
+      <button type="button" class="search-scope-pill" data-scope="prom" role="tab" aria-selected="false" onclick="setSearchScope('prom')">Prom <span class="scope-count" id="scopeCount-prom"></span></button>
+      <button type="button" class="search-scope-pill" data-scope="hoco" role="tab" aria-selected="false" onclick="setSearchScope('hoco')">HOCO <span class="scope-count" id="scopeCount-hoco"></span></button>
+      <button type="button" class="search-scope-pill" data-scope="mothers" role="tab" aria-selected="false" onclick="setSearchScope('mothers')">Mothers <span class="scope-count" id="scopeCount-mothers"></span></button>
+    </div>
     <div class="search-quick-tags" id="searchQuickTags">
-      <span class="search-quick-label">Trending Searches</span>
+      <span class="search-quick-label">Try Dress Names, Style #s &amp; Designers</span>
       <div class="search-quick-pills">
+        <button type="button" class="search-quick-pill" onclick="quickSearch('Dakota Leigh')">Dakota Leigh</button>
+        <button type="button" class="search-quick-pill" onclick="quickSearch('Meredith')">Meredith</button>
+        <button type="button" class="search-quick-pill" onclick="quickSearch('Addie')">Addie</button>
+        <button type="button" class="search-quick-pill" onclick="quickSearch('#D4257')">#D4257</button>
+        <button type="button" class="search-quick-pill" onclick="quickSearch('#SY8166')">#SY8166</button>
+        <button type="button" class="search-quick-pill" onclick="quickSearch('#57042')">#57042</button>
         <button type="button" class="search-quick-pill" onclick="quickSearch('Maggie Sottero')">Maggie Sottero</button>
         <button type="button" class="search-quick-pill" onclick="quickSearch('Essense of Australia')">Essense of Australia</button>
-        <button type="button" class="search-quick-pill" onclick="quickSearch('Stella York')">Stella York</button>
-        <button type="button" class="search-quick-pill" onclick="quickSearch('A-Line')">A-Line</button>
-        <button type="button" class="search-quick-pill" onclick="quickSearch('Ballgown')">Ballgown</button>
-        <button type="button" class="search-quick-pill" onclick="quickSearch('Fitted')">Fitted / Mermaid</button>
-        <button type="button" class="search-quick-pill" onclick="quickSearch('Sparkle')">Sparkle</button>
+        <button type="button" class="search-quick-pill" onclick="quickSearch('Sherri Hill')">Sherri Hill</button>
         <button type="button" class="search-quick-pill" onclick="quickSearch('Corset')">Corset</button>
       </div>
     </div>
@@ -487,8 +507,8 @@ function searchOverlayHTML() {
       <div class="search-cat-links">
         <a href="bridal-catalog.html" class="search-cat-link">Bridal Gowns</a>
         <a href="mothers.html" class="search-cat-link">Mother of the Bride</a>
-        <a href="prom.html" class="search-cat-link">Prom</a>
-        <a href="hoco.html" class="search-cat-link">Homecoming</a>
+        <a href="prom-catalog.html" class="search-cat-link">Prom</a>
+        <a href="hoco-catalog.html" class="search-cat-link">Homecoming</a>
         <a href="tuxedos.html" class="search-cat-link">Tuxedos &amp; Suits</a>
         <a href="quiz.html" class="search-cat-link">Find Your Bridal Style</a>
       </div>
@@ -670,29 +690,154 @@ function escapeHTML(str) {
 /* Module-scoped — never on window, prevents third-party access */
 let _searchMatches = [];
 let _globalCatalog = null;
-let _globalLoading = false;
+let _globalCatalogPromise = null;
+let _searchScope = 'all';
+let _lastSearchTargetUrl = 'bridal-catalog.html';
+
+const _SEARCH_SYNONYMS = {
+  'sparkly': ['sparkle', 'bead', 'beaded', 'glitter', 'sequin', 'shimmer', 'crystal'],
+  'sparkle': ['sparkly', 'bead', 'beaded', 'glitter', 'sequin', 'shimmer', 'crystal'],
+  'fitted': ['mermaid', 'fit & flare', 'fit-and-flare', 'sheath', 'column', 'bodycon', 'trumpet'],
+  'mermaid': ['mermaid', 'fit & flare', 'fit-and-flare', 'trumpet', 'fitted'],
+  'aline': ['a-line', 'flare'],
+  'a-line': ['a-line', 'flare'],
+  'ballgown': ['ballgown', 'ball gown', 'tulle', 'princess', 'full skirt'],
+  'sleeves': ['sleeve', 'sleeves', 'long sleeve', 'cap sleeve', 'off-the-shoulder'],
+  'modest': ['modest', 'high neck', 'long sleeve', 'covered']
+};
+
+function _normSearchCode(s) {
+  return String(s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+}
+
+function _isOneEditAway(a, b) {
+  if (!a || !b || a.length < 4 || b.length < 4 || a[0] !== b[0]) return false;
+  if (Math.abs(a.length - b.length) > 1) return false;
+  let i = 0, j = 0, edits = 0;
+  while (i < a.length && j < b.length) {
+    if (a[i] === b[j]) { i++; j++; }
+    else {
+      if (++edits > 1) return false;
+      if (a.length > b.length) i++;
+      else if (b.length > a.length) j++;
+      else { i++; j++; }
+    }
+  }
+  if (i < a.length || j < b.length) edits++;
+  return edits <= 1;
+}
+
+function scoreGlobalDress(p, rawQ) {
+  if (!rawQ || !rawQ.trim()) return 0;
+  const cleanedQ = rawQ.trim().toLowerCase()
+    .replace(/^(?:style\s*(?:number|num|no\.?|#)?\s*|#\s*)/i, '')
+    .replace(/\bessence\b/g, 'essense')
+    .trim();
+  if (!cleanedQ) return 0;
+
+  const qNorm = _normSearchCode(cleanedQ);
+  const skuRaw = String(p.s || '').toLowerCase();
+  const skuNorm = _normSearchCode(skuRaw);
+  const skuDigits = skuNorm.replace(/^[a-z]+/, '');
+  const gnRaw = String(p.gn || '').toLowerCase();
+  const gnNorm = _normSearchCode(gnRaw);
+  const desRaw = String(p.d || '').toLowerCase();
+
+  // 1. Direct single-query Style Number or Dress Name match
+  if (qNorm.length >= 2) {
+    if (skuNorm === qNorm) return 1000;
+    if (skuDigits && skuDigits.length >= 3 && skuDigits === qNorm) return 960;
+    if (gnRaw && (gnRaw === cleanedQ || gnNorm === qNorm)) return 950;
+    if (skuNorm.startsWith(qNorm) && qNorm.length >= 3) return 880;
+    if (skuDigits && skuDigits.startsWith(qNorm) && qNorm.length >= 4) return 840;
+    if (gnRaw && gnRaw.startsWith(cleanedQ) && cleanedQ.length >= 2) return 820;
+    if (gnRaw && gnRaw.split(/\s+/).some(w => w === cleanedQ || w.startsWith(cleanedQ))) return 780;
+  }
+
+  // 2. Tokenized matching across Dress Name, Style #, Designer, and Attributes
+  const rawTokens = cleanedQ
+    .replace(/[#+,&/\\-]+/g, ' ')
+    .split(/\s+/)
+    .map(t => t.trim())
+    .filter(t => t.length > 0 && !['style', 'dress', 'gown', 'by', 'the', 'of'].includes(t));
+
+  const tokens = rawTokens.length ? rawTokens : cleanedQ.split(/\s+/).filter(Boolean);
+  const gnWords = gnRaw ? gnRaw.split(/\s+/).filter(Boolean) : [];
+  const desWords = desRaw ? desRaw.replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter(Boolean) : [];
+
+  const doc = [
+    skuRaw,
+    skuNorm,
+    skuDigits,
+    gnRaw,
+    desRaw,
+    p.n || '',
+    p.sil || '',
+    p.tr || '',
+    p.trend || '',
+    (p.f || []).join(' '),
+    (p.nk || []).join(' '),
+    (p.v || []).join(' '),
+    p.c || '',
+    p._type || ''
+  ].join(' ').toLowerCase();
+
+  let score = 0;
+  for (const tok of tokens) {
+    const tNorm = _normSearchCode(tok);
+    if (!tNorm) continue;
+
+    if (skuNorm === tNorm) {
+      score += 500;
+    } else if (skuDigits && skuDigits.length >= 3 && skuDigits === tNorm) {
+      score += 460;
+    } else if (gnRaw && (gnRaw === tok || gnWords.includes(tok))) {
+      score += 450;
+    } else if (skuNorm.startsWith(tNorm) && tNorm.length >= 3) {
+      score += 380;
+    } else if (gnRaw && (gnRaw.startsWith(tok) || gnWords.some(w => w.startsWith(tok)))) {
+      score += 350;
+    } else if (gnWords.some(w => _isOneEditAway(tok, w))) {
+      score += 290;
+    } else if (desRaw.includes(tok) || desWords.some(w => _isOneEditAway(tok, w))) {
+      score += 200;
+    } else if (skuNorm.includes(tNorm) && tNorm.length >= 3) {
+      score += 220;
+    } else if (doc.includes(tok)) {
+      score += 80;
+    } else if (_SEARCH_SYNONYMS[tok] && _SEARCH_SYNONYMS[tok].some(syn => doc.includes(syn))) {
+      score += 70;
+    } else {
+      return 0;
+    }
+  }
+
+  return score;
+}
 
 async function ensureGlobalCatalog() {
   if (_globalCatalog && _globalCatalog.length) return _globalCatalog;
-  if (_globalLoading) return [];
-  _globalLoading = true;
-  try {
-    const [bRes, pRes, mRes, hRes] = await Promise.allSettled([
-      fetch('data/bridal-products.json?v=20260909k').then(r => r.json()),
-      fetch('data/prom-products.json?v=20261021d').then(r => r.json()),
-      fetch('data/mothers-products.json?v=20260909k').then(r => r.json()),
-      fetch('data/hoco-products.json?v=20261021d').then(r => r.json())
-    ]);
-    const b = bRes.status === 'fulfilled' && Array.isArray(bRes.value) ? bRes.value.map(x => Object.assign({}, x, { _cat: 'bridal-catalog.html', _type: 'bridal' })) : [];
-    const p = pRes.status === 'fulfilled' && Array.isArray(pRes.value) ? pRes.value.map(x => Object.assign({}, x, { _cat: 'prom-catalog.html', _type: 'prom' })) : [];
-    const m = mRes.status === 'fulfilled' && Array.isArray(mRes.value) ? mRes.value.map(x => Object.assign({}, x, { _cat: 'mothers.html', _type: 'mothers' })) : [];
-    const h = hRes.status === 'fulfilled' && Array.isArray(hRes.value) ? hRes.value.map(x => Object.assign({}, x, { _cat: 'hoco-catalog.html', _type: 'hoco' })) : [];
-    _globalCatalog = b.concat(p, m, h);
-  } catch(e) {
-    _globalCatalog = [];
-  }
-  _globalLoading = false;
-  return _globalCatalog;
+  if (_globalCatalogPromise) return _globalCatalogPromise;
+  _globalCatalogPromise = (async function() {
+    try {
+      const [bRes, pRes, mRes, hRes] = await Promise.allSettled([
+        fetch('data/bridal-products.json?v=20261025b').then(r => r.json()),
+        fetch('data/prom-products.json?v=20261025b').then(r => r.json()),
+        fetch('data/mothers-products.json?v=20261025b').then(r => r.json()),
+        fetch('data/hoco-products.json?v=20261025b').then(r => r.json())
+      ]);
+      const b = bRes.status === 'fulfilled' && Array.isArray(bRes.value) ? bRes.value.map(x => Object.assign({}, x, { _cat: 'bridal-catalog.html', _type: 'bridal' })) : [];
+      const p = pRes.status === 'fulfilled' && Array.isArray(pRes.value) ? pRes.value.map(x => Object.assign({}, x, { _cat: 'prom-catalog.html', _type: 'prom' })) : [];
+      const m = mRes.status === 'fulfilled' && Array.isArray(mRes.value) ? mRes.value.map(x => Object.assign({}, x, { _cat: 'mothers.html', _type: 'mothers' })) : [];
+      const h = hRes.status === 'fulfilled' && Array.isArray(hRes.value) ? hRes.value.map(x => Object.assign({}, x, { _cat: 'hoco-catalog.html', _type: 'hoco' })) : [];
+      _globalCatalog = b.concat(p, m, h);
+    } catch(e) {
+      _globalCatalog = [];
+    }
+    _globalCatalogPromise = null;
+    return _globalCatalog;
+  })();
+  return _globalCatalogPromise;
 }
 
 function initSearch() {
@@ -712,7 +857,7 @@ window.openSearch = function() {
   setTimeout(function() {
     const input = document.getElementById('searchInput');
     if (input) input.focus();
-  }, 250);
+  }, 220);
 };
 
 window.closeSearch = function() {
@@ -753,6 +898,19 @@ document.addEventListener('keydown', function(e) {
   }
 });
 
+window.setSearchScope = function(scope) {
+  _searchScope = scope || 'all';
+  document.querySelectorAll('.search-scope-pill').forEach(function(btn) {
+    const isAct = btn.getAttribute('data-scope') === _searchScope;
+    btn.classList.toggle('active', isAct);
+    btn.setAttribute('aria-selected', isAct ? 'true' : 'false');
+  });
+  const input = document.getElementById('searchInput');
+  if (input && input.value.trim()) {
+    window.onSearchInput(input.value);
+  }
+};
+
 window.quickSearch = function(query) {
   const input = document.getElementById('searchInput');
   if (!input) return;
@@ -763,12 +921,50 @@ window.quickSearch = function(query) {
 window.clearSearch = function() {
   const input = document.getElementById('searchInput');
   if (input) { input.value = ''; input.focus(); }
-  document.getElementById('searchClearBtn').style.display = 'none';
-  document.getElementById('searchResults').innerHTML = '';
+  const clr = document.getElementById('searchClearBtn');
+  if (clr) clr.style.display = 'none';
+  const res = document.getElementById('searchResults');
+  if (res) res.innerHTML = '';
   const cats = document.getElementById('searchCategories');
   if (cats) cats.style.display = '';
   const tags = document.getElementById('searchQuickTags');
   if (tags) tags.style.display = '';
+  ['all', 'bridal', 'prom', 'hoco', 'mothers'].forEach(function(k) {
+    const el = document.getElementById('scopeCount-' + k);
+    if (el) el.textContent = '';
+  });
+};
+
+window.onSearchKeyDown = function(e) {
+  if (e.key === 'Escape') {
+    closeSearch();
+  } else if (e.key === 'Enter') {
+    e.preventDefault();
+    if (_searchMatches && _searchMatches.length === 1) {
+      window.goToSearchDress(0);
+    } else if (_searchMatches && _searchMatches.length > 1) {
+      window.viewAllSearchMatches();
+    }
+  }
+};
+
+window.viewAllSearchMatches = function() {
+  const input = document.getElementById('searchInput');
+  const q = input ? input.value.trim() : '';
+  if (!q) return;
+  const currentFile = (window.location.pathname.split('/').pop() || 'index.html');
+  if (window.catalogInstance && currentFile === _lastSearchTargetUrl) {
+    closeSearch();
+    window.catalogInstance.onCatalogSearch(q);
+    const grid = document.getElementById(window.catalogInstance.gridId || 'pg');
+    if (grid) {
+      const y = grid.getBoundingClientRect().top + (window.pageYOffset || 0) - 130;
+      window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+    }
+  } else {
+    closeSearch();
+    window.location.href = _lastSearchTargetUrl + '?q=' + encodeURIComponent(q);
+  }
 };
 
 window.onSearchInput = async function(val) {
@@ -777,38 +973,105 @@ window.onSearchInput = async function(val) {
   const cats = document.getElementById('searchCategories');
   const tags = document.getElementById('searchQuickTags');
   if (clearBtn) clearBtn.style.display = val ? 'flex' : 'none';
-  if (!val.trim()) {
+  if (!val || !val.trim()) {
     results.innerHTML = '';
     if (cats) cats.style.display = '';
     if (tags) tags.style.display = '';
+    ['all', 'bridal', 'prom', 'hoco', 'mothers'].forEach(function(k) {
+      const el = document.getElementById('scopeCount-' + k);
+      if (el) el.textContent = '';
+    });
     return;
   }
   if (cats) cats.style.display = 'none';
   if (tags) tags.style.display = 'none';
 
-  let catalog = window.fil || window.P || (typeof P !== 'undefined' ? P : null);
-  if (!catalog || !catalog.length) {
-    catalog = await ensureGlobalCatalog();
-  }
+  const catalog = await ensureGlobalCatalog();
+  const q = val.trim();
 
-  const q = val.toLowerCase().trim();
   if (catalog && catalog.length) {
-    const matches = catalog.filter(function(p) {
-      return (p.s||'').toLowerCase().includes(q) ||
-             (p.d||'').toLowerCase().includes(q) ||
-             (p.c||'').toLowerCase().includes(q) ||
-             (p.n||'').toLowerCase().includes(q);
-    }).slice(0, 8);
-    if (matches.length) {
-      _searchMatches = matches;
-      results.innerHTML = '<div class="search-results-label">' + escapeHTML(matches.length) + ' match' + (matches.length > 1 ? 'es' : '') + '</div>' +
-        '<div class="search-results-grid">' + matches.map(function(p, i) {
-          return '<div class="search-result-card" data-match-idx="' + i + '" role="button" tabindex="0" aria-label="View ' + escapeHTML(p.d||'') + ' style ' + escapeHTML(p.s||'') + '">' +
-            '<div class="search-result-img"><img src="' + escapeHTML(p.i||'') + '" alt="' + escapeHTML((p.d||'') + ' ' + (p.s||'')) + '" loading="lazy"/></div>' +
-            '<div class="search-result-info"><div class="search-result-designer">' + escapeHTML(p.d||'') + '</div><div class="search-result-style">#' + escapeHTML(p.s||'') + '</div></div>' +
-            '</div>';
-        }).join('') + '</div>';
-      // Attach click handlers via JS, not inline onclick
+    const allScored = [];
+    const countsByType = { all: 0, bridal: 0, prom: 0, hoco: 0, mothers: 0 };
+
+    for (let i = 0; i < catalog.length; i++) {
+      const p = catalog[i];
+      const sc = scoreGlobalDress(p, q);
+      if (sc > 0) {
+        allScored.push({ p: p, sc: sc });
+        countsByType.all++;
+        if (p._type && countsByType.hasOwnProperty(p._type)) {
+          countsByType[p._type]++;
+        }
+      }
+    }
+
+    ['all', 'bridal', 'prom', 'hoco', 'mothers'].forEach(function(k) {
+      const el = document.getElementById('scopeCount-' + k);
+      if (el) el.textContent = countsByType[k] > 0 ? '(' + countsByType[k] + ')' : '(0)';
+    });
+
+    let filteredScored = _searchScope === 'all'
+      ? allScored
+      : allScored.filter(function(x) { return x.p._type === _searchScope; });
+
+    // If current scope has 0 matches but 'all' has matches, fall back to allScored so user isn't stuck on empty tab
+    let scopeFallbackNote = '';
+    if (filteredScored.length === 0 && allScored.length > 0 && _searchScope !== 'all') {
+      filteredScored = allScored;
+      scopeFallbackNote = ' (showing matches across all collections)';
+    }
+
+    filteredScored.sort(function(a, b) { return b.sc - a.sc; });
+    const totalMatches = filteredScored.length;
+    const topMatches = filteredScored.slice(0, 12).map(function(x) { return x.p; });
+
+    if (topMatches.length) {
+      _searchMatches = topMatches;
+      const topType = (_searchScope !== 'all' && countsByType[_searchScope] > 0)
+        ? _searchScope
+        : (topMatches[0]._type || 'bridal');
+      _lastSearchTargetUrl = topType === 'prom' ? 'prom-catalog.html'
+        : topType === 'hoco' ? 'hoco-catalog.html'
+        : topType === 'mothers' ? 'mothers.html'
+        : 'bridal-catalog.html';
+
+      const catLabels = { bridal: 'Bridal', prom: 'Prom', hoco: 'HOCO', mothers: 'Mothers' };
+
+      const headerHtml = '<div class="search-results-header">' +
+        '<div class="search-results-label">' + escapeHTML(totalMatches) + ' matching style' + (totalMatches > 1 ? 's' : '') + escapeHTML(scopeFallbackNote) + '</div>' +
+        (totalMatches > 1 ? '<button type="button" class="search-view-all-link" onclick="viewAllSearchMatches()">Filter in Catalog &rarr;</button>' : '') +
+        '</div>';
+
+      const gridHtml = '<div class="search-results-grid">' + topMatches.map(function(p, i) {
+        const badgeLabel = catLabels[p._type] || 'Gown';
+        let styleLabel = '';
+        if (p.gn && p.gn !== p.s) {
+          styleLabel = '<span class="search-result-gn">' + escapeHTML(p.gn) + '</span> <span class="search-result-sku">#' + escapeHTML(p.s || '') + '</span>';
+        } else if (p.gn && p.gn === p.s) {
+          styleLabel = '<span class="search-result-gn">' + escapeHTML(p.gn) + '</span>';
+        } else {
+          styleLabel = '<span class="search-result-sku">Style #' + escapeHTML(p.s || '') + '</span>';
+        }
+
+        const ariaTitle = (p.d || '') + (p.gn ? ' ' + p.gn : '') + (p.s && p.s !== p.gn ? ' style ' + p.s : '');
+        return '<div class="search-result-card" data-match-idx="' + i + '" role="button" tabindex="0" aria-label="View ' + escapeHTML(ariaTitle) + '">' +
+          '<div class="search-result-img">' +
+            '<span class="search-result-cat-badge">' + escapeHTML(badgeLabel) + '</span>' +
+            '<img src="' + escapeHTML(p.i || '') + '" alt="' + escapeHTML(ariaTitle) + '" loading="lazy"/>' +
+          '</div>' +
+          '<div class="search-result-info">' +
+            '<div class="search-result-designer">' + escapeHTML(p.d || '') + '</div>' +
+            '<div class="search-result-style">' + styleLabel + '</div>' +
+          '</div>' +
+        '</div>';
+      }).join('') + '</div>';
+
+      const footerCtaHtml = totalMatches > 1
+        ? '<div class="search-results-footer"><button type="button" class="search-view-all-btn" onclick="viewAllSearchMatches()">View All ' + escapeHTML(totalMatches) + ' Matching Styles in Catalog &rarr;</button></div>'
+        : '';
+
+      results.innerHTML = headerHtml + gridHtml + footerCtaHtml;
+
       results.querySelectorAll('[data-match-idx]').forEach(function(card) {
         function activate() { goToSearchDress(parseInt(card.dataset.matchIdx, 10)); }
         card.addEventListener('click', activate);
@@ -819,6 +1082,7 @@ window.onSearchInput = async function(val) {
   }
 
   // Navigation suggestions fallback if no dresses found
+  const qLower = q.toLowerCase();
   const pages = [
     {name:'Bridal Gowns', url:'bridal-catalog.html', keys:['bridal','wedding','gown','dress']},
     {name:'Mother of the Bride', url:'mothers.html', keys:['mother','mom','mob','bride']},
@@ -828,7 +1092,7 @@ window.onSearchInput = async function(val) {
     {name:'Find Your Bridal Style', url:'quiz.html', keys:['quiz','style','find','bridal']},
   ];
   const matchedPages = pages.filter(function(p) {
-    return p.name.toLowerCase().includes(q) || p.keys.some(function(k){ return k.includes(q) || q.includes(k); });
+    return p.name.toLowerCase().includes(qLower) || p.keys.some(function(k){ return k.includes(qLower) || qLower.includes(k); });
   });
 
   if (matchedPages.length) {
@@ -841,7 +1105,7 @@ window.onSearchInput = async function(val) {
     const t1 = document.createTextNode('No styles matched “');
     const em = document.createElement('em');
     em.textContent = val;
-    const t2 = document.createTextNode('”. Try a style number, designer name, or silhouette.');
+    const t2 = document.createTextNode('”. Try a dress name (e.g. Dakota Leigh, Addie), style number (e.g. #57042, #D4257), or designer.');
     noResult.appendChild(t1); noResult.appendChild(em); noResult.appendChild(t2);
     results.innerHTML = '';
     results.appendChild(noResult);

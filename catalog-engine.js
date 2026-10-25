@@ -54,11 +54,21 @@ class CloudNineCatalog {
 
   async init() {
     this.exposeGlobalAPIs();
+    this.initCatalogSearchUI();
     this.initStickyObserver();
     this.initDensityToggle();
     this.initSchoolRegistry();
     this.initGlobalListeners();
     await this.loadData();
+  }
+
+  esc(s) {
+    return String(s || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
   }
 
   exposeGlobalAPIs() {
@@ -80,6 +90,129 @@ class CloudNineCatalog {
     window.onSelectSchool = (school) => this.onSelectSchool(school);
     window.toggleModalWishlist = () => this.toggleModalWishlist();
     window.setDensity = (n) => this.setDensity(n);
+    window.onCatalogSearch = (val) => this.onCatalogSearch(val);
+    window.clearCatalogSearch = () => this.clearCatalogSearch();
+  }
+
+  initCatalogSearchUI() {
+    if (typeof document === 'undefined' || typeof document.getElementById !== 'function') return;
+
+    const placeholder = this.category === 'bridal'
+      ? 'Search gown name or style # (e.g. Dakota, D4257)…'
+      : 'Search style # or designer (e.g. 57042, Amarra)…';
+
+    // 1. Inject inline search input into #filterBarCompact if not present
+    const bar = document.getElementById('filterBarCompact');
+    if (bar && !document.getElementById('catalogSearchInput') && typeof document.createElement === 'function') {
+      const wrap = document.createElement('div');
+      wrap.className = 'catalog-inline-search';
+      wrap.id = 'catalogSearchWrap';
+      wrap.innerHTML = `
+        <svg class="catalog-search-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="search" id="catalogSearchInput" class="catalog-search-input" placeholder="${placeholder}" autocomplete="off" spellcheck="false" aria-label="Search dress by name or style number"/>
+        <button type="button" class="catalog-search-clear" id="catalogSearchClearBtn" aria-label="Clear search" style="display:none">&times;</button>
+      `;
+
+      const rightEl = bar.querySelector ? bar.querySelector('.filter-bar-right') : null;
+      if (rightEl && typeof bar.insertBefore === 'function') {
+        bar.insertBefore(wrap, rightEl);
+      } else if (typeof bar.appendChild === 'function') {
+        bar.appendChild(wrap);
+      }
+
+      const input = wrap.querySelector ? wrap.querySelector('#catalogSearchInput') : null;
+      const clearBtn = wrap.querySelector ? wrap.querySelector('#catalogSearchClearBtn') : null;
+      if (input) {
+        input.addEventListener('input', (e) => this.onCatalogSearch(e.target.value));
+        input.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            input.blur();
+            const grid = document.getElementById(this.gridId);
+            if (grid && typeof grid.getBoundingClientRect === 'function') {
+              const y = grid.getBoundingClientRect().top + (window.pageYOffset || 0) - 130;
+              window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+            }
+          } else if (e.key === 'Escape') {
+            this.clearCatalogSearch();
+            input.blur();
+          }
+        });
+      }
+      if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+          this.clearCatalogSearch();
+          if (input) input.focus();
+        });
+      }
+    }
+
+    // 2. Inject synced search box at the top of the Mobile Filter Sheet (#filterSheet)
+    const sheetBody = (typeof document.querySelector === 'function')
+      ? document.querySelector('#filterSheet .filter-sheet-body')
+      : null;
+    if (sheetBody && !document.getElementById('mobileCatalogSearchInput') && typeof document.createElement === 'function') {
+      const sec = document.createElement('div');
+      sec.className = 'filter-sheet-section filter-sheet-search-section';
+      sec.innerHTML = `
+        <div class="filter-sheet-section-title">Search by Name or Style #</div>
+        <div class="catalog-sheet-search-wrap">
+          <svg class="catalog-search-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="search" id="mobileCatalogSearchInput" class="catalog-sheet-search-input" placeholder="${placeholder}" autocomplete="off" spellcheck="false" aria-label="Search dress by name or style number"/>
+          <button type="button" class="catalog-search-clear" id="mobileCatalogSearchClearBtn" aria-label="Clear search" style="display:none">&times;</button>
+        </div>
+      `;
+      if (sheetBody.firstChild && typeof sheetBody.insertBefore === 'function') {
+        sheetBody.insertBefore(sec, sheetBody.firstChild);
+      } else if (typeof sheetBody.appendChild === 'function') {
+        sheetBody.appendChild(sec);
+      }
+
+      const mobInput = sec.querySelector ? sec.querySelector('#mobileCatalogSearchInput') : null;
+      const mobClear = sec.querySelector ? sec.querySelector('#mobileCatalogSearchClearBtn') : null;
+      if (mobInput) {
+        mobInput.addEventListener('input', (e) => this.onCatalogSearch(e.target.value));
+        mobInput.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            mobInput.blur();
+            this.closeMobileFilters(null, true);
+          }
+        });
+      }
+      if (mobClear) {
+        mobClear.addEventListener('click', () => {
+          this.clearCatalogSearch();
+          if (mobInput) mobInput.focus();
+        });
+      }
+    }
+  }
+
+  syncSearchInputs(val) {
+    if (typeof document === 'undefined' || typeof document.getElementById !== 'function') return;
+    const input = document.getElementById('catalogSearchInput');
+    const clearBtn = document.getElementById('catalogSearchClearBtn');
+    const mobInput = document.getElementById('mobileCatalogSearchInput');
+    const mobClear = document.getElementById('mobileCatalogSearchClearBtn');
+    if (input && input.value !== val) input.value = val;
+    if (mobInput && mobInput.value !== val) mobInput.value = val;
+    const showClear = Boolean(val && val.trim().length > 0);
+    if (clearBtn && clearBtn.style) clearBtn.style.display = showClear ? 'inline-flex' : 'none';
+    if (mobClear && mobClear.style) mobClear.style.display = showClear ? 'inline-flex' : 'none';
+  }
+
+  onCatalogSearch(val) {
+    const raw = String(val || '');
+    this.searchQuery = raw.trim().toLowerCase();
+    this.syncSearchInputs(raw);
+    this.applyFilters();
+  }
+
+  clearCatalogSearch() {
+    this.searchQuery = '';
+    this.syncSearchInputs('');
+    this.applyFilters();
   }
 
   initGlobalListeners() {
@@ -358,8 +491,7 @@ class CloudNineCatalog {
     const qParam = urlParams.get('q') || urlParams.get('search');
     if (qParam) {
       this.searchQuery = qParam.trim().toLowerCase();
-      const searchInput = document.getElementById('catalogSearchInput');
-      if (searchInput) searchInput.value = qParam.trim();
+      this.syncSearchInputs(qParam.trim());
     }
   }
 
@@ -561,13 +693,71 @@ class CloudNineCatalog {
     });
   }
 
-  matchesSearch(p, q) {
-    if (!q || !q.trim()) return true;
-    const tokens = q.trim().toLowerCase().split(/\s+/).filter(Boolean);
-    
+  normCode(s) {
+    return String(s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+  }
+
+  isOneEditAway(a, b) {
+    if (!a || !b || a.length < 4 || b.length < 4 || a[0] !== b[0]) return false;
+    if (Math.abs(a.length - b.length) > 1) return false;
+    let i = 0, j = 0, edits = 0;
+    while (i < a.length && j < b.length) {
+      if (a[i] === b[j]) { i++; j++; }
+      else {
+        if (++edits > 1) return false;
+        if (a.length > b.length) i++;
+        else if (b.length > a.length) j++;
+        else { i++; j++; }
+      }
+    }
+    if (i < a.length || j < b.length) edits++;
+    return edits <= 1;
+  }
+
+  scoreSearch(p, q) {
+    if (!q || !q.trim()) return 1;
+    const cleanedQ = q.trim().toLowerCase()
+      .replace(/^(?:style\s*(?:number|num|no\.?|#)?\s*|#\s*)/i, '')
+      .replace(/\bessence\b/g, 'essense')
+      .trim();
+    if (!cleanedQ) return 0;
+
+    const qNorm = this.normCode(cleanedQ);
+    const skuRaw = String(p.s || '').toLowerCase();
+    const skuNorm = this.normCode(skuRaw);
+    const skuDigits = skuNorm.replace(/^[a-z]+/, '');
+    const gnRaw = String(p.gn || '').toLowerCase();
+    const gnNorm = this.normCode(gnRaw);
+    const desRaw = String(p.d || '').toLowerCase();
+
+    // 1. Direct single-query SKU or Gown Name match
+    if (qNorm.length >= 2) {
+      if (skuNorm === qNorm) return 1000;
+      if (skuDigits && skuDigits.length >= 3 && skuDigits === qNorm) return 960;
+      if (gnRaw && (gnRaw === cleanedQ || gnNorm === qNorm)) return 950;
+      if (skuNorm.startsWith(qNorm) && qNorm.length >= 3) return 880;
+      if (skuDigits && skuDigits.startsWith(qNorm) && qNorm.length >= 4) return 840;
+      if (gnRaw && gnRaw.startsWith(cleanedQ) && cleanedQ.length >= 2) return 820;
+      if (gnRaw && gnRaw.split(/\s+/).some(w => w === cleanedQ || w.startsWith(cleanedQ))) return 780;
+    }
+
+    // 2. Tokenized matching across all fields
+    const rawTokens = cleanedQ
+      .replace(/[#+,&/\\-]+/g, ' ')
+      .split(/\s+/)
+      .map(t => t.trim())
+      .filter(t => t.length > 0 && !['style', 'dress', 'gown', 'by', 'the', 'of'].includes(t));
+
+    const tokens = rawTokens.length ? rawTokens : cleanedQ.split(/\s+/).filter(Boolean);
+    const gnWords = gnRaw ? gnRaw.split(/\s+/).filter(Boolean) : [];
+    const desWords = desRaw ? desRaw.replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter(Boolean) : [];
+
     const doc = [
-      p.s || '',
-      p.d || '',
+      skuRaw,
+      skuNorm,
+      skuDigits,
+      gnRaw,
+      desRaw,
       p.n || '',
       p.sil || '',
       p.tr || '',
@@ -578,12 +768,41 @@ class CloudNineCatalog {
       p.c || ''
     ].join(' ').toLowerCase();
 
-    return tokens.every(tok => {
-      if (doc.includes(tok)) return true;
-      const syns = this.synonyms[tok];
-      if (syns && syns.some(syn => doc.includes(syn))) return true;
-      return false;
-    });
+    let score = 0;
+    for (const tok of tokens) {
+      const tNorm = this.normCode(tok);
+      if (!tNorm) continue;
+
+      if (skuNorm === tNorm) {
+        score += 500;
+      } else if (skuDigits && skuDigits.length >= 3 && skuDigits === tNorm) {
+        score += 460;
+      } else if (gnRaw && (gnRaw === tok || gnWords.includes(tok))) {
+        score += 450;
+      } else if (skuNorm.startsWith(tNorm) && tNorm.length >= 3) {
+        score += 380;
+      } else if (gnRaw && (gnRaw.startsWith(tok) || gnWords.some(w => w.startsWith(tok)))) {
+        score += 350;
+      } else if (gnWords.some(w => this.isOneEditAway(tok, w))) {
+        score += 290;
+      } else if (desRaw.includes(tok) || desWords.some(w => this.isOneEditAway(tok, w))) {
+        score += 200;
+      } else if (skuNorm.includes(tNorm) && tNorm.length >= 3) {
+        score += 220;
+      } else if (doc.includes(tok)) {
+        score += 80;
+      } else if (this.synonyms[tok] && this.synonyms[tok].some(syn => doc.includes(syn))) {
+        score += 70;
+      } else {
+        return 0;
+      }
+    }
+
+    return score;
+  }
+
+  matchesSearch(p, q) {
+    return this.scoreSearch(p, q) > 0;
   }
 
   matchesFilter(p, candidateFilters, q) {
@@ -706,10 +925,7 @@ class CloudNineCatalog {
 
   removeFilter(type) {
     if (type === 'search') {
-      this.searchQuery = '';
-      const searchInput = document.getElementById('catalogSearchInput');
-      if (searchInput) searchInput.value = '';
-      this.applyFilters();
+      this.clearCatalogSearch();
     } else {
       this.setFilter(type, 'all', false);
     }
@@ -748,8 +964,7 @@ class CloudNineCatalog {
   clearAllFilters(closeMobile = true) {
     this.facets.forEach(f => { this.activeFilters[f] = 'all'; });
     this.searchQuery = '';
-    const searchInput = document.getElementById('catalogSearchInput');
-    if (searchInput) searchInput.value = '';
+    this.syncSearchInputs('');
 
     this.syncChipStates();
     this.closeAllFacetDropdowns();
@@ -760,7 +975,18 @@ class CloudNineCatalog {
   }
 
   applyFilters() {
-    this.fil = this.P.filter(p => this.matchesFilter(p, this.activeFilters, this.searchQuery));
+    if (this.searchQuery && this.searchQuery.trim()) {
+      const scored = [];
+      for (const p of this.P) {
+        if (!this.matchesFilter(p, this.activeFilters, '')) continue;
+        const sc = this.scoreSearch(p, this.searchQuery);
+        if (sc > 0) scored.push({ p, sc });
+      }
+      scored.sort((a, b) => b.sc - a.sc);
+      this.fil = scored.map(x => x.p);
+    } else {
+      this.fil = this.P.filter(p => this.matchesFilter(p, this.activeFilters, ''));
+    }
     this.updateClearBtn();
     this.updateTriggerLabels();
     this.syncChipStates();
@@ -859,15 +1085,18 @@ class CloudNineCatalog {
           ? '<span>In-Store &amp; Special Order · Sizes 000–36</span>'
           : '<span>In-Stock &amp; Special Order · Walk-Ins Only</span>';
         const defaultDes = this.category === 'prom' ? 'Designer Prom' : 'Designer HOCO';
+        const styleHeadline = p.gn && p.gn !== p.s
+          ? `${p.gn} <span class="dress-card-sku">#${p.s}</span>`
+          : `Style #${p.s || ''}`;
 
         card.innerHTML = `
           <div class="dress-card-img loading">
-            <img src="${p.i}" alt="${(p.d||'')} ${(p.s||'')}" ${loadingAttr} ${loadHandlers}/>
+            <img src="${p.i}" alt="${(p.d||'')} ${(p.gn||'') + ' ' + (p.s||'')}" ${loadingAttr} ${loadHandlers}/>
             ${pipsHtml}
           </div>
           <div class="dress-card-body">
             <div class="dress-designer-tag">${p.d || defaultDes}</div>
-            <div class="dress-card-name">${p.n && p.n !== p.d ? p.n : ('Style #' + (p.s || ''))}</div>
+            <div class="dress-card-name">${styleHeadline}</div>
             <div class="dress-card-school-badge">
               ${boutiqueNote}
             </div>
@@ -876,18 +1105,34 @@ class CloudNineCatalog {
         const designerTag = (p.d && this.category !== 'bridal')
           ? `<div class="dress-designer-tag">${p.d}</div>`
           : '';
-        const cardTitle = p.n || (p.s ? '#' + p.s : 'Designer Gown');
+        let cardTitle = p.n || (p.s ? '#' + p.s : 'Designer Gown');
+        let cardSubCta = 'View Details';
+        if (this.category === 'bridal') {
+          if (p.gn && p.gn !== p.s) {
+            cardTitle = `${p.d} · ${p.gn}`;
+            cardSubCta = `Style #${p.s} · View Details`;
+          } else if (p.gn && p.gn === p.s) {
+            cardTitle = `${p.d} · ${p.gn}`;
+            cardSubCta = `View Gown Details`;
+          } else if (p.d && p.s) {
+            cardTitle = `${p.d} #${p.s}`;
+            cardSubCta = `Style #${p.s} · View Details`;
+          }
+        } else if (this.category === 'mothers' && p.s) {
+          cardTitle = p.d ? `${p.d} #${p.s}` : `Style #${p.s}`;
+          cardSubCta = `Style #${p.s} · View Details`;
+        }
 
         card.innerHTML = `
           <div class="dress-card-img loading">
-            <img src="${p.i}" alt="${(p.d||'')} ${(p.s||'')}" ${loadingAttr} ${loadHandlers}/>
+            <img src="${p.i}" alt="${(p.d||'')} ${(p.gn||'') + ' ' + (p.s||'')}" ${loadingAttr} ${loadHandlers}/>
             ${pipsHtml}
             ${designerTag}
             <div class="dress-card-overlay"></div>
           </div>
           <div class="dress-card-body">
             <div class="dress-card-name">${cardTitle}</div>
-            <div class="dress-card-cta">View Details</div>
+            <div class="dress-card-cta">${cardSubCta}</div>
           </div>`;
       }
 
@@ -1182,8 +1427,22 @@ class CloudNineCatalog {
     const mMeta = document.getElementById('mMeta');
 
     if (mDes) mDes.textContent = p.d || (this.category === 'prom' ? 'Prom Collection' : (this.category === 'hoco' ? 'Homecoming Collection' : ''));
-    if (mTitle) mTitle.textContent = p.n && p.n !== p.d ? p.n : ('Style #' + (p.s || ''));
-    if (mBadge) mBadge.textContent = p.s ? `Style #${p.s}` : '';
+    if (mTitle) {
+      if (p.gn && p.gn !== p.s) {
+        mTitle.textContent = p.gn;
+      } else if (p.gn && p.gn === p.s) {
+        mTitle.textContent = `${p.d ? p.d + ' · ' : ''}${p.gn}`;
+      } else {
+        mTitle.textContent = p.d && p.s ? `${p.d} #${p.s}` : ('Style #' + (p.s || ''));
+      }
+    }
+    if (mBadge) {
+      if (p.gn && p.gn !== p.s) {
+        mBadge.textContent = `${p.d ? p.d + ' · ' : ''}Style #${p.s}`;
+      } else {
+        mBadge.textContent = p.s ? `Style #${p.s}` : '';
+      }
+    }
 
     if (mDesc) {
       const stockNotice = '<div style="font-weight:600;color:var(--teal-deep);background:var(--teal-xlight);border:1px solid var(--border);padding:10px 14px;margin-bottom:14px;">Not all gowns are kept in store. Contact us for stock and availability details.</div>';

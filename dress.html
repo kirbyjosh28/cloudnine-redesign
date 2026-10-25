@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"/>
-  <link rel="stylesheet" href="shared.css?v=20261022h"/>
+  <link rel="stylesheet" href="shared.css?v=20261025b"/>
   <style>
 
     /* ── DRESS DETAIL PAGE — Galia Lahav editorial style ── */
@@ -555,7 +555,7 @@
   </div>
 
   <footer id="site-footer"></footer>
-  <script src="components.js?v=20261022h" defer></script>
+  <script src="components.js?v=20261025b" defer></script>
   <script>
   (async function() {
 
@@ -568,21 +568,30 @@
     let catParam = (urlParams.get('cat') || urlParams.get('type') || '').toLowerCase();
     let dressSrc = sessionStorage.getItem('cloudnine_dress_src') || '';
 
+    // If URL specifies a different SKU than what is cached in sessionStorage, clear stale sessionStorage dress
+    if (dress && skuParam && String(dress.s || '').toLowerCase() !== skuParam.toLowerCase() && String(dress.gn || '').toLowerCase() !== skuParam.toLowerCase()) {
+      dress = null;
+    }
+
     if (!dress && skuParam) {
       const catFiles = {
-        'bridal': 'data/bridal-products.json?v=20260909k',
-        'prom': 'data/prom-products.json?v=20261021d',
-        'hoco': 'data/hoco-products.json?v=20261021d',
-        'mothers': 'data/mothers-products.json?v=20260909k'
+        'bridal': 'data/bridal-products.json?v=20261025b',
+        'prom': 'data/prom-products.json?v=20261025b',
+        'hoco': 'data/hoco-products.json?v=20261025b',
+        'mothers': 'data/mothers-products.json?v=20261025b'
       };
       const filesToTry = catParam && catFiles[catParam] ? [catFiles[catParam]] : Object.values(catFiles);
+      const qLower = skuParam.trim().toLowerCase().replace(/^#/, '');
 
       for (const filePath of filesToTry) {
         try {
           const res = await fetch(filePath);
           if (res.ok) {
             const list = await res.json();
-            const found = list.find(p => String(p.s || '').toLowerCase() === skuParam.toLowerCase());
+            const found = list.find(p =>
+              String(p.s || '').toLowerCase() === qLower ||
+              String(p.gn || '').toLowerCase() === qLower
+            );
             if (found) {
               dress = found;
               if (!catParam) {
@@ -656,14 +665,15 @@
     /* ── Derive display values ── */
     const imgs = (dress.x && dress.x.length) ? dress.x : (dress.i ? [dress.i] : []);
     const rawDesc = (dress.c || '').trim();
-    const isShortDesc = rawDesc && rawDesc.length < 90 && !rawDesc.includes('. ');
-    const displayTitle = isShortDesc ? titleCase(rawDesc) : (dress.n || 'Style #' + dress.s);
-    const longDesc = !isShortDesc ? rawDesc : '';
+    const hasDistinctGownName = Boolean(dress.gn && dress.gn !== dress.s);
+    const displayTitle = dress.gn
+      ? `${dress.d ? dress.d + ' · ' : ''}${dress.gn}`
+      : (dress.d && dress.s ? `${dress.d} #${dress.s}` : (dress.n || 'Style #' + dress.s));
     const sectionLabel = isProm ? 'Prom' : isHoco ? 'Homecoming' : isMothers ? 'Mothers' : 'Bridal';
     const sectionHref  = isProm ? 'prom-catalog.html' : isHoco ? 'hoco-catalog.html' : isMothers ? 'mothers.html' : 'bridal-catalog.html';
 
     /* ── Page title & Meta ── */
-    document.title = displayTitle + ' | Cloud Nine Bridal Boutique';
+    document.title = displayTitle + (hasDistinctGownName ? ` (#${dress.s})` : '') + ' | Cloud Nine Bridal Boutique';
     const canonicalEl = document.getElementById('canonicalLink');
     const shareCanonicalUrl = `https://cloudninepeoria.com/dress.html?cat=${activeCat}&sku=${encodeURIComponent(dress.s || '')}`;
     if (canonicalEl) canonicalEl.href = shareCanonicalUrl;
@@ -715,13 +725,15 @@
     }
 
     /* ── Right panel ── */
-    document.getElementById('dpDesigner').textContent = '';
-    document.getElementById('dpTitle').textContent = displayTitle;
-    document.getElementById('dpStyleNum').textContent = (dress.s && dress.s !== dress.n) ? dress.s : '';
+    document.getElementById('dpDesigner').textContent = dress.d || '';
+    document.getElementById('dpTitle').textContent = dress.gn ? dress.gn : ('Style #' + (dress.s || ''));
+    document.getElementById('dpStyleNum').textContent = hasDistinctGownName ? `Style #${dress.s}` : (dress.gn ? `${dress.d} Collection` : '');
 
     /* ── Meta rows ── */
     const metaRows = [
       dress.d ? ['Designer', dress.d] : null,
+      dress.gn ? ['Gown Name', dress.gn] : null,
+      (dress.s && dress.s !== dress.gn) ? ['Style Number', '#' + dress.s] : null,
       ['Availability', 'Contact Us'],
     ].filter(Boolean);
     document.getElementById('dpMeta').innerHTML = metaRows.map(([k,v]) =>

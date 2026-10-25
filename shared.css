@@ -6895,10 +6895,12 @@ body::after {
 }
 
 /* ════════════════════════════════════════════════════════════════════
-   2026 MOBILE SCROLL-REDUCTION & HORIZONTAL SNAP-CAROUSEL ARCHITECTURE
-   Cuts mobile vertical scroll by 50%–65% across all 15 pages while
-   preserving 100% of content via touch-friendly horizontal carousels,
-   compact 2-column footer & stat grids, and smart mobile batching.
+   2026 MOBILE SPACING, ALIGNMENT & PERFORMANCE ARCHITECTURE
+   - Unified 20px inline gutter across all 15 pages
+   - Symmetric mobile capsule navbar (no floating cloud overlap on hero/nav)
+   - Zero-clipping above-the-fold heroes on Prom, HOCO, Bridal, About, etc.
+   - Edge-to-edge peeking carousels (scroll-snap-align: start, 20px inset)
+   - Zero entrance animation / blur delays on mobile (LCP & CLS invariants)
    ════════════════════════════════════════════════════════════════════ */
 
 /* Desktop default: hide mobile-only "View All 27 Real Brides" toggle */
@@ -6907,480 +6909,953 @@ body::after {
 }
 
 @media (max-width: 768px) {
-  /* Prevent any wide button or child from causing horizontal overflow */
+  /* ── 0. MOBILE WEB PERFORMANCE INVARIANTS (ZERO BLUR / ZERO DELAY / GPU SAFE) ── */
   html,
   body {
     max-width: 100vw !important;
     overflow-x: clip !important;
   }
-  .btn-prom-primary,
-  .btn-prom-ghost,
-  .designer-pill-link {
+
+  /* Disable full-screen SVG feTurbulence overlay on mobile GPUs */
+  body::after {
+    display: none !important;
+  }
+
+  /* Eliminate opacity:0 & blur(4px) entrance delays on mobile for instant LCP & crisp scroll */
+  html body .reveal,
+  html body .reveal-on-scroll,
+  html body .reveal.visible,
+  html body .reveal-on-scroll.is-revealed,
+  html body .phero-left > *,
+  html body .hhero-right > *,
+  html body .bhero-eyebrow,
+  html body .bhero-rule,
+  html body .bhero-title,
+  html body .bhero-actions,
+  html body .bhero-panel,
+  html body .hero-c-eyebrow,
+  html body .hero-c-title,
+  html body .hero-c-actions,
+  html body .hero-c-proof {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* Stop continuous full-screen Ken Burns GPU rasterization on mobile */
+  html body .hero-c-bg img,
+  html body .bridal-hero-bg img,
+  html body .bhero-panel img {
+    animation: none !important;
+  }
+
+  /* ── 1. SYMMETRIC MOBILE CAPSULE NAVBAR (NO FLOATING CLOUD COLLISION) ── */
+  /* The Style Quiz CTA is already featured inside #mobile-drawer and Quick Actions;
+     hiding the floating desktop cloud prevents it from covering hero titles/eyebrows
+     or pushing the hamburger menu into the center of the navbar on scroll. */
+  html body .nav-cloud-cta {
+    display: none !important;
+  }
+  html body .main-nav .nav-brand,
+  html body .main-nav.nav-scrolled .nav-brand,
+  html body .main-nav.scrolled .nav-brand {
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    margin: 0 !important;
+  }
+  html body .main-nav .nav-hamburger,
+  html body .main-nav.nav-scrolled .nav-hamburger,
+  html body .main-nav.scrolled .nav-hamburger {
+    margin-left: auto !important;
+    margin-right: 0 !important;
+  }
+
+  /* ── 2. HERO ERGONOMICS & ABOVE-THE-FOLD SPACING ACROSS ALL 15 PAGES ── */
+  html body .btn-prom-primary,
+  html body .btn-prom-ghost,
+  html body .btn-hoco-primary,
+  html body .btn-hoco-ghost,
+  html body .designer-pill-link {
     white-space: normal !important;
     text-align: center !important;
     max-width: 100% !important;
   }
 
-  /* ── 1. COMPACT 2-COLUMN MOBILE FOOTER (1,798px -> ~560px on every page) ── */
-  .site-footer {
-    padding: 24px 16px max(14px, env(safe-area-inset-bottom, 14px)) !important;
+  /* Home Hero (index.html): full-width 20px-aligned CTA buttons */
+  html body .hero-cinematic {
+    height: 82svh !important;
+    min-height: 500px !important;
+    max-height: 650px !important;
   }
-  .footer-top {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
-    gap: 14px 14px !important;
-    padding-bottom: 14px !important;
+  html body .hero-c-content {
+    padding: 84px 20px 28px !important;
+    gap: 12px !important;
   }
-  .footer-col-brand {
-    grid-column: 1 / -1 !important;
+  html body .hero-c-title {
+    font-size: clamp(32px, 8.8vw, 44px) !important;
+    line-height: 1.04 !important;
+    margin-bottom: 12px !important;
   }
-  .footer-logo {
-    margin-bottom: 6px !important;
-  }
-  .footer-logo img {
-    height: 40px !important;
-  }
-  .footer-tagline {
-    display: none !important;
-  }
-  .footer-contact {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
-    gap: 4px 10px !important;
-  }
-  .footer-contact a {
-    font-size: 11px !important;
-    line-height: 1.3 !important;
-  }
-  .footer-social {
-    margin-top: 8px !important;
-    gap: 6px !important;
-  }
-  .footer-social .social-link {
-    width: 34px !important;
-    height: 34px !important;
-  }
-  .footer-col-explore,
-  .footer-col-company {
-    grid-column: span 1 !important;
-  }
-  .footer-col-title {
-    margin-bottom: 6px !important;
-    font-size: 10px !important;
-    letter-spacing: 0.14em !important;
-  }
-  .footer-links {
-    gap: 3px !important;
-  }
-  .footer-links li {
-    line-height: 1.25 !important;
-  }
-  .footer-links a {
-    font-size: 12px !important;
-    line-height: 1.25 !important;
-    min-height: 0 !important;
-    padding: 2px 0 !important;
-  }
-  .footer-col-hours {
-    grid-column: 1 / -1 !important;
-    padding-top: 10px;
-    border-top: 1px solid var(--border);
-  }
-  .footer-hours-grid {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
+  html body .hero-c-actions {
+    width: 100% !important;
+    max-width: 100% !important;
     gap: 10px !important;
-    align-items: start !important;
   }
-  .footer-hours-grid .hours-sub {
-    margin: 0 0 4px !important;
-    font-size: 10px !important;
-    letter-spacing: 0.14em !important;
-    color: var(--teal-deep) !important;
-  }
-  .footer-hours-grid .hours-table {
-    margin-top: 2px !important;
-  }
-  .footer-hours-grid .hours-table td {
-    font-size: 11px !important;
-    padding: 1px 0 !important;
-    line-height: 1.3 !important;
-  }
-  .footer-hours-grid .hours-table td:first-child {
-    padding-right: 4px !important;
-  }
-  .footer-hours-note {
-    font-size: 9.5px !important;
-    line-height: 1.25 !important;
-    margin-top: 2px !important;
-  }
-  .footer-newsletter-wrap {
-    margin-top: 10px !important;
-    padding-top: 10px !important;
-    border-top: 1px solid var(--border) !important;
-  }
-  .footer-newsletter-desc,
-  .footer-newsletter-fine {
-    display: none !important;
-  }
-  .footer-subscribe-form {
-    flex-direction: row !important;
+  html body .hero-c-proof {
+    margin-top: 14px !important;
+    font-size: 10.5px !important;
     gap: 6px !important;
-  }
-  .footer-subscribe-form input {
-    padding: 8px 10px !important;
-    font-size: 16px !important;
-    min-width: 0 !important;
-  }
-  .footer-subscribe-form button {
-    width: auto !important;
-    padding: 8px 14px !important;
-    flex-shrink: 0 !important;
-  }
-  .footer-bottom {
-    padding: 10px 0 !important;
-    gap: 4px !important;
-  }
-  .footer-copy,
-  .footer-legal a {
-    font-size: 11px !important;
   }
 
-  /* ── 2. UNIVERSAL HORIZONTAL SNAP-SCROLL CAROUSELS ON MOBILE ── */
-  .journey-grid,
-  .designers-grid,
-  .bridal-designers-grid,
-  #accessories > div > div:nth-child(2),
-  .exp-journey-grid,
-  .exp-suites-grid,
-  .exp-bento-grid,
-  .team-editorial-grid,
-  #events > div > div:last-child,
-  .collections-grid,
-  .trend-grid,
-  .ig-grid,
-  .reviews-grid,
-  .faq-grid,
-  .hoco-matrix-grid,
-  .hoco-photo-grid-inner,
-  .hoco-faq-grid,
-  .tux-pillars-grid,
-  .tux-process-grid,
-  .appt-grid,
-  .prep-hub-grid,
-  .contact-layout > div:nth-child(2) {
+  /* Bridal Hero (bridal.html): keep both CTA buttons comfortably above the fold + high-contrast em */
+  html body .bridal-hero {
+    height: 82svh !important;
+    min-height: 500px !important;
+    max-height: 640px !important;
+    margin-top: -64px !important;
+    display: flex !important;
+    align-items: flex-end !important;
+  }
+  html body .bridal-hero-vignette {
+    background:
+      linear-gradient(to bottom, rgba(7, 18, 19, 0.42) 0%, rgba(7, 18, 19, 0.14) 30%, rgba(7, 18, 19, 0.72) 64%, rgba(7, 18, 19, 0.94) 100%) !important;
+  }
+  html body .bhero-content {
+    position: relative !important;
+    width: 100% !important;
+    padding: 84px 20px 28px !important;
+    gap: 12px !important;
+  }
+  html body .bhero-title {
+    font-size: clamp(34px, 9vw, 46px) !important;
+    line-height: 1.02 !important;
+    margin-bottom: 16px !important;
+  }
+  html body .bhero-title em {
+    color: #cdeff0 !important;
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.45) !important;
+  }
+  html body .bhero-actions {
+    width: 100% !important;
+    max-width: 100% !important;
+    gap: 10px !important;
+  }
+
+  /* Bridal Catalog Hero (bridal-catalog.html): seamless top behind nav + strong bottom contrast */
+  html body .bridal-cat-hero {
+    margin-top: -64px !important;
+    height: 330px !important;
+    min-height: 310px !important;
+  }
+  html body .bridal-cat-hero-vignette {
+    z-index: 7 !important;
+    background:
+      linear-gradient(to bottom, rgba(10, 24, 26, 0.44) 0%, rgba(10, 24, 26, 0.18) 32%, rgba(10, 24, 26, 0.90) 100%) !important;
+  }
+  html body .bridal-cat-hero-content {
+    z-index: 10 !important;
+    padding: 80px 20px 24px !important;
+  }
+  html body .bridal-cat-hero-title {
+    font-size: clamp(32px, 8.5vw, 42px) !important;
+    line-height: 1.04 !important;
+  }
+  html body .bridal-cat-hero-title em {
+    color: #d6f3f4 !important;
+  }
+
+  /* Prom & HOCO Video Heroes (prom.html & hoco.html): fix H1 top clipping & button widths */
+  html body.page-hoco #site-header {
+    height: 0 !important;
+  }
+  html body .prom-video-hero,
+  html body .hoco-video-hero {
+    height: auto !important;
+    min-height: 520px !important;
+    align-items: flex-end !important;
+    margin-top: 0 !important;
+  }
+  html body .prom-video-content,
+  html body .hoco-video-content {
+    padding: 82px 20px 26px !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 14px !important;
+  }
+  html body .phero-left,
+  html body .hhero-right {
+    max-width: 100% !important;
+    width: 100% !important;
+    text-align: left !important;
+  }
+  html body .phero-eyebrow,
+  html body .hhero-eyebrow {
+    font-size: 10.5px !important;
+    letter-spacing: 0.16em !important;
+    margin-bottom: 8px !important;
+    line-height: 1.35 !important;
+  }
+  html body .prom-video-title,
+  html body .hoco-video-title {
+    font-size: clamp(32px, 8.8vw, 42px) !important;
+    line-height: 1.04 !important;
+    margin-bottom: 10px !important;
+  }
+  html body .phero-desc,
+  html body .hhero-desc {
+    font-size: 14px !important;
+    line-height: 1.52 !important;
+    margin-bottom: 16px !important;
+    margin-left: 0 !important;
+  }
+  html body .prom-video-actions,
+  html body .hoco-video-actions {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+    gap: 10px !important;
+  }
+  html body .prom-video-actions > a,
+  html body .hoco-video-actions > a {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 14px 20px !important;
+  }
+  html body .excl-seal-hero {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 12px 14px !important;
+    border-radius: 10px !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+    gap: 12px !important;
+  }
+  html body .excl-seal-title {
+    font-size: 20px !important;
+    margin-bottom: 0 !important;
+    flex-shrink: 0 !important;
+  }
+  html body .excl-seal-sub {
+    font-size: 10px !important;
+    letter-spacing: 0.14em !important;
+    margin-bottom: 0 !important;
+  }
+  html body .excl-seal-desc {
+    display: none !important;
+  }
+  html body .prom-ticker-strip,
+  html body .hoco-ticker-strip {
+    padding: 12px 20px !important;
+    gap: 6px !important;
+  }
+  html body .prom-ticker-text,
+  html body .hoco-ticker-text {
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+  }
+
+  /* Prom & HOCO Catalog Heroes (prom-catalog.html & hoco-catalog.html) */
+  html body .prom-catalog-hero,
+  html body .hoco-catalog-hero {
+    padding: 10px 20px 12px !important;
+  }
+  html body .prom-hero-card,
+  html body .hoco-hero-card {
+    padding: 18px 16px !important;
+    gap: 14px !important;
+    border-radius: 14px !important;
+  }
+  html body .prom-hero-tag,
+  html body .hoco-hero-tag {
+    font-size: 9.5px !important;
+    letter-spacing: 0.12em !important;
+    padding: 5px 10px !important;
+    margin-bottom: 8px !important;
+  }
+  html body .prom-hero-title,
+  html body .hoco-hero-title {
+    font-size: clamp(26px, 7.2vw, 34px) !important;
+    line-height: 1.08 !important;
+    margin-bottom: 8px !important;
+  }
+  html body .prom-hero-sub,
+  html body .hoco-hero-sub {
+    font-size: 13.5px !important;
+    line-height: 1.5 !important;
+  }
+  html body .prom-hero-perks,
+  html body .hoco-hero-perks {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+    padding: 10px !important;
+    border-radius: 10px !important;
+  }
+  html body .prom-perk-item,
+  html body .hoco-perk-item {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 2px !important;
+    padding: 8px 10px !important;
+    background: rgba(155, 44, 78, 0.04) !important;
+    border: 1px solid rgba(155, 44, 78, 0.14) !important;
+    border-radius: 8px !important;
+  }
+  html body .prom-perk-num,
+  html body .hoco-perk-num {
+    font-size: 10px !important;
+    line-height: 1 !important;
+  }
+  html body .prom-perk-title,
+  html body .hoco-perk-title {
+    font-size: 11px !important;
+    line-height: 1.25 !important;
+    margin: 0 !important;
+  }
+  html body .prom-perk-sub,
+  html body .hoco-perk-sub {
+    display: none !important;
+  }
+  html body .registry-sticky-wrap {
+    padding: 0 20px !important;
+    margin-bottom: 10px !important;
+  }
+  html body .registry-bar {
+    padding: 10px 12px !important;
+    gap: 10px !important;
+    flex-wrap: nowrap !important;
+    border-radius: 12px !important;
+  }
+  html body .registry-bar-left {
+    min-width: 0 !important;
+    flex: 1 !important;
+  }
+  html body .registry-info-title {
+    font-size: 11px !important;
+    line-height: 1.3 !important;
+  }
+  html body .registry-info-desc {
+    display: none !important;
+  }
+  html body .registry-school-picker {
+    flex-shrink: 0 !important;
+  }
+  html body .registry-btn-book {
+    padding: 8px 12px !important;
+    font-size: 9.5px !important;
+    letter-spacing: 0.1em !important;
+    white-space: nowrap !important;
+  }
+
+  /* Tuxedos Hero (tuxedos.html) */
+  html body .tux-hero {
+    padding: 20px 20px 28px !important;
+  }
+  html body .tux-hero-inner {
+    gap: 20px !important;
+  }
+  html body .tux-eyebrow {
+    margin-bottom: 8px !important;
+    font-size: 10.5px !important;
+  }
+  html body .tux-hero-title {
+    font-size: clamp(32px, 8.5vw, 42px) !important;
+    line-height: 1.04 !important;
+    margin-bottom: 12px !important;
+  }
+  html body .tux-hero-rule {
+    margin-bottom: 12px !important;
+  }
+  html body .tux-hero-desc {
+    font-size: 14px !important;
+    line-height: 1.55 !important;
+    margin-bottom: 10px !important;
+  }
+  html body .tux-hero-desc:nth-of-type(2) {
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+  }
+  html body .tux-hero-actions {
+    margin-top: 8px !important;
+    gap: 10px !important;
+  }
+  html body .tux-hero-image-wrap {
+    border-radius: 14px !important;
+  }
+  html body .tux-hero-image-wrap img {
+    max-height: 240px !important;
+    aspect-ratio: 16 / 10 !important;
+  }
+
+  /* Mothers Hero (mothers.html) */
+  html body .mothers-hero {
+    height: 78svh !important;
+    min-height: 480px !important;
+    max-height: 620px !important;
+    margin-top: -64px !important;
+  }
+  html body .mothers-hero-content {
+    padding: 84px 20px 28px !important;
+  }
+  html body .mothers-hero-actions {
+    width: 100% !important;
+    max-width: 100% !important;
+    gap: 10px !important;
+  }
+
+  /* Experience Hero (experience.html) */
+  html body .exp-hero {
+    padding: 20px 20px 28px !important;
+  }
+  html body .exp-hero-inner {
+    gap: 20px !important;
+  }
+  html body .exp-hero-eyebrow {
+    margin-bottom: 10px !important;
+    font-size: 10px !important;
+    letter-spacing: 0.14em !important;
+    padding: 5px 12px !important;
+  }
+  html body .exp-hero-title {
+    font-size: clamp(32px, 8.5vw, 42px) !important;
+    line-height: 1.04 !important;
+    margin-bottom: 12px !important;
+  }
+  html body .exp-hero-desc {
+    font-size: 14px !important;
+    line-height: 1.55 !important;
+    margin-bottom: 18px !important;
+  }
+  html body .exp-hero-actions {
+    gap: 10px !important;
+  }
+  html body .exp-hero-bezel-inner img {
+    max-height: 210px !important;
+    object-fit: cover !important;
+  }
+
+  /* About Hero (about.html) */
+  html body .about-hero {
+    height: 360px !important;
+    min-height: 340px !important;
+    margin-top: -64px !important;
+  }
+  html body .about-hero-vignette {
+    background:
+      linear-gradient(to bottom, rgba(10, 28, 30, 0.38) 0%, rgba(10, 28, 30, 0.22) 35%, rgba(10, 28, 30, 0.88) 100%) !important;
+  }
+  html body .about-hero-content {
+    padding: 80px 20px 24px !important;
+    gap: 8px !important;
+  }
+  html body .about-hero-title {
+    font-size: clamp(32px, 8.5vw, 42px) !important;
+    line-height: 1.02 !important;
+    margin-bottom: 6px !important;
+  }
+
+  /* Our Brides Hero (our-brides.html) */
+  html body .brides-hero {
+    height: 460px !important;
+    min-height: 420px !important;
+    margin-top: -64px !important;
+  }
+  html body .brides-hero-content {
+    padding: 80px 20px 26px !important;
+    gap: 14px !important;
+    align-items: stretch !important;
+  }
+  html body .brides-hero-h1 {
+    font-size: clamp(34px, 9vw, 46px) !important;
+    line-height: 1.02 !important;
+    margin-bottom: 8px !important;
+  }
+  html body .brides-hero-right {
+    width: 100% !important;
+    align-items: stretch !important;
+    text-align: left !important;
+  }
+  html body .brides-hero-cta {
+    width: 100% !important;
+    justify-content: center !important;
+    border-radius: 9999px !important;
+    background: rgba(255, 255, 255, 0.14) !important;
+    border-color: rgba(255, 255, 255, 0.38) !important;
+    padding: 14px 20px !important;
+  }
+
+  /* Appointments & Contact Heroes (appointments.html & contact.html) */
+  html body .appt-hero {
+    padding: 24px 20px 28px !important;
+  }
+  html body .appt-hero h1 {
+    font-size: clamp(30px, 8.2vw, 40px) !important;
+    line-height: 1.06 !important;
+    margin-bottom: 10px !important;
+  }
+  html body .appt-hero p {
+    font-size: 14px !important;
+    line-height: 1.55 !important;
+    margin-bottom: 16px !important;
+  }
+  html body .appt-hero-meta {
+    gap: 8px 14px !important;
+  }
+  html body .page-hero {
+    padding: 20px 20px 18px !important;
+  }
+  html body .page-hero-main {
+    padding: 8px 0 16px !important;
+    gap: 8px !important;
+  }
+
+  /* ── 3. UNIFIED 20PX SECTION RHYTHM ACROSS ALL PAGES ── */
+  html body .section,
+  html body .section-sm,
+  html body .editorial-section,
+  html body .journey-section,
+  html body .exp-section,
+  html body .registry-section,
+  html body #collections,
+  html body .squad-section,
+  html body .trend-section,
+  html body .ig-section,
+  html body .reviews-section,
+  html body #prom-faq,
+  html body .prom-cta-final,
+  html body .hoco-matrix-section,
+  html body .hoco-swatch-section,
+  html body .hoco-photo-grid,
+  html body #hoco-faq,
+  html body .hoco-cta-final,
+  html body .tux-pillars-section,
+  html body .tux-process-section,
+  html body .tux-portal-section,
+  html body .tux-cta-section,
+  html body .bridal-designers,
+  html body #events,
+  html body #accessories,
+  html body #faq,
+  html body .about-cta-section,
+  html body .appt-types,
+  html body .prep-hub-section,
+  html body .booking-embed,
+  html body .appt-tips,
+  html body .brides-gallery-section,
+  html body .be-featured-section,
+  html body .cta-section {
+    padding: 36px 20px !important;
+  }
+
+  html body .designers-section {
+    padding: 0 20px !important;
+  }
+  html body .designers-inner {
+    padding: 36px 0 !important;
+  }
+  html body .designers-top,
+  html body .journey-header,
+  html body .exp-section-header,
+  html body .registry-header,
+  html body .hoco-matrix-header,
+  html body .tux-section-header,
+  html body .appt-types-intro,
+  html body .booking-embed-header {
+    margin-bottom: 18px !important;
+  }
+  html body #collections > div > div:first-child,
+  html body .trend-section > div > div:first-child,
+  html body .ig-section > div > div:first-child,
+  html body .reviews-section > div > div:first-child,
+  html body #prom-faq > div > div:first-child,
+  html body #hoco-faq > div > div:first-child,
+  html body #events > div > div:first-child,
+  html body #accessories > div > div:first-child {
+    margin-bottom: 18px !important;
+  }
+
+  /* ── 4. EDGE-TO-EDGE PEEKING CAROUSELS (20PX ALIGNED START, FULL RIGHT BLEED) ── */
+  html body .journey-grid,
+  html body .designers-grid,
+  html body .bridal-designers-grid,
+  html body #accessories > div > div:nth-child(2),
+  html body .exp-journey-grid,
+  html body .exp-suites-grid,
+  html body .exp-bento-grid,
+  html body .team-editorial-grid,
+  html body #events > div > div:last-child,
+  html body .collections-grid,
+  html body .trend-grid,
+  html body .ig-grid,
+  html body .reviews-grid,
+  html body .faq-grid,
+  html body .hoco-matrix-grid,
+  html body .hoco-photo-grid-inner,
+  html body .hoco-faq-grid,
+  html body .tux-pillars-grid,
+  html body .tux-process-grid,
+  html body .appt-grid,
+  html body .prep-hub-grid,
+  html body .contact-layout > div:nth-child(2) {
     display: flex !important;
     flex-direction: row !important;
     flex-wrap: nowrap !important;
     overflow-x: auto !important;
     overflow-y: hidden !important;
     scroll-snap-type: x mandatory !important;
+    scroll-padding-inline: 20px !important;
     -webkit-overflow-scrolling: touch !important;
     scrollbar-width: none !important;
     gap: 14px !important;
-    padding: 4px 4px 12px !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
+    padding: 4px 20px 14px !important;
+    margin-left: -20px !important;
+    margin-right: -20px !important;
     border: none !important;
   }
 
-  .journey-grid::-webkit-scrollbar,
-  .designers-grid::-webkit-scrollbar,
-  .bridal-designers-grid::-webkit-scrollbar,
-  #accessories > div > div:nth-child(2)::-webkit-scrollbar,
-  .exp-journey-grid::-webkit-scrollbar,
-  .exp-suites-grid::-webkit-scrollbar,
-  .exp-bento-grid::-webkit-scrollbar,
-  .team-editorial-grid::-webkit-scrollbar,
-  #events > div > div:last-child::-webkit-scrollbar,
-  .collections-grid::-webkit-scrollbar,
-  .trend-grid::-webkit-scrollbar,
-  .ig-grid::-webkit-scrollbar,
-  .reviews-grid::-webkit-scrollbar,
-  .faq-grid::-webkit-scrollbar,
-  .hoco-matrix-grid::-webkit-scrollbar,
-  .hoco-photo-grid-inner::-webkit-scrollbar,
-  .hoco-faq-grid::-webkit-scrollbar,
-  .tux-pillars-grid::-webkit-scrollbar,
-  .tux-process-grid::-webkit-scrollbar,
-  .appt-grid::-webkit-scrollbar,
-  .prep-hub-grid::-webkit-scrollbar,
-  .contact-layout > div:nth-child(2)::-webkit-scrollbar {
+  html body .journey-grid::-webkit-scrollbar,
+  html body .designers-grid::-webkit-scrollbar,
+  html body .bridal-designers-grid::-webkit-scrollbar,
+  html body #accessories > div > div:nth-child(2)::-webkit-scrollbar,
+  html body .exp-journey-grid::-webkit-scrollbar,
+  html body .exp-suites-grid::-webkit-scrollbar,
+  html body .exp-bento-grid::-webkit-scrollbar,
+  html body .team-editorial-grid::-webkit-scrollbar,
+  html body #events > div > div:last-child::-webkit-scrollbar,
+  html body .collections-grid::-webkit-scrollbar,
+  html body .trend-grid::-webkit-scrollbar,
+  html body .ig-grid::-webkit-scrollbar,
+  html body .reviews-grid::-webkit-scrollbar,
+  html body .faq-grid::-webkit-scrollbar,
+  html body .hoco-matrix-grid::-webkit-scrollbar,
+  html body .hoco-photo-grid-inner::-webkit-scrollbar,
+  html body .hoco-faq-grid::-webkit-scrollbar,
+  html body .tux-pillars-grid::-webkit-scrollbar,
+  html body .tux-process-grid::-webkit-scrollbar,
+  html body .appt-grid::-webkit-scrollbar,
+  html body .prep-hub-grid::-webkit-scrollbar,
+  html body .contact-layout > div:nth-child(2)::-webkit-scrollbar {
     display: none !important;
   }
 
-  /* Carousel Card Sizing & Snap Alignment */
-  .journey-grid > *,
-  .designers-grid > *,
-  .bridal-designers-grid > *,
-  #accessories > div > div:nth-child(2) > *,
-  .exp-journey-grid > *,
-  .exp-suites-grid > *,
-  .exp-bento-grid > *,
-  #events > div > div:last-child > *,
-  .collections-grid > *,
-  .trend-grid > *,
-  .reviews-grid > *,
-  .faq-grid > *,
-  .hoco-matrix-grid > *,
-  .hoco-faq-grid > *,
-  .tux-pillars-grid > *,
-  .tux-process-grid > *,
-  .appt-grid > *,
-  .prep-hub-grid > *,
-  .contact-layout > div:nth-child(2) > * {
-    flex: 0 0 83% !important;
-    max-width: 305px !important;
-    min-width: 260px !important;
-    scroll-snap-align: center !important;
+  /* Carousel Card Sizing & Start-Edge Snap Alignment */
+  html body .journey-grid > *,
+  html body .designers-grid > *,
+  html body .bridal-designers-grid > *,
+  html body #accessories > div > div:nth-child(2) > *,
+  html body .exp-journey-grid > *,
+  html body .exp-suites-grid > *,
+  html body .exp-bento-grid > *,
+  html body #events > div > div:last-child > *,
+  html body .collections-grid > *,
+  html body .trend-grid > *,
+  html body .reviews-grid > *,
+  html body .faq-grid > *,
+  html body .hoco-matrix-grid > *,
+  html body .hoco-faq-grid > *,
+  html body .tux-pillars-grid > *,
+  html body .tux-process-grid > *,
+  html body .appt-grid > *,
+  html body .prep-hub-grid > *,
+  html body .contact-layout > div:nth-child(2) > * {
+    flex: 0 0 82% !important;
+    max-width: 300px !important;
+    min-width: 265px !important;
+    scroll-snap-align: start !important;
   }
 
-  /* Bridal & Home designers cards need full border when detached into horizontal cards */
-  .bridal-designers-grid > .bridal-designer-card,
-  .designers-grid > .designer-card {
+  /* Bridal & Home designers cards need complete 4-sided border when detached into horizontal cards */
+  html body .bridal-designers-grid > .bridal-designer-card,
+  html body .designers-grid > .designer-card {
     border: 1px solid var(--border) !important;
     border-radius: 12px !important;
-    padding: 20px 16px !important;
+    padding: 20px 18px !important;
     background: var(--white) !important;
   }
 
-  /* Team portraits, IG photos & HOCO lookbook photos: slightly narrower cards so 1.5–2 cards peek */
-  .team-editorial-grid > .team-portrait,
-  .hoco-photo-grid-inner > .hoco-photo-card,
-  .ig-grid > .ig-photo-card {
-    flex: 0 0 60% !important;
-    max-width: 220px !important;
-    min-width: 195px !important;
-    scroll-snap-align: center !important;
+  /* Team portraits, IG photos & HOCO lookbook photos: narrower cards so ~1.7 cards peek */
+  html body .team-editorial-grid > .team-portrait,
+  html body .hoco-photo-grid-inner > .hoco-photo-card,
+  html body .ig-grid > .ig-photo-card {
+    flex: 0 0 58% !important;
+    max-width: 215px !important;
+    min-width: 190px !important;
+    scroll-snap-align: start !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
   }
-  .ig-grid .ig-extra-hidden {
+  html body .ig-grid .ig-extra-hidden {
     display: block !important;
   }
-  #toggleAllPromPhotosBtn {
+  html body #toggleAllPromPhotosBtn {
     display: none !important;
   }
 
-  /* Compact Journey Cards, Experience Suites & Prom Collection Cards inside Carousels */
-  .journey-img-wrap {
-    height: 165px !important;
+  /* ── 5. CARD PROPORTIONS & INTERNAL WHITESPACE OPTIMIZATION ── */
+  /* Home Editorial Section */
+  html body .editorial-inner {
+    gap: 20px !important;
   }
-  .journey-card-body {
+  html body .editorial-photo-main {
+    max-height: 280px !important;
+    aspect-ratio: 16 / 11 !important;
+  }
+  html body .editorial-photo-main img {
+    object-position: center 20% !important;
+  }
+
+  /* Journey Cards (index.html & about.html) */
+  html body .journey-img-wrap {
+    height: 155px !important;
+  }
+  html body .journey-card-body {
     padding: 16px !important;
   }
-  .journey-step-desc {
+  html body .journey-step-title {
+    font-size: 19px !important;
+    margin-bottom: 6px !important;
+  }
+  html body .journey-step-desc {
     display: -webkit-box !important;
     -webkit-line-clamp: 3 !important;
     -webkit-box-orient: vertical !important;
     overflow: hidden !important;
     font-size: 13px !important;
+    line-height: 1.45 !important;
   }
-  .exp-suite-photo {
-    height: 185px !important;
-  }
-  .exp-hero-bezel-inner img {
-    max-height: 220px !important;
-    object-fit: cover !important;
-  }
-  .collections-grid {
-    margin-bottom: 24px !important;
-  }
-  .collections-grid .card-photo-wrap,
-  .trend-grid .card-photo-wrap {
-    aspect-ratio: 16 / 10 !important;
-    margin-bottom: 12px !important;
-  }
-  .collections-grid .trend-card,
-  .trend-grid .trend-card {
-    padding: 18px 16px !important;
-  }
-  #collections > div > .double-bezel {
-    padding: 18px 14px !important;
-  }
-  #collections > div > .double-bezel > h3 {
-    font-size: 20px !important;
-    margin-bottom: 10px !important;
-  }
-  #collections > div > .double-bezel > p {
-    display: none !important;
-  }
-  #collections .designer-pill-link {
-    padding: 7px 11px !important;
-    font-size: 9.5px !important;
+  html body .journey-mobile-progress {
+    margin: 4px 0 18px !important;
   }
 
-  /* ── 3. TIGHTER SECTION RHYTHM & COMPACT MULTI-PILL GRIDS ON MOBILE ── */
-  .journey-section,
-  .exp-section,
-  .registry-section,
-  #collections,
-  .squad-section,
-  .trend-section,
-  .ig-section,
-  .reviews-section,
-  #prom-faq,
-  .prom-cta-final,
-  .hoco-matrix-section,
-  .hoco-swatch-section,
-  .hoco-photo-grid,
-  #hoco-faq,
-  .hoco-cta-final,
-  .tux-pillars-section,
-  .tux-process-section,
-  .tux-portal-section,
-  .tux-cta-section,
-  #events,
-  #accessories,
-  .prep-hub-section,
-  .booking-embed {
-    padding-top: 36px !important;
-    padding-bottom: 36px !important;
+  /* Experience Page Cards (experience.html) */
+  html body .exp-metrics-strip {
+    padding: 20px !important;
   }
-
-  .journey-header,
-  .exp-section-header,
-  .registry-header,
-  .hoco-matrix-header,
-  .tux-section-header {
-    margin-bottom: 20px !important;
-  }
-
-  /* Compact Hero Perks on Prom & HOCO Catalogs (2x2 pill grid) */
-  .prom-hero-card,
-  .hoco-hero-card {
-    padding: 20px 16px !important;
-    gap: 14px !important;
-  }
-  .prom-hero-perks,
-  .hoco-hero-perks {
-    display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 8px !important;
-  }
-  .prom-perk-item,
-  .hoco-perk-item {
-    padding: 8px 10px !important;
-    gap: 6px !important;
-  }
-  .prom-perk-sub,
-  .hoco-perk-sub {
-    display: none !important;
-  }
-  .registry-bar {
-    padding: 12px 14px !important;
-    gap: 10px !important;
-  }
-  .registry-info-desc {
-    display: none !important;
-  }
-
-  /* Experience Metrics Strip: 2x2 compact grid instead of 4 stacked blocks */
-  .exp-metrics-strip {
-    padding: 20px 16px !important;
-  }
-  .exp-metrics-grid {
+  html body .exp-metrics-grid {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 10px !important;
   }
-  .exp-metric-card {
+  html body .exp-metric-card {
     padding: 14px 12px !important;
   }
-  .exp-metric-num {
+  html body .exp-metric-num {
     font-size: 22px !important;
   }
-  .exp-metric-desc {
+  html body .exp-metric-desc {
     font-size: 11.5px !important;
     line-height: 1.35 !important;
   }
-
-  /* Bridal Feature Strip: compact 3-column horizontal strip */
-  .bridal-feature-strip {
-    grid-template-columns: repeat(3, 1fr) !important;
-    padding: 16px 10px !important;
+  html body .exp-step-bezel-outer {
+    padding: 8px !important;
+    border-radius: 18px !important;
   }
-  .bridal-feature-item {
+  html body .exp-step-img-wrap {
+    height: 150px !important;
+  }
+  html body .exp-step-content {
+    padding: 16px 14px !important;
+  }
+  html body .exp-step-title {
+    font-size: 19px !important;
+    margin-bottom: 6px !important;
+  }
+  html body .exp-step-desc {
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    font-size: 13px !important;
+    line-height: 1.45 !important;
+    margin-bottom: 10px !important;
+  }
+  html body .exp-suite-outer {
+    padding: 8px !important;
+    border-radius: 20px !important;
+  }
+  html body .exp-suite-inner {
+    padding: 18px 16px !important;
+    border-radius: 14px !important;
+  }
+  html body .exp-suite-title {
+    font-size: 21px !important;
+    margin-bottom: 6px !important;
+  }
+  html body .exp-suite-price-row {
+    margin-bottom: 12px !important;
+    padding-bottom: 12px !important;
+  }
+  html body .exp-suite-price {
+    font-size: 26px !important;
+  }
+  html body .exp-suites-grid .exp-suite-desc {
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    font-size: 13px !important;
+    line-height: 1.45 !important;
+    margin-bottom: 12px !important;
+  }
+  html body .exp-perks-list {
+    gap: 6px !important;
+    margin-bottom: 14px !important;
+  }
+  html body .exp-perk-item {
+    font-size: 12.5px !important;
+    line-height: 1.35 !important;
+  }
+  html body .exp-perk-item:nth-child(n+5) {
+    display: none !important;
+  }
+  html body .exp-suite-photo {
+    height: 150px !important;
+  }
+
+  /* Bridal Feature Strip & Accessories Banner (bridal.html) */
+  html body .bridal-feature-strip {
+    grid-template-columns: repeat(3, 1fr) !important;
+    padding: 14px 10px !important;
+  }
+  html body .bridal-feature-item {
     padding: 6px 8px !important;
     border-bottom: none !important;
   }
-  .bridal-feature-item + .bridal-feature-item {
+  html body .bridal-feature-item + .bridal-feature-item {
     border-left: 1px solid var(--border) !important;
   }
-  .bridal-feature-item h3 {
-    font-size: 13px !important;
+  html body .bridal-feature-item h3 {
+    font-size: 12.5px !important;
     margin-bottom: 3px !important;
   }
-  .bridal-feature-item p {
+  html body .bridal-feature-item p {
     font-size: 11px !important;
-    line-height: 1.35 !important;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    line-height: 1.3 !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+  }
+  html body #accessories > div > div:nth-child(2) {
+    margin-bottom: 18px !important;
+  }
+  html body #accessories > div > div:nth-child(2) > .double-bezel {
+    padding: 18px 16px !important;
+    border-radius: 12px !important;
+  }
+  html body #accessories > div > div:nth-child(3) {
+    padding: 18px 16px !important;
+    border-radius: 12px !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 14px !important;
+  }
+  html body #accessories > div > div:nth-child(3) > div:last-child {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+  html body #accessories > div > div:nth-child(3) > div:last-child > a {
+    width: 100% !important;
+    justify-content: center !important;
+    text-align: center !important;
   }
 
-  /* Prom Walk-In Section & Squad Section Compaction */
-  .registry-box {
+  /* Prom & HOCO Landing Sections (prom.html & hoco.html) */
+  html body .collections-grid {
+    margin-bottom: 20px !important;
+  }
+  html body .collections-grid .card-photo-wrap,
+  html body .trend-grid .card-photo-wrap {
+    aspect-ratio: 16 / 10 !important;
+    margin-bottom: 12px !important;
+  }
+  html body .collections-grid .trend-card,
+  html body .trend-grid .trend-card {
+    padding: 18px 16px !important;
+  }
+  html body #collections > div > .double-bezel {
+    padding: 18px 14px !important;
+  }
+  html body #collections > div > .double-bezel > h3 {
+    font-size: 20px !important;
+    margin-bottom: 10px !important;
+  }
+  html body #collections > div > .double-bezel > p {
+    display: none !important;
+  }
+  html body #collections .designer-pill-link {
+    padding: 7px 11px !important;
+    font-size: 9.5px !important;
+  }
+  html body .registry-box {
     padding: 20px 16px !important;
     gap: 16px !important;
   }
-  .registry-stats-row {
+  html body .registry-stats-row {
     grid-template-columns: repeat(3, 1fr) !important;
     gap: 6px !important;
   }
-  .registry-stat-pill {
+  html body .registry-stat-pill {
     padding: 8px 6px !important;
-    text-align: center;
+    text-align: center !important;
   }
-  .registry-stat-label {
+  html body .registry-stat-label {
     font-size: 8.5px !important;
     letter-spacing: 0.08em !important;
   }
-  .registry-stat-val {
+  html body .registry-stat-val {
     font-size: 13px !important;
   }
-  .registry-photo-collage {
+  html body .registry-photo-collage {
     grid-template-columns: 1fr !important;
     grid-template-rows: 175px !important;
   }
-  .registry-photo-collage .registry-photo-frame:not(.registry-photo-frame--main) {
+  html body .registry-photo-collage .registry-photo-frame:not(.registry-photo-frame--main) {
     display: none !important;
   }
-  .squad-inner {
+  html body .squad-inner {
     gap: 20px !important;
   }
-  .squad-card {
+  html body .squad-card {
     padding: 20px 16px !important;
   }
-  .squad-size-picker {
+  html body .squad-size-picker {
     grid-template-columns: repeat(3, 1fr) !important;
     gap: 6px !important;
   }
-  .squad-size-btn {
+  html body .squad-size-btn {
     padding: 10px 6px !important;
     font-size: 10px !important;
   }
-
-  /* Review Quote Clamping on Mobile (Prom & Experience) */
-  .review-quote,
-  .exp-suites-grid .exp-suite-desc {
+  html body .review-quote {
     display: -webkit-box !important;
     -webkit-line-clamp: 5 !important;
     -webkit-box-orient: vertical !important;
     overflow: hidden !important;
   }
-  .review-spotlight {
+  html body .review-spotlight {
     padding: 18px 16px !important;
     gap: 12px !important;
     margin-bottom: 16px !important;
   }
-  .review-spotlight .registry-photo-frame {
+  html body .review-spotlight .registry-photo-frame {
     display: none !important;
   }
-  .review-spotlight h3 {
+  html body .review-spotlight h3 {
     font-size: 18px !important;
     margin-bottom: 8px !important;
   }
-  .review-spotlight p {
+  html body .review-spotlight p {
     display: -webkit-box !important;
     -webkit-line-clamp: 4 !important;
     -webkit-box-orient: vertical !important;
@@ -7390,110 +7865,772 @@ body::after {
   }
 
   /* About Page: Compact Jennifer Feature Card, Intro, Events & FAQ */
-  .team-feature {
-    display: grid !important;
-    grid-template-columns: 125px 1fr !important;
-    min-height: 0 !important;
-    align-items: center !important;
+  html body .about-intro-grid > div > div[style*="grid-template-columns"] {
+    gap: 10px !important;
   }
-  .team-feature-photo {
-    height: 155px !important;
-    max-height: 155px !important;
+  html body .about-intro-grid > div > div[style*="grid-template-columns"] > div {
+    padding: 14px 12px !important;
+    border-radius: 10px !important;
   }
-  .team-feature-content {
-    padding: 16px 18px !important;
-  }
-  .team-feature-name {
-    font-size: 28px !important;
-  }
-  #team > div:first-child p {
-    margin-bottom: 24px !important;
-  }
-  #team > div:last-child {
-    padding-bottom: 28px !important;
-  }
-  .about-intro-grid p:first-of-type {
+  html body .about-intro-grid p:first-of-type {
     display: -webkit-box !important;
     -webkit-line-clamp: 5 !important;
     -webkit-box-orient: vertical !important;
     overflow: hidden !important;
   }
-  #events .double-bezel {
+  html body #team {
+    padding: 36px 20px 28px !important;
+  }
+  html body #team > div {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  html body #team > div:first-child p {
+    margin-bottom: 20px !important;
+  }
+  html body #team > div:last-child {
+    padding-bottom: 0 !important;
+  }
+  html body .team-feature {
+    display: grid !important;
+    grid-template-columns: 125px 1fr !important;
+    min-height: 0 !important;
+    align-items: center !important;
+    border-radius: 14px !important;
+    margin-bottom: 18px !important;
+  }
+  html body .team-feature-photo {
+    height: 155px !important;
+    max-height: 155px !important;
+  }
+  html body .team-feature-content {
+    padding: 16px 18px !important;
+  }
+  html body .team-feature-role {
+    margin-bottom: 6px !important;
+    font-size: 10px !important;
+  }
+  html body .team-feature-name {
+    font-size: 28px !important;
+    margin-bottom: 0 !important;
+  }
+  html body #events .double-bezel {
     padding: 20px 18px !important;
   }
-  #events .double-bezel p {
+  html body #events .double-bezel p {
     display: -webkit-box !important;
     -webkit-line-clamp: 4 !important;
     -webkit-box-orient: vertical !important;
     overflow: hidden !important;
   }
-  #faq details summary {
+  html body #faq details summary {
     padding: 12px 16px !important;
     font-size: 14px !important;
   }
-  #testimonials .testimonials-marquee-cols {
+  html body #testimonials .testimonials-marquee-cols {
     max-height: 320px !important;
     height: 320px !important;
   }
-  .brides-marquee,
-  .bridal-marquee {
+  html body .brides-marquee,
+  html body .bridal-marquee {
     padding: 32px 0 38px !important;
   }
-  .marquee-photo {
+  html body .marquee-photo {
     width: 145px !important;
     height: 215px !important;
   }
 
-  /* Appointments & Contact Compaction */
-  .checklist-sub {
-    display: none !important;
-  }
-  .checklist-item {
-    padding: 9px 0 !important;
-  }
-  .appt-card {
-    padding: 20px 18px !important;
-  }
-  .appt-card p {
-    display: -webkit-box !important;
-    -webkit-line-clamp: 3 !important;
-    -webkit-box-orient: vertical !important;
-    overflow: hidden !important;
-    margin-bottom: 12px !important;
-  }
-  .appt-card-perks {
-    padding: 10px 0 !important;
-    margin-bottom: 14px !important;
-    gap: 6px !important;
-  }
-  .contact-layout .u-grid-2 {
-    grid-template-columns: repeat(2, 1fr) !important;
+  /* Appointments & Contact Compaction (Eliminate Stretched Empty Space) */
+  html body .appt-types-intro {
+    flex-direction: column !important;
+    align-items: flex-start !important;
     gap: 10px !important;
   }
-  .wte-desc {
+  html body .appt-card {
+    padding: 18px 16px !important;
+    border-radius: 14px !important;
+  }
+  html body .appt-card h3 {
+    font-size: 20px !important;
+    margin-bottom: 4px !important;
+  }
+  html body .appt-card-meta {
+    margin-bottom: 10px !important;
+    font-size: 12px !important;
+  }
+  html body .appt-card p {
     display: -webkit-box !important;
     -webkit-line-clamp: 2 !important;
     -webkit-box-orient: vertical !important;
     overflow: hidden !important;
+    margin-bottom: 10px !important;
+    font-size: 13px !important;
+    line-height: 1.45 !important;
+  }
+  html body .appt-card-perks {
+    padding: 10px 0 !important;
+    margin-bottom: 14px !important;
+    gap: 6px !important;
+  }
+  html body .appt-card-perks li:nth-child(n+4) {
+    display: none !important;
+  }
+  html body .prep-box {
+    padding: 20px 16px !important;
+    border-radius: 14px !important;
+  }
+  html body .prep-box h3 {
+    font-size: 20px !important;
+    margin-bottom: 6px !important;
+  }
+  html body .checklist-sub {
+    display: none !important;
+  }
+  html body .checklist-item {
+    padding: 8px 0 !important;
+    gap: 10px !important;
+  }
+  html body .checklist-title {
+    font-size: 13px !important;
+  }
+  html body .contact-layout .u-grid-2 {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+  html body .contact-layout > div:nth-child(2) > div {
+    padding: 20px 18px !important;
+    border-radius: 14px !important;
+  }
+  html body .wte-step {
+    padding: 6px 0 !important;
+    margin-bottom: 4px !important;
+  }
+  html body .wte-desc {
+    display: -webkit-box !important;
+    -webkit-line-clamp: 1 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    font-size: 12px !important;
+  }
+
+  /* Quiz & Mothers Mobile Refinements */
+  html body .qslides-wrap {
+    padding: 20px 20px 36px !important;
+  }
+  html body .qslide-intro .qslide-eyebrow::before {
+    display: none !important;
+  }
+  html body #gowns > div[style*="background:var(--teal-xlight)"] {
+    display: none !important;
   }
 
   /* Real Brides Gallery: Show First 8 Brides + "View All 27 Real Brides" Button */
-  #bridesGrid:not(.show-all-brides) .bc:nth-child(n+9) {
+  html body #bridesGrid:not(.show-all-brides) .bc:nth-child(n+9) {
     display: none !important;
   }
-  .brides-mob-expand-wrap {
+  html body .brides-mob-expand-wrap {
     display: flex !important;
     justify-content: center;
     padding: 20px 16px 4px;
   }
-  .brides-quote-strip {
-    padding: 40px 20px !important;
+  html body .brides-quote-strip {
+    padding: 36px 20px !important;
   }
-  .bq-quote {
+  html body .bq-quote {
     font-size: 18px !important;
     line-height: 1.45 !important;
     margin-bottom: 16px !important;
   }
+
+  /* ── 6. COMPACT 2-COLUMN MOBILE FOOTER (20PX GUTTER ALIGNED) ── */
+  html body .site-footer {
+    padding: 24px 20px max(14px, env(safe-area-inset-bottom, 14px)) !important;
+  }
+  html body .footer-top {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 14px 14px !important;
+    padding-bottom: 14px !important;
+  }
+  html body .footer-col-brand {
+    grid-column: 1 / -1 !important;
+  }
+  html body .footer-logo {
+    margin-bottom: 6px !important;
+  }
+  html body .footer-logo img {
+    height: 40px !important;
+  }
+  html body .footer-tagline {
+    display: none !important;
+  }
+  html body .footer-contact {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 4px 10px !important;
+  }
+  html body .footer-contact a {
+    font-size: 11px !important;
+    line-height: 1.3 !important;
+  }
+  html body .footer-social {
+    margin-top: 8px !important;
+    gap: 6px !important;
+  }
+  html body .footer-social .social-link {
+    width: 34px !important;
+    height: 34px !important;
+  }
+  html body .footer-col-explore,
+  html body .footer-col-company {
+    grid-column: span 1 !important;
+  }
+  html body .footer-col-title {
+    margin-bottom: 6px !important;
+    font-size: 10px !important;
+    letter-spacing: 0.14em !important;
+  }
+  html body .footer-links {
+    gap: 3px !important;
+  }
+  html body .footer-links li {
+    line-height: 1.25 !important;
+  }
+  html body .footer-links a {
+    font-size: 12px !important;
+    line-height: 1.25 !important;
+    min-height: 0 !important;
+    padding: 2px 0 !important;
+  }
+  html body .footer-col-hours {
+    grid-column: 1 / -1 !important;
+    padding-top: 10px !important;
+    border-top: 1px solid var(--border) !important;
+  }
+  html body .footer-hours-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+    align-items: start !important;
+  }
+  html body .footer-hours-grid .hours-sub {
+    margin: 0 0 4px !important;
+    font-size: 10px !important;
+    letter-spacing: 0.14em !important;
+    color: var(--teal-deep) !important;
+  }
+  html body .footer-hours-grid .hours-table {
+    margin-top: 2px !important;
+  }
+  html body .footer-hours-grid .hours-table td {
+    font-size: 11px !important;
+    padding: 1px 0 !important;
+    line-height: 1.3 !important;
+  }
+  html body .footer-hours-grid .hours-table td:first-child {
+    padding-right: 4px !important;
+  }
+  html body .footer-hours-note {
+    font-size: 9.5px !important;
+    line-height: 1.25 !important;
+    margin-top: 2px !important;
+  }
+  html body .footer-newsletter-wrap {
+    margin-top: 10px !important;
+    padding-top: 10px !important;
+    border-top: 1px solid var(--border) !important;
+  }
+  html body .footer-newsletter-desc,
+  html body .footer-newsletter-fine {
+    display: none !important;
+  }
+  html body .footer-subscribe-form {
+    flex-direction: row !important;
+    gap: 6px !important;
+  }
+  html body .footer-subscribe-form input {
+    padding: 8px 10px !important;
+    font-size: 16px !important;
+    min-width: 0 !important;
+  }
+  html body .footer-subscribe-form button {
+    width: auto !important;
+    padding: 8px 14px !important;
+    flex-shrink: 0 !important;
+  }
+  html body .footer-bottom {
+    padding: 10px 0 !important;
+    gap: 4px !important;
+  }
+  html body .footer-copy,
+  html body .footer-legal a {
+    font-size: 11px !important;
+  }
 }
+
+/* ════════════════════════════════════════════════════════════════════
+   DRESS NAME & STYLE NUMBER SEARCH UPGRADE (WEB & MOBILE)
+   Global Search Scope Tabs + Result Badges + Inline Catalog Search
+   ════════════════════════════════════════════════════════════════════ */
+
+/* 1. Global Search Scope Pills & Enhanced Result Cards */
+.search-input-wrap {
+  margin-bottom: 18px;
+}
+.search-scope-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 28px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 4px;
+}
+.search-scope-bar::-webkit-scrollbar {
+  display: none;
+}
+.search-scope-pill {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 100px;
+  color: rgba(255, 255, 255, 0.72);
+  font-family: var(--font-kicker);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 7px 14px;
+  cursor: pointer;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.search-scope-pill:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.35);
+}
+.search-scope-pill.active {
+  background: var(--teal-logo, #98d5d6);
+  border-color: var(--teal-logo, #98d5d6);
+  color: #0e2628;
+}
+.search-scope-pill .scope-count {
+  font-size: 10px;
+  opacity: 0.85;
+  font-variant-numeric: tabular-nums;
+}
+.search-results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.search-results-header .search-results-label {
+  margin-bottom: 0;
+}
+.search-view-all-link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--teal-logo, #98d5d6);
+  font-family: var(--font-kicker);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.2s, transform 0.2s;
+}
+.search-view-all-link:hover {
+  color: #ffffff;
+  transform: translateX(2px);
+}
+.search-result-img {
+  position: relative;
+  border-radius: 8px;
+}
+.search-result-cat-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 2;
+  background: rgba(14, 38, 40, 0.78);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  font-family: var(--font-kicker);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 100px;
+}
+.search-result-style {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px;
+  line-height: 1.25;
+}
+.search-result-gn {
+  color: #ffffff;
+  font-weight: 600;
+}
+.search-result-sku {
+  font-family: var(--font-kicker);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--teal-logo, #98d5d6);
+}
+.search-results-footer {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+}
+.search-view-all-btn {
+  width: 100%;
+  max-width: 420px;
+  min-height: 46px;
+  padding: 12px 24px;
+  border-radius: 100px;
+  border: 1px solid rgba(152, 213, 214, 0.45);
+  background: rgba(152, 213, 214, 0.12);
+  color: #ffffff;
+  font-family: var(--font-kicker);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+.search-view-all-btn:hover {
+  background: var(--teal-logo, #98d5d6);
+  border-color: var(--teal-logo, #98d5d6);
+  color: #0e2628;
+  transform: translateY(-1px);
+}
+
+/* 2. In-Catalog Inline Search Bar (Desktop & Mobile) */
+.filter-bar-compact {
+  max-width: 880px;
+}
+.filter-bar-sticky-wrap.is-stuck .filter-bar-compact {
+  max-width: 840px;
+}
+.catalog-inline-search,
+.catalog-sheet-search-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  min-width: 240px;
+  max-width: 310px;
+  flex: 1 1 240px;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.filter-bar-sticky-wrap.is-stuck .catalog-inline-search {
+  height: 34px;
+}
+.catalog-inline-search:focus-within,
+.catalog-sheet-search-wrap:focus-within {
+  border-color: var(--teal-deep);
+  box-shadow: 0 0 0 3px rgba(28, 78, 80, 0.1);
+}
+.catalog-search-icon {
+  flex-shrink: 0;
+  color: var(--text-light);
+  pointer-events: none;
+}
+.catalog-search-input,
+.catalog-sheet-search-input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  padding: 0;
+}
+.catalog-search-input::placeholder,
+.catalog-sheet-search-input::placeholder {
+  color: var(--text-light);
+  font-weight: 400;
+}
+.catalog-search-input::-webkit-search-cancel-button,
+.catalog-sheet-search-input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+.catalog-search-clear {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(28, 78, 80, 0.1);
+  color: var(--teal-deep);
+  font-size: 14px;
+  line-height: 1;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.15s, color 0.15s;
+}
+.catalog-search-clear:hover {
+  background: var(--teal-deep);
+  color: #ffffff;
+}
+.catalog-sheet-search-wrap {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  height: 44px;
+  padding: 0 14px;
+  background: #faf7f4;
+}
+.catalog-sheet-search-input {
+  font-size: 16px;
+}
+.dress-card-sku {
+  font-family: var(--font-kicker);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-left: 4px;
+}
+
+@media (max-width: 860px) {
+  html body .filter-bar-compact {
+    flex-wrap: wrap !important;
+    border-radius: 18px !important;
+    padding: 8px 10px !important;
+    gap: 8px !important;
+    max-width: calc(100vw - 24px) !important;
+  }
+  html body .catalog-inline-search {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: 40px !important;
+    order: -1 !important;
+    padding: 0 12px !important;
+  }
+  html body .catalog-search-input {
+    font-size: 16px !important;
+  }
+  html body .search-overlay {
+    padding: 16px 12px 32px !important;
+  }
+  html body .search-panel {
+    padding: 24px 18px 32px !important;
+    border-radius: 18px !important;
+  }
+  html body .search-top-row {
+    margin-bottom: 18px !important;
+  }
+  html body .search-input-wrap {
+    padding-bottom: 12px !important;
+    margin-bottom: 14px !important;
+  }
+  html body .search-input {
+    font-size: 18px !important;
+  }
+  html body .search-scope-bar {
+    margin-bottom: 20px !important;
+    gap: 6px !important;
+  }
+  html body .search-scope-pill {
+    padding: 6px 12px !important;
+    font-size: 10px !important;
+  }
+  html body .search-results-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+}
+
+/* ==========================================================================
+   NAVIGATION BAR SEARCH BAR / PILL BUTTON (DESKTOP, TABLET & MOBILE)
+   ========================================================================== */
+.btn-nav-appt {
+  white-space: nowrap !important;
+  flex-shrink: 0;
+}
+.nav-search-bar-btn {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 12px;
+  background: rgba(28, 78, 80, 0.055);
+  border: 1px solid rgba(28, 78, 80, 0.16);
+  border-radius: 100px;
+  color: var(--teal-deep);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-search-bar-btn:hover {
+  background: rgba(28, 78, 80, 0.10);
+  border-color: var(--teal-mid);
+  color: var(--teal-deep);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(28, 78, 80, 0.10);
+}
+.nav-search-bar-icon {
+  color: var(--teal-mid);
+  flex-shrink: 0;
+}
+.nav-search-bar-text {
+  color: var(--text-mid);
+  letter-spacing: 0.01em;
+}
+.nav-search-bar-short {
+  display: none;
+  font-family: var(--font-kicker);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--teal-deep);
+}
+.nav-search-kbd {
+  font-family: var(--font-kicker);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--teal-deep);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(28, 78, 80, 0.15);
+  border-radius: 5px;
+  padding: 1px 5px;
+  line-height: 1.3;
+}
+
+/* Compact desktop state when navbar is scrolled (cloud docks in) or medium desktop widths */
+.main-nav.nav-scrolled .nav-search-bar-text,
+.main-nav.scrolled .nav-search-bar-text,
+.main-nav.nav-scrolled .nav-search-kbd,
+.main-nav.scrolled .nav-search-kbd {
+  display: none;
+}
+.main-nav.nav-scrolled .nav-search-bar-short,
+.main-nav.scrolled .nav-search-bar-short {
+  display: inline;
+}
+@media (max-width: 1460px) {
+  .nav-search-bar-text {
+    display: none;
+  }
+  .nav-search-bar-short {
+    display: inline;
+  }
+}
+
+/* Mobile Menu Drawer Top Search Bar */
+.mobile-menu-search-wrap {
+  padding: 10px 20px 4px;
+}
+.mobile-menu-search-bar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 15px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(152, 213, 214, 0.28);
+  color: rgba(255, 255, 255, 0.88);
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.mobile-menu-search-bar:hover,
+.mobile-menu-search-bar:active {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(152, 213, 214, 0.5);
+}
+.mobile-menu-search-bar svg {
+  color: var(--teal-light);
+  flex-shrink: 0;
+}
+
+/* Mobile & Tablet Navbar Trigger Button (<= 1100px) */
+@media (max-width: 1100px) {
+  html body .main-nav .nav-search-mobile {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    height: 34px;
+    width: auto;
+    padding: 0 10px;
+    border-radius: 100px;
+    background: rgba(28, 78, 80, 0.065);
+    border: 1px solid rgba(28, 78, 80, 0.16);
+    color: var(--teal-deep);
+    cursor: pointer;
+    flex-shrink: 0;
+    z-index: 2;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+  }
+  html body .main-nav .nav-search-mobile:hover,
+  html body .main-nav .nav-search-mobile:active {
+    background: rgba(28, 78, 80, 0.12);
+    border-color: var(--teal-mid);
+  }
+  .nav-search-mobile-label {
+    font-family: var(--font-kicker);
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--teal-deep);
+    line-height: 1;
+  }
+}
+
+@media (max-width: 350px) {
+  html body .main-nav .nav-search-mobile {
+    width: 34px;
+    height: 34px;
+    padding: 0;
+  }
+  .nav-search-mobile-label {
+    display: none;
+  }
+}
+
+
 
 
