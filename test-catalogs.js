@@ -167,31 +167,54 @@ console.log(`[PASS] Mothers Synonym Search ("sleeves"): ${mothersSleeves.length}
 
 // 5. Dress Name & Style Number Search Tests
 const searchTestCases = [
-  { catalog: bridalCatalog, data: bridalData, query: 'Dakota Leigh', expectedSku: '25MB849C01', label: 'Bridal Dress Name ("Dakota Leigh")' },
-  { catalog: bridalCatalog, data: bridalData, query: 'Meredith', expectedSku: '25MB870A01', label: 'Bridal Dress Name ("Meredith")' },
-  { catalog: bridalCatalog, data: bridalData, query: 'Benjie', expectedSku: '25MB271', label: 'Maggie Sottero Dress Name ("Benjie")' },
-  { catalog: bridalCatalog, data: bridalData, query: 'Rickie', expectedSku: '25RK284', label: 'Rebecca Ingram Dress Name ("Rickie")' },
-  { catalog: bridalCatalog, data: bridalData, query: 'Addie', expectedSku: 'Addie', label: 'Rose + Grace Dress Name ("Addie")' },
-  { catalog: bridalCatalog, data: bridalData, query: '#25MB849C01', expectedSku: '25MB849C01', label: 'Bridal Style Number with # ("#25MB849C01")' },
-  { catalog: bridalCatalog, data: bridalData, query: 'D4257', expectedSku: 'D4257', label: 'Essense Style Number ("D4257")' },
-  { catalog: bridalCatalog, data: bridalData, query: '4257', expectedSku: 'D4257', label: 'Stripped-prefix Style Number ("4257" -> "D4257")' },
-  { catalog: bridalCatalog, data: bridalData, query: '8166', expectedSku: 'SY8166', label: 'Stripped-prefix Stella York Style Number ("8166" -> "SY8166")' },
-  { catalog: bridalCatalog, data: bridalData, query: 'Essence of Australia D4257', expectedSku: 'D4257', label: 'Spelling normalization + Style Number ("Essence of Australia D4257")' },
-  { catalog: promCatalog, data: promData, query: 'Sherri Hill 57042', expectedSku: '57042', label: 'Prom Designer + Style Number ("Sherri Hill 57042")' },
-  { catalog: promCatalog, data: promData, query: '#88904', expectedSku: '88904', label: 'Prom Style Number with # ("#88904")' }
+  { catalog: bridalCatalog, data: bridalData, query: 'Dakota Leigh', expectedSku: '25MB849C01', expectedCount: 1, label: 'Bridal Dress Name ("Dakota Leigh")' },
+  { catalog: bridalCatalog, data: bridalData, query: 'Meredith', expectedSku: '25MB870A01', expectedCount: 1, label: 'Bridal Dress Name ("Meredith")' },
+  { catalog: bridalCatalog, data: bridalData, query: 'Benjie', expectedSku: '25MB271', expectedCount: 2, label: 'Maggie Sottero Dress Name ("Benjie")' },
+  { catalog: bridalCatalog, data: bridalData, query: 'Rickie', expectedSku: '25RK284', expectedCount: 1, label: 'Rebecca Ingram Dress Name ("Rickie")' },
+  { catalog: bridalCatalog, data: bridalData, query: 'Addie', expectedSku: 'Addie', expectedCount: 1, label: 'Rose + Grace Dress Name ("Addie" - zero false positives)' },
+  { catalog: bridalCatalog, data: bridalData, query: 'Anna', expectedSku: 'Anna', expectedCount: 1, label: 'Rose + Grace Dress Name ("Anna" - excludes Susanna/Hannah)' },
+  { catalog: bridalCatalog, data: bridalData, query: 'Tina', expectedSku: '25MS261', expectedCount: 3, label: 'Maggie Sottero Dress Name ("Tina" - excludes Valentina)' },
+  { catalog: bridalCatalog, data: bridalData, query: 'Ross', expectedSku: '25SS360A01', expectedCount: 2, label: 'Sottero & Midgley Dress Name ("Ross" - excludes Rose + Grace)' },
+  { catalog: bridalCatalog, data: bridalData, query: 'Lina', expectedSku: '25SS297', expectedCount: 1, label: 'Sottero & Midgley Dress Name ("Lina" - excludes Galina/Emelina)' },
+  { catalog: bridalCatalog, data: bridalData, query: '#25MB849C01', expectedSku: '25MB849C01', expectedCount: 1, label: 'Bridal Style Number with # ("#25MB849C01")' },
+  { catalog: bridalCatalog, data: bridalData, query: 'MB849', expectedSku: '25MB849C01', expectedCount: 2, label: 'No-Year/No-Variant Bridal Style Number ("MB849")' },
+  { catalog: bridalCatalog, data: bridalData, query: '849', expectedSku: '25MB849C01', expectedCount: 2, label: 'Core Digits Bridal Style Number ("849")' },
+  { catalog: bridalCatalog, data: bridalData, query: 'D4257', expectedSku: 'D4257', expectedCount: 1, label: 'Essense Style Number ("D4257")' },
+  { catalog: bridalCatalog, data: bridalData, query: '4257', expectedSku: 'D4257', expectedCount: 1, label: 'Stripped-prefix Style Number ("4257" -> "D4257")' },
+  { catalog: bridalCatalog, data: bridalData, query: '8166', expectedSku: 'SY8166', expectedCount: 1, label: 'Stripped-prefix Stella York Style Number ("8166" -> "SY8166")' },
+  { catalog: bridalCatalog, data: bridalData, query: 'Essence of Australia D4257', expectedSku: 'D4257', expectedCount: 1, label: 'Spelling normalization + Style Number ("Essence of Australia D4257")' },
+  { catalog: mothersCatalog, data: mothersData, query: '821', expectedSku: 'CB821', expectedCount: 1, label: 'Mothers Stripped-prefix Style Number ("821" -> "CB821")' },
+  { catalog: hocoCatalog, data: hocoData, query: '2842', expectedSku: '2842S', expectedCount: 1, label: 'HOCO Stripped-suffix Style Number ("2842" -> "2842S")' },
+  { catalog: promCatalog, data: promData, query: 'Sherri Hill 57042', expectedSku: '57042', expectedCount: 1, label: 'Prom Designer + Style Number ("Sherri Hill 57042")' },
+  { catalog: promCatalog, data: promData, query: '#88904', expectedSku: '88904', expectedCount: 1, label: 'Prom Style Number with # ("#88904")' }
 ];
 
-searchTestCases.forEach(({ catalog, data, query, expectedSku, label }) => {
-  const results = data
+searchTestCases.forEach(({ catalog, data, query, expectedSku, expectedCount, label }) => {
+  const scored = data
     .map(p => ({ p, score: catalog.scoreSearch(p, query) }))
     .filter(x => x.score > 0)
     .sort((a, b) => b.score - a.score);
+  const cutoff = catalog.getSearchCutoff(scored[0] ? scored[0].score : 0);
+  const results = scored.filter(x => x.score >= cutoff);
   const matched = results.find(r => r.p.s === expectedSku);
   if (!matched || matched.score < results[0].score) {
     throw new Error(`Search test failed for ${label}: expected top SKU ${expectedSku}, got ${results[0] ? results[0].p.s : 'none'}`);
   }
-  console.log(`[PASS] ${label}: Top match SKU="${matched.p.s}" (${matched.p.gn || matched.p.n}) [score=${matched.score}]`);
+  if (typeof expectedCount === 'number' && results.length !== expectedCount) {
+    throw new Error(`Search precision test failed for ${label}: expected ${expectedCount} gated result(s), got ${results.length}`);
+  }
+  console.log(`[PASS] ${label}: Top SKU="${matched.p.s}" (${matched.p.gn || matched.p.n}) [score=${matched.score}, total=${results.length}]`);
 });
+
+// Verify 100% recall across all 459 named bridal gowns
+const namedBridal = bridalData.filter(p => p.gn);
+namedBridal.forEach(item => {
+  const sc = bridalCatalog.scoreSearch(item, item.gn);
+  if (sc < 980) {
+    throw new Error(`Named bridal gown recall failed for ${item.gn} (#${item.s}): score=${sc}`);
+  }
+});
+console.log(`[PASS] All ${namedBridal.length} Named Bridal Gowns: 100% exact-match recall verified (score >= 980)`);
 
 // 6. Global Search Overlay (components.js) Multi-Collection Tests
 const compCode = fs.readFileSync(path.join(__dirname, 'components.js'), 'utf8');

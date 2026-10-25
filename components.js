@@ -695,16 +695,30 @@ let _searchScope = 'all';
 let _lastSearchTargetUrl = 'bridal-catalog.html';
 
 const _SEARCH_SYNONYMS = {
-  'sparkly': ['sparkle', 'bead', 'beaded', 'glitter', 'sequin', 'shimmer', 'crystal'],
-  'sparkle': ['sparkly', 'bead', 'beaded', 'glitter', 'sequin', 'shimmer', 'crystal'],
+  'sparkly': ['sparkle', 'bead', 'beaded', 'glitter', 'sequin', 'shimmer', 'crystal', 'metallic', 'rhinestone'],
+  'sparkle': ['sparkly', 'bead', 'beaded', 'glitter', 'sequin', 'shimmer', 'crystal', 'metallic', 'rhinestone'],
   'fitted': ['mermaid', 'fit & flare', 'fit-and-flare', 'sheath', 'column', 'bodycon', 'trumpet'],
   'mermaid': ['mermaid', 'fit & flare', 'fit-and-flare', 'trumpet', 'fitted'],
   'aline': ['a-line', 'flare'],
-  'a-line': ['a-line', 'flare'],
-  'ballgown': ['ballgown', 'ball gown', 'tulle', 'princess', 'full skirt'],
-  'sleeves': ['sleeve', 'sleeves', 'long sleeve', 'cap sleeve', 'off-the-shoulder'],
-  'modest': ['modest', 'high neck', 'long sleeve', 'covered']
+  'a-line': ['a-line'],
+  'ballgown': ['ballgown', 'ball gown', 'princess'],
+  'sleeves': ['sleeve', 'sleeves', 'long sleeve', 'cap sleeve', '3/4 sleeve', 'off-the-shoulder'],
+  'sleeve': ['sleeve', 'sleeves', 'long sleeve', 'cap sleeve', '3/4 sleeve'],
+  'modest': ['modest', 'high neck', 'long sleeve', 'covered'],
+  'simple': ['clean', 'minimalist', 'unembellished', 'simple'],
+  'clean': ['simple', 'minimalist', 'unembellished', 'clean']
 };
+
+const _STYLE_KEYWORDS = new Set([
+  'lace', 'line', 'a-line', 'aline', 'satin', 'tulle', 'crepe', 'silk', 'chiffon', 'organza', 'mikado', 'jacquard', 'velvet', 'jersey',
+  'mermaid', 'ballgown', 'sheath', 'column', 'trumpet', 'flare', 'fit-and-flare', 'fitted',
+  'strapless', 'halter', 'sweetheart', 'v-neck', 'square', 'scoop', 'cowl', 'illusion', 'plunging', 'plunge', 'off-the-shoulder', 'asymmetric', 'one-shoulder', 'high-neck',
+  'sleeve', 'sleeves', 'long', 'short', 'mini', 'midi', 'maxi', 'modest', 'sexy', 'boho', 'luxe', 'classic', 'modern', 'romantic', 'vintage', 'ethereal', 'clean', 'simple',
+  'sparkle', 'sparkly', 'beaded', 'bead', 'sequin', 'glitter', 'pearl', 'pearls', 'crystal', 'floral', 'flower', '3-d', 'bow', 'slit', 'corset', 'basque', 'pleated', 'draped', 'tiered', 'ruffle', 'cape', 'jacket', 'shawl', 'pocket', 'pockets', 'train', 'sweep', 'chapel', 'cathedral', 'royal', 'watteau', 'detachable',
+  'black', 'white', 'ivory', 'blush', 'champagne', 'gold', 'silver', 'pink', 'blue', 'red', 'green', 'emerald', 'navy', 'sage', 'teal', 'purple', 'lilac', 'yellow', 'orange', 'coral', 'burgundy', 'wine', 'plum', 'brown', 'nude', 'neon', 'pastel', 'ombre', 'metallic',
+  'bridal', 'wedding', 'bride', 'prom', 'hoco', 'homecoming', 'mothers', 'mother', 'pageant', 'formal', 'evening', 'cocktail', 'two-piece',
+  'maggie', 'sottero', 'rebecca', 'ingram', 'midgley', 'essense', 'australia', 'stella', 'york', 'rose', 'grace', 'sherri', 'hill', 'ashley', 'lauren', 'amarra', 'jovani', 'faviana', 'rachel', 'allan', 'sydney', 'sydneys', 'jessica', 'angel', 'johnathan', 'kayne', 'cameron', 'blake', 'jasmine', 'daymor', 'alexander', 'mlny'
+]);
 
 function _normSearchCode(s) {
   return String(s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
@@ -727,86 +741,133 @@ function _isOneEditAway(a, b) {
   return edits <= 1;
 }
 
-function scoreGlobalDress(p, rawQ) {
-  if (!rawQ || !rawQ.trim()) return 0;
-  const cleanedQ = rawQ.trim().toLowerCase()
-    .replace(/^(?:style\s*(?:number|num|no\.?|#)?\s*|#\s*)/i, '')
-    .replace(/\bessence\b/g, 'essense')
-    .trim();
-  if (!cleanedQ) return 0;
-
-  const qNorm = _normSearchCode(cleanedQ);
-  const skuRaw = String(p.s || '').toLowerCase();
-  const skuNorm = _normSearchCode(skuRaw);
-  const skuDigits = skuNorm.replace(/^[a-z]+/, '');
-  const gnRaw = String(p.gn || '').toLowerCase();
-  const gnNorm = _normSearchCode(gnRaw);
-  const desRaw = String(p.d || '').toLowerCase();
-
-  // 1. Direct single-query Style Number or Dress Name match
-  if (qNorm.length >= 2) {
-    if (skuNorm === qNorm) return 1000;
-    if (skuDigits && skuDigits.length >= 3 && skuDigits === qNorm) return 960;
-    if (gnRaw && (gnRaw === cleanedQ || gnNorm === qNorm)) return 950;
-    if (skuNorm.startsWith(qNorm) && qNorm.length >= 3) return 880;
-    if (skuDigits && skuDigits.startsWith(qNorm) && qNorm.length >= 4) return 840;
-    if (gnRaw && gnRaw.startsWith(cleanedQ) && cleanedQ.length >= 2) return 820;
-    if (gnRaw && gnRaw.split(/\s+/).some(w => w === cleanedQ || w.startsWith(cleanedQ))) return 780;
+function _getGlobalProductIndex(p) {
+  if (p._globalSearchIdx) return p._globalSearchIdx;
+  const rawSku = String(p.s || '').trim().toLowerCase();
+  const full = _normSearchCode(rawSku);
+  const firstTok = _normSearchCode(rawSku.split(/\s+/)[0] || '');
+  const noPrefix = firstTok.replace(/^[a-z]+/, '');
+  const msMatch = firstTok.match(/^(\d{2})([a-z]{2})(\d{3,4})([a-z0-9]*)$/);
+  let msBase = '', msNoYear = '', msNoYearBase = '', coreDigits = '';
+  if (msMatch) {
+    msBase = msMatch[1] + msMatch[2] + msMatch[3];
+    msNoYear = msMatch[2] + msMatch[3] + msMatch[4];
+    msNoYearBase = msMatch[2] + msMatch[3];
+    coreDigits = msMatch[3];
+  } else {
+    const genMatch = firstTok.match(/^[a-z]*(\d{3,7})[a-z]*$/);
+    if (genMatch) coreDigits = genMatch[1];
   }
+  const strippedSuffix = msBase || firstTok.replace(/^(\d{3,6})[a-z]+$/, '$1');
+  const sku = { full, firstTok, noPrefix, strippedSuffix, msNoYear, msNoYearBase, coreDigits };
 
-  // 2. Tokenized matching across Dress Name, Style #, Designer, and Attributes
-  const rawTokens = cleanedQ
-    .replace(/[#+,&/\\-]+/g, ' ')
-    .split(/\s+/)
-    .map(t => t.trim())
-    .filter(t => t.length > 0 && !['style', 'dress', 'gown', 'by', 'the', 'of'].includes(t));
-
-  const tokens = rawTokens.length ? rawTokens : cleanedQ.split(/\s+/).filter(Boolean);
+  const gnRaw = String(p.gn || '').toLowerCase().trim();
+  const gnNorm = _normSearchCode(gnRaw);
   const gnWords = gnRaw ? gnRaw.split(/\s+/).filter(Boolean) : [];
+  const desRaw = String(p.d || '').toLowerCase().trim();
   const desWords = desRaw ? desRaw.replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter(Boolean) : [];
 
-  const doc = [
-    skuRaw,
-    skuNorm,
-    skuDigits,
-    gnRaw,
-    desRaw,
-    p.n || '',
+  const structuredText = [
     p.sil || '',
     p.tr || '',
     p.trend || '',
     (p.f || []).join(' '),
     (p.nk || []).join(' '),
     (p.v || []).join(' '),
-    p.c || '',
     p._type || ''
   ].join(' ').toLowerCase();
+
+  const descText = String(p.c || '').toLowerCase();
+  const fullDoc = (desRaw + ' ' + structuredText + ' ' + descText).toLowerCase();
+  const docWords = new Set(fullDoc.replace(/[^a-z0-9-]/g, ' ').split(/\s+/).filter(Boolean));
+  fullDoc.replace(/[^a-z0-9]/g, ' ').split(/\s+/).filter(Boolean).forEach(function(w) { docWords.add(w); });
+
+  p._globalSearchIdx = { sku, gnRaw, gnNorm, gnWords, desRaw, desWords, structuredText, fullDoc, docWords, docWordsList: Array.from(docWords) };
+  return p._globalSearchIdx;
+}
+
+function _getGlobalSearchCutoff(maxScore) {
+  if (maxScore >= 850) return 750;
+  if (maxScore >= 550) return Math.max(450, Math.floor(maxScore * 0.7));
+  if (maxScore > 0) return Math.max(70, Math.floor(maxScore * 0.6));
+  return 1;
+}
+
+function scoreGlobalDress(p, rawQ) {
+  if (!rawQ || !rawQ.trim()) return 0;
+  const cleanedQ = rawQ.trim().toLowerCase()
+    .replace(/^(?:style\s*(?:number|num|no\.?|#)?\s*|sku\s*:?\s*|#\s*)/i, '')
+    .replace(/\bessence\b/g, 'essense')
+    .replace(/\bsydneys\b/g, "sydney's")
+    .replace(/\ba\s+line\b/g, 'a-line')
+    .replace(/\bfit\s+(?:and|&)\s+flare\b/g, 'fit-and-flare')
+    .replace(/\boff\s+the\s+shoulder\b/g, 'off-the-shoulder')
+    .replace(/\bv\s+neck\b/g, 'v-neck')
+    .replace(/\btwo\s+piece\b/g, 'two-piece')
+    .trim();
+  if (!cleanedQ) return 0;
+
+  const idx = _getGlobalProductIndex(p);
+  const { sku, gnRaw, gnNorm, gnWords, desRaw, desWords, structuredText, fullDoc, docWords, docWordsList } = idx;
+  const qNorm = _normSearchCode(cleanedQ);
+
+  // 1. Direct Single-Target Style Number or Dress Name Match
+  if (qNorm.length >= 2) {
+    if (sku.full === qNorm) return 1000;
+    if (gnRaw && (gnRaw === cleanedQ || gnNorm === qNorm)) return 980;
+    if (qNorm.length >= 3 && (sku.firstTok === qNorm || sku.noPrefix === qNorm || sku.strippedSuffix === qNorm)) return 960;
+    if (qNorm.length >= 4 && (sku.msNoYear === qNorm || sku.msNoYearBase === qNorm)) return 940;
+    if (gnWords.length > 0 && gnWords[0] === cleanedQ && !_STYLE_KEYWORDS.has(cleanedQ)) return 930;
+    if (sku.coreDigits && sku.coreDigits.length >= 3 && sku.coreDigits === qNorm) return 910;
+    if (/\d/.test(qNorm) && qNorm.length >= 4 && (sku.full.startsWith(qNorm) || sku.noPrefix.startsWith(qNorm))) return 880;
+    if (gnWords.length >= 2 && gnWords.slice(1).includes(cleanedQ) && !_STYLE_KEYWORDS.has(cleanedQ)) return 850;
+    if (gnRaw && cleanedQ.length >= 4 && !_STYLE_KEYWORDS.has(cleanedQ) && (gnRaw.startsWith(cleanedQ) || (gnWords[0] && gnWords[0].startsWith(cleanedQ)))) return 840;
+  }
+
+  // 2. Tokenized Multi-Field Matching
+  const rawTokens = cleanedQ
+    .replace(/[#+,&/\\]+/g, ' ')
+    .split(/\s+/)
+    .map(function(t) { return t.replace(/^-+|-+$/g, '').trim(); })
+    .filter(function(t) { return t.length > 0 && !['style', 'dress', 'dresses', 'gown', 'gowns', 'by', 'the', 'of', 'in', 'with', 'and', 'for'].includes(t); });
+
+  const tokens = rawTokens.length ? rawTokens : cleanedQ.split(/\s+/).filter(Boolean);
 
   let score = 0;
   for (const tok of tokens) {
     const tNorm = _normSearchCode(tok);
     if (!tNorm) continue;
 
-    if (skuNorm === tNorm) {
-      score += 500;
-    } else if (skuDigits && skuDigits.length >= 3 && skuDigits === tNorm) {
+    if (sku.full === tNorm) {
+      score += 550;
+    } else if (tNorm.length >= 3 && (sku.firstTok === tNorm || sku.noPrefix === tNorm || sku.strippedSuffix === tNorm)) {
+      score += 510;
+    } else if (tNorm.length >= 4 && (sku.msNoYear === tNorm || sku.msNoYearBase === tNorm)) {
+      score += 490;
+    } else if (gnRaw && (gnRaw === tok || gnWords[0] === tok) && !_STYLE_KEYWORDS.has(tok)) {
+      score += 480;
+    } else if (sku.coreDigits && sku.coreDigits.length >= 3 && sku.coreDigits === tNorm) {
       score += 460;
-    } else if (gnRaw && (gnRaw === tok || gnWords.includes(tok))) {
-      score += 450;
-    } else if (skuNorm.startsWith(tNorm) && tNorm.length >= 3) {
-      score += 380;
-    } else if (gnRaw && (gnRaw.startsWith(tok) || gnWords.some(w => w.startsWith(tok)))) {
-      score += 350;
-    } else if (gnWords.some(w => _isOneEditAway(tok, w))) {
-      score += 290;
-    } else if (desRaw.includes(tok) || desWords.some(w => _isOneEditAway(tok, w))) {
-      score += 200;
-    } else if (skuNorm.includes(tNorm) && tNorm.length >= 3) {
-      score += 220;
-    } else if (doc.includes(tok)) {
+    } else if (gnWords.includes(tok) && !_STYLE_KEYWORDS.has(tok)) {
+      score += 420;
+    } else if (/\d/.test(tNorm) && tNorm.length >= 4 && (sku.full.startsWith(tNorm) || sku.noPrefix.startsWith(tNorm))) {
+      score += 400;
+    } else if (tok.length >= 4 && !_STYLE_KEYWORDS.has(tok) && gnWords.some(function(w) { return w.startsWith(tok); })) {
+      score += 360;
+    } else if (desWords.includes(tok) || (tok.length >= 4 && desRaw.includes(tok))) {
+      score += 250;
+    } else if (!_STYLE_KEYWORDS.has(tok) && !/\d/.test(tok) && tok.length >= 4 && gnWords.some(function(w) { return _isOneEditAway(tok, w); })) {
+      score += 310;
+    } else if (!_STYLE_KEYWORDS.has(tok) && !/\d/.test(tok) && tok.length >= 5 && desWords.some(function(w) { return _isOneEditAway(tok, w); })) {
+      score += 190;
+    } else if (gnWords.includes(tok)) {
+      score += 160;
+    } else if (structuredText.includes(tok)) {
+      score += 150;
+    } else if (docWords.has(tok) || (tok.length >= 5 && docWordsList.some(function(w) { return w.startsWith(tok); }))) {
+      score += 90;
+    } else if (_SEARCH_SYNONYMS[tok] && _SEARCH_SYNONYMS[tok].some(function(syn) { return fullDoc.includes(syn); })) {
       score += 80;
-    } else if (_SEARCH_SYNONYMS[tok] && _SEARCH_SYNONYMS[tok].some(syn => doc.includes(syn))) {
-      score += 70;
     } else {
       return 0;
     }
@@ -821,10 +882,10 @@ async function ensureGlobalCatalog() {
   _globalCatalogPromise = (async function() {
     try {
       const [bRes, pRes, mRes, hRes] = await Promise.allSettled([
-        fetch('data/bridal-products.json?v=20261025b').then(r => r.json()),
-        fetch('data/prom-products.json?v=20261025b').then(r => r.json()),
-        fetch('data/mothers-products.json?v=20261025b').then(r => r.json()),
-        fetch('data/hoco-products.json?v=20261025b').then(r => r.json())
+        fetch('data/bridal-products.json?v=20261025c').then(r => r.json()),
+        fetch('data/prom-products.json?v=20261025c').then(r => r.json()),
+        fetch('data/mothers-products.json?v=20261025c').then(r => r.json()),
+        fetch('data/hoco-products.json?v=20261025c').then(r => r.json())
       ]);
       const b = bRes.status === 'fulfilled' && Array.isArray(bRes.value) ? bRes.value.map(x => Object.assign({}, x, { _cat: 'bridal-catalog.html', _type: 'bridal' })) : [];
       const p = pRes.status === 'fulfilled' && Array.isArray(pRes.value) ? pRes.value.map(x => Object.assign({}, x, { _cat: 'prom-catalog.html', _type: 'prom' })) : [];
@@ -990,17 +1051,29 @@ window.onSearchInput = async function(val) {
   const q = val.trim();
 
   if (catalog && catalog.length) {
-    const allScored = [];
-    const countsByType = { all: 0, bridal: 0, prom: 0, hoco: 0, mothers: 0 };
+    const rawScored = [];
+    let maxGlobalScore = 0;
 
     for (let i = 0; i < catalog.length; i++) {
       const p = catalog[i];
       const sc = scoreGlobalDress(p, q);
       if (sc > 0) {
-        allScored.push({ p: p, sc: sc });
+        rawScored.push({ p: p, sc: sc });
+        if (sc > maxGlobalScore) maxGlobalScore = sc;
+      }
+    }
+
+    const minGlobalScore = _getGlobalSearchCutoff(maxGlobalScore);
+    const allScored = [];
+    const countsByType = { all: 0, bridal: 0, prom: 0, hoco: 0, mothers: 0 };
+
+    for (let j = 0; j < rawScored.length; j++) {
+      const item = rawScored[j];
+      if (item.sc >= minGlobalScore) {
+        allScored.push(item);
         countsByType.all++;
-        if (p._type && countsByType.hasOwnProperty(p._type)) {
-          countsByType[p._type]++;
+        if (item.p._type && countsByType.hasOwnProperty(item.p._type)) {
+          countsByType[item.p._type]++;
         }
       }
     }

@@ -714,85 +714,150 @@ class CloudNineCatalog {
     return edits <= 1;
   }
 
-  scoreSearch(p, q) {
-    if (!q || !q.trim()) return 1;
-    const cleanedQ = q.trim().toLowerCase()
-      .replace(/^(?:style\s*(?:number|num|no\.?|#)?\s*|#\s*)/i, '')
-      .replace(/\bessence\b/g, 'essense')
-      .trim();
-    if (!cleanedQ) return 0;
-
-    const qNorm = this.normCode(cleanedQ);
-    const skuRaw = String(p.s || '').toLowerCase();
-    const skuNorm = this.normCode(skuRaw);
-    const skuDigits = skuNorm.replace(/^[a-z]+/, '');
-    const gnRaw = String(p.gn || '').toLowerCase();
-    const gnNorm = this.normCode(gnRaw);
-    const desRaw = String(p.d || '').toLowerCase();
-
-    // 1. Direct single-query SKU or Gown Name match
-    if (qNorm.length >= 2) {
-      if (skuNorm === qNorm) return 1000;
-      if (skuDigits && skuDigits.length >= 3 && skuDigits === qNorm) return 960;
-      if (gnRaw && (gnRaw === cleanedQ || gnNorm === qNorm)) return 950;
-      if (skuNorm.startsWith(qNorm) && qNorm.length >= 3) return 880;
-      if (skuDigits && skuDigits.startsWith(qNorm) && qNorm.length >= 4) return 840;
-      if (gnRaw && gnRaw.startsWith(cleanedQ) && cleanedQ.length >= 2) return 820;
-      if (gnRaw && gnRaw.split(/\s+/).some(w => w === cleanedQ || w.startsWith(cleanedQ))) return 780;
+  getStyleKeywords() {
+    if (!this._styleKeywords) {
+      this._styleKeywords = new Set([
+        'lace', 'line', 'a-line', 'aline', 'satin', 'tulle', 'crepe', 'silk', 'chiffon', 'organza', 'mikado', 'jacquard', 'velvet', 'jersey',
+        'mermaid', 'ballgown', 'sheath', 'column', 'trumpet', 'flare', 'fit-and-flare', 'fitted',
+        'strapless', 'halter', 'sweetheart', 'v-neck', 'square', 'scoop', 'cowl', 'illusion', 'plunging', 'plunge', 'off-the-shoulder', 'asymmetric', 'one-shoulder', 'high-neck',
+        'sleeve', 'sleeves', 'long', 'short', 'mini', 'midi', 'maxi', 'modest', 'sexy', 'boho', 'luxe', 'classic', 'modern', 'romantic', 'vintage', 'ethereal', 'clean', 'simple',
+        'sparkle', 'sparkly', 'beaded', 'bead', 'sequin', 'glitter', 'pearl', 'pearls', 'crystal', 'floral', 'flower', '3-d', 'bow', 'slit', 'corset', 'basque', 'pleated', 'draped', 'tiered', 'ruffle', 'cape', 'jacket', 'shawl', 'pocket', 'pockets', 'train', 'sweep', 'chapel', 'cathedral', 'royal', 'watteau', 'detachable',
+        'black', 'white', 'ivory', 'blush', 'champagne', 'gold', 'silver', 'pink', 'blue', 'red', 'green', 'emerald', 'navy', 'sage', 'teal', 'purple', 'lilac', 'yellow', 'orange', 'coral', 'burgundy', 'wine', 'plum', 'brown', 'nude', 'neon', 'pastel', 'ombre', 'metallic',
+        'bridal', 'wedding', 'bride', 'prom', 'hoco', 'homecoming', 'mothers', 'mother', 'pageant', 'formal', 'evening', 'cocktail', 'two-piece',
+        'maggie', 'sottero', 'rebecca', 'ingram', 'midgley', 'essense', 'australia', 'stella', 'york', 'rose', 'grace', 'sherri', 'hill', 'ashley', 'lauren', 'amarra', 'jovani', 'faviana', 'rachel', 'allan', 'sydney', 'sydneys', 'jessica', 'angel', 'johnathan', 'kayne', 'cameron', 'blake', 'jasmine', 'daymor', 'alexander', 'mlny'
+      ]);
     }
+    return this._styleKeywords;
+  }
 
-    // 2. Tokenized matching across all fields
-    const rawTokens = cleanedQ
-      .replace(/[#+,&/\\-]+/g, ' ')
-      .split(/\s+/)
-      .map(t => t.trim())
-      .filter(t => t.length > 0 && !['style', 'dress', 'gown', 'by', 'the', 'of'].includes(t));
+  getProductSearchIndex(p) {
+    if (p._searchIdx) return p._searchIdx;
+    const rawSku = String(p.s || '').trim().toLowerCase();
+    const full = this.normCode(rawSku);
+    const firstTok = this.normCode(rawSku.split(/\s+/)[0] || '');
+    const noPrefix = firstTok.replace(/^[a-z]+/, '');
+    const msMatch = firstTok.match(/^(\d{2})([a-z]{2})(\d{3,4})([a-z0-9]*)$/);
+    let msBase = '', msNoYear = '', msNoYearBase = '', coreDigits = '';
+    if (msMatch) {
+      msBase = msMatch[1] + msMatch[2] + msMatch[3];
+      msNoYear = msMatch[2] + msMatch[3] + msMatch[4];
+      msNoYearBase = msMatch[2] + msMatch[3];
+      coreDigits = msMatch[3];
+    } else {
+      const genMatch = firstTok.match(/^[a-z]*(\d{3,7})[a-z]*$/);
+      if (genMatch) coreDigits = genMatch[1];
+    }
+    const strippedSuffix = msBase || firstTok.replace(/^(\d{3,6})[a-z]+$/, '$1');
+    const sku = { full, firstTok, noPrefix, strippedSuffix, msNoYear, msNoYearBase, coreDigits };
 
-    const tokens = rawTokens.length ? rawTokens : cleanedQ.split(/\s+/).filter(Boolean);
+    const gnRaw = String(p.gn || '').toLowerCase().trim();
+    const gnNorm = this.normCode(gnRaw);
     const gnWords = gnRaw ? gnRaw.split(/\s+/).filter(Boolean) : [];
+    const desRaw = String(p.d || '').toLowerCase().trim();
     const desWords = desRaw ? desRaw.replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter(Boolean) : [];
 
-    const doc = [
-      skuRaw,
-      skuNorm,
-      skuDigits,
-      gnRaw,
-      desRaw,
-      p.n || '',
+    const structuredText = [
       p.sil || '',
       p.tr || '',
       p.trend || '',
       (p.f || []).join(' '),
       (p.nk || []).join(' '),
-      (p.v || []).join(' '),
-      p.c || ''
+      (p.v || []).join(' ')
     ].join(' ').toLowerCase();
+
+    const descText = String(p.c || '').toLowerCase();
+    const fullDoc = (desRaw + ' ' + structuredText + ' ' + descText).toLowerCase();
+    const docWordsArr = fullDoc.replace(/[^a-z0-9-]/g, ' ').split(/\s+/).filter(Boolean);
+    const docWords = new Set(docWordsArr);
+    fullDoc.replace(/[^a-z0-9]/g, ' ').split(/\s+/).filter(Boolean).forEach(w => docWords.add(w));
+
+    p._searchIdx = { sku, gnRaw, gnNorm, gnWords, desRaw, desWords, structuredText, fullDoc, docWords, docWordsList: Array.from(docWords) };
+    return p._searchIdx;
+  }
+
+  getSearchCutoff(maxScore) {
+    if (maxScore >= 850) return 750;
+    if (maxScore >= 550) return Math.max(450, Math.floor(maxScore * 0.7));
+    if (maxScore > 0) return Math.max(70, Math.floor(maxScore * 0.6));
+    return 1;
+  }
+
+  scoreSearch(p, q) {
+    if (!q || !q.trim()) return 1;
+    const cleanedQ = q.trim().toLowerCase()
+      .replace(/^(?:style\s*(?:number|num|no\.?|#)?\s*|sku\s*:?\s*|#\s*)/i, '')
+      .replace(/\bessence\b/g, 'essense')
+      .replace(/\bsydneys\b/g, "sydney's")
+      .replace(/\ba\s+line\b/g, 'a-line')
+      .replace(/\bfit\s+(?:and|&)\s+flare\b/g, 'fit-and-flare')
+      .replace(/\boff\s+the\s+shoulder\b/g, 'off-the-shoulder')
+      .replace(/\bv\s+neck\b/g, 'v-neck')
+      .replace(/\btwo\s+piece\b/g, 'two-piece')
+      .trim();
+    if (!cleanedQ) return 0;
+
+    const styleKeywords = this.getStyleKeywords();
+    const idx = this.getProductSearchIndex(p);
+    const { sku, gnRaw, gnNorm, gnWords, desRaw, desWords, structuredText, fullDoc, docWords, docWordsList } = idx;
+    const qNorm = this.normCode(cleanedQ);
+
+    // 1. Direct Single-Target SKU or Dress Name Match
+    if (qNorm.length >= 2) {
+      if (sku.full === qNorm) return 1000;
+      if (gnRaw && (gnRaw === cleanedQ || gnNorm === qNorm)) return 980;
+      if (qNorm.length >= 3 && (sku.firstTok === qNorm || sku.noPrefix === qNorm || sku.strippedSuffix === qNorm)) return 960;
+      if (qNorm.length >= 4 && (sku.msNoYear === qNorm || sku.msNoYearBase === qNorm)) return 940;
+      if (gnWords.length > 0 && gnWords[0] === cleanedQ && !styleKeywords.has(cleanedQ)) return 930;
+      if (sku.coreDigits && sku.coreDigits.length >= 3 && sku.coreDigits === qNorm) return 910;
+      if (/\d/.test(qNorm) && qNorm.length >= 4 && (sku.full.startsWith(qNorm) || sku.noPrefix.startsWith(qNorm))) return 880;
+      if (gnWords.length >= 2 && gnWords.slice(1).includes(cleanedQ) && !styleKeywords.has(cleanedQ)) return 850;
+      if (gnRaw && cleanedQ.length >= 4 && !styleKeywords.has(cleanedQ) && (gnRaw.startsWith(cleanedQ) || (gnWords[0] && gnWords[0].startsWith(cleanedQ)))) return 840;
+    }
+
+    // 2. Tokenized Multi-Field Matching
+    const rawTokens = cleanedQ
+      .replace(/[#+,&/\\]+/g, ' ')
+      .split(/\s+/)
+      .map(t => t.replace(/^-+|-+$/g, '').trim())
+      .filter(t => t.length > 0 && !['style', 'dress', 'dresses', 'gown', 'gowns', 'by', 'the', 'of', 'in', 'with', 'and', 'for'].includes(t));
+
+    const tokens = rawTokens.length ? rawTokens : cleanedQ.split(/\s+/).filter(Boolean);
 
     let score = 0;
     for (const tok of tokens) {
       const tNorm = this.normCode(tok);
       if (!tNorm) continue;
 
-      if (skuNorm === tNorm) {
-        score += 500;
-      } else if (skuDigits && skuDigits.length >= 3 && skuDigits === tNorm) {
+      if (sku.full === tNorm) {
+        score += 550;
+      } else if (tNorm.length >= 3 && (sku.firstTok === tNorm || sku.noPrefix === tNorm || sku.strippedSuffix === tNorm)) {
+        score += 510;
+      } else if (tNorm.length >= 4 && (sku.msNoYear === tNorm || sku.msNoYearBase === tNorm)) {
+        score += 490;
+      } else if (gnRaw && (gnRaw === tok || gnWords[0] === tok) && !styleKeywords.has(tok)) {
+        score += 480;
+      } else if (sku.coreDigits && sku.coreDigits.length >= 3 && sku.coreDigits === tNorm) {
         score += 460;
-      } else if (gnRaw && (gnRaw === tok || gnWords.includes(tok))) {
-        score += 450;
-      } else if (skuNorm.startsWith(tNorm) && tNorm.length >= 3) {
-        score += 380;
-      } else if (gnRaw && (gnRaw.startsWith(tok) || gnWords.some(w => w.startsWith(tok)))) {
-        score += 350;
-      } else if (gnWords.some(w => this.isOneEditAway(tok, w))) {
-        score += 290;
-      } else if (desRaw.includes(tok) || desWords.some(w => this.isOneEditAway(tok, w))) {
-        score += 200;
-      } else if (skuNorm.includes(tNorm) && tNorm.length >= 3) {
-        score += 220;
-      } else if (doc.includes(tok)) {
+      } else if (gnWords.includes(tok) && !styleKeywords.has(tok)) {
+        score += 420;
+      } else if (/\d/.test(tNorm) && tNorm.length >= 4 && (sku.full.startsWith(tNorm) || sku.noPrefix.startsWith(tNorm))) {
+        score += 400;
+      } else if (tok.length >= 4 && !styleKeywords.has(tok) && gnWords.some(w => w.startsWith(tok))) {
+        score += 360;
+      } else if (desWords.includes(tok) || (tok.length >= 4 && desRaw.includes(tok))) {
+        score += 250;
+      } else if (!styleKeywords.has(tok) && !/\d/.test(tok) && tok.length >= 4 && gnWords.some(w => this.isOneEditAway(tok, w))) {
+        score += 310;
+      } else if (!styleKeywords.has(tok) && !/\d/.test(tok) && tok.length >= 5 && desWords.some(w => this.isOneEditAway(tok, w))) {
+        score += 190;
+      } else if (gnWords.includes(tok)) {
+        score += 160;
+      } else if (structuredText.includes(tok)) {
+        score += 150;
+      } else if (docWords.has(tok) || (tok.length >= 5 && docWordsList.some(w => w.startsWith(tok)))) {
+        score += 90;
+      } else if (this.synonyms[tok] && this.synonyms[tok].some(syn => fullDoc.includes(syn))) {
         score += 80;
-      } else if (this.synonyms[tok] && this.synonyms[tok].some(syn => doc.includes(syn))) {
-        score += 70;
       } else {
         return 0;
       }
@@ -847,11 +912,27 @@ class CloudNineCatalog {
   }
 
   updateChipCounts() {
+    let minSearchScore = 1;
+    if (this.searchQuery && this.searchQuery.trim()) {
+      let maxS = 0;
+      for (const p of this.P) {
+        const sc = this.scoreSearch(p, this.searchQuery);
+        if (sc > maxS) maxS = sc;
+      }
+      minSearchScore = this.getSearchCutoff(maxS);
+    }
+
     this.facets.forEach(facet => {
       document.querySelectorAll(`[data-filter="${facet}"]`).forEach(btn => {
         const val = btn.dataset.value;
         const candidate = { ...this.activeFilters, [facet]: val };
-        const count = this.P.filter(p => this.matchesFilter(p, candidate, this.searchQuery)).length;
+        const count = this.P.filter(p => {
+          if (!this.matchesFilter(p, candidate, '')) return false;
+          if (this.searchQuery && this.searchQuery.trim()) {
+            return this.scoreSearch(p, this.searchQuery) >= minSearchScore;
+          }
+          return true;
+        }).length;
         
         btn.classList.toggle('disabled', count === 0 && val !== 'all' && val.toLowerCase() !== (this.activeFilters[facet] || '').toLowerCase());
         const countEl = btn.querySelector('.chip-count');
@@ -977,13 +1058,19 @@ class CloudNineCatalog {
   applyFilters() {
     if (this.searchQuery && this.searchQuery.trim()) {
       const scored = [];
+      let maxS = 0;
       for (const p of this.P) {
         if (!this.matchesFilter(p, this.activeFilters, '')) continue;
         const sc = this.scoreSearch(p, this.searchQuery);
-        if (sc > 0) scored.push({ p, sc });
+        if (sc > 0) {
+          scored.push({ p, sc });
+          if (sc > maxS) maxS = sc;
+        }
       }
-      scored.sort((a, b) => b.sc - a.sc);
-      this.fil = scored.map(x => x.p);
+      const minScore = this.getSearchCutoff(maxS);
+      const gated = scored.filter(x => x.sc >= minScore);
+      gated.sort((a, b) => b.sc - a.sc);
+      this.fil = gated.map(x => x.p);
     } else {
       this.fil = this.P.filter(p => this.matchesFilter(p, this.activeFilters, ''));
     }
