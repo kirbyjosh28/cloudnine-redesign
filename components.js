@@ -476,7 +476,7 @@ function searchOverlayHTML() {
       <button class="search-close-btn" onclick="closeSearch()" aria-label="Close">Close</button>
     </div>
     <div class="search-input-wrap">
-      <input type="search" id="searchInput" class="search-input" placeholder="Dress name (Dakota, Addie) or style # (57042, D4257)…" autocomplete="off" spellcheck="false" aria-label="Search dresses by name, style number, or designer" oninput="onSearchInput(this.value)" onkeydown="onSearchKeyDown(event)"/>
+      <input type="search" id="searchInput" class="search-input" placeholder="Enter dress name (Meredith, Addie) or style # (D4257, 57042)…" autocomplete="off" spellcheck="false" aria-label="Search by dress name or style number" oninput="onSearchInput(this.value)" onkeydown="onSearchKeyDown(event)"/>
       <button class="search-clear-btn" id="searchClearBtn" onclick="clearSearch()" style="display:none" aria-label="Clear">Clear</button>
     </div>
     <div class="search-scope-bar" id="searchScopeBar" role="tablist" aria-label="Filter search by collection">
@@ -487,32 +487,19 @@ function searchOverlayHTML() {
       <button type="button" class="search-scope-pill" data-scope="mothers" role="tab" aria-selected="false" onclick="setSearchScope('mothers')">Mothers <span class="scope-count" id="scopeCount-mothers"></span></button>
     </div>
     <div class="search-quick-tags" id="searchQuickTags">
-      <span class="search-quick-label">Try Dress Names, Style #s &amp; Designers</span>
+      <span class="search-quick-label">Try Dress Names &amp; Style Numbers</span>
       <div class="search-quick-pills">
         <button type="button" class="search-quick-pill" onclick="quickSearch('Dakota Leigh')">Dakota Leigh</button>
         <button type="button" class="search-quick-pill" onclick="quickSearch('Meredith')">Meredith</button>
         <button type="button" class="search-quick-pill" onclick="quickSearch('Addie')">Addie</button>
+        <button type="button" class="search-quick-pill" onclick="quickSearch('#25MB849C01')">#25MB849C01</button>
         <button type="button" class="search-quick-pill" onclick="quickSearch('#D4257')">#D4257</button>
         <button type="button" class="search-quick-pill" onclick="quickSearch('#SY8166')">#SY8166</button>
         <button type="button" class="search-quick-pill" onclick="quickSearch('#57042')">#57042</button>
-        <button type="button" class="search-quick-pill" onclick="quickSearch('Maggie Sottero')">Maggie Sottero</button>
-        <button type="button" class="search-quick-pill" onclick="quickSearch('Essense of Australia')">Essense of Australia</button>
-        <button type="button" class="search-quick-pill" onclick="quickSearch('Sherri Hill')">Sherri Hill</button>
-        <button type="button" class="search-quick-pill" onclick="quickSearch('Corset')">Corset</button>
+        <button type="button" class="search-quick-pill" onclick="quickSearch('#88904')">#88904</button>
       </div>
     </div>
     <div id="searchResults" class="search-results" aria-live="polite" aria-atomic="false" role="region" aria-label="Search results"></div>
-    <div id="searchCategories" class="search-categories">
-      <div class="search-cat-label">Browse Collections</div>
-      <div class="search-cat-links">
-        <a href="bridal-catalog.html" class="search-cat-link">Bridal Gowns</a>
-        <a href="mothers.html" class="search-cat-link">Mother of the Bride</a>
-        <a href="prom-catalog.html" class="search-cat-link">Prom</a>
-        <a href="hoco-catalog.html" class="search-cat-link">Homecoming</a>
-        <a href="tuxedos.html" class="search-cat-link">Tuxedos &amp; Suits</a>
-        <a href="quiz.html" class="search-cat-link">Find Your Bridal Style</a>
-      </div>
-    </div>
   </div>
 </div>`;
 }
@@ -694,32 +681,6 @@ let _globalCatalogPromise = null;
 let _searchScope = 'all';
 let _lastSearchTargetUrl = 'bridal-catalog.html';
 
-const _SEARCH_SYNONYMS = {
-  'sparkly': ['sparkle', 'bead', 'beaded', 'glitter', 'sequin', 'shimmer', 'crystal', 'metallic', 'rhinestone'],
-  'sparkle': ['sparkly', 'bead', 'beaded', 'glitter', 'sequin', 'shimmer', 'crystal', 'metallic', 'rhinestone'],
-  'fitted': ['mermaid', 'fit & flare', 'fit-and-flare', 'sheath', 'column', 'bodycon', 'trumpet'],
-  'mermaid': ['mermaid', 'fit & flare', 'fit-and-flare', 'trumpet', 'fitted'],
-  'aline': ['a-line', 'flare'],
-  'a-line': ['a-line'],
-  'ballgown': ['ballgown', 'ball gown', 'princess'],
-  'sleeves': ['sleeve', 'sleeves', 'long sleeve', 'cap sleeve', '3/4 sleeve', 'off-the-shoulder'],
-  'sleeve': ['sleeve', 'sleeves', 'long sleeve', 'cap sleeve', '3/4 sleeve'],
-  'modest': ['modest', 'high neck', 'long sleeve', 'covered'],
-  'simple': ['clean', 'minimalist', 'unembellished', 'simple'],
-  'clean': ['simple', 'minimalist', 'unembellished', 'clean']
-};
-
-const _STYLE_KEYWORDS = new Set([
-  'lace', 'line', 'a-line', 'aline', 'satin', 'tulle', 'crepe', 'silk', 'chiffon', 'organza', 'mikado', 'jacquard', 'velvet', 'jersey',
-  'mermaid', 'ballgown', 'sheath', 'column', 'trumpet', 'flare', 'fit-and-flare', 'fitted',
-  'strapless', 'halter', 'sweetheart', 'v-neck', 'square', 'scoop', 'cowl', 'illusion', 'plunging', 'plunge', 'off-the-shoulder', 'asymmetric', 'one-shoulder', 'high-neck',
-  'sleeve', 'sleeves', 'long', 'short', 'mini', 'midi', 'maxi', 'modest', 'sexy', 'boho', 'luxe', 'classic', 'modern', 'romantic', 'vintage', 'ethereal', 'clean', 'simple',
-  'sparkle', 'sparkly', 'beaded', 'bead', 'sequin', 'glitter', 'pearl', 'pearls', 'crystal', 'floral', 'flower', '3-d', 'bow', 'slit', 'corset', 'basque', 'pleated', 'draped', 'tiered', 'ruffle', 'cape', 'jacket', 'shawl', 'pocket', 'pockets', 'train', 'sweep', 'chapel', 'cathedral', 'royal', 'watteau', 'detachable',
-  'black', 'white', 'ivory', 'blush', 'champagne', 'gold', 'silver', 'pink', 'blue', 'red', 'green', 'emerald', 'navy', 'sage', 'teal', 'purple', 'lilac', 'yellow', 'orange', 'coral', 'burgundy', 'wine', 'plum', 'brown', 'nude', 'neon', 'pastel', 'ombre', 'metallic',
-  'bridal', 'wedding', 'bride', 'prom', 'hoco', 'homecoming', 'mothers', 'mother', 'pageant', 'formal', 'evening', 'cocktail', 'two-piece',
-  'maggie', 'sottero', 'rebecca', 'ingram', 'midgley', 'essense', 'australia', 'stella', 'york', 'rose', 'grace', 'sherri', 'hill', 'ashley', 'lauren', 'amarra', 'jovani', 'faviana', 'rachel', 'allan', 'sydney', 'sydneys', 'jessica', 'angel', 'johnathan', 'kayne', 'cameron', 'blake', 'jasmine', 'daymor', 'alexander', 'mlny'
-]);
-
 function _normSearchCode(s) {
   return String(s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
 }
@@ -764,32 +725,14 @@ function _getGlobalProductIndex(p) {
   const gnRaw = String(p.gn || '').toLowerCase().trim();
   const gnNorm = _normSearchCode(gnRaw);
   const gnWords = gnRaw ? gnRaw.split(/\s+/).filter(Boolean) : [];
-  const desRaw = String(p.d || '').toLowerCase().trim();
-  const desWords = desRaw ? desRaw.replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter(Boolean) : [];
 
-  const structuredText = [
-    p.sil || '',
-    p.tr || '',
-    p.trend || '',
-    (p.f || []).join(' '),
-    (p.nk || []).join(' '),
-    (p.v || []).join(' '),
-    p._type || ''
-  ].join(' ').toLowerCase();
-
-  const descText = String(p.c || '').toLowerCase();
-  const fullDoc = (desRaw + ' ' + structuredText + ' ' + descText).toLowerCase();
-  const docWords = new Set(fullDoc.replace(/[^a-z0-9-]/g, ' ').split(/\s+/).filter(Boolean));
-  fullDoc.replace(/[^a-z0-9]/g, ' ').split(/\s+/).filter(Boolean).forEach(function(w) { docWords.add(w); });
-
-  p._globalSearchIdx = { sku, gnRaw, gnNorm, gnWords, desRaw, desWords, structuredText, fullDoc, docWords, docWordsList: Array.from(docWords) };
+  p._globalSearchIdx = { sku, gnRaw, gnNorm, gnWords };
   return p._globalSearchIdx;
 }
 
 function _getGlobalSearchCutoff(maxScore) {
-  if (maxScore >= 850) return 750;
-  if (maxScore >= 550) return Math.max(450, Math.floor(maxScore * 0.7));
-  if (maxScore > 0) return Math.max(70, Math.floor(maxScore * 0.6));
+  if (maxScore >= 900) return 850;
+  if (maxScore >= 750) return 750;
   return 1;
 }
 
@@ -797,83 +740,32 @@ function scoreGlobalDress(p, rawQ) {
   if (!rawQ || !rawQ.trim()) return 0;
   const cleanedQ = rawQ.trim().toLowerCase()
     .replace(/^(?:style\s*(?:number|num|no\.?|#)?\s*|sku\s*:?\s*|#\s*)/i, '')
-    .replace(/\bessence\b/g, 'essense')
-    .replace(/\bsydneys\b/g, "sydney's")
-    .replace(/\ba\s+line\b/g, 'a-line')
-    .replace(/\bfit\s+(?:and|&)\s+flare\b/g, 'fit-and-flare')
-    .replace(/\boff\s+the\s+shoulder\b/g, 'off-the-shoulder')
-    .replace(/\bv\s+neck\b/g, 'v-neck')
-    .replace(/\btwo\s+piece\b/g, 'two-piece')
     .trim();
   if (!cleanedQ) return 0;
 
   const idx = _getGlobalProductIndex(p);
-  const { sku, gnRaw, gnNorm, gnWords, desRaw, desWords, structuredText, fullDoc, docWords, docWordsList } = idx;
+  const { sku, gnRaw, gnNorm, gnWords } = idx;
   const qNorm = _normSearchCode(cleanedQ);
+  if (!qNorm) return 0;
 
-  // 1. Direct Single-Target Style Number or Dress Name Match
-  if (qNorm.length >= 2) {
-    if (sku.full === qNorm) return 1000;
-    if (gnRaw && (gnRaw === cleanedQ || gnNorm === qNorm)) return 980;
-    if (qNorm.length >= 3 && (sku.firstTok === qNorm || sku.noPrefix === qNorm || sku.strippedSuffix === qNorm)) return 960;
-    if (qNorm.length >= 4 && (sku.msNoYear === qNorm || sku.msNoYearBase === qNorm)) return 940;
-    if (gnWords.length > 0 && gnWords[0] === cleanedQ && !_STYLE_KEYWORDS.has(cleanedQ)) return 930;
-    if (sku.coreDigits && sku.coreDigits.length >= 3 && sku.coreDigits === qNorm) return 910;
-    if (/\d/.test(qNorm) && qNorm.length >= 4 && (sku.full.startsWith(qNorm) || sku.noPrefix.startsWith(qNorm))) return 880;
-    if (gnWords.length >= 2 && gnWords.slice(1).includes(cleanedQ) && !_STYLE_KEYWORDS.has(cleanedQ)) return 850;
-    if (gnRaw && cleanedQ.length >= 4 && !_STYLE_KEYWORDS.has(cleanedQ) && (gnRaw.startsWith(cleanedQ) || (gnWords[0] && gnWords[0].startsWith(cleanedQ)))) return 840;
+  // 1. Style Number (p.s) Match ONLY
+  if (sku.full === qNorm) return 1000;
+  if (qNorm.length >= 3 && (sku.firstTok === qNorm || sku.noPrefix === qNorm || sku.strippedSuffix === qNorm)) return 960;
+  if (qNorm.length >= 4 && (sku.msNoYear === qNorm || sku.msNoYearBase === qNorm)) return 940;
+  if (sku.coreDigits && sku.coreDigits.length >= 3 && sku.coreDigits === qNorm) return 910;
+  if (/\d/.test(qNorm) && qNorm.length >= 3 && (sku.full.startsWith(qNorm) || sku.noPrefix.startsWith(qNorm))) return 860;
+
+  // 2. Dress Name (p.gn) Match ONLY
+  if (gnRaw) {
+    if (gnRaw === cleanedQ || gnNorm === qNorm) return 980;
+    if (gnWords.length > 0 && gnWords[0] === cleanedQ) return 930;
+    if (gnWords.length >= 2 && gnWords.slice(1).includes(cleanedQ)) return 880;
+    if (cleanedQ.includes(' ') && gnRaw.startsWith(cleanedQ) && cleanedQ.length >= 4) return 870;
+    if (!cleanedQ.includes(' ') && cleanedQ.length >= 3 && (gnWords[0].startsWith(cleanedQ) || gnWords.some(function(w) { return w.startsWith(cleanedQ); }))) return 840;
+    if (!cleanedQ.includes(' ') && cleanedQ.length >= 5 && !/\d/.test(cleanedQ) && gnWords.some(function(w) { return w.length >= 5 && _isOneEditAway(cleanedQ, w); })) return 760;
   }
 
-  // 2. Tokenized Multi-Field Matching
-  const rawTokens = cleanedQ
-    .replace(/[#+,&/\\]+/g, ' ')
-    .split(/\s+/)
-    .map(function(t) { return t.replace(/^-+|-+$/g, '').trim(); })
-    .filter(function(t) { return t.length > 0 && !['style', 'dress', 'dresses', 'gown', 'gowns', 'by', 'the', 'of', 'in', 'with', 'and', 'for'].includes(t); });
-
-  const tokens = rawTokens.length ? rawTokens : cleanedQ.split(/\s+/).filter(Boolean);
-
-  let score = 0;
-  for (const tok of tokens) {
-    const tNorm = _normSearchCode(tok);
-    if (!tNorm) continue;
-
-    if (sku.full === tNorm) {
-      score += 550;
-    } else if (tNorm.length >= 3 && (sku.firstTok === tNorm || sku.noPrefix === tNorm || sku.strippedSuffix === tNorm)) {
-      score += 510;
-    } else if (tNorm.length >= 4 && (sku.msNoYear === tNorm || sku.msNoYearBase === tNorm)) {
-      score += 490;
-    } else if (gnRaw && (gnRaw === tok || gnWords[0] === tok) && !_STYLE_KEYWORDS.has(tok)) {
-      score += 480;
-    } else if (sku.coreDigits && sku.coreDigits.length >= 3 && sku.coreDigits === tNorm) {
-      score += 460;
-    } else if (gnWords.includes(tok) && !_STYLE_KEYWORDS.has(tok)) {
-      score += 420;
-    } else if (/\d/.test(tNorm) && tNorm.length >= 4 && (sku.full.startsWith(tNorm) || sku.noPrefix.startsWith(tNorm))) {
-      score += 400;
-    } else if (tok.length >= 4 && !_STYLE_KEYWORDS.has(tok) && gnWords.some(function(w) { return w.startsWith(tok); })) {
-      score += 360;
-    } else if (desWords.includes(tok) || (tok.length >= 4 && desRaw.includes(tok))) {
-      score += 250;
-    } else if (!_STYLE_KEYWORDS.has(tok) && !/\d/.test(tok) && tok.length >= 4 && gnWords.some(function(w) { return _isOneEditAway(tok, w); })) {
-      score += 310;
-    } else if (!_STYLE_KEYWORDS.has(tok) && !/\d/.test(tok) && tok.length >= 5 && desWords.some(function(w) { return _isOneEditAway(tok, w); })) {
-      score += 190;
-    } else if (gnWords.includes(tok)) {
-      score += 160;
-    } else if (structuredText.includes(tok)) {
-      score += 150;
-    } else if (docWords.has(tok) || (tok.length >= 5 && docWordsList.some(function(w) { return w.startsWith(tok); }))) {
-      score += 90;
-    } else if (_SEARCH_SYNONYMS[tok] && _SEARCH_SYNONYMS[tok].some(function(syn) { return fullDoc.includes(syn); })) {
-      score += 80;
-    } else {
-      return 0;
-    }
-  }
-
-  return score;
+  return 0;
 }
 
 async function ensureGlobalCatalog() {
@@ -882,10 +774,10 @@ async function ensureGlobalCatalog() {
   _globalCatalogPromise = (async function() {
     try {
       const [bRes, pRes, mRes, hRes] = await Promise.allSettled([
-        fetch('data/bridal-products.json?v=20261025c').then(r => r.json()),
-        fetch('data/prom-products.json?v=20261025c').then(r => r.json()),
-        fetch('data/mothers-products.json?v=20261025c').then(r => r.json()),
-        fetch('data/hoco-products.json?v=20261025c').then(r => r.json())
+        fetch('data/bridal-products.json?v=20261025d').then(r => r.json()),
+        fetch('data/prom-products.json?v=20261025d').then(r => r.json()),
+        fetch('data/mothers-products.json?v=20261025d').then(r => r.json()),
+        fetch('data/hoco-products.json?v=20261025d').then(r => r.json())
       ]);
       const b = bRes.status === 'fulfilled' && Array.isArray(bRes.value) ? bRes.value.map(x => Object.assign({}, x, { _cat: 'bridal-catalog.html', _type: 'bridal' })) : [];
       const p = pRes.status === 'fulfilled' && Array.isArray(pRes.value) ? pRes.value.map(x => Object.assign({}, x, { _cat: 'prom-catalog.html', _type: 'prom' })) : [];
@@ -1154,35 +1046,8 @@ window.onSearchInput = async function(val) {
     }
   }
 
-  // Navigation suggestions fallback if no dresses found
-  const qLower = q.toLowerCase();
-  const pages = [
-    {name:'Bridal Gowns', url:'bridal-catalog.html', keys:['bridal','wedding','gown','dress']},
-    {name:'Mother of the Bride', url:'mothers.html', keys:['mother','mom','mob','bride']},
-    {name:'Prom', url:'prom-catalog.html', keys:['prom']},
-    {name:'Homecoming', url:'hoco-catalog.html', keys:['hoco','homecoming']},
-    {name:'Tuxedos & Suits', url:'tuxedos.html', keys:['tux','suit','groom','men']},
-    {name:'Find Your Bridal Style', url:'quiz.html', keys:['quiz','style','find','bridal']},
-  ];
-  const matchedPages = pages.filter(function(p) {
-    return p.name.toLowerCase().includes(qLower) || p.keys.some(function(k){ return k.includes(qLower) || qLower.includes(k); });
-  });
-
-  if (matchedPages.length) {
-    results.innerHTML = '<div class="search-results-label">Collections</div>' +
-      matchedPages.map(function(p){ return '<a href="' + p.url + '" class="search-nav-result">' + p.name + '</a>'; }).join('');
-  } else {
-    _searchMatches = [];
-    const noResult = document.createElement('p');
-    noResult.className = 'search-no-results';
-    const t1 = document.createTextNode('No styles matched “');
-    const em = document.createElement('em');
-    em.textContent = val;
-    const t2 = document.createTextNode('”. Try a dress name (e.g. Dakota Leigh, Addie), style number (e.g. #57042, #D4257), or designer.');
-    noResult.appendChild(t1); noResult.appendChild(em); noResult.appendChild(t2);
-    results.innerHTML = '';
-    results.appendChild(noResult);
-  }
+  _searchMatches = [];
+  results.innerHTML = '<p class="search-no-results">No dresses matched “<em>' + escapeHTML(val) + '</em>”. Search by dress name (e.g. Dakota Leigh, Meredith, Addie) or style number (e.g. #25MB849C01, #D4257, #57042).</p>';
 };
 
 window.goToSearchDress = function(idx) {

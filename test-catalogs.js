@@ -116,9 +116,12 @@ const bridalCatalog = new sandbox.window.CloudNineCatalog({
 bridalCatalog.P = bridalData;
 
 const bridalAll = bridalData.filter(p => bridalCatalog.matchesFilter(p, { sil: 'all', des: 'all' }, ''));
-const bridalSparkly = bridalData.filter(p => bridalCatalog.matchesFilter(p, { sil: 'all', des: 'all' }, 'sparkly'));
+const bridalNonDressQuery = bridalData.filter(p => bridalCatalog.matchesFilter(p, { sil: 'all', des: 'all' }, 'sparkly'));
+if (bridalNonDressQuery.length !== 0) {
+  throw new Error(`Expected 0 matches for attribute query "sparkly" (dress name & style number only), got ${bridalNonDressQuery.length}`);
+}
 console.log(`[PASS] Bridal Unfiltered: ${bridalAll.length} products`);
-console.log(`[PASS] Bridal Synonym Search ("sparkly"): ${bridalSparkly.length} products found`);
+console.log(`[PASS] Bridal Strict Search ("sparkly" attribute excluded): 0 products matched`);
 
 // 2. Prom Catalog Test
 const promCatalog = new sandbox.window.CloudNineCatalog({
@@ -161,11 +164,14 @@ const mothersCatalog = new sandbox.window.CloudNineCatalog({
 mothersCatalog.P = mothersData;
 
 const mothersAll = mothersData.filter(p => mothersCatalog.matchesFilter(p, { sil: 'all', des: 'all' }, ''));
-const mothersSleeves = mothersData.filter(p => mothersCatalog.matchesFilter(p, { sil: 'all', des: 'all' }, 'sleeves'));
+const mothersNonDressQuery = mothersData.filter(p => mothersCatalog.matchesFilter(p, { sil: 'all', des: 'all' }, 'sleeves'));
+if (mothersNonDressQuery.length !== 0) {
+  throw new Error(`Expected 0 matches for attribute query "sleeves" (dress name & style number only), got ${mothersNonDressQuery.length}`);
+}
 console.log(`[PASS] Mothers Unfiltered: ${mothersAll.length} products`);
-console.log(`[PASS] Mothers Synonym Search ("sleeves"): ${mothersSleeves.length} products found`);
+console.log(`[PASS] Mothers Strict Search ("sleeves" attribute excluded): 0 products matched`);
 
-// 5. Dress Name & Style Number Search Tests
+// 5. Dress Name & Style Number ONLY Search Tests
 const searchTestCases = [
   { catalog: bridalCatalog, data: bridalData, query: 'Dakota Leigh', expectedSku: '25MB849C01', expectedCount: 1, label: 'Bridal Dress Name ("Dakota Leigh")' },
   { catalog: bridalCatalog, data: bridalData, query: 'Meredith', expectedSku: '25MB870A01', expectedCount: 1, label: 'Bridal Dress Name ("Meredith")' },
@@ -182,10 +188,9 @@ const searchTestCases = [
   { catalog: bridalCatalog, data: bridalData, query: 'D4257', expectedSku: 'D4257', expectedCount: 1, label: 'Essense Style Number ("D4257")' },
   { catalog: bridalCatalog, data: bridalData, query: '4257', expectedSku: 'D4257', expectedCount: 1, label: 'Stripped-prefix Style Number ("4257" -> "D4257")' },
   { catalog: bridalCatalog, data: bridalData, query: '8166', expectedSku: 'SY8166', expectedCount: 1, label: 'Stripped-prefix Stella York Style Number ("8166" -> "SY8166")' },
-  { catalog: bridalCatalog, data: bridalData, query: 'Essence of Australia D4257', expectedSku: 'D4257', expectedCount: 1, label: 'Spelling normalization + Style Number ("Essence of Australia D4257")' },
   { catalog: mothersCatalog, data: mothersData, query: '821', expectedSku: 'CB821', expectedCount: 1, label: 'Mothers Stripped-prefix Style Number ("821" -> "CB821")' },
   { catalog: hocoCatalog, data: hocoData, query: '2842', expectedSku: '2842S', expectedCount: 1, label: 'HOCO Stripped-suffix Style Number ("2842" -> "2842S")' },
-  { catalog: promCatalog, data: promData, query: 'Sherri Hill 57042', expectedSku: '57042', expectedCount: 1, label: 'Prom Designer + Style Number ("Sherri Hill 57042")' },
+  { catalog: promCatalog, data: promData, query: '#57042', expectedSku: '57042', expectedCount: 1, label: 'Prom Style Number ("#57042")' },
   { catalog: promCatalog, data: promData, query: '#88904', expectedSku: '88904', expectedCount: 1, label: 'Prom Style Number with # ("#88904")' }
 ];
 
@@ -289,7 +294,7 @@ console.log('[PASS] Navigation Bar Search: Verified .nav-search-bar-btn (Desktop
     { q: 'Meredith', mustContain: ['Meredith', '#25MB870A01', 'Maggie Sottero'] },
     { q: '#D4257', mustContain: ['#D4257', 'Essense of Australia'] },
     { q: '8166', mustContain: ['#SY8166', 'Stella York'] },
-    { q: 'Sherri Hill 57042', mustContain: ['#57042', 'Sherri Hill'] },
+    { q: '#57042', mustContain: ['#57042', 'Sherri Hill'] },
     { q: 'Addie', mustContain: ['Addie', 'Rose + Grace'] }
   ];
 
@@ -302,6 +307,16 @@ console.log('[PASS] Navigation Bar Search: Verified .nav-search-bar-btn (Desktop
       }
     }
     console.log(`[PASS] Global Search Overlay ("${q}"): Verified [${mustContain.join(', ')}] in rendered results`);
+  }
+
+  // Verify non-dress-name / non-style-number queries do not match any dresses
+  for (const nonDressQ of ['Maggie Sottero', 'Corset', 'Ballgown']) {
+    await compSandbox.window.onSearchInput(nonDressQ);
+    const html = getCompEl('searchResults').innerHTML;
+    if (html.includes('search-result-card')) {
+      throw new Error(`Global search overlay unexpectedly matched a dress for non-name/non-SKU query "${nonDressQ}"`);
+    }
+    console.log(`[PASS] Global Search Overlay ("${nonDressQ}" excluded): 0 dress matches`);
   }
 
   console.log('\n>>> ALL 4 CATALOG ENGINES + GLOBAL SEARCH OVERLAY VALIDATED AND FUNCTIONING FLAWLESSLY! <<<');

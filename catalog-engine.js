@@ -97,9 +97,7 @@ class CloudNineCatalog {
   initCatalogSearchUI() {
     if (typeof document === 'undefined' || typeof document.getElementById !== 'function') return;
 
-    const placeholder = this.category === 'bridal'
-      ? 'Search gown name or style # (e.g. Dakota, D4257)…'
-      : 'Search style # or designer (e.g. 57042, Amarra)…';
+    const placeholder = 'Search by dress name or style #…';
 
     // 1. Inject inline search input into #filterBarCompact if not present
     const bar = document.getElementById('filterBarCompact');
@@ -714,22 +712,6 @@ class CloudNineCatalog {
     return edits <= 1;
   }
 
-  getStyleKeywords() {
-    if (!this._styleKeywords) {
-      this._styleKeywords = new Set([
-        'lace', 'line', 'a-line', 'aline', 'satin', 'tulle', 'crepe', 'silk', 'chiffon', 'organza', 'mikado', 'jacquard', 'velvet', 'jersey',
-        'mermaid', 'ballgown', 'sheath', 'column', 'trumpet', 'flare', 'fit-and-flare', 'fitted',
-        'strapless', 'halter', 'sweetheart', 'v-neck', 'square', 'scoop', 'cowl', 'illusion', 'plunging', 'plunge', 'off-the-shoulder', 'asymmetric', 'one-shoulder', 'high-neck',
-        'sleeve', 'sleeves', 'long', 'short', 'mini', 'midi', 'maxi', 'modest', 'sexy', 'boho', 'luxe', 'classic', 'modern', 'romantic', 'vintage', 'ethereal', 'clean', 'simple',
-        'sparkle', 'sparkly', 'beaded', 'bead', 'sequin', 'glitter', 'pearl', 'pearls', 'crystal', 'floral', 'flower', '3-d', 'bow', 'slit', 'corset', 'basque', 'pleated', 'draped', 'tiered', 'ruffle', 'cape', 'jacket', 'shawl', 'pocket', 'pockets', 'train', 'sweep', 'chapel', 'cathedral', 'royal', 'watteau', 'detachable',
-        'black', 'white', 'ivory', 'blush', 'champagne', 'gold', 'silver', 'pink', 'blue', 'red', 'green', 'emerald', 'navy', 'sage', 'teal', 'purple', 'lilac', 'yellow', 'orange', 'coral', 'burgundy', 'wine', 'plum', 'brown', 'nude', 'neon', 'pastel', 'ombre', 'metallic',
-        'bridal', 'wedding', 'bride', 'prom', 'hoco', 'homecoming', 'mothers', 'mother', 'pageant', 'formal', 'evening', 'cocktail', 'two-piece',
-        'maggie', 'sottero', 'rebecca', 'ingram', 'midgley', 'essense', 'australia', 'stella', 'york', 'rose', 'grace', 'sherri', 'hill', 'ashley', 'lauren', 'amarra', 'jovani', 'faviana', 'rachel', 'allan', 'sydney', 'sydneys', 'jessica', 'angel', 'johnathan', 'kayne', 'cameron', 'blake', 'jasmine', 'daymor', 'alexander', 'mlny'
-      ]);
-    }
-    return this._styleKeywords;
-  }
-
   getProductSearchIndex(p) {
     if (p._searchIdx) return p._searchIdx;
     const rawSku = String(p.s || '').trim().toLowerCase();
@@ -753,32 +735,14 @@ class CloudNineCatalog {
     const gnRaw = String(p.gn || '').toLowerCase().trim();
     const gnNorm = this.normCode(gnRaw);
     const gnWords = gnRaw ? gnRaw.split(/\s+/).filter(Boolean) : [];
-    const desRaw = String(p.d || '').toLowerCase().trim();
-    const desWords = desRaw ? desRaw.replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter(Boolean) : [];
 
-    const structuredText = [
-      p.sil || '',
-      p.tr || '',
-      p.trend || '',
-      (p.f || []).join(' '),
-      (p.nk || []).join(' '),
-      (p.v || []).join(' ')
-    ].join(' ').toLowerCase();
-
-    const descText = String(p.c || '').toLowerCase();
-    const fullDoc = (desRaw + ' ' + structuredText + ' ' + descText).toLowerCase();
-    const docWordsArr = fullDoc.replace(/[^a-z0-9-]/g, ' ').split(/\s+/).filter(Boolean);
-    const docWords = new Set(docWordsArr);
-    fullDoc.replace(/[^a-z0-9]/g, ' ').split(/\s+/).filter(Boolean).forEach(w => docWords.add(w));
-
-    p._searchIdx = { sku, gnRaw, gnNorm, gnWords, desRaw, desWords, structuredText, fullDoc, docWords, docWordsList: Array.from(docWords) };
+    p._searchIdx = { sku, gnRaw, gnNorm, gnWords };
     return p._searchIdx;
   }
 
   getSearchCutoff(maxScore) {
-    if (maxScore >= 850) return 750;
-    if (maxScore >= 550) return Math.max(450, Math.floor(maxScore * 0.7));
-    if (maxScore > 0) return Math.max(70, Math.floor(maxScore * 0.6));
+    if (maxScore >= 900) return 850;
+    if (maxScore >= 750) return 750;
     return 1;
   }
 
@@ -786,84 +750,32 @@ class CloudNineCatalog {
     if (!q || !q.trim()) return 1;
     const cleanedQ = q.trim().toLowerCase()
       .replace(/^(?:style\s*(?:number|num|no\.?|#)?\s*|sku\s*:?\s*|#\s*)/i, '')
-      .replace(/\bessence\b/g, 'essense')
-      .replace(/\bsydneys\b/g, "sydney's")
-      .replace(/\ba\s+line\b/g, 'a-line')
-      .replace(/\bfit\s+(?:and|&)\s+flare\b/g, 'fit-and-flare')
-      .replace(/\boff\s+the\s+shoulder\b/g, 'off-the-shoulder')
-      .replace(/\bv\s+neck\b/g, 'v-neck')
-      .replace(/\btwo\s+piece\b/g, 'two-piece')
       .trim();
     if (!cleanedQ) return 0;
 
-    const styleKeywords = this.getStyleKeywords();
     const idx = this.getProductSearchIndex(p);
-    const { sku, gnRaw, gnNorm, gnWords, desRaw, desWords, structuredText, fullDoc, docWords, docWordsList } = idx;
+    const { sku, gnRaw, gnNorm, gnWords } = idx;
     const qNorm = this.normCode(cleanedQ);
+    if (!qNorm) return 0;
 
-    // 1. Direct Single-Target SKU or Dress Name Match
-    if (qNorm.length >= 2) {
-      if (sku.full === qNorm) return 1000;
-      if (gnRaw && (gnRaw === cleanedQ || gnNorm === qNorm)) return 980;
-      if (qNorm.length >= 3 && (sku.firstTok === qNorm || sku.noPrefix === qNorm || sku.strippedSuffix === qNorm)) return 960;
-      if (qNorm.length >= 4 && (sku.msNoYear === qNorm || sku.msNoYearBase === qNorm)) return 940;
-      if (gnWords.length > 0 && gnWords[0] === cleanedQ && !styleKeywords.has(cleanedQ)) return 930;
-      if (sku.coreDigits && sku.coreDigits.length >= 3 && sku.coreDigits === qNorm) return 910;
-      if (/\d/.test(qNorm) && qNorm.length >= 4 && (sku.full.startsWith(qNorm) || sku.noPrefix.startsWith(qNorm))) return 880;
-      if (gnWords.length >= 2 && gnWords.slice(1).includes(cleanedQ) && !styleKeywords.has(cleanedQ)) return 850;
-      if (gnRaw && cleanedQ.length >= 4 && !styleKeywords.has(cleanedQ) && (gnRaw.startsWith(cleanedQ) || (gnWords[0] && gnWords[0].startsWith(cleanedQ)))) return 840;
+    // 1. Style Number (p.s) Match ONLY
+    if (sku.full === qNorm) return 1000;
+    if (qNorm.length >= 3 && (sku.firstTok === qNorm || sku.noPrefix === qNorm || sku.strippedSuffix === qNorm)) return 960;
+    if (qNorm.length >= 4 && (sku.msNoYear === qNorm || sku.msNoYearBase === qNorm)) return 940;
+    if (sku.coreDigits && sku.coreDigits.length >= 3 && sku.coreDigits === qNorm) return 910;
+    if (/\d/.test(qNorm) && qNorm.length >= 3 && (sku.full.startsWith(qNorm) || sku.noPrefix.startsWith(qNorm))) return 860;
+
+    // 2. Dress Name (p.gn) Match ONLY
+    if (gnRaw) {
+      if (gnRaw === cleanedQ || gnNorm === qNorm) return 980;
+      if (gnWords.length > 0 && gnWords[0] === cleanedQ) return 930;
+      if (gnWords.length >= 2 && gnWords.slice(1).includes(cleanedQ)) return 880;
+      if (cleanedQ.includes(' ') && gnRaw.startsWith(cleanedQ) && cleanedQ.length >= 4) return 870;
+      if (!cleanedQ.includes(' ') && cleanedQ.length >= 3 && (gnWords[0].startsWith(cleanedQ) || gnWords.some(w => w.startsWith(cleanedQ)))) return 840;
+      if (!cleanedQ.includes(' ') && cleanedQ.length >= 5 && !/\d/.test(cleanedQ) && gnWords.some(w => w.length >= 5 && this.isOneEditAway(cleanedQ, w))) return 760;
     }
 
-    // 2. Tokenized Multi-Field Matching
-    const rawTokens = cleanedQ
-      .replace(/[#+,&/\\]+/g, ' ')
-      .split(/\s+/)
-      .map(t => t.replace(/^-+|-+$/g, '').trim())
-      .filter(t => t.length > 0 && !['style', 'dress', 'dresses', 'gown', 'gowns', 'by', 'the', 'of', 'in', 'with', 'and', 'for'].includes(t));
-
-    const tokens = rawTokens.length ? rawTokens : cleanedQ.split(/\s+/).filter(Boolean);
-
-    let score = 0;
-    for (const tok of tokens) {
-      const tNorm = this.normCode(tok);
-      if (!tNorm) continue;
-
-      if (sku.full === tNorm) {
-        score += 550;
-      } else if (tNorm.length >= 3 && (sku.firstTok === tNorm || sku.noPrefix === tNorm || sku.strippedSuffix === tNorm)) {
-        score += 510;
-      } else if (tNorm.length >= 4 && (sku.msNoYear === tNorm || sku.msNoYearBase === tNorm)) {
-        score += 490;
-      } else if (gnRaw && (gnRaw === tok || gnWords[0] === tok) && !styleKeywords.has(tok)) {
-        score += 480;
-      } else if (sku.coreDigits && sku.coreDigits.length >= 3 && sku.coreDigits === tNorm) {
-        score += 460;
-      } else if (gnWords.includes(tok) && !styleKeywords.has(tok)) {
-        score += 420;
-      } else if (/\d/.test(tNorm) && tNorm.length >= 4 && (sku.full.startsWith(tNorm) || sku.noPrefix.startsWith(tNorm))) {
-        score += 400;
-      } else if (tok.length >= 4 && !styleKeywords.has(tok) && gnWords.some(w => w.startsWith(tok))) {
-        score += 360;
-      } else if (desWords.includes(tok) || (tok.length >= 4 && desRaw.includes(tok))) {
-        score += 250;
-      } else if (!styleKeywords.has(tok) && !/\d/.test(tok) && tok.length >= 4 && gnWords.some(w => this.isOneEditAway(tok, w))) {
-        score += 310;
-      } else if (!styleKeywords.has(tok) && !/\d/.test(tok) && tok.length >= 5 && desWords.some(w => this.isOneEditAway(tok, w))) {
-        score += 190;
-      } else if (gnWords.includes(tok)) {
-        score += 160;
-      } else if (structuredText.includes(tok)) {
-        score += 150;
-      } else if (docWords.has(tok) || (tok.length >= 5 && docWordsList.some(w => w.startsWith(tok)))) {
-        score += 90;
-      } else if (this.synonyms[tok] && this.synonyms[tok].some(syn => fullDoc.includes(syn))) {
-        score += 80;
-      } else {
-        return 0;
-      }
-    }
-
-    return score;
+    return 0;
   }
 
   matchesSearch(p, q) {
