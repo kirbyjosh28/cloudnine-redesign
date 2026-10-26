@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"/>
   <link rel="preload" as="image" href="images/real/hoco/03-88900.webp" type="image/webp"/>
-  <link rel="stylesheet" href="shared.css?v=20261025d"/>
+  <link rel="stylesheet" href="shared.css?v=20261025e"/>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -942,6 +942,10 @@
                 <span class="popover-chip-name">Jovani</span>
                 <span class="chip-count"></span>
               </button>
+              <button type="button" class="filter-popover-chip" data-filter="des" data-value="Kate Parker" onclick="setFilter('des', 'Kate Parker', true, event)">
+                <span class="popover-chip-name">Kate Parker</span>
+                <span class="chip-count"></span>
+              </button>
               <button type="button" class="filter-popover-chip" data-filter="des" data-value="Rachel Allan" onclick="setFilter('des', 'Rachel Allan', true, event)">
                 <span class="popover-chip-name">Rachel Allan</span>
                 <span class="chip-count"></span>
@@ -1043,8 +1047,8 @@
 </div>
 
 <div id="site-footer"></div>
-<script src="components.js?v=20261025d" defer></script>
-<script src="catalog-engine.js?v=20261025d" defer></script>
+<script src="components.js?v=20261025e" defer></script>
+<script src="catalog-engine.js?v=20261025e" defer></script>
 <script>
 const HOCO_SYNONYMS = {
   'fitted': ['fitted', 'bodycon', 'sheath', 'tight'],
@@ -1073,7 +1077,7 @@ function initHocoCatalog() {
   if (typeof CloudNineCatalog !== 'undefined') {
     new CloudNineCatalog({
       category: 'hoco',
-      dataPath: 'data/hoco-products.json?v=20261025d',
+      dataPath: 'data/hoco-products.json?v=20261025e',
       facets: ['des'],
       facetLabels: { des: 'Designer' },
       synonyms: HOCO_SYNONYMS,

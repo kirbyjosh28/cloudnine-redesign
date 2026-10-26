@@ -708,7 +708,7 @@ function _getGlobalProductIndex(p) {
   const full = _normSearchCode(rawSku);
   const firstTok = _normSearchCode(rawSku.split(/\s+/)[0] || '');
   const noPrefix = firstTok.replace(/^[a-z]+/, '');
-  const msMatch = firstTok.match(/^(\d{2})([a-z]{2})(\d{3,4})([a-z0-9]*)$/);
+  const msMatch = firstTok.match(/^(\d{2}|[fs]\d)([a-z]{2})(\d{3,4})([a-z0-9]*)$/);
   let msBase = '', msNoYear = '', msNoYearBase = '', coreDigits = '';
   if (msMatch) {
     msBase = msMatch[1] + msMatch[2] + msMatch[3];
@@ -719,7 +719,7 @@ function _getGlobalProductIndex(p) {
     const genMatch = firstTok.match(/^[a-z]*(\d{3,7})[a-z]*$/);
     if (genMatch) coreDigits = genMatch[1];
   }
-  const strippedSuffix = msBase || firstTok.replace(/^(\d{3,6})[a-z]+$/, '$1');
+  const strippedSuffix = msBase || firstTok.replace(/^([a-z]*\d{3,6})[a-z]+$/, '$1');
   const sku = { full, firstTok, noPrefix, strippedSuffix, msNoYear, msNoYearBase, coreDigits };
 
   const gnRaw = String(p.gn || '').toLowerCase().trim();
@@ -774,10 +774,10 @@ async function ensureGlobalCatalog() {
   _globalCatalogPromise = (async function() {
     try {
       const [bRes, pRes, mRes, hRes] = await Promise.allSettled([
-        fetch('data/bridal-products.json?v=20261025d').then(r => r.json()),
-        fetch('data/prom-products.json?v=20261025d').then(r => r.json()),
-        fetch('data/mothers-products.json?v=20261025d').then(r => r.json()),
-        fetch('data/hoco-products.json?v=20261025d').then(r => r.json())
+        fetch('data/bridal-products.json?v=20261025e').then(r => r.json()),
+        fetch('data/prom-products.json?v=20261025e').then(r => r.json()),
+        fetch('data/mothers-products.json?v=20261025e').then(r => r.json()),
+        fetch('data/hoco-products.json?v=20261025e').then(r => r.json())
       ]);
       const b = bRes.status === 'fulfilled' && Array.isArray(bRes.value) ? bRes.value.map(x => Object.assign({}, x, { _cat: 'bridal-catalog.html', _type: 'bridal' })) : [];
       const p = pRes.status === 'fulfilled' && Array.isArray(pRes.value) ? pRes.value.map(x => Object.assign({}, x, { _cat: 'prom-catalog.html', _type: 'prom' })) : [];

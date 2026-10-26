@@ -718,7 +718,7 @@ class CloudNineCatalog {
     const full = this.normCode(rawSku);
     const firstTok = this.normCode(rawSku.split(/\s+/)[0] || '');
     const noPrefix = firstTok.replace(/^[a-z]+/, '');
-    const msMatch = firstTok.match(/^(\d{2})([a-z]{2})(\d{3,4})([a-z0-9]*)$/);
+    const msMatch = firstTok.match(/^(\d{2}|[fs]\d)([a-z]{2})(\d{3,4})([a-z0-9]*)$/);
     let msBase = '', msNoYear = '', msNoYearBase = '', coreDigits = '';
     if (msMatch) {
       msBase = msMatch[1] + msMatch[2] + msMatch[3];
@@ -729,7 +729,7 @@ class CloudNineCatalog {
       const genMatch = firstTok.match(/^[a-z]*(\d{3,7})[a-z]*$/);
       if (genMatch) coreDigits = genMatch[1];
     }
-    const strippedSuffix = msBase || firstTok.replace(/^(\d{3,6})[a-z]+$/, '$1');
+    const strippedSuffix = msBase || firstTok.replace(/^([a-z]*\d{3,6})[a-z]+$/, '$1');
     const sku = { full, firstTok, noPrefix, strippedSuffix, msNoYear, msNoYearBase, coreDigits };
 
     const gnRaw = String(p.gn || '').toLowerCase().trim();
