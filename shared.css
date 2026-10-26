@@ -212,7 +212,13 @@ button { font-family: var(--font-kicker); cursor: pointer; }
               border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, top, background, box-shadow;
 }
-.main-nav.nav-hidden { transform: translateY(-130%); }
+.main-nav.nav-hidden,
+body.search-open .main-nav,
+body.mobile-menu-open .main-nav {
+  transform: translateY(-130%) !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
 
 /* Dynamic Compressed Scroll & Docked State */
 .main-nav.nav-scrolled,
@@ -2284,7 +2290,7 @@ a { transition: opacity .18s; }
 
 /* ── SEARCH OVERLAY ── */
 .search-overlay {
-  position: fixed; inset: 0; z-index: 400;
+  position: fixed; inset: 0; z-index: 1200;
   background: rgba(18,48,50,.92);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -2310,6 +2316,7 @@ a { transition: opacity .18s; }
 }
 .search-top-row {
   display: flex; align-items: center; justify-content: space-between;
+  gap: 12px;
   margin-bottom: 32px;
 }
 .search-eyebrow {
@@ -2318,17 +2325,29 @@ a { transition: opacity .18s; }
   text-transform: uppercase; color: var(--teal-logo);
 }
 .search-close-btn {
-  background: none; border: 1px solid rgba(255,255,255,.2);
-  border-radius: 100px;
+  position: relative;
+  min-height: 36px;
+  flex-shrink: 0;
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.28);
+  border-radius: 100px !important;
   cursor: pointer;
-  color: rgba(255,255,255,.8);
+  color: rgba(255,255,255,.92);
   font-family: var(--font-kicker);
   font-size: 11px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase;
   padding: 6px 14px;
   display: flex; align-items: center; justify-content: center;
-  transition: all .2s;
+  transition: background-color .2s, border-color .2s, color .2s, transform .15s;
 }
-.search-close-btn:hover { color: #fff; border-color: rgba(255,255,255,.5); background: rgba(255,255,255,.1); }
+.search-close-btn::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  bottom: -6px;
+  left: -6px;
+  right: -6px;
+}
+.search-close-btn:hover,
+.search-close-btn:active { color: #fff; border-color: rgba(255,255,255,.6); background: rgba(255,255,255,.14); }
 .search-input-wrap {
   display: flex; align-items: center; gap: 16px;
   border-bottom: 1px solid rgba(255,255,255,.15);

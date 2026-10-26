@@ -821,9 +821,11 @@ function initSearch() {
 
 window.openSearch = function() {
   const overlay = document.getElementById('searchOverlay');
+  const nav = document.querySelector('.main-nav');
   if (!overlay) return;
   window._lastFocusedSearch = document.activeElement;
   overlay.classList.add('open');
+  if (nav) nav.classList.add('nav-hidden');
   document.body.style.overflow = 'hidden';
   document.body.classList.add('search-open');
   ensureGlobalCatalog();
@@ -835,9 +837,13 @@ window.openSearch = function() {
 
 window.closeSearch = function() {
   const overlay = document.getElementById('searchOverlay');
+  const nav = document.querySelector('.main-nav');
   if (!overlay) return;
   overlay.classList.remove('open');
   document.body.classList.remove('search-open');
+  if (nav && !document.body.classList.contains('mobile-menu-open')) {
+    nav.classList.remove('nav-hidden');
+  }
   document.body.style.overflow = '';
   if (window._lastFocusedSearch && typeof window._lastFocusedSearch.focus === 'function') {
     window._lastFocusedSearch.focus();
