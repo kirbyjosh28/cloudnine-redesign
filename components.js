@@ -1143,20 +1143,32 @@ function initNavScroll() {
   const cloud = document.getElementById('navCloudCta');
   if (!nav) return;
 
-  // Continuous scroll-linked interpolation + class docking state (Desktop, Tablet & Mobile)
+  let lastScrolled = null;
+  let lastP = '';
+
+  // Continuous scroll-linked interpolation (Desktop/Tablet) + zero-reflow state toggle (Mobile)
   const update = () => {
     const y = window.scrollY || 0;
     const isDockedPage = document.body.classList.contains('page-quiz') || document.body.classList.contains('page-dress');
     const isScrolled = y > 20 || isDockedPage;
-    const rawP = isDockedPage ? 1 : Math.min(1, Math.max(0, y / 72));
-    // Smooth cubic ease-out progress (0 = floating below nav, 1 = docked inside right nav slot)
-    const easedP = 1 - Math.pow(1 - rawP, 3);
-    nav.style.setProperty('--nav-cloud-p', easedP.toFixed(4));
-    nav.classList.toggle('scrolled', isScrolled);
-    nav.classList.toggle('nav-scrolled', isScrolled);
-    nav.classList.remove('nav-hidden');
-    if (cloud) {
-      cloud.classList.toggle('is-attached', isScrolled);
+
+    if (window.innerWidth > 768) {
+      const rawP = isDockedPage ? 1 : Math.min(1, Math.max(0, y / 72));
+      const easedP = (1 - Math.pow(1 - rawP, 3)).toFixed(4);
+      if (easedP !== lastP) {
+        lastP = easedP;
+        nav.style.setProperty('--nav-cloud-p', easedP);
+      }
+    }
+
+    if (isScrolled !== lastScrolled) {
+      lastScrolled = isScrolled;
+      nav.classList.toggle('scrolled', isScrolled);
+      nav.classList.toggle('nav-scrolled', isScrolled);
+      nav.classList.remove('nav-hidden');
+      if (cloud) {
+        cloud.classList.toggle('is-attached', isScrolled);
+      }
     }
   };
   update();
