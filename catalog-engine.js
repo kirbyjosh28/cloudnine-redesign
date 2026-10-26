@@ -1138,61 +1138,25 @@ class CloudNineCatalog {
         : (isAboveFold ? 'width="370" height="575" loading="eager" decoding="async"' : 'width="370" height="575" loading="lazy" decoding="async"');
       const loadHandlers = `onload="this.classList.add('img-loaded');if(this.parentElement)this.parentElement.classList.remove('loading');" onerror="if(this.parentElement)this.parentElement.classList.remove('loading');"`;
 
-      if (this.category === 'prom' || this.category === 'hoco') {
-        const boutiqueNote = this.category === 'prom'
-          ? '<span>In-Store &amp; Special Order · Sizes 000–36</span>'
-          : '<span>In-Stock &amp; Special Order · Walk-Ins Only</span>';
-        const defaultDes = this.category === 'prom' ? 'Designer Prom' : 'Designer HOCO';
-        const styleHeadline = p.gn && p.gn !== p.s
-          ? `${p.gn} <span class="dress-card-sku">#${p.s}</span>`
-          : `Style #${p.s || ''}`;
-
-        card.innerHTML = `
-          <div class="dress-card-img loading">
-            <img src="${p.i}" alt="${(p.d||'')} ${(p.gn||'') + ' ' + (p.s||'')}" ${loadingAttr} ${loadHandlers}/>
-            ${pipsHtml}
-          </div>
-          <div class="dress-card-body">
-            <div class="dress-designer-tag">${p.d || defaultDes}</div>
-            <div class="dress-card-name">${styleHeadline}</div>
-            <div class="dress-card-school-badge">
-              ${boutiqueNote}
-            </div>
-          </div>`;
+      let cardTitle = '';
+      if (p.gn && String(p.gn).trim()) {
+        const rawGn = String(p.gn).trim();
+        cardTitle = /^\d+$/.test(rawGn) ? `#${rawGn}` : rawGn;
+      } else if (p.s && String(p.s).trim()) {
+        const rawS = String(p.s).trim();
+        cardTitle = rawS.startsWith('#') ? rawS : `#${rawS}`;
       } else {
-        const designerTag = (p.d && this.category !== 'bridal')
-          ? `<div class="dress-designer-tag">${p.d}</div>`
-          : '';
-        let cardTitle = p.n || (p.s ? '#' + p.s : 'Designer Gown');
-        let cardSubCta = 'View Details';
-        if (this.category === 'bridal') {
-          if (p.gn && p.gn !== p.s) {
-            cardTitle = `${p.d} · ${p.gn}`;
-            cardSubCta = `Style #${p.s} · View Details`;
-          } else if (p.gn && p.gn === p.s) {
-            cardTitle = `${p.d} · ${p.gn}`;
-            cardSubCta = `View Gown Details`;
-          } else if (p.d && p.s) {
-            cardTitle = `${p.d} #${p.s}`;
-            cardSubCta = `Style #${p.s} · View Details`;
-          }
-        } else if (this.category === 'mothers' && p.s) {
-          cardTitle = p.d ? `${p.d} #${p.s}` : `Style #${p.s}`;
-          cardSubCta = `Style #${p.s} · View Details`;
-        }
-
-        card.innerHTML = `
-          <div class="dress-card-img loading">
-            <img src="${p.i}" alt="${(p.d||'')} ${(p.gn||'') + ' ' + (p.s||'')}" ${loadingAttr} ${loadHandlers}/>
-            ${pipsHtml}
-            ${designerTag}
-            <div class="dress-card-overlay"></div>
-          </div>
-          <div class="dress-card-body">
-            <div class="dress-card-name">${cardTitle}</div>
-            <div class="dress-card-cta">${cardSubCta}</div>
-          </div>`;
+        cardTitle = p.n || 'Gown';
       }
+
+      card.innerHTML = `
+        <div class="dress-card-img loading">
+          <img src="${p.i}" alt="${(p.d||'')} ${(p.gn||'') + ' ' + (p.s||'')}" ${loadingAttr} ${loadHandlers}/>
+          ${pipsHtml}
+        </div>
+        <div class="dress-card-body">
+          <div class="dress-card-name">${cardTitle}</div>
+        </div>`;
 
       const cardImg = card.querySelector('.dress-card-img img');
       if (cardImg && cardImg.complete) {

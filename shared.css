@@ -1690,49 +1690,38 @@ body.search-open .nav-cloud-cta {
   transform: scale(1.13);
 }
 .dress-card-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(0,0,0,.72) 0%,
-    rgba(0,0,0,.28) 30%,
-    transparent 60%
-  );
-  opacity: 0;
-  transition: opacity .8s ease;
+  display: none;
 }
-.dress-card:hover .dress-card-overlay { opacity: 1; }
-/* Body overlays the bottom of the image — hidden until hover */
+/* Clean caption below the unobstructed dress image */
 .dress-card-body {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  padding: 32px 22px 26px;
+  position: relative;
+  padding: 12px 14px 14px;
+  background: #ffffff;
+  border-top: 1px solid rgba(28, 78, 80, 0.08);
   z-index: 2;
-  transform: translateY(14px);
-  opacity: 0;
-  transition: transform .65s cubic-bezier(.16,1,.3,1), opacity .55s ease;
+  transform: none;
+  opacity: 1;
 }
-.dress-card:hover .dress-card-body { transform: translateY(0); opacity: 1; }
-.dress-card-designer {
-  font-family: var(--font-kicker);
-  font-size: 11px; font-weight: 700; letter-spacing: .28em;
-  text-transform: uppercase; color: rgba(255,255,255,.75); margin-bottom: 10px;
+.dress-card:hover .dress-card-body { transform: none; opacity: 1; }
+.dress-card-designer,
+.dress-designer-tag,
+.dress-card-cta,
+.dress-card-school-badge,
+.dress-card-desc {
+  display: none !important;
 }
 .dress-card-name {
-  font-family: var(--font-serif); font-size: 20px; font-weight: 700;
-  color: #fff; line-height: 1.15; letter-spacing: -.02em;
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.24;
+  letter-spacing: -0.01em;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-.dress-card-cta {
-  display: inline-flex; align-items: center; gap: 8px;
-  margin-top: 14px;
-  font-family: var(--font-kicker);
-  font-size: 11px; font-weight: 700; letter-spacing: .24em;
-  text-transform: uppercase; color: rgba(255,255,255,.72);
-  padding-bottom: 3px;
-  border-bottom: 1px solid rgba(255,255,255,.22);
-  transition: color .2s, border-color .2s;
-}
-.dress-card:hover .dress-card-cta { color: #fff; border-color: rgba(255,255,255,.6); }
-.dress-card-desc { display: none; }
 
 /* ── CATALOG COUNT — always visible ── */
 .catalog-count {
@@ -3658,39 +3647,27 @@ body.cur-out #cn-cursor-dot {
 @media (max-width: 768px) {
   .dress-card {
     border-radius: var(--radius-card-outer);
+    background: #ffffff;
   }
   .dress-card-img {
     aspect-ratio: 3 / 4;
-    border-radius: var(--radius-card-outer);
+    border-radius: var(--radius-card-outer) var(--radius-card-outer) 0 0;
     overflow: hidden;
-    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
   }
   .dress-card-name {
-    font-size: 14px;
-    letter-spacing: .01em;
+    font-size: 16px;
+    letter-spacing: -0.01em;
     line-height: 1.25;
+    color: var(--text);
+    text-align: center;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-  }
-  .dress-card-designer,
-  .dress-designer-tag {
-    font-size: 10.5px;
-    margin-bottom: 4px;
-    font-family: var(--font-kicker);
-    letter-spacing: var(--tracking-mob-kicker);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .dress-card-cta {
-    font-size: 11px;
-    margin-top: 6px;
-    font-family: var(--font-kicker);
-    letter-spacing: .12em;
   }
   .dress-card-body {
-    padding: 10px 4px 12px;
+    padding: 10px 10px 12px;
+    background: #ffffff;
   }
 }
 
@@ -9291,28 +9268,17 @@ summary,
 
   /* 4. Catalog Dress Cards, Wishlist Pill & Load More Stream */
   html body .dress-card-body {
-    padding: 10px 6px 14px !important;
-  }
-  html body .dress-card-designer,
-  html body .dress-designer-tag {
-    font-size: 11.5px !important;
-    letter-spacing: 0.10em !important;
-    margin-bottom: 4px !important;
+    padding: 10px 10px 12px !important;
   }
   html body .dress-card-name {
-    font-size: 15.5px !important;
-    line-height: 1.28 !important;
+    font-size: 16px !important;
+    line-height: 1.26 !important;
+    color: var(--text) !important;
+    text-align: center !important;
+    margin-bottom: 0 !important;
   }
   html body .density-1col .dress-card-name {
-    font-size: 18px !important;
-  }
-  html body .dress-card-sku {
-    font-size: 12px !important;
-  }
-  html body .dress-card-cta {
-    font-size: 12px !important;
-    letter-spacing: 0.10em !important;
-    margin-top: 6px !important;
+    font-size: 18.5px !important;
   }
   html body .wl-btn {
     font-size: 11.5px !important;

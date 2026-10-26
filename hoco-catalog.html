@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" media="print" onload="this.media='all'"/>
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"/></noscript>
   <link rel="preload" as="image" href="images/real/hoco/03-88900.webp" type="image/webp" fetchpriority="high"/>
-  <link rel="stylesheet" href="shared.css?v=20261026e"/>
+  <link rel="stylesheet" href="shared.css?v=20261026f"/>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -408,25 +408,16 @@
       position: relative;
       opacity: 1;
       transform: none;
-      padding: 14px 16px 16px;
+      padding: 12px 14px;
       background: #ffffff;
       display: flex;
       flex-direction: column;
-      flex: 1;
+      justify-content: center;
       border-top: 1px solid rgba(155,44,78,0.12);
     }
     .dress-card:hover .dress-card-body {
       transform: none;
       opacity: 1;
-    }
-    .dress-designer-tag {
-      font-family: var(--font-kicker);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: #9b2c4e;
-      margin-bottom: 3px;
     }
     .dress-card-name {
       font-family: var(--font-serif);
@@ -434,20 +425,9 @@
       font-weight: 700;
       color: #1a1215;
       line-height: 1.25;
-      margin-bottom: 6px;
+      text-align: center;
+      margin-bottom: 0;
     }
-    .dress-card-school-badge {
-      font-family: var(--font-sans);
-      font-size: 12.5px;
-      color: #4a2531;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      margin-top: auto;
-      padding-top: 8px;
-      border-top: 1px dashed rgba(155,44,78,0.22);
-    }
-    .dress-card-school-badge svg { color: #0d9488; flex-shrink: 0; }
 
     /* Photo Count & Quick View */
     .photo-count-badge {
@@ -1049,8 +1029,8 @@
 </div>
 
 <div id="site-footer"></div>
-<script src="components.js?v=20261026e" defer></script>
-<script src="catalog-engine.js?v=20261026e" defer></script>
+<script src="components.js?v=20261026f" defer></script>
+<script src="catalog-engine.js?v=20261026f" defer></script>
 <script>
 const HOCO_SYNONYMS = {
   'fitted': ['fitted', 'bodycon', 'sheath', 'tight'],
@@ -1079,7 +1059,7 @@ function initHocoCatalog() {
   if (typeof CloudNineCatalog !== 'undefined') {
     new CloudNineCatalog({
       category: 'hoco',
-      dataPath: 'data/hoco-products.json?v=20261026e',
+      dataPath: 'data/hoco-products.json?v=20261026f',
       facets: ['des'],
       facetLabels: { des: 'Designer' },
       synonyms: HOCO_SYNONYMS,
