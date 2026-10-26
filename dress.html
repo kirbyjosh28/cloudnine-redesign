@@ -17,7 +17,7 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" media="print" onload="this.media='all'"/>
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"/></noscript>
-  <link rel="stylesheet" href="shared.css?v=20261026a"/>
+  <link rel="stylesheet" href="shared.css?v=20261026b"/>
   <style>
 
     /* ── DRESS DETAIL PAGE — Galia Lahav editorial style ── */
@@ -111,8 +111,18 @@
     .dp-back svg { transition: transform .2s; }
     .dp-back:hover svg { transform: translateX(-3px); }
 
-    /* Designer eyebrow — hidden */
-    .dp-designer { display: none; }
+    /* Designer eyebrow */
+    .dp-designer {
+      display: block;
+      font-family: var(--font-kicker);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--teal-deep);
+      margin-bottom: 6px;
+    }
+    .dp-designer:empty { display: none; }
 
     /* Gown title */
     .dp-title {
@@ -133,7 +143,7 @@
       font-family: var(--font-kicker);
       font-size: 11px; font-weight: 700; letter-spacing: .2em;
       text-transform: uppercase; color: var(--text-light);
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     /* Thin rule */
@@ -141,21 +151,21 @@
       width: 100%;
       height: 1px;
       background: var(--border);
-      margin: 28px 0;
+      margin: 24px 0;
     }
 
     /* Description */
     .dp-desc {
       font-family: var(--font-sans);
       font-size: 14px;
-      font-weight: 300;
+      font-weight: 400;
       color: var(--text-muted);
-      line-height: 1.88;
+      line-height: 1.75;
       letter-spacing: .01em;
-      font-style: italic;
       text-wrap: pretty;
-      margin-bottom: 0;
+      margin: 0 0 20px;
     }
+    .dp-desc:empty { display: none; }
 
     /* Meta details table */
     .dp-meta {
@@ -279,23 +289,119 @@
       text-underline-offset: 2px;
     }
 
+    /* ── Gallery column wrapper & mobile controls ── */
+    .dp-gallery-col {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+    .dp-gallery-stage {
+      position: relative;
+      width: 100%;
+    }
+    .dp-mobile-topbar {
+      display: none;
+    }
+    .dp-gal-arrow,
+    .dp-gal-badge,
+    .dp-gal-zoom-btn {
+      display: none;
+    }
+
     /* Thumbnail strip at bottom of gallery for mobile */
     .dp-thumbs {
       display: none;
-      gap: 6px;
-      padding: 12px 16px;
-      background: #ebebeb;
+      gap: 8px;
+      padding: 10px 16px;
+      background: #f5f2ec;
+      border-top: 1px solid var(--border);
       overflow-x: auto;
-      scrollbar-width: thin;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
     }
-    .dp-thumb {
-      width: 56px; height: 72px;
-      object-fit: cover; object-position: top;
-      flex-shrink: 0; cursor: pointer;
-      opacity: .5; transition: opacity .2s;
+    .dp-thumbs::-webkit-scrollbar { display: none; }
+    .dp-thumb-btn {
+      padding: 0;
+      width: 54px;
+      height: 72px;
+      flex-shrink: 0;
+      cursor: pointer;
+      opacity: .56;
+      transition: opacity .2s, border-color .2s, transform .15s;
       border: 2px solid transparent;
+      border-radius: 6px;
+      overflow: hidden;
+      background: #e5e2dc;
+      -webkit-tap-highlight-color: transparent;
     }
-    .dp-thumb:hover, .dp-thumb.active { opacity: 1; border-color: var(--teal-deep); }
+    .dp-thumb-btn img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+    .dp-thumb-btn:hover,
+    .dp-thumb-btn.active {
+      opacity: 1;
+      border-color: var(--teal-deep);
+      transform: translateY(-1px);
+    }
+
+    /* ── Previous / Next Gown Stepper ── */
+    .dp-neighbor-nav {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+    .dp-neighbor-nav:empty { display: none; }
+    .dp-neighbor-btn {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+      min-height: 58px;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #fff;
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color .2s, background .2s, transform .15s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .dp-neighbor-btn:hover {
+      border-color: var(--teal-deep);
+      background: var(--teal-xlight);
+    }
+    .dp-neighbor-btn:active {
+      transform: scale(0.98);
+    }
+    .dp-neighbor-btn.is-next {
+      text-align: right;
+      align-items: flex-end;
+    }
+    .dp-neighbor-dir {
+      font-family: var(--font-kicker);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--teal-deep);
+    }
+    .dp-neighbor-name {
+      font-family: var(--font-serif);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
 
     /* ── MOBILE STICKY CTA BAR ── */
     @media (max-width: 960px) {
@@ -303,7 +409,7 @@
         position: fixed; bottom: 0; left: 0; right: 0;
         z-index: 190;
         display: flex; align-items: stretch;
-        background: rgba(253, 251, 247, 0.92);
+        background: rgba(253, 251, 247, 0.94);
         backdrop-filter: blur(22px) saturate(180%);
         -webkit-backdrop-filter: blur(22px) saturate(180%);
         border-top: 1px solid rgba(28, 78, 80, 0.12);
@@ -312,6 +418,7 @@
       }
       .dp-mobile-cta-btn {
         width: 54px;
+        min-height: 52px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -354,7 +461,7 @@
       .dp-mobile-cta { display: none; }
     }
 
-    /* ── Image counter badge ── */
+    /* ── Image counter badge (desktop hover) ── */
     .dp-img-counter {
       position: absolute; top: 12px; right: 12px;
       background: rgba(0,0,0,.42); backdrop-filter: blur(6px);
@@ -365,9 +472,6 @@
       transition: opacity .3s;
     }
     .dp-photo-full:hover .dp-img-counter { opacity: 1; }
-    @media (hover: none), (max-width: 768px) {
-      .dp-img-counter { opacity: 1; }
-    }
 
     /* ── LIGHTBOX (LACE & DETAIL INSPECTOR) ── */
     .lb-backdrop {
@@ -419,82 +523,284 @@
     }
     .lb-top {
       position: absolute; top: 0; left: 0; right: 0;
-      padding: 18px 24px;
+      padding: 16px 20px;
       display: flex; align-items: center; justify-content: space-between;
       background: linear-gradient(to bottom, rgba(0,0,0,.6) 0%, transparent 100%);
+      z-index: 3010;
     }
     .lb-top-title {
       font-family: var(--font-serif);
       font-size: 15px; font-weight: 700; font-style: italic;
-      color: rgba(255,255,255,.8);
+      color: rgba(255,255,255,.85);
     }
     .lb-counter {
       font-family: var(--font-kicker);
       font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
-      color: rgba(255,255,255,.65);
+      color: rgba(255,255,255,.7);
     }
     .lb-close {
-      width: 38px; height: 38px; border-radius: 0;
-      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
-      color: rgba(255,255,255,.7); cursor: pointer;
+      min-width: 44px; min-height: 44px; padding: 0 12px; border-radius: 8px;
+      background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22);
+      color: rgba(255,255,255,.9); cursor: pointer;
       display: flex; align-items: center; justify-content: center;
-      font-size: 16px; line-height: 1; transition: background .2s, color .2s;
+      font-family: var(--font-kicker);
+      font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      line-height: 1; transition: background .2s, color .2s;
     }
-    .lb-close:hover { background: rgba(255,255,255,.2); color: #fff; }
+    .lb-close:hover { background: rgba(255,255,255,.22); color: #fff; }
     .lb-nav {
       position: absolute; top: 50%; transform: translateY(-50%);
-      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18);
-      color: rgba(255,255,255,.8); width: 44px; height: 44px;
+      background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22);
+      color: rgba(255,255,255,.9); min-width: 44px; min-height: 44px;
+      padding: 0 10px; border-radius: 8px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 24px; cursor: pointer; transition: background .2s;
+      font-family: var(--font-kicker);
+      font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      cursor: pointer; transition: background .2s;
+      z-index: 3010;
     }
-    .lb-nav:hover { background: rgba(255,255,255,.2); color: #fff; }
-    .lb-prev { left: 20px; }
-    .lb-next { right: 20px; }
+    .lb-nav:hover { background: rgba(255,255,255,.22); color: #fff; }
+    .lb-prev { left: 12px; }
+    .lb-next { right: 12px; }
 
     /* ── Breadcrumb ── */
     .dp-breadcrumb {
       display: flex; align-items: center; gap: 6px;
       font-family: var(--font-kicker);
       font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
-      color: var(--text-light); margin-bottom: 32px;
+      color: var(--text-light); margin-bottom: 28px;
     }
-    .dp-breadcrumb a { color: var(--text-light); text-decoration: none; transition: color .2s; }
+    .dp-breadcrumb a {
+      display: inline-flex; align-items: center; min-height: 44px;
+      color: var(--text-light); text-decoration: none; transition: color .2s;
+    }
     .dp-breadcrumb a:hover { color: var(--teal-deep); }
     .dp-breadcrumb-sep { color: var(--border); }
 
-    /* ── "Also Available" style variants hint ── */
-    .dp-also {
-      margin-top: 20px; padding: 16px 0;
-      border-top: 1px solid var(--border);
-      font-family: var(--font-sans);
-      font-size: 13px; color: var(--text-muted); line-height: 1.6;
-      display: flex; align-items: flex-start; gap: 10px;
-    }
-    .dp-also svg { flex-shrink: 0; color: var(--teal-deep); margin-top: 1px; }
+    .dp-acc-trigger { min-height: 48px; }
 
-    /* ── RESPONSIVE ── */
+    /* ── MOBILE FULL-PAGE EDITORIAL LAYOUT (<= 960px) ── */
     @media (max-width: 960px) {
       .dp-wrap { grid-template-columns: 1fr; }
-      .dp-info {
-        position: static; height: auto;
-        border-left: none; border-top: 1px solid var(--border);
-        padding: 36px var(--mob-gutter, 20px) 96px;
+
+      /* Compact Top Navigation Bar above the photo gallery */
+      .dp-mobile-topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        padding: 4px 12px;
+        background: var(--bg, #fdfbf7);
+        border-bottom: 1px solid var(--border);
+        min-height: 48px;
       }
-      .dp-back { margin-bottom: 32px; }
-      .dp-thumbs { display: flex; }
+      .dp-mobile-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        min-height: 44px;
+        padding: 0 6px;
+        font-family: var(--font-kicker);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        color: var(--teal-deep);
+        text-decoration: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .dp-mobile-back svg {
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
+      }
+      .dp-mobile-quick-nav {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .dp-mobile-pos {
+        font-family: var(--font-kicker);
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        color: var(--text-light);
+        margin-right: 4px;
+      }
+      .dp-quick-nav-btn {
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        min-height: 44px;
+        flex-shrink: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        background: #fff;
+        color: var(--teal-deep);
+        font-size: 18px;
+        line-height: 1;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        transition: background .15s, opacity .15s;
+      }
+      .dp-quick-nav-btn:disabled {
+        opacity: 0.32;
+        pointer-events: none;
+      }
+      .dp-quick-nav-btn:active {
+        background: var(--teal-xlight);
+      }
+
+      /* Horizontal Scroll-Snap Swipeable Hero Gallery on Mobile */
+      .dp-gallery {
+        display: flex;
+        flex-direction: row;
+        gap: 0;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+      }
+      .dp-gallery::-webkit-scrollbar { display: none; }
+      .dp-photo-full {
+        flex: 0 0 100%;
+        width: 100%;
+        scroll-snap-align: center;
+        scroll-snap-stop: always;
+      }
+      .dp-photo-full img {
+        aspect-ratio: 3/4;
+        max-height: 72vh;
+        object-fit: cover;
+        object-position: top center;
+      }
+      .dp-img-counter { display: none; }
+
+      /* Mobile Gallery Overlay Controls */
+      .dp-gal-badge {
+        display: inline-flex;
+        align-items: center;
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        z-index: 5;
+        background: rgba(13, 46, 48, 0.72);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        color: #fff;
+        padding: 5px 11px;
+        border-radius: 999px;
+        font-family: var(--font-kicker);
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: .14em;
+        pointer-events: none;
+      }
+      .dp-gal-zoom-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        position: absolute;
+        bottom: 12px;
+        right: 12px;
+        z-index: 5;
+        min-height: 44px;
+        padding: 0 14px;
+        background: rgba(255, 255, 255, 0.90);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(28, 78, 80, 0.15);
+        border-radius: 999px;
+        color: var(--teal-deep);
+        font-family: var(--font-kicker);
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .dp-gal-arrow {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 5;
+        width: 44px;
+        height: 44px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.86);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgba(28, 78, 80, 0.14);
+        color: var(--teal-deep);
+        font-size: 20px;
+        line-height: 1;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.10);
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .dp-gal-prev { left: 10px; }
+      .dp-gal-next { right: 10px; }
+
+      .dp-thumbs.has-multiple { display: flex; }
+
+      .dp-breadcrumb { display: none; }
+
+      .dp-info {
+        position: static;
+        height: auto;
+        border-left: none;
+        border-top: 1px solid var(--border);
+        padding: 24px var(--mob-gutter, 16px) 104px;
+      }
+      .dp-title {
+        font-size: clamp(24px, 6.5vw, 34px);
+      }
     }
   </style>
 </head>
-<body>
+<body class="page-dress">
   <header id="site-header"></header>
 
   <main id="main-content">
-<div class="dp-wrap" id="dpWrap">
+    <!-- ── MOBILE TOP BACK & STEPPER BAR ── -->
+    <div class="dp-mobile-topbar" id="dpMobileTopbar">
+      <a href="bridal-catalog.html" class="dp-mobile-back" id="dpMobileBackLink">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        <span id="dpMobileBackLabel">Back to Collection</span>
+      </a>
+      <div class="dp-mobile-quick-nav" id="dpMobileQuickNav" style="display:none;">
+        <span class="dp-mobile-pos" id="dpMobilePos"></span>
+        <button type="button" class="dp-quick-nav-btn" id="dpMobilePrevDress" aria-label="Previous style" disabled>&lsaquo;</button>
+        <button type="button" class="dp-quick-nav-btn" id="dpMobileNextDress" aria-label="Next style" disabled>&rsaquo;</button>
+      </div>
+    </div>
 
-      <!-- ── LEFT: Editorial photo gallery ── -->
-      <div class="dp-gallery" id="dpGallery">
-        <!-- Injected by JS -->
+    <div class="dp-wrap" id="dpWrap">
+
+      <!-- ── LEFT: Editorial photo gallery + mobile swipe controls ── -->
+      <div class="dp-gallery-col">
+        <div class="dp-gallery-stage">
+          <div class="dp-gallery" id="dpGallery">
+            <!-- Injected by JS -->
+          </div>
+          <div class="dp-gal-badge" id="dpGalBadge" style="display:none;">1 / 1</div>
+          <button type="button" class="dp-gal-arrow dp-gal-prev" id="dpGalPrev" aria-label="Previous photo" style="display:none;">&lsaquo;</button>
+          <button type="button" class="dp-gal-arrow dp-gal-next" id="dpGalNext" aria-label="Next photo" style="display:none;">&rsaquo;</button>
+          <button type="button" class="dp-gal-zoom-btn" id="dpGalZoomBtn" aria-label="Inspect dress details in full screen">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            <span>Zoom</span>
+          </button>
+        </div>
+        <div class="dp-thumbs" id="dpThumbs" role="region" aria-label="Gown angle thumbnails"></div>
       </div>
 
       <!-- ── RIGHT: Sticky product info ── -->
@@ -506,6 +812,7 @@
         <div class="dp-designer" id="dpDesigner">Cloud Nine Bridal</div>
         <h1 class="dp-title" id="dpTitle">Gown Detail</h1>
         <div class="dp-style-num" id="dpStyleNum"></div>
+        <p class="dp-desc" id="dpDesc"></p>
         <p class="dp-stock-prominent" style="font-family:var(--font-sans);font-size:14px;font-weight:600;color:var(--teal-deep);background:var(--teal-xlight);border:1px solid var(--border);padding:12px 16px;margin:0 0 20px;line-height:1.55;">Not all gowns are kept in store. <a href="contact.html" id="dpStockContactLink" style="color:var(--teal-deep);text-decoration:underline;font-weight:700;">Contact us</a> for stock and availability details.</p>
 
         <div class="dp-rule"></div>
@@ -518,14 +825,15 @@
           <div class="double-bezel-inner dp-atelier-inner">
             <div class="dp-atelier-kicker">Peoria Atelier Concierge</div>
             <div class="dp-actions">
-              <a href="contact.html" id="dpInquireBtn" class="btn-luxury-pill" style="justify-content:center;text-align:center;width:100%;"><span>Inquire About This Style</span></a>
-              <button id="dpShareBtn" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px;border:1px solid var(--border);border-radius:9999px;background:#fff;cursor:pointer;color:var(--text-muted);font-family:var(--font-kicker);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;transition:border-color .2s,color .2s,transform .18s;width:100%;min-height:44px;" aria-label="Share this style">
+              <a href="contact.html" id="dpInquireBtn" class="btn-luxury-pill" style="justify-content:center;text-align:center;width:100%;min-height:48px;"><span>Inquire About This Style</span></a>
+              <button id="dpShareBtn" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px;border:1px solid var(--border);border-radius:9999px;background:#fff;cursor:pointer;color:var(--text-muted);font-family:var(--font-kicker);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;transition:border-color .2s,color .2s,transform .18s;width:100%;min-height:46px;" aria-label="Share this style">
                 Share This Style
               </button>
             </div>
           </div>
         </div>
-        <p class="dp-disclaimer">Not all gowns are kept in store. <a href="contact.html">Contact us</a> for stock and availability details.</p>
+
+        <nav class="dp-neighbor-nav" id="dpNeighborNav" aria-label="Adjacent catalog styles"></nav>
       </div>
 
     </div>
@@ -543,23 +851,30 @@
   <div class="lb-backdrop" id="lb">
     <div class="lb-top">
       <div class="lb-top-title" id="lbTitle"></div>
-      <div style="display:flex;align-items:center;gap:16px;">
+      <div style="display:flex;align-items:center;gap:12px;">
         <div class="lb-counter" id="lbCounter"></div>
-        <button class="lb-close" id="lbCloseBtn" aria-label="Close">Close</button>
+        <button class="lb-close" id="lbCloseBtn" aria-label="Close full-screen photo">Close</button>
       </div>
     </div>
     <div class="lb-zoom-pill" id="lbZoomPill">Double-tap or pinch to inspect lace details</div>
-    <button class="lb-nav lb-prev" id="lbPrevBtn" aria-label="Previous">Prev</button>
+    <button class="lb-nav lb-prev" id="lbPrevBtn" aria-label="Previous photo">Prev</button>
     <div class="lb-img-wrap" id="lbImgWrap">
       <img class="lb-img" id="lbImg" src="" alt=""/>
     </div>
-    <button class="lb-nav lb-next" id="lbNextBtn" aria-label="Next">Next</button>
+    <button class="lb-nav lb-next" id="lbNextBtn" aria-label="Next photo">Next</button>
   </div>
 
   <footer id="site-footer"></footer>
-  <script src="components.js?v=20261026a" defer></script>
+  <script src="components.js?v=20261026b" defer></script>
   <script>
   (async function() {
+
+    const catFiles = {
+      'bridal': 'data/bridal-products.json?v=20261026b',
+      'prom': 'data/prom-products.json?v=20261026b',
+      'hoco': 'data/hoco-products.json?v=20261026b',
+      'mothers': 'data/mothers-products.json?v=20261026b'
+    };
 
     /* ── Load dress from sessionStorage or URL query params ── */
     let dress = null;
@@ -576,12 +891,6 @@
     }
 
     if (!dress && skuParam) {
-      const catFiles = {
-        'bridal': 'data/bridal-products.json?v=20261026a',
-        'prom': 'data/prom-products.json?v=20261026a',
-        'hoco': 'data/hoco-products.json?v=20261026a',
-        'mothers': 'data/mothers-products.json?v=20261026a'
-      };
       const filesToTry = catParam && catFiles[catParam] ? [catFiles[catParam]] : Object.values(catFiles);
       const qLower = skuParam.trim().toLowerCase().replace(/^#/, '');
 
@@ -602,8 +911,10 @@
               if (!dressSrc) {
                 dressSrc = catParam === 'prom' ? 'prom-catalog.html' : catParam === 'hoco' ? 'hoco-catalog.html' : catParam === 'mothers' ? 'mothers.html' : 'bridal-catalog.html';
               }
-              sessionStorage.setItem('cloudnine_dress', JSON.stringify(dress));
-              sessionStorage.setItem('cloudnine_dress_src', dressSrc);
+              try {
+                sessionStorage.setItem('cloudnine_dress', JSON.stringify(dress));
+                sessionStorage.setItem('cloudnine_dress_src', dressSrc);
+              } catch(e) {}
               break;
             }
           }
@@ -657,9 +968,6 @@
     }
 
     /* ── Helpers ── */
-    function titleCase(s) {
-      return (s||'').replace(/\w\S*/g, w => w[0].toUpperCase() + w.slice(1).toLowerCase());
-    }
     function esc(s) {
       return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
     }
@@ -673,6 +981,22 @@
       : (dress.d && dress.s ? `${dress.d} #${dress.s}` : (dress.n || 'Style #' + dress.s));
     const sectionLabel = isProm ? 'Prom' : isHoco ? 'Homecoming' : isMothers ? 'Mothers' : 'Bridal';
     const sectionHref  = isProm ? 'prom-catalog.html' : isHoco ? 'hoco-catalog.html' : isMothers ? 'mothers.html' : 'bridal-catalog.html';
+    const isCatalogSrc = /catalog\.html|mothers\.html/.test(dressSrc);
+    const backHref = isCatalogSrc ? dressSrc : sectionHref;
+
+    /* ── Mobile Back Link & Desktop Breadcrumb ── */
+    const mobBackLink = document.getElementById('dpMobileBackLink');
+    const mobBackLabel = document.getElementById('dpMobileBackLabel');
+    if (mobBackLink) mobBackLink.href = backHref;
+    if (mobBackLabel) mobBackLabel.textContent = `Back to ${sectionLabel}`;
+
+    const bc = document.getElementById('dpBreadcrumb');
+    if (bc) {
+      bc.innerHTML =
+        '<a href="' + esc(backHref) + '">&larr; Back to ' + esc(sectionLabel) + '</a>' +
+        '<span class="dp-breadcrumb-sep">/</span>' +
+        '<span>' + esc(displayTitle) + '</span>';
+    }
 
     /* ── Page title & Meta ── */
     document.title = displayTitle + (hasDistinctGownName ? ` (#${dress.s})` : '') + ' | Cloud Nine Bridal Boutique';
@@ -715,28 +1039,30 @@
     });
     document.head.appendChild(schemaScript);
 
-    /* ── Breadcrumb ── */
-    const bc = document.getElementById('dpBreadcrumb');
-    if (bc) {
-      const isCatalog = /catalog\.html|mothers\.html/.test(dressSrc);
-      const breadcrumbHref = isCatalog ? dressSrc : sectionHref;
-      bc.innerHTML =
-        '<a href="' + breadcrumbHref + '">' + sectionLabel + '</a>' +
-        '<span class="dp-breadcrumb-sep">/</span>' +
-        '<span>' + esc(displayTitle) + '</span>';
-    }
-
-    /* ── Right panel ── */
-    document.getElementById('dpDesigner').textContent = dress.d || '';
+    /* ── Right / Info panel ── */
+    document.getElementById('dpDesigner').textContent = dress.d || `${sectionLabel} Collection`;
     document.getElementById('dpTitle').textContent = dress.gn ? dress.gn : ('Style #' + (dress.s || ''));
-    document.getElementById('dpStyleNum').textContent = hasDistinctGownName ? `Style #${dress.s}` : (dress.gn ? `${dress.d} Collection` : '');
+    document.getElementById('dpStyleNum').textContent = hasDistinctGownName ? `Style #${dress.s}` : '';
+    const descEl = document.getElementById('dpDesc');
+    if (descEl) descEl.textContent = rawDesc;
 
-    /* ── Meta rows ── */
+    /* ── Meta rows (Category-aware) ── */
+    const silLabels = {
+      'a-line': 'A-Line',
+      'ball-gown': 'Ball Gown',
+      'fitted': 'Fit & Flare / Fitted',
+      'mermaid': 'Mermaid',
+      'sheath': 'Sheath'
+    };
+    const silNice = dress.sil ? (silLabels[String(dress.sil).toLowerCase()] || dress.sil) : '';
+
     const metaRows = [
       dress.d ? ['Designer', dress.d] : null,
       dress.gn ? ['Gown Name', dress.gn] : null,
       (dress.s && dress.s !== dress.gn) ? ['Style Number', '#' + dress.s] : null,
-      ['Availability', 'Contact Us'],
+      silNice ? ['Silhouette', silNice] : null,
+      isProm ? ['Prom Pricing', '$150 – $1,000'] : (isHoco ? ['HOCO Pricing', '$90 – $580'] : null),
+      (isProm || isHoco) ? ['Boutique Policy', 'Walk-Ins Welcome · School Registry'] : ['Availability', 'In-Store Sample & Special Order'],
     ].filter(Boolean);
     document.getElementById('dpMeta').innerHTML = metaRows.map(([k,v]) =>
       '<div class="dp-meta-row"><span class="dp-meta-key">' + esc(k) + '</span><span class="dp-meta-val">' + esc(v||'—') + '</span></div>'
@@ -757,22 +1083,208 @@
       '</div>'
     ).join('');
 
-    /* ── Build photo gallery ── */
+    /* ── Build photo gallery & mobile swipe controls ── */
     let html = '';
     imgs.forEach(function(url, i) {
       const vtAttr = (i === 0) ? 'style="view-transition-name: dress-hero;"' : '';
+      const loadAttrs = (i === 0)
+        ? 'width="600" height="900" loading="eager" fetchpriority="high" decoding="async"'
+        : 'width="600" height="900" loading="lazy" decoding="async"';
       html += '<div class="dp-photo-full" style="cursor:zoom-in;position:relative;" data-lb="' + i + '">' +
-        '<img src="' + esc(url) + '" alt="' + esc(dress.d||'') + ' ' + (i===0 ? 'style ' + esc(dress.s||'') : 'detail ' + i) + '" loading="' + (i===0?'eager':'lazy') + '" ' + vtAttr + '/>' +
+        '<img src="' + esc(url) + '" alt="' + esc(dress.d||'') + ' ' + (i===0 ? 'style ' + esc(dress.s||'') : 'angle ' + (i+1)) + '" ' + loadAttrs + ' ' + vtAttr + '/>' +
         (imgs.length > 1 ? '<span class="dp-img-counter">' + (i+1) + ' / ' + imgs.length + '</span>' : '') +
       '</div>';
     });
     const gal = document.getElementById('dpGallery');
     gal.innerHTML = html || '<div style="padding:120px 48px;text-align:center;color:#999;font-size:13px;">No photos available</div>';
 
+    let currentGalIdx = 0;
+    const galBadge = document.getElementById('dpGalBadge');
+    const galPrev = document.getElementById('dpGalPrev');
+    const galNext = document.getElementById('dpGalNext');
+    const galZoomBtn = document.getElementById('dpGalZoomBtn');
+    const thumbsEl = document.getElementById('dpThumbs');
+
+    function updateMobileGalleryState(idx) {
+      currentGalIdx = Math.max(0, Math.min(imgs.length - 1, idx));
+      if (galBadge && imgs.length > 1) {
+        galBadge.textContent = (currentGalIdx + 1) + ' / ' + imgs.length;
+      }
+      if (thumbsEl) {
+        thumbsEl.querySelectorAll('.dp-thumb-btn').forEach(function(btn, bi) {
+          btn.classList.toggle('active', bi === currentGalIdx);
+        });
+      }
+    }
+
+    function scrollGalleryTo(idx) {
+      if (!gal || !imgs.length) return;
+      const targetIdx = ((idx % imgs.length) + imgs.length) % imgs.length;
+      const slideWidth = gal.clientWidth || window.innerWidth;
+      gal.scrollTo({ left: targetIdx * slideWidth, behavior: 'smooth' });
+      updateMobileGalleryState(targetIdx);
+    }
+
+    if (imgs.length > 1) {
+      if (galBadge) {
+        galBadge.style.display = '';
+        galBadge.textContent = '1 / ' + imgs.length;
+      }
+      if (galPrev) {
+        galPrev.style.display = '';
+        galPrev.addEventListener('click', function(e) {
+          e.stopPropagation();
+          scrollGalleryTo(currentGalIdx - 1);
+        });
+      }
+      if (galNext) {
+        galNext.style.display = '';
+        galNext.addEventListener('click', function(e) {
+          e.stopPropagation();
+          scrollGalleryTo(currentGalIdx + 1);
+        });
+      }
+      if (thumbsEl) {
+        thumbsEl.classList.add('has-multiple');
+        thumbsEl.innerHTML = imgs.map(function(url, i) {
+          return '<button type="button" class="dp-thumb-btn ' + (i === 0 ? 'active' : '') + '" data-thumb="' + i + '" aria-label="View angle ' + (i + 1) + ' of ' + imgs.length + '">' +
+            '<img src="' + esc(url) + '" alt="" width="54" height="72" loading="lazy" decoding="async"/>' +
+          '</button>';
+        }).join('');
+        thumbsEl.querySelectorAll('[data-thumb]').forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            const idx = parseInt(btn.dataset.thumb, 10);
+            scrollGalleryTo(idx);
+          });
+        });
+      }
+
+      gal.addEventListener('scroll', function() {
+        const w = gal.clientWidth;
+        if (w > 0) {
+          const idx = Math.round(gal.scrollLeft / w);
+          if (idx !== currentGalIdx) {
+            updateMobileGalleryState(idx);
+          }
+        }
+      }, { passive: true });
+    }
+
     // Gallery click -> lightbox
     gal.querySelectorAll('[data-lb]').forEach(function(el) {
       el.addEventListener('click', function() { openLb(parseInt(el.dataset.lb, 10)); });
     });
+    if (galZoomBtn) {
+      galZoomBtn.addEventListener('click', function() { openLb(currentGalIdx); });
+    }
+
+    /* ── Previous / Next Dress Navigation (Catalog Context + JSON Fallback) ── */
+    async function initNeighborNavigation() {
+      let fullList = null;
+      try {
+        const res = await fetch(catFiles[activeCat] || catFiles.bridal);
+        if (res.ok) fullList = await res.json();
+      } catch (e) {}
+
+      let ctx = null;
+      try { ctx = JSON.parse(sessionStorage.getItem('cloudnine_dress_context') || 'null'); } catch (e) {}
+
+      let orderedList = null;
+      let curIdx = -1;
+
+      if (ctx && ctx.cat === activeCat && Array.isArray(ctx.skus) && ctx.skus.length > 1 && Array.isArray(fullList)) {
+        const bySku = new Map();
+        fullList.forEach(p => { bySku.set(String(p.s || '').toLowerCase() + '|' + String(p.d || '').toLowerCase(), p); });
+        orderedList = ctx.skus
+          .map(item => bySku.get(String(item.s || '').toLowerCase() + '|' + String(item.d || '').toLowerCase()) || fullList.find(p => String(p.s || '') === String(item.s || '')))
+          .filter(Boolean);
+        curIdx = orderedList.findIndex(p => String(p.s || '') === String(dress.s || ''));
+      }
+
+      if ((!orderedList || curIdx === -1) && Array.isArray(fullList) && fullList.length > 1) {
+        orderedList = fullList;
+        curIdx = orderedList.findIndex(p => String(p.s || '').toLowerCase() === String(dress.s || '').toLowerCase());
+      }
+
+      if (!orderedList || curIdx === -1 || orderedList.length <= 1) return;
+
+      const prevDress = curIdx > 0 ? orderedList[curIdx - 1] : null;
+      const nextDress = curIdx + 1 < orderedList.length ? orderedList[curIdx + 1] : null;
+
+      function navigateToDress(target, targetIdx) {
+        if (!target) return;
+        try {
+          sessionStorage.setItem('cloudnine_dress', JSON.stringify(target));
+          sessionStorage.setItem('cloudnine_dress_context', JSON.stringify({
+            cat: activeCat,
+            idx: targetIdx,
+            total: orderedList.length,
+            skus: orderedList.map(p => ({ s: p.s || '', d: p.d || '', gn: p.gn || '' }))
+          }));
+          // Also update saved catalog state SKU so Back to Catalog highlights the latest viewed dress
+          const stateKey = 'cloudnine_catalog_state_' + activeCat;
+          const rawState = sessionStorage.getItem(stateKey);
+          if (rawState) {
+            const parsedState = JSON.parse(rawState);
+            parsedState.sku = target.s || '';
+            parsedState.ts = Date.now();
+            sessionStorage.setItem(stateKey, JSON.stringify(parsedState));
+          }
+        } catch (e) {}
+        const sku = encodeURIComponent(target.s || '');
+        const des = encodeURIComponent(target.d || '');
+        window.location.href = `dress.html?cat=${activeCat}&sku=${sku}${des ? `&d=${des}` : ''}`;
+      }
+
+      // 1. Populate Mobile Topbar Quick Stepper
+      const quickNav = document.getElementById('dpMobileQuickNav');
+      const posEl = document.getElementById('dpMobilePos');
+      const mPrev = document.getElementById('dpMobilePrevDress');
+      const mNext = document.getElementById('dpMobileNextDress');
+      if (quickNav && posEl && mPrev && mNext) {
+        quickNav.style.display = 'inline-flex';
+        posEl.textContent = `${curIdx + 1} / ${orderedList.length}`;
+        mPrev.disabled = !prevDress;
+        mNext.disabled = !nextDress;
+        if (prevDress) mPrev.onclick = () => navigateToDress(prevDress, curIdx - 1);
+        if (nextDress) mNext.onclick = () => navigateToDress(nextDress, curIdx + 1);
+      }
+
+      // 2. Populate Bottom Editorial Neighbor Cards
+      const navEl = document.getElementById('dpNeighborNav');
+      if (navEl) {
+        const formatLabel = (p) => p.gn ? p.gn : ('#' + (p.s || ''));
+        const prevHtml = prevDress
+          ? `<a href="dress.html?cat=${activeCat}&sku=${encodeURIComponent(prevDress.s || '')}" class="dp-neighbor-btn is-prev" data-dir="prev">
+               <span class="dp-neighbor-dir">&larr; Previous Style</span>
+               <span class="dp-neighbor-name">${esc(formatLabel(prevDress))}</span>
+             </a>`
+          : `<div></div>`;
+        const nextHtml = nextDress
+          ? `<a href="dress.html?cat=${activeCat}&sku=${encodeURIComponent(nextDress.s || '')}" class="dp-neighbor-btn is-next" data-dir="next">
+               <span class="dp-neighbor-dir">Next Style &rarr;</span>
+               <span class="dp-neighbor-name">${esc(formatLabel(nextDress))}</span>
+             </a>`
+          : `<div></div>`;
+        navEl.innerHTML = prevHtml + nextHtml;
+
+        const prevBtn = navEl.querySelector('[data-dir="prev"]');
+        const nextBtn = navEl.querySelector('[data-dir="next"]');
+        if (prevBtn && prevDress) {
+          prevBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            navigateToDress(prevDress, curIdx - 1);
+          });
+        }
+        if (nextBtn && nextDress) {
+          nextBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            navigateToDress(nextDress, curIdx + 1);
+          });
+        }
+      }
+    }
+    initNeighborNavigation();
 
     /* ── Lightbox (Lace & Fabric Detail Inspector) ── */
     let lbIdx = 0;
@@ -951,43 +1463,6 @@
         localStorage.setItem(RV_KEY, JSON.stringify(stored));
       } catch(e) {}
     })();
-
-    /* ── Wishlist State & Interactions (Mobile Sticky Bar & Desktop) ── */
-    function syncWishlistBtns() {
-      if (typeof WL === 'undefined') return;
-      const isSaved = WL.has(dress);
-      const mHeartBtn = document.getElementById('dpMobileHeartBtn');
-      if (mHeartBtn) mHeartBtn.classList.toggle('active', isSaved);
-      const dHeartBtn = document.getElementById('dpSaveBtn');
-      const dHeartTxt = document.getElementById('dpSaveBtnText');
-      if (dHeartBtn) {
-        dHeartBtn.classList.toggle('active', isSaved);
-        if (dHeartTxt) dHeartTxt.textContent = isSaved ? 'Saved in Lookbook' : 'Save to Lookbook';
-      }
-    }
-    setTimeout(syncWishlistBtns, 120);
-
-    const mHeartBtn = document.getElementById('dpMobileHeartBtn');
-    if (mHeartBtn) {
-      mHeartBtn.addEventListener('click', function() {
-        if (typeof WL !== 'undefined') {
-          const added = WL.toggle(dress);
-          syncWishlistBtns();
-          mHeartBtn.classList.add('pulse-pop');
-          setTimeout(function() { mHeartBtn.classList.remove('pulse-pop'); }, 500);
-        }
-      });
-    }
-
-    const dHeartBtn = document.getElementById('dpSaveBtn');
-    if (dHeartBtn) {
-      dHeartBtn.addEventListener('click', function() {
-        if (typeof WL !== 'undefined') {
-          WL.toggle(dress);
-          syncWishlistBtns();
-        }
-      });
-    }
 
     /* ── Share Functionality (Mobile Sticky & Desktop) ── */
     function handleGownShare() {

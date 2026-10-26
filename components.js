@@ -1126,9 +1126,9 @@ function initNavScroll() {
   // Continuous scroll-linked interpolation + class docking state (Desktop, Tablet & Mobile)
   const update = () => {
     const y = window.scrollY || 0;
-    const isQuizPage = document.body.classList.contains('page-quiz');
-    const isScrolled = y > 20 || isQuizPage;
-    const rawP = isQuizPage ? 1 : Math.min(1, Math.max(0, y / 72));
+    const isDockedPage = document.body.classList.contains('page-quiz') || document.body.classList.contains('page-dress');
+    const isScrolled = y > 20 || isDockedPage;
+    const rawP = isDockedPage ? 1 : Math.min(1, Math.max(0, y / 72));
     // Smooth cubic ease-out progress (0 = floating below nav, 1 = docked inside right nav slot)
     const easedP = 1 - Math.pow(1 - rawP, 3);
     nav.style.setProperty('--nav-cloud-p', easedP.toFixed(4));

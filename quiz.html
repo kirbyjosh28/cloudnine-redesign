@@ -24,7 +24,7 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" media="print" onload="this.media='all'"/>
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"/></noscript>
-  <link rel="stylesheet" href="shared.css?v=20261026a"/>
+  <link rel="stylesheet" href="shared.css?v=20261026b"/>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -2890,7 +2890,7 @@ body.quiz-nav-hidden .qprogress-bar-wrap {
 </main>
 
 <footer id="site-footer"></footer>
-<script src="components.js?v=20261026a" defer></script>
+<script src="components.js?v=20261026b" defer></script>
 <script>
 /* ════════════════════════════════════════════════════════════════════
    ATELIER STYLE QUIZ ENGINE — WEIGHTED 671-GOWN MATCHER & DNA SCORER
@@ -2918,7 +2918,7 @@ let currentQuizModalImgs = [];
 let currentQuizModalImgIdx = 0;
 
 // Store promise so deep-linked URLs await real catalog data before scoring
-const catalogReadyPromise = fetch('data/bridal-products.json?v=20261026a')
+const catalogReadyPromise = fetch('data/bridal-products.json?v=20261026b')
   .then(r => r.ok ? r.json() : [])
   .then(data => {
     if (Array.isArray(data) && data.length) {

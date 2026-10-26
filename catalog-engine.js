@@ -424,6 +424,7 @@ class CloudNineCatalog {
       this.hydrateFromUrl();
       this.handleLookbookParam();
       this.applyFilters();
+      this.restoreCatalogPosition();
     } catch (err) {
       console.error('Catalog data failed to load:', err);
       const grid = document.getElementById(this.gridId);
@@ -1005,15 +1006,70 @@ class CloudNineCatalog {
   goToDress(idx, el) {
     const dress = this.fil[idx];
     if (!dress) return;
-    sessionStorage.setItem('cloudnine_dress', JSON.stringify(dress));
-    sessionStorage.setItem('cloudnine_dress_src', location.pathname.split('/').pop() + location.search);
+    try {
+      sessionStorage.setItem('cloudnine_dress', JSON.stringify(dress));
+      sessionStorage.setItem('cloudnine_dress_src', location.pathname.split('/').pop() + location.search);
+      sessionStorage.setItem('cloudnine_catalog_state_' + this.category, JSON.stringify({
+        page: this.page,
+        scrollY: typeof window !== 'undefined' ? (window.scrollY || window.pageYOffset || 0) : 0,
+        sku: dress.s || '',
+        search: typeof window !== 'undefined' && window.location ? (window.location.search || '') : '',
+        ts: Date.now()
+      }));
+      sessionStorage.setItem('cloudnine_dress_context', JSON.stringify({
+        cat: this.category,
+        idx: idx,
+        total: this.fil.length,
+        prevDress: idx > 0 ? this.fil[idx - 1] : null,
+        nextDress: idx + 1 < this.fil.length ? this.fil[idx + 1] : null,
+        skus: this.fil.map(p => ({ s: p.s || '', d: p.d || '', gn: p.gn || '' }))
+      }));
+    } catch (e) {}
     const sku = encodeURIComponent(dress.s || '');
     const des = encodeURIComponent(dress.d || '');
-    if (el) {
+    if (el && typeof el.querySelector === 'function') {
       const img = el.querySelector('img');
-      if (img) img.style.viewTransitionName = 'dress-hero';
+      if (img && img.style) img.style.viewTransitionName = 'dress-hero';
     }
     window.location.href = `dress.html?cat=${this.category}&sku=${sku}${des ? `&d=${des}` : ''}`;
+  }
+
+  restoreCatalogPosition() {
+    if (typeof window === 'undefined' || typeof sessionStorage === 'undefined') return;
+    try {
+      const key = 'cloudnine_catalog_state_' + this.category;
+      const raw = sessionStorage.getItem(key);
+      if (!raw) return;
+      const state = JSON.parse(raw);
+      sessionStorage.removeItem(key);
+      if (!state || typeof state !== 'object') return;
+      if (state.ts && (Date.now() - state.ts > 30 * 60 * 1000)) return;
+      const curSearch = (window.location && window.location.search) ? window.location.search : '';
+      if (typeof state.search === 'string' && state.search !== curSearch) return;
+
+      const targetPage = Number(state.page) || 0;
+      const maxPage = Math.max(0, Math.ceil(this.fil.length / this.pageSize) - 1);
+      const clampedPage = Math.min(targetPage, maxPage);
+
+      if (clampedPage > 0) {
+        if (window.innerWidth <= 768) {
+          for (let p = 1; p <= clampedPage; p++) {
+            this.page = p;
+            this.renderPage(true);
+          }
+        } else {
+          this.page = clampedPage;
+          this.renderPage(false);
+        }
+      }
+
+      const targetScrollY = Number(state.scrollY) || 0;
+      if (targetScrollY > 0 && typeof window.scrollTo === 'function') {
+        setTimeout(() => {
+          window.scrollTo({ top: targetScrollY, behavior: 'instant' });
+        }, 40);
+      }
+    } catch (e) {}
   }
 
   render() {
@@ -1145,6 +1201,7 @@ class CloudNineCatalog {
       }
 
       // Angle scrubbing on hover & mobile touch
+      let didSwipeAngle = false;
       if (hasAngles) {
         let preloaded = false;
         const img = card.querySelector('.dress-card-img img');
@@ -1179,6 +1236,8 @@ class CloudNineCatalog {
             const dx = e.changedTouches[0].clientX - touchStartX;
             const dy = e.changedTouches[0].clientY - touchStartY;
             if (Math.abs(dx) > 36 && Math.abs(dx) > Math.abs(dy) * 1.4) {
+              didSwipeAngle = true;
+              setTimeout(() => { didSwipeAngle = false; }, 320);
               if (dx < 0 && currentAngleIdx < angles.length - 1) {
                 currentAngleIdx++;
               } else if (dx > 0 && currentAngleIdx > 0) {
@@ -1227,14 +1286,11 @@ class CloudNineCatalog {
         });
       }
 
-      // Bind card tap/click: Mobile opens zero-scroll-loss Bottom Sheet Quick-Look; Desktop opens full editorial PDP
+      // Bind card tap/click: Both Mobile and Desktop open full-page editorial PDP (dress.html)
       const handleActivate = () => {
-        if (window.innerWidth <= 768 && document.getElementById(this.modalBackdropId)) {
-          if (window.cnHaptic) window.cnHaptic(8);
-          this.openModal(idx);
-        } else {
-          this.goToDress(idx, card);
-        }
+        if (didSwipeAngle) return;
+        if (window.cnHaptic) window.cnHaptic(8);
+        this.goToDress(idx, card);
       };
       card.addEventListener('click', handleActivate);
       card.addEventListener('keydown', e => {
