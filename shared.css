@@ -7243,10 +7243,10 @@ html body .brides-hero-right > * {
     animation: none !important;
   }
 
-  /* ── 1. SYMMETRIC MOBILE CAPSULE NAVBAR + 60FPS GPU-DOCKING CLOUD (OPTION A) ── */
-  /* At the top of the page, the cloud floats below the right edge of the capsule navbar.
-     On scroll, the cloud, hamburger, and logo glide into their docked positions using ONLY
-     GPU-composited transform: translate3d(...) scale(...) — zero layout reflow, zero filter cost. */
+  /* ── 1. MOBILE CAPSULE NAVBAR WITH PERMANENTLY DOCKED CLOUD CTA (60FPS) ── */
+  /* Keeps the Style Quiz Cloud CTA permanently docked inside the right slot of the
+     mobile capsule navbar from y=0 all the way down the page — never blocking hero
+     faces and requiring zero scroll transitions or layout reflows. */
   html body .main-nav,
   html body .main-nav.nav-scrolled,
   html body .main-nav.scrolled {
@@ -7280,16 +7280,9 @@ html body .brides-hero-right > * {
     opacity: 1 !important;
     pointer-events: auto !important;
     transform-origin: top right !important;
-    transition: transform 0.34s cubic-bezier(0.22, 1, 0.36, 1),
-                opacity 0.24s cubic-bezier(0.22, 1, 0.36, 1) !important;
-  }
-  html body .nav-cloud-cta {
-    transform: translate3d(0, 0, 0) scale(1) !important;
-  }
-  html body .nav-cloud-cta.is-attached,
-  html body .main-nav.nav-scrolled .nav-cloud-cta,
-  html body .main-nav.scrolled .nav-cloud-cta {
     transform: translate3d(0, -55px, 0) scale(0.77) !important;
+    transition: transform 0.18s cubic-bezier(0.2, 0, 0, 1),
+                opacity 0.2s cubic-bezier(0.2, 0, 0, 1) !important;
   }
   html body .nav-cloud-cta .nav-cloud-content,
   html body .nav-cloud-cta.is-attached .nav-cloud-content,
@@ -7316,9 +7309,7 @@ html body .brides-hero-right > * {
     line-height: 1.06 !important;
     transition: none !important;
   }
-  html body .nav-cloud-cta:active {
-    transform: translate3d(0, 0, 0) scale(0.96) !important;
-  }
+  html body .nav-cloud-cta:active,
   html body .nav-cloud-cta.is-attached:active,
   html body .main-nav.nav-scrolled .nav-cloud-cta:active,
   html body .main-nav.scrolled .nav-cloud-cta:active {
@@ -7328,34 +7319,25 @@ html body .brides-hero-right > * {
   html body.search-open .nav-cloud-cta,
   html body.page-quiz .nav-cloud-cta {
     opacity: 0 !important;
-    transform: translate3d(0, -12px, 0) scale(0.88) !important;
+    transform: translate3d(0, -64px, 0) scale(0.70) !important;
     pointer-events: none !important;
   }
-  html body .main-nav .nav-brand {
-    position: absolute !important;
-    left: 50% !important;
-    transform: translate3d(-50%, 0, 0) scale(1) !important;
-    margin: 0 !important;
-    transition: transform 0.34s cubic-bezier(0.22, 1, 0.36, 1) !important;
-  }
+  html body .main-nav .nav-brand,
   html body .main-nav.nav-scrolled .nav-brand,
   html body .main-nav.scrolled .nav-brand {
     position: absolute !important;
     left: 50% !important;
     transform: translate3d(calc(-50% - 32px), 0, 0) scale(0.90) !important;
     margin: 0 !important;
+    transition: none !important;
   }
-  html body .main-nav .nav-hamburger {
-    margin-left: auto !important;
-    margin-right: 0 !important;
-    transform: translate3d(0, 0, 0) !important;
-    transition: transform 0.34s cubic-bezier(0.22, 1, 0.36, 1) !important;
-  }
+  html body .main-nav .nav-hamburger,
   html body .main-nav.nav-scrolled .nav-hamburger,
   html body .main-nav.scrolled .nav-hamburger {
     margin-left: auto !important;
     margin-right: 0 !important;
     transform: translate3d(-118px, 0, 0) !important;
+    transition: none !important;
   }
   @media (max-width: 360px) {
     html body .main-nav .nav-search-mobile {
@@ -7367,25 +7349,21 @@ html body .brides-hero-right > * {
     html body .nav-search-mobile-label {
       display: none !important;
     }
+    html body .main-nav .nav-brand,
     html body .main-nav.nav-scrolled .nav-brand,
     html body .main-nav.scrolled .nav-brand {
       transform: translate3d(calc(-50% - 42px), 0, 0) scale(0.86) !important;
     }
+    html body .main-nav .nav-hamburger,
     html body .main-nav.nav-scrolled .nav-hamburger,
     html body .main-nav.scrolled .nav-hamburger {
       transform: translate3d(-110px, 0, 0) !important;
     }
+    html body .nav-cloud-cta,
     html body .nav-cloud-cta.is-attached,
     html body .main-nav.nav-scrolled .nav-cloud-cta,
     html body .main-nav.scrolled .nav-cloud-cta {
       transform: translate3d(0, -55px, 0) scale(0.72) !important;
-    }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    html body .nav-cloud-cta,
-    html body .main-nav .nav-brand,
-    html body .main-nav .nav-hamburger {
-      transition: opacity 0.15s ease !important;
     }
   }
 
