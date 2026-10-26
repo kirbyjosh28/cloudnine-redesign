@@ -1693,8 +1693,16 @@ body.search-open .nav-cloud-cta {
   display: none;
 }
 /* Clean caption below the unobstructed dress image */
+.dress-card {
+  display: flex;
+  flex-direction: column;
+}
 .dress-card-body {
   position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding: 12px 14px 14px;
   background: #ffffff;
   border-top: 1px solid rgba(28, 78, 80, 0.08);
@@ -1712,15 +1720,29 @@ body.search-open .nav-cloud-cta {
 }
 .dress-card-name {
   font-family: var(--font-serif);
-  font-size: 18px;
+  font-size: 16.5px;
   font-weight: 700;
   color: var(--text);
-  line-height: 1.24;
+  line-height: 1.32;
   letter-spacing: -0.01em;
   text-align: center;
+  white-space: normal;
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+.dress-card-des-inline {
+  font-weight: 500;
+  color: var(--text-light, #496e70);
+}
+.dress-card-sep {
+  color: var(--text-light, #496e70);
+  opacity: 0.72;
+  margin: 0 2px;
+}
+.dress-card-gn-inline {
+  font-weight: 700;
+  color: var(--text);
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 /* ── CATALOG COUNT — always visible ── */
@@ -3648,6 +3670,8 @@ body.cur-out #cn-cursor-dot {
   .dress-card {
     border-radius: var(--radius-card-outer);
     background: #ffffff;
+    display: flex;
+    flex-direction: column;
   }
   .dress-card-img {
     aspect-ratio: 3 / 4;
@@ -3656,17 +3680,22 @@ body.cur-out #cn-cursor-dot {
     box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
   }
   .dress-card-name {
-    font-size: 16px;
+    font-size: 15px;
     letter-spacing: -0.01em;
-    line-height: 1.25;
+    line-height: 1.32;
     color: var(--text);
     text-align: center;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: normal;
+    text-wrap: balance;
+    overflow: visible;
+    text-overflow: clip;
   }
   .dress-card-body {
-    padding: 10px 10px 12px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px 8px 12px;
     background: #ffffff;
   }
 }
@@ -9309,17 +9338,23 @@ summary,
 
   /* 4. Catalog Dress Cards, Wishlist Pill & Load More Stream */
   html body .dress-card-body {
-    padding: 10px 10px 12px !important;
+    padding: 9px 6px 11px !important;
   }
   html body .dress-card-name {
-    font-size: 16px !important;
-    line-height: 1.26 !important;
+    font-size: 13.5px !important;
+    line-height: 1.3 !important;
     color: var(--text) !important;
     text-align: center !important;
+    white-space: normal !important;
+    text-wrap: balance;
     margin-bottom: 0 !important;
   }
-  html body .density-1col .dress-card-name {
-    font-size: 18.5px !important;
+  html body .dress-card-des-inline {
+    font-size: 13px !important;
+  }
+  html body .density-1col .dress-card-name,
+  html body .density-1col .dress-card-des-inline {
+    font-size: 17px !important;
   }
   html body .wl-btn {
     font-size: 11.5px !important;

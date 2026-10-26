@@ -1138,16 +1138,21 @@ class CloudNineCatalog {
         : (isAboveFold ? 'width="370" height="575" loading="eager" decoding="async"' : 'width="370" height="575" loading="lazy" decoding="async"');
       const loadHandlers = `onload="this.classList.add('img-loaded');if(this.parentElement)this.parentElement.classList.remove('loading');" onerror="if(this.parentElement)this.parentElement.classList.remove('loading');"`;
 
-      let cardTitle = '';
+      let dressName = '';
       if (p.gn && String(p.gn).trim()) {
         const rawGn = String(p.gn).trim();
-        cardTitle = /^\d+$/.test(rawGn) ? `#${rawGn}` : rawGn;
+        dressName = /^\d+$/.test(rawGn) ? `#${rawGn}` : rawGn;
       } else if (p.s && String(p.s).trim()) {
         const rawS = String(p.s).trim();
-        cardTitle = rawS.startsWith('#') ? rawS : `#${rawS}`;
+        dressName = rawS.startsWith('#') ? rawS : `#${rawS}`;
       } else {
-        cardTitle = p.n || 'Gown';
+        dressName = p.n || 'Gown';
       }
+
+      const designerName = (p.d && String(p.d).trim()) ? String(p.d).trim() : '';
+      const cardTitleHtml = designerName
+        ? `<span class="dress-card-des-inline">${designerName}<span class="dress-card-sep" aria-hidden="true">&nbsp;&middot;</span></span> <span class="dress-card-gn-inline">${dressName}</span>`
+        : `<span class="dress-card-gn-inline">${dressName}</span>`;
 
       card.innerHTML = `
         <div class="dress-card-img loading">
@@ -1155,7 +1160,7 @@ class CloudNineCatalog {
           ${pipsHtml}
         </div>
         <div class="dress-card-body">
-          <div class="dress-card-name">${cardTitle}</div>
+          <div class="dress-card-name">${cardTitleHtml}</div>
         </div>`;
 
       const cardImg = card.querySelector('.dress-card-img img');
