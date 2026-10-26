@@ -774,10 +774,10 @@ async function ensureGlobalCatalog() {
   _globalCatalogPromise = (async function() {
     try {
       const [bRes, pRes, mRes, hRes] = await Promise.allSettled([
-        fetch('data/bridal-products.json?v=20261025e').then(r => r.json()),
-        fetch('data/prom-products.json?v=20261025e').then(r => r.json()),
-        fetch('data/mothers-products.json?v=20261025e').then(r => r.json()),
-        fetch('data/hoco-products.json?v=20261025e').then(r => r.json())
+        fetch('data/bridal-products.json?v=20261025f').then(r => r.json()),
+        fetch('data/prom-products.json?v=20261025f').then(r => r.json()),
+        fetch('data/mothers-products.json?v=20261025f').then(r => r.json()),
+        fetch('data/hoco-products.json?v=20261025f').then(r => r.json())
       ]);
       const b = bRes.status === 'fulfilled' && Array.isArray(bRes.value) ? bRes.value.map(x => Object.assign({}, x, { _cat: 'bridal-catalog.html', _type: 'bridal' })) : [];
       const p = pRes.status === 'fulfilled' && Array.isArray(pRes.value) ? pRes.value.map(x => Object.assign({}, x, { _cat: 'prom-catalog.html', _type: 'prom' })) : [];
