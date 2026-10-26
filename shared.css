@@ -7243,11 +7243,32 @@ html body .brides-hero-right > * {
     animation: none !important;
   }
 
-  /* ── 1. SYMMETRIC MOBILE CAPSULE NAVBAR + 60FPS FLOATING CLOUD (OPTION A) ── */
-  /* The cloud floats below the right edge of the capsule navbar at the top of the page
-     using SVG vector depth (zero CSS drop-shadow filter cost) and smoothly tucks away
-     via GPU-composited transform + opacity on scroll so the navbar stays 100% symmetric. */
-  html body .nav-cloud-cta {
+  /* ── 1. SYMMETRIC MOBILE CAPSULE NAVBAR + 60FPS GPU-DOCKING CLOUD (OPTION A) ── */
+  /* At the top of the page, the cloud floats below the right edge of the capsule navbar.
+     On scroll, the cloud, hamburger, and logo glide into their docked positions using ONLY
+     GPU-composited transform: translate3d(...) scale(...) — zero layout reflow, zero filter cost. */
+  html body .main-nav,
+  html body .main-nav.nav-scrolled,
+  html body .main-nav.scrolled {
+    top: 6px !important;
+  }
+  html body .main-nav .nav-inner,
+  html body .main-nav.nav-scrolled .nav-inner,
+  html body .main-nav.scrolled .nav-inner {
+    height: 48px !important;
+    padding: 0 8px !important;
+    transition: none !important;
+  }
+  html body .main-nav .nav-logo-img,
+  html body .main-nav.nav-scrolled .nav-logo-img,
+  html body .main-nav.scrolled .nav-logo-img {
+    height: 32px !important;
+    transition: none !important;
+  }
+  html body .nav-cloud-cta,
+  html body .nav-cloud-cta.is-attached,
+  html body .main-nav.nav-scrolled .nav-cloud-cta,
+  html body .main-nav.scrolled .nav-cloud-cta {
     display: inline-flex !important;
     top: 52px !important;
     right: 2px !important;
@@ -7256,23 +7277,41 @@ html body .brides-hero-right > * {
     padding: 9px 12px 4px !important;
     filter: none !important;
     animation: none !important;
-    opacity: 1;
-    transform: translate3d(0, 0, 0) scale(1);
-    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transform-origin: top right !important;
+    transition: transform 0.34s cubic-bezier(0.22, 1, 0.36, 1),
                 opacity 0.24s cubic-bezier(0.22, 1, 0.36, 1) !important;
   }
-  html body .nav-cloud-cta .nav-cloud-content {
+  html body .nav-cloud-cta {
+    transform: translate3d(0, 0, 0) scale(1) !important;
+  }
+  html body .nav-cloud-cta.is-attached,
+  html body .main-nav.nav-scrolled .nav-cloud-cta,
+  html body .main-nav.scrolled .nav-cloud-cta {
+    transform: translate3d(0, -55px, 0) scale(0.77) !important;
+  }
+  html body .nav-cloud-cta .nav-cloud-content,
+  html body .nav-cloud-cta.is-attached .nav-cloud-content,
+  html body .main-nav.nav-scrolled .nav-cloud-content,
+  html body .main-nav.scrolled .nav-cloud-content {
     margin-top: 3px !important;
     transition: none !important;
   }
-  html body .nav-cloud-cta .nav-cloud-kicker {
+  html body .nav-cloud-cta .nav-cloud-kicker,
+  html body .nav-cloud-cta.is-attached .nav-cloud-kicker,
+  html body .main-nav.nav-scrolled .nav-cloud-kicker,
+  html body .main-nav.scrolled .nav-cloud-kicker {
     display: block !important;
     font-size: 7.5px !important;
     letter-spacing: 0.14em !important;
     margin-bottom: 1px !important;
     transition: none !important;
   }
-  html body .nav-cloud-cta .nav-cloud-label {
+  html body .nav-cloud-cta .nav-cloud-label,
+  html body .nav-cloud-cta.is-attached .nav-cloud-label,
+  html body .main-nav.nav-scrolled .nav-cloud-label,
+  html body .main-nav.scrolled .nav-cloud-label {
     font-size: 11.5px !important;
     line-height: 1.06 !important;
     transition: none !important;
@@ -7280,30 +7319,74 @@ html body .brides-hero-right > * {
   html body .nav-cloud-cta:active {
     transform: translate3d(0, 0, 0) scale(0.96) !important;
   }
-  html body .nav-cloud-cta.is-attached,
-  html body .main-nav.nav-scrolled .nav-cloud-cta,
-  html body .main-nav.scrolled .nav-cloud-cta,
+  html body .nav-cloud-cta.is-attached:active,
+  html body .main-nav.nav-scrolled .nav-cloud-cta:active,
+  html body .main-nav.scrolled .nav-cloud-cta:active {
+    transform: translate3d(0, -55px, 0) scale(0.74) !important;
+  }
   html body.mobile-menu-open .nav-cloud-cta,
   html body.search-open .nav-cloud-cta,
-  html body.page-quiz .nav-cloud-cta,
-  html body.page-dress .nav-cloud-cta {
+  html body.page-quiz .nav-cloud-cta {
     opacity: 0 !important;
     transform: translate3d(0, -12px, 0) scale(0.88) !important;
     pointer-events: none !important;
   }
-  html body .main-nav .nav-brand,
+  html body .main-nav .nav-brand {
+    position: absolute !important;
+    left: 50% !important;
+    transform: translate3d(-50%, 0, 0) scale(1) !important;
+    margin: 0 !important;
+    transition: transform 0.34s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  }
   html body .main-nav.nav-scrolled .nav-brand,
   html body .main-nav.scrolled .nav-brand {
     position: absolute !important;
     left: 50% !important;
-    transform: translateX(-50%) !important;
+    transform: translate3d(calc(-50% - 32px), 0, 0) scale(0.90) !important;
     margin: 0 !important;
   }
-  html body .main-nav .nav-hamburger,
+  html body .main-nav .nav-hamburger {
+    margin-left: auto !important;
+    margin-right: 0 !important;
+    transform: translate3d(0, 0, 0) !important;
+    transition: transform 0.34s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  }
   html body .main-nav.nav-scrolled .nav-hamburger,
   html body .main-nav.scrolled .nav-hamburger {
     margin-left: auto !important;
     margin-right: 0 !important;
+    transform: translate3d(-118px, 0, 0) !important;
+  }
+  @media (max-width: 360px) {
+    html body .main-nav .nav-search-mobile {
+      width: 36px !important;
+      min-width: 36px !important;
+      height: 36px !important;
+      padding: 0 !important;
+    }
+    html body .nav-search-mobile-label {
+      display: none !important;
+    }
+    html body .main-nav.nav-scrolled .nav-brand,
+    html body .main-nav.scrolled .nav-brand {
+      transform: translate3d(calc(-50% - 42px), 0, 0) scale(0.86) !important;
+    }
+    html body .main-nav.nav-scrolled .nav-hamburger,
+    html body .main-nav.scrolled .nav-hamburger {
+      transform: translate3d(-110px, 0, 0) !important;
+    }
+    html body .nav-cloud-cta.is-attached,
+    html body .main-nav.nav-scrolled .nav-cloud-cta,
+    html body .main-nav.scrolled .nav-cloud-cta {
+      transform: translate3d(0, -55px, 0) scale(0.72) !important;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html body .nav-cloud-cta,
+    html body .main-nav .nav-brand,
+    html body .main-nav .nav-hamburger {
+      transition: opacity 0.15s ease !important;
+    }
   }
 
   /* ── 2. HERO ERGONOMICS & ABOVE-THE-FOLD SPACING ACROSS ALL 15 PAGES ── */
