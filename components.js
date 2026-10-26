@@ -13,6 +13,7 @@ function navHTML() {
     const clean = name.replace(/\.html$/, '');
     return page === clean ? 'active' : '';
   };
+  const ariaCurrent = (name) => active(name) ? ' aria-current="page"' : '';
   const isBridal = page === 'bridal' || page === 'bridal-catalog' || page === 'our-brides' || page === 'experience';
   const isPromHoco = page === 'prom' || page === 'prom-catalog' || page === 'hoco' || page === 'hoco-catalog';
   const isTux = page === 'tuxedos';
@@ -261,21 +262,23 @@ function navHTML() {
   </nav>
 
   <!-- MOBILE MENU DRAWER -->
-  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu" tabindex="-1">
     <div class="mobile-menu-backdrop" onclick="closeMobileMenu()"></div>
     <div class="mobile-menu-drawer">
 
       <div class="mobile-menu-head">
-        <img src="${LOGO}" alt="Cloud Nine Bridal Boutique" class="mobile-menu-logo-img" width="120" height="68" loading="lazy" decoding="async"/>
+        <a href="index.html" class="mobile-menu-brand" aria-label="Cloud Nine Bridal Boutique — Home">
+          <img src="${LOGO}" alt="Cloud Nine Bridal Boutique" class="mobile-menu-logo-img" width="120" height="68" loading="lazy" decoding="async"/>
+        </a>
         <button class="mobile-menu-close" onclick="closeMobileMenu()" aria-label="Close navigation menu">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
         </button>
       </div>
 
-      <!-- Mobile Live Status Card -->
+      <!-- Mobile Live Status Bar -->
       <div class="mobile-menu-status" id="mobileMenuStatus">
         <span class="live-dot"></span>
-        <span id="mobileMenuStatusText">Peoria Boutique · Open Today</span>
+        <span id="mobileMenuStatusText">Peoria · Open Today</span>
       </div>
 
       <!-- Prominent Search Bar inside Mobile Menu Drawer -->
@@ -288,76 +291,94 @@ function navHTML() {
 
       <nav class="mobile-menu-nav" aria-label="Site navigation">
 
-        <div class="mobile-nav-section">
-          <a href="index.html" class="mobile-nav-item">
-            Home
-          </a>
-        </div>
+        <!-- Featured Style Quiz Spotlight -->
+        <a href="quiz.html" class="mobile-menu-quiz-card ${active('quiz')}"${ariaCurrent('quiz')}>
+          <span class="mobile-menu-quiz-copy">
+            <span class="mobile-menu-quiz-kicker">✦ Style Discovery</span>
+            <span class="mobile-menu-quiz-title">Find Your Bridal Style</span>
+          </span>
+          <span class="mobile-menu-quiz-pill">Start <span aria-hidden="true">→</span></span>
+        </a>
 
-        <div class="mobile-nav-divider"></div>
-
+        <!-- 1. Bridal Section -->
         <div class="mobile-nav-section">
           <span class="mobile-nav-section-label">Bridal</span>
-          <a href="quiz.html" class="mobile-nav-item" style="color:var(--teal-mid);font-weight:700;">
-            ✦ Find Your Bridal Style
-          </a>
-          <a href="experience.html" class="mobile-nav-item">
-            The Boutique Experience
-          </a>
-          <a href="bridal.html" class="mobile-nav-item">
-            Bridal Collection
-          </a>
-          <a href="bridal-catalog.html" class="mobile-nav-sub">Shop All 600+ Gowns</a>
-          <a href="mothers.html" class="mobile-nav-item">
-            Mothers of the Bride
-          </a>
-          <a href="our-brides.html" class="mobile-nav-item">
-            Real Brides Gallery
-          </a>
+          <div class="mobile-nav-group">
+            <div class="mobile-nav-split-row">
+              <a href="bridal.html" class="mobile-nav-item ${active('bridal')}"${ariaCurrent('bridal')}>
+                <span>Bridal Collection</span>
+              </a>
+              <a href="bridal-catalog.html" class="mobile-nav-sub ${active('bridal-catalog')}"${ariaCurrent('bridal-catalog')} aria-label="Shop all 600+ bridal gowns">
+                Shop 600+ <span aria-hidden="true">→</span>
+              </a>
+            </div>
+            <a href="experience.html" class="mobile-nav-item ${active('experience')}"${ariaCurrent('experience')}>
+              <span>The Boutique Experience</span>
+              <span class="mobile-nav-item-arrow" aria-hidden="true">›</span>
+            </a>
+            <a href="mothers.html" class="mobile-nav-item ${active('mothers')}"${ariaCurrent('mothers')}>
+              <span>Mothers of the Bride</span>
+              <span class="mobile-nav-item-arrow" aria-hidden="true">›</span>
+            </a>
+            <a href="our-brides.html" class="mobile-nav-item ${active('our-brides')}"${ariaCurrent('our-brides')}>
+              <span>Real Brides Gallery</span>
+              <span class="mobile-nav-item-arrow" aria-hidden="true">›</span>
+            </a>
+          </div>
         </div>
 
-        <div class="mobile-nav-divider"></div>
-
+        <!-- 2. Prom, HOCO & Formal Section -->
         <div class="mobile-nav-section">
           <span class="mobile-nav-section-label">Prom, HOCO &amp; Formal</span>
-          <a href="prom.html" class="mobile-nav-item">
-            Prom Gowns
-          </a>
-          <a href="prom-catalog.html" class="mobile-nav-sub">Shop Prom Dresses</a>
-          <a href="hoco.html" class="mobile-nav-item">
-            Homecoming
-          </a>
-          <a href="hoco-catalog.html" class="mobile-nav-sub">Shop HOCO Styles</a>
-          <a href="tuxedos.html" class="mobile-nav-item">
-            Tuxedos &amp; Suits
-          </a>
+          <div class="mobile-nav-group">
+            <div class="mobile-nav-split-row">
+              <a href="prom.html" class="mobile-nav-item ${active('prom')}"${ariaCurrent('prom')}>
+                <span>Prom Gowns</span>
+              </a>
+              <a href="prom-catalog.html" class="mobile-nav-sub ${active('prom-catalog')}"${ariaCurrent('prom-catalog')} aria-label="Shop prom dresses catalog">
+                Shop Prom <span aria-hidden="true">→</span>
+              </a>
+            </div>
+            <div class="mobile-nav-split-row">
+              <a href="hoco.html" class="mobile-nav-item ${active('hoco')}"${ariaCurrent('hoco')}>
+                <span>Homecoming</span>
+              </a>
+              <a href="hoco-catalog.html" class="mobile-nav-sub ${active('hoco-catalog')}"${ariaCurrent('hoco-catalog')} aria-label="Shop homecoming styles catalog">
+                Shop HOCO <span aria-hidden="true">→</span>
+              </a>
+            </div>
+            <a href="tuxedos.html" class="mobile-nav-item ${active('tuxedos')}"${ariaCurrent('tuxedos')}>
+              <span>Tuxedos &amp; Suits</span>
+              <span class="mobile-nav-item-arrow" aria-hidden="true">›</span>
+            </a>
+          </div>
         </div>
 
-        <div class="mobile-nav-divider"></div>
-
+        <!-- 3. Boutique & Info Quick Pills -->
         <div class="mobile-nav-section">
-          <span class="mobile-nav-section-label">Information &amp; Contact</span>
-          <a href="about.html" class="mobile-nav-item">
-            About Cloud Nine
-          </a>
-          <a href="contact.html" class="mobile-nav-item">
-            Contact &amp; Hours
-          </a>
-          <button type="button" class="mobile-nav-item" onclick="closeMobileMenu();setTimeout(openSearch,200);" style="background:none;border:none;width:100%;text-align:left;font-family:inherit;cursor:pointer;">
-            Search Catalog
-          </button>
+          <span class="mobile-nav-section-label">Boutique &amp; Info</span>
+          <div class="mobile-nav-info-grid">
+            <a href="index.html" class="mobile-nav-info-chip ${active('index')}"${ariaCurrent('index')}>Home</a>
+            <a href="about.html" class="mobile-nav-info-chip ${active('about')}"${ariaCurrent('about')}>About Us</a>
+            <a href="contact.html" class="mobile-nav-info-chip ${active('contact')}"${ariaCurrent('contact')}>Contact</a>
+          </div>
         </div>
 
       </nav>
 
       <div class="mobile-menu-footer">
-        <a href="appointments.html" class="mobile-menu-book-btn">Book an Appointment</a>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <a href="appointments.html" class="mobile-menu-book-btn">
+          <span>Book an Appointment</span>
+          <span aria-hidden="true">→</span>
+        </a>
+        <div class="mobile-menu-utility-grid">
           <a href="tel:3096933830" class="mobile-menu-phone-link">
-            Call Boutique
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <span>Call Boutique</span>
           </a>
           <a href="https://goo.gl/maps/HXgYuahuNu8ycSXB8" target="_blank" rel="noopener noreferrer" class="mobile-menu-phone-link">
-            Directions
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <span>Directions</span>
           </a>
         </div>
       </div>
@@ -520,11 +541,10 @@ window.openMobileMenu = function() {
   if (nav) nav.classList.add('nav-hidden');
   document.body.style.overflow = 'hidden';
   document.body.classList.add('mobile-menu-open');
-  /* Move focus to the close button for accessibility */
+  /* Move focus into the dialog container for accessibility without triggering a visible button ring on tap */
   setTimeout(function() {
-    const closeBtn = menu.querySelector('.mobile-menu-close');
-    if (closeBtn && typeof closeBtn.focus === 'function') closeBtn.focus();
-  }, 420);
+    if (typeof menu.focus === 'function') menu.focus({ preventScroll: true });
+  }, 340);
 };
 
 window.closeMobileMenu = function() {
@@ -2134,7 +2154,7 @@ function initBoutiqueStatus() {
   var mobileText = document.getElementById('mobileMenuStatusText');
   if (mobileStatus && mobileText) {
     mobileStatus.className = 'mobile-menu-status ' + status.statusClass;
-    mobileText.textContent = 'Peoria Boutique · ' + status.statusText;
+    mobileText.textContent = 'Peoria · ' + status.statusText;
   }
 }
 
