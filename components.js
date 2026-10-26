@@ -413,7 +413,7 @@ function footerHTML() {
             <li><a href="about.html#team">Our Team</a></li>
             <li><a href="about.html#events">Upcoming Events</a></li>
             <li><a href="about.html#testimonials">Testimonials</a></li>
-            <li><a href="about.html#awards">Awards</a></li>
+            <li class="footer-link-mob-hide"><a href="about.html#awards">Awards</a></li>
             <li><a href="about.html#faq">FAQ</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
@@ -421,8 +421,8 @@ function footerHTML() {
         <div class="footer-col-hours">
           <div class="footer-hours-grid">
             <div class="footer-hours-block">
-              <div class="footer-col-title" style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
-                Bridal Hours
+              <div class="footer-col-title" style="display:flex;align-items:center;justify-content:space-between;gap:6px;flex-wrap:wrap;">
+                <span>Bridal Hours</span>
                 <span id="footerTodayBadge" style="font-family:var(--font-kicker,'Josefin Sans',sans-serif);font-size:10px;font-weight:700;letter-spacing:.1em;padding:2px 6px;border-radius:20px;background:var(--teal-dim2);color:var(--teal-deep);"></span>
               </div>
               <table class="hours-table" style="margin-top:6px;">
