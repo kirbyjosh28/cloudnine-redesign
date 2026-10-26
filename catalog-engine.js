@@ -1075,8 +1075,11 @@ class CloudNineCatalog {
         ? `<div class="scrub-pips">${p.x.map((_, pi) => `<span class="scrub-pip ${pi===0?'active':''}"></span>`).join('')}</div>`
         : '';
 
-      const isAboveFold = this.page === 0 && i < 8;
-      const loadingAttr = isAboveFold ? 'loading="eager" fetchpriority="high"' : 'loading="lazy" decoding="async"';
+      const isTopRow = this.page === 0 && i < 2;
+      const isAboveFold = this.page === 0 && i < 4;
+      const loadingAttr = isTopRow
+        ? 'width="370" height="575" loading="eager" fetchpriority="high" decoding="async"'
+        : (isAboveFold ? 'width="370" height="575" loading="eager" decoding="async"' : 'width="370" height="575" loading="lazy" decoding="async"');
       const loadHandlers = `onload="this.classList.add('img-loaded');if(this.parentElement)this.parentElement.classList.remove('loading');" onerror="if(this.parentElement)this.parentElement.classList.remove('loading');"`;
 
       if (this.category === 'prom' || this.category === 'hoco') {

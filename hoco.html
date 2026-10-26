@@ -19,9 +19,11 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"/>
-  <link rel="preload" as="image" href="images/real/hoco/03-88900.webp" type="image/webp"/>
-  <link rel="stylesheet" href="shared.css?v=20261025f"/>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" media="print" onload="this.media='all'"/>
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"/></noscript>
+  <link rel="preload" as="image" href="images/real/hoco/03-88900.webp" type="image/webp" fetchpriority="high"/>
+  <link rel="stylesheet" href="shared.css?v=20261025g"/>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -112,25 +114,6 @@
       padding: 26px 28px; text-align: center;
     }
     .hhero-right { max-width: 680px; text-align: right; }
-    @media (prefers-reduced-motion: no-preference) {
-      .hhero-right > * {
-        opacity: 0;
-        transform: translateY(12px);
-        filter: blur(4px);
-        animation: hocoHeroFadeInUp 400ms cubic-bezier(0.2, 0, 0, 1) forwards;
-      }
-      .hhero-right > *:nth-child(1) { animation-delay: 0ms; }
-      .hhero-right > *:nth-child(2) { animation-delay: 100ms; }
-      .hhero-right > *:nth-child(3) { animation-delay: 200ms; }
-      .hhero-right > *:nth-child(4) { animation-delay: 300ms; }
-      @keyframes hocoHeroFadeInUp {
-        to {
-          opacity: 1;
-          transform: translateY(0);
-          filter: blur(0px);
-        }
-      }
-    }
     .hhero-eyebrow {
       font-family: var(--font-kicker);
       font-size: 11px; font-weight: 700;
@@ -365,8 +348,9 @@
 
 <!-- ── CINEMATIC VIDEO HERO ── -->
 <div class="hoco-video-hero">
-  <video autoplay muted loop playsinline preload="metadata" poster="images/real/hoco/03-88900.webp">
-    <source src="videos/prom-hero.mp4" type="video/mp4"/>
+  <img src="images/real/hoco/03-88900.webp" alt="Cloud Nine Homecoming Peoria" width="1200" height="1600" loading="eager" fetchpriority="high" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;"/>
+  <video id="hocoHeroVideo" muted loop playsinline preload="none" poster="images/real/hoco/03-88900.webp">
+    <source data-src="videos/prom-hero.mp4" type="video/mp4"/>
   </video>
   <div class="hoco-video-vignette"></div>
 
@@ -522,7 +506,21 @@
 </div>
 
 <div id="site-footer"></div>
-<script src="components.js?v=20261025f" defer></script>
+<script src="components.js?v=20261025g" defer></script>
+<script>
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    var v = document.getElementById('hocoHeroVideo');
+    if (!v || (navigator.connection && navigator.connection.saveData)) return;
+    var s = v.querySelector('source[data-src]');
+    if (s) {
+      s.src = s.getAttribute('data-src');
+      v.load();
+      v.play().catch(function(){});
+    }
+  }, 2500);
+}, { once: true });
+</script>
 </main>
 </body>
 </html>

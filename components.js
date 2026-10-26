@@ -1,6 +1,6 @@
 /* Cloud Nine Bridal Shared Nav + Footer */
 
-const LOGO = 'images/logo-transparent.png';
+const LOGO = 'images/logo-transparent.webp';
 
 function getActivePage() {
   const p = (window.location.pathname.split('/').pop() || 'index.html').replace(/\.html$/, '');
@@ -23,7 +23,7 @@ function navHTML() {
 
       <!-- Logo — links to home -->
       <a href="index.html" class="nav-brand" aria-label="Cloud Nine Bridal Boutique — Home">
-        <img src="images/logo-transparent.png" alt="Cloud Nine Bridal Boutique" class="nav-logo-img"/>
+        <img src="images/logo-transparent.webp" width="156" height="88" decoding="async" alt="Cloud Nine Bridal Boutique" class="nav-logo-img"/>
       </a>
 
       <!-- Center links with Luxury Mega-Menus -->
@@ -39,7 +39,7 @@ function navHTML() {
             <div class="nav-mega-grid">
               <!-- Featured Editorial Card -->
               <a href="bridal-catalog.html" class="nav-mega-card">
-                <div class="nav-mega-card-bg" style="background-image:url('images/bridal/Bridal-hero.webp');"></div>
+                <div class="nav-mega-card-bg" data-bg="images/bridal/Bridal-hero.webp"></div>
                 <div class="nav-mega-card-overlay"></div>
                 <div class="nav-mega-card-content">
                   <span class="nav-mega-badge">The 2026 Collection</span>
@@ -95,7 +95,7 @@ function navHTML() {
             </div>
             <div class="nav-dd-ph-cols">
               <a href="prom-catalog.html" class="nav-dd-ph-col">
-                <div class="nav-dd-ph-col-bg" style="background-image:url('images/real/prom/instagram/04-ig.webp');"></div>
+                <div class="nav-dd-ph-col-bg" data-bg="images/real/prom/instagram/04-ig.webp"></div>
                 <div class="nav-dd-ph-col-overlay"></div>
                 <div class="nav-dd-ph-col-content">
                   <div class="nav-dd-ph-col-eyebrow">Spring 2026</div>
@@ -104,7 +104,7 @@ function navHTML() {
                 </div>
               </a>
               <a href="hoco-catalog.html" class="nav-dd-ph-col">
-                <div class="nav-dd-ph-col-bg" style="background-image:url('images/real/hoco/03-88900.webp');"></div>
+                <div class="nav-dd-ph-col-bg" data-bg="images/real/hoco/03-88900.webp"></div>
                 <div class="nav-dd-ph-col-overlay"></div>
                 <div class="nav-dd-ph-col-content">
                   <div class="nav-dd-ph-col-eyebrow">Fall 2026</div>
@@ -266,7 +266,7 @@ function navHTML() {
     <div class="mobile-menu-drawer">
 
       <div class="mobile-menu-head">
-        <img src="images/logo-transparent.png" alt="Cloud Nine Bridal Boutique" class="mobile-menu-logo-img"/>
+        <img src="${LOGO}" alt="Cloud Nine Bridal Boutique" class="mobile-menu-logo-img" width="120" height="68" loading="lazy" decoding="async"/>
         <button class="mobile-menu-close" onclick="closeMobileMenu()" aria-label="Close navigation menu">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
         </button>
@@ -372,7 +372,7 @@ function footerHTML() {
     <div class="footer-inner">
       <div class="footer-top">
         <div class="footer-col-brand">
-          <div class="footer-logo"><img src="${LOGO}" alt="Cloud Nine Bridal Boutique"/></div>
+          <div class="footer-logo"><img src="${LOGO}" width="140" height="79" loading="lazy" decoding="async" alt="Cloud Nine Bridal Boutique"/></div>
           <p class="footer-tagline">Peoria's premier bridal boutique — helping brides find their dream gown. Come say yes with us.</p>
           <div class="footer-contact">
             <div>
@@ -1077,6 +1077,12 @@ function initDropdownHover() {
       items.forEach(other => {
         if (other !== item) other.classList.remove('is-active');
       });
+      if (dropdown) {
+        dropdown.querySelectorAll('[data-bg]').forEach(el => {
+          el.style.backgroundImage = "url('" + el.getAttribute('data-bg') + "')";
+          el.removeAttribute('data-bg');
+        });
+      }
       item.classList.add('is-active');
     };
 
@@ -1564,19 +1570,21 @@ function initHeroParallax() {
   const bg = hero.querySelector('.hero-c-bg img');
   if (!bg) return;
 
-  bg.style.transformOrigin = '58% 0%';
-  bg.style.transform = 'scale(1.03)';
-  bg.style.willChange = 'transform';
-
   let raf;
+  let initialized = false;
   document.addEventListener('mousemove', (e) => {
     cancelAnimationFrame(raf);
     raf = requestAnimationFrame(() => {
+      if (!initialized) {
+        initialized = true;
+        bg.style.transformOrigin = '58% 0%';
+        bg.style.willChange = 'transform';
+      }
       const x = (e.clientX / window.innerWidth  - 0.5) * -14;
       const y = Math.max(0, (0.5 - e.clientY / window.innerHeight) * 8);
       bg.style.transform = `scale(1.03) translate(${x.toFixed(1)}px,${y.toFixed(1)}px)`;
     });
-  });
+  }, { passive: true });
 }
 
 /* ── EDITORIAL PHOTO 3D TILT ── */
@@ -1959,13 +1967,15 @@ function initLookbookConcierge() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  (function() {
-    var s = document.createElement('script');
-    s.defer = true;
-    s.dataset.domain = 'cloudninepeoria.com';
-    s.src = 'https://plausible.io/js/script.js';
-    document.head.appendChild(s);
-  })();
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      var s = document.createElement('script');
+      s.defer = true;
+      s.dataset.domain = 'cloudninepeoria.com';
+      s.src = 'https://plausible.io/js/script.js';
+      document.head.appendChild(s);
+    }, 3500);
+  }, { once: true });
   injectComponents();
   initReveal();
   initPageTransitions();
@@ -2187,7 +2197,7 @@ window.getWishlistItems = function() {
     protocol === 'file:'
   );
 
-  if (isLocalEnv && !window.__agentationMounted && !document.querySelector('script[src*="agentation.js"]')) {
+  if (isLocalEnv && (window.location.search || '').includes('agentation=1') && !window.__agentationMounted && !document.querySelector('script[src*="agentation.js"]')) {
     import('./src/agentation.js').catch(function(err) {
       console.warn('[Agentation] Local feedback toolbar notice:', err);
     });

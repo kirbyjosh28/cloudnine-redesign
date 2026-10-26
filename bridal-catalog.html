@@ -16,9 +16,11 @@
     <!-- Fonts: preconnect first, then non-blocking stylesheet -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"/>
-    <link rel="preload" as="image" href="images/bridal/Bridal-hero.webp" type="image/webp"/>
-  <link rel="stylesheet" href="shared.css?v=20261025f"/>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" media="print" onload="this.media='all'"/>
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"/></noscript>
+    <link rel="preload" as="image" href="images/bridal/Bridal-hero.webp" type="image/webp" fetchpriority="high"/>
+  <link rel="stylesheet" href="shared.css?v=20261025g"/>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -49,7 +51,7 @@
       overflow: hidden;
       background: #0d0a0c;
     }
-    /* YouTube iframe — hidden behind photo until ready */
+    /* YouTube iframe — fades in above photo once ready so LCP photo never goes opacity:0 */
     .bridal-cat-hero-video-wrap {
       position: absolute;
       top: 50%; left: 50%;
@@ -59,7 +61,12 @@
       min-height: 100%;
       transform: translate(-50%, -50%);
       pointer-events: none;
-      z-index: 1;
+      z-index: 2;
+      opacity: 0;
+      transition: opacity 1.2s ease;
+    }
+    .bridal-cat-hero-video-wrap.unmasked {
+      opacity: 1;
     }
     .bridal-cat-hero-video-wrap iframe {
       width: 100%; height: 100%;
@@ -74,7 +81,7 @@
         rgba(0,0,0,.08) 55%,
         rgba(0,0,0,.82) 100%
       );
-      z-index: 2;
+      z-index: 3;
     }
     .bridal-cat-hero-content {
       position: absolute; bottom: 0; left: 0; right: 0;
@@ -97,28 +104,20 @@
       text-align: right; max-width: 200px;
       line-height: 1.85; padding-bottom: 8px;
     }
-    /* Hero photo — shows instantly, fades to video once playing */
+    /* Hero photo — shows instantly and stays opaque underneath video */
     .bridal-cat-hero-fallback {
       position: absolute; inset: 0;
       width: 100%; height: 100%;
       object-fit: cover; object-position: center 20%;
-      z-index: 6;
+      z-index: 1;
       opacity: 1;
-      transition: opacity 1.2s ease;
       pointer-events: none;
     }
-    .bridal-cat-hero-fallback.gone { opacity: 0; }
 
-    /* Startup mask — hides YouTube thumbnail overlay, fades out */
+    /* Startup mask — no longer needed since video wrap starts at opacity:0 */
     .bridal-cat-hero-start-mask {
-      position: absolute; inset: 0;
-      background: #0d0a0c;
-      z-index: 5;
-      pointer-events: none;
-      opacity: 1;
-      transition: opacity 1s ease;
+      display: none;
     }
-    .bridal-cat-hero-start-mask.gone { opacity: 0; }
 
     /* Tiny play/pause button — bottom right, barely there */
     .bridal-video-btn {
@@ -242,7 +241,7 @@
       .modal-nav{width:44px;height:44px;font-size:22px;}
     }
 
-    /* Filter pill, bottom sheet, and tray styles loaded globally from shared.css?v=20261025f */
+    /* Filter pill, bottom sheet, and tray styles loaded globally from shared.css?v=20261025g */
   </style>
 </head>
 <body>
@@ -250,15 +249,16 @@
 
 <main id="main-content">
 <div class="bridal-cat-hero">
-  <!-- Video plays silently behind the photo -->
-  <div class="bridal-cat-hero-video-wrap">
+  <!-- Video plays silently above the fallback photo once loaded -->
+  <div class="bridal-cat-hero-video-wrap" id="bridalVideoWrap">
     <iframe
-      src="https://www.youtube.com/embed/dpkjdM_5iXk?autoplay=1&mute=1&loop=1&playlist=dpkjdM_5iXk&controls=0&rel=0&modestbranding=1&playsinline=1&start=4&end=43&enablejsapi=1"
+      title="Cloud Nine Bridal Collection Background Video"
+      data-src="https://www.youtube.com/embed/dpkjdM_5iXk?autoplay=1&mute=1&loop=1&playlist=dpkjdM_5iXk&controls=0&rel=0&modestbranding=1&playsinline=1&start=4&end=43&enablejsapi=1"
       allow="autoplay; encrypted-media"
       allowfullscreen>
     </iframe>
   </div>
-  <img class="bridal-cat-hero-fallback" id="bridalHeroPhoto" src="images/bridal/Bridal-hero.jpg" alt="Cloud Nine Bridal" loading="eager" fetchpriority="high"/>
+  <img class="bridal-cat-hero-fallback" id="bridalHeroPhoto" src="images/bridal/Bridal-hero.webp" alt="Cloud Nine Bridal" width="1600" height="1067" loading="eager" fetchpriority="high" decoding="async"/>
   <div class="bridal-cat-hero-start-mask" id="bridalStartMask"></div>
   <div class="bridal-cat-hero-vignette"></div>
   <div class="bridal-cat-hero-content">
@@ -273,8 +273,8 @@
 <script>
 (function() {
   var btn    = document.getElementById('bridalVideoBtn');
-  var mask   = document.getElementById('bridalStartMask');
-  var iframe = document.querySelector('.bridal-cat-hero-video-wrap iframe');
+  var wrap   = document.getElementById('bridalVideoWrap');
+  var iframe = wrap ? wrap.querySelector('iframe') : null;
   var playing = true;
   var unmasked = false;
 
@@ -283,14 +283,11 @@
       iframe.contentWindow.postMessage(JSON.stringify({event:'command', func:cmd}), '*');
   }
 
-  var photo = document.getElementById('bridalHeroPhoto');
-
   function unmask() {
     if (unmasked) return;
     unmasked = true;
-    if (mask)  mask.classList.add('gone');
-    if (photo) photo.classList.add('gone');
-    if (btn)   btn.classList.add('visible', 'playing');
+    if (wrap) wrap.classList.add('unmasked');
+    if (btn)  btn.classList.add('visible', 'playing');
   }
 
   window.addEventListener('message', function(e) {
@@ -301,8 +298,7 @@
         if (data.info === 1) {
           playing = true;
           if (btn) btn.classList.add('playing');
-          // wait for overlay to fully clear before revealing
-          setTimeout(unmask, 3000);
+          setTimeout(unmask, 1500);
         } else if (data.info === 2) {
           playing = false;
           if (btn) btn.classList.remove('playing');
@@ -311,8 +307,15 @@
     } catch(err) {}
   });
 
-  // Hard fallback
-  setTimeout(unmask, 7000);
+  // Defer YouTube iframe load on desktop until after initial page & catalog load
+  if (iframe && iframe.dataset.src && window.innerWidth > 768 && !(navigator.connection && navigator.connection.saveData)) {
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        iframe.src = iframe.dataset.src;
+        setTimeout(unmask, 6000);
+      }, 4500);
+    }, { once: true });
+  }
 
   // Toggle play/pause
   if (btn) {
@@ -470,8 +473,8 @@
 </div>
 
 <div id="site-footer"></div>
-<script src="components.js?v=20261025f" defer></script>
-<script src="catalog-engine.js?v=20261025f" defer></script>
+<script src="components.js?v=20261025g" defer></script>
+<script src="catalog-engine.js?v=20261025g" defer></script>
 <script>
 const BRIDAL_SYNONYMS = {
   'sparkly': ['sparkle', 'bead', 'beaded', 'glitter', 'sequin', 'shimmer', 'crystal', 'rhinestone'],
@@ -510,7 +513,7 @@ function initBridalCatalog() {
   if (typeof CloudNineCatalog !== 'undefined') {
     new CloudNineCatalog({
       category: 'bridal',
-      dataPath: 'data/bridal-products.json?v=20261025f',
+      dataPath: 'data/bridal-products.json?v=20261025g',
       facets: ['des'],
       facetLabels: { des: 'Designer' },
       synonyms: BRIDAL_SYNONYMS

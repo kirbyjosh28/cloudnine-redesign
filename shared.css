@@ -6017,17 +6017,9 @@ body {
   background-color: var(--bg, #fdfbf7);
 }
 
-/* Fixed, GPU-safe subtle paper film-grain overlay (pointer-events-none) */
+/* Fixed paper film-grain overlay disabled for GPU compositing & LCP performance */
 body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 9998;
-  pointer-events: none;
-  opacity: 0.022;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 180px 180px;
+  display: none !important;
 }
 
 /* 1px optical image outlines (better-ui rule: prevents white gowns from bleeding into ivory backgrounds) */
@@ -6190,18 +6182,31 @@ body::after {
   transform: scale(0.96) !important;
 }
 
-/* ── LAYER 5: STAGGERED OPTICAL BLUR-UP REVEALS & MARQUEE FRAMING ── */
+/* ── LAYER 5: STAGGERED REVEALS & MARQUEE FRAMING (ZERO BLUR FOR GPU PERFORMANCE) ── */
 .reveal,
 .reveal-on-scroll {
-  filter: blur(4px);
-  transition: opacity 0.75s cubic-bezier(0.2, 0, 0, 1),
-              transform 0.75s cubic-bezier(0.2, 0, 0, 1),
-              filter 0.75s cubic-bezier(0.2, 0, 0, 1);
+  transition: opacity 0.65s cubic-bezier(0.2, 0, 0, 1),
+              transform 0.65s cubic-bezier(0.2, 0, 0, 1);
 }
 
-.reveal.visible,
-.reveal-on-scroll.is-revealed {
-  filter: blur(0px);
+/* Above-the-fold hero elements render immediately at opacity: 1 on both Desktop and Mobile */
+html body .phero-left > *,
+html body .hhero-right > *,
+html body .bhero-eyebrow,
+html body .bhero-rule,
+html body .bhero-title,
+html body .bhero-actions,
+html body .bhero-panel,
+html body .hero-c-eyebrow,
+html body .hero-c-title,
+html body .hero-c-actions,
+html body .hero-c-proof,
+html body .brides-hero-left > *,
+html body .brides-hero-right > * {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+  animation: none !important;
 }
 
 .reveal .eyebrow,

@@ -20,9 +20,11 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"/>
-  <link rel="preload" as="image" href="images/real/prom/01-11961.webp" type="image/webp"/>
-  <link rel="stylesheet" href="shared.css?v=20261025f"/>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" media="print" onload="this.media='all'"/>
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"/></noscript>
+  <link rel="preload" as="image" href="images/real/prom/01-11961.webp" type="image/webp" fetchpriority="high"/>
+  <link rel="stylesheet" href="shared.css?v=20261025g"/>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -131,25 +133,6 @@
       line-height: 1.7; margin-bottom: 28px; max-width: 600px;
     }
     .prom-video-actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
-    @media (prefers-reduced-motion: no-preference) {
-      .phero-left > * {
-        animation: promHeroFadeInUp 350ms cubic-bezier(0.2, 0, 0, 1) both;
-      }
-      .phero-left > *:nth-child(1) { animation-delay: 0ms; }
-      .phero-left > *:nth-child(2) { animation-delay: 60ms; }
-      .phero-left > *:nth-child(3) { animation-delay: 120ms; }
-      .phero-left > *:nth-child(4) { animation-delay: 180ms; }
-      @keyframes promHeroFadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(10px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-    }
     .btn-prom-primary {
       display: inline-flex; align-items: center; justify-content: center; gap: 8px;
       padding: 14px 24px;
@@ -634,8 +617,9 @@
 
 <!-- ── CINEMATIC VIDEO HERO ── -->
 <div class="prom-video-hero">
-  <video autoplay muted loop playsinline preload="metadata" poster="images/real/prom/01-11961.webp">
-    <source src="videos/prom-hero.mp4" type="video/mp4"/>
+  <img src="images/real/prom/01-11961.webp" alt="Cloud Nine Prom Peoria" width="1200" height="1600" loading="eager" fetchpriority="high" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;"/>
+  <video id="promHeroVideo" muted loop playsinline preload="none" poster="images/real/prom/01-11961.webp">
+    <source data-src="videos/prom-hero.mp4" type="video/mp4"/>
   </video>
   <div class="prom-video-vignette"></div>
 
@@ -723,14 +707,14 @@
     <!-- Right Photo Collage (Real Cloud Nine Prom Peoria Showroom Photos) -->
     <div class="registry-photo-collage">
       <div class="registry-photo-frame registry-photo-frame--main">
-        <img src="images/real/prom/cnp-intro2.webp" alt="Prom squad shopping inside Cloud Nine Prom Peoria showroom" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;"/>
+        <img src="images/real/prom/cnp-intro2.webp" alt="Prom squad shopping inside Cloud Nine Prom Peoria showroom" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;"/>
         <span class="registry-photo-badge">Inside Cloud Nine Prom · Peoria, IL</span>
       </div>
       <div class="registry-photo-frame">
-        <img src="images/real/prom/cnp-intro1.webp" alt="Teal lace prom gown at Cloud Nine Prom" style="width:100%;height:100%;object-fit:cover;object-position:center top;"/>
+        <img src="images/real/prom/cnp-intro1.webp" alt="Teal lace prom gown at Cloud Nine Prom" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center top;"/>
       </div>
       <div class="registry-photo-frame">
-        <img src="images/real/prom/cnp-intro3.webp" alt="Best friends in pink sequin prom dresses at Cloud Nine Prom" style="width:100%;height:100%;object-fit:cover;object-position:center top;"/>
+        <img src="images/real/prom/cnp-intro3.webp" alt="Best friends in pink sequin prom dresses at Cloud Nine Prom" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center top;"/>
       </div>
     </div>
   </div>
@@ -750,7 +734,7 @@
       <div class="trend-card double-bezel">
         <div>
           <div class="card-photo-wrap">
-            <img src="images/real/prom/cnp-fall2026-featured.webp" alt="Prom Collection gown at Cloud Nine Prom"/>
+            <img src="images/real/prom/cnp-fall2026-featured.webp" alt="Prom Collection gown at Cloud Nine Prom" loading="lazy" decoding="async"/>
           </div>
           <span class="trend-pill">$150 – $1,000 · Sizes 000–36</span>
           <h3 class="trend-title">Prom Collection</h3>
@@ -761,7 +745,7 @@
       <div class="trend-card double-bezel">
         <div>
           <div class="card-photo-wrap">
-            <img src="images/real/prom/cnp-homecoming.webp" alt="Homecoming dresses at Cloud Nine Prom Peoria"/>
+            <img src="images/real/prom/cnp-homecoming.webp" alt="Homecoming dresses at Cloud Nine Prom Peoria" loading="lazy" decoding="async"/>
           </div>
           <span class="trend-pill">$90 – $580 · Short &amp; Long</span>
           <h3 class="trend-title">Homecoming (HOCO)</h3>
@@ -772,7 +756,7 @@
       <div class="trend-card double-bezel">
         <div>
           <div class="card-photo-wrap">
-            <img src="images/real/prom/cnp-collection-pageant.webp" alt="Pageant gown at Cloud Nine Prom Peoria"/>
+            <img src="images/real/prom/cnp-collection-pageant.webp" alt="Pageant gown at Cloud Nine Prom Peoria" loading="lazy" decoding="async"/>
           </div>
           <span class="trend-pill">Stage &amp; Interview Glamour</span>
           <h3 class="trend-title">Pageant Gowns</h3>
@@ -783,7 +767,7 @@
       <div class="trend-card double-bezel">
         <div>
           <div class="card-photo-wrap">
-            <img src="images/real/prom/cnp-styles-for-everyone.webp" alt="Formal and special occasion dresses at Cloud Nine Prom"/>
+            <img src="images/real/prom/cnp-styles-for-everyone.webp" alt="Formal and special occasion dresses at Cloud Nine Prom" loading="lazy" decoding="async"/>
           </div>
           <span class="trend-pill">Galas · Military Balls · Guests</span>
           <h3 class="trend-title">Formal &amp; Special Occasion</h3>
@@ -869,7 +853,7 @@
     <div class="trend-card double-bezel">
       <div>
         <div class="card-photo-wrap">
-          <img src="images/real/prom/02-12012.webp" alt="Liquid Satin &amp; Slit Prom Gown at Cloud Nine Prom"/>
+          <img src="images/real/prom/02-12012.webp" alt="Liquid Satin &amp; Slit Prom Gown at Cloud Nine Prom" loading="lazy" decoding="async"/>
         </div>
         <span class="trend-pill">Trending #1</span>
         <h3 class="trend-title">Liquid Satins &amp; Slits</h3>
@@ -881,7 +865,7 @@
     <div class="trend-card double-bezel">
       <div>
         <div class="card-photo-wrap">
-          <img src="images/real/prom/05-12061.webp" alt="Corset Bodice Prom Gown at Cloud Nine Prom"/>
+          <img src="images/real/prom/05-12061.webp" alt="Corset Bodice Prom Gown at Cloud Nine Prom" loading="lazy" decoding="async"/>
         </div>
         <span class="trend-pill">Trending #2</span>
         <h3 class="trend-title">Corset Bodice Ballgowns</h3>
@@ -893,7 +877,7 @@
     <div class="trend-card double-bezel">
       <div>
         <div class="card-photo-wrap">
-          <img src="images/real/prom/07-12064.webp" alt="Iridescent Sequin &amp; Beaded Prom Dress at Cloud Nine Prom"/>
+          <img src="images/real/prom/07-12064.webp" alt="Iridescent Sequin &amp; Beaded Prom Dress at Cloud Nine Prom" loading="lazy" decoding="async"/>
         </div>
         <span class="trend-pill">Trending #3</span>
         <h3 class="trend-title">Iridescent Sequins &amp; Beading</h3>
@@ -914,26 +898,26 @@
   </div>
 
   <div class="ig-grid" id="promIgGrid" style="max-width:1360px;margin:0 auto 32px;">
-    <div class="ig-photo-card double-bezel"><img src="images/real/prom/instagram/01-ig.webp" alt="Cloud Nine Prom Girl in Peoria IL"/></div>
-    <div class="ig-photo-card double-bezel"><img src="images/real/prom/instagram/02-ig.webp" alt="Cloud Nine Prom Dress Shopper"/></div>
-    <div class="ig-photo-card double-bezel"><img src="images/real/prom/instagram/03-ig.webp" alt="Cloud Nine Prom Formal Look"/></div>
-    <div class="ig-photo-card double-bezel"><img src="images/real/prom/instagram/04-ig.webp" alt="Cloud Nine Prom Gown"/></div>
-    <div class="ig-photo-card double-bezel"><img src="images/real/prom/instagram/05-ig.webp" alt="Cloud Nine Prom Sequin Gown"/></div>
-    <div class="ig-photo-card double-bezel"><img src="images/real/prom/instagram/06-ig.webp" alt="Cloud Nine Prom Fitting Room Moment"/></div>
-    <div class="ig-photo-card double-bezel"><img src="images/real/prom/instagram/07-ig.webp" alt="Peoria Prom Look"/></div>
-    <div class="ig-photo-card double-bezel"><img src="images/real/prom/instagram/08-ig.webp" alt="Cloud Nine Prom Satin Gown"/></div>
-    <div class="ig-photo-card double-bezel"><img src="images/real/prom/instagram/09-ig.webp" alt="Cloud Nine Prom Beaded Dress"/></div>
-    <div class="ig-photo-card double-bezel"><img src="images/real/prom/instagram/10-ig.webp" alt="Cloud Nine Prom Besties"/></div>
-    <div class="ig-photo-card double-bezel"><img src="images/real/prom/instagram/11-ig.webp" alt="Cloud Nine Prom Squad"/></div>
-    <div class="ig-photo-card double-bezel"><img src="images/real/prom/instagram/12-ig.webp" alt="Cloud Nine Prom Corset Gown"/></div>
-    <div class="ig-photo-card double-bezel ig-extra-hidden"><img src="images/real/prom/instagram/13-ig.webp" alt="Cloud Nine Prom Customer Photo 13" loading="lazy"/></div>
-    <div class="ig-photo-card double-bezel ig-extra-hidden"><img src="images/real/prom/instagram/14-ig.webp" alt="Cloud Nine Prom Customer Photo 14" loading="lazy"/></div>
-    <div class="ig-photo-card double-bezel ig-extra-hidden"><img src="images/real/prom/instagram/15-ig.webp" alt="Cloud Nine Prom Customer Photo 15" loading="lazy"/></div>
-    <div class="ig-photo-card double-bezel ig-extra-hidden"><img src="images/real/prom/instagram/16-ig.webp" alt="Cloud Nine Prom Customer Photo 16" loading="lazy"/></div>
-    <div class="ig-photo-card double-bezel ig-extra-hidden"><img src="images/real/prom/instagram/17-ig.webp" alt="Cloud Nine Prom Customer Photo 17" loading="lazy"/></div>
-    <div class="ig-photo-card double-bezel ig-extra-hidden"><img src="images/real/prom/instagram/18-ig.webp" alt="Cloud Nine Prom Customer Photo 18" loading="lazy"/></div>
-    <div class="ig-photo-card double-bezel ig-extra-hidden"><img src="images/real/prom/instagram/19-ig.webp" alt="Cloud Nine Prom Customer Photo 19" loading="lazy"/></div>
-    <div class="ig-photo-card double-bezel ig-extra-hidden"><img src="images/real/prom/instagram/20-ig.webp" alt="Cloud Nine Prom Customer Photo 20" loading="lazy"/></div>
+    <div class="ig-photo-card double-bezel"><img src="images/real/prom/instagram/01-ig.webp" alt="Cloud Nine Prom Girl in Peoria IL" loading="lazy" decoding="async"/></div>
+    <div class="ig-photo-card double-bezel"><img src="images/real/prom/instagram/02-ig.webp" alt="Cloud Nine Prom Dress Shopper" loading="lazy" decoding="async"/></div>
+    <div class="ig-photo-card double-bezel"><img src="images/real/prom/instagram/03-ig.webp" alt="Cloud Nine Prom Formal Look" loading="lazy" decoding="async"/></div>
+    <div class="ig-photo-card double-bezel"><img src="images/real/prom/instagram/04-ig.webp" alt="Cloud Nine Prom Gown" loading="lazy" decoding="async"/></div>
+    <div class="ig-photo-card double-bezel"><img src="images/real/prom/instagram/05-ig.webp" alt="Cloud Nine Prom Sequin Gown" loading="lazy" decoding="async"/></div>
+    <div class="ig-photo-card double-bezel"><img src="images/real/prom/instagram/06-ig.webp" alt="Cloud Nine Prom Fitting Room Moment" loading="lazy" decoding="async"/></div>
+    <div class="ig-photo-card double-bezel"><img src="images/real/prom/instagram/07-ig.webp" alt="Peoria Prom Look" loading="lazy" decoding="async"/></div>
+    <div class="ig-photo-card double-bezel"><img src="images/real/prom/instagram/08-ig.webp" alt="Cloud Nine Prom Satin Gown" loading="lazy" decoding="async"/></div>
+    <div class="ig-photo-card double-bezel"><img src="images/real/prom/instagram/09-ig.webp" alt="Cloud Nine Prom Beaded Dress" loading="lazy" decoding="async"/></div>
+    <div class="ig-photo-card double-bezel"><img src="images/real/prom/instagram/10-ig.webp" alt="Cloud Nine Prom Besties" loading="lazy" decoding="async"/></div>
+    <div class="ig-photo-card double-bezel"><img src="images/real/prom/instagram/11-ig.webp" alt="Cloud Nine Prom Squad" loading="lazy" decoding="async"/></div>
+    <div class="ig-photo-card double-bezel"><img src="images/real/prom/instagram/12-ig.webp" alt="Cloud Nine Prom Corset Gown" loading="lazy" decoding="async"/></div>
+    <div class="ig-photo-card double-bezel ig-extra-hidden"><img src="images/real/prom/instagram/13-ig.webp" alt="Cloud Nine Prom Customer Photo 13" loading="lazy" decoding="async"/></div>
+    <div class="ig-photo-card double-bezel ig-extra-hidden"><img src="images/real/prom/instagram/14-ig.webp" alt="Cloud Nine Prom Customer Photo 14" loading="lazy" decoding="async"/></div>
+    <div class="ig-photo-card double-bezel ig-extra-hidden"><img src="images/real/prom/instagram/15-ig.webp" alt="Cloud Nine Prom Customer Photo 15" loading="lazy" decoding="async"/></div>
+    <div class="ig-photo-card double-bezel ig-extra-hidden"><img src="images/real/prom/instagram/16-ig.webp" alt="Cloud Nine Prom Customer Photo 16" loading="lazy" decoding="async"/></div>
+    <div class="ig-photo-card double-bezel ig-extra-hidden"><img src="images/real/prom/instagram/17-ig.webp" alt="Cloud Nine Prom Customer Photo 17" loading="lazy" decoding="async"/></div>
+    <div class="ig-photo-card double-bezel ig-extra-hidden"><img src="images/real/prom/instagram/18-ig.webp" alt="Cloud Nine Prom Customer Photo 18" loading="lazy" decoding="async"/></div>
+    <div class="ig-photo-card double-bezel ig-extra-hidden"><img src="images/real/prom/instagram/19-ig.webp" alt="Cloud Nine Prom Customer Photo 19" loading="lazy" decoding="async"/></div>
+    <div class="ig-photo-card double-bezel ig-extra-hidden"><img src="images/real/prom/instagram/20-ig.webp" alt="Cloud Nine Prom Customer Photo 20" loading="lazy" decoding="async"/></div>
   </div>
 
   <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;max-width:1360px;margin:0 auto;">
@@ -963,7 +947,7 @@
         </div>
       </div>
       <div class="registry-photo-frame" style="min-height:260px;max-height:300px;">
-        <img src="images/real/prom/01-11961.webp" alt="Cloud Nine Prom Showroom Gowns" style="width:100%;height:100%;object-fit:cover;object-position:center top;"/>
+        <img src="images/real/prom/01-11961.webp" alt="Cloud Nine Prom Showroom Gowns" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center top;"/>
       </div>
     </div>
 
@@ -1123,7 +1107,7 @@
 </div>
 
 <div id="site-footer"></div>
-<script src="components.js?v=20261025f" defer></script>
+<script src="components.js?v=20261025g" defer></script>
 
 <script>
 function setSquad(size, btn) {
@@ -1142,6 +1126,18 @@ function setSquad(size, btn) {
     feedback.innerHTML = '<strong>Full Prom Squad (5–6 Girls):</strong> Walk in together during store hours at 4701 N. University St and our team will coordinate fitting rooms for your group.';
   }
 }
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    var v = document.getElementById('promHeroVideo');
+    if (!v || (navigator.connection && navigator.connection.saveData)) return;
+    var s = v.querySelector('source[data-src]');
+    if (s) {
+      s.src = s.getAttribute('data-src');
+      v.load();
+      v.play().catch(function(){});
+    }
+  }, 2500);
+}, { once: true });
 </script>
 
 </main>
