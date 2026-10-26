@@ -5577,10 +5577,10 @@ select {
 .density-toggle-wrap button::before {
   content: '';
   position: absolute;
-  top: -5px;
-  bottom: -5px;
-  left: -4px;
-  right: -4px;
+  top: -6px;
+  bottom: -6px;
+  left: -6px;
+  right: -6px;
 }
 .density-toggle-wrap button[aria-pressed="true"] {
   background: var(--teal-deep);
@@ -7629,12 +7629,9 @@ html body .brides-hero-right > * {
     margin-bottom: 6px !important;
   }
   html body .journey-step-desc {
-    display: -webkit-box !important;
-    -webkit-line-clamp: 3 !important;
-    -webkit-box-orient: vertical !important;
-    overflow: hidden !important;
     font-size: 13px !important;
-    line-height: 1.45 !important;
+    line-height: 1.5 !important;
+    text-wrap: pretty;
   }
   html body .journey-mobile-progress {
     margin: 4px 0 18px !important;
@@ -7674,13 +7671,10 @@ html body .brides-hero-right > * {
     margin-bottom: 6px !important;
   }
   html body .exp-step-desc {
-    display: -webkit-box !important;
-    -webkit-line-clamp: 3 !important;
-    -webkit-box-orient: vertical !important;
-    overflow: hidden !important;
     font-size: 13px !important;
-    line-height: 1.45 !important;
+    line-height: 1.5 !important;
     margin-bottom: 10px !important;
+    text-wrap: pretty;
   }
   html body .exp-suite-outer {
     padding: 8px !important;
@@ -7688,7 +7682,7 @@ html body .brides-hero-right > * {
   }
   html body .exp-suite-inner {
     padding: 18px 16px !important;
-    border-radius: 14px !important;
+    border-radius: 12px !important;
   }
   html body .exp-suite-title {
     font-size: 21px !important;
@@ -7702,13 +7696,10 @@ html body .brides-hero-right > * {
     font-size: 26px !important;
   }
   html body .exp-suites-grid .exp-suite-desc {
-    display: -webkit-box !important;
-    -webkit-line-clamp: 3 !important;
-    -webkit-box-orient: vertical !important;
-    overflow: hidden !important;
     font-size: 13px !important;
-    line-height: 1.45 !important;
+    line-height: 1.5 !important;
     margin-bottom: 12px !important;
+    text-wrap: pretty;
   }
   html body .exp-perks-list {
     gap: 6px !important;
@@ -7718,9 +7709,6 @@ html body .brides-hero-right > * {
     font-size: 12.5px !important;
     line-height: 1.35 !important;
   }
-  html body .exp-perk-item:nth-child(n+5) {
-    display: none !important;
-  }
   html body .exp-suite-photo {
     height: 150px !important;
   }
@@ -7728,7 +7716,7 @@ html body .brides-hero-right > * {
   /* Bridal Feature Strip & Accessories Banner (bridal.html) */
   html body .bridal-feature-strip {
     grid-template-columns: repeat(3, 1fr) !important;
-    padding: 14px 10px !important;
+    padding: 14px 12px !important;
   }
   html body .bridal-feature-item {
     padding: 6px 8px !important;
@@ -7743,11 +7731,7 @@ html body .brides-hero-right > * {
   }
   html body .bridal-feature-item p {
     font-size: 11px !important;
-    line-height: 1.3 !important;
-    display: -webkit-box !important;
-    -webkit-line-clamp: 2 !important;
-    -webkit-box-orient: vertical !important;
-    overflow: hidden !important;
+    line-height: 1.35 !important;
   }
   html body #accessories > div > div:nth-child(2) {
     margin-bottom: 18px !important;
@@ -7841,12 +7825,11 @@ html body .brides-hero-right > * {
   html body .squad-size-btn {
     padding: 10px 6px !important;
     font-size: 10px !important;
+    min-height: 44px !important;
   }
   html body .review-quote {
-    display: -webkit-box !important;
-    -webkit-line-clamp: 5 !important;
-    -webkit-box-orient: vertical !important;
-    overflow: hidden !important;
+    line-height: 1.55 !important;
+    text-wrap: pretty;
   }
   html body .review-spotlight {
     padding: 18px 16px !important;
@@ -7861,12 +7844,10 @@ html body .brides-hero-right > * {
     margin-bottom: 8px !important;
   }
   html body .review-spotlight p {
-    display: -webkit-box !important;
-    -webkit-line-clamp: 4 !important;
-    -webkit-box-orient: vertical !important;
-    overflow: hidden !important;
     margin-bottom: 10px !important;
     font-size: 13.5px !important;
+    line-height: 1.55 !important;
+    text-wrap: pretty;
   }
 
   /* About Page: Compact Jennifer Feature Card, Intro, Events & FAQ */
@@ -7878,10 +7859,8 @@ html body .brides-hero-right > * {
     border-radius: 10px !important;
   }
   html body .about-intro-grid p:first-of-type {
-    display: -webkit-box !important;
-    -webkit-line-clamp: 5 !important;
-    -webkit-box-orient: vertical !important;
-    overflow: hidden !important;
+    line-height: 1.6 !important;
+    text-wrap: pretty;
   }
   html body #team {
     padding: 36px 20px 28px !important;
@@ -7923,14 +7902,13 @@ html body .brides-hero-right > * {
     padding: 20px 18px !important;
   }
   html body #events .double-bezel p {
-    display: -webkit-box !important;
-    -webkit-line-clamp: 4 !important;
-    -webkit-box-orient: vertical !important;
-    overflow: hidden !important;
+    line-height: 1.55 !important;
+    text-wrap: pretty;
   }
   html body #faq details summary {
     padding: 12px 16px !important;
     font-size: 14px !important;
+    min-height: 44px !important;
   }
   html body #testimonials .testimonials-marquee-cols {
     max-height: 320px !important;
@@ -7945,7 +7923,7 @@ html body .brides-hero-right > * {
     height: 215px !important;
   }
 
-  /* Appointments & Contact Compaction (Eliminate Stretched Empty Space) */
+  /* Appointments & Contact Compaction (Full Content Legibility, Zero Clipped Perks) */
   html body .appt-types-intro {
     flex-direction: column !important;
     align-items: flex-start !important;
@@ -7964,21 +7942,15 @@ html body .brides-hero-right > * {
     font-size: 12px !important;
   }
   html body .appt-card p {
-    display: -webkit-box !important;
-    -webkit-line-clamp: 2 !important;
-    -webkit-box-orient: vertical !important;
-    overflow: hidden !important;
     margin-bottom: 10px !important;
     font-size: 13px !important;
-    line-height: 1.45 !important;
+    line-height: 1.5 !important;
+    text-wrap: pretty;
   }
   html body .appt-card-perks {
     padding: 10px 0 !important;
     margin-bottom: 14px !important;
     gap: 6px !important;
-  }
-  html body .appt-card-perks li:nth-child(n+4) {
-    display: none !important;
   }
   html body .prep-box {
     padding: 20px 16px !important;
@@ -7987,9 +7959,6 @@ html body .brides-hero-right > * {
   html body .prep-box h3 {
     font-size: 20px !important;
     margin-bottom: 6px !important;
-  }
-  html body .checklist-sub {
-    display: none !important;
   }
   html body .checklist-item {
     padding: 8px 0 !important;
@@ -8011,11 +7980,9 @@ html body .brides-hero-right > * {
     margin-bottom: 4px !important;
   }
   html body .wte-desc {
-    display: -webkit-box !important;
-    -webkit-line-clamp: 1 !important;
-    -webkit-box-orient: vertical !important;
-    overflow: hidden !important;
-    font-size: 12px !important;
+    font-size: 12.5px !important;
+    line-height: 1.45 !important;
+    text-wrap: pretty;
   }
 
   /* Quiz & Mothers Mobile Refinements */
@@ -8439,7 +8406,7 @@ html body .brides-hero-right > * {
     width: 100% !important;
     max-width: 100% !important;
     min-width: 0 !important;
-    height: 40px !important;
+    height: 44px !important;
     order: -1 !important;
     padding: 0 12px !important;
   }
@@ -8593,13 +8560,15 @@ html body .brides-hero-right > * {
 /* Mobile & Tablet Navbar Trigger Button (<= 1100px) */
 @media (max-width: 1100px) {
   html body .main-nav .nav-search-mobile {
+    position: relative !important;
     display: inline-flex !important;
     align-items: center;
     justify-content: center;
     gap: 5px;
-    height: 34px;
+    height: 36px;
+    min-width: 44px;
     width: auto;
-    padding: 0 10px;
+    padding: 0 11px;
     border-radius: 100px;
     background: rgba(28, 78, 80, 0.065);
     border: 1px solid rgba(28, 78, 80, 0.16);
@@ -8607,7 +8576,17 @@ html body .brides-hero-right > * {
     cursor: pointer;
     flex-shrink: 0;
     z-index: 2;
+    touch-action: manipulation;
     transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+  }
+  /* Expand vertical hit area to 44x44px (better-accessibility hit-areas standard) */
+  html body .main-nav .nav-search-mobile::before {
+    content: "";
+    position: absolute;
+    top: -4px;
+    bottom: -4px;
+    left: -4px;
+    right: -4px;
   }
   html body .main-nav .nav-search-mobile:hover,
   html body .main-nav .nav-search-mobile:active {
@@ -8627,14 +8606,177 @@ html body .brides-hero-right > * {
 
 @media (max-width: 350px) {
   html body .main-nav .nav-search-mobile {
-    width: 34px;
-    height: 34px;
+    width: 36px;
+    min-width: 36px;
+    height: 36px;
     padding: 0;
   }
   .nav-search-mobile-label {
     display: none;
   }
 }
+
+/* ==========================================================================
+   ELITE MOBILE ERGONOMICS, 44x44PX HIT AREAS & SINGLE-ROW STICKY CATALOG BAR
+   (Apple HIG + WCAG 2.5.5 / 2.5.8 + better-accessibility + better-layout)
+   ========================================================================== */
+a,
+button,
+input,
+select,
+summary,
+[role="button"] {
+  touch-action: manipulation;
+}
+
+.skip-link {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.catalog-search-clear {
+  position: relative;
+}
+.catalog-search-clear::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  bottom: -12px;
+  left: -12px;
+  right: -12px;
+}
+
+@media (max-width: 860px) {
+  /* 1. Single-Row Condensing Sticky Catalog Bar on Scroll:
+     Before scrolling (.filter-bar-sticky-wrap:not(.is-stuck)), the search bar spans full width on Row 1.
+     When stuck (.is-stuck) and not actively typing (:not(:focus-within)), condense into a single 50px row
+     ([Filters] [🔍 Search...] [1 COL | 2 COL]) to reclaim 54px of vertical dress-viewing viewport! */
+  html body .filter-bar-sticky-wrap.is-stuck:not(:focus-within) .filter-bar-compact {
+    flex-wrap: nowrap !important;
+    border-radius: 100px !important;
+    padding: 5px 8px !important;
+    gap: 6px !important;
+    min-height: 48px !important;
+  }
+  html body .filter-bar-sticky-wrap.is-stuck:not(:focus-within) .catalog-inline-search {
+    flex: 1 1 90px !important;
+    width: auto !important;
+    min-width: 84px !important;
+    height: 36px !important;
+    order: 0 !important;
+    padding: 0 10px !important;
+  }
+  html body .filter-bar-sticky-wrap.is-stuck:not(:focus-within) .catalog-count-compact {
+    display: none !important;
+  }
+  html body .filter-bar-sticky-wrap.is-stuck:not(:focus-within) .filter-bar-right {
+    max-width: none !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Ensure 44px effective touch height on catalog filter trigger & clear buttons */
+  html body .filter-mobile-trigger-btn {
+    position: relative !important;
+    min-height: 38px !important;
+  }
+  html body .filter-mobile-trigger-btn::before,
+  html body .filter-main-clear-btn::before {
+    content: "";
+    position: absolute;
+    top: -4px;
+    bottom: -4px;
+    left: -2px;
+    right: -2px;
+  }
+  html body .filter-main-clear-btn {
+    position: relative !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* 2. 44x44px Minimum Hit Areas on Navbar Brand & Hamburger (collision-safe) */
+  html body .main-nav .nav-brand::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    bottom: -10px;
+    left: -10px;
+    right: -10px;
+  }
+  html body .main-nav .nav-hamburger {
+    position: relative !important;
+    min-width: 42px !important;
+    min-height: 42px !important;
+  }
+  html body .main-nav .nav-hamburger::before {
+    content: "";
+    position: absolute;
+    top: -4px;
+    bottom: -4px;
+    left: -4px;
+    right: -4px;
+  }
+
+  /* 3. 44px Minimum Touch Target Height on All Primary/Secondary Buttons, Pills & Card CTAs */
+  html body .btn-luxury-pill,
+  html body .appt-card-select-btn,
+  html body .entourage-btn,
+  html body .designer-pill-link,
+  html body #collections .designer-pill-link,
+  html body .hoco-swatch-pill,
+  html body .trend-link,
+  html body .hoco-matrix-cta,
+  html body .designer-link,
+  html body .booking-alt-link a,
+  html body main > div > div > a[href="prom.html"] {
+    min-height: 44px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+  }
+  html body .btn-luxury-pill,
+  html body .appt-card-select-btn,
+  html body .entourage-btn,
+  html body .designer-pill-link,
+  html body #collections .designer-pill-link,
+  html body .hoco-swatch-pill {
+    justify-content: center !important;
+  }
+  html body #collections .designer-pill-link {
+    padding: 10px 14px !important;
+    font-size: 10.5px !important;
+  }
+
+  /* 4. Footer Touch Targets (44x44px social buttons & expanded contact/legal hit areas) */
+  html body .footer-social {
+    gap: 10px !important;
+    margin-top: 10px !important;
+  }
+  html body .footer-social .social-link {
+    width: 44px !important;
+    height: 44px !important;
+  }
+  html body .footer-contact {
+    gap: 6px 12px !important;
+  }
+  html body .footer-contact a,
+  html body .footer-legal a {
+    position: relative !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    min-height: 32px !important;
+  }
+  html body .footer-contact a::before,
+  html body .footer-legal a::before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    bottom: -6px;
+    left: -4px;
+    right: -4px;
+  }
+}
+
 
 
 
