@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"/>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" media="print" onload="this.media='all'"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"/>
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"/></noscript>
   <link rel="stylesheet" href="shared.css?v=20261026m"/>
   <script type="application/ld+json">
@@ -588,7 +588,7 @@
       <p id="quizBannerDesc">We noticed you completed the Style Quiz. Your personalized silhouette preferences are saved and ready for your stylist.</p>
     </div>
     <div class="quiz-banner-actions">
-      <button class="btn-quiz-dossier" onclick="copyQuizNotesToClipboard()">Copy Quiz Notes</button>
+      <button class="btn-quiz-dossier" data-cn-click="copyQuizNotesToClipboard()">Copy Quiz Notes</button>
       <a href="quiz.html" class="btn-quiz-dossier">Retake Quiz</a>
     </div>
   </div>
@@ -607,10 +607,10 @@
 <!-- ── SEGMENTED FILTER CONTROLS ── -->
 <div class="appt-filters-wrap">
   <div class="appt-segmented-bar" role="tablist" aria-label="Appointment Categories">
-    <button class="appt-seg-btn active" role="tab" aria-selected="true" onclick="filterApptTypes('all', this)">All Experiences (6)</button>
-    <button class="appt-seg-btn" role="tab" aria-selected="false" onclick="filterApptTypes('bridal', this)">Bridal Appointments (3)</button>
-    <button class="appt-seg-btn" role="tab" aria-selected="false" onclick="filterApptTypes('mothers-bling', this)">Mothers &amp; Accessories (2)</button>
-    <button class="appt-seg-btn" role="tab" aria-selected="false" onclick="filterApptTypes('tux', this)">Groom &amp; Tuxedos (1)</button>
+    <button class="appt-seg-btn active" role="tab" aria-selected="true" data-cn-click="filterApptTypes('all', this)">All Experiences (6)</button>
+    <button class="appt-seg-btn" role="tab" aria-selected="false" data-cn-click="filterApptTypes('bridal', this)">Bridal Appointments (3)</button>
+    <button class="appt-seg-btn" role="tab" aria-selected="false" data-cn-click="filterApptTypes('mothers-bling', this)">Mothers &amp; Accessories (2)</button>
+    <button class="appt-seg-btn" role="tab" aria-selected="false" data-cn-click="filterApptTypes('tux', this)">Groom &amp; Tuxedos (1)</button>
   </div>
 </div>
 
@@ -640,7 +640,7 @@
         <div class="appt-card-perk">Full access to all 6 bridal designer collections</div>
       </div>
       <div class="appt-card-footer">
-        <button onclick="selectExperience('Bridal Appointment (Complimentary)', this)" class="btn-luxury-pill appt-card-select-btn">
+        <button data-cn-click="selectExperience('Bridal Appointment (Complimentary)', this)" class="btn-luxury-pill appt-card-select-btn">
           <span>Select This Experience</span>
         </button>
       </div>
@@ -661,7 +661,7 @@
         <div class="appt-card-perk">A confetti streamer for the perfect celebratory "YES" moment</div>
       </div>
       <div class="appt-card-footer">
-        <button onclick="selectExperience('Robes & Rosé ($100)', this)" class="btn-luxury-pill appt-card-select-btn">
+        <button data-cn-click="selectExperience('Robes & Rosé ($100)', this)" class="btn-luxury-pill appt-card-select-btn">
           <span>Select This Experience</span>
         </button>
       </div>
@@ -683,7 +683,7 @@
         <div class="appt-card-perk">A confetti streamer to celebrate your "yes" moment with your crew</div>
       </div>
       <div class="appt-card-footer">
-        <button onclick="selectExperience('On Cloud Nine VIP ($250)', this)" class="btn-luxury-pill appt-card-select-btn">
+        <button data-cn-click="selectExperience('On Cloud Nine VIP ($250)', this)" class="btn-luxury-pill appt-card-select-btn">
           <span>Select This Experience</span>
         </button>
       </div>
@@ -702,7 +702,7 @@
         <div class="appt-card-perk">Personalized wedding color coordination</div>
       </div>
       <div class="appt-card-footer">
-        <button onclick="selectExperience('Mothers Appointment (Complimentary)', this)" class="btn-luxury-pill appt-card-select-btn">
+        <button data-cn-click="selectExperience('Mothers Appointment (Complimentary)', this)" class="btn-luxury-pill appt-card-select-btn">
           <span>Select This Experience</span>
         </button>
       </div>
@@ -721,7 +721,7 @@
         <div class="appt-card-perk">Try on directly with your wedding gown under showroom lighting</div>
       </div>
       <div class="appt-card-footer">
-        <button onclick="selectExperience('Bling & Veil Appointment (Complimentary)', this)" class="btn-luxury-pill appt-card-select-btn">
+        <button data-cn-click="selectExperience('Bling & Veil Appointment (Complimentary)', this)" class="btn-luxury-pill appt-card-select-btn">
           <span>Select This Experience</span>
         </button>
       </div>
@@ -740,7 +740,7 @@
         <div class="appt-card-perk">Tux-to-Door convenience: out-of-state home delivery to their doorstep</div>
       </div>
       <div class="appt-card-footer">
-        <button onclick="selectExperience('Tuxedo & Suit Appointment', this)" class="btn-luxury-pill appt-card-select-btn">
+        <button data-cn-click="selectExperience('Tuxedo & Suit Appointment', this)" class="btn-luxury-pill appt-card-select-btn">
           <span>Select This Experience</span>
         </button>
       </div>
@@ -761,7 +761,7 @@
         <p style="font-size:13.5px;color:var(--text-muted);margin:0 0 24px;font-weight:300;">Tap each item to check it off as you get ready for your appointment.</p>
         
         <div id="prepChecklist">
-          <div class="checklist-item" onclick="toggleChecklist(this, 'lookbook')">
+          <div class="checklist-item" data-cn-click="toggleChecklist(this, 'lookbook')">
             <div class="checklist-checkbox"></div>
             <div>
               <div class="checklist-title">1. Start With Inspiration</div>
@@ -769,7 +769,7 @@
             </div>
           </div>
 
-          <div class="checklist-item" onclick="toggleChecklist(this, 'mindset')">
+          <div class="checklist-item" data-cn-click="toggleChecklist(this, 'mindset')">
             <div class="checklist-checkbox"></div>
             <div>
               <div class="checklist-title">2. Keep an Open Mind</div>
@@ -777,7 +777,7 @@
             </div>
           </div>
 
-          <div class="checklist-item" onclick="toggleChecklist(this, 'crew')">
+          <div class="checklist-item" data-cn-click="toggleChecklist(this, 'crew')">
             <div class="checklist-checkbox"></div>
             <div>
               <div class="checklist-title">3. Bring Your Closest Crew (Max 6 · No Children)</div>
@@ -785,7 +785,7 @@
             </div>
           </div>
 
-          <div class="checklist-item" onclick="toggleChecklist(this, 'undergarments')">
+          <div class="checklist-item" data-cn-click="toggleChecklist(this, 'undergarments')">
             <div class="checklist-checkbox"></div>
             <div>
               <div class="checklist-title">4. Wear the Right Undergarments</div>
@@ -793,7 +793,7 @@
             </div>
           </div>
 
-          <div class="checklist-item" onclick="toggleChecklist(this, 'venue')">
+          <div class="checklist-item" data-cn-click="toggleChecklist(this, 'venue')">
             <div class="checklist-checkbox"></div>
             <div>
               <div class="checklist-title">5. Consider Your Venue &amp; Season</div>
@@ -801,7 +801,7 @@
             </div>
           </div>
 
-          <div class="checklist-item" onclick="toggleChecklist(this, 'budget')">
+          <div class="checklist-item" data-cn-click="toggleChecklist(this, 'budget')">
             <div class="checklist-checkbox"></div>
             <div>
               <div class="checklist-title">6. Know Your Budget ($1,200 – $4,000)</div>
@@ -809,7 +809,7 @@
             </div>
           </div>
 
-          <div class="checklist-item" onclick="toggleChecklist(this, 'feel')">
+          <div class="checklist-item" data-cn-click="toggleChecklist(this, 'feel')">
             <div class="checklist-checkbox"></div>
             <div>
               <div class="checklist-title">7. Focus on How You Feel</div>
@@ -826,10 +826,10 @@
         <p style="font-size:13.5px;color:var(--text-muted);margin:0 0 16px;font-weight:300;">Select how many loved ones you plan to bring to view our recommendations:</p>
 
         <div class="entourage-options">
-          <button class="entourage-btn" onclick="setEntourage(1, this)">1–2 Guests</button>
-          <button class="entourage-btn active" onclick="setEntourage(3, this)">3–4 Guests</button>
-          <button class="entourage-btn" onclick="setEntourage(5, this)">5–6 Guests</button>
-          <button class="entourage-btn" onclick="setEntourage(7, this)">7+ Guests</button>
+          <button class="entourage-btn" data-cn-click="setEntourage(1, this)">1–2 Guests</button>
+          <button class="entourage-btn active" data-cn-click="setEntourage(3, this)">3–4 Guests</button>
+          <button class="entourage-btn" data-cn-click="setEntourage(5, this)">5–6 Guests</button>
+          <button class="entourage-btn" data-cn-click="setEntourage(7, this)">7+ Guests</button>
         </div>
 
         <div class="entourage-feedback" id="entourageFeedback">
@@ -841,7 +841,7 @@
           <div class="eyebrow">Custom Timeline Planner</div>
           <h4 style="font-family:'Playfair Display',serif;font-size:20px;margin:0 0 12px;font-weight:700;">When Is Your Wedding?</h4>
           <div class="timeline-date-picker">
-            <select id="weddingMonth" onchange="calculateTimeline()">
+            <select id="weddingMonth" data-cn-change="calculateTimeline()">
               <option value="0">January</option>
               <option value="1">February</option>
               <option value="2">March</option>
@@ -855,7 +855,7 @@
               <option value="10">November</option>
               <option value="11">December</option>
             </select>
-            <select id="weddingYear" onchange="calculateTimeline()">
+            <select id="weddingYear" data-cn-change="calculateTimeline()">
               <option value="2026" selected>2026</option>
               <option value="2027">2027</option>
               <option value="2028">2028</option>
@@ -949,186 +949,10 @@
 </div>
 
 <div id="site-footer"></div>
-<script src="components.js?v=20261026m" defer></script>
+<script src="site-config.js?v=20261114a" defer></script>
+<script src="components.js?v=20261114a" defer></script>
 
-<script>
-// ════════════════════════════════════════════════════
-//  PHASE 3: VIP EXPERIENCE & INTERACTIVE SUITE ENGINE
-// ════════════════════════════════════════════════════
-
-// 1. Filter Appointment Categories
-function filterApptTypes(cat, btn) {
-  var buttons = document.querySelectorAll('.appt-seg-btn');
-  buttons.forEach(function(b) {
-    b.classList.remove('active');
-    b.setAttribute('aria-selected', 'false');
-  });
-  if (btn) {
-    btn.classList.add('active');
-    btn.setAttribute('aria-selected', 'true');
-  }
-
-  var cards = document.querySelectorAll('.appt-card');
-  cards.forEach(function(card) {
-    var cardCat = card.getAttribute('data-category');
-    if (cat === 'all' || cardCat === cat) {
-      card.style.display = 'flex';
-    } else {
-      card.style.display = 'none';
-    }
-  });
-}
-
-// 2. Select Experience Tier & Scroll to Scheduler
-function selectExperience(tierName, btn) {
-  var cards = document.querySelectorAll('.appt-card');
-  cards.forEach(function(c) { c.classList.remove('is-selected'); });
-  
-  var parentCard = btn.closest('.appt-card');
-  if (parentCard) parentCard.classList.add('is-selected');
-
-  var alertBox = document.getElementById('activeTierAlert');
-  var nameEl = document.getElementById('selectedTierName');
-  if (alertBox && nameEl) {
-    nameEl.textContent = tierName;
-    alertBox.style.display = 'flex';
-  }
-
-  var scheduler = document.getElementById('book-now');
-  if (scheduler) {
-    scheduler.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-}
-
-// 3. Quiz Persona Integration Handoff
-(function checkQuizPersona() {
-  var params = new URLSearchParams(window.location.search);
-  var personaKey = params.get('persona') || sessionStorage.getItem('cloudnine_quiz_persona');
-  var silKey = params.get('sil') || sessionStorage.getItem('cloudnine_quiz_silhouette');
-
-  var banner = document.getElementById('quizPersonaBanner');
-  var titleEl = document.getElementById('quizBannerTitle');
-  var descEl = document.getElementById('quizBannerDesc');
-
-  if (personaKey && banner && titleEl && descEl) {
-    var personas = {
-      'classic-romantic': { title: 'The Classic Romantic', sil: 'A-Line & Ballgown', vibe: 'Timeless elegance and regal lace' },
-      'romantic-dreamer': { title: 'The Romantic Dreamer', sil: 'Floral A-Line & Soft Tulle', vibe: 'Whimsical textures and botanical accents' },
-      'boho-spirit': { title: 'The Bohemian Spirit', sil: 'Relaxed Sheath & Flutter Sleeves', vibe: 'Effortless freedom and organic details' },
-      'modern-minimalist': { title: 'The Modern Minimalist', sil: 'Clean Crepe & Architectural Mermaid', vibe: 'Sharp lines and striking simplicity' }
-    };
-
-    var p = personas[personaKey] || { title: 'Curated Bridal Persona', sil: silKey || 'Favorite Silhouettes', vibe: 'Tailored styling' };
-    titleEl.textContent = 'Welcome, ' + p.title + ' Bride!';
-    descEl.textContent = 'We noted your aesthetic: ' + p.vibe + ' (Favorite Silhouette: ' + (silKey || p.sil) + '). Your stylist and fitting area are ready!';
-    banner.classList.add('is-visible');
-  }
-})();
-
-function copyQuizNotesToClipboard() {
-  var params = new URLSearchParams(window.location.search);
-  var personaKey = params.get('persona') || sessionStorage.getItem('cloudnine_quiz_persona') || 'Bridal Persona';
-  var silKey = params.get('sil') || sessionStorage.getItem('cloudnine_quiz_silhouette') || 'Custom Silhouette';
-  
-  var text = 'Cloud Nine Bridal Consultation Notes:\nPersona: ' + personaKey + '\nPreferred Silhouette: ' + silKey + '\nSaved via Style Quiz at cloudninepeoria.com';
-  
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(text).then(function() {
-      alert('Quiz notes copied to clipboard! Paste this into the "Special Requests" box in BridalLive below.');
-    });
-  } else {
-    prompt('Copy your appointment notes:', text);
-  }
-}
-
-// 4. Interactive Checklist Persistence
-function toggleChecklist(el, key) {
-  el.classList.toggle('is-checked');
-  try {
-    var stored = JSON.parse(localStorage.getItem('cloudnine_prep_checklist') || '{}');
-    stored[key] = el.classList.contains('is-checked');
-    localStorage.setItem('cloudnine_prep_checklist', JSON.stringify(stored));
-  } catch(e) {}
-}
-
-(function restoreChecklist() {
-  try {
-    var stored = JSON.parse(localStorage.getItem('cloudnine_prep_checklist') || '{}');
-    var items = document.querySelectorAll('.checklist-item');
-    items.forEach(function(item) {
-      var key = item.getAttribute('onclick').match(/'([^']+)'/);
-      if (key && key[1] && stored[key[1]]) {
-        item.classList.add('is-checked');
-      }
-    });
-  } catch(e) {}
-})();
-
-// 5. Entourage Size Advisor
-function setEntourage(size, btn) {
-  var buttons = document.querySelectorAll('.entourage-btn');
-  buttons.forEach(function(b) { b.classList.remove('active'); });
-  if (btn) btn.classList.add('active');
-
-  var feedback = document.getElementById('entourageFeedback');
-  if (!feedback) return;
-
-  if (size <= 2) {
-    feedback.innerHTML = '<strong>Intimate &amp; Focused (1–2 Guests):</strong> Peaceful, private, and zero distraction. Ideal for the bride who knows her taste and wants an intimate moment with her closest confidante.';
-  } else if (size <= 4) {
-    feedback.innerHTML = '<strong>The Sweet Spot (3–4 Guests):</strong> Highly recommended! Gives you genuine support, laughs, and diverse perspectives without overwhelming conflicting opinions when saying yes.';
-  } else if (size <= 6) {
-    feedback.innerHTML = '<strong>Celebration Group (5–6 Guests):</strong> Festive and lively! Our boutique seating comfortably accommodates up to 6 guests. Consider our <em>Robes &amp; Rosé</em> package for celebratory toasts.';
-  } else {
-    feedback.innerHTML = '<strong>Party Policy (Over 6 Guests):</strong> For the best and most comfortable experience, we ask brides bring no more than 6 guests and leave children at home. Please call us directly at <strong>(309) 693‑3830</strong> if you have special questions.';
-  }
-}
-
-// 6. Custom Wedding Timeline Calculator
-function calculateTimeline() {
-  var monthSelect = document.getElementById('weddingMonth');
-  var yearSelect = document.getElementById('weddingYear');
-  if (!monthSelect || !yearSelect) return;
-
-  var month = parseInt(monthSelect.value, 10);
-  var year = parseInt(yearSelect.value, 10);
-
-  var weddingDate = new Date(year, month, 1);
-  var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-  // Order: 6-9 months prior
-  var orderStart = new Date(weddingDate);
-  orderStart.setMonth(orderStart.getMonth() - 8);
-  var orderEnd = new Date(weddingDate);
-  orderEnd.setMonth(orderEnd.getMonth() - 6);
-
-  // Alterations: 2-3 months prior
-  var alterStart = new Date(weddingDate);
-  alterStart.setMonth(alterStart.getMonth() - 3);
-  var alterEnd = new Date(weddingDate);
-  alterEnd.setMonth(alterEnd.getMonth() - 2);
-
-  var orderEl = document.getElementById('timeOrderDate');
-  var alterEl = document.getElementById('timeAlterDate');
-
-  if (orderEl) orderEl.textContent = months[orderStart.getMonth()] + ' – ' + months[orderEnd.getMonth()] + ' ' + orderEnd.getFullYear();
-  if (alterEl) alterEl.textContent = months[alterStart.getMonth()] + ' – ' + months[alterEnd.getMonth()] + ' ' + alterEnd.getFullYear();
-}
-calculateTimeline();
-
-// 7. Smooth Scroll on Hash
-(function() {
-  function scrollToBook() {
-    var hash = window.location.hash;
-    if (hash === '#book-now' || hash === '#app') {
-      var el = document.getElementById('book-now');
-      if (el) setTimeout(function() { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 400);
-    }
-  }
-  scrollToBook();
-  window.addEventListener('hashchange', scrollToBook);
-})();
-</script>
+<script src="js/pages/appointments-1.js?v=20261114a" defer></script>
 
 </main>
 </body>

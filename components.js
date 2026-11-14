@@ -170,7 +170,7 @@ function navHTML() {
 
         <!-- Live Peoria Boutique Status with Interactive Popover -->
         <div class="nav-status-wrap" id="navStatusWrap">
-          <button type="button" class="nav-live-status-pill status--open" id="navLiveStatusPill" aria-label="Peoria Boutique Operating Hours" onclick="toggleNavStatusPopover(event)">
+          <button type="button" class="nav-live-status-pill status--open" id="navLiveStatusPill" aria-label="Peoria Boutique Operating Hours" data-cn-click="toggleNavStatusPopover(event)">
             <span class="live-dot"></span>
             <span id="navLiveStatusText">Peoria Boutique</span>
           </button>
@@ -202,7 +202,7 @@ function navHTML() {
         </div>
 
         <!-- Search Bar / Pill Button (Cmd+K) -->
-        <button type="button" class="nav-search-bar-btn" onclick="openSearch()" aria-label="Search by dress name or style number (Cmd+K)" title="Search by dress name or style number (Cmd+K)">
+        <button type="button" class="nav-search-bar-btn" data-cn-click="openSearch()" aria-label="Search by dress name or style number (Cmd+K)" title="Search by dress name or style number (Cmd+K)">
           <svg class="nav-search-bar-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
           <span class="nav-search-bar-text">Search name or #style…</span>
           <span class="nav-search-bar-short">Search</span>
@@ -216,11 +216,11 @@ function navHTML() {
       </div>
 
       <!-- Mobile triggers -->
-      <button type="button" class="nav-search-mobile" aria-label="Search dresses by name or style number" onclick="openSearch()">
+      <button type="button" class="nav-search-mobile" aria-label="Search dresses by name or style number" data-cn-click="openSearch()">
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         <span class="nav-search-mobile-label">Search</span>
       </button>
-      <button class="nav-hamburger" aria-label="Open navigation menu" aria-controls="mobileMenu" aria-expanded="false" onclick="openMobileMenu()">
+      <button class="nav-hamburger" aria-label="Open navigation menu" aria-controls="mobileMenu" aria-expanded="false" data-cn-click="openMobileMenu()">
         <span></span><span></span><span></span>
       </button>
 
@@ -263,14 +263,14 @@ function navHTML() {
 
   <!-- MOBILE MENU DRAWER -->
   <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu" tabindex="-1">
-    <div class="mobile-menu-backdrop" onclick="closeMobileMenu()"></div>
+    <div class="mobile-menu-backdrop" data-cn-click="closeMobileMenu()"></div>
     <div class="mobile-menu-drawer">
 
       <div class="mobile-menu-head">
         <a href="index.html" class="mobile-menu-brand" aria-label="Cloud Nine Bridal Boutique — Home">
           <img src="${LOGO}" alt="Cloud Nine Bridal Boutique" class="mobile-menu-logo-img" width="120" height="68" loading="lazy" decoding="async"/>
         </a>
-        <button class="mobile-menu-close" onclick="closeMobileMenu()" aria-label="Close navigation menu">
+        <button class="mobile-menu-close" data-cn-click="closeMobileMenu()" aria-label="Close navigation menu">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
         </button>
       </div>
@@ -283,7 +283,7 @@ function navHTML() {
 
       <!-- Prominent Search Bar inside Mobile Menu Drawer -->
       <div class="mobile-menu-search-wrap">
-        <button type="button" class="mobile-menu-search-bar" onclick="closeMobileMenu();setTimeout(openSearch,180);" aria-label="Search by dress name or style number">
+        <button type="button" class="mobile-menu-search-bar" data-cn-click="closeMobileMenu();setTimeout(openSearch,180);" aria-label="Search by dress name or style number">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
           <span>Search dress name or #style…</span>
         </button>
@@ -469,7 +469,7 @@ function footerHTML() {
           <div class="footer-newsletter-wrap" style="margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);">
             <div class="footer-col-title" style="margin-bottom:6px;">Get Inspired</div>
             <p class="footer-newsletter-desc" style="font-size:12px;color:rgba(28,78,80,.45);margin-bottom:14px;line-height:1.65;">New arrivals, seasonal events &amp; bridal inspo — delivered to your inbox.</p>
-            <form class="footer-subscribe-form" onsubmit="submitSubscribe(event, this)">
+            <form class="footer-subscribe-form" data-cn-submit="submitSubscribe(event, this)">
               <input type="email" name="email" placeholder="your@email.com" required aria-label="Email address"/>
               <button type="submit">Subscribe</button>
             </form>
@@ -490,34 +490,34 @@ function footerHTML() {
 }
 
 function searchOverlayHTML() {
-  return `<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search" onclick="closeSearchBg(event)">
+  return `<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search" data-cn-click="closeSearchBg(event)">
   <div class="search-panel" role="search">
     <div class="search-top-row">
       <span class="search-eyebrow">Search by Dress Name or Style #</span>
-      <button class="search-close-btn" onclick="closeSearch()" aria-label="Close">Close</button>
+      <button class="search-close-btn" data-cn-click="closeSearch()" aria-label="Close">Close</button>
     </div>
     <div class="search-input-wrap">
-      <input type="search" id="searchInput" class="search-input" placeholder="Enter dress name (Meredith, Addie) or style # (D4257, 57042)…" autocomplete="off" spellcheck="false" aria-label="Search by dress name or style number" oninput="onSearchInput(this.value)" onkeydown="onSearchKeyDown(event)"/>
-      <button class="search-clear-btn" id="searchClearBtn" onclick="clearSearch()" style="display:none" aria-label="Clear">Clear</button>
+      <input type="search" id="searchInput" class="search-input" placeholder="Enter dress name (Meredith, Addie) or style # (D4257, 57042)…" autocomplete="off" spellcheck="false" aria-label="Search by dress name or style number" data-cn-input="onSearchInput(this.value)" data-cn-keydown="onSearchKeyDown(event)"/>
+      <button class="search-clear-btn" id="searchClearBtn" data-cn-click="clearSearch()" style="display:none" aria-label="Clear">Clear</button>
     </div>
     <div class="search-scope-bar" id="searchScopeBar" role="tablist" aria-label="Filter search by collection">
-      <button type="button" class="search-scope-pill active" data-scope="all" role="tab" aria-selected="true" onclick="setSearchScope('all')">All Collections <span class="scope-count" id="scopeCount-all"></span></button>
-      <button type="button" class="search-scope-pill" data-scope="bridal" role="tab" aria-selected="false" onclick="setSearchScope('bridal')">Bridal <span class="scope-count" id="scopeCount-bridal"></span></button>
-      <button type="button" class="search-scope-pill" data-scope="prom" role="tab" aria-selected="false" onclick="setSearchScope('prom')">Prom <span class="scope-count" id="scopeCount-prom"></span></button>
-      <button type="button" class="search-scope-pill" data-scope="hoco" role="tab" aria-selected="false" onclick="setSearchScope('hoco')">HOCO <span class="scope-count" id="scopeCount-hoco"></span></button>
-      <button type="button" class="search-scope-pill" data-scope="mothers" role="tab" aria-selected="false" onclick="setSearchScope('mothers')">Mothers <span class="scope-count" id="scopeCount-mothers"></span></button>
+      <button type="button" class="search-scope-pill active" data-scope="all" role="tab" aria-selected="true" data-cn-click="setSearchScope('all')">All Collections <span class="scope-count" id="scopeCount-all"></span></button>
+      <button type="button" class="search-scope-pill" data-scope="bridal" role="tab" aria-selected="false" data-cn-click="setSearchScope('bridal')">Bridal <span class="scope-count" id="scopeCount-bridal"></span></button>
+      <button type="button" class="search-scope-pill" data-scope="prom" role="tab" aria-selected="false" data-cn-click="setSearchScope('prom')">Prom <span class="scope-count" id="scopeCount-prom"></span></button>
+      <button type="button" class="search-scope-pill" data-scope="hoco" role="tab" aria-selected="false" data-cn-click="setSearchScope('hoco')">HOCO <span class="scope-count" id="scopeCount-hoco"></span></button>
+      <button type="button" class="search-scope-pill" data-scope="mothers" role="tab" aria-selected="false" data-cn-click="setSearchScope('mothers')">Mothers <span class="scope-count" id="scopeCount-mothers"></span></button>
     </div>
     <div class="search-quick-tags" id="searchQuickTags">
       <span class="search-quick-label">Try Dress Names &amp; Style Numbers</span>
       <div class="search-quick-pills">
-        <button type="button" class="search-quick-pill" onclick="quickSearch('Dakota Leigh')">Dakota Leigh</button>
-        <button type="button" class="search-quick-pill" onclick="quickSearch('Meredith')">Meredith</button>
-        <button type="button" class="search-quick-pill" onclick="quickSearch('Addie')">Addie</button>
-        <button type="button" class="search-quick-pill" onclick="quickSearch('#25MB849C01')">#25MB849C01</button>
-        <button type="button" class="search-quick-pill" onclick="quickSearch('#D4257')">#D4257</button>
-        <button type="button" class="search-quick-pill" onclick="quickSearch('#SY8166')">#SY8166</button>
-        <button type="button" class="search-quick-pill" onclick="quickSearch('#57042')">#57042</button>
-        <button type="button" class="search-quick-pill" onclick="quickSearch('#88904')">#88904</button>
+        <button type="button" class="search-quick-pill" data-cn-click="quickSearch('Dakota Leigh')">Dakota Leigh</button>
+        <button type="button" class="search-quick-pill" data-cn-click="quickSearch('Meredith')">Meredith</button>
+        <button type="button" class="search-quick-pill" data-cn-click="quickSearch('Addie')">Addie</button>
+        <button type="button" class="search-quick-pill" data-cn-click="quickSearch('#25MB849C01')">#25MB849C01</button>
+        <button type="button" class="search-quick-pill" data-cn-click="quickSearch('#D4257')">#D4257</button>
+        <button type="button" class="search-quick-pill" data-cn-click="quickSearch('#SY8166')">#SY8166</button>
+        <button type="button" class="search-quick-pill" data-cn-click="quickSearch('#57042')">#57042</button>
+        <button type="button" class="search-quick-pill" data-cn-click="quickSearch('#88904')">#88904</button>
       </div>
     </div>
     <div id="searchResults" class="search-results" aria-live="polite" aria-atomic="false" role="region" aria-label="Search results"></div>
@@ -1030,7 +1030,7 @@ window.onSearchInput = async function(val) {
 
       const headerHtml = '<div class="search-results-header">' +
         '<div class="search-results-label">' + escapeHTML(totalMatches) + ' matching style' + (totalMatches > 1 ? 's' : '') + escapeHTML(scopeFallbackNote) + '</div>' +
-        (totalMatches > 1 ? '<button type="button" class="search-view-all-link" onclick="viewAllSearchMatches()">Filter in Catalog &rarr;</button>' : '') +
+        (totalMatches > 1 ? '<button type="button" class="search-view-all-link" data-cn-click="viewAllSearchMatches()">Filter in Catalog &rarr;</button>' : '') +
         '</div>';
 
       const gridHtml = '<div class="search-results-grid">' + topMatches.map(function(p, i) {
@@ -1058,7 +1058,7 @@ window.onSearchInput = async function(val) {
       }).join('') + '</div>';
 
       const footerCtaHtml = totalMatches > 1
-        ? '<div class="search-results-footer"><button type="button" class="search-view-all-btn" onclick="viewAllSearchMatches()">View All ' + escapeHTML(totalMatches) + ' Matching Styles in Catalog &rarr;</button></div>'
+        ? '<div class="search-results-footer"><button type="button" class="search-view-all-btn" data-cn-click="viewAllSearchMatches()">View All ' + escapeHTML(totalMatches) + ' Matching Styles in Catalog &rarr;</button></div>'
         : '';
 
       results.innerHTML = headerHtml + gridHtml + footerCtaHtml;
@@ -1361,26 +1361,96 @@ function initCursor() {
   });
 }
 
-// ── SUBSCRIBE FORM (footer) ──
-// Replace YOUR_SUBSCRIBE_FORM_ID with your Formspree ID
-const FORMSPREE_SUB_ID = 'YOUR_SUBSCRIBE_FORM_ID';
+// ── SITE FORMS ──
+// Endpoints live in site-config.js (window.SITE_CONFIG). Empty values stay
+// empty: the UI reports a failure instead of a fake success.
+var FORM_UNCONFIGURED_MSG = 'We can\'t send this from the website yet. Please call (309) 693-3830 or email sayyes@cloudninepeoria.com.';
+var FORM_FAILED_MSG = 'We couldn\'t send that. Please call (309) 693-3830 or email sayyes@cloudninepeoria.com.';
 
-window.submitSubscribe = async function(e, form) {
-  e.preventDefault();
-  if (FORMSPREE_SUB_ID === 'YOUR_SUBSCRIBE_FORM_ID') {
-    form.innerHTML = '<p style="color:rgba(255,255,255,.7);font-size:13px;">You\'re on the list!</p>';
-    return;
+function siteFormEndpoint(key) {
+  var cfg = window.SITE_CONFIG || {};
+  return String(cfg[key] || '').trim();
+}
+
+function isDeliverableEndpoint(raw) {
+  if (!raw || /YOUR_|PLACEHOLDER|example\.com/i.test(raw)) return false;
+  var parsed;
+  try { parsed = new URL(raw, window.location.origin); }
+  catch (e) { return false; }
+  if (parsed.protocol !== 'https:') return false;
+  // This host is static. A same-origin POST (the old Netlify "/" pattern)
+  // returns the HTML page and does not deliver the message.
+  if (parsed.origin === window.location.origin) return false;
+  return true;
+}
+
+function showFormError(form, message) {
+  if (!form) return;
+  var el = form.querySelector('.form-send-error');
+  if (!el) {
+    el = document.createElement('p');
+    el.className = 'form-send-error';
+    el.setAttribute('role', 'alert');
+    form.appendChild(el);
   }
+  el.textContent = message;
+}
+
+window.submitSiteForm = async function(form, endpoint) {
+  var btn = form.querySelector('[type="submit"]');
+  var label = btn ? (btn.querySelector('span') || btn) : null;
+  var original = label ? label.textContent : '';
+  var existing = form.querySelector('.form-send-error');
+  if (existing) existing.remove();
+  if (btn) btn.disabled = true;
+  if (label) label.textContent = 'Sending…';
+
+  function restore() {
+    if (btn) btn.disabled = false;
+    if (label) label.textContent = original || 'Try Again';
+  }
+
+  if (!isDeliverableEndpoint(endpoint)) {
+    showFormError(form, FORM_UNCONFIGURED_MSG);
+    restore();
+    return false;
+  }
+
   try {
-    const res = await fetch(`https://formspree.io/f/${FORMSPREE_SUB_ID}`, {
+    var res = await fetch(endpoint, {
       method: 'POST',
       headers: { 'Accept': 'application/json' },
       body: new FormData(form)
     });
-    if (res.ok) {
-      form.innerHTML = '<p style="color:rgba(255,255,255,.7);font-size:13px;">You\'re on the list!</p>';
+    var type = (res.headers.get('content-type') || '').toLowerCase();
+    if (!res.ok || type.indexOf('text/html') !== -1) {
+      showFormError(form, FORM_FAILED_MSG);
+      restore();
+      return false;
     }
-  } catch { /* silent */ }
+    if (type.indexOf('json') !== -1) {
+      var data = null;
+      try { data = await res.json(); } catch (e) { data = null; }
+      if (data && (data.ok === false || data.error || (data.errors && Object.keys(data.errors).length))) {
+        showFormError(form, FORM_FAILED_MSG);
+        restore();
+        return false;
+      }
+    }
+    restore();
+    return true;
+  } catch (err) {
+    showFormError(form, FORM_FAILED_MSG);
+    restore();
+    return false;
+  }
+};
+
+window.submitSubscribe = async function(e, form) {
+  e.preventDefault();
+  var ok = await window.submitSiteForm(form, siteFormEndpoint('newsletterFormEndpoint'));
+  if (!ok) return;
+  form.innerHTML = '<p class="footer-subscribe-success">You\'re on the list!</p>';
 };
 
 /* ════════════════════════════════════════════════════════════
@@ -1674,23 +1744,7 @@ function initSpeculationRules() {
     if (document.querySelector('script[type="speculationrules"]')) return;
     var specScript = document.createElement('script');
     specScript.type = 'speculationrules';
-    specScript.textContent = JSON.stringify({
-      prefetch: [
-        {
-          source: 'list',
-          urls: [
-            'bridal-catalog.html',
-            'prom-catalog.html',
-            'hoco-catalog.html',
-            'mothers.html',
-            'appointments.html',
-            'contact.html',
-            'dress.html'
-          ],
-          eagerness: 'moderate'
-        }
-      ]
-    });
+    specScript.src = 'speculation-rules.json';
     document.head.appendChild(specScript);
   } catch (e) {}
 }
@@ -1869,7 +1923,7 @@ function initLookbookConcierge() {
             '<button type="button" class="btn-primary lc-copy-btn" id="lcCopyStylesBtn">' +
               '<span>Copy Profile &amp; Style Numbers</span>' +
             '</button>' +
-            (quizData ? '<button type="button" class="btn-outline lc-clear-quiz-btn" id="lcClearQuizApptBtn" onclick="window.clearSharedQuizResults()"><span>✕ Clear Quiz Results</span></button>' : '') +
+            (quizData ? '<button type="button" class="btn-outline lc-clear-quiz-btn" id="lcClearQuizApptBtn" data-cn-click="window.clearSharedQuizResults()"><span>✕ Clear Quiz Results</span></button>' : '') +
           '</div>' +
         '</div>' +
         (pillsHtml ? '<div class="lc-pills-row">' + pillsHtml + '</div>' : '') +
@@ -1946,7 +2000,7 @@ function initLookbookConcierge() {
               '<a href="quiz.html" class="btn-outline lc-dossier-btn" style="text-decoration:none;display:inline-flex;align-items:center;justify-content:center;">' +
                 '<span>Retake / View Quiz</span>' +
               '</a>' +
-              '<button type="button" class="btn-outline lc-clear-quiz-btn" id="lcClearQuizContactBtn" onclick="window.clearSharedQuizResults()">' +
+              '<button type="button" class="btn-outline lc-clear-quiz-btn" id="lcClearQuizContactBtn" data-cn-click="window.clearSharedQuizResults()">' +
                 '<span>✕ Clear Quiz Results</span>' +
               '</button>' +
             '</div>' +
@@ -1983,7 +2037,7 @@ function initLookbookConcierge() {
         badge.className = 'lc-contact-badge';
         badge.innerHTML =
           '<span>✓ Pre-loaded ' + escapeHTML(quizData && quizData.title ? quizData.title + (styleLabels.length ? ' + ' + styleLabels.length + ' matched styles' : '') : styleLabels.length + ' saved styles') + '</span>' +
-          '<button type="button" class="lc-badge-clear-btn" onclick="window.clearSharedQuizResults()" aria-label="Clear pre-loaded quiz results">✕ Clear</button>';
+          '<button type="button" class="lc-badge-clear-btn" data-cn-click="window.clearSharedQuizResults()" aria-label="Clear pre-loaded quiz results">✕ Clear</button>';
         group.insertBefore(badge, field);
       }
     }
@@ -2241,5 +2295,214 @@ window.getWishlistItems = function() {
     });
   }
 })();
+
+/* ── CSP-safe stand-ins for former inline handlers ── */
+window.toggleShowAll = function(gridId, className, btn, labelSelector, lessText, moreText) {
+  var grid = document.getElementById(gridId);
+  if (!grid || !btn) return;
+  var open = grid.classList.toggle(className);
+  var label = labelSelector ? btn.querySelector(labelSelector) : btn;
+  if (label) label.textContent = open ? lessText : moreText;
+};
+
+var CN_ALLOW = {
+  calculateTimeline: 1, clearAllFilters: 1, clearQuizResults: 1, clearSearch: 1,
+  clearSharedQuizResults: 1, closeBg: 1, closeMobileFilters: 1, closeMobileMenu: 1,
+  closeModal: 1, closeQuizModal: 1, closeSearch: 1, closeSearchBg: 1,
+  copyQuizNotesToClipboard: 1, filterApptTypes: 1, filterBrides: 1, goBack: 1,
+  goNext: 1, goTo: 1, handleRackCardClick: 1, onSearchInput: 1, onSearchKeyDown: 1,
+  openMobileFilters: 1, openMobileMenu: 1, openSearch: 1, previewIntroPersona: 1,
+  quickSearch: 1, removeFilter: 1, resumeSavedQuizResults: 1, retake: 1,
+  selectExperience: 1, selectOption: 1, setDensity: 1, setEntourage: 1, setFilter: 1,
+  setSearchScope: 1, setSquad: 1, setTunerDesigner: 1, setTunerSilhouette: 1,
+  sharePersonaResults: 1, shareResultsToContact: 1, shiftImg: 1, shiftQuizModalImg: 1,
+  showQuizModalImg: 1, shuffleRack: 1, submitContact: 1, submitForm: 1,
+  submitSubscribe: 1, switchRackCardAngle: 1, toggleAcc: 1, toggleChecklist: 1,
+  toggleExpFaq: 1, toggleFacetDropdown: 1, toggleNavStatusPopover: 1,
+  toggleShowAll: 1, viewAllSearchMatches: 1
+};
+
+function cnRunAction(src, el, event) {
+  var i = 0;
+  function skip() {
+    while (src.charCodeAt(i) === 32 || src.charCodeAt(i) === 9 || src.charCodeAt(i) === 10 || src.charCodeAt(i) === 13) i++;
+  }
+  function parseIdent() {
+    skip();
+    if (!/[A-Za-z_$]/.test(src.charAt(i))) throw new Error('expected name');
+    var start = i++;
+    while (/[\w$]/.test(src.charAt(i))) i++;
+    return src.slice(start, i);
+  }
+  function parsePath() {
+    var parts = [parseIdent()];
+    while (src.charAt(i) === '.') {
+      i++;
+      parts.push(parseIdent());
+    }
+    return parts;
+  }
+  function parseString() {
+    var q = src.charAt(i++);
+    var out = '';
+    while (i < src.length && src.charAt(i) !== q) {
+      if (src.charAt(i) === '\\') {
+        i++;
+        out += src.charAt(i++) || '';
+      } else {
+        out += src.charAt(i++);
+      }
+    }
+    if (src.charAt(i) !== q) throw new Error('unclosed string');
+    i++;
+    return out;
+  }
+  function parseNumber() {
+    var start = i;
+    if (src.charAt(i) === '-') i++;
+    if (!/[0-9]/.test(src.charAt(i))) throw new Error('expected number');
+    while (/[0-9]/.test(src.charAt(i))) i++;
+    if (src.charAt(i) === '.') {
+      i++;
+      while (/[0-9]/.test(src.charAt(i))) i++;
+    }
+    return Number(src.slice(start, i));
+  }
+  function parseValue() {
+    skip();
+    var c = src.charAt(i);
+    if (c === "'" || c === '"') return { lit: parseString() };
+    if (c === '-' || (c >= '0' && c <= '9')) return { lit: parseNumber() };
+    var path = parsePath();
+    if (path.length === 1 && (path[0] === 'true' || path[0] === 'false' || path[0] === 'null')) {
+      return { lit: path[0] === 'true' ? true : path[0] === 'false' ? false : null };
+    }
+    return { ref: path };
+  }
+  function parseCall() {
+    var path = parsePath();
+    skip();
+    if (src.charAt(i) !== '(') throw new Error('expected call');
+    i++;
+    var args = [];
+    skip();
+    if (src.charAt(i) !== ')') {
+      while (true) {
+        args.push(parseValue());
+        skip();
+        if (src.charAt(i) === ',') { i++; continue; }
+        break;
+      }
+    }
+    if (src.charAt(i) !== ')') throw new Error('expected )');
+    i++;
+    return { path: path, args: args };
+  }
+  function resolveRef(path) {
+    var obj;
+    var start;
+    if (path[0] === 'this') { obj = el; start = 1; }
+    else if (path[0] === 'event') { obj = event; start = 1; }
+    else if (path.length === 1 && CN_ALLOW[path[0]]) return window[path[0]];
+    else return undefined;
+    for (var k = start; k < path.length; k++) {
+      if (obj == null) return undefined;
+      obj = obj[path[k]];
+    }
+    return obj;
+  }
+  function evalArg(arg) {
+    if (arg && Object.prototype.hasOwnProperty.call(arg, 'lit')) return arg.lit;
+    return resolveRef(arg.ref);
+  }
+  function runCall(call) {
+    var path = call.path;
+    var args = call.args.map(evalArg);
+    if (path.length === 1 && path[0] === 'setTimeout') {
+      var fnName = call.args[0] && call.args[0].ref && call.args[0].ref.length === 1 ? call.args[0].ref[0] : '';
+      if (CN_ALLOW[fnName] && typeof args[0] === 'function' && typeof args[1] === 'number') {
+        setTimeout(args[0], args[1]);
+        return;
+      }
+      throw new Error('blocked setTimeout');
+    }
+    if (path[0] === 'event' && path.length === 2 && (path[1] === 'stopPropagation' || path[1] === 'preventDefault')) {
+      if (event && typeof event[path[1]] === 'function') event[path[1]]();
+      return;
+    }
+    if (path[0] === 'location' && path.length === 2 && path[1] === 'reload') {
+      location.reload();
+      return;
+    }
+    if (path[0] === 'window' && path.length === 2 && CN_ALLOW[path[1]] && typeof window[path[1]] === 'function') {
+      window[path[1]].apply(window, args);
+      return;
+    }
+    if (path.length === 1 && CN_ALLOW[path[0]] && typeof window[path[0]] === 'function') {
+      window[path[0]].apply(window, args);
+      return;
+    }
+    throw new Error('blocked ' + path.join('.'));
+  }
+
+  skip();
+  while (i < src.length) {
+    runCall(parseCall());
+    skip();
+    if (src.charAt(i) === ';') { i++; skip(); continue; }
+    break;
+  }
+  if (i < src.length) throw new Error('trailing ' + src.slice(i, i + 24));
+}
+window.cnRunAction = cnRunAction;
+
+function cnDispatchAction(e) {
+  var start = e.target;
+  if (!start) return;
+  if (start.nodeType !== 1) start = start.parentElement;
+  if (!start || !start.closest) return;
+  var node = start.closest('[data-cn-' + e.type + ']');
+  if (!node) return;
+  if (e.type === 'submit') e.preventDefault();
+  var code = node.getAttribute('data-cn-' + e.type);
+  if (!code) return;
+  try {
+    cnRunAction(code, node, e);
+  } catch (err) {
+    console.warn('Blocked or invalid action', err && err.message ? err.message : err);
+  }
+}
+['click', 'submit', 'input', 'keydown', 'change'].forEach(function(type) {
+  document.addEventListener(type, cnDispatchAction);
+});
+
+function cnMarkImgLoaded(img) {
+  img.classList.add('img-loaded');
+  if (img.parentElement) img.parentElement.classList.remove('loading');
+}
+function cnApplyImgFallback(img) {
+  var next = img.getAttribute('data-fallback-src');
+  if (!next || img.getAttribute('data-fallback-applied') === '1') return;
+  img.setAttribute('data-fallback-applied', '1');
+  img.src = next;
+}
+document.addEventListener('load', function(e) {
+  var t = e.target;
+  if (t && t.tagName === 'IMG' && t.hasAttribute('data-img-fade')) cnMarkImgLoaded(t);
+}, true);
+document.addEventListener('error', function(e) {
+  var t = e.target;
+  if (!t || t.tagName !== 'IMG') return;
+  if (t.hasAttribute('data-img-fade') && t.parentElement) t.parentElement.classList.remove('loading');
+  if (t.hasAttribute('data-fallback-src')) cnApplyImgFallback(t);
+}, true);
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('img[data-img-fade]').forEach(function(img) {
+    if (img.complete && img.naturalWidth > 0) cnMarkImgLoaded(img);
+  });
+  document.querySelectorAll('img[data-fallback-src]').forEach(function(img) {
+    if (img.complete && img.naturalWidth === 0) cnApplyImgFallback(img);
+  });
+});
 
 

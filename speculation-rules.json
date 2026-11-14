@@ -1,0 +1,17 @@
+{
+  "prefetch": [
+    {
+      "source": "list",
+      "urls": [
+        "bridal-catalog.html",
+        "prom-catalog.html",
+        "hoco-catalog.html",
+        "mothers.html",
+        "appointments.html",
+        "contact.html",
+        "dress.html"
+      ],
+      "eagerness": "moderate"
+    }
+  ]
+}

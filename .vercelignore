@@ -1,0 +1,5 @@
+# Dev-only files. The live site does not load these.
+# Local catalog checks: node test-catalogs.js
+# Local visual notes: ?agentation=1 on localhost (see components.js)
+test-catalogs.js
+src/
