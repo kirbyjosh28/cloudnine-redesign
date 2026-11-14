@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"/>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" media="print" onload="this.media='all'"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"/>
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"/></noscript>
   <link rel="preload" as="image" href="images/real/prom/01-11961.webp" type="image/webp" fetchpriority="high"/>
   <link rel="stylesheet" href="shared.css?v=20261026m"/>
@@ -824,9 +824,9 @@
       <h3 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;margin:0 0 10px;color:var(--text);">How Many in Your Squad?</h3>
       
       <div class="squad-size-picker">
-        <button class="squad-size-btn active" onclick="setSquad(2, this)">2 Besties</button>
-        <button class="squad-size-btn" onclick="setSquad(4, this)">3–4 Girls</button>
-        <button class="squad-size-btn" onclick="setSquad(6, this)">5–6 Squad</button>
+        <button class="squad-size-btn active" data-cn-click="setSquad(2, this)">2 Besties</button>
+        <button class="squad-size-btn" data-cn-click="setSquad(4, this)">3–4 Girls</button>
+        <button class="squad-size-btn" data-cn-click="setSquad(6, this)">5–6 Squad</button>
       </div>
 
       <div class="squad-feedback" id="squadFeedback">
@@ -921,7 +921,7 @@
   </div>
 
   <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;max-width:1360px;margin:0 auto;">
-    <button type="button" class="designer-pill-link" id="toggleAllPromPhotosBtn" onclick="var g=document.getElementById('promIgGrid');var open=g.classList.toggle('show-all-ig');this.textContent=open?'Show Fewer Photos':'View All 20 Prom Girls Photos +';" style="cursor:pointer;">View All 20 Prom Girls Photos +</button>
+    <button type="button" class="designer-pill-link" id="toggleAllPromPhotosBtn" data-cn-click="toggleShowAll('promIgGrid', 'show-all-ig', this, '', 'Show Fewer Photos', 'View All 20 Prom Girls Photos +')" style="cursor:pointer;">View All 20 Prom Girls Photos +</button>
     <a href="contact.html?subject=Prom+Photo+Submission" class="btn-prom-primary">Want to Be Featured? Submit Your Prom Photos →</a>
   </div>
 </div>
@@ -1107,38 +1107,10 @@
 </div>
 
 <div id="site-footer"></div>
-<script src="components.js?v=20261026m" defer></script>
+<script src="site-config.js?v=20261114a" defer></script>
+<script src="components.js?v=20261114a" defer></script>
 
-<script>
-function setSquad(size, btn) {
-  var buttons = document.querySelectorAll('.squad-size-btn');
-  buttons.forEach(function(b) { b.classList.remove('active'); });
-  if (btn) btn.classList.add('active');
-
-  var feedback = document.getElementById('squadFeedback');
-  if (!feedback) return;
-
-  if (size <= 2) {
-    feedback.innerHTML = '<strong>Dynamic Duo (2 Girls):</strong> Ideal for two friends shopping together. Fill out your short check-in form when you arrive and compare looks side by side.';
-  } else if (size <= 4) {
-    feedback.innerHTML = '<strong>Prom Party (3–4 Girls):</strong> Our most popular group size. Sign in together at the front desk for side-by-side fitting rooms and mirrors.';
-  } else {
-    feedback.innerHTML = '<strong>Full Prom Squad (5–6 Girls):</strong> Walk in together during store hours at 4701 N. University St and our team will coordinate fitting rooms for your group.';
-  }
-}
-window.addEventListener('load', function() {
-  setTimeout(function() {
-    var v = document.getElementById('promHeroVideo');
-    if (!v || (navigator.connection && navigator.connection.saveData)) return;
-    var s = v.querySelector('source[data-src]');
-    if (s) {
-      s.src = s.getAttribute('data-src');
-      v.load();
-      v.play().catch(function(){});
-    }
-  }, 2500);
-}, { once: true });
-</script>
+<script src="js/pages/prom-1.js?v=20261114a" defer></script>
 
 </main>
 </body>

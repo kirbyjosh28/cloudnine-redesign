@@ -30,12 +30,24 @@ const htmlFiles = [
   { file: 'mothers.html', cat: 'mothers', facets: ['des'] }
 ];
 
+function readPageBundle(file) {
+  const filePath = path.join(__dirname, file);
+  let content = fs.readFileSync(filePath, 'utf8');
+  const srcs = [...content.matchAll(/<script[^>]+src="([^"]+)"/gi)].map(m => m[1].split('?')[0]);
+  srcs.forEach(src => {
+    if (/^https?:/i.test(src)) return;
+    const bundled = path.join(__dirname, src);
+    if (fs.existsSync(bundled)) content += '\n' + fs.readFileSync(bundled, 'utf8');
+  });
+  return content;
+}
+
 htmlFiles.forEach(({ file, cat, facets }) => {
   const filePath = path.join(__dirname, file);
   if (!fs.existsSync(filePath)) {
     throw new Error(`HTML file missing: ${file}`);
   }
-  const content = fs.readFileSync(filePath, 'utf8');
+  const content = readPageBundle(file);
   
   if (!content.includes('src="catalog-engine.js')) {
     throw new Error(`${file} is missing src="catalog-engine.js" script reference`);
@@ -97,6 +109,21 @@ if (typeof sandbox.window.CloudNineCatalog !== 'function') {
 }
 console.log('[PASS] catalog-engine.js: Class successfully loaded and evaluated in sandbox environment');
 
+const vercel = JSON.parse(fs.readFileSync(path.join(__dirname, 'vercel.json'), 'utf8'));
+const csp = vercel.headers.flatMap(h => h.headers).find(h => h.key === 'Content-Security-Policy').value;
+const scriptSrc = csp.split(';').map(s => s.trim()).find(s => s.startsWith('script-src '));
+if (!scriptSrc || /unsafe-inline/.test(scriptSrc)) {
+  throw new Error('script-src still allows unsafe-inline: ' + scriptSrc);
+}
+if (!csp.includes("script-src-attr 'none'")) {
+  throw new Error('CSP is missing script-src-attr none');
+}
+const formAction = csp.split(';').map(s => s.trim()).find(s => s.startsWith('form-action'));
+if (!formAction || formAction.includes("'self'")) {
+  throw new Error('form-action still allows same-origin posts: ' + formAction);
+}
+console.log('[PASS] CSP: script-src has no unsafe-inline and form-action is not self');
+
 // Test matching logic with sample data
 const bridalData = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/bridal-products.json'), 'utf8'));
 const promData = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/prom-products.json'), 'utf8'));
@@ -122,6 +149,39 @@ if (bridalNonDressQuery.length !== 0) {
 }
 console.log(`[PASS] Bridal Unfiltered: ${bridalAll.length} products`);
 console.log(`[PASS] Bridal Strict Search ("sparkly" attribute excluded): 0 products matched`);
+
+const pillEls = {};
+function pillEl(id) {
+  if (!pillEls[id]) {
+    pillEls[id] = {
+      id,
+      innerHTML: '',
+      textContent: '',
+      style: {},
+      classList: { add() {}, remove() {}, toggle() {}, contains() { return false; } }
+    };
+  }
+  return pillEls[id];
+}
+const prevGet = sandbox.document.getElementById;
+const prevQuery = sandbox.document.querySelectorAll;
+sandbox.document.getElementById = pillEl;
+sandbox.document.querySelectorAll = () => [];
+bridalCatalog.searchQuery = '<img src=x onerror=alert(1)>';
+bridalCatalog.activeFilters.des = '<svg/onload=alert(1)>';
+bridalCatalog.renderActiveTray();
+const pillHtml = pillEls.activePillsList.innerHTML;
+if (/<(img|svg|script|iframe)\b/i.test(pillHtml)) {
+  throw new Error('Filter pills still interpolate raw URL values: ' + pillHtml);
+}
+if (!pillHtml.includes('&lt;img') || !pillHtml.includes('&lt;svg')) {
+  throw new Error('Filter pills were not escaped: ' + pillHtml);
+}
+bridalCatalog.searchQuery = '';
+bridalCatalog.activeFilters.des = 'all';
+sandbox.document.getElementById = prevGet;
+sandbox.document.querySelectorAll = prevQuery;
+console.log('[PASS] Reflected filter-pill XSS is escaped');
 
 // 2. Prom Catalog Test
 const promCatalog = new sandbox.window.CloudNineCatalog({
@@ -283,6 +343,55 @@ compSandbox.window.document = compSandbox.document;
 compSandbox.window.location = compSandbox.location;
 vm.createContext(compSandbox);
 vm.runInContext(compCode, compSandbox);
+
+const actionSamples = [];
+function collectActions(file) {
+  const text = fs.readFileSync(path.join(__dirname, file), 'utf8');
+  const re = /data-cn-(?:click|submit|input|keydown|change)="([^"]*)"/g;
+  let m;
+  while ((m = re.exec(text))) {
+    if (!m[1].includes('${')) actionSamples.push(m[1]);
+  }
+}
+['components.js', 'catalog-engine.js'].forEach(collectActions);
+fs.readdirSync(path.join(__dirname, 'js/pages')).forEach(name => collectActions(path.join('js/pages', name)));
+fs.readdirSync(__dirname).filter(name => name.endsWith('.html')).forEach(collectActions);
+const seenActions = [...new Set(actionSamples)];
+if (!seenActions.length) throw new Error('No data-cn actions found to validate');
+const savedFns = {};
+seenActions.forEach(expr => {
+  const names = expr.match(/[A-Za-z_$][\w$]*/g) || [];
+  names.forEach(name => {
+    if (typeof compSandbox.window[name] !== 'function' && name !== 'event' && name !== 'this' && name !== 'true' && name !== 'false' && name !== 'null' && name !== 'setTimeout' && name !== 'location' && name !== 'window' && name !== 'dataset' && name !== 'angleSrc' && name !== 'stopPropagation' && name !== 'preventDefault' && name !== 'reload' && name !== 'value') {
+      savedFns[name] = compSandbox.window[name];
+      compSandbox.window[name] = function() {};
+    }
+  });
+});
+compSandbox.setTimeout = function(fn) { if (typeof fn === 'function') fn(); };
+compSandbox.location.reload = function() {};
+const realOnSearchInput = compSandbox.window.onSearchInput;
+Object.keys(compSandbox.window).forEach(name => {
+  if (name !== 'cnRunAction' && typeof compSandbox.window[name] === 'function') {
+    compSandbox.window[name] = function() {};
+  }
+});
+const actionEl = { value: 'q', dataset: { angleSrc: 'https://example.com/a.webp' } };
+seenActions.forEach(expr => {
+  try {
+    compSandbox.window.cnRunAction(expr, actionEl, { stopPropagation() {}, preventDefault() {} });
+  } catch (err) {
+    throw new Error('Action failed to parse: ' + expr + ' (' + err.message + ')');
+  }
+});
+try {
+  compSandbox.window.cnRunAction('alert(1)', actionEl, {});
+  throw new Error('alert(1) was allowed');
+} catch (err) {
+  if (!/blocked alert/.test(String(err && err.message))) throw err;
+}
+console.log(`[PASS] CSP action dispatcher parsed ${seenActions.length} handlers and blocked alert(1)`);
+compSandbox.window.onSearchInput = realOnSearchInput;
 
 const renderedNav = compSandbox.navHTML();
 ['nav-search-bar-btn', 'nav-search-mobile', 'mobile-menu-search-bar'].forEach(cls => {

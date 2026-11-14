@@ -71,6 +71,11 @@ class CloudNineCatalog {
       .replace(/'/g, '&#039;');
   }
 
+  /* Single-quoted JS string literal, for data-cn-click expressions. */
+  jsArg(s) {
+    return String(s || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/[\r\n]/g, ' ');
+  }
+
   exposeGlobalAPIs() {
     window.catalogInstance = this;
     window.setFilter = (type, val, closePop, e) => this.setFilter(type, val, closePop, e);
@@ -214,6 +219,15 @@ class CloudNineCatalog {
   }
 
   initGlobalListeners() {
+    // Active-filter pills. Labels come from ?q= / ?designer= and must not be
+    // invoked as inline script; the type is read from a data attribute.
+    document.addEventListener('click', (e) => {
+      const pill = e.target && e.target.closest && e.target.closest('[data-remove-filter]');
+      if (!pill) return;
+      e.preventDefault();
+      this.removeFilter(pill.getAttribute('data-remove-filter'));
+    });
+
     // Dismiss popovers on outside click
     document.addEventListener('click', (e) => {
       if (!e.target.closest('.filter-facet-dropdown')) {
@@ -432,7 +446,7 @@ class CloudNineCatalog {
         grid.innerHTML = `
           <div class="catalog-error-state">
             <p>We couldn't load the collection right now.<br/>
-            Please <button onclick="location.reload()" style="background:none;border:none;color:var(--teal-deep);cursor:pointer;font-size:15px;text-decoration:underline;">try again</button> or <a href="contact.html">contact us directly</a>.</p>
+            Please <button type="button" data-cn-click="location.reload()" style="background:none;border:none;color:var(--teal-deep);cursor:pointer;font-size:15px;text-decoration:underline;">try again</button> or <a href="contact.html">contact us directly</a>.</p>
           </div>`;
       }
       const cc = document.getElementById(this.countId);
@@ -451,10 +465,10 @@ class CloudNineCatalog {
         const val = btn.dataset.value;
         const nameEl = btn.querySelector('.popover-chip-name');
         const name = nameEl ? nameEl.textContent : val;
-        const safeVal = val.replace(/'/g, "\\'");
         const isActive = (val.toLowerCase() === (this.activeFilters[facet] || '').toLowerCase());
-        return `<button type="button" class="filter-sheet-chip ${isActive ? 'active' : ''}" data-filter="${facet}" data-value="${val}" role="checkbox" aria-checked="${isActive ? 'true' : 'false'}" onclick="setFilter('${facet}', '${safeVal}', false, event)">
-          <span>${name}</span>
+        const expr = "setFilter('" + this.jsArg(facet) + "', '" + this.jsArg(val) + "', false, event)";
+        return `<button type="button" class="filter-sheet-chip ${isActive ? 'active' : ''}" data-filter="${this.esc(facet)}" data-value="${this.esc(val)}" role="checkbox" aria-checked="${isActive ? 'true' : 'false'}" data-cn-click="${this.esc(expr)}">
+          <span>${this.esc(name)}</span>
           <span class="chip-count"></span>
         </button>`;
       }).join('');
@@ -908,12 +922,15 @@ class CloudNineCatalog {
       pillsList.innerHTML = '';
     } else {
       activeTray.style.display = 'flex';
-      pillsList.innerHTML = activeList.map(f => `
-        <button type="button" class="filter-active-pill" onclick="removeFilter('${f.type}')" title="Remove ${f.label}" aria-label="Remove filter: ${f.label}">
-          <span>${f.label}</span>
+      pillsList.innerHTML = activeList.map(f => {
+        const label = this.esc(f.label);
+        const type = this.esc(f.type);
+        return `
+        <button type="button" class="filter-active-pill" data-remove-filter="${type}" title="Remove ${label}" aria-label="Remove filter: ${label}">
+          <span>${label}</span>
           <span class="filter-active-pill-x" aria-hidden="true">&times;</span>
-        </button>
-      `).join('');
+        </button>`;
+      }).join('');
     }
   }
 
@@ -1106,7 +1123,7 @@ class CloudNineCatalog {
         <div class="catalog-empty-state">
           <h3 class="catalog-empty-title">No matching styles found</h3>
           <p class="catalog-empty-desc">We couldn't find any styles matching your exact search and filter criteria. Try resetting filters or searching with broader keywords.</p>
-          <button class="catalog-empty-btn" onclick="clearAllFilters()">
+          <button type="button" class="catalog-empty-btn" data-cn-click="clearAllFilters()">
             Reset All Filters
           </button>
         </div>`;
@@ -1136,8 +1153,6 @@ class CloudNineCatalog {
       const loadingAttr = isTopRow
         ? 'width="370" height="575" loading="eager" fetchpriority="high" decoding="async"'
         : (isAboveFold ? 'width="370" height="575" loading="eager" decoding="async"' : 'width="370" height="575" loading="lazy" decoding="async"');
-      const loadHandlers = `onload="this.classList.add('img-loaded');if(this.parentElement)this.parentElement.classList.remove('loading');" onerror="if(this.parentElement)this.parentElement.classList.remove('loading');"`;
-
       let dressName = '';
       if (p.gn && String(p.gn).trim()) {
         const rawGn = String(p.gn).trim();
@@ -1150,13 +1165,16 @@ class CloudNineCatalog {
       }
 
       const designerName = (p.d && String(p.d).trim()) ? String(p.d).trim() : '';
+      const safeDesigner = this.esc(designerName);
+      const safeDressName = this.esc(dressName);
       const cardTitleHtml = designerName
-        ? `<span class="dress-card-des-inline">${designerName}<span class="dress-card-sep" aria-hidden="true">&nbsp;&middot;</span></span> <span class="dress-card-gn-inline">${dressName}</span>`
-        : `<span class="dress-card-gn-inline">${dressName}</span>`;
+        ? `<span class="dress-card-des-inline">${safeDesigner}<span class="dress-card-sep" aria-hidden="true">&nbsp;&middot;</span></span> <span class="dress-card-gn-inline">${safeDressName}</span>`
+        : `<span class="dress-card-gn-inline">${safeDressName}</span>`;
+      const altText = this.esc(((p.d || '') + ' ' + (p.gn || '') + ' ' + (p.s || '')).trim());
 
       card.innerHTML = `
         <div class="dress-card-img loading">
-          <img src="${p.i}" alt="${(p.d||'')} ${(p.gn||'') + ' ' + (p.s||'')}" ${loadingAttr} ${loadHandlers}/>
+          <img src="${this.esc(p.i)}" alt="${altText}" ${loadingAttr} data-img-fade=""/>
           ${pipsHtml}
         </div>
         <div class="dress-card-body">
@@ -1513,7 +1531,7 @@ class CloudNineCatalog {
       }
 
       mMeta.innerHTML = metaItems.map(([k, v]) =>
-        `<div class="m-meta-item"><span class="m-meta-key">${k}</span><span class="m-meta-val">${v}</span></div>`
+        `<div class="m-meta-item"><span class="m-meta-key">${this.esc(k)}</span><span class="m-meta-val">${this.esc(v)}</span></div>`
       ).join('');
     }
 
@@ -1600,7 +1618,7 @@ class CloudNineCatalog {
     if (!thumbsContainer) return;
 
     thumbsContainer.innerHTML = this.curImgs.map((img, i) =>
-      `<img class="modal-thumb ${i===0?'active':''}" src="${img.replace('.2000.','.340.')}" data-idx="${i}" alt="View ${i+1}"/>`
+      `<img class="modal-thumb ${i===0?'active':''}" src="${this.esc(String(img).replace('.2000.','.340.'))}" data-idx="${i}" alt="View ${i+1}"/>`
     ).join('');
 
     const nav = this.curImgs.length > 1;
