@@ -2179,6 +2179,10 @@ body.search-open .nav-cloud-cta {
   letter-spacing: .08em; text-transform: uppercase; cursor: pointer; white-space: nowrap; transition: opacity .2s;
 }
 .footer-subscribe-form button:hover { opacity: .85; }
+.footer-subscribe-success { color: var(--teal-deep); font-size: 13px; margin: 0; }
+.form-send-error { color: #9b2c4e; font-size: 14px; line-height: 1.5; margin: 10px 0 0; }
+a.follow-chip:hover { background: rgba(234,246,247,.2) !important; }
+a.marquee-all-link:hover { color: rgba(255,255,255,.85) !important; }
 .footer-social { display: flex; gap: 12px; margin-top: 18px; align-items: center; flex-wrap: wrap; }
 .social-link {
   display: inline-flex; align-items: center; justify-content: center;

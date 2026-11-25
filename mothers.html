@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"/>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" media="print" onload="this.media='all'"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"/>
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:wght@100;200;300;400;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"/></noscript>
   <link rel="stylesheet" href="shared.css?v=20261026m"/>
   <style>
@@ -326,7 +326,7 @@
       <div class="filter-facets-group" id="filterFacetsGroup">
         <!-- Designer Trigger & Popover -->
         <div class="filter-facet-dropdown" id="dropdownDes" data-facet="des">
-          <button type="button" class="filter-trigger-btn" id="triggerDes" aria-expanded="false" aria-haspopup="true" onclick="toggleFacetDropdown('des', event)">
+          <button type="button" class="filter-trigger-btn" id="triggerDes" aria-expanded="false" aria-haspopup="true" data-cn-click="toggleFacetDropdown('des', event)">
             <span class="filter-trigger-label" id="labelDes">Designer</span>
             <span class="filter-trigger-caret" aria-hidden="true"></span>
           </button>
@@ -336,27 +336,27 @@
                 <span class="filter-popover-title">Select Designer</span>
               </div>
               <div class="filter-popover-grid" id="des-row">
-                <button type="button" class="filter-popover-chip active" data-filter="des" data-value="all" onclick="setFilter('des', 'all', true, event)">
+                <button type="button" class="filter-popover-chip active" data-filter="des" data-value="all" data-cn-click="setFilter('des', 'all', true, event)">
                   <span class="popover-chip-name">All Designers</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="des" data-value="Alexander By Daymor" onclick="setFilter('des', 'Alexander By Daymor', true, event)">
+                <button type="button" class="filter-popover-chip" data-filter="des" data-value="Alexander By Daymor" data-cn-click="setFilter('des', 'Alexander By Daymor', true, event)">
                   <span class="popover-chip-name">Alexander By Daymor</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="des" data-value="Cameron Blake" onclick="setFilter('des', 'Cameron Blake', true, event)">
+                <button type="button" class="filter-popover-chip" data-filter="des" data-value="Cameron Blake" data-cn-click="setFilter('des', 'Cameron Blake', true, event)">
                   <span class="popover-chip-name">Cameron Blake</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="des" data-value="Jasmine" onclick="setFilter('des', 'Jasmine', true, event)">
+                <button type="button" class="filter-popover-chip" data-filter="des" data-value="Jasmine" data-cn-click="setFilter('des', 'Jasmine', true, event)">
                   <span class="popover-chip-name">Jasmine</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="des" data-value="MLNY" onclick="setFilter('des', 'MLNY', true, event)">
+                <button type="button" class="filter-popover-chip" data-filter="des" data-value="MLNY" data-cn-click="setFilter('des', 'MLNY', true, event)">
                   <span class="popover-chip-name">MLNY</span>
                   <span class="chip-count"></span>
                 </button>
-                <button type="button" class="filter-popover-chip" data-filter="des" data-value="Ivonne D" onclick="setFilter('des', 'Ivonne D', true, event)">
+                <button type="button" class="filter-popover-chip" data-filter="des" data-value="Ivonne D" data-cn-click="setFilter('des', 'Ivonne D', true, event)">
                   <span class="popover-chip-name">Ivonne D</span>
                   <span class="chip-count"></span>
                 </button>
@@ -367,7 +367,7 @@
       </div>
 
       <!-- Mobile Trigger Button -->
-      <button type="button" class="filter-mobile-trigger-btn" id="mobileFilterBtn" aria-haspopup="dialog" aria-expanded="false" onclick="openMobileFilters()">
+      <button type="button" class="filter-mobile-trigger-btn" id="mobileFilterBtn" aria-haspopup="dialog" aria-expanded="false" data-cn-click="openMobileFilters()">
         <span>Filters</span>
         <span class="mobile-filter-badge" id="mobileFilterBadge">0</span>
       </button>
@@ -375,10 +375,10 @@
       <!-- Right: Count, Single Clear Button & Density Toggle -->
       <div class="filter-bar-right">
         <div class="catalog-count-compact" id="cc" role="status" aria-live="polite" aria-atomic="true"></div>
-        <button type="button" class="filter-main-clear-btn" id="clearFilters" onclick="clearAllFilters()" aria-label="Clear all filters">Clear</button>
+        <button type="button" class="filter-main-clear-btn" id="clearFilters" data-cn-click="clearAllFilters()" aria-label="Clear all filters">Clear</button>
         <div class="density-toggle-wrap" id="densityToggle">
-          <button id="density3" title="3-column view" aria-label="3-column grid view" aria-pressed="false" onclick="setDensity(3)">3 Col</button>
-          <button id="density4" title="4-column view" aria-label="4-column grid view" aria-pressed="true" onclick="setDensity(4)">4 Col</button>
+          <button id="density3" title="3-column view" aria-label="3-column grid view" aria-pressed="false" data-cn-click="setDensity(3)">3 Col</button>
+          <button id="density4" title="4-column view" aria-label="4-column grid view" aria-pressed="true" data-cn-click="setDensity(4)">4 Col</button>
         </div>
       </div>
     </div>
@@ -390,12 +390,12 @@
   </div>
 
   <!-- Mobile Bottom Sheet Modal -->
-  <div class="filter-sheet-backdrop" id="filterSheetBackdrop" onclick="closeMobileFilters(event)">
+  <div class="filter-sheet-backdrop" id="filterSheetBackdrop" data-cn-click="closeMobileFilters(event)">
     <div class="filter-sheet" id="filterSheet" role="dialog" aria-modal="true" aria-label="Filter Mothers Collection">
       <div class="filter-sheet-handle"></div>
       <div class="filter-sheet-header">
         <h3 class="filter-sheet-title">Filter Mothers Collection</h3>
-        <button type="button" class="filter-sheet-close" onclick="closeMobileFilters()">Close</button>
+        <button type="button" class="filter-sheet-close" data-cn-click="closeMobileFilters()">Close</button>
       </div>
       <div class="filter-sheet-body">
         <!-- Mobile Designer Section -->
@@ -405,8 +405,8 @@
         </div>
       </div>
       <div class="filter-sheet-footer">
-        <button type="button" class="filter-sheet-btn-clear" onclick="clearAllFilters(false)">Clear All</button>
-        <button type="button" class="filter-sheet-btn-apply" id="mobileApplyBtn" onclick="closeMobileFilters(event, true)">Apply Filters</button>
+        <button type="button" class="filter-sheet-btn-clear" data-cn-click="clearAllFilters(false)">Clear All</button>
+        <button type="button" class="filter-sheet-btn-apply" id="mobileApplyBtn" data-cn-click="closeMobileFilters(event, true)">Apply Filters</button>
       </div>
     </div>
   </div>
@@ -419,15 +419,15 @@
 </div>
 
 <!-- MODAL -->
-<div class="modal-backdrop" id="mb" onclick="closeBg(event)">
+<div class="modal-backdrop" id="mb" data-cn-click="closeBg(event)">
   <div class="modal" id="mo" role="dialog" aria-modal="true" aria-labelledby="mTitle">
-    <button class="modal-x" onclick="closeModal()" aria-label="Close">Close</button>
+    <button class="modal-x" data-cn-click="closeModal()" aria-label="Close">Close</button>
 
     <div class="modal-gallery">
       <div class="modal-main-wrap">
-        <button class="modal-nav modal-nav-prev" id="navPrev" onclick="shiftImg(-1)">Prev</button>
+        <button class="modal-nav modal-nav-prev" id="navPrev" data-cn-click="shiftImg(-1)">Prev</button>
         <img class="modal-main-img" id="mImg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""/>
-        <button class="modal-nav modal-nav-next" id="navNext" onclick="shiftImg(1)">Next</button>
+        <button class="modal-nav modal-nav-next" id="navNext" data-cn-click="shiftImg(1)">Next</button>
       </div>
       <div class="modal-thumbs" id="mThumbs"></div>
     </div>
@@ -447,52 +447,10 @@
 </div>
 
 <div id="site-footer"></div>
-<script src="components.js?v=20261026m" defer></script>
-<script src="catalog-engine.js?v=20261026m" defer></script>
-<script>
-const MOTHERS_SYNONYMS = {
-  'sleeves': ['sleeve', 'sleeves', 'long sleeve', '3/4 sleeve', 'jacket', 'shawl', 'cap sleeve'],
-  'sleeve': ['sleeve', 'sleeves', 'long sleeve', '3/4 sleeve', 'jacket', 'shawl', 'cap sleeve'],
-  'jacket': ['jacket', 'bolero', 'cape', 'shawl'],
-  'modest': ['modest', 'coverage', 'sleeve', 'jacket', 'high neck'],
-  'sparkle': ['sparkle', 'sparkly', 'bead', 'beaded', 'sequin', 'shimmer'],
-  'sparkly': ['sparkle', 'sparkly', 'bead', 'beaded', 'sequin', 'shimmer'],
-  'glitter': ['glitter', 'sparkle', 'sparkly', 'sequin'],
-  'lace': ['lace', 'embroidered', 'applique'],
-  'chiffon': ['chiffon', 'flowy', 'crepe', 'lightweight'],
-  'pant': ['pant', 'pantsuit', 'jumpsuit', 'trousers'],
-  'pantsuit': ['pant', 'pantsuit', 'jumpsuit', 'trousers'],
-  'tea-length': ['tea length', 'tea-length', 'midi', 'knee length'],
-  'aline': ['a-line', 'aline', 'flowy'],
-  'a-line': ['a-line', 'aline', 'flowy'],
-  'sheath': ['sheath', 'column', 'fitted', 'straight'],
-  'jasmine': ['jasmine'],
-  'cameron': ['cameron blake', 'cameron'],
-  'alexander': ['alexander by daymor', 'daymor', 'alexander'],
-  'mlny': ['mlny', 'morilee new york'],
-  'ivonne': ['ivonne d', 'ivonne']
-};
-
-function initMothersCatalog() {
-  if (typeof CloudNineCatalog !== 'undefined') {
-    new CloudNineCatalog({
-      category: 'mothers',
-      dataPath: 'data/mothers-products.json?v=20261026m',
-      facets: ['des'],
-      facetLabels: { des: 'Designer' },
-      synonyms: MOTHERS_SYNONYMS
-    });
-  } else {
-    setTimeout(initMothersCatalog, 20);
-  }
-}
-
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initMothersCatalog);
-} else {
-  initMothersCatalog();
-}
-</script>
+<script src="site-config.js?v=20261114a" defer></script>
+<script src="components.js?v=20261114a" defer></script>
+<script src="catalog-engine.js?v=20261114a" defer></script>
+<script src="js/pages/mothers-1.js?v=20261114a" defer></script>
 </main>
 </body>
 </html>
